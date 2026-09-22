@@ -165,7 +165,7 @@ Scope Cut은 장식/연출 밀도 감소 → 선택 방 제거(18→15) → Mini
 
 ### Latest Handoff
 
-2026-09-22 Git 인계 준비: 사용자가 현재 상태의 Git 연결을 요청했다. 사용자 지정 원격 `origin`을 `https://github.com/okyunsu/game1.git`으로 연결했고 기존 원격 ref가 없음을 확인했다. 사용자가 지정한 작성자 정보를 저장소 로컬 설정에 적용하여 N1 스냅샷을 `main`의 초기 커밋으로 기록·push하는 작업을 진행한다. 소스·Unity 설정·문서·Validation을 보존하고 Library/Temp/Builds/Logs/UserSettings 제외를 확인했다. 초기 커밋 메시지: `chore: snapshot Sprint 1 N1 movement prototype`. 원격 반영 완료 여부는 push 결과와 로컬/원격 HEAD 일치로 확인한다. Unity 재실행은 하지 않았으며 아래 기존 검증 기록과 Sprint 상태를 유지한다.
+2026-09-22 Git 인계 준비: 사용자가 현재 상태의 Git 연결을 요청했다. 사용자 지정 원격 `origin`을 `https://github.com/okyunsu/game1.git`으로 연결했고 기존 원격 ref가 없음을 확인했다. 사용자가 지정한 작성자 정보를 저장소 로컬 설정에 적용했다. N1 스냅샷을 `main`의 초기 커밋 `628de2d`로 기록하고 GitHub push를 완료했다. 소스·Unity 설정·문서·Validation을 보존하고 Library/Temp/Builds/Logs/UserSettings 제외를 확인했다. 초기 커밋 메시지: `chore: snapshot Sprint 1 N1 movement prototype`. GitHub 인증 후 push 성공 및 로컬/원격 `main`의 커밋 `628de2d30410bfe86f1d091bb29c518a260abcb5` 일치를 확인했다. `main`은 `origin/main`을 추적한다. Unity 재실행은 하지 않았으며 아래 기존 검증 기록과 Sprint 상태를 유지한다.
 
 2026-09-17 / N1 / Unity 6000.3.24f1 (4e7b9b5b6244), Input System 1.20.0. 설계 기준 v0.2 유지.
 
