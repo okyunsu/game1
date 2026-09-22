@@ -1,0 +1,113 @@
+PASS S1-05; Unity=6000.3.24f1; UTC=2026-09-17T14:24:56.5876407Z; input=Unity virtual Keyboard/Gamepad (physical devices not tested)
+PASS: D moves right
+PASS: left arrow moves left
+PASS: gamepad stick and device switch
+PASS: gamepad D-pad
+PASS: Space press once
+PASS: hold does not repeat
+PASS: jump release
+PASS: gamepad A jump
+PASS: Esc pauses physics and gameplay map
+PASS: UI map blocks gameplay input
+PASS: A resumes without jump leakage
+PASS: Menu button pauses
+PASS: B cancels pause
+PASS: active gamepad disconnect pauses
+PASS: keyboard resumes after disconnect
+PASS: pause/resume clears pending jump
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+MEASURE: coyote target=0.08s actual press=0.0800s velocityY=12.000
+PASS: scheduled coyote input lies on intended side of boundary
+PASS: coyote 0.08s allowed
+MEASURE: coyote target=0.12s actual press=0.1234s velocityY=-7.200
+PASS: scheduled coyote input lies on intended side of boundary
+PASS: coyote 0.12s rejected
+MEASURE: buffer target lead=0.10s nominal flight=0.2299s actual start-to-press=0.1333s press-to-jump=0.0999s
+PASS: buffer 0.10s allowed
+PASS: held buffered input not reused on next landing
+MEASURE: buffer target lead=0.15s nominal flight=0.2300s actual start-to-press=0.0834s press-to-jump=0.0000s
+PASS: buffer 0.15s expired
+PASS: held buffered input not reused on next landing
+PASS: coyote cannot reuse consumed ground jump
+FRAME CONDITION: target=30, fixedDeltaTime=0.020s
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+MEASURE: target=30 average rendered fps=30.0
+PASS: 30fps jump input reaches physics tick
+PASS: 30fps jump lands
+PASS: 30fps jump input reaches physics tick
+PASS: 30fps jump lands
+MEASURE: 30fps short height=1.944u long height=2.520u
+PASS: 30fps variable jump height clearly differs
+PASS: 30fps full jump near prototype estimate
+PASS: 30fps terminal fall speed 18 units/s
+PASS: 30fps Inspector fall cap applies
+MEASURE: 30fps fall acceleration=45.000 units/s²
+PASS: 30fps fall gravity multiplier 1.5
+FRAME CONDITION: target=60, fixedDeltaTime=0.020s
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+MEASURE: target=60 average rendered fps=60.0
+PASS: 60fps jump input reaches physics tick
+PASS: 60fps jump lands
+PASS: 60fps jump input reaches physics tick
+PASS: 60fps jump lands
+MEASURE: 60fps short height=1.596u long height=2.520u
+PASS: 60fps variable jump height clearly differs
+PASS: 60fps full jump near prototype estimate
+PASS: 60fps terminal fall speed 18 units/s
+PASS: 60fps Inspector fall cap applies
+MEASURE: 60fps fall acceleration=45.000 units/s²
+PASS: 60fps fall gravity multiplier 1.5
+FRAME CONDITION: target=120, fixedDeltaTime=0.020s
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+MEASURE: target=120 average rendered fps=120.0
+PASS: 120fps jump input reaches physics tick
+PASS: 120fps jump lands
+PASS: 120fps jump input reaches physics tick
+PASS: 120fps jump lands
+MEASURE: 120fps short height=1.596u long height=2.520u
+PASS: 120fps variable jump height clearly differs
+PASS: 120fps full jump near prototype estimate
+PASS: 120fps terminal fall speed 18 units/s
+PASS: 120fps Inspector fall cap applies
+MEASURE: 120fps fall acceleration=45.000 units/s²
+PASS: 120fps fall gravity multiplier 1.5

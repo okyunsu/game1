@@ -1,0 +1,41 @@
+PASS S1-04; Unity=6000.3.24f1; UTC=2026-09-17T14:20:19.8438452Z; input=Unity virtual Keyboard/Gamepad (physical devices not tested)
+PASS: D moves right
+PASS: left arrow moves left
+PASS: gamepad stick and device switch
+PASS: gamepad D-pad
+PASS: Space press once
+PASS: hold does not repeat
+PASS: jump release
+PASS: gamepad A jump
+PASS: Esc pauses physics and gameplay map
+PASS: UI map blocks gameplay input
+PASS: A resumes without jump leakage
+PASS: Menu button pauses
+PASS: B cancels pause
+PASS: active gamepad disconnect pauses
+PASS: keyboard resumes after disconnect
+PASS: pause/resume clears pending jump
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+MEASURE: coyote target=0.08s actual press=0.0808s velocityY=12.000
+PASS: scheduled coyote input lies on intended side of boundary
+PASS: coyote 0.08s allowed
+MEASURE: coyote target=0.12s actual press=0.1208s velocityY=-4.200
+PASS: scheduled coyote input lies on intended side of boundary
+PASS: coyote 0.12s rejected
+MEASURE: buffer target lead=0.10s nominal flight=0.2725s actual start-to-press=0.1833s press-to-jump=0.0826s
+PASS: buffer 0.10s allowed
+PASS: held buffered input not reused on next landing
+MEASURE: buffer target lead=0.15s nominal flight=0.2659s actual start-to-press=0.1167s press-to-jump=0.0000s
+PASS: buffer 0.15s expired
+PASS: held buffered input not reused on next landing
+PASS: coyote cannot reuse consumed ground jump

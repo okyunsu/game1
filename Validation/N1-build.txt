@@ -1,0 +1,1 @@
+Succeeded; errors=0; warnings=0; Unity=6000.3.24f1; UTC=2026-09-17T14:26:35.3215467Z; scene=Assets/Scenes/MovementTest.unity; Windows x64 Mono; Development Build=false
