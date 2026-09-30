@@ -14,7 +14,7 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A(S1-06 Camera·S1-07 Room Structure) 승인, S1-08 이후와 Sprint 2는 미승인이다.
+S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A 승인: S1-06 Camera REVIEW, S1-07 Room Structure 구현 예정. S1-08 이후와 Sprint 2는 미승인이다.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
@@ -32,7 +32,7 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-03 | 좌우 이동·기본 점프·낙하 | DONE | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
 | S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 | S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
-| S1-06 | Camera | TODO | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
+| S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
 | S1-07 | Basic Tilemap / Room Structure | TODO | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | Ground/Hazard/출입구·Spawn ID, A01~A04 양방향 연결, 플레이어 중복·벽 끼임 없음, 배치 편집 가능 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | TODO | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·최대 HP 안전 복귀, 능력 없는 초기 상태 검증; 디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | TODO | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
@@ -110,6 +110,11 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 현재 없음. 기존 push 차단은 사용자 승인 후 원격 main=a967297로 동기화하여 해소했다. N2-A 승인됨. 수치 변경 없음. S1-09에서 키보드 점프 체감을 패드 A와 비교해 재확인하며 N2-B는 아직 미승인이다.
 
+### S1-06 / N2-A (2026-09-30)
+
+- Cinemachine 3.1.7: 공식 registry의 최소 Editor 2022.3, 설치된 package.json 3.1.7, manifest/lock 고정. 6000.3.24f1에서 resolve·컴파일·Play 성공.
+- 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
+- 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
 
 아래 기존 실제 결과는 보존한다. 2026-09-30 지정된 S1-02/04/05와 N1 빌드만 재실행했고 새 파일에 기록했다. S1-01·S1-03 단독 검증은 반복하지 않았다.
@@ -173,11 +178,11 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Latest Handoff
 
-2026-09-30 — Movement Review 사용자 수락 기록.
+2026-09-30 — S1-06 Camera 기술 검증 완료.
 
-- **완료·상태:** S1-03/04/05 DONE. Editor·N1 빌드 확인을 사용자 보고로 기록. N2-A 승인, S1-06/07 아직 미착수.
-- **주요 파일:** TASKS만 변경. PlayerTuning 값 변경 없음, 기존 초기값을 사용자 수락값으로 기록.
-- **검증:** 문서 상태·수락 기록 정적 확인. 새 게임 테스트 미실행. 시간 기준 점프 정상은 사용자 보고이며 세부 시험 결과로 확장하지 않음.
-- **사용자 확인:** 점프 거리 체감 메모는 S1-09 패드 A 비교 대상으로 유지. 카메라 사용자 검토도 S1-09 예정.
-- **문제:** 기존 push 차단 해소·원격 반영 완료. 확인되지 않은 입력 장치 원인을 확정하지 않음.
-- **다음 작업:** 문서 커밋 push 후 S1-06 Camera. N2-B(S1-08→S1-09→S1-10)는 N2-A 완료·인계 이후 별도 승인 필요.
+- **완료·상태:** 사용자 Movement 수락으로 S1-03/04/05 DONE. S1-06 REVIEW, 사용자 카메라 수락은 S1-09에서 함께 진행. S1-07 승인·구현 예정.
+- **주요 파일:** manifest/lock(Cinemachine 3.1.7 및 필수 의존성), RoomCameraRig·CameraTest·N2Verification. 기존 MovementTest·PlayerTuning은 보존.
+- **실제 검증:** 공식 패키지 최소 Editor 2022.3 확인, 6000.3.24f1에서 설치·컴파일·Play 검증. 5.5u/1u/0.15s Inspector 설정, 2해상도 좌/중/우 경계·즉시 snap·낙하 시야 통과. 급반전 최대 프레임 이동 0.0957u. [결과](Validation/S1-06-N2-A.txt), [720p 렌더](Validation/Camera/Run-20260930-132656/S1-06-1280x720.png), [1080p 렌더](Validation/Camera/Run-20260930-132656/S1-06-1920x1080.png). 렌더 파일을 열어 플레이어·발판 표시 확인. 이는 정적 렌더 검사이며 사용자 떨림/조작감 수락은 아님.
+- **사용자 확인:** CameraTest의 Main Camera > RoomCameraRig에서 수치·Camera Boundary Polygon 편집. Play 변경은 Stop 후 Scene 값으로 다시 반영. 사용자 검토는 S1-09. 이동감 점프 체감은 패드 A 비교로 재확인 예정.
+- **문제:** 초기 API 컴파일 및 ManualUpdate 모드 오류를 실제 CM3 API로 수정해 재검증. 실패 로그·렌더도 보존. 호환 문제 없음.
+- **다음 작업:** 카메라 커밋 push 후 S1-07 4방 연결·단일 GameState 및 S1-02/04 회귀. N2-B는 아직 미승인. 사용량 조회 시 5시간 창 28%·주간 21% 사용으로 다음 승인 Task 진행 여유 확인(토큰 개수 측정 아님).

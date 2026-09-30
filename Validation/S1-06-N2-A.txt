@@ -1,0 +1,80 @@
+PASS S1-06; Unity=6000.3.24f1; UTC=2026-09-30T13:26:58.6827588Z
+PASS: Inspector prototype values 5.5u / 1u / 0.15s
+PASS: orthographic lens applied
+PASS: 1280x720 frame confined at x=-24
+PASS: camera snap output equals new virtual state immediately
+PASS: 1280x720 frame confined at x=0
+PASS: camera snap output equals new virtual state immediately
+PASS: 1280x720 frame confined at x=24
+PASS: camera snap output equals new virtual state immediately
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+RENDER: Validation/Camera/Run-20260930-132656/S1-06-1280x720.png
+PASS: orthographic lens applied
+PASS: 1920x1080 frame confined at x=-24
+PASS: camera snap output equals new virtual state immediately
+PASS: 1920x1080 frame confined at x=0
+PASS: camera snap output equals new virtual state immediately
+PASS: 1920x1080 frame confined at x=24
+PASS: camera snap output equals new virtual state immediately
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+RENDER: Validation/Camera/Run-20260930-132656/S1-06-1920x1080.png
+PASS: rapid reversal camera step stays below 0.5u; no single-frame 2u offset jump
+MEASURE: largest reversal camera step=0.0957u; automated positional check, human feel pending
