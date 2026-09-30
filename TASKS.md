@@ -113,11 +113,15 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 기대·실제: Tilemap 지면에 안전하게 착지해야 하나, 저장된 씬의 셀이 비어 있었다. Tile Asset 로드는 정상인데 재지정·저장 진단에서도 GetUsedTilesCount=0이 반복됐다. 근본 원인은 미확정.
 - 처리: AGENTS Stop Conditions의 동일 오류 해결 반복 조건으로 중단. S1-07 코드·씬·패키지/설정 변경은 검증된 HEAD로 되돌렸으며, 실패 작업 사본과 patch는 로컬 `Logs/S1-07-blocked-work/`에 보존했다. 기존 이동·Camera 구현과 사용자 변경은 보존했다.
 - 재검증: S1-07 실패. 전체 왕복·잘못된 ID·입력 누수 및 S1-02/04 통합 회귀는 완료하지 못했다. DONE으로 처리하지 않음. 수치·규칙 변경 없음.
+- 2026-09-30 재개 승인 후 최소 재현: H1 시작 시 module 없음(추가 후 manifest/lock PASS), H2 CreateAsset·저장·저장된 Tile 재로드 PASS, H3 Grid 부모 PASS. H4 SetDirty·MarkSceneDirty·SaveScene 호출/저장은 성공했으나 재개방 GetUsedTilesCount=0·셀 3개 모두 없음으로 FAIL. 저장 이전에도 count=0, cell0 없음. 원인 미확정이며 추가 조사 중단. [최소 재현 결과](Validation/ROOM-001-minimal.txt).
+- 최소 재현 실패 씬 `Assets/Scenes/RoomMinimalTemp.unity`와 단일 Tile `Assets/RoomMinimalTemp.asset`을 증거로 보존(빌드 씬 미등록). 실행용 임시 스크립트는 삭제, 로컬 `Logs/ROOM-001-minimal-repro.cs`·실행 로그 보존. S1-07 patch는 복원하지 않음.
 - 증거: [실패 결과](Validation/S1-07-N2-A-blocked.txt). 로컬 `Logs/S1-07-tile-diagnostic.log`, `Logs/S1-07-persist-tiles.log`.
 
 ## Decisions Needed
 
-ROOM-001: 반복된 Tilemap 셀 저장 실패로 S1-07 중단. 다음 실행에서 독립적인 최소 재현으로 원인을 조사하고 S1-07을 재개할지 사용자 판단이 필요하다(AGENTS Stop Conditions). S1-06 호환·기술 검증은 완료. N2-B는 S1-07 DONE 전 준비되지 않았으며 미승인이다.
+ROOM-001: 재개 승인 후 최소 재현에서 저장 선행 조건과 저장 호출은 통과했으나, H4 재개방 셀 보존 검사는 실패했다. 사용자의 1단계 중단 의도에 따라 추가 조사·2단계 복원은 하지 않는다.
+
+**대안 B: A01~A04를 BoxCollider2D 블록 그레이박스로 구성하고 Tilemap은 이후로 연기.** 사용자 승인 필요. 영향: A01~A04 연결·Spawn ID·단일 플레이어/GameState 구조는 유지할 수 있으나 Ground/Hazard Tilemap 규약·타일 배치 편집 완료 조건을 충족하지 못한다. 승인 시 S1-07 완료 기준과 Tilemap 후속 작업 기록을 명시적으로 조정하고 같은 왕복·잘못된 ID·입력 누수·S1-02/04 검증을 수행해야 한다. B는 미실행이며 S1-08 이후와 N2-B는 아직 미승인이다.
 
 ### S1-06 / N2-A (2026-09-30)
 
@@ -187,11 +191,10 @@ ROOM-001: 반복된 Tilemap 셀 저장 실패로 S1-07 중단. 다음 실행에�
 
 ## Latest Handoff
 
-2026-09-30 — N2-A 부분 완료, S1-07 차단 기록.
+2026-09-30 — ROOM-001 최소 재현 종료, 대안 B 판단 대기.
 
-- **완료·상태:** Movement 수락 기록 commit `7c51f74`, S1-03/04/05 DONE. Camera commit `276d28a`, S1-06 REVIEW. 두 commit은 origin/main push 완료. S1-07 BLOCKED(ROOM-001), 미완성 구현은 되돌림.
-- **주요 파일:** manifest/lock(Cinemachine 3.1.7), RoomCameraRig·CameraTest·N2Verification, TASKS와 실패 증거. MovementTest·PlayerTuning·기존 Pause 구현 보존. 복구용 S1-07 작업 사본은 Git 제외 로컬 `Logs/S1-07-blocked-work/`.
-- **실제 검증:** [Camera 결과](Validation/S1-06-N2-A.txt) — 1280×720/1920×1080 경계·낙하 시야·즉시 snap 통과, 급반전 최대 프레임 이동 0.0957u. [720p](Validation/Camera/Run-20260930-132656/S1-06-1280x720.png), [1080p](Validation/Camera/Run-20260930-132656/S1-06-1920x1080.png)를 열어 정적 표시 확인. [Room 실패](Validation/S1-07-N2-A-blocked.txt) — A01→A02 전환 이후 빈 지면으로 접지 실패. 전체 왕복과 S1-02/04 통합 회귀는 미완료이며 통과 기록 없음.
-- **사용자 확인:** CameraTest의 Main Camera > RoomCameraRig에서 5.5u/1u/0.15s와 Camera Boundary Polygon 편집. Play 변경은 Stop 후 Scene에 다시 반영. Camera 감각 수락과 키보드/패드 A 점프 비교는 S1-09 예정.
-- **문제:** ROOM-001, Tile Asset은 로드되나 셀 재지정·저장 검사에서 빈 Tilemap이 반복됨. AGENTS 중단 조건 적용. 사용자 개입 없이 규칙·수치를 바꾸거나 우회하지 않음.
-- **다음 작업:** S1-07 재개 판단 후 최소 Tilemap 저장 재현부터 원인 조사. N2-B(S1-08 Checkpoint → S1-09 Slice → S1-10 빌드)는 S1-07 미완료로 준비되지 않음, 착수하지 않음. 사용량 조회 당시 5시간 창 28%·주간 21% 사용(토큰 개수 측정 아님); 이번 중단 원인은 사용량 부족이 아님.
+- **완료·상태:** S1-03/04/05 DONE, S1-06 REVIEW 유지. S1-07 BLOCKED·ROOM-001 OPEN. 재개 승인에 따라 최소 재현 1단계를 실행했으나 저장 실패로 2단계는 미착수.
+- **주요 파일:** manifest/lock에 builtin Tilemap 1.0.0 추가. `Assets/Scenes/RoomMinimalTemp.unity`·`Assets/RoomMinimalTemp.asset`은 실패 재현 증거, 빌드 씬 미등록. 임시 실행 스크립트 삭제. PlayerTuning·MovementTest·기존 RoomCameraRig·Pause 구현 변경 없음. 사용자의 기존 PackageManagerSettings.asset 미추적 파일 보존.
+- **실제 검증:** [H1~H4](Validation/ROOM-001-minimal.txt). Unity 6000.3.24f1, 단일 Tile·Grid 부모·3셀. H1 추가 후 PASS, H2/H3 PASS, H4 저장 호출 성공·재개방 셀 보존 FAIL(usedTileTypes=0, threeCells=false). 근본 원인 미확정. 전체 방 왕복과 S1-02/04 회귀는 미실시.
+- **문제·사용자 확인:** 저장 선행 조건과 호출을 모두 수행해도 실패하므로 요청된 중단 조건에 따라 추가 조사하지 않음. Decisions Needed의 대안 B(BoxCollider2D 그레이박스, Tilemap 연기)는 승인 전 실행하지 않음.
+- **다음 작업:** B의 완료 기준 변경·Tilemap 연기 승인 판단. 기존 전환 구조 복구용 사본은 `Logs/S1-07-blocked-work/`에 유지. N2-B(S1-08 → S1-09 → S1-10)는 S1-07 미완료로 준비되지 않았고 미착수.

@@ -1,0 +1,6 @@
+PASS H1: absent at investigation start; added builtin tilemap 1.0.0; manifest=True, lock=True
+PASS H2: CreateAsset, SaveAssets, reload persistent Tile before SetTile
+PASS H3: Grid parent
+MEASURE before save: count=0, cell0=False
+FAIL H4: SetDirty/MarkSceneDirty/SaveScene/reopen: saved=True, usedTileTypes=0, threeCells=False
+Unity=6000.3.24f1
