@@ -1,0 +1,15 @@
+FAIL S1-07; Unity=6000.3.24f1; UTC=2026-09-30T13:44:15.9659022Z
+PASS: direct room start bootstraps one persistent session
+PASS: authored graph exit to A02
+PASS: physical exit trigger completed A01 -> A02
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A02 body=(3.53, 1.04) velocity=(0.00, -8.10) grounded=False; floor=Center: (0.00, 0.00, 0.00), Extents: (0.00, 0.00, 0.00)
+FAIL: System.Exception: arrival settles on safe ground without wall sticking
+  at N2VerificationRunner.Check (System.Boolean ok, System.String name) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:61 
+  at N2VerificationRunner+<RoomChecks>d__6.MoveNext () [0x00493] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:208 
+  at N2VerificationRunner+<Start>d__4.MoveNext () [0x000b5] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:77 
+
+BLOCKED: subsequent persistence diagnostic loaded both Tile assets, but GetUsedTilesCount stayed 0. Root cause unresolved. S1-07 implementation reverted; prior camera and movement preserved. Full round trip, invalid IDs, jump leakage and S1-02/04 integration regressions incomplete. Recovery snapshot: local Logs/S1-07-blocked-work/.
