@@ -20,7 +20,7 @@ S1-01/02 **DONE**, S1-03/04/05 **REVIEW**. 사용자 이동감 수락 전이며 
 
 ## Current Tasks
 
-승인된 N1 기술 작업 이후 BUG-001/BUG-002 입력 수정과 지정 재검증을 완료했다. S1-03/04/05는 사용자 이동감 검토 전이므로 REVIEW를 유지한다. CLEAN-001은 별도 정리 커밋으로 기록한다. 다음은 Player Movement Review이며 S1-06~10은 **미승인**이다.
+승인된 N1 기술 작업 이후 BUG-001/BUG-002 입력 수정과 지정 재검증을 완료했다. S1-03/04/05는 사용자 이동감 검토 전이므로 REVIEW를 유지한다. CLEAN-001도 완료했으며 별도 정리 커밋으로 기록한다. 다음은 Player Movement Review이며 S1-06~10은 **미승인**이다.
 
 상태: TODO(미착수), DOING(진행), REVIEW(기술 구현·관련 검증 완료, 사용자 판단 대기), DONE(완료 조건·필요한 사용자 수락 충족), BLOCKED(차단), DEFERRED(승인된 제외).
 의존성 `:REVIEW`는 유효한 기술 검증을 갖춘 REVIEW 또는 DONE에서 충족한다. `:DONE`은 DONE만 허용하며 생략 시에도 DONE으로 해석한다. DEFERRED는 의존성을 자동 충족하지 않는다. 실행에는 별도 범위 승인이 필요하다.
@@ -85,12 +85,21 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 재검증: 기존 입력 검사 16건에 disable 플래그/시간 복원·이동·점프 3건 추가, 총 19건 통과. 이 버그의 수정 전 재현은 사용자 보고·기존 코드 분석이며 수정 전 자동 측정은 새로 실행하지 않음.
 - 증거: [S1-02 재검증](Validation/S1-02-rerun.txt).
 
+### CLEAN-001
+
+- 관련 / Status: N1 일회성 도구 / DONE.
+- 순서: N1Verification.Input 대상을 MovementTest로 변경한 뒤 Boot의 Player 프리팹 인스턴스와 루트 참조 제거. MovementSetup/InputSetup/ProjectSetup 및 각 .meta 삭제. N1Build/N1Verification 유지.
+- 안전성: 초기값 덮어쓰기·빌드 씬 되돌림·컴포넌트 중복 생성 경로 제거. AGENTS Work Rule에 Git 이력의 생성 스크립트 복원/재실행 금지 추가.
+- 검증: MovementTest 대상 S1-02/04/05 검증과 정리 후 N1 빌드 성공. 생성 도구 6파일 부재·Boot Player 참조 부재·보존 도구 존재·기존 PlayerTuning/Prefab/빌드 씬 설정 변경 없음 정적 확인. 같은 검증을 정리용으로 다시 반복하지 않음.
+
 해결 기록: Unity 미설치(ENV-001), 검색 인덱스 초기화 전 Play 예외(TEST-001), 배치 입력 포커스(TEST-002), 가상 입력 시각·물리 틱·접지 시험 초기화(TEST-003)는 설치 또는 검증 절차 수정 후 재검증했다. 게임 규칙 변경으로 우회하지 않았다. 원시 시도 로그는 로컬 `Logs/*attempt.txt`에 보존되어 있다.
 
 등록 양식: `ID / 관련 Task / Status / 심각도 / 빌드 / 재현 단계 / 기대·실제 / 수정·재검증 결과 / 증거`.
 심각도: Blocker=크래시·진행 불가·저장 손실, Major=핵심 기능 오류, Minor=진행 가능한 표시·연출 문제.
 
 ## Decisions Needed
+
+Push BLOCKED: 자동 승인 검토가 프로젝트 payload의 구체적인 목적지 승인 부족을 이유로 `git push origin main`을 거절했다. 전송 대상은 기존 `https://github.com/okyunsu/game1.git`의 `main`, 내용은 앞선 문서 커밋과 이번 버그 수정·정리 커밋이다. 해당 저장소로 이 변경을 전송한다는 사용자 명시적 승인 필요.
 
 Player Movement Review의 S1-03/04/05 개별 수락 또는 수정 의견이 필요하다. 수치 채택 여부도 사용자 판단이다. 모두 수락한 뒤 S1-06 이후 실행 범위를 승인받는다. 새로운 게임 설계 변경·Scope Cut 결정은 현재 없다.
 
@@ -157,11 +166,11 @@ Player Movement Review의 S1-03/04/05 개별 수락 또는 수정 의견이 필�
 
 ## Latest Handoff
 
-2026-09-30 — BUG-001/BUG-002 수정 및 지정 재검증.
+2026-09-30 — BUG-001/BUG-002 수정 및 CLEAN-001 정리 완료.
 
-- **완료·상태:** BUG-001/002 DONE, S1-03/04/05 REVIEW 유지. 수치·게임 규칙 변경 없음. CLEAN-001은 별도 정리 커밋으로 기록 예정.
-- **주요 파일:** PlayerInputReader(이벤트 시계·Pause 복구), PlayerMotor(경계 시계·늦은 Cut 보정), N1Verification(동일 홀드·재활성화 검사), N1Build(새 증거 파일), TASKS·Validation 재검증 4개.
-- **실제 검증:** S1-02 19건·S1-04 63건·S1-05 127건 통과. 3FPS 짧은 점프 1.464u·편차 0.000u, 긴 점프 2.520u. N1 빌드 오류/경고 0. 상세는 Validation Records 링크.
-- **사용자 확인:** 이동감·실제 패드·수동 빌드 입력은 미수락/미실시. CASE-001은 첫 개선 사례 후보.
-- **문제:** 증거 없는 정적 화면 확인 주장을 삭제하고 화면 수동 확인 미실시로 정정. 최초 sandbox 라이선스 실패 후 승인된 Unity 실행으로 검증 성공.
-- **다음 작업:** 별도 정리 커밋 후 두 커밋을 기존 origin/main에 push. S1-06 이후는 미승인. 기존 다음 사용자 단계는 Player Movement Review.
+- **완료·상태:** BUG-001/002·CLEAN-001 DONE. S1-03/04/05 REVIEW 유지. 수치·게임 규칙·다음 Sprint 범위 변경 없음.
+- **주요 파일:** PlayerInputReader(이벤트 시계·Pause 복구), PlayerMotor(경계 시계·늦은 Cut 보정), N1Verification(동일 홀드·재활성화 검사·MovementTest 대상), N1Build(새 증거 파일), Boot(Player 제거), 생성 스크립트 3개와 meta 삭제, AGENTS·TASKS·새 Validation 4개.
+- **실제 검증:** S1-02 19건·S1-04 63건·S1-05 127건 통과. 3FPS Coyote 0.08 허용/0.12 거부, Buffer 0.10 허용/0.14 만료. 짧은 점프 1.464u·편차 0.000u, 긴 점프 2.520u. 정리 후 N1 빌드 오류/경고 0. 상세 증거는 Validation Records.
+- **사용자 확인:** 이동감·실제 패드·수동 빌드 입력은 미수락/미실시. CASE-001은 첫 사례 후보. Inspector 변경이나 새 기본값 채택 없음.
+- **문제:** 증거 없는 정적 화면 주장을 삭제하고 화면 수동 확인 미실시로 정정. 최초 sandbox 라이선스 실패 후 승인된 Unity 실행으로 검증 성공. Push는 자동 승인 검토가 구체적인 GitHub 목적지 승인 부족을 이유로 거절하여 BLOCKED.
+- **다음 작업:** 기존 `https://github.com/okyunsu/game1.git`의 `main`에 문서·버그 수정·정리 커밋을 전송한다는 사용자 승인 후 push 재시도. 로컬 버그 수정/정리 두 커밋 완료, 자동 검토 차단으로 원격 반영은 미완료. Player Movement Review 대기, S1-06 이후 미승인.

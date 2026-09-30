@@ -25,7 +25,7 @@ public static class N1Verification
             }
         };
     }
-    public static void Input() => Begin("S1-02", "Assets/Scenes/Boot.unity");
+    public static void Input() => Begin("S1-02", "Assets/Scenes/MovementTest.unity");
     public static void Movement() => Begin("S1-03", "Assets/Scenes/MovementTest.unity");
     public static void Forgiveness() => Begin("S1-04", "Assets/Scenes/MovementTest.unity");
     public static void VariableJump() => Begin("S1-05", "Assets/Scenes/MovementTest.unity");
