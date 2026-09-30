@@ -115,6 +115,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 재검증: S1-07 실패. 전체 왕복·잘못된 ID·입력 누수 및 S1-02/04 통합 회귀는 완료하지 못했다. DONE으로 처리하지 않음. 수치·규칙 변경 없음.
 - 2026-09-30 재개 승인 후 최소 재현: H1 시작 시 module 없음(추가 후 manifest/lock PASS), H2 CreateAsset·저장·저장된 Tile 재로드 PASS, H3 Grid 부모 PASS. H4 SetDirty·MarkSceneDirty·SaveScene 호출/저장은 성공했으나 재개방 GetUsedTilesCount=0·셀 3개 모두 없음으로 FAIL. 저장 이전에도 count=0, cell0 없음. 원인 미확정이며 추가 조사 중단. [최소 재현 결과](Validation/ROOM-001-minimal.txt).
 - 최소 재현 실패 씬 `Assets/Scenes/RoomMinimalTemp.unity`와 단일 Tile `Assets/RoomMinimalTemp.asset`을 증거로 보존(빌드 씬 미등록). 실행용 임시 스크립트는 삭제, 로컬 `Logs/ROOM-001-minimal-repro.cs`·실행 로그 보존. S1-07 patch는 복원하지 않음.
+- 2026-10-01 H5 재확인: 현재 61e02db에서 시작 전 Library/PackageCache 및 ProjectCache/projectResolution에 tilemap 1.0.0 반영 확인, 실행 중 Unity 없음. 새 Unity 6000.3.24f1 프로세스 검사에서 SetTile 직후 0셀·저장 재개방 후 0셀. H5 FAIL(성공 조건 미충족). 단, CreateAsset/SaveAssets 후 저장된 Tile 재로드도 실패(savedTile=False)하여 올바른 Tile을 사용한다는 선행 조건 미충족. 같은 세션 추가 가설을 독립적으로 반증한 결과는 아니며 원인 미확정이다. 요청된 0셀 중단 조건에 따라 추가 조사·S1-07 복원 미실행. [H5 결과](Validation/ROOM-001-h5.txt).
 - 증거: [실패 결과](Validation/S1-07-N2-A-blocked.txt). 로컬 `Logs/S1-07-tile-diagnostic.log`, `Logs/S1-07-persist-tiles.log`.
 
 ## Decisions Needed
@@ -191,10 +192,10 @@ ROOM-001: 재개 승인 후 최소 재현에서 저장 선행 조건과 저장 �
 
 ## Latest Handoff
 
-2026-09-30 — ROOM-001 최소 재현 종료, 대안 B 판단 대기.
+2026-10-01 — ROOM-001 H5 재확인 종료.
 
-- **완료·상태:** S1-03/04/05 DONE, S1-06 REVIEW 유지. S1-07 BLOCKED·ROOM-001 OPEN. 재개 승인에 따라 최소 재현 1단계를 실행했으나 저장 실패로 2단계는 미착수.
-- **주요 파일:** manifest/lock에 builtin Tilemap 1.0.0 추가. `Assets/Scenes/RoomMinimalTemp.unity`·`Assets/RoomMinimalTemp.asset`은 실패 재현 증거, 빌드 씬 미등록. 임시 실행 스크립트 삭제. PlayerTuning·MovementTest·기존 RoomCameraRig·Pause 구현 변경 없음. 사용자의 기존 PackageManagerSettings.asset 미추적 파일 보존.
-- **실제 검증:** [H1~H4](Validation/ROOM-001-minimal.txt). Unity 6000.3.24f1, 단일 Tile·Grid 부모·3셀. H1 추가 후 PASS, H2/H3 PASS, H4 저장 호출 성공·재개방 셀 보존 FAIL(usedTileTypes=0, threeCells=false). 근본 원인 미확정. 전체 방 왕복과 S1-02/04 회귀는 미실시.
-- **문제·사용자 확인:** 저장 선행 조건과 호출을 모두 수행해도 실패하므로 요청된 중단 조건에 따라 추가 조사하지 않음. Decisions Needed의 대안 B(BoxCollider2D 그레이박스, Tilemap 연기)는 승인 전 실행하지 않음.
-- **다음 작업:** B의 완료 기준 변경·Tilemap 연기 승인 판단. 기존 전환 구조 복구용 사본은 `Logs/S1-07-blocked-work/`에 유지. N2-B(S1-08 → S1-09 → S1-10)는 S1-07 미완료로 준비되지 않았고 미착수.
+- **완료·상태:** H5 실행 결과 기록, S1-07 BLOCKED·ROOM-001 OPEN 유지. S1-03/04/05 DONE·S1-06 REVIEW 유지.
+- **주요 파일:** TASKS·새 `Validation/ROOM-001-h5.txt`. 기존 최소 재현 증거와 RoomMinimalTemp 씬/Tile 유지. 검사 임시 스크립트 삭제, 원시 스크립트·시도 씬/Tile·로그는 로컬 Logs에 보존. 기존 사용자 PackageManagerSettings.asset 미추적 파일 보존.
+- **실제 검증:** [H5](Validation/ROOM-001-h5.txt). 실행 전 PackageCache와 해석 기록의 tilemap 1.0.0 확인. 새 프로세스에서 직후/재개방 0/0셀. 선행 검사의 예외 기록도 보존. 완료된 측정에서는 저장된 Tile 재로드 실패가 함께 관찰돼 가설 원인 확정·독립적 반증은 불가. ROOM-001-minimal의 before-save=0은 저장 전부터 실패했다는 증거이며 저장 문제로 단정하지 않음.
+- **문제·사용자 확인:** H5 성공 조건 미충족. 사용자 지시의 0셀 중단 조건에 따라 추가 조사하지 않았음. 대안 B(BoxCollider2D 블록 그레이박스·Tilemap 연기)는 여전히 승인 대기이며 미실행.
+- **다음 작업:** 대안 B 승인 판단. S1-07 patch는 복원하지 않았으며 전체 Room 검사·S1-02/04 회귀 미실시. N2-B·S1-08 이후 미착수.

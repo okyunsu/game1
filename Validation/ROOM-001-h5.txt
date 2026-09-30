@@ -1,0 +1,23 @@
+H5 fresh process from commit 61e02db
+Prelaunch: no Unity process running; Library/PackageCache/com.unity.modules.tilemap exists; ProjectCache and projectResolution resolve 1.0.0.
+Unity=6000.3.24f1
+UTC=2026-09-30T15:08:12.5521254Z
+FAIL H5: System.Exception: Prerequisite failure
+  at RoomH5.Run () [0x000bf] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\RoomH5.cs:21 
+H5 fresh process from commit 61e02db
+Prelaunch: no Unity process running; Library/PackageCache/com.unity.modules.tilemap exists; ProjectCache and projectResolution resolve 1.0.0.
+Unity=6000.3.24f1
+UTC=2026-09-30T15:09:11.7138106Z
+FAIL H5: System.Exception: Prerequisite failure
+  at RoomH5.Run () [0x000ac] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\RoomH5.cs:21 
+H5 fresh process from commit 61e02db
+Prelaunch: no Unity process running; Library/PackageCache/com.unity.modules.tilemap exists; ProjectCache and projectResolution resolve 1.0.0.
+Unity=6000.3.24f1
+UTC=2026-09-30T15:10:22.5206590Z
+Prerequisites: savedTile=False, parentGrid=True, layoutGrid=True
+SetTile immediate: occupiedCells=0; usedTileTypes=0
+After save/reopen: occupiedCells=0; usedTileTypes=0; saved=True
+Count definition: occupied cells among the 3 assigned coordinates; GetUsedTilesCount counts distinct Tile assets and should be 1 for one Tile type.
+FAIL H5
+
+LIMIT: savedTile=False after CreateAsset/SaveAssets/LoadAssetAtPath. The completed count attempt did not satisfy the persistent Tile reload prerequisite. H5 success criterion was not met; 0/0 does not independently disprove the same-session hypothesis. Per authorized stop condition, no further investigation or S1-07 restoration. Earlier attempts and ROOM-001-minimal.txt preserved. Failed diagnostic scene/asset restored to commit 61e02db; attempt versions saved locally in Logs.
