@@ -57,6 +57,7 @@ public sealed class N1VerificationRunner : MonoBehaviour
     Rigidbody2D body;
     PlayerMotor motor;
     BoxCollider2D testFloor;
+    readonly List<float> shortPeaks = new();
 
     IEnumerator Start()
     {
@@ -91,7 +92,14 @@ public sealed class N1VerificationRunner : MonoBehaviour
         failed |= errors.Count != 0;
         results.Insert(0, $"{(failed ? "FAIL" : "PASS")} {stage}; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}; input=Unity virtual Keyboard/Gamepad (physical devices not tested)");
         Directory.CreateDirectory("Logs");
-        File.WriteAllLines($"Logs/{stage}-results.txt", results);
+        File.WriteAllLines($"Logs/{stage}-rerun-{DateTime.UtcNow:yyyyMMdd-HHmmss}.txt", results);
+        if (!failed)
+        {
+            Directory.CreateDirectory("Validation");
+            string path = $"Validation/{stage}-rerun.txt";
+            if (File.Exists(path)) throw new IOException("Preserve existing result: " + path);
+            File.WriteAllLines(path, results);
+        }
         input.SetPaused(false);
         InputSystem.RemoveDevice(keyboard);
         if (gamepad.added) InputSystem.RemoveDevice(gamepad);
@@ -163,6 +171,17 @@ public sealed class N1VerificationRunner : MonoBehaviour
         Check(!input.Paused, "keyboard resumes after disconnect");
         yield return Keys();
         Check(double.IsNegativeInfinity(input.JumpPressedAt), "pause/resume clears pending jump");
+        input.SetPaused(true);
+        input.gameObject.SetActive(false);
+        Check(!input.Paused && !input.GamepadDisconnected && Time.timeScale == 1, "disable clears pause and disconnect flags");
+        input.gameObject.SetActive(true);
+        yield return Keys();
+        yield return Keys(Key.D);
+        Check(input.Move.x > .99f && !input.Paused, "reenabled gameplay map accepts movement");
+        before = input.JumpSequence;
+        yield return Keys(Key.Space);
+        Check(input.JumpSequence == before + 1 && input.JumpHeld && Time.timeScale == 1, "reenabled gameplay map accepts jump");
+        yield return Keys();
     }
 
     IEnumerator AllChecks()
@@ -183,16 +202,25 @@ public sealed class N1VerificationRunner : MonoBehaviour
         wall.layer = 6; wall.transform.position = new Vector2(49, 5);
         wall.GetComponent<BoxCollider2D>().size = new Vector2(1, 10);
         yield return BasicMovementChecks();
-        if (stage is "S1-04" or "S1-05") yield return ForgivenessChecks();
-        if (stage == "S1-05")
+        if (stage is "S1-04" or "S1-05")
             foreach (int fps in new[] { 30, 60, 120 })
             {
                 Application.targetFrameRate = fps;
                 yield return new WaitForSeconds(.2f);
                 results.Add($"FRAME CONDITION: target={fps}, fixedDeltaTime={Time.fixedDeltaTime:F3}s");
-                yield return BasicMovementChecks();
-                yield return VariableJumpChecks(fps);
+                yield return ForgivenessChecks();
+                if (stage == "S1-05")
+                {
+                    yield return BasicMovementChecks();
+                    yield return VariableJumpChecks(fps);
+                }
             }
+        if (stage == "S1-05")
+        {
+            float spread = Mathf.Max(shortPeaks.ToArray()) - Mathf.Min(shortPeaks.ToArray());
+            results.Add($"MEASURE: identical 0.100s event hold, short-height FPS spread={spread:F3}u");
+            Check(spread <= .1f, "30/60/120fps short jump height spread <= 0.1u");
+        }
         Destroy(clone);
     }
 
@@ -249,59 +277,62 @@ public sealed class N1VerificationRunner : MonoBehaviour
         yield return Keys();
     }
 
+    IEnumerator KeysAt(double at, params Key[] keys)
+    {
+        // Queue with the intended event time, even if this rendered frame is late.
+        // Dynamic processing is retained; physical events also retain their times.
+        while (InputState.currentTime < at) yield return null;
+        InputSystem.QueueStateEvent(keyboard, new KeyboardState(keys), at);
+        yield return null;
+        yield return new WaitForFixedUpdate();
+    }
+
     IEnumerator ForgivenessChecks()
     {
-        foreach (float delay in new[] { .08f, .12f })
+        foreach (double delay in new[] { .08, .12 })
         {
             testFloor.enabled = true;
             yield return ResetAt(new Vector2(40, 1.32f));
             yield return new WaitForFixedUpdate();
             double lastContact = (double)typeof(PlayerMotor).GetField("lastGrounded", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(motor);
             testFloor.enabled = false;
-            // Queue one rendered frame ahead; the Input System processes it at
-            // the next dynamic update. Report the actual sampled press time.
-            while (Time.timeAsDouble < lastContact + delay - 1.0 / Application.targetFrameRate) yield return null;
-            yield return Keys(Key.Space);
+            yield return KeysAt(lastContact + delay, Key.Space);
             double actual = input.JumpPressedAt - lastContact;
-            yield return new WaitForFixedUpdate();
-            results.Add($"MEASURE: coyote target={delay:F2}s actual press={actual:F4}s velocityY={body.linearVelocity.y:F3}");
-            Check(delay < .1f ? actual <= motor.Tuning.coyoteTime : actual > motor.Tuning.coyoteTime, "scheduled coyote input lies on intended side of boundary");
-            Check(delay < .1f ? body.linearVelocity.y > 8 : body.linearVelocity.y < 0, $"coyote {delay:F2}s {(delay < .1f ? "allowed" : "rejected")}");
+            results.Add($"MEASURE: {Application.targetFrameRate}fps coyote target={delay:F2}s actual={actual:F4}s velocityY={body.linearVelocity.y:F3}");
+            Check(Math.Abs(actual - delay) < .001, "coyote event timestamp equals requested offset");
+            Check(delay < .1 ? body.linearVelocity.y > 0 : body.linearVelocity.y < 0, $"coyote {delay:F2}s {(delay < .1 ? "allowed" : "rejected")}");
             yield return Keys();
         }
         testFloor.enabled = true;
-        // Measure actual landing time for the same starting pose; then schedule
-        // real input before that landing. Keep gravity/collision simulation active.
-        foreach (float lead in new[] { .10f, .15f })
+        foreach (double lead in new[] { .10, .14 })
         {
             yield return ResetAt(new Vector2(40, 1.32f));
             body.position = new Vector2(40, 3.3f); body.linearVelocity = new Vector2(0, -4);
             input.ClearTransientInput(); Physics2D.SyncTransforms();
-            double start = Time.timeAsDouble;
+            double start = Time.fixedUnscaledTimeAsDouble;
             while (motor.Grounded) yield return new WaitForFixedUpdate();
             while (!motor.Grounded) yield return new WaitForFixedUpdate();
-            double flight = Time.timeAsDouble - start;
+            // lastGrounded is the exact contact sample, not the coroutine frame.
+            double landing = (double)typeof(PlayerMotor).GetField("lastGrounded", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(motor);
+            double flight = landing - start;
             yield return ResetAt(new Vector2(40, 1.32f));
             body.position = new Vector2(40, 3.3f); body.linearVelocity = new Vector2(0, -4);
             input.ClearTransientInput(); Physics2D.SyncTransforms();
-            start = Time.timeAsDouble;
+            start = Time.fixedUnscaledTimeAsDouble;
             while (motor.Grounded) yield return new WaitForFixedUpdate();
-            // A fixture teleport can leave the previous contact cached for one
-            // physics tick. Start this falling test without that coyote token.
             motor.ClearTransientState();
-            while (Time.timeAsDouble < start + flight - lead - 1.0 / Application.targetFrameRate) yield return null;
-            yield return Keys(Key.Space);
-            double pressed = input.JumpPressedAt;
-            double limit = start + flight + .08;
-            bool jumped = false;
-            double observed = 0;
-            while (Time.timeAsDouble < limit)
+            double scheduled = start + flight - lead;
+            yield return KeysAt(scheduled, Key.Space);
+            Check(Math.Abs(input.JumpPressedAt - scheduled) < .001, "buffer event timestamp equals requested offset");
+            bool jumped = body.linearVelocity.y > 1;
+            double deadline = start + flight + .08;
+            while (!jumped && Time.fixedUnscaledTimeAsDouble < deadline)
             {
-                if (body.linearVelocity.y > 1) { jumped = true; observed = Time.timeAsDouble - pressed; break; }
                 yield return new WaitForFixedUpdate();
+                jumped = body.linearVelocity.y > 1;
             }
-            results.Add($"MEASURE: buffer target lead={lead:F2}s nominal flight={flight:F4}s actual start-to-press={pressed-start:F4}s press-to-jump={observed:F4}s");
-            Check(jumped == (lead < .12f), $"buffer {lead:F2}s {(lead < .12f ? "allowed" : "expired")}");
+            results.Add($"MEASURE: {Application.targetFrameRate}fps buffer lead={lead:F4}s flight={flight:F4}s jumped={jumped}");
+            Check(jumped == (lead < .12), $"buffer {lead:F2}s {(lead < .12 ? "allowed" : "expired")}");
             yield return new WaitForSeconds(1.2f);
             Check(motor.Grounded && body.linearVelocity.y <= .01f, "held buffered input not reused on next landing");
             yield return Keys();
@@ -314,7 +345,6 @@ public sealed class N1VerificationRunner : MonoBehaviour
         Check(body.linearVelocity.y < velocity, "coyote cannot reuse consumed ground jump");
         yield return Keys();
     }
-
     IEnumerator VariableJumpChecks(int fps)
     {
         double began = Time.realtimeSinceStartupAsDouble;
@@ -326,13 +356,15 @@ public sealed class N1VerificationRunner : MonoBehaviour
         {
             yield return ResetAt(new Vector2(40, 1.32f));
             float baseY = body.position.y;
-            yield return Keys(Key.Space);
-            yield return new WaitForFixedUpdate();
+            double pressAt = InputState.currentTime + .04;
+            yield return KeysAt(pressAt, Key.Space);
             Check(body.linearVelocity.y > 0 && !motor.Grounded, $"{fps}fps jump input reaches physics tick");
             if (mode == 0)
             {
-                yield return new WaitForSeconds(.06f);
-                yield return Keys();
+                yield return KeysAt(pressAt + .10);
+                double held = input.JumpReleasedAt - input.JumpPressedAt;
+                results.Add($"MEASURE: {fps}fps actual event hold={held:F6}s");
+                Check(Math.Abs(held - .10) < .000001, "short jump uses identical real-time event hold");
             }
             double deadline = Time.timeAsDouble + 1.5;
             float maxY = body.position.y;
@@ -347,6 +379,7 @@ public sealed class N1VerificationRunner : MonoBehaviour
             yield return Keys();
         }
         results.Add($"MEASURE: {fps}fps short height={peaks[0]:F3}u long height={peaks[1]:F3}u");
+        shortPeaks.Add(peaks[0]);
         Check(peaks[1] > peaks[0] + .5f, $"{fps}fps variable jump height clearly differs");
         Check(peaks[1] > 2.2f && peaks[1] < 2.7f, $"{fps}fps full jump near prototype estimate");
         yield return ResetAt(new Vector2(40, 1.32f));

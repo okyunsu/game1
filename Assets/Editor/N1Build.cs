@@ -16,6 +16,7 @@ public static class N1Build
 
     public static void Build()
     {
+        if (File.Exists("Validation/N1-build-rerun.txt")) throw new IOException("Preserve existing rerun evidence");
         EditorSceneManager.OpenScene("Assets/Scenes/MovementTest.unity");
         AssetDatabase.ForceReserializeAssets(new[] { "Assets/ScriptableObjects/PlayerTuning.asset", "Assets/Prefabs/Player.prefab" });
         AssetDatabase.SaveAssets();
@@ -28,7 +29,7 @@ public static class N1Build
             options = BuildOptions.None
         });
         Directory.CreateDirectory("Validation");
-        File.WriteAllText("Validation/N1-build.txt", $"{report.summary.result}; errors={report.summary.totalErrors}; warnings={report.summary.totalWarnings}; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}; scene=Assets/Scenes/MovementTest.unity; Windows x64 Mono; Development Build=false");
+        File.WriteAllText("Validation/N1-build-rerun.txt", $"{report.summary.result}; errors={report.summary.totalErrors}; warnings={report.summary.totalWarnings}; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}; scene=Assets/Scenes/MovementTest.unity; Windows x64 Mono; Development Build=false");
         if (report.summary.result != BuildResult.Succeeded) throw new Exception("N1 build failed");
     }
 }

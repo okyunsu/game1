@@ -30,9 +30,9 @@ public sealed class PlayerInputReader : MonoBehaviour
             lastDevice = ctx.control.device;
             if (suppressJump || Paused) return;
             JumpSequence++;
-            JumpPressedAt = Time.timeAsDouble;
+            JumpPressedAt = ctx.time;
         };
-        jump.canceled += _ => JumpReleasedAt = Time.timeAsDouble;
+        jump.canceled += ctx => JumpReleasedAt = ctx.time;
         runtime.FindAction("Gameplay/Pause", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(true); };
         runtime.FindAction("UI/Navigate", true).performed += ctx => lastDevice = ctx.control.device;
         runtime.FindAction("UI/Submit", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(false); };
@@ -41,6 +41,10 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     void OnEnable()
     {
+        Paused = false;
+        GamepadDisconnected = false;
+        Time.timeScale = 1;
+        runtime.Disable();
         runtime.FindActionMap("Gameplay").Enable();
         InputSystem.onDeviceChange += DeviceChanged;
     }
@@ -82,6 +86,8 @@ public sealed class PlayerInputReader : MonoBehaviour
     void OnDisable()
     {
         InputSystem.onDeviceChange -= DeviceChanged;
+        Paused = false;
+        GamepadDisconnected = false;
         if (runtime != null) runtime.Disable();
         ClearTransientInput();
         Time.timeScale = 1;

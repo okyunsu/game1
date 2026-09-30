@@ -1,0 +1,79 @@
+PASS S1-04; Unity=6000.3.24f1; UTC=2026-09-30T12:42:40.0892415Z; input=Unity virtual Keyboard/Gamepad (physical devices not tested)
+PASS: D moves right
+PASS: left arrow moves left
+PASS: gamepad stick and device switch
+PASS: gamepad D-pad
+PASS: Space press once
+PASS: hold does not repeat
+PASS: jump release
+PASS: gamepad A jump
+PASS: Esc pauses physics and gameplay map
+PASS: UI map blocks gameplay input
+PASS: A resumes without jump leakage
+PASS: Menu button pauses
+PASS: B cancels pause
+PASS: active gamepad disconnect pauses
+PASS: keyboard resumes after disconnect
+PASS: pause/resume clears pending jump
+PASS: disable clears pause and disconnect flags
+PASS: reenabled gameplay map accepts movement
+PASS: reenabled gameplay map accepts jump
+PASS: floor contact grounded
+PASS: accelerate to 6 units/s
+PASS: rapid reversal
+PASS: release brakes to rest
+PASS: Inspector tuning change applies in Play Mode
+PASS: basic jump and air control
+PASS: air direction reversal
+PASS: no second midair jump
+PASS: fall and stable landing
+PASS: wall contact is not ground
+PASS: cannot jump from wall
+FRAME CONDITION: target=30, fixedDeltaTime=0.020s
+MEASURE: 30fps coyote target=0.08s actual=0.0800s velocityY=12.000
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.08s allowed
+MEASURE: 30fps coyote target=0.12s actual=0.1200s velocityY=-7.200
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.12s rejected
+PASS: buffer event timestamp equals requested offset
+MEASURE: 30fps buffer lead=0.1000s flight=0.2400s jumped=True
+PASS: buffer 0.10s allowed
+PASS: held buffered input not reused on next landing
+PASS: buffer event timestamp equals requested offset
+MEASURE: 30fps buffer lead=0.1400s flight=0.2400s jumped=False
+PASS: buffer 0.14s expired
+PASS: held buffered input not reused on next landing
+PASS: coyote cannot reuse consumed ground jump
+FRAME CONDITION: target=60, fixedDeltaTime=0.020s
+MEASURE: 60fps coyote target=0.08s actual=0.0800s velocityY=12.000
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.08s allowed
+MEASURE: 60fps coyote target=0.12s actual=0.1200s velocityY=-7.200
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.12s rejected
+PASS: buffer event timestamp equals requested offset
+MEASURE: 60fps buffer lead=0.1000s flight=0.2400s jumped=True
+PASS: buffer 0.10s allowed
+PASS: held buffered input not reused on next landing
+PASS: buffer event timestamp equals requested offset
+MEASURE: 60fps buffer lead=0.1400s flight=0.2400s jumped=False
+PASS: buffer 0.14s expired
+PASS: held buffered input not reused on next landing
+PASS: coyote cannot reuse consumed ground jump
+FRAME CONDITION: target=120, fixedDeltaTime=0.020s
+MEASURE: 120fps coyote target=0.08s actual=0.0800s velocityY=12.000
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.08s allowed
+MEASURE: 120fps coyote target=0.12s actual=0.1200s velocityY=-6.300
+PASS: coyote event timestamp equals requested offset
+PASS: coyote 0.12s rejected
+PASS: buffer event timestamp equals requested offset
+MEASURE: 120fps buffer lead=0.1000s flight=0.2400s jumped=True
+PASS: buffer 0.10s allowed
+PASS: held buffered input not reused on next landing
+PASS: buffer event timestamp equals requested offset
+MEASURE: 120fps buffer lead=0.1400s flight=0.2400s jumped=False
+PASS: buffer 0.14s expired
+PASS: held buffered input not reused on next landing
+PASS: coyote cannot reuse consumed ground jump
