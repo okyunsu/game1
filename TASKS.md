@@ -14,13 +14,13 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01/02 **DONE**, S1-03/04/05 **REVIEW**. 사용자 이동감 수락 전이며 S1-06 이후와 Sprint 2는 미착수다.
+S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A(S1-06 Camera·S1-07 Room Structure) 승인, S1-08 이후와 Sprint 2는 미승인이다.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
 ## Current Tasks
 
-승인된 N1 기술 작업 이후 BUG-001/BUG-002 입력 수정과 지정 재검증을 완료했다. S1-03/04/05는 사용자 이동감 검토 전이므로 REVIEW를 유지한다. CLEAN-001도 완료했으며 별도 정리 커밋으로 기록한다. 다음은 Player Movement Review이며 S1-06~10은 **미승인**이다.
+2026-09-30 승인 범위: Movement Review 문서 기록 → S1-06 → S1-07(N2-A). 각 단계 검증·별도 커밋·기존 origin/main push. S1-08 이후는 실행하지 않는다.
 
 상태: TODO(미착수), DOING(진행), REVIEW(기술 구현·관련 검증 완료, 사용자 판단 대기), DONE(완료 조건·필요한 사용자 수락 충족), BLOCKED(차단), DEFERRED(승인된 제외).
 의존성 `:REVIEW`는 유효한 기술 검증을 갖춘 REVIEW 또는 DONE에서 충족한다. `:DONE`은 DONE만 허용하며 생략 시에도 DONE으로 해석한다. DEFERRED는 의존성을 자동 충족하지 않는다. 실행에는 별도 범위 승인이 필요하다.
@@ -29,9 +29,9 @@ S1-01/02 **DONE**, S1-03/04/05 **REVIEW**. 사용자 이동감 수락 전이며 
 | --- | --- | --- | --- | --- | --- |
 | S1-01 | Unity Project Setup | DONE | 없음 | — | 정확한 Editor·패키지 고정, 기본 폴더·Boot/Menu 구성, 빈 씬 Play·Windows 빌드 성공, 실행 안내 |
 | S1-02 | Input System | DONE | S1-01:DONE | — | 키보드·패드, Gameplay/UI 분리, 전환·해제 Pause·재개 시 입력 유출 없음 |
-| S1-03 | 좌우 이동·기본 점프·낙하 | REVIEW | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
-| S1-04 | Coyote Time / Jump Buffer | REVIEW | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
-| S1-05 | Variable Jump Height | REVIEW | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
+| S1-03 | 좌우 이동·기본 점프·낙하 | DONE | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
+| S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
+| S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
 | S1-06 | Camera | TODO | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
 | S1-07 | Basic Tilemap / Room Structure | TODO | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | Ground/Hazard/출입구·Spawn ID, A01~A04 양방향 연결, 플레이어 중복·벽 끼임 없음, 배치 편집 가능 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | TODO | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·최대 HP 안전 복귀, 능력 없는 초기 상태 검증; 디스크 저장은 Sprint 2 |
@@ -41,7 +41,16 @@ S1-01/02 **DONE**, S1-03/04/05 **REVIEW**. 사용자 이동감 수락 전이며 
 
 ## Human Review
 
-**Player Movement Review — S1-03 / S1-04 / S1-05, 각각 REVIEW** (약 15~20분).
+### 2026-09-30 Movement Review — 사용자 수락 완료
+
+- S1-03/04/05: 사용자가 Editor와 N1 빌드에서 확인 후 모두 수락, DONE.
+- 관찰: "점프 거리가 일관적이지 않은 체감. 사용자는 키보드 입력(래피드 트리거 가능성) 또는 체감 문제로 판단하고 수락. S1-09 Slice 플레이에서 패드 A와 비교해 재확인."
+- PlayerTuning 초기값을 사용자 수락값으로 기록(변경 없음): Move Speed 6u/s, Acceleration 80u/s², Deceleration 100u/s², Air Control 0.9, Jump Velocity 12u/s, Gravity 30u/s², Fall Multiplier 1.5, Max Fall Speed 18u/s, Jump Cut 0.5, Coyote 0.10s, Buffer 0.12s.
+- 시작 직후 점프·Alt+Tab·긴 Pause 후 점프: **사용자 보고 기준 정상**. 세부 항목별 검증·래피드 트리거 원인 확정은 아님.
+- 아래 N1 검토 절차는 재현용으로 유지한다. 현재 이동감 검토는 완료했으며 카메라는 S1-09 Slice에서 함께 검토한다.
+
+
+**Player Movement Review — S1-03 / S1-04 / S1-05, 각각 DONE(사용자 수락)** (약 15~20분).
 세 Task를 한 번에 플레이하되 각각 수락 또는 수정 의견을 기록한다. 모두 DONE이 되기 전 Camera와 본격 Room 작업은 시작하지 않는다.
 
 - Scene: `Assets/Scenes/MovementTest.unity` (실행 방법은 [README](README.md#unity에서-실행)).
@@ -99,9 +108,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Decisions Needed
 
-Push BLOCKED: 자동 승인 검토가 프로젝트 payload의 구체적인 목적지 승인 부족을 이유로 `git push origin main`을 거절했다. 전송 대상은 기존 `https://github.com/okyunsu/game1.git`의 `main`, 내용은 앞선 문서 커밋과 이번 버그 수정·정리 커밋이다. 해당 저장소로 이 변경을 전송한다는 사용자 명시적 승인 필요.
-
-Player Movement Review의 S1-03/04/05 개별 수락 또는 수정 의견이 필요하다. 수치 채택 여부도 사용자 판단이다. 모두 수락한 뒤 S1-06 이후 실행 범위를 승인받는다. 새로운 게임 설계 변경·Scope Cut 결정은 현재 없다.
+현재 없음. 기존 push 차단은 사용자 승인 후 원격 main=a967297로 동기화하여 해소했다. N2-A 승인됨. 수치 변경 없음. S1-09에서 키보드 점프 체감을 패드 A와 비교해 재확인하며 N2-B는 아직 미승인이다.
 
 ## Validation Records
 
@@ -166,11 +173,11 @@ Player Movement Review의 S1-03/04/05 개별 수락 또는 수정 의견이 필�
 
 ## Latest Handoff
 
-2026-09-30 — BUG-001/BUG-002 수정 및 CLEAN-001 정리 완료.
+2026-09-30 — Movement Review 사용자 수락 기록.
 
-- **완료·상태:** BUG-001/002·CLEAN-001 DONE. S1-03/04/05 REVIEW 유지. 수치·게임 규칙·다음 Sprint 범위 변경 없음.
-- **주요 파일:** PlayerInputReader(이벤트 시계·Pause 복구), PlayerMotor(경계 시계·늦은 Cut 보정), N1Verification(동일 홀드·재활성화 검사·MovementTest 대상), N1Build(새 증거 파일), Boot(Player 제거), 생성 스크립트 3개와 meta 삭제, AGENTS·TASKS·새 Validation 4개.
-- **실제 검증:** S1-02 19건·S1-04 63건·S1-05 127건 통과. 3FPS Coyote 0.08 허용/0.12 거부, Buffer 0.10 허용/0.14 만료. 짧은 점프 1.464u·편차 0.000u, 긴 점프 2.520u. 정리 후 N1 빌드 오류/경고 0. 상세 증거는 Validation Records.
-- **사용자 확인:** 이동감·실제 패드·수동 빌드 입력은 미수락/미실시. CASE-001은 첫 사례 후보. Inspector 변경이나 새 기본값 채택 없음.
-- **문제:** 증거 없는 정적 화면 주장을 삭제하고 화면 수동 확인 미실시로 정정. 최초 sandbox 라이선스 실패 후 승인된 Unity 실행으로 검증 성공. Push는 자동 승인 검토가 구체적인 GitHub 목적지 승인 부족을 이유로 거절하여 BLOCKED.
-- **다음 작업:** 기존 `https://github.com/okyunsu/game1.git`의 `main`에 문서·버그 수정·정리 커밋을 전송한다는 사용자 승인 후 push 재시도. 로컬 버그 수정/정리 두 커밋 완료, 자동 검토 차단으로 원격 반영은 미완료. Player Movement Review 대기, S1-06 이후 미승인.
+- **완료·상태:** S1-03/04/05 DONE. Editor·N1 빌드 확인을 사용자 보고로 기록. N2-A 승인, S1-06/07 아직 미착수.
+- **주요 파일:** TASKS만 변경. PlayerTuning 값 변경 없음, 기존 초기값을 사용자 수락값으로 기록.
+- **검증:** 문서 상태·수락 기록 정적 확인. 새 게임 테스트 미실행. 시간 기준 점프 정상은 사용자 보고이며 세부 시험 결과로 확장하지 않음.
+- **사용자 확인:** 점프 거리 체감 메모는 S1-09 패드 A 비교 대상으로 유지. 카메라 사용자 검토도 S1-09 예정.
+- **문제:** 기존 push 차단 해소·원격 반영 완료. 확인되지 않은 입력 장치 원인을 확정하지 않음.
+- **다음 작업:** 문서 커밋 push 후 S1-06 Camera. N2-B(S1-08→S1-09→S1-10)는 N2-A 완료·인계 이후 별도 승인 필요.
