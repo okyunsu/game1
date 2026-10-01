@@ -8,5 +8,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MovementTest.unity
     guid: 248f5e73c8abf574892f3a2553f43ba4
+  - enabled: 1
+    path: Assets/Scenes/A01.unity
+    guid: 9faa57d98fe5f3448acab4fba693da5d
+  - enabled: 1
+    path: Assets/Scenes/A02.unity
+    guid: bdb9a0cb2f5c8eb44a1a8c51bbe0db9e
+  - enabled: 1
+    path: Assets/Scenes/A03.unity
+    guid: 306c61f5a4475b24da39fb6d78e3bc59
+  - enabled: 1
+    path: Assets/Scenes/A04.unity
+    guid: d93fe4745fe67d84eb7cbb5369c59fbf
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

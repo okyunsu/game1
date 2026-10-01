@@ -14,13 +14,13 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A 승인: S1-06 Camera REVIEW, S1-07 Room Structure BLOCKED(ROOM-001). S1-08 이후와 Sprint 2는 미승인이다.
+S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A 승인: S1-06 Camera REVIEW, S1-07 Room Structure DONE(DEC-ROOM-B), Tilemap DEFERRED·ROOM-001 OPEN. S1-08 이후와 Sprint 2는 미승인이다.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
 ## Current Tasks
 
-2026-09-30 승인 범위: Movement Review 문서 기록 → S1-06 → S1-07(N2-A). 각 단계 검증·별도 커밋·기존 origin/main push. S1-08 이후는 실행하지 않는다.
+2026-09-30 승인 범위: Movement Review 문서 기록 → S1-06 → S1-07(N2-A). 각 단계 검증·별도 커밋·기존 origin/main push. S1-08 이후는 실행하지 않는다. 2026-10-01 DEC-ROOM-B 승인으로 S1-07 블록 그레이박스를 진행한다.
 
 상태: TODO(미착수), DOING(진행), REVIEW(기술 구현·관련 검증 완료, 사용자 판단 대기), DONE(완료 조건·필요한 사용자 수락 충족), BLOCKED(차단), DEFERRED(승인된 제외).
 의존성 `:REVIEW`는 유효한 기술 검증을 갖춘 REVIEW 또는 DONE에서 충족한다. `:DONE`은 DONE만 허용하며 생략 시에도 DONE으로 해석한다. DEFERRED는 의존성을 자동 충족하지 않는다. 실행에는 별도 범위 승인이 필요하다.
@@ -33,7 +33,8 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 | S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
 | S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
-| S1-07 | Basic Tilemap / Room Structure | BLOCKED | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | Ground/Hazard/출입구·Spawn ID, A01~A04 양방향 연결, 플레이어 중복·벽 끼임 없음, 배치 편집 가능 |
+| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-ROOM-B: Ground/Hazard는 Ground 레이어 BoxCollider2D·SpriteRenderer 블록, 출입구·Spawn ID, A01~A04 양방향 연결·안전 도착·단일 플레이어·입력 초기화, 배치 편집 가능; Tilemap DEFERRED |
+| S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | TODO | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·최대 HP 안전 복귀, 능력 없는 초기 상태 검증; 디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | TODO | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | Windows 빌드 구간 재현, 경계 입력·충돌 회귀, 명백한 런타임 오류 없음, 결과·실행 경로 인계 |
@@ -108,7 +109,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ### ROOM-001
 
-- ID / 관련 Task / Status / 심각도 / 환경: ROOM-001 / S1-07 / OPEN·BLOCKED / Major / Unity 6000.3.24f1 Editor 배치 Play.
+- ID / 관련 Task / Status / 심각도 / 환경: ROOM-001 / S1-07 / OPEN / Major / Unity 6000.3.24f1 Editor 배치 Play.
 - 재현: 작성한 A01에서 오른쪽 출입구로 A02 진입 후 접지 검사. 전환·동일 플레이어 유지·이전 방 정리는 통과했으나 바닥 Collider bounds가 0이고 플레이어가 낙하했다.
 - 기대·실제: Tilemap 지면에 안전하게 착지해야 하나, 저장된 씬의 셀이 비어 있었다. Tile Asset 로드는 정상인데 재지정·저장 진단에서도 GetUsedTilesCount=0이 반복됐다. 근본 원인은 미확정.
 - 처리: AGENTS Stop Conditions의 동일 오류 해결 반복 조건으로 중단. S1-07 코드·씬·패키지/설정 변경은 검증된 HEAD로 되돌렸으며, 실패 작업 사본과 patch는 로컬 `Logs/S1-07-blocked-work/`에 보존했다. 기존 이동·Camera 구현과 사용자 변경은 보존했다.
@@ -116,13 +117,14 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 2026-09-30 재개 승인 후 최소 재현: H1 시작 시 module 없음(추가 후 manifest/lock PASS), H2 CreateAsset·저장·저장된 Tile 재로드 PASS, H3 Grid 부모 PASS. H4 SetDirty·MarkSceneDirty·SaveScene 호출/저장은 성공했으나 재개방 GetUsedTilesCount=0·셀 3개 모두 없음으로 FAIL. 저장 이전에도 count=0, cell0 없음. 원인 미확정이며 추가 조사 중단. [최소 재현 결과](Validation/ROOM-001-minimal.txt).
 - 최소 재현 실패 씬 `Assets/Scenes/RoomMinimalTemp.unity`와 단일 Tile `Assets/RoomMinimalTemp.asset`을 증거로 보존(빌드 씬 미등록). 실행용 임시 스크립트는 삭제, 로컬 `Logs/ROOM-001-minimal-repro.cs`·실행 로그 보존. S1-07 patch는 복원하지 않음.
 - 2026-10-01 H5 재확인: 현재 61e02db에서 시작 전 Library/PackageCache 및 ProjectCache/projectResolution에 tilemap 1.0.0 반영 확인, 실행 중 Unity 없음. 새 Unity 6000.3.24f1 프로세스 검사에서 SetTile 직후 0셀·저장 재개방 후 0셀. H5 FAIL(성공 조건 미충족). 단, CreateAsset/SaveAssets 후 저장된 Tile 재로드도 실패(savedTile=False)하여 올바른 Tile을 사용한다는 선행 조건 미충족. 같은 세션 추가 가설을 독립적으로 반증한 결과는 아니며 원인 미확정이다. 요청된 0셀 중단 조건에 따라 추가 조사·S1-07 복원 미실행. [H5 결과](Validation/ROOM-001-h5.txt).
+- DEC-ROOM-B(2026-10-01 사용자 승인): 원인 미확정, 배치 모드 Tile 에셋 생성 실패(savedTile=False), 대안 B로 우회 승인. ROOM-001 OPEN 유지, Tilemap은 이번 Sprint DEFERRED. 사용자 Editor GUI 확인 후 별도 Task로 도입 결정. 로컬 patch로 기존 전환·GameState·입력 초기화 구조 복원, 지형만 블록으로 대체. RoomMinimalTemp 씬/Tile(.meta 포함) 삭제, 실패 Validation 보존, tilemap 모듈 유지.
+- 대안 B 구현 검사에서 비활성 Rigidbody 위치만 지정할 때 출입구 연속 진입·방 Start의 Entry 재배치 문제가 관찰됨. Spawn 배치 시 Transform도 함께 이동하고 최초 진입에서만 EnterInitial 호출하도록 수정. 수치·연결 변경 없음. 최초 실패와 중간 통과·최종 검사 증거를 분리 보존.
+- 대안 B 완료: [최종 Room 검사](Validation/S1-07-N2-A-blocks-final.txt) 71건, [S1-02 회귀](Validation/S1-02-N2-A-blocks.txt) 19건, [S1-04 회귀](Validation/S1-04-N2-A-blocks.txt) 63건 통과. S1-07 DONE이며 ROOM-001은 Tile 에셋 문제 미해결로 OPEN 유지. [최초 블록 검사 실패](Validation/S1-07-blocks-first-attempt.txt), [Spawn 검사 보강 전 통과](Validation/S1-07-N2-A-blocks.txt)도 보존.
 - 증거: [실패 결과](Validation/S1-07-N2-A-blocked.txt). 로컬 `Logs/S1-07-tile-diagnostic.log`, `Logs/S1-07-persist-tiles.log`.
 
 ## Decisions Needed
 
-ROOM-001: 재개 승인 후 최소 재현에서 저장 선행 조건과 저장 호출은 통과했으나, H4 재개방 셀 보존 검사는 실패했다. 사용자의 1단계 중단 의도에 따라 추가 조사·2단계 복원은 하지 않는다.
-
-**대안 B: A01~A04를 BoxCollider2D 블록 그레이박스로 구성하고 Tilemap은 이후로 연기.** 사용자 승인 필요. 영향: A01~A04 연결·Spawn ID·단일 플레이어/GameState 구조는 유지할 수 있으나 Ground/Hazard Tilemap 규약·타일 배치 편집 완료 조건을 충족하지 못한다. 승인 시 S1-07 완료 기준과 Tilemap 후속 작업 기록을 명시적으로 조정하고 같은 왕복·잘못된 ID·입력 누수·S1-02/04 검증을 수행해야 한다. B는 미실행이며 S1-08 이후와 N2-B는 아직 미승인이다.
+DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 기준을 대체, Tilemap DEFERRED. ROOM-001은 원인 미확정 OPEN 유지. Tilemap 도입은 사용자 Editor GUI 확인 후 별도 Task로 결정. S1-08 이후 미승인.
 
 ### S1-06 / N2-A (2026-09-30)
 
@@ -165,6 +167,16 @@ ROOM-001: 재개 승인 후 최소 재현에서 저장 선행 조건과 저장 �
 
 **미실시·한계:** 물리 게임패드 조작·탈착, 사용자 이동감/재미 수락, 빌드 수동 입력·Pause 동작 확인, 해상도별 검수. 화면 수동 확인 미실시. 기존 정적 화면 확인 주장은 파일 증거가 없어 삭제했다. 미구현인 카메라·방 전환·사망/리스폰과의 실제 통합은 검증하지 않았다.
 
+### 2026-10-01 DEC-ROOM-B — 블록 Room 및 입력 회귀
+
+| 검증 | 실제 결과 | 새 증거 |
+| --- | --- | --- |
+| S1-07 전체 Room | 71건 PASS. A01→A02→A03→A04→A03→A02→A01 물리 출입구 왕복, FromLeft/FromRight 지정 Spawn 유지·접지·단일 플레이어/GameState·이전 씬 정리·Polygon 경계. 잘못된 씬/Spawn/Room ID 롤백·Pause 보호·전환 입력 누수 없음·새 점프 1회. Ground/Hazard 블록 규약 확인 | [최종 결과](Validation/S1-07-N2-A-blocks-final.txt) |
+| S1-02 회귀 | 19건 PASS. 입력·Pause·패드 분리·비활성화/재활성화 후 이동·점프·timeScale=1 | [결과](Validation/S1-02-N2-A-blocks.txt) |
+| S1-04 회귀 | 63건 PASS. 30/60/120fps Coyote 0.08 허용/0.12 거부, Buffer 0.10 허용/0.14 만료·중복 소비/홀드 재사용 없음 | [결과](Validation/S1-04-N2-A-blocks.txt) |
+
+컴파일·런타임 Error/Exception 검사 통과. Unity 6000.3.24f1, 가상 입력 자동 검사이며 실제 패드·사용자 화면/감각 검토는 미실시. 이번 범위의 빌드·S1-01/03/05 단독 검사는 실행하지 않음. Hazard는 위치·트리거 표시만 구성했고 사망/체크포인트 동작은 S1-08 미승인으로 미구현. 원시 로그는 로컬 Logs/S1-07-blocks-final.log, Logs/S1-02-blocks-regression.log, Logs/S1-04-blocks-regression.log. 이전 Validation은 보존.
+
 ## Playtest Records
 
 관찰 플레이테스트 기록: 아직 없음. 위 기술 검증과 사용자 감각 검토를 구분한다. 다음 양식은 빈 서식이며 실시 증거가 아니다.
@@ -192,10 +204,11 @@ ROOM-001: 재개 승인 후 최소 재현에서 저장 선행 조건과 저장 �
 
 ## Latest Handoff
 
-2026-10-01 — ROOM-001 H5 재확인 종료.
+2026-10-01 — DEC-ROOM-B 승인 범위 완료.
 
-- **완료·상태:** H5 실행 결과 기록, S1-07 BLOCKED·ROOM-001 OPEN 유지. S1-03/04/05 DONE·S1-06 REVIEW 유지.
-- **주요 파일:** TASKS·새 `Validation/ROOM-001-h5.txt`. 기존 최소 재현 증거와 RoomMinimalTemp 씬/Tile 유지. 검사 임시 스크립트 삭제, 원시 스크립트·시도 씬/Tile·로그는 로컬 Logs에 보존. 기존 사용자 PackageManagerSettings.asset 미추적 파일 보존.
-- **실제 검증:** [H5](Validation/ROOM-001-h5.txt). 실행 전 PackageCache와 해석 기록의 tilemap 1.0.0 확인. 새 프로세스에서 직후/재개방 0/0셀. 선행 검사의 예외 기록도 보존. 완료된 측정에서는 저장된 Tile 재로드 실패가 함께 관찰돼 가설 원인 확정·독립적 반증은 불가. ROOM-001-minimal의 before-save=0은 저장 전부터 실패했다는 증거이며 저장 문제로 단정하지 않음.
-- **문제·사용자 확인:** H5 성공 조건 미충족. 사용자 지시의 0셀 중단 조건에 따라 추가 조사하지 않았음. 대안 B(BoxCollider2D 블록 그레이박스·Tilemap 연기)는 여전히 승인 대기이며 미실행.
-- **다음 작업:** 대안 B 승인 판단. S1-07 patch는 복원하지 않았으며 전체 Room 검사·S1-02/04 회귀 미실시. N2-B·S1-08 이후 미착수.
+- **완료·상태:** S1-07 DONE, S1-07-T Tilemap DEFERRED. ROOM-001 OPEN(원인 미확정, 배치 Tile 에셋 생성 실패 savedTile=False, 대안 B 우회 승인). S1-03/04/05 DONE·S1-06 REVIEW 유지. S1-08 이후 미착수.
+- **주요 파일:** A01~A04 Scene, RoomBlock Prefab, RoomSession/Definition/Exit/Spawn, GameState, PlayerInputReader, N1/N2Verification. PRD Technical Boundary·S1-07 DoD에 DEC-ROOM-B 반영. RoomMinimalTemp 씬/Tile와 .meta 삭제, tilemap 모듈 유지. 임시 블록 작성 도구 삭제, 로컬 Logs 사본 보존.
+- **실제 검증:** [Room](Validation/S1-07-N2-A-blocks-final.txt) 71건, [S1-02](Validation/S1-02-N2-A-blocks.txt) 19건, [S1-04](Validation/S1-04-N2-A-blocks.txt) 63건 PASS. 6방향 출입구·지정 Spawn·안전 도착·단일 플레이어/상태·오류 ID 롤백·Pause 보호·점프 입력 초기화·카메라 Polygon 경계, 30/60/120fps 입력 경계 유지. Error/Exception 없음. 실제 패드·수동 화면·감각 검토·새 빌드는 미실시.
+- **수정 위치·사용자 확인:** Unity에서 A01을 열고 Play하면 단일 세션/플레이어가 자동 생성됨. 각 방 root의 RoomDefinition, Exit Left/Right의 도착 Scene·Room·Spawn ID, Spawn Entry/FromLeft/FromRight의 위치를 Inspector에서 조정. Ground/Left Wall/Right Wall/Hazard 블록의 Transform·BoxCollider2D·SpriteRenderer 편집, 공통 원본은 RoomBlock Prefab. Camera Boundary의 Polygon과 Main Camera > RoomCameraRig 설정 편집. Scene의 Play 중 변경은 Stop 후 다시 입력·저장, 공통 Prefab 변경은 원본을 편집하거나 Overrides Apply로 반영. MovementTest는 회귀용으로 보존.
+- **문제·한계:** 초기 블록 전환 검사에서 비활성 Rigidbody의 Transform 잔류 및 방 Start의 Entry 재배치를 수정 후 최종 왕복 통과. 실패/중간 증거 보존. Hazard는 트리거 표시만 있고 사망 동작은 아직 없음. Tilemap 조사는 종료, 도입은 사용자 Editor GUI 확인 후 별도 Task 결정.
+- **다음 작업:** N2-B(S1-08 Checkpoint → S1-09 Slice → S1-10 빌드)는 S1-07 DONE·S1-06 REVIEW를 선행 상태로 준비됨. 별도 사용자 승인 전 실행하지 않음. 사용자 기존 PackageManagerSettings.asset 미추적 파일 보존.

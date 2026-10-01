@@ -29,6 +29,13 @@ public static class N1Verification
     public static void Movement() => Begin("S1-03", "Assets/Scenes/MovementTest.unity");
     public static void Forgiveness() => Begin("S1-04", "Assets/Scenes/MovementTest.unity");
     public static void VariableJump() => Begin("S1-05", "Assets/Scenes/MovementTest.unity");
+    public static void InputN2A() => BeginN2A("S1-02");
+    public static void ForgivenessN2A() => BeginN2A("S1-04");
+    static void BeginN2A(string stage)
+    {
+        SessionState.SetString("N1.Suffix", "N2-A-blocks");
+        Begin(stage, "Assets/Scenes/MovementTest.unity");
+    }
     static void Begin(string stage, string scene)
     {
         SessionState.SetString("N1.Stage", stage);
@@ -96,7 +103,8 @@ public sealed class N1VerificationRunner : MonoBehaviour
         if (!failed)
         {
             Directory.CreateDirectory("Validation");
-            string path = $"Validation/{stage}-rerun.txt";
+            string suffix = SessionState.GetString("N1.Suffix", "rerun");
+            string path = $"Validation/{stage}-{suffix}.txt";
             if (File.Exists(path)) throw new IOException("Preserve existing result: " + path);
             File.WriteAllLines(path, results);
         }

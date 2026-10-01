@@ -27,9 +27,10 @@ public static class N2Verification
         };
     }
     public static void Camera() => Begin("S1-06", "Assets/Scenes/CameraTest.unity");
+    public static void Rooms() => Begin("S1-07", "Assets/Scenes/A01.unity");
     static void Begin(string stage, string scene)
     {
-        if (File.Exists($"Validation/{stage}-N2-A.txt")) throw new IOException("Preserve existing evidence");
+        if (File.Exists($"Validation/{stage}-" + (stage == "S1-07" ? "N2-A-blocks-final" : "N2-A") + ".txt")) throw new IOException("Preserve existing evidence");
         SessionState.SetString("N2.Stage", stage);
         SessionState.SetInt("N2.Exit", 1);
         EditorSceneManager.OpenScene(scene);
@@ -61,11 +62,12 @@ public sealed class N2VerificationRunner : MonoBehaviour
     IEnumerator Start()
     {
         string stage = SessionState.GetString("N2.Stage", "");
+        if (stage == "S1-07") DontDestroyOnLoad(gameObject);
         Application.logMessageReceived += Log;
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
         var stack = new Stack<IEnumerator>();
-        stack.Push(CameraChecks());
+        stack.Push(stage == "S1-07" ? RoomChecks() : CameraChecks());
         bool failed = false;
         while (stack.Count > 0 && !failed)
         {
@@ -88,7 +90,7 @@ public sealed class N2VerificationRunner : MonoBehaviour
         if (!failed)
         {
             Directory.CreateDirectory("Validation");
-            File.WriteAllLines($"Validation/{stage}-N2-A.txt", results);
+            File.WriteAllLines($"Validation/{stage}-" + (stage == "S1-07" ? "N2-A-blocks-final" : "N2-A") + ".txt", results);
         }
         SessionState.SetInt("N2.Exit", failed ? 1 : 0);
         EditorApplication.isPlaying = false;
@@ -164,5 +166,100 @@ public sealed class N2VerificationRunner : MonoBehaviour
         results.Add($"MEASURE: largest reversal camera step={largestStep:F4}u; automated positional check, human feel pending");
         InputSystem.RemoveDevice(keyboard);
         InputSystem.settings.editorInputBehaviorInPlayMode = oldFocus;
+    }
+
+    IEnumerator RoomChecks()
+    {
+        yield return new WaitForSeconds(.2f);
+        var session = RoomSession.Instance;
+        Check(session != null && session.CurrentRoomId == "A01", "direct room start bootstraps one persistent session");
+        int playerId = session.Player.GetInstanceID();
+        var keyboard = InputSystem.AddDevice<Keyboard>();
+        var oldFocus = InputSystem.settings.editorInputBehaviorInPlayMode;
+        var oldBackground = InputSystem.settings.backgroundBehavior;
+        InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+        InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+        foreach (string expected in new[] { "A02", "A03", "A04", "A03", "A02", "A01" })
+        {
+            var definition = FindFirstObjectByType<RoomDefinition>();
+            string sourceId = definition.roomId;
+            var exits = definition.GetComponentsInChildren<RoomExit>();
+            var exit = Array.Find(exits, x => x.destinationRoomId == expected);
+            Check(exit != null, "authored graph exit to " + expected);
+            bool right = exit.exitId == "Right";
+            string targetSpawnId = exit.destinationSpawnId;
+            var body = session.Player.GetComponent<Rigidbody2D>();
+            session.Player.ClearTransientInput();
+            body.position = new Vector2(exit.transform.position.x + (right ? -1.2f : 1.2f), 1.85f);
+            body.linearVelocity = Vector2.zero;
+            Physics2D.SyncTransforms();
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(right ? Key.D : Key.A));
+            double deadline = Time.realtimeSinceStartupAsDouble + 10;
+            while ((session.CurrentRoomId != expected || session.Transitioning) && Time.realtimeSinceStartupAsDouble < deadline)
+                yield return null;
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return null;
+            results.Add($"MEASURE: route {sourceId}->{expected}: room={session.CurrentRoomId}, body={body.position}, move={session.Player.Move}, paused={session.Player.Paused}, transition={session.Transitioning}, lastError={session.LastError}");
+            Check(session.CurrentRoomId == expected && !session.Transitioning, "physical exit trigger completed " + sourceId + " -> " + expected);
+            Check(FindObjectsByType<PlayerInputReader>(FindObjectsSortMode.None).Length == 1 && session.Player.GetInstanceID() == playerId, "same player instance survives transition");
+            Check(FindObjectsByType<RoomDefinition>(FindObjectsSortMode.None).Length == 1, "previous room unloaded");
+            Check(FindObjectsByType<GameState>(FindObjectsSortMode.None).Length == 1 && Time.timeScale == 1, "one GameState and playable timeScale");
+            Check(double.IsNegativeInfinity(session.Player.JumpPressedAt), "transition clears pending jump timestamp");
+            yield return new WaitForSeconds(.15f);
+            results.Add($"MEASURE: arrival {expected} body={body.position} velocity={body.linearVelocity} grounded={session.Player.GetComponent<PlayerMotor>().Grounded}");
+            Check(session.Player.GetComponent<PlayerMotor>().Grounded, "arrival settles on safe ground without wall sticking");
+            var arrived = FindFirstObjectByType<RoomDefinition>();
+            Check(arrived.TryGetSpawn(targetSpawnId, out var targetSpawn)
+                && Mathf.Abs(body.position.x - targetSpawn.transform.position.x) < .3f,
+                "arrival remains at the specified destination Spawn ID " + targetSpawnId);
+            var rig = FindFirstObjectByType<RoomCameraRig>();
+            var camera = rig.OutputCamera;
+            float halfY = camera.orthographicSize, halfX = halfY * camera.aspect;
+            Vector3 cameraPos = camera.transform.position;
+            Check(rig.boundary != null && FindObjectsByType<Camera>(FindObjectsSortMode.None).Length == 1
+                && cameraPos.x - halfX >= -.02f && cameraPos.x + halfX <= 32.02f
+                && cameraPos.y - halfY >= -1.02f && cameraPos.y + halfY <= 13.02f,
+                "one active room camera stays within PolygonCollider2D boundary");
+        }
+        Check(!session.RequestTransition("Invalid", "Assets/Scenes/NoSuchRoom.unity", "Entry"), "invalid scene rejected without loading");
+        Check(session.CurrentRoomId == "A01" && !session.Transitioning, "invalid scene retains playable source");
+        Check(session.RequestTransition("A02", "Assets/Scenes/A02.unity", "MissingSpawn"), "valid scene with bad spawn tested transactionally");
+        yield return WaitForTransition(session);
+        Check(session.CurrentRoomId == "A01" && session.LastError != null, "invalid spawn retains old room and records reason");
+        Check(session.RequestTransition("WrongRoomId", "Assets/Scenes/A02.unity", "FromLeft"), "mismatched Room ID request starts validation");
+        yield return WaitForTransition(session);
+        Check(session.CurrentRoomId == "A01" && !session.Transitioning, "wrong room ID rollback restores input/time");
+        session.Player.SetPaused(true);
+        Check(!session.RequestTransition("A02", "Assets/Scenes/A02.unity", "FromLeft") && session.Player.Paused, "pause cannot be overwritten by room request");
+        session.Player.SetPaused(false);
+        InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Space));
+        yield return null;
+        Check(session.RequestTransition("A02", "Assets/Scenes/A02.unity", "FromLeft"), "transition with held jump starts");
+        session.Player.SetPaused(true);
+        Check(!session.Player.Paused && session.Transitioning && session.Player.Move == Vector2.zero, "transition lock ignores Pause and blocks Gameplay");
+        yield return WaitForTransition(session);
+        yield return new WaitForSeconds(.1f);
+        Check(session.CurrentRoomId == "A02" && session.Player.GetComponent<PlayerMotor>().Grounded
+            && session.Player.GetComponent<Rigidbody2D>().linearVelocity.y <= .01f, "held pre-transition jump cannot leak at arrival");
+        InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+        yield return null; yield return null;
+        uint sequence = session.Player.JumpSequence;
+        InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Space));
+        yield return null; yield return new WaitForFixedUpdate();
+        Check(session.Player.JumpSequence == sequence + 1 && session.Player.GetComponent<Rigidbody2D>().linearVelocity.y > 0, "fresh post-transition jump works once");
+        var current = FindFirstObjectByType<RoomDefinition>();
+        var ground = Array.Find(current.GetComponentsInChildren<BoxCollider2D>(), x => x.name == "Ground");
+        var hazard = Array.Find(current.GetComponentsInChildren<BoxCollider2D>(), x => x.name == "Hazard");
+        Check(ground.gameObject.layer == 6 && !ground.isTrigger && ground.GetComponent<SpriteRenderer>() != null, "Ground block uses solid Ground layer and SpriteRenderer");
+        Check(hazard.gameObject.layer == 6 && hazard.isTrigger && hazard.GetComponent<SpriteRenderer>() != null, "Hazard block uses Ground layer trigger; death behavior deferred to S1-08");
+        InputSystem.RemoveDevice(keyboard);
+        InputSystem.settings.editorInputBehaviorInPlayMode = oldFocus;
+        InputSystem.settings.backgroundBehavior = oldBackground;
+    }
+    IEnumerator WaitForTransition(RoomSession session)
+    {
+        double deadline = Time.realtimeSinceStartupAsDouble + 10;
+        while (session.Transitioning && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
+        Check(!session.Transitioning, "transition or rollback finishes within 10s");
     }
 }

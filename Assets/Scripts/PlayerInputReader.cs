@@ -9,18 +9,21 @@ public sealed class PlayerInputReader : MonoBehaviour
     InputAction move, jump;
     InputDevice lastDevice;
     bool suppressJump;
-    public Vector2 Move => Paused ? Vector2.zero : move.ReadValue<Vector2>();
-    public bool JumpHeld => !Paused && !suppressJump && jump.IsPressed();
+    GameState state;
+    public bool InputLocked => state != null && (state.Paused || state.Transitioning);
+    public Vector2 Move => InputLocked ? Vector2.zero : move.ReadValue<Vector2>();
+    public bool JumpHeld => !InputLocked && !suppressJump && jump.IsPressed();
     public uint JumpSequence { get; private set; }
     public double JumpPressedAt { get; private set; } = double.NegativeInfinity;
     public double JumpReleasedAt { get; private set; } = double.NegativeInfinity;
-    public bool Paused { get; private set; }
-    public bool GamepadDisconnected { get; private set; }
+    public bool Paused => state != null && state.Paused;
+    public bool GamepadDisconnected => state != null && state.GamepadDisconnected;
     public bool UsingGamepad => lastDevice is Gamepad;
     public event Action Cleared;
 
     void Awake()
     {
+        state = GameState.GetOrCreate();
         runtime = Instantiate(actions);
         move = runtime.FindAction("Gameplay/Move", true);
         jump = runtime.FindAction("Gameplay/Jump", true);
@@ -28,7 +31,7 @@ public sealed class PlayerInputReader : MonoBehaviour
         jump.performed += ctx =>
         {
             lastDevice = ctx.control.device;
-            if (suppressJump || Paused) return;
+            if (suppressJump || InputLocked) return;
             JumpSequence++;
             JumpPressedAt = ctx.time;
         };
@@ -41,11 +44,9 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     void OnEnable()
     {
-        Paused = false;
-        GamepadDisconnected = false;
-        Time.timeScale = 1;
-        runtime.Disable();
-        runtime.FindActionMap("Gameplay").Enable();
+        state.ResetPause();
+        state.Changed += ApplyState;
+        ApplyState();
         InputSystem.onDeviceChange += DeviceChanged;
     }
 
@@ -66,31 +67,31 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     public void SetPaused(bool paused)
     {
-        if (Paused == paused) return;
-        Paused = paused;
+        state.SetPaused(paused);
+    }
+
+    void ApplyState()
+    {
         runtime.Disable();
         ClearTransientInput();
-        Time.timeScale = paused ? 0 : 1;
-        runtime.FindActionMap(paused ? "UI" : "Gameplay").Enable();
-        if (!paused) GamepadDisconnected = false;
+        if (!state.Transitioning)
+            runtime.FindActionMap(Paused ? "UI" : "Gameplay").Enable();
     }
 
     void DeviceChanged(InputDevice device, InputDeviceChange change)
     {
         if (device != lastDevice || device is not Gamepad) return;
         if (change != InputDeviceChange.Disconnected && change != InputDeviceChange.Removed) return;
-        GamepadDisconnected = true;
-        SetPaused(true);
+        state.PauseForDisconnect();
     }
 
     void OnDisable()
     {
         InputSystem.onDeviceChange -= DeviceChanged;
-        Paused = false;
-        GamepadDisconnected = false;
+        state.Changed -= ApplyState;
+        state.ResetPause();
         if (runtime != null) runtime.Disable();
         ClearTransientInput();
-        Time.timeScale = 1;
     }
 
     void OnDestroy() { if (runtime != null) Destroy(runtime); }

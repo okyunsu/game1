@@ -76,7 +76,7 @@ Minimum은 제작·통합·관찰 테스트 부담을 줄이는 대비안이다.
 
 ## Technical Boundary
 
-Unity 6 / C# / Windows PC. 2D Physics·Tilemap·Scene·Prefab·Animator·Input System·Cinemachine·ScriptableObject를 사용한다. 정확한 실행 버전은 README, 방 전환과 설정 설계는 GAME_DESIGN을 따른다. 주요 수치와 배치는 코드 수정 없이 조정 가능해야 한다. DOTS·ECS·Addressables·복잡한 DI·대규모 이벤트 프레임워크·불필요한 범용 구조는 사용하지 않는다.
+Unity 6 / C# / Windows PC. 2D Physics·Scene·Prefab·Animator·Input System·Cinemachine·ScriptableObject를 사용한다. DEC-ROOM-B(2026-10-01 사용자 승인): Sprint 1 지형은 Ground 레이어 BoxCollider2D·SpriteRenderer 블록으로 구성하고 Tilemap은 DEFERRED로 둔다. 이후 사용자 Editor GUI 확인 후 별도 Task로 결정한다. 정확한 실행 버전은 README, 방 전환과 설정 설계는 GAME_DESIGN을 따른다. 주요 수치와 배치는 코드 수정 없이 조정 가능해야 한다. DOTS·ECS·Addressables·복잡한 DI·대규모 이벤트 프레임워크·불필요한 범용 구조는 사용하지 않는다.
 
 ## In Scope
 

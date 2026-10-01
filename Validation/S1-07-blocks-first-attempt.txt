@@ -1,0 +1,15 @@
+FAIL S1-07; Unity=6000.3.24f1; UTC=2026-10-01T11:55:52.4296652Z
+PASS: direct room start bootstraps one persistent session
+PASS: authored graph exit to A02
+PASS: physical exit trigger completed A01 -> A02
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A02 body=(3.50, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: authored graph exit to A03
+FAIL: System.Exception: physical exit trigger completed A02 -> A03
+  at N2VerificationRunner.Check (System.Boolean ok, System.String name) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:61 
+  at N2VerificationRunner+<RoomChecks>d__6.MoveNext () [0x00315] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:201 
+  at N2VerificationRunner+<Start>d__4.MoveNext () [0x000b5] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N2Verification.cs:77 
