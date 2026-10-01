@@ -1,0 +1,3296 @@
+FAIL checkpoint/death; Unity=6000.3.24f1; UTC=2026-10-01T13:35:24.9124311Z
+PASS: A01 startup
+PASS: no checkpoint fallback case
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.643s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: checkpoint prefab/unique ID CP-A01
+PASS: contact activates checkpoint CP-A01
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.633s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: load alternate checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: checkpoint prefab/unique ID CP-A03
+PASS: contact activates checkpoint CP-A03
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.617s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: leave checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: room entry preserves checkpoint
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.667s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.617s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: one player retained across repeated cross-room respawn
+PASS: prepare route at A01
+PASS: respawn/transition completes within 3s
+PASS: walk reaches authored point without teleport
+MEASURE: open-floor full-jump range=4.501u; airborne=True; initial gap cap=3.601u
+PASS: measured same-height full jump horizontal range
+PASS: route entered A01
+PASS: editable scene route exists
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.00, 1.82); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.40, 1.82); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.80, 1.82); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.20, 1.82); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.64, 1.82); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.02, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(14.42, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(20.65, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(27.13, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(33.41, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(39.98, 10.62); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+MEASURE: completed A01 forward route; cumulative=24.11s
+PASS: authored connection to A02
+PASS: physical door transition to A02
+PASS: single player and previous room cleaned
+PASS: route entered A02
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.12, 1.81); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.81); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.81); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.81); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.81); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.40, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.20, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.00, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(19.40, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(25.80, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(32.20, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(38.60, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(44.12, 12.81); target=Center: (44.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(40.76, 15.01); target=Center: (40.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(34.88, 15.01); target=Center: (33.60, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(28.48, 15.01); target=Center: (27.20, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(22.08, 15.01); target=Center: (20.80, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(15.68, 15.01); target=Center: (14.40, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.28, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.88, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.12, 19.41); target=Center: (14.40, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(19.40, 19.41); target=Center: (20.80, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(25.80, 19.41); target=Center: (27.20, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(32.20, 19.41); target=Center: (33.60, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(38.60, 19.41); target=Center: (40.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(44.12, 21.61); target=Center: (44.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(40.80, 23.81); target=Center: (40.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(35.00, 23.81); target=Center: (33.60, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(28.60, 23.81); target=Center: (27.20, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(22.20, 23.81); target=Center: (20.80, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(15.80, 23.81); target=Center: (14.40, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.40, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.24, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.12, 28.21); target=Center: (14.40, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(19.52, 28.21); target=Center: (20.80, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(25.92, 28.21); target=Center: (27.20, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(32.32, 28.21); target=Center: (33.60, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(38.72, 28.21); target=Center: (40.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(44.12, 30.41); target=Center: (44.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(40.68, 32.61); target=Center: (40.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(34.88, 32.61); target=Center: (33.60, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(28.48, 32.61); target=Center: (27.20, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(22.08, 32.61); target=Center: (20.80, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(15.68, 32.61); target=Center: (14.40, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.28, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.32, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.12, 37.01); target=Center: (14.40, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(19.52, 37.01); target=Center: (20.80, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(25.92, 37.01); target=Center: (27.20, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(32.32, 37.01); target=Center: (33.60, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(38.72, 37.01); target=Center: (40.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(44.12, 39.21); target=Center: (44.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(40.68, 41.41); target=Center: (40.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(34.88, 41.41); target=Center: (33.60, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(28.48, 41.41); target=Center: (27.20, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(22.08, 41.41); target=Center: (20.80, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(15.80, 41.41); target=Center: (14.40, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.40, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.20, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.00, 45.81); target=Center: (14.40, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(19.40, 45.81); target=Center: (20.80, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(25.80, 45.81); target=Center: (27.20, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(32.20, 45.81); target=Center: (33.60, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(38.60, 45.81); target=Center: (40.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(44.12, 48.01); target=Center: (44.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(40.76, 50.21); target=Center: (40.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(34.88, 50.21); target=Center: (33.60, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(28.48, 50.21); target=Center: (27.20, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(22.08, 50.21); target=Center: (20.80, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(15.68, 50.21); target=Center: (14.40, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.28, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.32, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.42, 54.61); target=Center: (14.40, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(20.77, 54.61); target=Center: (20.80, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(27.25, 54.61); target=Center: (27.20, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(33.49, 54.61); target=Center: (33.60, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(39.76, 54.61); target=Center: (40.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+PASS: camera stays inside room boundary during traversal
+MEASURE: completed A02 forward route; cumulative=138.55s
+PASS: authored connection to A03
+PASS: physical door transition to A03
+PASS: single player and previous room cleaned
+PASS: route entered A03
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.04, 1.81); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.81); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.81); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.81); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.81); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.12, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(19.52, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(25.92, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(32.32, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(38.72, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(44.12, 12.81); target=Center: (44.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(40.68, 15.01); target=Center: (40.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(34.88, 15.01); target=Center: (33.60, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(28.48, 15.01); target=Center: (27.20, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(22.08, 15.01); target=Center: (20.80, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(15.68, 15.01); target=Center: (14.40, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.28, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.88, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.12, 19.41); target=Center: (14.40, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(19.52, 19.41); target=Center: (20.80, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(25.92, 19.41); target=Center: (27.20, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(32.32, 19.41); target=Center: (33.60, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(38.60, 19.41); target=Center: (40.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(44.12, 21.61); target=Center: (44.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(40.80, 23.81); target=Center: (40.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(35.00, 23.81); target=Center: (33.60, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(28.60, 23.81); target=Center: (27.20, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(22.20, 23.81); target=Center: (20.80, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(15.80, 23.81); target=Center: (14.40, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.40, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.20, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.00, 28.21); target=Center: (14.40, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(19.40, 28.21); target=Center: (20.80, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(25.80, 28.21); target=Center: (27.20, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(32.20, 28.21); target=Center: (33.60, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(38.60, 28.21); target=Center: (40.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(44.12, 30.41); target=Center: (44.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(40.80, 32.61); target=Center: (40.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(35.00, 32.61); target=Center: (33.60, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(28.60, 32.61); target=Center: (27.20, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(22.20, 32.61); target=Center: (20.80, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(15.76, 32.61); target=Center: (14.40, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.28, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.32, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.12, 37.01); target=Center: (14.40, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(19.52, 37.01); target=Center: (20.80, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(25.92, 37.01); target=Center: (27.20, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(32.32, 37.01); target=Center: (33.60, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(38.72, 37.01); target=Center: (40.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(44.12, 39.21); target=Center: (44.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(40.68, 41.41); target=Center: (40.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(34.88, 41.41); target=Center: (33.60, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(28.48, 41.41); target=Center: (27.20, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(22.08, 41.41); target=Center: (20.80, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(15.80, 41.41); target=Center: (14.40, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.40, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.20, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.00, 45.81); target=Center: (14.40, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(19.40, 45.81); target=Center: (20.80, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(25.80, 45.81); target=Center: (27.20, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(32.20, 45.81); target=Center: (33.60, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(38.60, 45.81); target=Center: (40.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(44.12, 48.01); target=Center: (44.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(40.80, 50.21); target=Center: (40.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(35.00, 50.21); target=Center: (33.60, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(28.60, 50.21); target=Center: (27.20, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(22.20, 50.21); target=Center: (20.80, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(15.80, 50.21); target=Center: (14.40, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.40, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.20, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.32, 54.61); target=Center: (14.40, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(20.77, 54.61); target=Center: (20.80, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(27.25, 54.61); target=Center: (27.20, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(33.49, 54.61); target=Center: (33.60, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(39.76, 54.61); target=Center: (40.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+PASS: camera stays inside room boundary during traversal
+MEASURE: completed A03 forward route; cumulative=253.06s
+PASS: authored connection to A04
+PASS: physical door transition to A04
+PASS: single player and previous room cleaned
+PASS: route entered A04
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.64, 1.81); target=Center: (15.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(20.72, 1.81); target=Center: (22.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(27.72, 1.81); target=Center: (29.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(34.72, 1.81); target=Center: (36.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(41.72, 1.81); target=Center: (43.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(47.12, 4.01); target=Center: (47.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(43.68, 6.21); target=Center: (43.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(37.28, 6.21); target=Center: (36.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(30.28, 6.21); target=Center: (29.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(23.28, 6.21); target=Center: (22.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(16.28, 6.21); target=Center: (15.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.40, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.20, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.60, 10.61); target=Center: (15.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(20.60, 10.61); target=Center: (22.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(27.60, 10.61); target=Center: (29.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(34.60, 10.61); target=Center: (36.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(41.60, 10.61); target=Center: (43.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(47.12, 12.81); target=Center: (47.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(43.80, 15.01); target=Center: (43.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(37.40, 15.01); target=Center: (36.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(30.40, 15.01); target=Center: (29.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(23.40, 15.01); target=Center: (22.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(16.40, 15.01); target=Center: (15.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.36, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.98, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.72, 19.41); target=Center: (15.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(20.72, 19.41); target=Center: (22.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(27.72, 19.41); target=Center: (29.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(34.72, 19.41); target=Center: (36.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(41.72, 19.41); target=Center: (43.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(47.12, 21.61); target=Center: (47.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(43.68, 23.81); target=Center: (43.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(37.28, 23.81); target=Center: (36.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(30.28, 23.81); target=Center: (29.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(23.28, 23.81); target=Center: (22.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(16.28, 23.81); target=Center: (15.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.28, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.32, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.72, 28.21); target=Center: (15.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(20.72, 28.21); target=Center: (22.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(27.72, 28.21); target=Center: (29.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(34.72, 28.21); target=Center: (36.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(41.72, 28.21); target=Center: (43.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(47.12, 30.41); target=Center: (47.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(43.68, 32.61); target=Center: (43.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(37.28, 32.61); target=Center: (36.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(30.28, 32.61); target=Center: (29.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(23.40, 32.61); target=Center: (22.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(16.40, 32.61); target=Center: (15.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.40, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.20, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.60, 37.01); target=Center: (15.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(20.60, 37.01); target=Center: (22.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(27.60, 37.01); target=Center: (29.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(34.60, 37.01); target=Center: (36.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(41.60, 37.01); target=Center: (43.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(47.12, 39.21); target=Center: (47.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(43.80, 41.41); target=Center: (43.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(37.40, 41.41); target=Center: (36.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(30.40, 41.41); target=Center: (29.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(23.40, 41.41); target=Center: (22.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(16.40, 41.41); target=Center: (15.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.40, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.20, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.60, 45.81); target=Center: (15.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(20.64, 45.81); target=Center: (22.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(27.72, 45.81); target=Center: (29.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(34.72, 45.81); target=Center: (36.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(41.72, 45.81); target=Center: (43.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(47.12, 48.01); target=Center: (47.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(43.68, 50.21); target=Center: (43.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(37.28, 50.21); target=Center: (36.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(30.28, 50.21); target=Center: (29.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(23.28, 50.21); target=Center: (22.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(16.28, 50.21); target=Center: (15.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.28, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.32, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.42, 54.61); target=Center: (15.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(21.37, 54.61); target=Center: (22.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(28.45, 54.61); target=Center: (29.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(35.29, 54.61); target=Center: (36.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(42.16, 54.61); target=Center: (43.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+PASS: camera stays inside room boundary during traversal
+MEASURE: completed A04 forward route; cumulative=367.92s
+PASS: authored connection to A03
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 089->Landing 088; body=(36.85, 54.61); target=Center: (36.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 087; body=(29.75, 54.61); target=Center: (29.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 086; body=(22.58, 54.61); target=Center: (22.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 085; body=(15.61, 54.61); target=Center: (15.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 084; body=(8.85, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Turn 11; body=(4.00, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 082; body=(6.84, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Landing 081; body=(13.72, 50.21); target=Center: (15.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 080; body=(20.72, 50.21); target=Center: (22.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 079; body=(27.72, 50.21); target=Center: (29.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 078; body=(34.72, 50.21); target=Center: (36.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 077; body=(41.72, 50.21); target=Center: (43.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Turn 10; body=(47.08, 48.01); target=Center: (47.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 075; body=(44.28, 45.81); target=Center: (43.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Landing 074; body=(37.36, 45.81); target=Center: (36.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 073; body=(30.28, 45.81); target=Center: (29.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 072; body=(23.28, 45.81); target=Center: (22.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 071; body=(16.28, 45.81); target=Center: (15.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 070; body=(9.28, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Turn 09; body=(3.92, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 068; body=(6.72, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Landing 067; body=(13.64, 41.41); target=Center: (15.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 066; body=(20.72, 41.41); target=Center: (22.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 065; body=(27.72, 41.41); target=Center: (29.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 064; body=(34.72, 41.41); target=Center: (36.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 063; body=(41.72, 41.41); target=Center: (43.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Turn 08; body=(47.08, 39.21); target=Center: (47.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 061; body=(44.28, 37.01); target=Center: (43.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Landing 060; body=(37.36, 37.01); target=Center: (36.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 059; body=(30.28, 37.01); target=Center: (29.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 058; body=(23.28, 37.01); target=Center: (22.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 057; body=(16.28, 37.01); target=Center: (15.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 056; body=(9.28, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Turn 07; body=(3.92, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 054; body=(6.72, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Landing 053; body=(13.64, 32.61); target=Center: (15.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 052; body=(20.72, 32.61); target=Center: (22.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 051; body=(27.72, 32.61); target=Center: (29.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 050; body=(34.72, 32.61); target=Center: (36.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 049; body=(41.72, 32.61); target=Center: (43.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Turn 06; body=(47.08, 30.41); target=Center: (47.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 047; body=(44.28, 28.21); target=Center: (43.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Landing 046; body=(37.36, 28.21); target=Center: (36.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 045; body=(30.28, 28.21); target=Center: (29.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 044; body=(23.28, 28.21); target=Center: (22.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 043; body=(16.28, 28.21); target=Center: (15.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 042; body=(9.28, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Turn 05; body=(3.92, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 040; body=(6.72, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Landing 039; body=(13.64, 23.81); target=Center: (15.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 038; body=(20.72, 23.81); target=Center: (22.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 037; body=(27.72, 23.81); target=Center: (29.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 036; body=(34.72, 23.81); target=Center: (36.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 035; body=(41.72, 23.81); target=Center: (43.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Turn 04; body=(47.08, 21.61); target=Center: (47.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 033; body=(44.28, 19.41); target=Center: (43.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Landing 032; body=(37.36, 19.41); target=Center: (36.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 031; body=(30.28, 19.41); target=Center: (29.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 030; body=(23.28, 19.41); target=Center: (22.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 029; body=(16.28, 19.41); target=Center: (15.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 028; body=(9.28, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Turn 03; body=(3.92, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 026; body=(6.72, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Landing 025; body=(13.64, 15.01); target=Center: (15.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 024; body=(20.72, 15.01); target=Center: (22.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 023; body=(27.72, 15.01); target=Center: (29.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 022; body=(34.72, 15.01); target=Center: (36.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 021; body=(41.72, 15.01); target=Center: (43.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Turn 02; body=(47.08, 12.81); target=Center: (47.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 019; body=(44.24, 10.61); target=Center: (43.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Landing 018; body=(37.28, 10.61); target=Center: (36.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 017; body=(30.28, 10.61); target=Center: (29.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 016; body=(23.28, 10.61); target=Center: (22.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 015; body=(16.28, 10.61); target=Center: (15.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 014; body=(9.28, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Turn 01; body=(3.92, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 012; body=(6.72, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Landing 011; body=(13.64, 6.21); target=Center: (15.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 010; body=(20.72, 6.21); target=Center: (22.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 009; body=(27.72, 6.21); target=Center: (29.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 008; body=(34.72, 6.21); target=Center: (36.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 007; body=(41.72, 6.21); target=Center: (43.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Turn 00; body=(47.08, 4.01); target=Center: (47.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 005; body=(44.28, 1.81); target=Center: (43.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Landing 004; body=(37.36, 1.81); target=Center: (36.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 003; body=(30.28, 1.81); target=Center: (29.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 002; body=(23.28, 1.81); target=Center: (22.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 001; body=(16.28, 1.81); target=Center: (15.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 000; body=(9.28, 1.82); target=Center: (8.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 000
+PASS: camera stays inside room boundary during traversal
+PASS: physical door transition to A03
+PASS: single player and previous room cleaned
+PASS: route entered A03
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 089->Landing 088; body=(33.81, 54.61); target=Center: (33.60, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 087; body=(27.23, 54.61); target=Center: (27.20, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 086; body=(20.86, 54.61); target=Center: (20.80, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 085; body=(14.38, 54.61); target=Center: (14.40, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 084; body=(8.15, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Turn 11; body=(4.00, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 082; body=(6.84, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Landing 081; body=(13.00, 50.21); target=Center: (14.40, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 080; body=(19.40, 50.21); target=Center: (20.80, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 079; body=(25.80, 50.21); target=Center: (27.20, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 078; body=(32.20, 50.21); target=Center: (33.60, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 077; body=(38.60, 50.21); target=Center: (40.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Turn 10; body=(43.96, 48.01); target=Center: (44.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 075; body=(41.16, 45.81); target=Center: (40.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Landing 074; body=(35.00, 45.81); target=Center: (33.60, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 073; body=(28.60, 45.81); target=Center: (27.20, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 072; body=(22.20, 45.81); target=Center: (20.80, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 071; body=(15.80, 45.81); target=Center: (14.40, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 070; body=(9.40, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Turn 09; body=(4.04, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 068; body=(6.84, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Landing 067; body=(13.00, 41.41); target=Center: (14.40, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 066; body=(19.40, 41.41); target=Center: (20.80, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 065; body=(25.80, 41.41); target=Center: (27.20, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 064; body=(32.20, 41.41); target=Center: (33.60, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 063; body=(38.60, 41.41); target=Center: (40.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Turn 08; body=(43.96, 39.21); target=Center: (44.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 061; body=(41.16, 37.01); target=Center: (40.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Landing 060; body=(35.00, 37.01); target=Center: (33.60, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 059; body=(28.60, 37.01); target=Center: (27.20, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 058; body=(22.16, 37.01); target=Center: (20.80, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 057; body=(15.68, 37.01); target=Center: (14.40, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 056; body=(9.28, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Turn 07; body=(3.93, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 054; body=(6.72, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Landing 053; body=(13.04, 32.61); target=Center: (14.40, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 052; body=(19.52, 32.61); target=Center: (20.80, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 051; body=(25.92, 32.61); target=Center: (27.20, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 050; body=(32.32, 32.61); target=Center: (33.60, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 049; body=(38.72, 32.61); target=Center: (40.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Turn 06; body=(44.08, 30.41); target=Center: (44.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 047; body=(41.28, 28.21); target=Center: (40.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Landing 046; body=(34.96, 28.21); target=Center: (33.60, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 045; body=(28.48, 28.21); target=Center: (27.20, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 044; body=(22.08, 28.21); target=Center: (20.80, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 043; body=(15.68, 28.21); target=Center: (14.40, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 042; body=(9.28, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Turn 05; body=(3.92, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 040; body=(6.72, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Landing 039; body=(13.04, 23.81); target=Center: (14.40, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 038; body=(19.52, 23.81); target=Center: (20.80, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 037; body=(25.92, 23.81); target=Center: (27.20, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 036; body=(32.32, 23.81); target=Center: (33.60, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 035; body=(38.72, 23.81); target=Center: (40.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Turn 04; body=(44.08, 21.61); target=Center: (44.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 033; body=(41.28, 19.41); target=Center: (40.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Landing 032; body=(34.96, 19.41); target=Center: (33.60, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 031; body=(28.48, 19.41); target=Center: (27.20, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 030; body=(22.08, 19.41); target=Center: (20.80, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 029; body=(15.68, 19.41); target=Center: (14.40, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 028; body=(9.28, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Turn 03; body=(3.92, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 026; body=(6.72, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Landing 025; body=(13.04, 15.01); target=Center: (14.40, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 024; body=(19.52, 15.01); target=Center: (20.80, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 023; body=(25.92, 15.01); target=Center: (27.20, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 022; body=(32.32, 15.01); target=Center: (33.60, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 021; body=(38.72, 15.01); target=Center: (40.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Turn 02; body=(44.08, 12.81); target=Center: (44.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 019; body=(41.28, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Landing 018; body=(34.96, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 017; body=(28.48, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 016; body=(22.08, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 015; body=(15.68, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 014; body=(9.28, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Turn 01; body=(3.92, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 012; body=(6.72, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Landing 011; body=(13.04, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 010; body=(19.52, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 009; body=(25.92, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 008; body=(32.32, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 007; body=(38.72, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Turn 00; body=(44.08, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 005; body=(41.28, 1.81); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Landing 004; body=(34.96, 1.81); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 003; body=(28.48, 1.81); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 002; body=(22.08, 1.81); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 001; body=(15.68, 1.81); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: camera stays inside room boundary during traversal
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 000; body=(9.28, 1.82); target=Center: (8.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 000
+PASS: camera stays inside room boundary during traversal
+MEASURE: completed A03 reverse route; cumulative=593.08s
+PASS: authored connection to A02
+PASS: physical door transition to A02
+PASS: single player and previous room cleaned
+PASS: route entered A02
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+FAIL: System.Exception: walk reaches authored point without teleport
+  at SliceVerification.Check (System.Boolean ok, System.String label) [0x00003] in <7ed59e737c784bd98f98e8f68e198779>:0 
+  at SliceVerification+<Walk>d__16.MoveNext () [0x00120] in <7ed59e737c784bd98f98e8f68e198779>:0 
+  at SliceVerification+<Start>d__8.MoveNext () [0x00098] in <7ed59e737c784bd98f98e8f68e198779>:0 

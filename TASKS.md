@@ -33,11 +33,11 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 | S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
 | S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
-| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-ROOM-B: Ground/Hazard는 Ground 레이어 BoxCollider2D·SpriteRenderer 블록, 출입구·Spawn ID, A01~A04 양방향 연결·안전 도착·단일 플레이어·입력 초기화, 배치 편집 가능; Tilemap DEFERRED |
+| S1-07 | Block Greybox / Room Structure | DOING | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | SLICE-001: 확장 배치의 A02 역방향 도착 후 이동 검증 실패로 영향 경로 재검증 필요. DEC-ROOM-B·Tilemap DEFERRED 유지 |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
-| S1-09 | 첫 Vertical Slice 통합 | REVIEW | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
-| S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | Windows 빌드 구간 재현, 경계 입력·충돌 회귀, 명백한 런타임 오류 없음, 결과·실행 경로 인계 |
+| S1-09 | 첫 Vertical Slice 통합 | DOING | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | SLICE-001: 순방향 6분 8초 PASS, 빌드 역방향 실패로 REVIEW 철회. 왕복 재검증 후 사용자 수락 |
+| S1-10 | Slice 검증·실행 안내 | BLOCKED | S1-09:REVIEW | — | 빌드 생성 성공, A02 역방향 이동 실패 반복으로 AGENTS Stop Conditions에 따라 중단. SLICE-001 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
 ## Human Review
@@ -122,7 +122,18 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 대안 B 완료: [최종 Room 검사](Validation/S1-07-N2-A-blocks-final.txt) 71건, [S1-02 회귀](Validation/S1-02-N2-A-blocks.txt) 19건, [S1-04 회귀](Validation/S1-04-N2-A-blocks.txt) 63건 통과. S1-07 DONE이며 ROOM-001은 Tile 에셋 문제 미해결로 OPEN 유지. [최초 블록 검사 실패](Validation/S1-07-blocks-first-attempt.txt), [Spawn 검사 보강 전 통과](Validation/S1-07-N2-A-blocks.txt)도 보존.
 - 증거: [실패 결과](Validation/S1-07-N2-A-blocked.txt). 로컬 `Logs/S1-07-tile-diagnostic.log`, `Logs/S1-07-persist-tiles.log`.
 
+### SLICE-001
+
+- ID / 관련 Task / Status / 심각도 / 환경: SLICE-001 / S1-07·09·10 / OPEN / Major / Unity 6000.3.24f1 Windows x64 Mono Slice 실행 파일, 가상 Keyboard 자동 검사.
+- 재현: A01→A04 이동 후 A04·A03 역방향 통과, A02 FromRight 도착 후 마지막 발판 중심 x=40.00으로 걷기. 첫 전체 검사에서 실패; 재빌드 후 A02 역방향 집중 검사에서도 같은 실패.
+- 실제 측정: 집중 검사에서 최종 위치 (42.37, 54.61), 속도 (0,0), 입력 해제 후 Move=(0,0), Paused=False·Transition=False. 목표와 x 차이 2.37u. 이 값만으로 입력 또는 충돌 원인을 확정하지 않는다.
+- 조사·변경: 자동 검사에 위치/속도/입력 진단 추가, Unity 앱 내부의 실제 입력 장치를 격리(검사 종료 시 복원)한 뒤 새 빌드로 재현. 정상 플레이에는 CLI 검사를 실행하지 않는다. 입력 격리 후에도 실패하여 원인 미확정. 게임 규칙·수치 변경 없음.
+- 검증: 빌드 2회 Succeeded, errors=0·warnings=0. 첫 런타임 검사에서 순방향 A04 도착 약 367.92초, A04 복귀·A03 역방향 완료 약 593.08초. 체크포인트·반복 사망 검사는 두 실행에서 통과했지만 전체 왕복은 실패. 파일 첫 줄의 `FAIL checkpoint/death`는 검사 전체 결과이며 사망 검사 자체의 실패를 뜻하지 않음.
+- 처리·영향: 동일 오류 반복 중단 규칙에 따라 추가 조사/수정 중단. S1-10 BLOCKED, 영향받는 S1-07·09는 DOING으로 되돌림. S1-08 DONE 유지. 수정 재개 판단과 왕복 재검증이 필요하며 S1-G·Sprint 2 미착수.
+- 증거: [전체 빌드 실행 실패](Validation/S1-10-runtime.txt), [집중 재현 실패](Validation/S1-10-focused.txt), [첫 빌드](Validation/S1-10-build.txt), [진단 빌드](Validation/S1-10-build-02.txt). 원시 로그는 로컬 Logs/S1-10-runtime.log·S1-10-focused.log.
 ## Decisions Needed
+
+SLICE-001: A02 역방향 이동 실패가 집중 검사에서도 반복되어 AGENTS Stop Conditions로 중단했다. 원인이 실제 배치/충돌인지 검증 입력인지 미확정. 이 문제의 조사·수정 재개에 대한 사용자 판단이 필요하다. 범위는 S1-07/09/10 왕복 경로로 제한하며 규칙·수치 변경은 제안하지 않는다.
 
 DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 기준을 대체, Tilemap DEFERRED. ROOM-001은 원인 미확정 OPEN 유지. Tilemap 도입은 사용자 Editor GUI 확인 후 별도 Task로 결정. S1-08 이후 미승인.
 
@@ -191,6 +202,12 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 복귀 지연 0.6s를 PlayerTuning.asset의 Death / respawn 그룹에 연결(값 변경 없음, 기존 이동 값 보존). [체크포인트 통합 회귀](Validation/S1-08-N2-B-integration.txt) 64건 PASS.
 - 초기 실패 증거 S1-09-N2-B.txt, -02/-03/-04.txt 보존: 천장 안 최대거리 측정 → 열린 평지로 수정; 방향 전환 발판 천장/측면 간섭 → 폭 2u로 수정; 위층 위험 영역이 아래층 점프와 겹침 → 상층 영역 제거, 첫 위험·하단 영역 유지. 규칙·수치 변경 없이 실제 궤적 재검증 통과.
 
+### 2026-10-01 S1-10 / N2-B — BLOCKED
+
+- Windows x64 Mono, A01 시작·A01~A04 포함, Development Build=false. [최초 빌드](Validation/S1-10-build.txt)와 [진단 빌드](Validation/S1-10-build-02.txt) 모두 Succeeded, errors=0·warnings=0.
+- [실제 실행 파일 전체 검사](Validation/S1-10-runtime.txt): 체크포인트/사망·순방향 A01→A04·A04 복귀·A03 역방향 통과, A02 역방향 첫 걷기 실패. A02→A01 복귀는 미실시.
+- [실제 실행 파일 집중 재현](Validation/S1-10-focused.txt): 체크포인트/사망 통과, 입력 장치 격리 후 A02 FromRight 걷기 같은 실패. 목표 x=40.00, 실제 x=42.37. 이후 점프 검사는 미실시. 동일 오류 반복으로 중단, 전체 왕복 PASS로 기록하지 않음.
+- README에 Editor A01 Play·MovementTest 회귀 용도·로컬 Slice 경로와 검증 실패 한계 추가. 기존 Validation 전부 보존. 로컬 Builds/Slice는 Git 제외이며 완성/수락 빌드가 아님.
 ## Playtest Records
 
 ### OBS-001 — 출구 인지 / Before–After 후보
@@ -232,11 +249,11 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-01 — N2-B S1-08 DONE, S1-09 REVIEW, S1-10 승인·착수 예정.
+2026-10-01 — N2-B S1-08 DONE, S1-07·09 DOING, S1-10 BLOCKED(SLICE-001).
 
-- **완료·상태:** S1-08 DONE(bf19278), S1-09 기술 검증 완료·REVIEW. S1-06 REVIEW·S1-07 DONE, ROOM-001 OPEN·Tilemap DEFERRED 유지. S1-G·Sprint 2 미승인.
-- **주요 파일:** A01~A04의 블록 경로·문 표시·위험 영역, SliceRoute HUD, SliceVerification/N2BVerification/N2BRender. 복귀 지연 0.6s의 공통 원본을 PlayerTuning.asset에 연결했으며 이동 값은 보존. 일회성 Scene 작성/수정 스크립트 삭제.
-- **검증:** [S1-09](Validation/S1-09-N2-B-05.txt) 1,532건 PASS, 최대 거리 4.501u·간격 80% 이하·착지 폭 2u 이상, 실제 입력 순방향 368.20초. [카메라](Validation/S1-09-camera-02.txt) 4방 경계 PASS, [출구](Validation/Slice/A01-static-02.png)·[허브](Validation/Slice/A03-static-02.png) 정적 표시 확인. [체크포인트 통합](Validation/S1-08-N2-B-integration.txt) 64건 PASS. 실패/초기 렌더와 이전 증거 보존.
-- **수정 위치:** 각 Scene > Editable route blocks의 Transform·BoxCollider2D·SpriteRenderer, 문 프레임은 RoomExit 자식, 위험은 Visible gap Kill Zones/Hazard, CP의 Spawn 참조·위치. SliceRoute의 instruction/landing 참조를 Inspector에서 편집. 공통 PlayerTuning.asset > Death / respawn > Respawn Delay(초), 기존 이동 설정 유지. Scene Play 변경은 Stop 후 재입력·저장, Asset Play 변경은 Stop 후 원하는 값으로 명시적 저장, 공통 Prefab 변경은 원본/Overrides Apply.
-- **사용자 검토:** S1-06 급반전·낙하 시야, Slice 동선·5~10분 첫 플레이, OBS-001 출구 발견·방 전환 인지 재확인, 점프 일관성을 키보드와 패드 A로 비교. 평지/천장 없는 구간과 MovementTest에서 입력 차이·천장 간섭을 구분. 실제 패드·GUI·재미 수락은 미실시.
-- **문제·다음:** 초기 발판/위험 수직 간섭과 표시 가림 수정 후 통과. S1-10 Windows Slice 빌드·빌드 왕복/사망 검사와 README 갱신 진행. HP·디스크 저장·공격·능력 미구현 유지.
+- **완료·상태:** S1-08 체크포인트/최소 사망 복귀 DONE(bf19278). S1-09 순방향·표시 구현 커밋 dd54e5a는 push 완료했으나 이후 왕복 실패로 REVIEW 철회. S1-06 REVIEW, ROOM-001 OPEN·Tilemap DEFERRED 유지. S1-G·Sprint 2 미착수.
+- **주요 파일:** Checkpoint/KillZone·RoomSession/GameState, A01~A04 Scene 블록·문 표시·SliceRoute HUD, SliceVerification·N2BVerification·N2BRender·N2BBuild, PlayerTuning.asset의 Respawn Delay 0.6s, README 실행 안내. 기존 이동 수치 보존.
+- **검증:** S1-08 64건·S1-02 19건·S1-04 63건·당시 S1-07 71건 PASS. [Slice 순방향](Validation/S1-09-N2-B-05.txt) 1,532건 PASS·368.20초, 최대 점프 거리 4.501u·간격 80% 이하·착지 폭 2u 이상. [진단 빌드](Validation/S1-10-build-02.txt) 오류/경고 0. 그러나 [왕복](Validation/S1-10-runtime.txt)과 [집중 검사](Validation/S1-10-focused.txt)는 A02 역방향 걷기 FAIL. 실패 포함 기존 증거 모두 보존.
+- **문제·다음:** SLICE-001 목표 x=40.00, 실제 x=42.37. 실제 장치 격리 후에도 재현되어 원인 미확정. AGENTS 동일 오류 반복 조건으로 중단했으며 사용자 재개 판단 후 해당 경로 조사/수정·왕복 재검증 필요. 로컬 Builds/Slice/Afterglow-Slice.exe는 생성됐으나 검증 미완료.
+- **수정 위치:** Scene의 Editable route blocks Transform/Collider/Renderer, RoomExit 자식 문 프레임, KillZone/Checkpoint Spawn, SliceRoute instruction/landing 참조. 공통 PlayerTuning.asset > Death / respawn. Scene Play 변경은 Stop 후 재입력·저장, Asset은 Stop 후 값 확인·명시적 저장, 공통 Prefab 변경은 원본/Overrides Apply.
+- **사용자 검토:** 왕복 문제 해결 후 S1-06 급반전·낙하 시야, Slice 동선·첫 플레이 5~10분, OBS-001 출구 발견·방 전환 인지 재확인, 점프 일관성을 키보드와 패드 A로 비교. 실제 패드·GUI·재미 수락 미실시. HP·저장·공격·능력 미구현 유지.

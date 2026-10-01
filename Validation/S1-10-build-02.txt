@@ -1,0 +1,1 @@
+Succeeded; errors=0; warnings=0; Unity=6000.3.24f1; UTC=2026-10-01T13:44:44.7431251Z; startScene=A01; scenes=A01,A02,A03,A04; Windows x64 Mono; Development Build=false

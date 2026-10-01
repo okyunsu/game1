@@ -10,16 +10,21 @@ public sealed class SliceVerification : MonoBehaviour
  public string outputPath;
  public bool traverse;
  public bool roundTrip;
+ public bool reverseProbe;
  public Action<bool> finished;
  readonly List<string> results=new(); readonly List<string> errors=new();
+ readonly List<InputDevice> originalDevices=new();
  void Log(string msg,string stack,LogType kind){if(kind is LogType.Error or LogType.Exception or LogType.Assert)errors.Add(msg+stack);}
  void Check(bool ok,string label){if(!ok)throw new Exception(label);results.Add("PASS: "+label);}
  public IEnumerator Start(){
   DontDestroyOnLoad(gameObject);Application.logMessageReceived+=Log;
+  foreach(var device in InputSystem.devices)if(device.enabled){originalDevices.Add(device);InputSystem.DisableDevice(device);}
+  results.Add("NOTE: physical devices isolated inside Unity for automated input only");
   QualitySettings.vSyncCount=0;Application.targetFrameRate=60;
   var stack=new Stack<IEnumerator>();if(traverse)stack.Push(TraversalChecks());stack.Push(CheckpointChecks());bool fail=false;
   while(stack.Count>0&&!fail){object next=null;try{if(!stack.Peek().MoveNext()){stack.Pop();continue;}next=stack.Peek().Current;}catch(Exception e){results.Add("FAIL: "+e);fail=true;}if(next is IEnumerator child)stack.Push(child);else if(!fail)yield return next;}
   Application.logMessageReceived-=Log;fail|=errors.Count>0;results.AddRange(errors);results.Insert(0,$"{(fail?"FAIL":"PASS")} checkpoint/death; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}");
+  foreach(var device in originalDevices)InputSystem.EnableDevice(device);
   if(File.Exists(outputPath))throw new IOException("Preserve evidence: "+outputPath);
   Directory.CreateDirectory(Path.GetDirectoryName(outputPath));File.WriteAllLines(outputPath,results);
   if(finished!=null)finished(!fail);else Application.Quit(fail?1:0);
@@ -65,10 +70,11 @@ public sealed class SliceVerification : MonoBehaviour
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
  static void StartBuildVerification(){
   var args=Environment.GetCommandLineArgs();
-  if(Array.IndexOf(args,"--slice-verify")<0)return;
+  if(Array.IndexOf(args,"--slice-verify")<0 && Array.IndexOf(args,"--slice-reverse-probe")<0)return;
   int pathIndex=Array.IndexOf(args,"--verification-output");
   var runner=new GameObject("Command-line Slice verification").AddComponent<SliceVerification>();
   runner.traverse=true;runner.roundTrip=true;
+  runner.reverseProbe=Array.IndexOf(args,"--slice-reverse-probe")>=0;
   runner.outputPath=pathIndex>=0&&pathIndex+1<args.Length?args[pathIndex+1]:Path.Combine(Application.persistentDataPath,"Slice-build-verification.txt");
  }
  void Keys(Keyboard keyboard,int direction,bool jump=false){
@@ -80,10 +86,12 @@ public sealed class SliceVerification : MonoBehaviour
   int direction=body.position.x<x?1:-1;
   while((x-body.position.x)*direction>.06f&&Time.realtimeSinceStartupAsDouble<end){Keys(keyboard,direction);yield return null;}
   Keys(keyboard,0);yield return new WaitForSeconds(.08f);
+  results.Add($"MEASURE: walk room={session.CurrentRoomId}; targetX={x:F3}; position={body.position}; velocity={body.linearVelocity}; move={session.Player.Move}; paused={session.Player.Paused}; transition={session.Transitioning}");
   Check(Mathf.Abs(body.position.x-x)<.4f,"walk reaches authored point without teleport");
  }
  IEnumerator Hop(RoomSession session,Keyboard keyboard,Transform from,Transform to){
   var source=from.GetComponent<BoxCollider2D>().bounds;var target=to.GetComponent<BoxCollider2D>().bounds;
+  bool drop=target.max.y<source.max.y-.1f;
   int direction=source.center.x<target.center.x?1:-1;
   yield return Walk(session,keyboard,direction>0?source.max.x-.55f:source.min.x+.55f);
   var body=session.Player.GetComponent<Rigidbody2D>();Check(session.Player.GetComponent<PlayerMotor>().Grounded,"jump starts from ground");
@@ -91,14 +99,17 @@ public sealed class SliceVerification : MonoBehaviour
   double end=Time.realtimeSinceStartupAsDouble+5;bool landed=false;bool airborne=false;
   while(Time.realtimeSinceStartupAsDouble<end){
    int move=Mathf.Abs(body.position.x-target.center.x)<.2f?0:(body.position.x<target.center.x?1:-1);
-   Keys(keyboard,move,true);yield return null;
+   Keys(keyboard,move,!drop);yield return null;
    airborne |= !session.Player.GetComponent<PlayerMotor>().Grounded;
    if(session.Respawning){results.Add($"MEASURE failed hop {from.name}->{to.name}: body={body.position}, velocity={body.linearVelocity}, jumpSequence={initialSequence}->{session.Player.JumpSequence}, pressed={session.Player.JumpPressedAt}, released={session.Player.JumpReleasedAt}, airborne={airborne}, fixed={Time.fixedUnscaledTimeAsDouble}");throw new Exception("Route jump entered Kill Zone: "+to.name);}
    if(session.Player.GetComponent<PlayerMotor>().Grounded&&Mathf.Abs(body.position.y-(target.max.y+.81f))<.2f&&body.position.x>target.min.x-.2f&&body.position.x<target.max.x+.2f){landed=true;break;}
   }
   Keys(keyboard,0);yield return null;yield return null;
   results.Add($"MEASURE: hop {from.name}->{to.name}; body={body.position}; target={target}; grounded={session.Player.GetComponent<PlayerMotor>().Grounded}; landed={landed}");
-  Check(landed && airborne && session.Player.JumpSequence > initialSequence,"actual input trajectory lands on "+to.name);
+  Check(landed && airborne && (drop || session.Player.JumpSequence > initialSequence),"actual input trajectory lands on "+to.name);
+  var rig=FindFirstObjectByType<RoomCameraRig>();var camera=rig.OutputCamera;
+  var boundary=rig.boundary.bounds;var p=camera.transform.position;float halfY=camera.orthographicSize,halfX=halfY*camera.aspect;
+  Check(p.x-halfX>=boundary.min.x-.05f&&p.x+halfX<=boundary.max.x+.05f&&p.y-halfY>=boundary.min.y-.05f&&p.y+halfY<=boundary.max.y+.05f,"camera stays inside room boundary during traversal");
  }
  IEnumerator TraversalChecks(){
   var session=RoomSession.Instance;
@@ -113,6 +124,14 @@ public sealed class SliceVerification : MonoBehaviour
   float range=body.position.x-startX;Keys(keyboard,0);yield return null;yield return null;
   results.Add($"MEASURE: open-floor full-jump range={range:F3}u; airborne={airborne}; initial gap cap={range*.8f:F3}u");
   Check(airborne&&range>3.8f,"measured same-height full jump horizontal range");
+  if(reverseProbe){
+   Check(session.RequestTransition("A02","Assets/Scenes/A02.unity","FromRight"),"prepare focused A02 reverse entry");yield return Wait(session);
+   var route=FindFirstObjectByType<SliceRoute>();int last=route.landings.Length-1;
+   yield return Walk(session,keyboard,route.landings[last].position.x);
+   yield return Hop(session,keyboard,route.landings[last],route.landings[last-1]);
+   yield return Hop(session,keyboard,route.landings[last-1],route.landings[last-2]);
+   InputSystem.RemoveDevice(keyboard);yield break;
+  }
   double begin=Time.realtimeSinceStartupAsDouble;
   var itinerary=roundTrip?new[]{"A01","A02","A03","A04","A03","A02","A01"}:new[]{"A01","A02","A03","A04"};
   for(int roomIndex=0;roomIndex<itinerary.Length;roomIndex++){
