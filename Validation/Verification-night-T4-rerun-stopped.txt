@@ -1,0 +1,8 @@
+FAIL T4 second verification did not complete.
+First attempt: Verification-night-T4.txt failed first real attack HP/knockback check.
+One allowed correction: synchronize test actor Transform and Rigidbody position; add measurements.
+Second attempt: Unity remained running after CombatTest -> DashTest load, without a final result file.
+Inspection: NightTestRunner is scene-local and is removed when the source room unloads; test runner lifetime is the likely cause. No complete E1 PASS claim.
+The second attempt has no saved intermediate assertions; log confirms DashTest loaded only.
+No further fix allowed. Unity test process stopped; T4 code, E1 prefab/tuning and CombatTest additions restored to T3 baseline.
+T4 functionality not retained. T0/T1/T2/T3 commits preserved. No push.

@@ -1,0 +1,9 @@
+FAIL T4 Unity=6000.3.24f1
+PASS: one authored E1 with HP 2
+PASS: E1 patrol round trip between Scene endpoints
+PASS: E1 turns before ordinary wall without penetration
+PASS: E1 detects ledge and turns before falling
+System.Exception: first actual attack: one HP lost and knockback 3u/s
+  at NightTestRunner.Check (System.Boolean ok, System.String msg) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:20 
+  at NightTestRunner+<T4>d__9.MoveNext () [0x00661] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:41 
+  at NightTestRunner+<Start>d__4.MoveNext () [0x000c0] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:21 
