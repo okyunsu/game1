@@ -44,6 +44,8 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 
 | T2 | Health / Damage / Death / CombatTest | REVIEW | DEC-S2-PRE | HP・無敵・넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 기존 사망 복귀·KillZone 즉사 |
 
+| T3 | 基本 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35, 타겟당1회·방향고정·취소 |
+
 ## Human Review
 
 ### 2026-09-30 Movement Review — 사용자 수락 완료
@@ -156,6 +158,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 야간 T3 — PASS / REVIEW
+
+Verification-night-T3.txt: startup 전 무피해·2콜라이더 더미에 1타·홀드 무연사·쿨다운·시작 방향 고정·공중 수평 이동·공격→대시·피격/Pause 취소·패드 X PASS. S1-02-night-T3.txt·S1-04-night-T3.txt 입력 회귀 PASS. CombatTuning에 지정 초기값 추가, CombatTestPlayer에만 PlayerAttack, Scene 더미 추가. 판정 Gizmo 제공. A01~A04 미통합, 수동 감각 검토 미실시.
+
 
 ### 야간 T2 — PASS / REVIEW
 

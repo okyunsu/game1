@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0107bc2cf96dfa049826b7a75dfe6890, type: 3}
   m_Name: CombatTuning
   m_EditorClassIdentifier: Assembly-CSharp::CombatTuning
+  attackDamage: 1
+  attackRange: 1.1
+  attackHeight: 1.2
+  attackStartup: 0.08
+  attackActive: 0.1
+  attackCooldown: 0.35
   playerMaxHP: 5
   invincibility: 1
   knockbackX: 4
