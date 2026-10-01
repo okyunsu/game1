@@ -1,0 +1,8 @@
+PASS T0 Unity=6000.3.24f1
+PASS: Landing Simple/1u collider/Ground; no autoTiling
+PASS: Wall Simple/1u collider/Ground; no autoTiling
+PASS: Ceiling Simple/1u collider/Ground; no autoTiling
+PASS: KillZone Simple/1u collider/Ground; no autoTiling
+PASS: Landing scale 6x1 => collider world 6x1u
+PASS: player physically lands on scaled Landing
+PASS: SliceRoute removed; runtime room label retained

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 public sealed class SliceRoute : MonoBehaviour
 {
@@ -8,3 +9,4 @@ public sealed class SliceRoute : MonoBehaviour
   GUI.Label(new Rect(16,66,900,24),instruction);
  }
 }
+#endif

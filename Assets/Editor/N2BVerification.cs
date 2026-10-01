@@ -7,6 +7,7 @@ using UnityEngine;
 public static class N2BVerification
 {
  static N2BVerification(){EditorApplication.playModeStateChanged+=s=>{if(!SessionState.GetBool("N2B.Check",false))return;if(s==PlayModeStateChange.EnteredPlayMode){var runner=new GameObject("N2-B checkpoint verification").AddComponent<SliceVerification>();runner.traverse=SessionState.GetBool("N2B.Slice",false);runner.outputPath=SessionState.GetString("N2B.ResultPath", "");runner.finished=pass=>{SessionState.SetInt("N2B.Exit",pass?0:1);EditorApplication.isPlaying=false;};}if(s==PlayModeStateChange.EnteredEditMode){SessionState.SetBool("N2B.Check",false);EditorApplication.Exit(SessionState.GetInt("N2B.Exit",1));}};}
+ public static void CheckpointsNight()=>Begin(false,Nightly.Path("S1-08"));
  public static void Checkpoints()=>Begin(false);
  public static void CheckpointIntegration()=>Begin(false,"Validation/S1-08-N2-B-integration.txt");
  public static void Slice()=>Begin(true);

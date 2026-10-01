@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +36,9 @@ public sealed class SliceVerification : MonoBehaviour
   var keyboard=InputSystem.AddDevice<Keyboard>();
   InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Space));yield return null;
   double begin=Time.realtimeSinceStartupAsDouble;
-  var zone=FindFirstObjectByType<KillZone>();Place(session,zone.transform.position);yield return new WaitForFixedUpdate();yield return null;
+  var zone=FindFirstObjectByType<KillZone>();
+  if(zone!=null){Place(session,zone.transform.position);yield return new WaitForFixedUpdate();yield return null;results.Add("NOTE: physical KillZone trigger");}
+  else{Check(session.Die(),"death request in safe room without hazard");results.Add("NOTE: explicit death request; no authored hazard in this safe room");}
   Check(session.Respawning&&session.Player.InputLocked,"Kill Zone blocks input during death");
   Check(!session.Die()&&!session.RequestTransition("A02","Assets/Scenes/A02.unity","FromLeft"),"duplicate death and room transition rejected during death");
   yield return Wait(session);
@@ -60,6 +63,7 @@ public sealed class SliceVerification : MonoBehaviour
 #endif
   InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
   int playerId=session.Player.GetInstanceID();Check(session.CheckpointId==null,"no checkpoint fallback case");
+  Check(session.RequestTransition("A02","Assets/Scenes/A02.unity","FromLeft"),"prepare A02 physical KillZone fallback");yield return Wait(session);
   yield return Death(session,"A01","Entry");yield return Touch(session,"CP-A01");yield return Death(session,"A01","CP-A01");
   Check(session.RequestTransition("A03","Assets/Scenes/A03.unity","Entry"),"load alternate checkpoint room");yield return Wait(session);
   yield return Touch(session,"CP-A03");yield return Death(session,"A03","CP-A03");
@@ -169,3 +173,4 @@ public sealed class SliceVerification : MonoBehaviour
   InputSystem.RemoveDevice(keyboard);
  }
 }
+#endif

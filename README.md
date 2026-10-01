@@ -11,7 +11,7 @@
 
 진행 재개 기준일은 **2026-09-30**이다. 당장 수행할 작업량·단기 목표·완료일은 토큰 사용량 확인 후 정하며, 기존 구현·검증 이력은 유지한다.
 
-Sprint 1: S1-01~05·08 DONE, S1-06 REVIEW. Slice 왕복 검사에서 A02 역방향 이동 실패가 반복되어 S1-07·09는 DOING, S1-10은 BLOCKED다(SLICE-001).
+Sprint 1: S1-07/08 검증 완료, S1-09 DOING(사용자 배치 대기), S1-10 TODO. S1-06 카메라는 REVIEW.
 현재 A01~A04 이동 Slice에 카메라·방 전환·체크포인트·사망 복귀가 있다. 공격·능력·HP·디스크 저장·엔딩은 아직 없다.
 진행 상태와 검증 증거의 원본은 [TASKS](TASKS.md)다.
 
@@ -24,9 +24,11 @@ Sprint 1: S1-01~05·08 DONE, S1-06 REVIEW. Slice 왕복 검사에서 A02 역방�
 
 `MovementTest.unity`는 이동 회귀 검사용이다(`Afterglow > Open Movement Test`). Slice는 A01에서 시작하며 밝은 문을 통과해 A04까지 이동한다. 접촉한 CP-A01/A03에서 사망 후 복귀한다.
 
+레벨 배치는 Assets/Prefabs/Level 프리팹, 크기는 Rect Tool 또는 Scale로 조절한다. 지형은 Simple Sprite·1×1u 콜라이더 기준이다. Scene Play 변경은 Stop 후 다시 반영·저장한다.
+
 ## 로컬 빌드 실행
 
-Slice 빌드는 `Builds/Slice/Afterglow-Slice.exe`를 실행한다. 시작 씬은 A01이다. 빌드 생성은 성공했으나 A02 역방향 자동 검사 실패로 전체 왕복 검증은 미완료다. 이전 N1 이동 회귀 빌드는 `Builds/N1/Afterglow.exe`에 보존한다.
+**S1-10 보류: 사용자 배치 후 재빌드.** 기존 Builds/Slice는 폐기된 자동 레이아웃 기준이므로 현재 빈 방과 다르다. 이전 N1 이동 회귀 빌드는 `Builds/N1/Afterglow.exe`에 보존한다.
 같은 폴더의 데이터와 DLL이 필요하며 종료는 창 닫기 또는 Alt+F4다.
 Builds는 Git에서 제외하므로 저장소를 새로 내려받으면 실행 파일은 포함되지 않는다.
 

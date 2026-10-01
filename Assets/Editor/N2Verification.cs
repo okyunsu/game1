@@ -27,6 +27,7 @@ public static class N2Verification
         };
     }
     public static void Camera() => Begin("S1-06", "Assets/Scenes/CameraTest.unity");
+    public static void RoomsNight() => Begin("S1-07", "Assets/Scenes/A01.unity", "night-"+Nightly.Tag);
     public static void Rooms() => Begin("S1-07", "Assets/Scenes/A01.unity");
     public static void RoomsN2B08() => Begin("S1-07", "Assets/Scenes/A01.unity", "N2-B-S1-08");
     static void Begin(string stage, string scene, string suffix = null)
@@ -220,8 +221,8 @@ public sealed class N2VerificationRunner : MonoBehaviour
             float halfY = camera.orthographicSize, halfX = halfY * camera.aspect;
             Vector3 cameraPos = camera.transform.position;
             Check(rig.boundary != null && FindObjectsByType<Camera>(FindObjectsSortMode.None).Length == 1
-                && cameraPos.x - halfX >= -.02f && cameraPos.x + halfX <= 32.02f
-                && cameraPos.y - halfY >= -1.02f && cameraPos.y + halfY <= 13.02f,
+                && cameraPos.x - halfX >= rig.boundary.bounds.min.x-.02f && cameraPos.x + halfX <= rig.boundary.bounds.max.x+.02f
+                && cameraPos.y - halfY >= rig.boundary.bounds.min.y-.02f && cameraPos.y + halfY <= rig.boundary.bounds.max.y+.02f,
                 "one active room camera stays within PolygonCollider2D boundary");
         }
         Check(!session.RequestTransition("Invalid", "Assets/Scenes/NoSuchRoom.unity", "Entry"), "invalid scene rejected without loading");
