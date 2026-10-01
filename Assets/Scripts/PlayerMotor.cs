@@ -17,6 +17,7 @@ public sealed class PlayerMotor : MonoBehaviour
     double jumpStartedAt;
     public bool Grounded { get; private set; }
     public PlayerTuning Tuning => tuning;
+    public int Facing { get; private set; } = 1;
 
     void Awake()
     {
@@ -55,6 +56,9 @@ public sealed class PlayerMotor : MonoBehaviour
             groundJumpAvailable = true;
         }
 
+        if(Mathf.Abs(input.Move.x)>.01f) Facing=input.Move.x>0?1:-1;
+        var dash=GetComponent<PlayerDash>();
+        if(dash!=null && dash.Tick(Grounded,now)) { consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return; }
         Vector2 velocity = body.linearVelocity;
         float target = Mathf.Clamp(input.Move.x, -1, 1) * tuning.moveSpeed;
         float rate = Mathf.Abs(target) < .001f || target * velocity.x < 0 ? tuning.deceleration : tuning.acceleration;

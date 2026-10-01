@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MovementTest.unity
     guid: 248f5e73c8abf574892f3a2553f43ba4
+  - enabled: 1
+    path: Assets/Scenes/Test/DashTest.unity
+    guid: eb18880a18d97b74e9d79d86ddb2a23f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

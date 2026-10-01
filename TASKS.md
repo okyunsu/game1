@@ -40,6 +40,8 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | S1-09 사용자 배치 대기. 배치 완료 후 재빌드·왕복 검증 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
+| T1 | Dash / 전용 DashTest | REVIEW | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력/Pause/사망/전환 취소·30/60/120fps 검증 |
+
 ## Human Review
 
 ### 2026-09-30 Movement Review — 사용자 수락 완료
@@ -152,6 +154,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 야간 T1 — PASS / REVIEW
+
+Validation/Verification-night-T1.txt: 30/60/120fps 거리 모두 2.880u, 쿨다운·공중 재사용·벽·종료 낙하·권한 false·Pause/전환/사망 취소·패드 B Gameplay/UI 검증 PASS. S1-02-night-T1.txt·S1-04-night-T1.txt 회귀 PASS. DashTestPlayer variant만 권한 true, 기존 Player.prefab·MovementTest·A01~A04 설정 유지. PlayerTuning 기존 값 유지, dashSpeed/Duration/Cooldown 필드만 추가. 수동 감각 검토 미실시.
+
 
 ### 2026-10-01 야간 T0 — PASS
 

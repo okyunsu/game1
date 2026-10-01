@@ -20,6 +20,7 @@ public sealed class PlayerInputReader : MonoBehaviour
     public bool GamepadDisconnected => state != null && state.GamepadDisconnected;
     public bool UsingGamepad => lastDevice is Gamepad;
     public event Action Cleared;
+    public event Action DashPressed;
 
     void Awake()
     {
@@ -31,11 +32,12 @@ public sealed class PlayerInputReader : MonoBehaviour
         jump.performed += ctx =>
         {
             lastDevice = ctx.control.device;
-            if (suppressJump || InputLocked) return;
+            if (suppressJump || InputLocked || (GetComponent<PlayerDash>() != null && GetComponent<PlayerDash>().IsDashing)) return;
             JumpSequence++;
             JumpPressedAt = ctx.time;
         };
         jump.canceled += ctx => JumpReleasedAt = ctx.time;
+        runtime.FindAction("Gameplay/Dash",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked)DashPressed?.Invoke(); };
         runtime.FindAction("Gameplay/Pause", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(true); };
         runtime.FindAction("UI/Navigate", true).performed += ctx => lastDevice = ctx.control.device;
         runtime.FindAction("UI/Submit", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(false); };

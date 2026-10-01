@@ -23,4 +23,7 @@ MonoBehaviour:
   jumpCutMultiplier: 0.5
   coyoteTime: 0.1
   jumpBuffer: 0.12
+  dashSpeed: 18
+  dashDuration: 0.16
+  dashCooldown: 0.45
   respawnDelay: 0.6
