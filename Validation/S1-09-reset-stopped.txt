@@ -1,0 +1,14 @@
+FAIL / STOPPED DEC-SLICE-USER reset; 2026-10-01; Unity 6000.3.24f1
+Start: git status clean; HEAD == origin/main == 3d7ce3d5472ee144fc0788cad36b502141b6f54e.
+Attempt 1: authoring compilation failed CS1061 TextureImporter.spriteMeshType.
+Allowed correction: replaced direct property access with TextureImporterSettings.
+Attempt 2: authoring compiled and saved, then prefab verification failed:
+Landing SpriteRenderer Sliced and BoxCollider2D.autoTiling/default size PASS;
+changing SpriteRenderer.size to 7x3u did not match actual collider bounds in the immediate Unity Editor API check.
+No further investigation or correction attempted. GUI Rect Tool behavior unverified.
+User rule: second failure -> git restore, preserve failure logs only, stop.
+Tracked changes restored; all new Assets removed. No feature changes retained.
+PlayerTuning.asset, Player.prefab, MovementTest.unity, Packages/, ProjectVersion.txt unchanged.
+S1-07/08 runtime checks and S1-02/04 regression not run after failure.
+S1-09 layout, S1-10 build and S1-G not performed.
+Evidence: S1-09-reset-first-failure.txt; S1-09-reset-prefabs.txt.

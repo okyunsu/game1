@@ -1,0 +1,5 @@
+FAIL DEC-SLICE-USER prefab/room inspection
+PASS: Landing Sliced/autoTiling/Ground/default size
+System.Exception: Landing renderer resize changes actual collider bounds to 7x3u
+  at SliceResetVerification.Require (System.Boolean ok, System.String label, System.Collections.Generic.List`1[T] lines) [0x0001b] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\SliceResetVerification.cs:45 
+  at SliceResetVerification.Prefabs () [0x00130] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\SliceResetVerification.cs:24 
