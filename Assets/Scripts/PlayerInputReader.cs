@@ -10,7 +10,7 @@ public sealed class PlayerInputReader : MonoBehaviour
     InputDevice lastDevice;
     bool suppressJump;
     GameState state;
-    public bool InputLocked => state != null && (state.Paused || state.Transitioning);
+    public bool InputLocked => state != null && (state.Paused || state.Transitioning || state.Respawning);
     public Vector2 Move => InputLocked ? Vector2.zero : move.ReadValue<Vector2>();
     public bool JumpHeld => !InputLocked && !suppressJump && jump.IsPressed();
     public uint JumpSequence { get; private set; }
@@ -74,7 +74,7 @@ public sealed class PlayerInputReader : MonoBehaviour
     {
         runtime.Disable();
         ClearTransientInput();
-        if (!state.Transitioning)
+        if (!state.Transitioning && !state.Respawning)
             runtime.FindActionMap(Paused ? "UI" : "Gameplay").Enable();
     }
 

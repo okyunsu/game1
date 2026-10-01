@@ -31,6 +31,8 @@ public static class N1Verification
     public static void VariableJump() => Begin("S1-05", "Assets/Scenes/MovementTest.unity");
     public static void InputN2A() => BeginN2A("S1-02");
     public static void ForgivenessN2A() => BeginN2A("S1-04");
+    public static void InputN2B08() { SessionState.SetString("N1.Suffix", "N2-B-S1-08"); Begin("S1-02", "Assets/Scenes/MovementTest.unity"); }
+    public static void ForgivenessN2B08() { SessionState.SetString("N1.Suffix", "N2-B-S1-08"); Begin("S1-04", "Assets/Scenes/MovementTest.unity"); }
     static void BeginN2A(string stage)
     {
         SessionState.SetString("N1.Suffix", "N2-A-blocks");

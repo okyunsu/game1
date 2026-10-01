@@ -9,6 +9,10 @@ public sealed class RoomSession : MonoBehaviour
     public string CurrentRoomId { get; private set; }
     public string LastError { get; private set; }
     public bool Transitioning => state.Transitioning;
+    public bool Respawning => state.Respawning;
+    public string CheckpointId { get; private set; }
+    string checkpointRoom, checkpointScene, checkpointSpawn;
+    [Min(0), Tooltip("Death delay in real seconds. Prototype value: 0.6 s.")] public float respawnDelay = .6f;
     GameState state;
     Rigidbody2D body;
     Scene currentScene;
@@ -60,7 +64,7 @@ public sealed class RoomSession : MonoBehaviour
     }
     public bool RequestTransition(string roomId, string scenePath, string spawnId)
     {
-        if (Transitioning) return false;
+        if (Transitioning || Respawning) return false;
         if (state.Paused) return Reject("Cannot enter another room while paused");
         if (string.IsNullOrWhiteSpace(roomId) || string.IsNullOrWhiteSpace(spawnId)
             || !Application.CanStreamedLevelBeLoaded(scenePath))
@@ -76,6 +80,48 @@ public sealed class RoomSession : MonoBehaviour
         LastError = reason;
         Debug.LogWarning(reason);
         return false;
+    }
+    public void ActivateCheckpoint(Checkpoint checkpoint)
+    {
+        if (Transitioning || Respawning || checkpoint.spawn == null || string.IsNullOrWhiteSpace(checkpoint.checkpointId)) return;
+        var room = checkpoint.GetComponentInParent<RoomDefinition>();
+        if (room == null || !room.TryGetSpawn(checkpoint.spawn.spawnId, out var spawn) || spawn != checkpoint.spawn) return;
+        CheckpointId = checkpoint.checkpointId;
+        checkpointRoom = room.roomId;
+        checkpointScene = room.gameObject.scene.path;
+        checkpointSpawn = checkpoint.spawn.spawnId;
+    }
+    public bool Die()
+    {
+        if (Transitioning || Respawning) return false;
+        StartCoroutine(Respawn());
+        return true;
+    }
+    IEnumerator Respawn()
+    {
+        state.SetRespawning(true);
+        Player.ClearTransientInput();
+        body.simulated = false;
+        var sprite = Player.GetComponent<SpriteRenderer>();
+        sprite.enabled = false;
+        yield return new WaitForSecondsRealtime(respawnDelay);
+        string roomId = CheckpointId == null ? "A01" : checkpointRoom;
+        string scenePath = CheckpointId == null ? "Assets/Scenes/A01.unity" : checkpointScene;
+        string spawnId = CheckpointId == null ? "Entry" : checkpointSpawn;
+        if (CurrentRoomId != roomId)
+            yield return Transition(roomId, scenePath, spawnId);
+        else
+        {
+            RoomDefinition room = null;
+            foreach (var root in currentScene.GetRootGameObjects())
+                if (root.TryGetComponent<RoomDefinition>(out var candidate)) room = candidate;
+            if (room != null && room.TryGetSpawn(spawnId, out var spawn)) Place(spawn, room);
+            else Reject("Respawn Spawn ID missing or duplicated");
+        }
+        body.simulated = true;
+        sprite.enabled = true;
+        state.SetRespawning(false);
+        Player.ClearTransientInput();
     }
     IEnumerator Transition(string roomId, string path, string spawnId)
     {

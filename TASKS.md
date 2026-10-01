@@ -20,7 +20,7 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 
 ## Current Tasks
 
-2026-09-30 승인 범위: Movement Review 문서 기록 → S1-06 → S1-07(N2-A). 각 단계 검증·별도 커밋·기존 origin/main push. S1-08 이후는 실행하지 않는다. 2026-10-01 DEC-ROOM-B 승인으로 S1-07 블록 그레이박스를 진행한다.
+2026-10-01 N2-B 승인: S1-08 → S1-09 → S1-10을 각각 검증·커밋·push한다. S1-G와 Sprint 2는 미승인. HP·디스크 저장 미구현 유지.
 
 상태: TODO(미착수), DOING(진행), REVIEW(기술 구현·관련 검증 완료, 사용자 판단 대기), DONE(완료 조건·필요한 사용자 수락 충족), BLOCKED(차단), DEFERRED(승인된 제외).
 의존성 `:REVIEW`는 유효한 기술 검증을 갖춘 REVIEW 또는 DONE에서 충족한다. `:DONE`은 DONE만 허용하며 생략 시에도 DONE으로 해석한다. DEFERRED는 의존성을 자동 충족하지 않는다. 실행에는 별도 범위 승인이 필요하다.
@@ -35,7 +35,7 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
 | S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-ROOM-B: Ground/Hazard는 Ground 레이어 BoxCollider2D·SpriteRenderer 블록, 출입구·Spawn ID, A01~A04 양방향 연결·안전 도착·단일 플레이어·입력 초기화, 배치 편집 가능; Tilemap DEFERRED |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
-| S1-08 | Checkpoint / 최소 사망 복귀 | TODO | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·최대 HP 안전 복귀, 능력 없는 초기 상태 검증; 디스크 저장은 Sprint 2 |
+| S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | TODO | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | Windows 빌드 구간 재현, 경계 입력·충돌 회귀, 명백한 런타임 오류 없음, 결과·실행 경로 인계 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
@@ -177,7 +177,20 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 
 컴파일·런타임 Error/Exception 검사 통과. Unity 6000.3.24f1, 가상 입력 자동 검사이며 실제 패드·사용자 화면/감각 검토는 미실시. 이번 범위의 빌드·S1-01/03/05 단독 검사는 실행하지 않음. Hazard는 위치·트리거 표시만 구성했고 사망/체크포인트 동작은 S1-08 미승인으로 미구현. 원시 로그는 로컬 Logs/S1-07-blocks-final.log, Logs/S1-02-blocks-regression.log, Logs/S1-04-blocks-regression.log. 이전 Validation은 보존.
 
+### 2026-10-01 S1-08 / N2-B
+
+- CP-A01/A03 Prefab: 접촉 활성화·고유 ID·안전 Spawn·활성 색상. KillZone Prefab: 입력/물리 차단 → 실시간 0.6초 대기 → 마지막 CP 또는 A01 Entry 복귀. 다른 방 복귀는 기존 RoomSession 전환 재사용. HP·저장 없음.
+- [체크포인트/사망](Validation/S1-08-N2-B.txt) 64건 PASS, 5회 사망 복귀 0.633~0.662초. 기본·같은 방·다른 방·반복 사망·입력 차단·안전 도착·복귀 조작 확인.
+- 회귀: [S1-02](Validation/S1-02-N2-B-S1-08.txt) 19건, [S1-04](Validation/S1-04-N2-B-S1-08.txt) 63건, [S1-07](Validation/S1-07-N2-B-S1-08.txt) 71건 PASS. 런타임 Error/Exception 없음. 가상 입력 자동 검사이며 실제 패드·수동 화면은 미실시. 기존 Validation 보존.
+
 ## Playtest Records
+
+### OBS-001 — 출구 인지 / Before–After 후보
+
+2026-10-01 사용자 Editor 플레이(A01~A04 블록 그레이박스). 출구가 보이지 않아 방이 하나뿐인 것으로 인식. 원인: RoomExit 트리거에 시각 표시 없음.
+
+S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤, 같은 항목(출구 발견·방 전환 인지)을 사용자에게 재확인한다. 현재 Before 관찰만 있으며 개선 효과는 미수락 후보다.
+
 
 관찰 플레이테스트 기록: 아직 없음. 위 기술 검증과 사용자 감각 검토를 구분한다. 다음 양식은 빈 서식이며 실시 증거가 아니다.
 
@@ -204,11 +217,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 
 ## Latest Handoff
 
-2026-10-01 — DEC-ROOM-B 승인 범위 완료.
+2026-10-01 — N2-B S1-08 완료, S1-09 승인·착수 예정.
 
-- **완료·상태:** S1-07 DONE, S1-07-T Tilemap DEFERRED. ROOM-001 OPEN(원인 미확정, 배치 Tile 에셋 생성 실패 savedTile=False, 대안 B 우회 승인). S1-03/04/05 DONE·S1-06 REVIEW 유지. S1-08 이후 미착수.
-- **주요 파일:** A01~A04 Scene, RoomBlock Prefab, RoomSession/Definition/Exit/Spawn, GameState, PlayerInputReader, N1/N2Verification. PRD Technical Boundary·S1-07 DoD에 DEC-ROOM-B 반영. RoomMinimalTemp 씬/Tile와 .meta 삭제, tilemap 모듈 유지. 임시 블록 작성 도구 삭제, 로컬 Logs 사본 보존.
-- **실제 검증:** [Room](Validation/S1-07-N2-A-blocks-final.txt) 71건, [S1-02](Validation/S1-02-N2-A-blocks.txt) 19건, [S1-04](Validation/S1-04-N2-A-blocks.txt) 63건 PASS. 6방향 출입구·지정 Spawn·안전 도착·단일 플레이어/상태·오류 ID 롤백·Pause 보호·점프 입력 초기화·카메라 Polygon 경계, 30/60/120fps 입력 경계 유지. Error/Exception 없음. 실제 패드·수동 화면·감각 검토·새 빌드는 미실시.
-- **수정 위치·사용자 확인:** Unity에서 A01을 열고 Play하면 단일 세션/플레이어가 자동 생성됨. 각 방 root의 RoomDefinition, Exit Left/Right의 도착 Scene·Room·Spawn ID, Spawn Entry/FromLeft/FromRight의 위치를 Inspector에서 조정. Ground/Left Wall/Right Wall/Hazard 블록의 Transform·BoxCollider2D·SpriteRenderer 편집, 공통 원본은 RoomBlock Prefab. Camera Boundary의 Polygon과 Main Camera > RoomCameraRig 설정 편집. Scene의 Play 중 변경은 Stop 후 다시 입력·저장, 공통 Prefab 변경은 원본을 편집하거나 Overrides Apply로 반영. MovementTest는 회귀용으로 보존.
-- **문제·한계:** 초기 블록 전환 검사에서 비활성 Rigidbody의 Transform 잔류 및 방 Start의 Entry 재배치를 수정 후 최종 왕복 통과. 실패/중간 증거 보존. Hazard는 트리거 표시만 있고 사망 동작은 아직 없음. Tilemap 조사는 종료, 도입은 사용자 Editor GUI 확인 후 별도 Task 결정.
-- **다음 작업:** N2-B(S1-08 Checkpoint → S1-09 Slice → S1-10 빌드)는 S1-07 DONE·S1-06 REVIEW를 선행 상태로 준비됨. 별도 사용자 승인 전 실행하지 않음. 사용자 기존 PackageManagerSettings.asset 미추적 파일 보존.
+- **완료·상태:** S1-08 DONE. CP-A01/A03·KillZone·0.6초 사망 복귀·입력/전환 차단. S1-06 REVIEW, S1-07 DONE·Tilemap DEFERRED·ROOM-001 OPEN 유지.
+- **주요 파일:** Checkpoint/KillZone Prefab 및 컴포넌트, GameState/RoomSession/PlayerInputReader, A01~A04, SliceVerification/N2BVerification와 회귀 진입점. 일회성 작성 도구는 삭제. HP·디스크 저장 미구현.
+- **검증:** [S1-08](Validation/S1-08-N2-B.txt) 64건 PASS(복귀 ~0.63~0.66초), [S1-02](Validation/S1-02-N2-B-S1-08.txt) 19건, [S1-04](Validation/S1-04-N2-B-S1-08.txt) 63건, [S1-07](Validation/S1-07-N2-B-S1-08.txt) 71건 PASS. 기본/다른 방·반복 사망·안전 도착·버퍼 초기화·재조작. 실제 패드·수동 검토 미실시.
+- **수정 위치:** 각 Scene의 CP-A01/A03 > Checkpoint ID·Spawn 참조, 자식 Respawn Spawn > RoomSpawn ID·Transform. 작동 영역은 BoxCollider2D, 활성/비활성 색은 Checkpoint Inspector. KillZone Prefab/Scene의 BoxCollider2D 배치. RoomSession respawnDelay는 초기 0.6s 유지. Play 변경은 Stop 후 Scene·Prefab 원본에 반영.
+- **사용자 검토:** S1-09에서 출구 표시와 방 이름 개선 후 OBS-001 재확인, S1-06 카메라·Slice 동선·키보드/패드 A 점프 일관성 검토 예정.
+- **다음 작업:** 승인된 S1-09 통합 → S1-10 빌드. S1-G·Sprint 2 미승인. 사용량 조회 시 5시간 10%·주간 26% 사용(토큰 개수 아님)으로 진행 여유 확인.

@@ -13,6 +13,7 @@ public sealed class GameState : MonoBehaviour
     public bool Paused { get; private set; }
     public bool GamepadDisconnected { get; private set; }
     public bool Transitioning { get; private set; }
+    public bool Respawning { get; private set; }
     public event Action Changed;
 
     void Awake()
@@ -23,19 +24,19 @@ public sealed class GameState : MonoBehaviour
     }
     void Notify()
     {
-        Time.timeScale = Paused || Transitioning ? 0 : 1;
+        Time.timeScale = Paused || Transitioning || Respawning ? 0 : 1;
         Changed?.Invoke();
     }
     public void SetPaused(bool paused)
     {
-        if (Transitioning || Paused == paused) return;
+        if (Transitioning || Respawning || Paused == paused) return;
         Paused = paused;
         if (!paused) GamepadDisconnected = false;
         Notify();
     }
     public void PauseForDisconnect()
     {
-        if (Transitioning) return;
+        if (Transitioning || Respawning) return;
         GamepadDisconnected = true;
         Paused = true;
         Notify();
@@ -49,6 +50,13 @@ public sealed class GameState : MonoBehaviour
     public void SetTransitioning(bool value)
     {
         Transitioning = value;
+        Paused = false;
+        GamepadDisconnected = false;
+        Notify();
+    }
+    public void SetRespawning(bool value)
+    {
+        Respawning = value;
         Paused = false;
         GamepadDisconnected = false;
         Notify();

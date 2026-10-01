@@ -28,9 +28,12 @@ public static class N2Verification
     }
     public static void Camera() => Begin("S1-06", "Assets/Scenes/CameraTest.unity");
     public static void Rooms() => Begin("S1-07", "Assets/Scenes/A01.unity");
-    static void Begin(string stage, string scene)
+    public static void RoomsN2B08() => Begin("S1-07", "Assets/Scenes/A01.unity", "N2-B-S1-08");
+    static void Begin(string stage, string scene, string suffix = null)
     {
-        if (File.Exists($"Validation/{stage}-" + (stage == "S1-07" ? "N2-A-blocks-final" : "N2-A") + ".txt")) throw new IOException("Preserve existing evidence");
+        suffix ??= stage == "S1-07" ? "N2-A-blocks-final" : "N2-A";
+        if (File.Exists($"Validation/{stage}-{suffix}.txt")) throw new IOException("Preserve existing evidence");
+        SessionState.SetString("N2.Suffix", suffix);
         SessionState.SetString("N2.Stage", stage);
         SessionState.SetInt("N2.Exit", 1);
         EditorSceneManager.OpenScene(scene);
@@ -90,7 +93,7 @@ public sealed class N2VerificationRunner : MonoBehaviour
         if (!failed)
         {
             Directory.CreateDirectory("Validation");
-            File.WriteAllLines($"Validation/{stage}-" + (stage == "S1-07" ? "N2-A-blocks-final" : "N2-A") + ".txt", results);
+            File.WriteAllLines($"Validation/{stage}-" + SessionState.GetString("N2.Suffix", "N2-A") + ".txt", results);
         }
         SessionState.SetInt("N2.Exit", failed ? 1 : 0);
         EditorApplication.isPlaying = false;
