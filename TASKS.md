@@ -14,7 +14,7 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Review를 수락했다. N2-A 승인: S1-06 Camera REVIEW, S1-07 Room Structure DONE(DEC-ROOM-B), Tilemap DEFERRED·ROOM-001 OPEN. S1-08 이후와 Sprint 2는 미승인이다.
+S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 검증 실패·복원. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
@@ -40,12 +40,14 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | S1-09 사용자 배치 대기. 배치 완료 후 재빌드·왕복 검증 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
-| T1 | Dash / 전용 DashTest | REVIEW | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력/Pause/사망/전환 취소·30/60/120fps 검증 |
+### 야간 시스템 작업 — DEC-S2-PRE
 
-| T2 | Health / Damage / Death / CombatTest | REVIEW | DEC-S2-PRE | HP・無敵・넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 기존 사망 복귀·KillZone 즉사 |
-
-| T3 | 基本 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35, 타겟당1회·방향고정·취소 |
-
+| ID | Task | Status | Dependency | User Review | Done Criteria |
+| --- | --- | --- | --- | --- | --- |
+| T1 | Dash / DashTest | REVIEW | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
+| T2 | Health / CombatTest | REVIEW | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
+| T3 | 기본 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
+| T4 | E1 순찰형 / CombatTest | BLOCKED | T2:REVIEW, T3:REVIEW | 구현 미보존 | 검증 2회 실패로 복원. NIGHT-T4-001, 실패 기록만 커밋 |
 ## Human Review
 
 ### 2026-09-30 Movement Review — 사용자 수락 완료
@@ -141,6 +143,13 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 검증: 빌드 2회 Succeeded, errors=0·warnings=0. 첫 런타임 검사에서 순방향 A04 도착 약 367.92초, A04 복귀·A03 역방향 완료 약 593.08초. 체크포인트·반복 사망 검사는 두 실행에서 통과했지만 전체 왕복은 실패. 파일 첫 줄의 `FAIL checkpoint/death`는 검사 전체 결과이며 사망 검사 자체의 실패를 뜻하지 않음.
 - 처리·영향: 동일 오류 반복 중단 규칙에 따라 추가 조사/수정 중단. S1-10 BLOCKED, 영향받는 S1-07·09는 DOING으로 되돌림. S1-08 DONE 유지. 수정 재개 판단과 왕복 재검증이 필요하며 S1-G·Sprint 2 미착수.
 - 증거: [전체 빌드 실행 실패](Validation/S1-10-runtime.txt), [집중 재현 실패](Validation/S1-10-focused.txt), [첫 빌드](Validation/S1-10-build.txt), [진단 빌드](Validation/S1-10-build-02.txt). 원시 로그는 로컬 Logs/S1-10-runtime.log·S1-10-focused.log.
+### NIGHT-T4-001 — 야간 E1 검증 실패·복원
+
+- T4 / BLOCKED / 테스트 검증. 첫 실행은 순찰·벽·낭떠러지 PASS 후 첫 실제 공격의 HP/넉백 assertion 실패. 한 번의 허용 수정으로 테스트 Transform/물리 위치 동기화·측정 추가.
+- 두 번째 실행은 CombatTest→DashTest 로드 뒤 종료 결과 미저장. Scene-local 검증 실행기가 이전 방 정리 때 제거된 것으로 추정. 실제 E1 기능 원인을 확정하지 않고 두 번째 실패로 처리.
+- T4 코드·E1 prefab/tuning·CombatTest 추가·검증 변경을 T3 기준으로 git restore, 새 Assets 삭제. E1 구현은 남아 있지 않음. 실패 기록: Verification-night-T4.txt, Verification-night-T4-rerun-stopped.txt, T4-rerun-timeout.log. 복원 회귀 S1-02/04-night-T4-rollback.txt PASS. 커밋 69f3cc2.
+- 다음: 사용자 판단 후 T4 재개. 이번 실행에서는 추가 수정 없음.
+
 ## Decisions Needed
 
 DEC-S2-PRE (2026-10-01 사용자 승인): Sprint 1 Gate 전 T1~T4 시스템 선행 구현을 DashTest/CombatTest 전용 씬에서만 허용. A01~A04 통합·S1-G·빌드·Sprint 2 콘텐츠 확장은 승인하지 않음. Task별 검증·입력 회귀, 실패 1회 수정 후 재실패 시 해당 Task 복원, 의존 Task 건너뜀, 로컬 커밋만.
@@ -148,7 +157,7 @@ DEC-S2-PRE (2026-10-01 사용자 승인): Sprint 1 Gate 전 T1~T4 시스템 선�
 DEC-SLICE-USER (2026-10-01 사용자 결정): A02~A04 각각 78개 발판·약 54u 반복 경로 폐기. PRD 반복 이동 금지와 GAME_DESIGN 10절 방별 역할에 불일치. 사용자 직접 Scene 배치로 전환. 빈 방 36×14u·Simple/Scale 프리팹 제공. 기존 SLICE-001 역방향 오류는 폐기 레이아웃에 속하므로 별도 조사하지 않음.
 
 
-SLICE-001: A02 역방향 이동 실패가 집중 검사에서도 반복되어 AGENTS Stop Conditions로 중단했다. 원인이 실제 배치/충돌인지 검증 입력인지 미확정. 이 문제의 조사·수정 재개에 대한 사용자 판단이 필요하다. 범위는 S1-07/09/10 왕복 경로로 제한하며 규칙·수치 변경은 제안하지 않는다.
+SLICE-001: DEC-SLICE-USER로 폐기된 레이아웃 문제로 처리. T0 빈 방 왕복은 재검증 PASS, 기존 실패 증거는 보존하며 별도 조사하지 않는다.
 
 DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 기준을 대체, Tilemap DEFERRED. ROOM-001은 원인 미확정 OPEN 유지. Tilemap 도입은 사용자 Editor GUI 확인 후 별도 Task로 결정. S1-08 이후 미승인.
 
@@ -158,6 +167,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 야간 T4 — FAIL / 복원
+
+Verification-night-T4.txt 첫 공격 검사 실패. 수정 1회 후 두 번째 검사는 결과 저장 없이 중단(T4-rerun-timeout.log, Verification-night-T4-rerun-stopped.txt). 기능 변경을 전부 복원, S1-02-night-T4-rollback.txt·S1-04-night-T4-rollback.txt PASS. 런타임 E1 완전 검증 성공으로 기록하지 않음. 기능 커밋 없음; 실패 기록 커밋 69f3cc2.
+
 
 ### 야간 T3 — PASS / REVIEW
 
@@ -273,7 +287,7 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 - Before: OBS-001, 2026-10-01 사용자 Editor 플레이에서 출구가 보이지 않아 1방으로 인식. RoomExit 트리거만 있고 표시 없음.
 - 가설·After 구현: 색과 형태를 함께 쓰는 밝은 3면 문 테두리, A01~A04 방 이름·안내, 공격/능력 미구현 표시. 출입구 ID·연결·게임 수치 변경 없음.
-- 기술 증거: [6분 8초 순방향 검사](Validation/S1-09-N2-B-05.txt), [출구 렌더](Validation/Slice/A01-static-02.png). 벽/게이트에 표시가 가려지는 초기 렌더를 수정하고 최종 정적 표시 확인.
+- 폐기된 레이아웃 기준 기술 증거: [6분 8초 순방향 검사](Validation/S1-09-N2-B-05.txt), [출구 렌더](Validation/Slice/A01-static-02.png). 벽/게이트에 표시가 가려지는 초기 렌더를 수정하고 최종 정적 표시 확인.
 - 판단: 구현·기술 검증 완료, 출구 발견·방 전환 인지 개선 효과는 사용자에게 같은 항목으로 재확인해야 함. 재미·이해도 개선 확정은 아니며 후보 유지.
 
 ### CASE-003 — DEC-SLICE-USER / 사용자 직접 배치
@@ -290,4 +304,20 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-01 야간 T0 통과. 빈 방·Level 프리팹 제공, S1-09 사용자 배치 대기·S1-10 TODO. T1~T4 테스트 씬 한정 선행 작업은 DEC-S2-PRE 승인. T0 증거: Verification-night-T0.txt, S1-07/08/02/04-night-T0.txt. 다음 T1. push 없음.
+2026-10-01 밤 → 2026-10-02 새벽, 야간 로컬 작업 종료. push 없음.
+
+| Task | 결과 / 상태 | 로컬 커밋 | Validation 파일 |
+| --- | --- | --- | --- |
+| T0 빈 방·부품 | 성공. S1-07 DONE, S1-09 DOING 사용자 배치 대기, S1-10 TODO | 6acb0b6 | Verification-night-T0.txt; S1-07/08/02/04-night-T0.txt |
+| T1 Dash | 성공 / REVIEW. 30/60/120fps 거리 모두 2.880u | 6624ed3 | Verification-night-T1.txt; S1-02/04-night-T1.txt |
+| T2 Health | 성공 / REVIEW. HP·무적·넉백·사망/KillZone 복귀 | 2c518f5 | Verification-night-T2.txt; S1-08/02/04-night-T2.txt |
+| T3 기본 공격 | 성공 / REVIEW. 단발·타겟당1회·방향·공중 이동·취소 | 2f4d623 | Verification-night-T3.txt; S1-02/04-night-T3.txt |
+| T4 E1 | 실패 / BLOCKED. 2차 검사 미완료로 모든 변경 복원 | 69f3cc2 (로그만) | Verification-night-T4.txt; Verification-night-T4-rerun-stopped.txt; T4-rerun-timeout.log; S1-02/04-night-T4-rollback.txt |
+
+- **범위:** DEC-S2-PRE로 시스템 선행을 전용 Test 씬에만 허용. A01~A04는 T0 빈 방만 반영, 공격·Dash·Health·E1 미통합. S1-G·Slice 빌드·Sprint 2 콘텐츠는 미실시. 기존 Player.prefab 설정·MovementTest·Packages·ProjectVersion·PlayerTuning 기존 값 보존, Dash 새 필드만 추가.
+- **주요 파일:** Level의 Landing/Wall/Ceiling/KillZone/Door/GateGD prefab, A01~A04·RoomLabel. DashTestPlayer/CombatTestPlayer variants, PlayerDash/Health/Attack·DamageBlock·DummyTarget·CombatTuning. E1 관련 Assets는 복원·삭제. RoomSession 사망 시 선택적 Health 복원. SliceVerification/SliceRoute는 UNITY_EDITOR 조건, 반복 Scene 생성 도구는 삭제.
+- **사용자 아침 확인:** A01을 열어 Level 프리팹을 배치하고 Rect Tool/Scale로 크기를 바꾸는 편집 동작, 방 이름·문 표시·CP-A01/A03·A02 중앙 위험 확인. Scene Play 변경은 Stop 후 재입력·저장. 공통 prefab은 Overrides Apply, 공통 수치는 ScriptableObject에서 Play 종료 후 값 확인·저장.
+- **T1 수락:** Assets/Scenes/Test/DashTest.unity를 열어 K/Left Shift·패드 B, 입력/바라보는 방향, 벽·낙하·공중 재사용·Pause 후 재개 감각. 권한 true는 테스트 variant에만 있음.
+- **T2/T3 수락:** Assets/Scenes/Test/CombatTest.unity에서 HP·점멸·넉백·오렌지 피해 블록·빨간 KillZone·CP 복귀, J/패드 X 단발 공격과 더미 HP·공중 이동·Dash/피격 취소. 공격 판정은 PlayerAttack 선택 시 Gizmo. 테스트 카메라는 고정 위치이며 전체 방 화면 검수·실물 패드는 미실시. E1은 없음.
+- **문제·다음:** NIGHT-T4-001 재개 판단 필요. Slice 배치는 사용자 작업 후 S1-06 카메라·동선·출구 인지(OBS-001)·키보드/패드 A 점프 일관성 검토, 그 뒤 S1-10 재빌드. 기존 Builds/Slice와 S1-10 기록은 폐기된 레이아웃 기준. 검증은 가상 장치 자동 검사이며 사용자 감각 수락을 대체하지 않음.
+- **Git:** 모든 변경은 로컬 커밋. 이전 실패 기록 3d84246도 유지. 사용자가 아침에 직접 push한다.

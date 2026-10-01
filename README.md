@@ -12,7 +12,7 @@
 진행 재개 기준일은 **2026-09-30**이다. 당장 수행할 작업량·단기 목표·완료일은 토큰 사용량 확인 후 정하며, 기존 구현·검증 이력은 유지한다.
 
 Sprint 1: S1-07/08 검증 완료, S1-09 DOING(사용자 배치 대기), S1-10 TODO. S1-06 카메라는 REVIEW.
-현재 A01~A04 이동 Slice에 카메라·방 전환·체크포인트·사망 복귀가 있다. 공격·능력·HP·디스크 저장·엔딩은 아직 없다.
+현재 A01~A04는 사용자 배치용 빈 방이며 카메라·방 전환·체크포인트·최소 사망 복귀가 있다. Dash·HP·공격은 Test 씬에만 선행 구현됐다. E1은 검증 실패로 복원했으며 디스크 저장·엔딩은 없다.
 진행 상태와 검증 증거의 원본은 [TASKS](TASKS.md)다.
 
 ## Unity에서 실행
@@ -32,6 +32,13 @@ Sprint 1: S1-07/08 검증 완료, S1-09 DOING(사용자 배치 대기), S1-10 TO
 같은 폴더의 데이터와 DLL이 필요하며 종료는 창 닫기 또는 Alt+F4다.
 Builds는 Git에서 제외하므로 저장소를 새로 내려받으면 실행 파일은 포함되지 않는다.
 
+## 전용 시스템 테스트 (REVIEW)
+
+- Assets/Scenes/Test/DashTest.unity: Dash, K 또는 Left Shift / 패드 B.
+- Assets/Scenes/Test/CombatTest.unity: HP·피해·KillZone·CP 복귀·더미 공격, J / 패드 X. 공격 범위는 PlayerAttack Gizmo.
+- 이동은 기존 키/패드 입력을 사용한다. 테스트 카메라는 고정이다. 기능은 A01~A04에 통합하지 않았으며 E1은 없다.
+- 이동/Dash 수치는 PlayerTuning.asset, HP/공격 수치는 CombatTuning.asset에서 조정한다. 기존 초기값은 보존하고 사용자 수락 전 임의 기본값 변경을 하지 않는다.
+
 ## 현재 조작
 
 | 행동 | 키보드 | 게임패드 (Xbox 표기) |
@@ -41,7 +48,7 @@ Builds는 Git에서 제외하므로 저장소를 새로 내려받으면 실행 �
 | Pause | Esc | Menu |
 | 재개 | Enter 또는 Esc | A 또는 B |
 
-Gameplay / UI 입력은 분리되어 있다. Attack과 Dash는 향후 입력 이름이며 현재 구현되지 않았다.
+Gameplay / UI 입력은 분리되어 있다. Dash/Attack은 위 테스트 씬에서만 기능을 검토하며 UI 맵의 B 취소는 유지한다.
 
 ## 주요 Asset
 
