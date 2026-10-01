@@ -94,6 +94,7 @@ public sealed class RoomSession : MonoBehaviour
     public bool Die()
     {
         if (Transitioning || Respawning) return false;
+        Player.GetComponent<PlayerHealth>()?.MarkDead();
         StartCoroutine(Respawn());
         return true;
     }
@@ -120,6 +121,7 @@ public sealed class RoomSession : MonoBehaviour
         }
         body.simulated = true;
         sprite.enabled = true;
+        Player.GetComponent<PlayerHealth>()?.RestoreMax();
         state.SetRespawning(false);
         Player.ClearTransientInput();
     }

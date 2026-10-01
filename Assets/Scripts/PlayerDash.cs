@@ -11,7 +11,7 @@ public sealed class PlayerDash:MonoBehaviour
     void Awake(){input=GetComponent<PlayerInputReader>();motor=GetComponent<PlayerMotor>();body=GetComponent<Rigidbody2D>();}
     void OnEnable(){input.DashPressed+=Request;input.Cleared+=Cancel;}
     void OnDisable(){input.DashPressed-=Request;input.Cleared-=Cancel;Cancel();}
-    void Request(){if(hasDash&&!input.InputLocked)pending=true;}
+    void Request(){var health=GetComponent<PlayerHealth>();if(hasDash&&!input.InputLocked&&(health==null||!health.KnockbackLocked))pending=true;}
     public void Cancel(){pending=false;IsDashing=false;if(body!=null){body.gravityScale=0;body.linearVelocity=new Vector2(0,0);}}
     public bool Tick(bool grounded,double now)
     {

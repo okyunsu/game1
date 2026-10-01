@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/DashTest.unity
     guid: eb18880a18d97b74e9d79d86ddb2a23f
+  - enabled: 1
+    path: Assets/Scenes/Test/CombatTest.unity
+    guid: 95f21b7a2682bf843855d475b484ea6b
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

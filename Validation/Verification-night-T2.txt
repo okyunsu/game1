@@ -1,0 +1,21 @@
+PASS T2 Unity=6000.3.24f1
+PASS: max HP 5 and test checkpoint active
+PASS: simultaneous physical damage blocks deal only one HP
+PASS: invincibility rejects duplicate ordinary damage
+PASS: knockback movement lock active for 0.12s
+PASS: left source knocks right at X4/Y3
+PASS: opposing move does not override knockback lock
+PASS: right source knocks left
+PASS: dash before damage setup
+PASS: damage cancels dash
+PASS: ordinary damage accepted 0
+PASS: ordinary damage accepted 1
+PASS: ordinary damage accepted 2
+PASS: ordinary damage accepted 3
+PASS: ordinary damage accepted 4
+PASS: HP 0 uses S1-08 death flow
+PASS: respawn restores max HP in test checkpoint room
+PASS: respawn safe ground
+PASS: KillZone invincibility setup
+PASS: physical KillZone bypasses invincibility and sets HP 0
+PASS: KillZone return restores max HP
