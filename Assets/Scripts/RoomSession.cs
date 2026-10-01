@@ -12,7 +12,7 @@ public sealed class RoomSession : MonoBehaviour
     public bool Respawning => state.Respawning;
     public string CheckpointId { get; private set; }
     string checkpointRoom, checkpointScene, checkpointSpawn;
-    [Min(0), Tooltip("Death delay in real seconds. Prototype value: 0.6 s.")] public float respawnDelay = .6f;
+    public float respawnDelay => Player.GetComponent<PlayerMotor>().Tuning.respawnDelay;
     GameState state;
     Rigidbody2D body;
     Scene currentScene;

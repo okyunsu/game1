@@ -17,6 +17,8 @@ public sealed class PlayerTuning : ScriptableObject
     [Header("Input forgiveness (seconds)")]
     [Range(.06f, .14f), Tooltip("A fresh jump press within this time after last floor contact may jump once.")] public float coyoteTime = .10f;
     [Range(.08f, .16f), Tooltip("An unconsumed jump press remains available until landing within this time.")] public float jumpBuffer = .12f;
+    [Header("Death / respawn (seconds)")]
+    [Min(0), Tooltip("Real-time death delay before checkpoint return. Prototype value: 0.6 seconds.")] public float respawnDelay = .6f;
 
     void OnValidate()
     {

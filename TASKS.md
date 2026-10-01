@@ -36,7 +36,7 @@ S1-01~05 **DONE**. 2026-09-30 사용자가 Editor·N1 빌드에서 Movement Revi
 | S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-ROOM-B: Ground/Hazard는 Ground 레이어 BoxCollider2D·SpriteRenderer 블록, 출입구·Spawn ID, A01~A04 양방향 연결·안전 도착·단일 플레이어·입력 초기화, 배치 편집 가능; Tilemap DEFERRED |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
-| S1-09 | 첫 Vertical Slice 통합 | TODO | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
+| S1-09 | 첫 Vertical Slice 통합 | REVIEW | S1-06:REVIEW, S1-08:DONE | 이동만으로 15분 플레이·조정 | A01~A04의 5~10분 이동 구간·안내·A03 닫힌 게이트 외형, 왕복·사망 복귀, 공격/능력 미구현 표시·사용자 수락 |
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | Windows 빌드 구간 재현, 경계 입력·충돌 회귀, 명백한 런타임 오류 없음, 결과·실행 경로 인계 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
@@ -183,6 +183,14 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - [체크포인트/사망](Validation/S1-08-N2-B.txt) 64건 PASS, 5회 사망 복귀 0.633~0.662초. 기본·같은 방·다른 방·반복 사망·입력 차단·안전 도착·복귀 조작 확인.
 - 회귀: [S1-02](Validation/S1-02-N2-B-S1-08.txt) 19건, [S1-04](Validation/S1-04-N2-B-S1-08.txt) 63건, [S1-07](Validation/S1-07-N2-B-S1-08.txt) 71건 PASS. 런타임 Error/Exception 없음. 가상 입력 자동 검사이며 실제 패드·수동 화면은 미실시. 기존 Validation 보존.
 
+### 2026-10-01 S1-09 / N2-B
+
+- [실제 경로 검사](Validation/S1-09-N2-B-05.txt) 1,532건 PASS. A01→A02→A03→A04를 입력으로 이동하며 모든 필수 발판 도달·비행·단일 점프 입력 확인. 최대 점프 거리 4.501u, 간격 상한 80%=3.601u, 실제 간격 1.0~3.0u·착지 폭 2u 이상. 순방향 이동 368.20초(6분 8초). 자동 조작 기준이며 첫 사용자 플레이 시간·재미는 REVIEW 대기.
+- A01 안전 연습·A02 가변 점프/낙하·A03 CP 허브/G-D 외형·A04 넓은 접근 공간. A02~A04 첫 위험 틈 및 하단 Kill Zone. 밝은 문 테두리·방 이름·공격/능력 미구현 안내 추가. 블록 Prefab과 Scene이 배치 원본이며 일회성 작성/수정 도구는 삭제.
+- [최종 카메라 렌더](Validation/S1-09-camera-02.txt) 4방 경계 PASS. [A01 출구](Validation/Slice/A01-static-02.png), [A03 허브](Validation/Slice/A03-static-02.png)를 열어 테두리·게이트 분리 표시 확인. 정적 월드 렌더만이며 GUI·사용자 출구 인지 수락 증거는 아님. 최초 렌더도 보존.
+- 복귀 지연 0.6s를 PlayerTuning.asset의 Death / respawn 그룹에 연결(값 변경 없음, 기존 이동 값 보존). [체크포인트 통합 회귀](Validation/S1-08-N2-B-integration.txt) 64건 PASS.
+- 초기 실패 증거 S1-09-N2-B.txt, -02/-03/-04.txt 보존: 천장 안 최대거리 측정 → 열린 평지로 수정; 방향 전환 발판 천장/측면 간섭 → 폭 2u로 수정; 위층 위험 영역이 아래층 점프와 겹침 → 상층 영역 제거, 첫 위험·하단 영역 유지. 규칙·수치 변경 없이 실제 궤적 재검증 통과.
+
 ## Playtest Records
 
 ### OBS-001 — 출구 인지 / Before–After 후보
@@ -192,7 +200,7 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤, 같은 항목(출구 발견·방 전환 인지)을 사용자에게 재확인한다. 현재 Before 관찰만 있으며 개선 효과는 미수락 후보다.
 
 
-관찰 플레이테스트 기록: 아직 없음. 위 기술 검증과 사용자 감각 검토를 구분한다. 다음 양식은 빈 서식이며 실시 증거가 아니다.
+첫 사용자 관찰은 OBS-001에 기록했다. 자동 기술 검증과 사용자 감각 검토를 구분한다. 아래 양식은 빈 서식이다.
 
 `Test ID / 일시 / 빌드·수치 버전 / 참가자 코드·숙련도 / 입력 장치 / 전체 활동 시간 / A·B·C 시간 / 방별 사망·반복 사망 / 길 잃음 위치 / 능력 후 첫 행동 / 게이트 기억·복귀 / 보스 재시도 / 방향 오판 / 관찰 메모 / 증거 위치`
 
@@ -209,6 +217,13 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 `Decision ID / 관련 Task·방·시스템 / 기획 의도 / 초기 값·구현 / Test ID·문제 근거 / 수정 가설 / 승인자·일시 / 변경 값·파일 / 동일 구간 재검증 / 실제 결과·한계 / 유지·되돌림 / 반영 문서 / 증거 위치`
 
+### CASE-002 — 출구 인지 / Before–After 후보 (사용자 재확인 전)
+
+- Before: OBS-001, 2026-10-01 사용자 Editor 플레이에서 출구가 보이지 않아 1방으로 인식. RoomExit 트리거만 있고 표시 없음.
+- 가설·After 구현: 색과 형태를 함께 쓰는 밝은 3면 문 테두리, A01~A04 방 이름·안내, 공격/능력 미구현 표시. 출입구 ID·연결·게임 수치 변경 없음.
+- 기술 증거: [6분 8초 순방향 검사](Validation/S1-09-N2-B-05.txt), [출구 렌더](Validation/Slice/A01-static-02.png). 벽/게이트에 표시가 가려지는 초기 렌더를 수정하고 최종 정적 표시 확인.
+- 판단: 구현·기술 검증 완료, 출구 발견·방 전환 인지 개선 효과는 사용자에게 같은 항목으로 재확인해야 함. 재미·이해도 개선 확정은 아니며 후보 유지.
+
 ## Resource Register
 
 `리소스 / 출처 URL 또는 직접 제작 / 라이선스·확인일 / 사용 위치 / 표기 의무 / 실제 표기 위치`
@@ -217,11 +232,11 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-01 — N2-B S1-08 완료, S1-09 승인·착수 예정.
+2026-10-01 — N2-B S1-08 DONE, S1-09 REVIEW, S1-10 승인·착수 예정.
 
-- **완료·상태:** S1-08 DONE. CP-A01/A03·KillZone·0.6초 사망 복귀·입력/전환 차단. S1-06 REVIEW, S1-07 DONE·Tilemap DEFERRED·ROOM-001 OPEN 유지.
-- **주요 파일:** Checkpoint/KillZone Prefab 및 컴포넌트, GameState/RoomSession/PlayerInputReader, A01~A04, SliceVerification/N2BVerification와 회귀 진입점. 일회성 작성 도구는 삭제. HP·디스크 저장 미구현.
-- **검증:** [S1-08](Validation/S1-08-N2-B.txt) 64건 PASS(복귀 ~0.63~0.66초), [S1-02](Validation/S1-02-N2-B-S1-08.txt) 19건, [S1-04](Validation/S1-04-N2-B-S1-08.txt) 63건, [S1-07](Validation/S1-07-N2-B-S1-08.txt) 71건 PASS. 기본/다른 방·반복 사망·안전 도착·버퍼 초기화·재조작. 실제 패드·수동 검토 미실시.
-- **수정 위치:** 각 Scene의 CP-A01/A03 > Checkpoint ID·Spawn 참조, 자식 Respawn Spawn > RoomSpawn ID·Transform. 작동 영역은 BoxCollider2D, 활성/비활성 색은 Checkpoint Inspector. KillZone Prefab/Scene의 BoxCollider2D 배치. RoomSession respawnDelay는 초기 0.6s 유지. Play 변경은 Stop 후 Scene·Prefab 원본에 반영.
-- **사용자 검토:** S1-09에서 출구 표시와 방 이름 개선 후 OBS-001 재확인, S1-06 카메라·Slice 동선·키보드/패드 A 점프 일관성 검토 예정.
-- **다음 작업:** 승인된 S1-09 통합 → S1-10 빌드. S1-G·Sprint 2 미승인. 사용량 조회 시 5시간 10%·주간 26% 사용(토큰 개수 아님)으로 진행 여유 확인.
+- **완료·상태:** S1-08 DONE(bf19278), S1-09 기술 검증 완료·REVIEW. S1-06 REVIEW·S1-07 DONE, ROOM-001 OPEN·Tilemap DEFERRED 유지. S1-G·Sprint 2 미승인.
+- **주요 파일:** A01~A04의 블록 경로·문 표시·위험 영역, SliceRoute HUD, SliceVerification/N2BVerification/N2BRender. 복귀 지연 0.6s의 공통 원본을 PlayerTuning.asset에 연결했으며 이동 값은 보존. 일회성 Scene 작성/수정 스크립트 삭제.
+- **검증:** [S1-09](Validation/S1-09-N2-B-05.txt) 1,532건 PASS, 최대 거리 4.501u·간격 80% 이하·착지 폭 2u 이상, 실제 입력 순방향 368.20초. [카메라](Validation/S1-09-camera-02.txt) 4방 경계 PASS, [출구](Validation/Slice/A01-static-02.png)·[허브](Validation/Slice/A03-static-02.png) 정적 표시 확인. [체크포인트 통합](Validation/S1-08-N2-B-integration.txt) 64건 PASS. 실패/초기 렌더와 이전 증거 보존.
+- **수정 위치:** 각 Scene > Editable route blocks의 Transform·BoxCollider2D·SpriteRenderer, 문 프레임은 RoomExit 자식, 위험은 Visible gap Kill Zones/Hazard, CP의 Spawn 참조·위치. SliceRoute의 instruction/landing 참조를 Inspector에서 편집. 공통 PlayerTuning.asset > Death / respawn > Respawn Delay(초), 기존 이동 설정 유지. Scene Play 변경은 Stop 후 재입력·저장, Asset Play 변경은 Stop 후 원하는 값으로 명시적 저장, 공통 Prefab 변경은 원본/Overrides Apply.
+- **사용자 검토:** S1-06 급반전·낙하 시야, Slice 동선·5~10분 첫 플레이, OBS-001 출구 발견·방 전환 인지 재확인, 점프 일관성을 키보드와 패드 A로 비교. 평지/천장 없는 구간과 MovementTest에서 입력 차이·천장 간섭을 구분. 실제 패드·GUI·재미 수락은 미실시.
+- **문제·다음:** 초기 발판/위험 수직 간섭과 표시 가림 수정 후 통과. S1-10 Windows Slice 빌드·빌드 왕복/사망 검사와 README 갱신 진행. HP·디스크 저장·공격·능력 미구현 유지.

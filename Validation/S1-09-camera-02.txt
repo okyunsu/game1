@@ -1,0 +1,5 @@
+PASS static Slice camera rendering (world sprites only; GUI/human perception not assessed)
+PASS A01: 1280x720 viewport remains in authored Polygon boundary at static review point
+PASS A02: 1280x720 viewport remains in authored Polygon boundary at static review point
+PASS A03: 1280x720 viewport remains in authored Polygon boundary at static review point
+PASS A04: 1280x720 viewport remains in authored Polygon boundary at static review point

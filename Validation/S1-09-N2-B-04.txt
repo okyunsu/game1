@@ -1,0 +1,301 @@
+FAIL checkpoint/death; Unity=6000.3.24f1; UTC=2026-10-01T12:48:47.1868569Z
+PASS: A01 startup
+PASS: no checkpoint fallback case
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.642s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: checkpoint prefab/unique ID CP-A01
+PASS: contact activates checkpoint CP-A01
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.650s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: load alternate checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: checkpoint prefab/unique ID CP-A03
+PASS: contact activates checkpoint CP-A03
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.633s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: leave checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: room entry preserves checkpoint
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.700s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.633s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: one player retained across repeated cross-room respawn
+PASS: prepare route at A01
+PASS: respawn/transition completes within 3s
+PASS: walk reaches authored point without teleport
+MEASURE: open-floor full-jump range=4.501u; airborne=True; initial gap cap=3.601u
+PASS: measured same-height full jump horizontal range
+PASS: route entered A01
+PASS: editable scene route exists
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.12, 1.82); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.82); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.82); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.82); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.82); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(14.42, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(20.77, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(27.25, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(33.49, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(39.76, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+MEASURE: completed A01 forward route; cumulative=24.15s
+PASS: authored connection to A02
+PASS: physical door transition to A02
+PASS: single player and previous room cleaned
+PASS: route entered A02
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE failed hop Landing 000->Landing 001: body=(10.33, 3.40), velocity=(6.00, 7.80), jumpSequence=25->26, pressed=-Infinity, released=-Infinity, airborne=True, fixed=34.2301960600907
+FAIL: System.Exception: Route jump entered Kill Zone: Landing 001
+  at SliceVerification+<Hop>d__17.MoveNext () [0x002c4] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\SliceVerification.cs:96 
+  at SliceVerification+<Start>d__8.MoveNext () [0x0008d] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\SliceVerification.cs:21 

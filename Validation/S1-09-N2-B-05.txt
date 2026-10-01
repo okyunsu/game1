@@ -1,0 +1,1830 @@
+PASS checkpoint/death; Unity=6000.3.24f1; UTC=2026-10-01T12:58:08.8062442Z
+PASS: A01 startup
+PASS: no checkpoint fallback case
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.642s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: checkpoint prefab/unique ID CP-A01
+PASS: contact activates checkpoint CP-A01
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.633s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: load alternate checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: checkpoint prefab/unique ID CP-A03
+PASS: contact activates checkpoint CP-A03
+PASS: active checkpoint visual state
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.634s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: leave checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: room entry preserves checkpoint
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.684s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.633s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: one player retained across repeated cross-room respawn
+PASS: prepare route at A01
+PASS: respawn/transition completes within 3s
+PASS: walk reaches authored point without teleport
+MEASURE: open-floor full-jump range=4.501u; airborne=True; initial gap cap=3.601u
+PASS: measured same-height full jump horizontal range
+PASS: route entered A01
+PASS: editable scene route exists
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.12, 1.82); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.82); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.82); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.82); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.82); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(14.42, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(20.77, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(27.25, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(33.49, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(39.76, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+MEASURE: completed A01 forward route; cumulative=24.15s
+PASS: authored connection to A02
+PASS: physical door transition to A02
+PASS: single player and previous room cleaned
+PASS: route entered A02
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.04, 1.81); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.81); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.81); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.81); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.81); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.12, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(19.52, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(25.92, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(32.32, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(38.72, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(44.12, 12.81); target=Center: (44.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(40.68, 15.01); target=Center: (40.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(34.88, 15.01); target=Center: (33.60, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(28.48, 15.01); target=Center: (27.20, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(22.08, 15.01); target=Center: (20.80, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(15.68, 15.01); target=Center: (14.40, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.28, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.88, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.12, 19.41); target=Center: (14.40, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(19.52, 19.41); target=Center: (20.80, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(25.92, 19.41); target=Center: (27.20, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(32.32, 19.41); target=Center: (33.60, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(38.72, 19.41); target=Center: (40.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(44.12, 21.61); target=Center: (44.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(40.68, 23.81); target=Center: (40.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(34.88, 23.81); target=Center: (33.60, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(28.48, 23.81); target=Center: (27.20, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(22.08, 23.81); target=Center: (20.80, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(15.68, 23.81); target=Center: (14.40, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.28, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.32, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.12, 28.21); target=Center: (14.40, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(19.52, 28.21); target=Center: (20.80, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(25.92, 28.21); target=Center: (27.20, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(32.32, 28.21); target=Center: (33.60, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(38.72, 28.21); target=Center: (40.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(44.12, 30.41); target=Center: (44.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(40.68, 32.61); target=Center: (40.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(34.88, 32.61); target=Center: (33.60, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(28.48, 32.61); target=Center: (27.20, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(22.08, 32.61); target=Center: (20.80, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(15.68, 32.61); target=Center: (14.40, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.28, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.32, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.12, 37.01); target=Center: (14.40, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(19.52, 37.01); target=Center: (20.80, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(25.92, 37.01); target=Center: (27.20, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(32.32, 37.01); target=Center: (33.60, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(38.72, 37.01); target=Center: (40.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(44.12, 39.21); target=Center: (44.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(40.68, 41.41); target=Center: (40.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(34.88, 41.41); target=Center: (33.60, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(28.48, 41.41); target=Center: (27.20, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(22.08, 41.41); target=Center: (20.80, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(15.68, 41.41); target=Center: (14.40, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.28, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.32, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.12, 45.81); target=Center: (14.40, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(19.52, 45.81); target=Center: (20.80, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(25.92, 45.81); target=Center: (27.20, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(32.32, 45.81); target=Center: (33.60, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(38.72, 45.81); target=Center: (40.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(44.12, 48.01); target=Center: (44.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(40.68, 50.21); target=Center: (40.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(34.88, 50.21); target=Center: (33.60, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(28.48, 50.21); target=Center: (27.20, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(22.08, 50.21); target=Center: (20.80, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(15.68, 50.21); target=Center: (14.40, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.28, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.32, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.42, 54.61); target=Center: (14.40, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(20.77, 54.61); target=Center: (20.80, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(27.25, 54.61); target=Center: (27.20, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(33.49, 54.61); target=Center: (33.60, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(39.76, 54.61); target=Center: (40.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+MEASURE: completed A02 forward route; cumulative=138.70s
+PASS: authored connection to A03
+PASS: physical door transition to A03
+PASS: single player and previous room cleaned
+PASS: route entered A03
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: door silhouette marks exit Right
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.04, 1.81); target=Center: (14.40, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(19.52, 1.81); target=Center: (20.80, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(25.92, 1.81); target=Center: (27.20, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(32.32, 1.81); target=Center: (33.60, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(38.72, 1.81); target=Center: (40.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(44.12, 4.01); target=Center: (44.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(40.68, 6.21); target=Center: (40.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(34.88, 6.21); target=Center: (33.60, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(28.48, 6.21); target=Center: (27.20, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(22.08, 6.21); target=Center: (20.80, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(15.68, 6.21); target=Center: (14.40, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.12, 10.61); target=Center: (14.40, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(19.52, 10.61); target=Center: (20.80, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(25.92, 10.61); target=Center: (27.20, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(32.32, 10.61); target=Center: (33.60, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(38.72, 10.61); target=Center: (40.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(44.12, 12.81); target=Center: (44.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(40.68, 15.01); target=Center: (40.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(34.88, 15.01); target=Center: (33.60, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(28.48, 15.01); target=Center: (27.20, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(22.08, 15.01); target=Center: (20.80, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(15.68, 15.01); target=Center: (14.40, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.28, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.88, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.12, 19.41); target=Center: (14.40, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(19.52, 19.41); target=Center: (20.80, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(25.92, 19.41); target=Center: (27.20, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(32.32, 19.41); target=Center: (33.60, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(38.72, 19.41); target=Center: (40.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(44.12, 21.61); target=Center: (44.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(40.68, 23.81); target=Center: (40.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(34.88, 23.81); target=Center: (33.60, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(28.48, 23.81); target=Center: (27.20, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(22.08, 23.81); target=Center: (20.80, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(15.68, 23.81); target=Center: (14.40, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.28, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.32, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.12, 28.21); target=Center: (14.40, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(19.52, 28.21); target=Center: (20.80, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(25.92, 28.21); target=Center: (27.20, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(32.32, 28.21); target=Center: (33.60, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(38.72, 28.21); target=Center: (40.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(44.12, 30.41); target=Center: (44.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(40.68, 32.61); target=Center: (40.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(34.88, 32.61); target=Center: (33.60, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(28.48, 32.61); target=Center: (27.20, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(22.08, 32.61); target=Center: (20.80, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(15.68, 32.61); target=Center: (14.40, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.28, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.32, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.12, 37.01); target=Center: (14.40, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(19.52, 37.01); target=Center: (20.80, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(25.92, 37.01); target=Center: (27.20, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(32.32, 37.01); target=Center: (33.60, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(38.72, 37.01); target=Center: (40.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(44.12, 39.21); target=Center: (44.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(40.68, 41.41); target=Center: (40.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(34.88, 41.41); target=Center: (33.60, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(28.48, 41.41); target=Center: (27.20, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(22.08, 41.41); target=Center: (20.80, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(15.68, 41.41); target=Center: (14.40, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.28, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.32, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.12, 45.81); target=Center: (14.40, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(19.52, 45.81); target=Center: (20.80, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(25.92, 45.81); target=Center: (27.20, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(32.32, 45.81); target=Center: (33.60, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(38.72, 45.81); target=Center: (40.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(44.12, 48.01); target=Center: (44.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(40.68, 50.21); target=Center: (40.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(34.88, 50.21); target=Center: (33.60, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(28.48, 50.21); target=Center: (27.20, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(22.08, 50.21); target=Center: (20.80, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(15.68, 50.21); target=Center: (14.40, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.28, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.32, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.42, 54.61); target=Center: (14.40, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(20.77, 54.61); target=Center: (20.80, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(27.25, 54.61); target=Center: (27.20, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(33.49, 54.61); target=Center: (33.60, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(39.76, 54.61); target=Center: (40.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+MEASURE: completed A03 forward route; cumulative=253.25s
+PASS: authored connection to A04
+PASS: physical door transition to A04
+PASS: single player and previous room cleaned
+PASS: route entered A04
+PASS: editable scene route exists
+PASS: room has visible Kill Zone
+PASS: door silhouette marks exit Left
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: required landing width >=2u
+PASS: walk reaches authored point without teleport
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 000->Landing 001; body=(13.64, 1.81); target=Center: (15.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 001
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 001->Landing 002; body=(20.72, 1.81); target=Center: (22.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 002
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 002->Landing 003; body=(27.72, 1.81); target=Center: (29.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 003
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 003->Landing 004; body=(34.72, 1.81); target=Center: (36.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 004
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 004->Landing 005; body=(41.72, 1.81); target=Center: (43.00, 0.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 005
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 005->Turn 00; body=(47.12, 4.01); target=Center: (47.00, 2.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 00
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 00->Landing 007; body=(43.68, 6.21); target=Center: (43.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 007
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 007->Landing 008; body=(37.28, 6.21); target=Center: (36.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 008
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 008->Landing 009; body=(30.28, 6.21); target=Center: (29.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 009
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 009->Landing 010; body=(23.28, 6.21); target=Center: (22.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 010
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 010->Landing 011; body=(16.28, 6.21); target=Center: (15.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 011
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 011->Landing 012; body=(9.28, 6.21); target=Center: (8.00, 4.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 012
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 012->Turn 01; body=(3.88, 8.41); target=Center: (4.00, 7.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 01
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 01->Landing 014; body=(7.32, 10.61); target=Center: (8.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 014
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 014->Landing 015; body=(13.72, 10.61); target=Center: (15.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 015
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 015->Landing 016; body=(20.72, 10.61); target=Center: (22.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 016
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 016->Landing 017; body=(27.72, 10.61); target=Center: (29.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 017
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 017->Landing 018; body=(34.72, 10.61); target=Center: (36.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 018
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 018->Landing 019; body=(41.72, 10.61); target=Center: (43.00, 9.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 019
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 019->Turn 02; body=(47.12, 12.81); target=Center: (47.00, 11.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 02
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 02->Landing 021; body=(43.68, 15.01); target=Center: (43.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 021
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 021->Landing 022; body=(37.28, 15.01); target=Center: (36.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 022
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 022->Landing 023; body=(30.28, 15.01); target=Center: (29.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 023
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 023->Landing 024; body=(23.28, 15.01); target=Center: (22.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 024
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 024->Landing 025; body=(16.28, 15.01); target=Center: (15.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 025
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 025->Landing 026; body=(9.28, 15.01); target=Center: (8.00, 13.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 026
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 026->Turn 03; body=(3.88, 17.21); target=Center: (4.00, 15.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 03
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 03->Landing 028; body=(7.32, 19.41); target=Center: (8.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 028
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 028->Landing 029; body=(13.72, 19.41); target=Center: (15.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 029
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 029->Landing 030; body=(20.72, 19.41); target=Center: (22.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 030
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 030->Landing 031; body=(27.72, 19.41); target=Center: (29.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 031
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 031->Landing 032; body=(34.72, 19.41); target=Center: (36.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 032
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 032->Landing 033; body=(41.72, 19.41); target=Center: (43.00, 18.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 033
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 033->Turn 04; body=(47.12, 21.61); target=Center: (47.00, 20.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 04
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 04->Landing 035; body=(43.68, 23.81); target=Center: (43.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 035
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 035->Landing 036; body=(37.28, 23.81); target=Center: (36.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 036
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 036->Landing 037; body=(30.28, 23.81); target=Center: (29.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 037
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 037->Landing 038; body=(23.28, 23.81); target=Center: (22.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 038
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 038->Landing 039; body=(16.28, 23.81); target=Center: (15.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 039
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 039->Landing 040; body=(9.28, 23.81); target=Center: (8.00, 22.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 040
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 040->Turn 05; body=(3.88, 26.01); target=Center: (4.00, 24.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 05
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 05->Landing 042; body=(7.32, 28.21); target=Center: (8.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 042
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 042->Landing 043; body=(13.72, 28.21); target=Center: (15.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 043
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 043->Landing 044; body=(20.72, 28.21); target=Center: (22.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 044
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 044->Landing 045; body=(27.72, 28.21); target=Center: (29.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 045
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 045->Landing 046; body=(34.72, 28.21); target=Center: (36.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 046
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 046->Landing 047; body=(41.72, 28.21); target=Center: (43.00, 26.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 047
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 047->Turn 06; body=(47.12, 30.41); target=Center: (47.00, 29.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 06
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 06->Landing 049; body=(43.68, 32.61); target=Center: (43.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 049
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 049->Landing 050; body=(37.28, 32.61); target=Center: (36.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 050
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 050->Landing 051; body=(30.28, 32.61); target=Center: (29.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 051
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 051->Landing 052; body=(23.28, 32.61); target=Center: (22.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 052
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 052->Landing 053; body=(16.28, 32.61); target=Center: (15.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 053
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 053->Landing 054; body=(9.28, 32.61); target=Center: (8.00, 31.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 054
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 054->Turn 07; body=(3.88, 34.81); target=Center: (4.00, 33.50, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 07
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 07->Landing 056; body=(7.32, 37.01); target=Center: (8.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 056
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 056->Landing 057; body=(13.72, 37.01); target=Center: (15.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 057
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 057->Landing 058; body=(20.72, 37.01); target=Center: (22.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 058
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 058->Landing 059; body=(27.72, 37.01); target=Center: (29.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 059
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 059->Landing 060; body=(34.72, 37.01); target=Center: (36.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 060
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 060->Landing 061; body=(41.72, 37.01); target=Center: (43.00, 35.70, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 061
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 061->Turn 08; body=(47.12, 39.21); target=Center: (47.00, 37.90, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 08
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 08->Landing 063; body=(43.68, 41.41); target=Center: (43.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 063
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 063->Landing 064; body=(37.28, 41.41); target=Center: (36.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 064
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 064->Landing 065; body=(30.28, 41.41); target=Center: (29.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 065
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 065->Landing 066; body=(23.28, 41.41); target=Center: (22.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 066
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 066->Landing 067; body=(16.28, 41.41); target=Center: (15.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 067
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 067->Landing 068; body=(9.28, 41.41); target=Center: (8.00, 40.10, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 068
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 068->Turn 09; body=(3.88, 43.61); target=Center: (4.00, 42.30, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 09
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 09->Landing 070; body=(7.32, 45.81); target=Center: (8.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 070
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 070->Landing 071; body=(13.72, 45.81); target=Center: (15.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 071
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 071->Landing 072; body=(20.72, 45.81); target=Center: (22.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 072
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 072->Landing 073; body=(27.72, 45.81); target=Center: (29.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 073
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 073->Landing 074; body=(34.72, 45.81); target=Center: (36.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 074
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 074->Landing 075; body=(41.72, 45.81); target=Center: (43.00, 44.50, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 075
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 075->Turn 10; body=(47.12, 48.01); target=Center: (47.00, 46.70, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 10
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 10->Landing 077; body=(43.68, 50.21); target=Center: (43.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 077
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 077->Landing 078; body=(37.28, 50.21); target=Center: (36.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 078
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 078->Landing 079; body=(30.28, 50.21); target=Center: (29.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 079
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 079->Landing 080; body=(23.28, 50.21); target=Center: (22.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 080
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 080->Landing 081; body=(16.28, 50.21); target=Center: (15.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 081
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 081->Landing 082; body=(9.28, 50.21); target=Center: (8.00, 48.90, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 082
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 082->Turn 11; body=(3.88, 52.41); target=Center: (4.00, 51.10, 0.00), Extents: (1.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Turn 11
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Turn 11->Landing 084; body=(7.32, 54.61); target=Center: (8.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 084
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 084->Landing 085; body=(14.42, 54.61); target=Center: (15.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 085
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 085->Landing 086; body=(21.37, 54.61); target=Center: (22.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 086
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 086->Landing 087; body=(28.45, 54.61); target=Center: (29.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 087
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 087->Landing 088; body=(35.29, 54.61); target=Center: (36.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 088
+PASS: gap <=80% measured jump range
+PASS: walk reaches authored point without teleport
+PASS: jump starts from ground
+MEASURE: hop Landing 088->Landing 089; body=(42.16, 54.61); target=Center: (43.00, 53.30, 0.00), Extents: (2.00, 0.50, 0.00); grounded=True; landed=True
+PASS: actual input trajectory lands on Landing 089
+MEASURE: completed A04 forward route; cumulative=368.20s
+MEASURE: forward active movement time=368.20s; human first-play target=300~600s, human confirmation pending
