@@ -14,11 +14,13 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 Slice 플레이 검토 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
+S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용자 수락), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
 ## Current Tasks
+
+2026-10-02 사용자 결정: S1-06 DONE — CAM-001 수평 선행 0u 적용 후 직접 플레이에서 카메라 문제 없음. S1-09 DONE — A01→A04 테스트용 이동 경로로 수락. 현재 배치는 임시 그레이박스 v1, 이후 실제 진행 때 수정 예정. C3 자동 왕복 FAIL은 자동 입력 방식의 한계로 기록하며 사용자 직접 왕복 성공 보고를 근거로 레이아웃 결함으로 보지 않는다. 자동 실패 증거는 보존한다. 이번 승인 범위는 S1-10 빌드·exe 검증만이며 S1-G TODO 유지, Gate 판단·레벨/T1~T4 수정·Sprint 2 미실시, 로컬 커밋만.
 
 2026-10-02 승인 C0~C4만 완료: 사용자 A01 보존, 카메라 lead0, A02~A04 지정 좌표 배치, C3 보고 전용 검증, CombatTest E1 재시도. push·S1-10 빌드·S1-G·Sprint 2 콘텐츠 미실시.
 
@@ -34,12 +36,12 @@ S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 Slice 플레이 검�
 | S1-03 | 좌우 이동·기본 점프·낙하 | DONE | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
 | S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 | S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
-| S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
-| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 기준 양방향·안전 도착·단일 플레이어·입력 초기화 PASS 이력. 새 배치 왕복은 C3 미통과, S1-09 검토 필요. Tilemap DEFERRED |
+| S1-06 | Camera | DONE | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
+| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 기준 양방향·안전 도착·단일 플레이어·입력 초기화 PASS 이력. C3 자동 입력 한계는 사용자 직접 왕복 성공 보고로 레이아웃 결함으로 보지 않음. Tilemap DEFERRED |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
-| S1-09 | 첫 Vertical Slice 통합 | DOING | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1, A02~A04 사용자 설계 좌표 v1을 Codex가 배치. 사용자 Slice 플레이 후 수정 예정 |
-| S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | S1-09 사용자 배치 대기. 배치 완료 후 재빌드·왕복 검증 |
+| S1-09 | 첫 Vertical Slice 통합 | DONE | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1·A02~A04 사용자 설계 좌표 v1: 테스트용 이동 경로로 사용자 수락(2026-10-02). 임시 그레이박스이며 실제 진행 때 수정 예정 |
+| S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·실행 검증 예정; 사용자 exe 5분 확인 후 완료 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
 ### 야간 시스템 작업 — DEC-S2-PRE
@@ -343,18 +345,9 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-02 C0~C4 종료. 로컬 커밋만, push 없음. S1-06 REVIEW / S1-09 DOING(사용자 Slice 플레이 검토 대기) / S1-10 TODO / T1~T4 REVIEW. S1-G·Sprint 2 콘텐츠·빌드 미실시.
+2026-10-02 S1-10 실행 전 사용자 결정 기록.
 
-| 단계 | 결과 | 로컬 커밋 | 새 Validation |
-| --- | --- | --- | --- |
-| C0 사용자 A01 | 무수정 보존, 이후 변경 없음 | 1c55594 | S1-02-night-C0.txt; S1-04-night-C0.txt (C1 커밋에 증거 보존) |
-| C1 카메라 | PASS, 4방 lead0 / size5.5 / damping0.15, S1-06 REVIEW | d221add | S1-06-lead0.txt; S1-02-night-C1.txt; S1-04-night-C1.txt |
-| C2 지정 배치 | PASS, A02 4개·A03 3개·A04 2개만 추가, 기존 오브젝트 유지 | c2f85c5 | C2-layout.txt; S1-02-night-C2.txt; S1-04-night-C2.txt |
-| C3 보고 전용 | 자동 경로 FAIL, 배치 수정 없음. 안전 스폰·CP·구멍 복귀 확인 | fbea9b1 | S1-09-greybox-check.txt; S1-09-greybox-check-notes.txt; S1-02-night-C3.txt; S1-04-night-C3.txt |
-| C4 CombatTest E1 | PASS / REVIEW, NIGHT-T4-001 검사 원인 재현·수정 | 0785b1f | Verification-T4-retry.txt; Verification-night-T1-C4.txt; Verification-night-T2-C4.txt; Verification-night-T3-C4.txt; S1-02-night-C4.txt; S1-04-night-C4.txt |
-
-- **핵심 변경:** A01은 사용자 배치 C0 내용 그대로(이미 lead0). A02~A04는 lead0 및 지정 Level 프리팹 9개. RoomCameraRig 기본 lead0·N2Verification 기대값, GAME_DESIGN 17/22절·CAM-001 반영. EnemyTuning/E1Tuning·EnemyPatrol·EnemyRespawn·E1 prefab은 CombatTest에만 적용. NightTests와 C4Verification은 방 전환 후 유지. 일회성 작성 도구 제거.
-- **문제·한계:** 자동 순방향 A01 (7.64,2.44)·역방향 A04 (24.37,1.93)에서 각 35초 미도달. 다른 방 통과 시간 미측정, 사용자 플레이 불가능으로 확정하지 않음. C3의 트리거 지형 전수 판정·시야·실물 패드 확인 미실시. 사용자 배치 수정 없이 실패 증거 보존. A03 접근 차단은 구조·점프 상한 기반 확인이며 모든 입력 조합 검색은 아님.
-- **사용자 확인:** Assets/Scenes/A01을 열고 A01→A04 및 A04→A01 직접 플레이. 카메라 급반전·필수 착지 지점 시야, A02 구멍 낙하 후 체크포인트 복귀 거리(자동 확인은 CP-A01까지 0.796초), 문·방 이름과 A03 격자 너머 길 인지를 확인. 키보드와 패드 A의 점프 일관성 비교. E1은 Assets/Scenes/Test/CombatTest에서 순찰·접촉 피격·J/패드 X 두 번 공격 제거·사망 후 초기화 감각을 수락/반려. DashTest의 T1 및 CombatTest의 T2/T3 REVIEW도 유지.
-- **수정 위치:** 레벨은 Scene의 배치·Scene patrol endpoints, 카메라는 Main Camera / RoomCameraRig. 레벨 크기는 Assets/Prefabs/Level 프리팹 인스턴스의 Rect Tool 또는 Scale. E1 공통 수치는 Assets/ScriptableObjects/E1Tuning.asset(HP2·1.8u/s·피해1·넉백3u/s). Play에서 바꾼 값은 Stop 후 다시 입력·저장, 공통 prefab 변경은 의도한 경우만 Overrides Apply.
-- **보존·다음:** PlayerTuning/CombatTuning 기존 값·Player.prefab·MovementTest·Packages·ProjectVersion·Level prefab 원본 보호 확인. A01 C0 대비 diff 없음. 기존 Validation 덮어쓰기 없음. 승인 범위 종료, 다음 작업은 사용자 검토·명시 승인 후에만 진행.
+- S1-06 DONE: lead0 적용 후 사용자 플레이에서 카메라 문제 없음.
+- S1-09 DONE: 사용자 A01→A04 플레이 후 테스트용 이동 경로로 수락. 임시 그레이박스 v1이며 실제 진행 때 수정 예정.
+- C3 자동 왕복 FAIL은 입력 휴리스틱 한계로 보존. 사용자 직접 왕복 성공 보고를 근거로 레이아웃 결함으로 보지 않음.
+- 다음 승인 작업: S1-10 Windows x64 빌드·출구 트리거 직접 배치 기반 전환·체크포인트 exe 검증. S1-G TODO, T1~T4 REVIEW 유지. 레벨·기능 변경 및 push 없음.
