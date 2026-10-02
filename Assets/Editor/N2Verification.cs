@@ -26,7 +26,8 @@ public static class N2Verification
             }
         };
     }
-    public static void Camera() => Begin("S1-06", "Assets/Scenes/CameraTest.unity");
+    public static void CameraLead0() { for(int n=1;n<=4;n++){EditorSceneManager.OpenScene($"Assets/Scenes/A0{n}.unity");var rig=UnityEngine.Object.FindFirstObjectByType<RoomCameraRig>();if(rig.horizontalLead!=0||rig.orthographicSize!=5.5f||rig.damping!=.15f)throw new Exception("Unexpected camera values A0"+n);SessionState.SetString("Lead0.A0"+n,$"MEASURE: A0{n} horizontalLead={rig.horizontalLead:F2}u; size={rig.orthographicSize:F2}u; damping={rig.damping:F2}s");}Begin("S1-06","Assets/Scenes/CameraTest.unity","lead0");}
+    public static void Camera() => CameraLead0();
     public static void RoomsNight() => Begin("S1-07", "Assets/Scenes/A01.unity", "night-"+Nightly.Tag);
     public static void Rooms() => Begin("S1-07", "Assets/Scenes/A01.unity");
     public static void RoomsN2B08() => Begin("S1-07", "Assets/Scenes/A01.unity", "N2-B-S1-08");
@@ -105,9 +106,10 @@ public sealed class N2VerificationRunner : MonoBehaviour
         string renderDirectory = $"Validation/Camera/Run-{DateTime.UtcNow:yyyyMMdd-HHmmss}";
         var rig = FindFirstObjectByType<RoomCameraRig>();
         var player = FindFirstObjectByType<PlayerInputReader>();
+        if(SessionState.GetString("N2.Suffix","").StartsWith("lead0")){rig.horizontalLead=0;for(int n=1;n<=4;n++)results.Add(SessionState.GetString("Lead0.A0"+n,""));}
         player.GetComponent<PlayerMotor>().enabled = false;
         player.GetComponent<Rigidbody2D>().simulated = false;
-        Check(rig.orthographicSize == 5.5f && rig.horizontalLead == 1f && rig.damping == .15f, "Inspector prototype values 5.5u / 1u / 0.15s");
+        Check(rig.orthographicSize == 5.5f && rig.horizontalLead == 0f && rig.damping == .15f, "Inspector prototype values 5.5u / 0u / 0.15s");
         yield return null;
         var cam = rig.OutputCamera;
         foreach (var resolution in new[] { new Vector2Int(1280, 720), new Vector2Int(1920, 1080) })

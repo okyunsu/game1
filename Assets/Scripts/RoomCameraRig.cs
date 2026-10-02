@@ -6,7 +6,7 @@ public sealed class RoomCameraRig : MonoBehaviour
 {
     [Header("Camera (Prototype values)")]
     [Min(.1f), Tooltip("Vertical half-height in world units.")] public float orthographicSize = 5.5f;
-    [Min(0), Tooltip("Horizontal offset towards movement, in world units.")] public float horizontalLead = 1f;
+    [Min(0), Tooltip("Horizontal offset towards movement, in world units.")] public float horizontalLead = 0f;
     [Min(0), Tooltip("Cinemachine position damping, seconds.")] public float damping = .15f;
     [Header("Room boundary")]
     [Tooltip("Polygon covering the visible room, separate from ground collision.")] public PolygonCollider2D boundary;

@@ -1,0 +1,84 @@
+PASS S1-06; Unity=6000.3.24f1; UTC=2026-10-02T11:41:30.9741556Z
+MEASURE: A01 horizontalLead=0.00u; size=5.50u; damping=0.15s
+MEASURE: A02 horizontalLead=0.00u; size=5.50u; damping=0.15s
+MEASURE: A03 horizontalLead=0.00u; size=5.50u; damping=0.15s
+MEASURE: A04 horizontalLead=0.00u; size=5.50u; damping=0.15s
+PASS: Inspector prototype values 5.5u / 0u / 0.15s
+PASS: orthographic lens applied
+PASS: 1280x720 frame confined at x=-24
+PASS: camera snap output equals new virtual state immediately
+PASS: 1280x720 frame confined at x=0
+PASS: camera snap output equals new virtual state immediately
+PASS: 1280x720 frame confined at x=24
+PASS: camera snap output equals new virtual state immediately
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+RENDER: Validation/Camera/Run-20261002-114128/S1-06-1280x720.png
+PASS: orthographic lens applied
+PASS: 1920x1080 frame confined at x=-24
+PASS: camera snap output equals new virtual state immediately
+PASS: 1920x1080 frame confined at x=0
+PASS: camera snap output equals new virtual state immediately
+PASS: 1920x1080 frame confined at x=24
+PASS: camera snap output equals new virtual state immediately
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+PASS: falling landing point remains in view
+RENDER: Validation/Camera/Run-20261002-114128/S1-06-1920x1080.png
+PASS: rapid reversal camera step stays below 0.5u; no single-frame 2u offset jump
+MEASURE: largest reversal camera step=0.0933u; automated positional check, human feel pending

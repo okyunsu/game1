@@ -168,6 +168,12 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
 
+### 2026-10-02 C0/C1
+
+C0 A01 사용자 배치 무수정 보존 커밋 1c55594. 원본 SHA256 9AFE8F4AFD0287CE37379CDA0FE492069B2ADA042B3C9831E98FA6EAAA5BC46C. S1-02/04-night-C0.txt PASS.
+C1 S1-06-lead0.txt 첫 줄 PASS·FAIL 0, 네 Scene lead0·size5.5·damping0.15 MEASURE, 기존 카메라 경계/낙하/급반전 검사 유지. S1-02/04-night-C1.txt PASS. A01 원본 변경 없음(이미 lead0); A02~A04는 해당 필드만 변경. CameraTest는 저장하지 않고 검사 시 lead0 적용. 구조 경고는 사용자 관찰로 기록, 이번 배치 실행에서는 동일 경고 미관측; 구조 수정 없음. S1-06 REVIEW 유지.
+
+
 ### 야간 T4 — FAIL / 복원
 
 Verification-night-T4.txt 첫 공격 검사 실패. 수정 1회 후 두 번째 검사는 결과 저장 없이 중단(T4-rerun-timeout.log, Verification-night-T4-rerun-stopped.txt). 기능 변경을 전부 복원, S1-02-night-T4-rollback.txt·S1-04-night-T4-rollback.txt PASS. 런타임 E1 완전 검증 성공으로 기록하지 않음. 기능 커밋 없음; 실패 기록 커밋 69f3cc2.
@@ -295,6 +301,14 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 - 변경 전: A02~A04 각 78개 반복 발판, 약 54u 높이. 자동 순방향 368.20초(Validation/S1-09-N2-B-05.txt)는 반복으로 목표 시간을 채운 근거이며 좋은 레벨 흐름의 증거가 아님.
 - 사용자 판단: 반복 이동 금지·방별 역할 위반으로 폐기. 역방향 실패 기록은 폐기된 레이아웃 기준으로 보존.
 - 변경 후: 36×14u 빈 방·배치 프리팹, 사용자 직접 레벨 제작 대기. 시간·동선·재미 개선은 미검증이며 Before-After 후보.
+
+### CAM-001 — 사용자 관찰로 선행 1u → 0u
+
+- Before: 선행 1u·감쇠 0.15s에서 좌우 전환 시 급이동.
+- 가설: 방향 전환 시 기준점 2u 순간 이동.
+- 변경: 선행 1→0 단일 변경, 직교 5.5u·감쇠 0.15s 유지.
+- After: 사용자 A01 키보드 플레이에서 해소 보고(2026-10-02). 남은 확인: 착지 지점이 화면 밖으로 나가는 구간. S1-06 REVIEW 유지.
+- CinemachineCamera가 Brain 하위인 구조 경고는 기록만 하고 구조 변경하지 않음.
 
 ## Resource Register
 

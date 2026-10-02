@@ -796,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCameraRig
   orthographicSize: 5.5
-  horizontalLead: 1
+  horizontalLead: 0
   damping: 0.15
   boundary: {fileID: 1504557806}
 --- !u!114 &1858870709
