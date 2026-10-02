@@ -54,6 +54,18 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | T2 | Health / CombatTest | REVIEW | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
 | T3 | 기본 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
 | T4 | E1 순찰형 / CombatTest | REVIEW | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
+### Sprint 2 승인 작업 — 2026-10-02
+
+| ID | Task | Status | Dependency | User Review / Done Criteria |
+| --- | --- | --- | --- | --- |
+| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | TODO | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
+| S2-02 | A05 대시 획득·안전 연습 | TODO | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
+| S2-03 | A03 G-D·B01 자리 | TODO | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
+| S2-04 | 단일 슬롯 저장·Menu 이어하기 | TODO | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
+| S2-05 (제안) | Core Loop 통합 관찰·재방문 검증 | TODO | 별도 사용자 승인 | A05→A03 귀환·게이트·사망/Continue·이월 체감 검토; 이번 실행 미승인 |
+| S2-06 (제안) | Sprint 2 빌드·Gate 판단 | TODO | 별도 사용자 승인 | PRD 저장 안전 계약·입력·통합 체감 검증 및 사용자 판단; 이번 실행 미승인 |
+
+이번 구현은 표의 S2-01~04와 성공 단계 최종 빌드만 승인. 향후 Sprint 2 로드맵 범위는 제안 TODO이며 콘텐츠 추가를 승인하지 않음. 기존 블록·스폰·CP·문 위치 보존, 새 방/출구/스폰만 지정 범위 추가. 실패 1회 수정 후 재실패 시 단계 복원·의존 단계 건너뜀. 회귀는 S1-02/04/07/08, 자동 이동 휴리스틱 사용 금지.
 ## Human Review
 
 ### 2026-09-30 Movement Review — 사용자 수락 완료
@@ -159,6 +171,8 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
 ## Decisions Needed
+
+2026-10-02 P0 검사 보정: S1-04 마지막 중복 점프 비교가 120fps에서 물리 틱 없이 실행되어 첫 회귀 실패. 게임 코드/수치 변경 없이 입력→FixedUpdate 대기를 1회 보완, P0-rerun S1-02/04/07/08 PASS. 첫 실패 로그와 assertion 보존. 사용자 추가 판단 불필요, 검사 보정만 적용.
 
 DEC-S2-PRE (2026-10-01 사용자 승인): Sprint 1 Gate 전 T1~T4 시스템 선행 구현을 DashTest/CombatTest 전용 씬에서만 허용. A01~A04 통합·S1-G·빌드·Sprint 2 콘텐츠 확장은 승인하지 않음. Task별 검증·입력 회귀, 실패 1회 수정 후 재실패 시 해당 Task 복원, 의존 Task 건너뜀, 로컬 커밋만.
 

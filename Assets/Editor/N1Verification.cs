@@ -349,9 +349,12 @@ public sealed class N1VerificationRunner : MonoBehaviour
         }
         yield return ResetAt(new Vector2(40, 1.32f));
         yield return Keys(Key.Space);
+        yield return new WaitForFixedUpdate();
         yield return Keys();
+        yield return new WaitForFixedUpdate();
         float velocity = body.linearVelocity.y;
         yield return Keys(Key.Space);
+        yield return new WaitForFixedUpdate();
         Check(body.linearVelocity.y < velocity, "coyote cannot reuse consumed ground jump");
         yield return Keys();
     }
