@@ -1,0 +1,10 @@
+C3 report interpretation / preserved original evidence
+The original result is FAIL: forward A01 automatic traversal stopped at (7.64,2.44), reverse A04 stopped at (24.37,1.93), both at the 35s test deadline.
+Remaining forward room times (A02/A03/A04) and reverse room times (A03/A02/A01) were NOT measured because the first segment did not complete.
+These are failures of the heuristic input traversal, not proof of impossible human paths. User layouts were not changed.
+A02 physical pit fall -> CP-A01/A01 return PASS, elapsed 0.796s, arrival (3.50,1.81).
+Corrected interpretation of the A03 jump-height line: 2.400u is the continuous estimate, not an upper bound for the discrete PlayerMotor.
+At fixedDeltaTime=0.02, a conservative discrete bound is v²/(2g)+v*dt = 2.640u; prior actual validated peak is 2.520u.
+Both the 4u floor-to-shelf rise and the 6u shelf-to-gate-top rise exceed 2.640u; this correction does not change the structural gate conclusion.
+Geometry audit and humanoid/pad input remain separate; user forward/reverse play is still required.
+No layout, tuning, prefab or runtime code was modified in C3.

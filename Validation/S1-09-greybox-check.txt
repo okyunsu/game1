@@ -1,0 +1,154 @@
+FAIL C3 report only; no layout fixes
+MEASURE A01 block Ground: x=[0.000,36.000] y=[0.000,1.000] top=1.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ground
+MEASURE A01 block Left Wall: x=[0.000,1.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Left Wall
+MEASURE A01 block Landing: x=[8.000,12.000] y=[1.000,2.000] top=2.000; layer=6, trigger=False
+PASS: terrain Ground/solid Landing
+MEASURE A01 block Ceiling: x=[12.000,16.000] y=[1.000,4.000] top=4.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ceiling
+MEASURE A01 block Ceiling (1): x=[18.500,21.500] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ceiling (1)
+MEASURE A01 block Ceiling (2): x=[24.500,27.500] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ceiling (2)
+MEASURE A01 block Right Wall: x=[35.000,36.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Right Wall
+MEASURE A01 pair Ground->Left Wall: horizontal gap=-36.000u (negative=overlap), required upward rise=12.000u
+MEASURE A01 pair Ground->Landing: horizontal gap=-28.000u (negative=overlap), required upward rise=1.000u
+MEASURE A01 pair Ground->Ceiling: horizontal gap=-24.000u (negative=overlap), required upward rise=3.000u
+MEASURE A01 pair Ground->Ceiling (1): horizontal gap=-17.500u (negative=overlap), required upward rise=2.000u
+MEASURE A01 pair Ground->Ceiling (2): horizontal gap=-11.500u (negative=overlap), required upward rise=2.000u
+MEASURE A01 pair Ground->Right Wall: horizontal gap=-1.000u (negative=overlap), required upward rise=12.000u
+MEASURE A01 pair Left Wall->Landing: horizontal gap=7.000u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Left Wall->Ceiling: horizontal gap=11.000u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Left Wall->Ceiling (1): horizontal gap=17.500u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Left Wall->Ceiling (2): horizontal gap=23.500u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Left Wall->Right Wall: horizontal gap=34.000u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Landing->Ceiling: horizontal gap=0.000u (negative=overlap), required upward rise=2.000u
+MEASURE A01 pair Landing->Ceiling (1): horizontal gap=6.500u (negative=overlap), required upward rise=1.000u
+MEASURE A01 pair Landing->Ceiling (2): horizontal gap=12.500u (negative=overlap), required upward rise=1.000u
+MEASURE A01 pair Landing->Right Wall: horizontal gap=23.000u (negative=overlap), required upward rise=11.000u
+MEASURE A01 pair Ceiling->Ceiling (1): horizontal gap=2.500u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Ceiling->Ceiling (2): horizontal gap=8.500u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Ceiling->Right Wall: horizontal gap=19.000u (negative=overlap), required upward rise=9.000u
+MEASURE A01 pair Ceiling (1)->Ceiling (2): horizontal gap=3.000u (negative=overlap), required upward rise=0.000u
+MEASURE A01 pair Ceiling (1)->Right Wall: horizontal gap=13.500u (negative=overlap), required upward rise=10.000u
+MEASURE A01 pair Ceiling (2)->Right Wall: horizontal gap=7.500u (negative=overlap), required upward rise=10.000u
+PASS: A01 Spawn FromLeft player footprint clear at (3.50, 1.81, 0.00)
+PASS: A01 Spawn Entry player footprint clear at (3.50, 1.81, 0.00)
+PASS: A01 Spawn FromRight player footprint clear at (32.50, 1.81, 0.00)
+PASS: A01 Spawn CP-A01 player footprint clear at (3.50, 1.81, 0.00)
+PASS: unique checkpoint CP-A01
+MEASURE A02 block Ground: x=[0.000,17.000] y=[0.000,1.000] top=1.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ground
+MEASURE A02 block Left Wall: x=[0.000,1.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Left Wall
+MEASURE A02 block A02_Ceiling: x=[4.000,9.000] y=[4.600,5.600] top=5.600; layer=6, trigger=False
+PASS: terrain Ground/solid A02_Ceiling
+MEASURE A02 block A02_Hurdle: x=[6.000,7.000] y=[1.000,2.000] top=2.000; layer=6, trigger=False
+PASS: terrain Ground/solid A02_Hurdle
+MEASURE A02 block A02_LedgeHigh: x=[11.000,14.000] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid A02_LedgeHigh
+MEASURE A02 block Ground Right: x=[19.000,36.000] y=[0.000,1.000] top=1.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ground Right
+MEASURE A02 block A02_LedgeAfterPit: x=[22.000,24.000] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid A02_LedgeAfterPit
+MEASURE A02 block Right Wall: x=[35.000,36.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Right Wall
+MEASURE A02 pair Ground->Left Wall: horizontal gap=-17.000u (negative=overlap), required upward rise=12.000u
+MEASURE A02 pair Ground->A02_Ceiling: horizontal gap=-13.000u (negative=overlap), required upward rise=4.600u
+MEASURE A02 pair Ground->A02_Hurdle: horizontal gap=-11.000u (negative=overlap), required upward rise=1.000u
+MEASURE A02 pair Ground->A02_LedgeHigh: horizontal gap=-6.000u (negative=overlap), required upward rise=2.000u
+MEASURE A02 pair Ground->Ground Right: horizontal gap=2.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Ground->A02_LedgeAfterPit: horizontal gap=5.000u (negative=overlap), required upward rise=2.000u
+MEASURE A02 pair Ground->Right Wall: horizontal gap=18.000u (negative=overlap), required upward rise=12.000u
+MEASURE A02 pair Left Wall->A02_Ceiling: horizontal gap=3.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Left Wall->A02_Hurdle: horizontal gap=5.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Left Wall->A02_LedgeHigh: horizontal gap=10.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Left Wall->Ground Right: horizontal gap=18.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Left Wall->A02_LedgeAfterPit: horizontal gap=21.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair Left Wall->Right Wall: horizontal gap=34.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Ceiling->A02_Hurdle: horizontal gap=-3.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Ceiling->A02_LedgeHigh: horizontal gap=2.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Ceiling->Ground Right: horizontal gap=10.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Ceiling->A02_LedgeAfterPit: horizontal gap=13.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Ceiling->Right Wall: horizontal gap=26.000u (negative=overlap), required upward rise=7.400u
+MEASURE A02 pair A02_Hurdle->A02_LedgeHigh: horizontal gap=4.000u (negative=overlap), required upward rise=1.000u
+MEASURE A02 pair A02_Hurdle->Ground Right: horizontal gap=12.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_Hurdle->A02_LedgeAfterPit: horizontal gap=15.000u (negative=overlap), required upward rise=1.000u
+MEASURE A02 pair A02_Hurdle->Right Wall: horizontal gap=28.000u (negative=overlap), required upward rise=11.000u
+MEASURE A02 pair A02_LedgeHigh->Ground Right: horizontal gap=5.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_LedgeHigh->A02_LedgeAfterPit: horizontal gap=8.000u (negative=overlap), required upward rise=0.000u
+MEASURE A02 pair A02_LedgeHigh->Right Wall: horizontal gap=21.000u (negative=overlap), required upward rise=10.000u
+MEASURE A02 pair Ground Right->A02_LedgeAfterPit: horizontal gap=-14.000u (negative=overlap), required upward rise=2.000u
+MEASURE A02 pair Ground Right->Right Wall: horizontal gap=-1.000u (negative=overlap), required upward rise=12.000u
+MEASURE A02 pair A02_LedgeAfterPit->Right Wall: horizontal gap=11.000u (negative=overlap), required upward rise=10.000u
+PASS: A02 Spawn FromLeft player footprint clear at (3.50, 1.81, 0.00)
+PASS: A02 Spawn FromRight player footprint clear at (32.50, 1.81, 0.00)
+PASS: A02 Spawn Entry player footprint clear at (3.50, 1.81, 0.00)
+MEASURE A03 block Ground: x=[0.000,36.000] y=[0.000,1.000] top=1.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ground
+MEASURE A03 block Left Wall: x=[0.000,1.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Left Wall
+MEASURE A03 block A03_Step: x=[7.000,9.000] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid A03_Step
+MEASURE A03 block A03_Shelf: x=[11.000,35.000] y=[4.000,5.000] top=5.000; layer=6, trigger=False
+PASS: terrain Ground/solid A03_Shelf
+MEASURE A03 block A03_GateGD: x=[16.000,17.000] y=[5.000,11.000] top=11.000; layer=6, trigger=False
+PASS: terrain Ground/solid A03_GateGD
+MEASURE A03 block Right Wall: x=[35.000,36.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Right Wall
+MEASURE A03 pair Ground->Left Wall: horizontal gap=-36.000u (negative=overlap), required upward rise=12.000u
+MEASURE A03 pair Ground->A03_Step: horizontal gap=-29.000u (negative=overlap), required upward rise=2.000u
+MEASURE A03 pair Ground->A03_Shelf: horizontal gap=-25.000u (negative=overlap), required upward rise=4.000u
+MEASURE A03 pair Ground->A03_GateGD: horizontal gap=-20.000u (negative=overlap), required upward rise=10.000u
+MEASURE A03 pair Ground->Right Wall: horizontal gap=-1.000u (negative=overlap), required upward rise=12.000u
+MEASURE A03 pair Left Wall->A03_Step: horizontal gap=6.000u (negative=overlap), required upward rise=0.000u
+MEASURE A03 pair Left Wall->A03_Shelf: horizontal gap=10.000u (negative=overlap), required upward rise=0.000u
+MEASURE A03 pair Left Wall->A03_GateGD: horizontal gap=15.000u (negative=overlap), required upward rise=0.000u
+MEASURE A03 pair Left Wall->Right Wall: horizontal gap=34.000u (negative=overlap), required upward rise=0.000u
+MEASURE A03 pair A03_Step->A03_Shelf: horizontal gap=2.000u (negative=overlap), required upward rise=2.000u
+MEASURE A03 pair A03_Step->A03_GateGD: horizontal gap=7.000u (negative=overlap), required upward rise=8.000u
+MEASURE A03 pair A03_Step->Right Wall: horizontal gap=26.000u (negative=overlap), required upward rise=10.000u
+MEASURE A03 pair A03_Shelf->A03_GateGD: horizontal gap=-19.000u (negative=overlap), required upward rise=6.000u
+MEASURE A03 pair A03_Shelf->Right Wall: horizontal gap=0.000u (negative=overlap), required upward rise=8.000u
+MEASURE A03 pair A03_GateGD->Right Wall: horizontal gap=18.000u (negative=overlap), required upward rise=2.000u
+PASS: A03 Spawn Entry player footprint clear at (3.50, 1.81, 0.00)
+PASS: A03 Spawn FromRight player footprint clear at (32.50, 1.81, 0.00)
+PASS: A03 Spawn FromLeft player footprint clear at (3.50, 1.81, 0.00)
+PASS: A03 Spawn CP-A03 player footprint clear at (16.00, 1.81, 0.00)
+PASS: unique checkpoint CP-A03
+MEASURE A04 block Left Wall: x=[0.000,1.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Left Wall
+MEASURE A04 block Ground: x=[0.000,36.000] y=[0.000,1.000] top=1.000; layer=6, trigger=False
+PASS: terrain Ground/solid Ground
+MEASURE A04 block A04_Step: x=[7.000,9.000] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid A04_Step
+MEASURE A04 block A04_Arena: x=[12.000,24.000] y=[1.000,3.000] top=3.000; layer=6, trigger=False
+PASS: terrain Ground/solid A04_Arena
+MEASURE A04 block Right Wall: x=[35.000,36.000] y=[1.000,13.000] top=13.000; layer=6, trigger=False
+PASS: terrain Ground/solid Right Wall
+MEASURE A04 pair Left Wall->Ground: horizontal gap=-1.000u (negative=overlap), required upward rise=0.000u
+MEASURE A04 pair Left Wall->A04_Step: horizontal gap=6.000u (negative=overlap), required upward rise=0.000u
+MEASURE A04 pair Left Wall->A04_Arena: horizontal gap=11.000u (negative=overlap), required upward rise=0.000u
+MEASURE A04 pair Left Wall->Right Wall: horizontal gap=34.000u (negative=overlap), required upward rise=0.000u
+MEASURE A04 pair Ground->A04_Step: horizontal gap=-29.000u (negative=overlap), required upward rise=2.000u
+MEASURE A04 pair Ground->A04_Arena: horizontal gap=-24.000u (negative=overlap), required upward rise=2.000u
+MEASURE A04 pair Ground->Right Wall: horizontal gap=-1.000u (negative=overlap), required upward rise=12.000u
+MEASURE A04 pair A04_Step->A04_Arena: horizontal gap=3.000u (negative=overlap), required upward rise=0.000u
+MEASURE A04 pair A04_Step->Right Wall: horizontal gap=26.000u (negative=overlap), required upward rise=10.000u
+MEASURE A04 pair A04_Arena->Right Wall: horizontal gap=11.000u (negative=overlap), required upward rise=10.000u
+PASS: A04 Spawn FromLeft player footprint clear at (3.50, 1.81, 0.00)
+PASS: A04 Spawn Entry player footprint clear at (3.50, 1.81, 0.00)
+PASS: A04 Spawn FromRight player footprint clear at (32.50, 1.81, 0.00)
+PASS: exactly CP-A01 and CP-A03
+FAIL: forward route A01 reached next room; position=(7.64, 2.44); room=A01
+MEASURE: A01 forward time=35.001s; virtual input; no teleport during this segment
+NOTE: reverse test setup loads A04 because forward test did not reach it
+FAIL: reverse route A04 reached next room; position=(24.37, 1.93); room=A04
+MEASURE: A04 reverse time=35.000s; virtual input; no teleport during this segment
+PASS: A02 pit fall returns to checkpoint
+MEASURE: pit return elapsed=0.796s, checkpoint=CP-A01, destination=A01, position=(3.50, 1.81); setup starts above actual pit
+MEASURE A03: floor->shelf rise=4.000u; shelf->gate top rise=6.000u; continuous upper bound jump height=2.400u; actual discrete peak <= bound
+PASS: A03 right shelf unreachable by floor jump or over-gate jump; solid continuous shelf blocks under-gate ascent
+LIMIT: heuristic virtual keyboard traversal is evidence of successful paths, but an automatic traversal failure alone is not proof that no human path exists. No exhaustive input search; gate check uses authored geometry and jump-height upper bound.
