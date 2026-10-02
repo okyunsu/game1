@@ -14,11 +14,13 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
+S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 Slice 플레이 검토 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
 ## Current Tasks
+
+2026-10-02 승인 C0~C4만 완료: 사용자 A01 보존, 카메라 lead0, A02~A04 지정 좌표 배치, C3 보고 전용 검증, CombatTest E1 재시도. push·S1-10 빌드·S1-G·Sprint 2 콘텐츠 미실시.
 
 2026-10-01 야간 승인 DEC-S2-PRE: T0 재설정 후 T1 Dash, T2 Health, T3 Attack(T2 성공), T4 E1(T2·T3 성공)를 순차 검증·로컬 커밋. push 없음. Sprint 1 Gate 전 시스템 선행은 전용 테스트 씬에만 허용하며 T0 이외 A01~A04 통합 금지.
 
@@ -33,7 +35,7 @@ S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10
 | S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 | S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
 | S1-06 | Camera | REVIEW | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
-| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 36×14u, 전체 양방향·안전 도착·단일 플레이어·입력 초기화 재검증. Tilemap DEFERRED |
+| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 기준 양방향·안전 도착·단일 플레이어·입력 초기화 PASS 이력. 새 배치 왕복은 C3 미통과, S1-09 검토 필요. Tilemap DEFERRED |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | DOING | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1, A02~A04 사용자 설계 좌표 v1을 Codex가 배치. 사용자 Slice 플레이 후 수정 예정 |
@@ -169,6 +171,15 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 2026-10-02 C3 — 배치 보고만 / 자동 경로 FAIL
+
+- [S1-09-greybox-check.txt](Validation/S1-09-greybox-check.txt) 및 [해석 정정·한계](Validation/S1-09-greybox-check-notes.txt). 씬·배치·수치 수정 없음. S1-02/04-night-C3.txt 회귀 PASS.
+- 자동 순방향 A01은 (7.64,2.44), 역방향 A04는 (24.37,1.93)에서 각각 35초 제한까지 미도달. 뒤 방 통과 시간은 미측정. 휴리스틱 입력 검사 실패만으로 사용자 경로 불가능·지형 결함을 확정하지 않음.
+- 모든 RoomSpawn의 0.8×1.6u 플레이어 범위 Ground 겹침 없음, CP-A01·CP-A03 두 개뿐·빈/중복 ID 없음. 수집한 비트리거 지형 박스의 Ground 레이어 PASS; 수집 단계에서 트리거를 제외하므로 잘못 트리거로 지정한 지형까지 전수 통과로 해석하지 않음.
+- A02 실제 구멍 낙하→CP-A01(A01 3.50,1.81) 복귀 0.796초 PASS. A03 바닥→선반 4u·선반→격자 상단 6u, 연속 선반의 아래 통로 차단을 확인. 보수적 이산 점프 상한 2.640u(기존 실측 2.520u)보다 높아 오른쪽 선반 직행 차단을 구조로 확인. 원본의 연속 추정 2.400u를 이산 상한이라고 쓴 부분은 별도 notes에서 정정, 원본 보존.
+- 사용자 순·역방향 플레이 및 모든 방 통과 시간·착지 시야는 미검증. S1-09 DOING, S1-06 REVIEW, S1-10 TODO. 배치 수정 승인은 별도 필요.
+
 
 ### 2026-10-02 C4 — E1 재시도 PASS / REVIEW
 
@@ -332,20 +343,18 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-01 밤 → 2026-10-02 새벽, 야간 로컬 작업 종료. push 없음.
+2026-10-02 C0~C4 종료. 로컬 커밋만, push 없음. S1-06 REVIEW / S1-09 DOING(사용자 Slice 플레이 검토 대기) / S1-10 TODO / T1~T4 REVIEW. S1-G·Sprint 2 콘텐츠·빌드 미실시.
 
-| Task | 결과 / 상태 | 로컬 커밋 | Validation 파일 |
+| 단계 | 결과 | 로컬 커밋 | 새 Validation |
 | --- | --- | --- | --- |
-| T0 빈 방·부품 | 성공. S1-07 DONE, S1-09 DOING 사용자 배치 대기, S1-10 TODO | 6acb0b6 | Verification-night-T0.txt; S1-07/08/02/04-night-T0.txt |
-| T1 Dash | 성공 / REVIEW. 30/60/120fps 거리 모두 2.880u | 6624ed3 | Verification-night-T1.txt; S1-02/04-night-T1.txt |
-| T2 Health | 성공 / REVIEW. HP·무적·넉백·사망/KillZone 복귀 | 2c518f5 | Verification-night-T2.txt; S1-08/02/04-night-T2.txt |
-| T3 기본 공격 | 성공 / REVIEW. 단발·타겟당1회·방향·공중 이동·취소 | 2f4d623 | Verification-night-T3.txt; S1-02/04-night-T3.txt |
-| T4 E1 | 실패 / BLOCKED. 2차 검사 미완료로 모든 변경 복원 | 69f3cc2 (로그만) | Verification-night-T4.txt; Verification-night-T4-rerun-stopped.txt; T4-rerun-timeout.log; S1-02/04-night-T4-rollback.txt |
+| C0 사용자 A01 | 무수정 보존, 이후 변경 없음 | 1c55594 | S1-02-night-C0.txt; S1-04-night-C0.txt (C1 커밋에 증거 보존) |
+| C1 카메라 | PASS, 4방 lead0 / size5.5 / damping0.15, S1-06 REVIEW | d221add | S1-06-lead0.txt; S1-02-night-C1.txt; S1-04-night-C1.txt |
+| C2 지정 배치 | PASS, A02 4개·A03 3개·A04 2개만 추가, 기존 오브젝트 유지 | c2f85c5 | C2-layout.txt; S1-02-night-C2.txt; S1-04-night-C2.txt |
+| C3 보고 전용 | 자동 경로 FAIL, 배치 수정 없음. 안전 스폰·CP·구멍 복귀 확인 | fbea9b1 | S1-09-greybox-check.txt; S1-09-greybox-check-notes.txt; S1-02-night-C3.txt; S1-04-night-C3.txt |
+| C4 CombatTest E1 | PASS / REVIEW, NIGHT-T4-001 검사 원인 재현·수정 | 0785b1f | Verification-T4-retry.txt; Verification-night-T1-C4.txt; Verification-night-T2-C4.txt; Verification-night-T3-C4.txt; S1-02-night-C4.txt; S1-04-night-C4.txt |
 
-- **범위:** DEC-S2-PRE로 시스템 선행을 전용 Test 씬에만 허용. A01~A04는 T0 빈 방만 반영, 공격·Dash·Health·E1 미통합. S1-G·Slice 빌드·Sprint 2 콘텐츠는 미실시. 기존 Player.prefab 설정·MovementTest·Packages·ProjectVersion·PlayerTuning 기존 값 보존, Dash 새 필드만 추가.
-- **주요 파일:** Level의 Landing/Wall/Ceiling/KillZone/Door/GateGD prefab, A01~A04·RoomLabel. DashTestPlayer/CombatTestPlayer variants, PlayerDash/Health/Attack·DamageBlock·DummyTarget·CombatTuning. E1 관련 Assets는 복원·삭제. RoomSession 사망 시 선택적 Health 복원. SliceVerification/SliceRoute는 UNITY_EDITOR 조건, 반복 Scene 생성 도구는 삭제.
-- **사용자 아침 확인:** A01을 열어 Level 프리팹을 배치하고 Rect Tool/Scale로 크기를 바꾸는 편집 동작, 방 이름·문 표시·CP-A01/A03·A02 중앙 위험 확인. Scene Play 변경은 Stop 후 재입력·저장. 공통 prefab은 Overrides Apply, 공통 수치는 ScriptableObject에서 Play 종료 후 값 확인·저장.
-- **T1 수락:** Assets/Scenes/Test/DashTest.unity를 열어 K/Left Shift·패드 B, 입력/바라보는 방향, 벽·낙하·공중 재사용·Pause 후 재개 감각. 권한 true는 테스트 variant에만 있음.
-- **T2/T3 수락:** Assets/Scenes/Test/CombatTest.unity에서 HP·점멸·넉백·오렌지 피해 블록·빨간 KillZone·CP 복귀, J/패드 X 단발 공격과 더미 HP·공중 이동·Dash/피격 취소. 공격 판정은 PlayerAttack 선택 시 Gizmo. 테스트 카메라는 고정 위치이며 전체 방 화면 검수·실물 패드는 미실시. E1은 없음.
-- **문제·다음:** NIGHT-T4-001 재개 판단 필요. Slice 배치는 사용자 작업 후 S1-06 카메라·동선·출구 인지(OBS-001)·키보드/패드 A 점프 일관성 검토, 그 뒤 S1-10 재빌드. 기존 Builds/Slice와 S1-10 기록은 폐기된 레이아웃 기준. 검증은 가상 장치 자동 검사이며 사용자 감각 수락을 대체하지 않음.
-- **Git:** 모든 변경은 로컬 커밋. 이전 실패 기록 3d84246도 유지. 사용자가 아침에 직접 push한다.
+- **핵심 변경:** A01은 사용자 배치 C0 내용 그대로(이미 lead0). A02~A04는 lead0 및 지정 Level 프리팹 9개. RoomCameraRig 기본 lead0·N2Verification 기대값, GAME_DESIGN 17/22절·CAM-001 반영. EnemyTuning/E1Tuning·EnemyPatrol·EnemyRespawn·E1 prefab은 CombatTest에만 적용. NightTests와 C4Verification은 방 전환 후 유지. 일회성 작성 도구 제거.
+- **문제·한계:** 자동 순방향 A01 (7.64,2.44)·역방향 A04 (24.37,1.93)에서 각 35초 미도달. 다른 방 통과 시간 미측정, 사용자 플레이 불가능으로 확정하지 않음. C3의 트리거 지형 전수 판정·시야·실물 패드 확인 미실시. 사용자 배치 수정 없이 실패 증거 보존. A03 접근 차단은 구조·점프 상한 기반 확인이며 모든 입력 조합 검색은 아님.
+- **사용자 확인:** Assets/Scenes/A01을 열고 A01→A04 및 A04→A01 직접 플레이. 카메라 급반전·필수 착지 지점 시야, A02 구멍 낙하 후 체크포인트 복귀 거리(자동 확인은 CP-A01까지 0.796초), 문·방 이름과 A03 격자 너머 길 인지를 확인. 키보드와 패드 A의 점프 일관성 비교. E1은 Assets/Scenes/Test/CombatTest에서 순찰·접촉 피격·J/패드 X 두 번 공격 제거·사망 후 초기화 감각을 수락/반려. DashTest의 T1 및 CombatTest의 T2/T3 REVIEW도 유지.
+- **수정 위치:** 레벨은 Scene의 배치·Scene patrol endpoints, 카메라는 Main Camera / RoomCameraRig. 레벨 크기는 Assets/Prefabs/Level 프리팹 인스턴스의 Rect Tool 또는 Scale. E1 공통 수치는 Assets/ScriptableObjects/E1Tuning.asset(HP2·1.8u/s·피해1·넉백3u/s). Play에서 바꾼 값은 Stop 후 다시 입력·저장, 공통 prefab 변경은 의도한 경우만 Overrides Apply.
+- **보존·다음:** PlayerTuning/CombatTuning 기존 값·Player.prefab·MovementTest·Packages·ProjectVersion·Level prefab 원본 보호 확인. A01 C0 대비 diff 없음. 기존 Validation 덮어쓰기 없음. 승인 범위 종료, 다음 작업은 사용자 검토·명시 승인 후에만 진행.
