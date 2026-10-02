@@ -1,0 +1,24 @@
+FAIL S2-02
+PASS: transition A03
+PASS: CP-A03 selected before pickup
+PASS: transition A04
+PASS: exit to A05
+PASS: physical exit arrival A05
+PASS: authored arrival spawn A05/FromLeft
+PASS: A05 starts unowned
+PASS: Dash input before pickup ignored
+PASS: authored pickup x10 and three-second notice
+PASS: physical pickup grants Dash without changing checkpoint
+PASS: pickup visual and contact removed
+PASS: owned Dash works
+MEASURE practice A x=18..21, top=3; B x=26..29, top=3; gap=5
+PASS: authored practice gap exactly 5u
+PASS: prescribed full jump lands mode 0
+MEASURE same-height full jump mode=0, horizontal range=4.680u; D+Space held; dash at 0.10s in mode1
+PASS: prescribed full jump lands mode 1
+MEASURE same-height full jump mode=1, horizontal range=4.968u; D+Space held; dash at 0.10s in mode1
+FAIL: System.Exception: ordinary jump <5u; jump+Dash >5u
+  at S2Runner.Check (System.Boolean ok, System.String msg) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:19 
+  at S2Runner+<A05>d__12.MoveNext () [0x008d4] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:42 
+  at S2Runner+<Start>d__4.MoveNext () [0x00080] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:21 
+FAIL 1

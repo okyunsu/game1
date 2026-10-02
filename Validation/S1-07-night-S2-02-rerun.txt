@@ -1,0 +1,84 @@
+PASS S1-07; Unity=6000.3.24f1; UTC=2026-10-02T15:05:09.2819218Z
+PASS: direct room start bootstraps one persistent session
+PASS: authored graph exit to A02
+MEASURE: route A01->A02: room=A02, body=(3.53, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A01 -> A02
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A02 body=(3.53, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromLeft
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: authored graph exit to A03
+MEASURE: route A02->A03: room=A03, body=(3.53, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A02 -> A03
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A03 body=(3.53, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromLeft
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: authored graph exit to A04
+MEASURE: route A03->A04: room=A04, body=(3.53, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A03 -> A04
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A04 body=(3.53, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromLeft
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: authored graph exit to A03
+MEASURE: route A04->A03: room=A03, body=(32.47, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A04 -> A03
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A03 body=(32.47, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromRight
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: authored graph exit to A02
+MEASURE: route A03->A02: room=A02, body=(32.47, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A03 -> A02
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A02 body=(32.47, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromRight
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: authored graph exit to A01
+MEASURE: route A02->A01: room=A01, body=(32.50, 1.81), move=(0.00, 0.00), paused=False, transition=False, lastError=
+PASS: physical exit trigger completed A02 -> A01
+PASS: same player instance survives transition
+PASS: previous room unloaded
+PASS: one GameState and playable timeScale
+PASS: transition clears pending jump timestamp
+MEASURE: arrival A01 body=(32.50, 1.81) velocity=(0.00, 0.00) grounded=True
+PASS: arrival settles on safe ground without wall sticking
+PASS: arrival remains at the specified destination Spawn ID FromRight
+PASS: one active room camera stays within PolygonCollider2D boundary
+PASS: invalid scene rejected without loading
+PASS: invalid scene retains playable source
+PASS: valid scene with bad spawn tested transactionally
+PASS: transition or rollback finishes within 10s
+PASS: invalid spawn retains old room and records reason
+PASS: mismatched Room ID request starts validation
+PASS: transition or rollback finishes within 10s
+PASS: wrong room ID rollback restores input/time
+PASS: pause cannot be overwritten by room request
+PASS: transition with held jump starts
+PASS: transition lock ignores Pause and blocks Gameplay
+PASS: transition or rollback finishes within 10s
+PASS: held pre-transition jump cannot leak at arrival
+PASS: fresh post-transition jump works once
+PASS: Ground block uses solid Ground layer and SpriteRenderer
+PASS: Hazard block uses Ground layer trigger; death behavior deferred to S1-08

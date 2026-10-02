@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/CombatTest.unity
     guid: 95f21b7a2682bf843855d475b484ea6b
+  - enabled: 1
+    path: Assets/Scenes/A05.unity
+    guid: 3d3c7b14879b2ed4ea2862dc2386df38
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

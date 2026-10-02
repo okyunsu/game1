@@ -59,7 +59,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
 | S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | REVIEW | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
-| S2-02 | A05 대시 획득·안전 연습 | TODO | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
+| S2-02 | A05 대시 획득·안전 연습 | REVIEW | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | TODO | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
 | S2-04 | 단일 슬롯 저장·Menu 이어하기 | TODO | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
 | S2-05 (제안) | Core Loop 통합 관찰·재방문 검증 | TODO | 별도 사용자 승인 | A05→A03 귀환·게이트·사망/Continue·이월 체감 검토; 이번 실행 미승인 |
@@ -172,6 +172,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+S2-02: Editor 직접 Play에서 새 방 전환이 가능하도록 EditorBuildSettings에 A05를 추가했다(현재 승인에서 해당 파일 수정 금지 없음). 배포 빌드는 스크립트의 명시 씬 목록 사용. 일반 최대 점프 MEASURE는 같은 높이 플레이어 중심 이동거리 기준이며 발판 끝 콜라이더 걸침·Coyote 극단 입력의 차단을 전수 증명하지 않음. 5u 지정 배치/수치는 유지하고 사용자 연습 체감 검토 때 확인.
+
+
 2026-10-02 P0 검사 보정: S1-04 마지막 중복 점프 비교가 120fps에서 물리 틱 없이 실행되어 첫 회귀 실패. 게임 코드/수치 변경 없이 입력→FixedUpdate 대기를 1회 보완, P0-rerun S1-02/04/07/08 PASS. 첫 실패 로그와 assertion 보존. 사용자 추가 판단 불필요, 검사 보정만 적용.
 
 DEC-S2-PRE (2026-10-01 사용자 승인): Sprint 1 Gate 전 T1~T4 시스템 선행 구현을 DashTest/CombatTest 전용 씬에서만 허용. A01~A04 통합·S1-G·빌드·Sprint 2 콘텐츠 확장은 승인하지 않음. Task별 검증·입력 회귀, 실패 1회 수정 후 재실패 시 해당 Task 복원, 의존 Task 건너뜀, 로컬 커밋만.
@@ -189,6 +192,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S2-02 A05 — PASS / REVIEW (2026-10-03)
+
+S2-02-A05.txt 첫 거리 검사 FAIL(점프 0.10초 뒤 Dash 4.968u), 지정 입력 0.30초 뒤 Dash로 한 번 보정한 S2-02-A05-rerun.txt PASS·FAIL 0. 일반 최대 같은 높이 중심 이동 4.680u<5, 점프+Dash 6.888u>5. 수치/5u 간격 변경 없음. A04/A05 실제 출구 왕복·도착 ID, 획득 전/후·3초 안내·CP 유지·재입장 미등장·사망 CP-A03+Dash 유지 PASS. S1-02/04/07/08-night-S2-02-rerun.txt 모두 PASS. 작성 도구 삭제.
+
 
 ### S2-01 실제 방 통합 — PASS / REVIEW
 

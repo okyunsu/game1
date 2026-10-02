@@ -91,6 +91,7 @@ public sealed class RoomSession : MonoBehaviour
         checkpointScene = room.gameObject.scene.path;
         checkpointSpawn = checkpoint.spawn.spawnId;
     }
+    public void GrantDash() { Player.GetComponent<PlayerDash>().hasDash = true; }
     public bool Die()
     {
         if (Transitioning || Respawning) return false;

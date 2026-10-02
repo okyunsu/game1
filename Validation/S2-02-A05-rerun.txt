@@ -1,0 +1,30 @@
+PASS S2-02-rerun
+PASS: transition A03
+PASS: CP-A03 selected before pickup
+PASS: transition A04
+PASS: exit to A05
+PASS: physical exit arrival A05
+PASS: authored arrival spawn A05/FromLeft
+PASS: A05 starts unowned
+PASS: Dash input before pickup ignored
+PASS: authored pickup x10 and three-second notice
+PASS: physical pickup grants Dash without changing checkpoint
+PASS: pickup visual and contact removed
+PASS: owned Dash works
+MEASURE practice A x=18..21, top=3; B x=26..29, top=3; gap=5
+PASS: authored practice gap exactly 5u
+PASS: prescribed full jump lands mode 0
+MEASURE same-height full jump mode=0, horizontal range=4.680u; D+Space held; dash at 0.30s in mode1
+PASS: prescribed full jump lands mode 1
+MEASURE same-height full jump mode=1, horizontal range=6.888u; D+Space held; dash at 0.30s in mode1
+PASS: ordinary jump <5u; jump+Dash >5u
+PASS: exit to A04
+PASS: physical exit arrival A04
+PASS: authored arrival spawn A04/FromRight
+PASS: exit to A05
+PASS: physical exit arrival A05
+PASS: authored arrival spawn A05/FromLeft
+PASS: owned pickup absent on reentry
+PASS: death after acquisition
+PASS: death preserves Dash and returns CP-A03
+FAIL 0
