@@ -1,0 +1,14 @@
+PASS T3-C4 Unity=6000.3.24f1
+PASS: J starts attack
+PASS: no damage before 0.08s startup
+PASS: two target colliders receive only one damage per attack
+PASS: holding J does not autofire
+PASS: cooldown prevents early repeated press
+PASS: attack direction fixed at start despite reversal
+PASS: airborne attack preserves horizontal movement
+PASS: attack before dash setup
+PASS: dash cancels attack then starts dash
+PASS: attack before damage setup
+PASS: damage immediately cancels attack
+PASS: gamepad X starts attack
+PASS: Pause clears attack

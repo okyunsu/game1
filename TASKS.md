@@ -14,7 +14,7 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 검증 실패·복원. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
+S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
@@ -47,7 +47,7 @@ S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10
 | T1 | Dash / DashTest | REVIEW | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
 | T2 | Health / CombatTest | REVIEW | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
 | T3 | 기본 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
-| T4 | E1 순찰형 / CombatTest | BLOCKED | T2:REVIEW, T3:REVIEW | 구현 미보존 | 검증 2회 실패로 복원. NIGHT-T4-001, 실패 기록만 커밋 |
+| T4 | E1 순찰형 / CombatTest | REVIEW | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
 ## Human Review
 
 ### 2026-09-30 Movement Review — 사용자 수락 완료
@@ -143,12 +143,14 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 검증: 빌드 2회 Succeeded, errors=0·warnings=0. 첫 런타임 검사에서 순방향 A04 도착 약 367.92초, A04 복귀·A03 역방향 완료 약 593.08초. 체크포인트·반복 사망 검사는 두 실행에서 통과했지만 전체 왕복은 실패. 파일 첫 줄의 `FAIL checkpoint/death`는 검사 전체 결과이며 사망 검사 자체의 실패를 뜻하지 않음.
 - 처리·영향: 동일 오류 반복 중단 규칙에 따라 추가 조사/수정 중단. S1-10 BLOCKED, 영향받는 S1-07·09는 DOING으로 되돌림. S1-08 DONE 유지. 수정 재개 판단과 왕복 재검증이 필요하며 S1-G·Sprint 2 미착수.
 - 증거: [전체 빌드 실행 실패](Validation/S1-10-runtime.txt), [집중 재현 실패](Validation/S1-10-focused.txt), [첫 빌드](Validation/S1-10-build.txt), [진단 빌드](Validation/S1-10-build-02.txt). 원시 로그는 로컬 Logs/S1-10-runtime.log·S1-10-focused.log.
-### NIGHT-T4-001 — 야간 E1 검증 실패·복원
+### NIGHT-T4-001 — 야간 E1 검증 실패 / C4 재시도 해결
 
-- T4 / BLOCKED / 테스트 검증. 첫 실행은 순찰·벽·낭떠러지 PASS 후 첫 실제 공격의 HP/넉백 assertion 실패. 한 번의 허용 수정으로 테스트 Transform/물리 위치 동기화·측정 추가.
-- 두 번째 실행은 CombatTest→DashTest 로드 뒤 종료 결과 미저장. Scene-local 검증 실행기가 이전 방 정리 때 제거된 것으로 추정. 실제 E1 기능 원인을 확정하지 않고 두 번째 실패로 처리.
-- T4 코드·E1 prefab/tuning·CombatTest 추가·검증 변경을 T3 기준으로 git restore, 새 Assets 삭제. E1 구현은 남아 있지 않음. 실패 기록: Verification-night-T4.txt, Verification-night-T4-rerun-stopped.txt, T4-rerun-timeout.log. 복원 회귀 S1-02/04-night-T4-rollback.txt PASS. 커밋 69f3cc2.
-- 다음: 사용자 판단 후 T4 재개. 이번 실행에서는 추가 수정 없음.
+- T4 / REVIEW / 테스트 검증 원인 해결(2026-10-02). 이전 69f3cc2에서 두 번 실패 후 구현을 복원한 이력과 실패 파일은 보존.
+- 첫 실패 재현 측정: body-only 이동 후 Rigidbody x=20, Transform x=34. Transform 기준 공격자 배치로 공격 범위 x=33.10~34.20, 실제 적 콜라이더 x=19.50~20.50. HP 2 유지·속도 0. 이전 실패와 일치하는 검사 배치 원인을 재현했으며, 기존 실패 로그만으로 당시 내부 좌표를 확정할 수는 없음.
+- 수정: 테스트의 Transform·Rigidbody 위치를 함께 맞추고 Physics2D.SyncTransforms. 변경 후 실제 J 공격 HP 2→1, 적용 직후·후속 샘플 모두 넉백 X=3u/s. 공격/이동/피격 수치 변경 없음.
+- 두 번째 실패 경로: 실행기 DontDestroyOnLoad로 수명 보장. 이 변경만 반영한 T1~T3 재검증 PASS, 최종 C4에서 CombatTest→DashTest→CombatTest 왕복과 E1 정리·재생성 PASS.
+- E1 코드·프리팹·E1Tuning은 CombatTest에만 보존. 순찰 x=15.975~23.031, 왕복 2회 방향 전환, 벽·낭떠러지 회전, 실제 공격 2타 제거, 접촉 피해·무적 중 중복 방지, KillZone 제거, 플레이어 사망 후 1개 HP2 초기화 PASS.
+- 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
 ## Decisions Needed
 
@@ -167,6 +169,13 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 2026-10-02 C4 — E1 재시도 PASS / REVIEW
+
+- NightTestRunner 수명 수정만 적용한 T1·T2·T3 각각 PASS: Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt.
+- 원인 재현과 수정 후 실제 공격 HP/속도, 순찰·벽·낭떠러지·접촉·KillZone·사망·방 재입장: [Verification-T4-retry.txt](Validation/Verification-T4-retry.txt) PASS, FAIL 0, 런타임 Error/Exception/Assert 0.
+- S1-02/04-night-C4.txt 입력·이동 회귀 PASS. CombatTest 외 E1 배치 없음, 기존 튜닝·Player.prefab·MovementTest·Packages·Level 프리팹 원본 보존. 실물 입력·사용자 감각 검토 미실시.
+
 
 ### 2026-10-02 C2 사용자 설계 좌표
 

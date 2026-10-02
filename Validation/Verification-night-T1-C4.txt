@@ -1,0 +1,40 @@
+PASS T1-C4 Unity=6000.3.24f1
+PASS: 30fps dash starts
+PASS: 30fps jump ignored during dash
+MEASURE 30fps dash distance=2.880u
+PASS: 30fps dash distance ~2.9u
+PASS: 30fps cooldown prevents immediate reuse
+PASS: 30fps wall cancels dash without penetration
+PASS: 30fps airborne dash starts
+PASS: 30fps gravity resumes after dash
+PASS: 30fps air reuse blocked after cooldown
+PASS: 60fps dash starts
+PASS: 60fps jump ignored during dash
+MEASURE 60fps dash distance=2.880u
+PASS: 60fps dash distance ~2.9u
+PASS: 60fps cooldown prevents immediate reuse
+PASS: 60fps wall cancels dash without penetration
+PASS: 60fps airborne dash starts
+PASS: 60fps gravity resumes after dash
+PASS: 60fps air reuse blocked after cooldown
+PASS: 120fps dash starts
+PASS: 120fps jump ignored during dash
+MEASURE 120fps dash distance=2.880u
+PASS: 120fps dash distance ~2.9u
+PASS: 120fps cooldown prevents immediate reuse
+PASS: 120fps wall cancels dash without penetration
+PASS: 120fps airborne dash starts
+PASS: 120fps gravity resumes after dash
+PASS: 120fps air reuse blocked after cooldown
+PASS: ability false ignores Dash
+PASS: Pause cancellation setup
+PASS: dash immediately cancelled by Pause
+PASS: gravity restored after Pause
+PASS: Transition cancellation setup
+PASS: dash immediately cancelled by Transition
+PASS: gravity restored after Transition
+PASS: Death cancellation setup
+PASS: dash immediately cancelled by Death
+PASS: gravity restored after Death
+PASS: gamepad B starts Gameplay dash
+PASS: UI B still cancels Pause
