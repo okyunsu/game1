@@ -1,0 +1,4 @@
+PASS S2-04 Editor direct/save failure
+PASS: A01 direct Play ignores existing Dash/CP-A03 save and disables disk saves
+PASS: checkpoint activation in direct Play preserves existing disk save
+PASS: injected write failure shows message, preserves original, next save retries successfully

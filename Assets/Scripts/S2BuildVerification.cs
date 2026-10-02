@@ -1,0 +1,48 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SceneManagement;
+public sealed class S2BuildVerification:MonoBehaviour
+{
+ static string phase,output;readonly List<string> lines=new(),errors=new();Keyboard keyboard;Gamepad pad;
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Initialize(){if(Application.isEditor)return;var a=Environment.GetCommandLineArgs();int i=Array.IndexOf(a,"-s2-verify");if(i<0||i+2>=a.Length)return;phase=a[i+1];output=Path.GetFullPath(a[i+2]);if(File.Exists(output)){Application.Quit(2);return;}var go=new GameObject("S2 command-line verification");DontDestroyOnLoad(go);go.AddComponent<S2BuildVerification>();}
+ void Awake()=>Application.logMessageReceived+=Log;
+ void Log(string m,string s,LogType t){if(t is LogType.Error or LogType.Exception or LogType.Assert)errors.Add(m+s);}
+ void Check(bool ok,string m){if(!ok)throw new Exception(m);lines.Add("PASS: "+m);}
+ IEnumerator Start(){InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;keyboard=InputSystem.AddDevice<Keyboard>();pad=InputSystem.AddDevice<Gamepad>();var stack=new Stack<IEnumerator>();stack.Push(Tests());bool fail=false;while(stack.Count>0&&!fail){object next=null;try{if(!stack.Peek().MoveNext()){stack.Pop();continue;}next=stack.Peek().Current;}catch(Exception e){fail=true;lines.Add("FAIL: "+e);}if(next is IEnumerator child)stack.Push(child);else if(!fail)yield return next;}Application.logMessageReceived-=Log;fail|=errors.Count>0;lines.AddRange(errors);lines.Insert(0,(fail?"FAIL":"PASS")+" S2 exe "+phase);lines.Add("MEASURE Error/Exception/Assert="+errors.Count);lines.Add("FAIL "+(fail?1:0));Directory.CreateDirectory(Path.GetDirectoryName(output));File.WriteAllLines(output,lines);Application.Quit(fail?1:0);}
+ IEnumerator Key(Key key){InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));yield return null;InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;}
+ IEnumerator Pad(GamepadButton button){InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(button));yield return null;InputSystem.QueueStateEvent(pad,new GamepadState());yield return null;}
+ IEnumerator Until(Func<bool> condition,string m){double end=Time.realtimeSinceStartupAsDouble+5;while(!condition()){if(Time.realtimeSinceStartupAsDouble>end)throw new Exception("Timeout "+m);yield return null;}}
+ void Place(Vector2 p){var player=RoomSession.Instance.Player;var body=player.GetComponent<Rigidbody2D>();player.ClearTransientInput();player.transform.position=p;body.position=p;body.linearVelocity=Vector2.zero;Physics2D.SyncTransforms();}
+ IEnumerator Ready(){yield return Until(()=>RoomSession.Instance?.Player!=null&&!string.IsNullOrEmpty(RoomSession.Instance.CurrentRoomId),"room ready");yield return new WaitForSecondsRealtime(.1f);}
+ IEnumerator Enter(string id){Check(RoomSession.Instance.RequestTransition(id,"Assets/Scenes/"+id+".unity","Entry"),"load "+id);yield return Until(()=>!RoomSession.Instance.Transitioning,"load room");}
+ IEnumerator Touch(string id){var cp=FindFirstObjectByType<Checkpoint>();Check(cp!=null&&cp.checkpointId==id,"checkpoint authored "+id);Place(cp.transform.position);yield return Until(()=>RoomSession.Instance.CheckpointId==id,"checkpoint contact");yield return null;Check(ProgressSave.TryLoad(out var data)&&data.checkpointId==id,"checkpoint writes disk "+id);}
+ IEnumerator Pickup(){yield return Enter("A05");var item=FindFirstObjectByType<DashPickup>();Check(item!=null,"pickup exists");Place(item.transform.position);yield return Until(()=>RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash,"pickup");Check(ProgressSave.TryLoad(out var data)&&data.dash,"acquisition writes Dash to disk");}
+ IEnumerator Exit(string to){RoomExit exit=null;foreach(var e in FindObjectsByType<RoomExit>(FindObjectsSortMode.None))if(e.destinationRoomId==to)exit=e;Check(exit!=null,"authored exit "+to);string spawnId=exit.destinationSpawnId;Place(exit.GetComponent<BoxCollider2D>().bounds.center);yield return Until(()=>RoomSession.Instance.CurrentRoomId==to&&!RoomSession.Instance.Transitioning,"exit "+to);var room=FindFirstObjectByType<RoomDefinition>();Check(room.TryGetSpawn(spawnId,out var spawn),"spawn ID "+spawnId);var at=RoomSession.Instance.Player.GetComponent<Rigidbody2D>().position;lines.Add($"MEASURE arrival {to}/{spawnId} expected={spawn.transform.position}, actual={at}");Check(Vector2.Distance(at,spawn.transform.position)<.15f,"safe arrival "+to);}
+ IEnumerator Death(string id){Check(RoomSession.Instance.Die(),"death");yield return Until(()=>!RoomSession.Instance.Respawning,"respawn");Check(RoomSession.Instance.CheckpointId==id&&RoomSession.Instance.Player.GetComponent<PlayerHealth>().HP==5,"checkpoint return "+id);}
+ IEnumerator Tests(){yield return new WaitForSecondsRealtime(.2f);var menu=FindFirstObjectByType<SaveMenu>();Check(menu!=null&&SceneManager.GetActiveScene().name=="Menu","starts in Menu");
+  if(phase=="acquire"||phase=="final"){
+   Check(!menu.CanContinue,"Continue disabled without save");yield return Key(UnityEngine.InputSystem.Key.Enter);yield return Ready();Check(RoomSession.Instance.CurrentRoomId=="A01"&&!RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash,"new game at A01 without Dash");
+   if(phase=="acquire"){yield return Pickup();Check(ProgressSave.TryLoad(out var saved)&&saved.checkpointId=="CP-A01","pickup preserves CP-A01");lines.Add("NOTE: process exits now; next phase starts a new exe process.");yield break;}
+   var expected=new[]{"Menu","A01","A02","A03","A04","A05"};Check(SceneManager.sceneCountInBuildSettings==expected.Length,"exact successful-stage scene count");for(int i=0;i<expected.Length;i++){string path=SceneUtility.GetScenePathByBuildIndex(i);lines.Add("MEASURE included scene "+path);Check(path=="Assets/Scenes/"+expected[i]+".unity","scene order "+i);}foreach(string test in new[]{"DashTest","CombatTest","MovementTest","B01"})Check(!Application.CanStreamedLevelBeLoaded(test),"excluded "+test);
+   yield return Touch("CP-A01");foreach(string id in new[]{"A02","A03","A04","A05","A04","A03","A02","A01"})yield return Exit(id);
+   yield return Enter("A02");var bounds=FindFirstObjectByType<KillZone>().GetComponent<BoxCollider2D>().bounds;Place(new Vector2(bounds.center.x,3));yield return Until(()=>RoomSession.Instance.Respawning,"physical pit fall");yield return Until(()=>!RoomSession.Instance.Respawning,"pit return");Check(RoomSession.Instance.CurrentRoomId=="A01"&&RoomSession.Instance.Player.GetComponent<PlayerHealth>().HP==5,"A02 physical pit returns CP-A01 with HP5");yield return Enter("A03");yield return Touch("CP-A03");yield return Death("CP-A03");yield break;
+  }
+  if(phase=="continue"||phase=="continuecp"){
+   Check(menu.CanContinue,"Continue enabled with valid save");yield return Key(UnityEngine.InputSystem.Key.Enter);yield return Ready();Check(RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash,"Dash survives process restart/Continue");
+   if(phase=="continue"){Check(RoomSession.Instance.CurrentRoomId=="A01","Continue at CP-A01 after acquisition");yield return Enter("A03");yield return Touch("CP-A03");}
+   else{Check(RoomSession.Instance.CurrentRoomId=="A03"&&RoomSession.Instance.CheckpointId=="CP-A03","Continue restores CP-A03");var room=FindFirstObjectByType<RoomDefinition>();Check(room.TryGetSpawn("CP-A03",out var cp)&&Vector2.Distance(RoomSession.Instance.Player.transform.position,cp.transform.position)<.15f,"Continue checkpoint position");for(int i=0;i<3;i++)yield return Death("CP-A03");Check(ProgressSave.TryLoad(out var data)&&data.dash&&data.checkpointId=="CP-A03","repeated deaths preserve saved progress");}yield break;
+  }
+  if(phase=="new"){
+   Check(menu.CanContinue,"existing save available before reset");yield return Key(UnityEngine.InputSystem.Key.DownArrow);yield return Pad(GamepadButton.South);Check(menu.Confirming,"new game asks before replacing save");yield return Pad(GamepadButton.East);Check(!menu.Confirming,"gamepad B cancels reset");yield return Pad(GamepadButton.South);yield return Pad(GamepadButton.South);yield return Ready();Check(RoomSession.Instance.CurrentRoomId=="A01"&&!RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash,"gamepad A confirms fresh game");Check(ProgressSave.TryLoad(out var fresh)&&!fresh.dash&&fresh.checkpointId=="CP-A01","new game resets permanent progress");yield break;
+  }
+  if(phase=="corrupt"){
+   Check(!menu.CanContinue&&!string.IsNullOrEmpty(ProgressSave.Message),"corrupt save disables Continue and shows message");yield return Key(UnityEngine.InputSystem.Key.Enter);yield return Key(UnityEngine.InputSystem.Key.Enter);yield return Ready();Check(!RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash&&RoomSession.Instance.CurrentRoomId=="A01","corrupt save safely starts explicit new game");Check(Directory.GetFiles(Path.GetDirectoryName(ProgressSave.FilePath),Path.GetFileName(ProgressSave.FilePath)+".invalid-*").Length>0,"corrupt original preserved");Check(ProgressSave.TryLoad(out _),"replacement save valid");yield break;
+  }
+  throw new Exception("Unknown verification phase");
+ }
+}

@@ -1,0 +1,9 @@
+PASS S2 exe new
+PASS: starts in Menu
+PASS: existing save available before reset
+PASS: new game asks before replacing save
+PASS: gamepad B cancels reset
+PASS: gamepad A confirms fresh game
+PASS: new game resets permanent progress
+MEASURE Error/Exception/Assert=0
+FAIL 0

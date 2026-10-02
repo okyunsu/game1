@@ -17,10 +17,10 @@ public static class N2BBuild
   EditorSceneManager.OpenScene("Assets/Scenes/A01.unity");
   Directory.CreateDirectory("Builds/Slice");
   var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{
-   scenes=new[]{"Assets/Scenes/A01.unity","Assets/Scenes/A02.unity","Assets/Scenes/A03.unity","Assets/Scenes/A04.unity","Assets/Scenes/A05.unity"},
+   scenes=new[]{"Assets/Scenes/Menu.unity","Assets/Scenes/A01.unity","Assets/Scenes/A02.unity","Assets/Scenes/A03.unity","Assets/Scenes/A04.unity","Assets/Scenes/A05.unity"},
    locationPathName="Builds/Slice/Afterglow-Slice.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None
   });
-  File.WriteAllText(evidence,$"{report.summary.result}; errors={report.summary.totalErrors}; warnings={report.summary.totalWarnings}; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}; startScene=A01; scenes=A01,A02,A03,A04,A05; Windows x64 Mono; Development Build=false\n");
+  File.WriteAllText(evidence,$"{report.summary.result}; errors={report.summary.totalErrors}; warnings={report.summary.totalWarnings}; Unity={Application.unityVersion}; UTC={DateTime.UtcNow:O}; startScene=Menu; scenes=Menu,A01,A02,A03,A04,A05; Windows x64 Mono; Development Build=false\n");
   if(report.summary.result!=BuildResult.Succeeded||report.summary.totalErrors!=0)throw new Exception("Slice build failed");
  }
 }

@@ -1,0 +1,8 @@
+PASS S2 exe corrupt
+PASS: starts in Menu
+PASS: corrupt save disables Continue and shows message
+PASS: corrupt save safely starts explicit new game
+PASS: corrupt original preserved
+PASS: replacement save valid
+MEASURE Error/Exception/Assert=0
+FAIL 0

@@ -35,7 +35,9 @@ public sealed class RoomSession : MonoBehaviour
     }
     public void EnterInitial(RoomDefinition room)
     {
-        if (!room.TryGetSpawn(room.initialSpawnId, out var spawn))
+        var pending = ProgressSave.Pending;
+        string initialId = pending == null ? room.initialSpawnId : pending.checkpointId;
+        if (!room.TryGetSpawn(initialId, out var spawn))
         {
             LastError = "Missing or duplicate initial Spawn ID";
             Debug.LogWarning(LastError);
@@ -43,6 +45,15 @@ public sealed class RoomSession : MonoBehaviour
         }
         currentScene = room.gameObject.scene;
         CurrentRoomId = room.roomId;
+        if (pending != null)
+        {
+            Player.GetComponent<PlayerDash>().hasDash = pending.dash;
+            CheckpointId = pending.checkpointId;
+            checkpointRoom = room.roomId;
+            checkpointScene = room.gameObject.scene.path;
+            checkpointSpawn = pending.checkpointId;
+            ProgressSave.Pending = null;
+        }
         Place(spawn, room);
     }
     void Place(RoomSpawn spawn, RoomDefinition room)
@@ -90,8 +101,10 @@ public sealed class RoomSession : MonoBehaviour
         checkpointRoom = room.roomId;
         checkpointScene = room.gameObject.scene.path;
         checkpointSpawn = checkpoint.spawn.spawnId;
+        Player.GetComponent<PlayerHealth>()?.RestoreMax();
+        ProgressSave.SaveCurrent(this);
     }
-    public void GrantDash() { Player.GetComponent<PlayerDash>().hasDash = true; }
+    public void GrantDash() { Player.GetComponent<PlayerDash>().hasDash = true; ProgressSave.SaveCurrent(this); }
     public bool Die()
     {
         if (Transitioning || Respawning) return false;

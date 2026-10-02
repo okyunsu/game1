@@ -36,11 +36,18 @@ Sprint 1: S1-07/08 검증 완료, S1-09 DOING(사용자 배치 대기), S1-10 TO
 같은 폴더의 데이터와 DLL이 필요하며 종료는 창 닫기 또는 Alt+F4다.
 Builds는 Git에서 제외하므로 저장소를 새로 내려받으면 실행 파일은 포함되지 않는다.
 
+## 저장·이어하기
+
+Menu의 이어하기 / 새 게임을 방향키·Enter 또는 패드 D-pad·A로 선택한다. 새 게임은 기존 저장이 있으면 확인을 요청하며 Esc/패드 B로 취소할 수 있다. 유효한 저장이 없거나 손상됐으면 이어하기가 비활성이고 안내 후 새 게임을 선택한다.
+
+단일 파일: `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json` (`Application.persistentDataPath`). 현재 저장 값은 형식 버전·Dash 보유·마지막 CP-A01/CP-A03뿐이며 HP·좌표·적 상태는 저장하지 않는다. 체크포인트 접촉·능력 획득 때만 자동 저장한다. 실행 파일을 닫은 뒤 이 파일을 지우면 초기화되고, 새 게임으로도 초기화할 수 있다. 손상 파일은 명시적 새 게임 선택 시 `.invalid-시간` 이름으로 보존한다. 쓰기 실패는 화면에 표시하고 다음 저장에서 재시도한다.
+
+Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거나 덮어쓰지 않는 새 게임 상태다. 저장 검토는 Menu 또는 Windows 빌드에서 한다. 테스트 CLI의 `-save-path`는 자동 검증용 격리 파일이며 일반 실행의 저장 위치를 바꾸지 않는다.
 ## 전용 시스템 테스트 (REVIEW)
 
 - Assets/Scenes/Test/DashTest.unity: Dash, K 또는 Left Shift / 패드 B.
 - Assets/Scenes/Test/CombatTest.unity: HP·피해·KillZone·CP 복귀·더미 공격, J / 패드 X. 공격 범위는 PlayerAttack Gizmo.
-- 이동은 기존 키/패드 입력을 사용한다. 테스트 카메라는 고정이다. 기능은 A01~A04에 통합하지 않았으며 E1은 없다.
+- 이동은 기존 키/패드 입력을 사용한다. 테스트 카메라는 고정이다. 기본 공격·체력은 실제 방에 통합됐고 A04 Arena에 E1이 있다. 실제 게임에서 Dash는 A05 획득 전까지 비활성이다.
 - 이동/Dash 수치는 PlayerTuning.asset, HP/공격 수치는 CombatTuning.asset에서 조정한다. 기존 초기값은 보존하고 사용자 수락 전 임의 기본값 변경을 하지 않는다.
 
 ## 현재 조작

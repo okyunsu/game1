@@ -61,7 +61,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | REVIEW | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
 | S2-02 | A05 대시 획득·안전 연습 | REVIEW | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | BLOCKED | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
-| S2-04 | 단일 슬롯 저장·Menu 이어하기 | TODO | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
+| S2-04 | 단일 슬롯 저장·Menu 이어하기 | REVIEW | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
 | S2-05 (제안) | Core Loop 통합 관찰·재방문 검증 | TODO | 별도 사용자 승인 | A05→A03 귀환·게이트·사망/Continue·이월 체감 검토; 이번 실행 미승인 |
 | S2-06 (제안) | Sprint 2 빌드·Gate 판단 | TODO | 별도 사용자 승인 | PRD 저장 안전 계약·입력·통합 체감 검증 및 사용자 판단; 이번 실행 미승인 |
 
@@ -203,6 +203,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S2-04 저장·이어하기 — PASS / REVIEW (2026-10-03)
+
+[S2-04-save.txt](Validation/S2-04-save.txt) PASS·FAIL 0. 격리 슬롯으로 실제 exe 5개 프로세스 순차 실행(acquire/continue/continuecp/new/corrupt): 새 게임→A05 접촉 획득→프로세스 종료→이어하기 Dash 유지, CP-A03 접촉→종료→A03 CP 좌표 복원, 3회 사망 저장 유지, 패드 A/B 새 게임 확인/취소·초기화, 손상 안내·Continue 비활성·명시 새 게임·원본 `.invalid-*` 보존. 각 단계별 S2-04-save-*.txt·S2-04-save-build.txt(errors/warnings0) 보존. S2-04-editor-direct.txt는 Editor A01 기존 저장 무시/비기록, 저장 쓰기 실패 원본 보존·재시도 PASS. S1-02/04/07/08-night-S2-04.txt 모두 PASS. CP 접촉 HP 회복은 GAME_DESIGN14 기존 규칙에 맞춰 적용. 실제 체감 검토 전 REVIEW.
+
 
 ### S2-02 A05 — PASS / REVIEW (2026-10-03)
 
