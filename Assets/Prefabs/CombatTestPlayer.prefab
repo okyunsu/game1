@@ -59,9 +59,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 982631251427630812, guid: f47ecde9d1f8552479e3a9f65fba0bda, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7872903331728968708}
-    - targetCorrespondingSourceObject: {fileID: 982631251427630812, guid: f47ecde9d1f8552479e3a9f65fba0bda, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8804333481050598286}
   m_SourcePrefab: {fileID: 100100000, guid: f47ecde9d1f8552479e3a9f65fba0bda, type: 3}
 --- !u!1 &2554530551334277337 stripped
 GameObject:
@@ -80,17 +77,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f63be5c500c054a9d935cce6b4ad88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  tuning: {fileID: 11400000, guid: 97420e924c9c2b44a937f3e12e90dddd, type: 2}
---- !u!114 &8804333481050598286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554530551334277337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f525dd9475b83f5499f7893ad98b99ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   tuning: {fileID: 11400000, guid: 97420e924c9c2b44a937f3e12e90dddd, type: 2}

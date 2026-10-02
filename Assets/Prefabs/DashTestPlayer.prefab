@@ -52,29 +52,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashTestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 7878157161924370495, guid: 4fcd510a0e43a7e42a1c9c57f0e8e065, type: 3}
+      propertyPath: hasDash
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5040574605408255213, guid: 4fcd510a0e43a7e42a1c9c57f0e8e065, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1798157101491625193}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fcd510a0e43a7e42a1c9c57f0e8e065, type: 3}
---- !u!1 &982631251427630812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5040574605408255213, guid: 4fcd510a0e43a7e42a1c9c57f0e8e065, type: 3}
-  m_PrefabInstance: {fileID: 5210864946517910065}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1798157101491625193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982631251427630812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4319db0ff35f19b43aa9a3bdd9a4883e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
-  hasDash: 1

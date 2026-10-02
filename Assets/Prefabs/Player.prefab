@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 2792429749451820269}
   - component: {fileID: 2031765365914273600}
   - component: {fileID: 5008204321896854386}
+  - component: {fileID: 7878157161924370495}
+  - component: {fileID: 1748688168454304626}
+  - component: {fileID: 291337539245404948}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -197,3 +200,42 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &7878157161924370495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040574605408255213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4319db0ff35f19b43aa9a3bdd9a4883e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDash
+  hasDash: 0
+--- !u!114 &1748688168454304626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040574605408255213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f63be5c500c054a9d935cce6b4ad88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  tuning: {fileID: 11400000, guid: 97420e924c9c2b44a937f3e12e90dddd, type: 2}
+--- !u!114 &291337539245404948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040574605408255213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f525dd9475b83f5499f7893ad98b99ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  tuning: {fileID: 11400000, guid: 97420e924c9c2b44a937f3e12e90dddd, type: 2}

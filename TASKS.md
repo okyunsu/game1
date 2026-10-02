@@ -58,7 +58,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
-| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | TODO | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
+| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | REVIEW | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
 | S2-02 | A05 대시 획득·안전 연습 | TODO | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | TODO | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
 | S2-04 | 단일 슬롯 저장·Menu 이어하기 | TODO | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
@@ -189,6 +189,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S2-01 실제 방 통합 — PASS / REVIEW
+
+S2-01-integration.txt PASS·FAIL 0: 네 방 J/X·미보유 Dash 무시, HP 유지, A04 Arena E1 x12.996~23.004/y3.515 순찰·2타 제거·접촉/무적·HP0/CP-A03 복귀·A02 KillZone 즉사·재입장 초기화. 기존 이동 설정 보존, 테스트 variants는 base 상속으로 중복 제거. T1~T3 Verification-night-T1/T2/T3-S2-01.txt 및 T4 Verification-T4-night-S2-01-T4.txt PASS. S1-06-lead0-night-S2-01.txt·S1-02/04/07/08-night-S2-01.txt 모두 PASS. 실제 감각 수락 미실시. 작성 도구 삭제.
+
 
 ### 2026-10-02 S1-10 — 그레이박스 v1 빌드 / REVIEW
 

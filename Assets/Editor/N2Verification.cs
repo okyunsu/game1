@@ -26,7 +26,7 @@ public static class N2Verification
             }
         };
     }
-    public static void CameraLead0() { for(int n=1;n<=4;n++){EditorSceneManager.OpenScene($"Assets/Scenes/A0{n}.unity");var rig=UnityEngine.Object.FindFirstObjectByType<RoomCameraRig>();if(rig.horizontalLead!=0||rig.orthographicSize!=5.5f||rig.damping!=.15f)throw new Exception("Unexpected camera values A0"+n);SessionState.SetString("Lead0.A0"+n,$"MEASURE: A0{n} horizontalLead={rig.horizontalLead:F2}u; size={rig.orthographicSize:F2}u; damping={rig.damping:F2}s");}Begin("S1-06","Assets/Scenes/CameraTest.unity","lead0");}
+    public static void CameraLead0() { for(int n=1;n<=4;n++){EditorSceneManager.OpenScene($"Assets/Scenes/A0{n}.unity");var rig=UnityEngine.Object.FindFirstObjectByType<RoomCameraRig>();if(rig.horizontalLead!=0||rig.orthographicSize!=5.5f||rig.damping!=.15f)throw new Exception("Unexpected camera values A0"+n);SessionState.SetString("Lead0.A0"+n,$"MEASURE: A0{n} horizontalLead={rig.horizontalLead:F2}u; size={rig.orthographicSize:F2}u; damping={rig.damping:F2}s");}Begin("S1-06","Assets/Scenes/CameraTest.unity",Nightly.Tag.StartsWith("S2")?"lead0-night-"+Nightly.Tag:"lead0");}
     public static void Camera() => CameraLead0();
     public static void RoomsNight() => Begin("S1-07", "Assets/Scenes/A01.unity", "night-"+Nightly.Tag);
     public static void Rooms() => Begin("S1-07", "Assets/Scenes/A01.unity");

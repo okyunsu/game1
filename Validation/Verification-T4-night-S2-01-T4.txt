@@ -1,0 +1,25 @@
+PASS C4 E1 Unity=6000.3.24f1
+PASS: one CombatTest E1; exact 22-section values
+MEASURE old body-only relocation body=(20.00, 1.50) Transform=(34.00, 1.50, 0.00) collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00)
+MEASURE old attack box x=33.100..34.200, y=1.210..2.410; enemy collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00); HP before=2, velocity before=(0.00, 0.00)
+MEASURE old relocation attack HP after=2, velocity after=(0.00, 0.00), instant hit velocity=(0.00, 0.00); body=(20.00, 1.51), Transform=(20.00, 1.51, 0.00)
+CAUSE reproduction: body-only relocation used a stale Transform to place attacker outside the actual hit range. Correct test setup synchronizes both positions.
+MEASURE synchronized attack box x=19.100..20.200; E1 collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00); HP before=2; velocity before=(0.00, 0.00)
+MEASURE first hit HP 2->1, instant velocity=(3.00, 0.00), sampled velocity=(3.00, 0.00)
+PASS: actual first attack loses one HP and applies 3u/s knockback
+PASS: second actual attack removes E1 (no duplicate damage on one attack)
+MEASURE patrol x=15.975..23.031 turns=2
+PASS: patrol round trip between Scene endpoints
+PASS: ordinary wall turn before penetration
+MEASURE ledge x=47.552..52.448 y=6.015 turns=2
+PASS: ledge turns without falling
+PASS: physical E1 contact deals one HP and starts invincibility
+PASS: repeated contact during invincibility cannot duplicate damage
+PASS: E1 knocked into KillZone is removed
+PASS: player death requested
+PASS: player death restores one full-HP E1
+PASS: test room departure accepted
+PASS: verification survives departure; previous E1 cleaned up
+PASS: test room reentry accepted
+PASS: room reentry resets one full-HP E1
+FAIL 0

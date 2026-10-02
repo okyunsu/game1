@@ -1,0 +1,47 @@
+PASS S2-01 integration
+PASS: base player health/attack; Dash false
+PASS: HP persistence setup
+PASS: HP persists in A01
+PASS: single integrated components in A01
+PASS: A01 J attack
+PASS: A01 gamepad X attack
+PASS: A01 unowned Dash ignored
+PASS: transition A02
+PASS: HP persists in A02
+PASS: single integrated components in A02
+PASS: A02 J attack
+PASS: A02 gamepad X attack
+PASS: A02 unowned Dash ignored
+PASS: transition A03
+PASS: HP persists in A03
+PASS: single integrated components in A03
+PASS: A03 J attack
+PASS: A03 gamepad X attack
+PASS: A03 unowned Dash ignored
+PASS: CP-A03 contact
+PASS: transition A04
+PASS: HP persists in A04
+PASS: single integrated components in A04
+PASS: A04 J attack
+PASS: A04 gamepad X attack
+PASS: A04 unowned Dash ignored
+MEASURE A04 patrol x=12.996..23.004, y=3.515, turns=2
+PASS: A04 patrol reverses without falling from Arena
+PASS: A04 actual attack one HP
+PASS: A04 second actual attack removes E1
+PASS: A04 physical contact damage 1/invincibility
+PASS: contact duplicates blocked
+PASS: damage 0
+PASS: damage 1
+PASS: damage 2
+PASS: damage 3
+PASS: damage 4
+PASS: HP zero triggers death
+PASS: HP restored at last checkpoint
+PASS: transition A02
+PASS: KillZone invincibility setup
+PASS: A02 KillZone bypasses invincibility
+PASS: KillZone return max HP
+PASS: transition A04
+PASS: A04 reentry resets one E1
+FAIL 0

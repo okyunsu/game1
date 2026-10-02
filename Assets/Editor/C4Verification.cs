@@ -11,7 +11,7 @@ using UnityEngine.InputSystem.LowLevel;
 public static class C4Verification
 {
     static C4Verification(){EditorApplication.playModeStateChanged+=s=>{if(!SessionState.GetBool("C4.Run",false))return;if(s==PlayModeStateChange.EnteredPlayMode)new GameObject("C4 persistent verification").AddComponent<C4Runner>();if(s==PlayModeStateChange.EnteredEditMode){SessionState.SetBool("C4.Run",false);EditorApplication.Exit(SessionState.GetInt("C4.Exit",1));}};}
-    public static void Run(){string path=Nightly.Tag.Contains("rerun")?"Validation/Verification-T4-retry-rerun.txt":"Validation/Verification-T4-retry.txt";if(File.Exists(path))throw new IOException("Preserve evidence");SessionState.SetString("C4.Path",path);SessionState.SetBool("C4.Run",true);EditorSceneManager.OpenScene("Assets/Scenes/Test/CombatTest.unity");EditorApplication.delayCall+=()=>EditorApplication.isPlaying=true;}
+    public static void Run(){string path=Nightly.Tag.StartsWith("S2")?Nightly.Path("Verification-T4"):Nightly.Tag.Contains("rerun")?"Validation/Verification-T4-retry-rerun.txt":"Validation/Verification-T4-retry.txt";if(File.Exists(path))throw new IOException("Preserve evidence");SessionState.SetString("C4.Path",path);SessionState.SetBool("C4.Run",true);EditorSceneManager.OpenScene("Assets/Scenes/Test/CombatTest.unity");EditorApplication.delayCall+=()=>EditorApplication.isPlaying=true;}
 }
 public sealed class C4Runner:MonoBehaviour
 {
