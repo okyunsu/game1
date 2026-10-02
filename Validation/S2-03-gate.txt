@@ -1,0 +1,27 @@
+FAIL S2-03
+PASS: transition A03
+MEASURE gate owned=False, mode=walk, position=(15.64, 5.82)
+PASS: gate blocks walk owned=False
+MEASURE gate owned=False, mode=jump, position=(15.64, 7.58)
+PASS: gate blocks jump owned=False
+MEASURE gate owned=True, mode=walk, position=(15.64, 5.82)
+PASS: gate blocks walk owned=True
+MEASURE gate owned=True, mode=jump, position=(15.64, 7.58)
+PASS: gate blocks jump owned=True
+PASS: unowned Dash cannot pass gate
+PASS: knockback toward gate setup
+PASS: knockback cannot pass gate
+PASS: owned gate Dash starts
+MEASURE owned Dash direction=1 position=(18.07, 5.81)
+PASS: owned Dash passes gate direction 1
+PASS: gate collision restored after Dash
+PASS: owned gate Dash starts
+MEASURE owned Dash direction=-1 position=(14.93, 5.81)
+PASS: owned Dash passes gate direction -1
+PASS: gate collision restored after Dash
+PASS: ordinary right wall still stops Dash
+FAIL: System.Exception: exit to B01
+  at S2Runner.Check (System.Boolean ok, System.String msg) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:19 
+  at S2Runner+<ExitTo>d__11.MoveNext () [0x00073] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:28 
+  at S2Runner+<Start>d__4.MoveNext () [0x00099] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S2Tests.cs:21 
+FAIL 1
