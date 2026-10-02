@@ -20,9 +20,11 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 
 ## Current Tasks
 
+2026-10-03 야간 종료: G0·P0 완료, S2-01/02/04 REVIEW, S2-03 BLOCKED(두 번 실패·전체 복원). 최종 Menu+A01~A05 빌드/실행 PASS. B01·격자 통과·더블 점프·후속 방·보스·아트 미포함, 기존 배치/튜닝 보존, push 없음.
+
 2026-10-02 G0 사용자 결정: Sprint 1 Gate 조건부 통과(S1-G DONE). S1-01~09 DONE, S1-10 빌드·exe 기술 PASS, T1~T4 테스트 씬 기술 PASS가 근거. S1-10 REVIEW 유지. 이월 체감 검토: S1-10 exe 플레이, 키보드/패드 점프 일관성, T1 대시 감각, T2 피격·넉백, T3 공격 판정, T4 E1. 다음 통합 빌드에서 사용자 확인. 승인 범위 G0→P0→S2-01~04→성공 단계 최종 빌드만, 기존 배치 보존·push 금지. B01 내부 콘텐츠·더블 점프·B02 이후·보스·아트 미승인.
 
-2026-10-02 사용자 결정: S1-06 DONE — CAM-001 수평 선행 0u 적용 후 직접 플레이에서 카메라 문제 없음. S1-09 DONE — A01→A04 테스트용 이동 경로로 수락. 현재 배치는 임시 그레이박스 v1, 이후 실제 진행 때 수정 예정. C3 자동 왕복 FAIL은 자동 입력 방식의 한계로 기록하며 사용자 직접 왕복 성공 보고를 근거로 레이아웃 결함으로 보지 않는다. 자동 실패 증거는 보존한다. 이번 승인 범위는 S1-10 빌드·exe 검증만이며 S1-G TODO 유지, Gate 판단·레벨/T1~T4 수정·Sprint 2 미실시, 로컬 커밋만.
+이전 S1-10 실행 기록(2026-10-02): S1-06 DONE — CAM-001 수평 선행 0u 적용 후 직접 플레이에서 카메라 문제 없음. S1-09 DONE — A01→A04 테스트용 이동 경로로 수락. 현재 배치는 임시 그레이박스 v1, 이후 실제 진행 때 수정 예정. C3 자동 왕복 FAIL은 자동 입력 방식의 한계로 기록하며 사용자 직접 왕복 성공 보고를 근거로 레이아웃 결함으로 보지 않는다. 자동 실패 증거는 보존한다. 이번 승인 범위는 S1-10 빌드·exe 검증만이며 S1-G TODO 유지, Gate 판단·레벨/T1~T4 수정·Sprint 2 미실시, 로컬 커밋만.
 
 2026-10-02 승인 C0~C4만 완료: 사용자 A01 보존, 카메라 lead0, A02~A04 지정 좌표 배치, C3 보고 전용 검증, CombatTest E1 재시도. push·S1-10 빌드·S1-G·Sprint 2 콘텐츠 미실시.
 
@@ -203,6 +205,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 최종 S2-night — PASS (2026-10-03)
+
+[S2-night-build.txt](Validation/S2-night-build.txt): Succeeded, errors=0·warnings=0, Menu/A01/A02/A03/A04/A05 정확히 6개. [S2-night-runtime.txt](Validation/S2-night-runtime.txt): 첫 줄 PASS·FAIL 0, 실제 exe Menu 시작·새 게임·8개 문 왕복·Spawn 위치·A02 물리 낙하 CP-A01/HP5 복귀·CP-A03 복귀·Error/Exception/Assert 0. [Player.log](Validation/S2-night-Player.log)에도 오류 없음. DashTest/CombatTest/MovementTest/B01 제외. S1-02/04/07/08-night-S2-night.txt 모두 PASS. 커밋 5029ad0, 빌드 위치 Builds/S2-night/Afterglow-S2.exe. 사용자 통합 체감·실물 패드 검토는 미실시.
 
 ### S2-04 저장·이어하기 — PASS / REVIEW (2026-10-03)
 
@@ -401,16 +407,21 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-02 S1-10 그레이박스 v1 빌드·exe 검사 완료. 로컬 커밋만, push 없음.
+2026-10-02 밤 → 2026-10-03 야간 실행 종료. main, 로컬 커밋만, push 없음. Sprint 2. S1-G DONE(조건부), S1-10 REVIEW 유지. S2-01/02/04 REVIEW, S2-03 BLOCKED. B01 콘텐츠·더블 점프·후속 방·보스·아트 미착수.
 
-| 작업 | 상태 | 커밋 / 증거 |
-| --- | --- | --- |
-| 사용자 S1-06·S1-09 수락 | DONE. lead0 카메라 문제 없음, 임시 테스트용 이동 경로 수락 | 73a92e1 — docs: record user acceptance of S1-06 and S1-09 |
-| S1-10 Windows x64 Slice v1 | REVIEW. 빌드·exe 기술 검사 PASS, 사용자 exe 5분 확인 대기 | 본 build: S1-10 slice v1 커밋. S1-10-build-v1.txt; S1-10-build-v1-rerun.txt; S1-10-runtime-v1.txt; S1-10-player-v1.log |
+| 단계 | 결과 / 상태 | 커밋 | 주요 Validation |
+| --- | --- | --- | --- |
+| G0 Gate 기록 | 성공 / 조건부 DONE, 체감 검토 이월 | f29b8ab | S1-02/04/07/08-night-G0.txt |
+| P0 목록 | 성공, S1-04 검사 물리 틱 대기 1회 보정 | 3d8c9bd | S1-04-night-P0-assertions.txt·failure.txt; S1-02-night-P0.txt; S1-02/04/07/08-night-P0-rerun.txt |
+| S2-01 통합 | 성공 / REVIEW, HP·공격·미보유 Dash·A04 E1 | 6c696be | S2-01-integration.txt; S1-06-lead0-night-S2-01.txt; Verification-night-T1/T2/T3-S2-01.txt; Verification-T4-night-S2-01-T4.txt |
+| S2-02 A05 | 성공 / REVIEW, 지정 입력 타이밍 1회 보정 | a96f720 | S2-02-A05.txt(첫 실패), S2-02-A05-rerun.txt(PASS) |
+| S2-03 G-D/B01 | 실패 / BLOCKED, 2회 실패 후 전체 복원·로그만 | 41c2d19 | S2-03-gate.txt; S2-03-gate-rerun.txt |
+| S2-04 저장·Menu | 성공 / REVIEW, 실제 exe 5회 종료/재시작 | 777e2c0 | S2-04-save.txt; S2-04-save-acquire/continue/continuecp/new/corrupt.txt; S2-04-editor-direct.txt; S2-04-save-build.txt |
+| 최종 빌드 | 성공 / 기술 PASS | 5029ad0 | S2-night-build.txt; S2-night-runtime.txt; S2-night-Player.log |
 
-- **실행:** Builds/Slice/Afterglow-Slice.exe. A01 시작·A01~A04만 포함. 같은 폴더 데이터/DLL을 유지한다. 이동 A/D·방향키/왼쪽 스틱·D-pad, 점프 Space/A, Pause Esc/Menu, 재개 Enter/Esc 또는 A/B, 종료 Alt+F4. README 로컬 빌드 실행 절 갱신.
-- **실제 검증:** 최종 빌드 Succeeded, errors=0·warnings=0. exe PASS·FAIL 0·exit=0. 출구 트리거 직접 배치로 6개 연결 왕복 및 Spawn 위치 확인, 포함 씬 정확히 4개·테스트 씬 제외. A02 실제 구멍 낙하→CP-A01 복귀 0.922초, A03 CP-A03 접촉 후 기존 사망 흐름→CP-A03 복귀 0.600초. Player.log 오류 없음.
-- **검사 한계:** A03에는 KillZone이 없어 사망 API를 호출했으며 지형/위험을 추가하지 않았다. CLI 옵션 -slice-v1-verify로 실행할 때만 검사기를 만들고 입력 장치를 격리하며, 평상시 실행에서는 검사기를 만들지 않는다. 자동 검사는 이동 경로 조작감·가시성·실물 패드와 사용자 5분 exe 확인을 대신하지 않는다. C3 FAIL은 자동 입력 한계로 보존하고 사용자 직접 왕복 성공 보고에 따라 레이아웃 결함으로 보지 않음.
-- **사용자 확인:** exe를 5분 실행해 A01~A04 이동·문 전환·카메라·점프·Pause 재개·A02 구멍 복귀를 확인하고 S1-10 수락/반려. 현재 배치는 임시 그레이박스 v1, 대시/공격 미통합. 수정은 이후 별도 승인 때 Scene에서 진행.
-- **주요 파일·보존:** N2BBuild.cs(씬 목록을 BuildPlayerOptions로만 지정), SliceBuildVerification.cs(명시 CLI 실행 검사), README·TASKS·새 Validation. A01~A04·Level prefab 원본·지정 tuning·Player.prefab·MovementTest·Packages·ProjectVersion·EditorBuildSettings 불변. 이전 S1-10 기록은 폐기된 레이아웃 기준으로 보존.
-- **다음:** 사용자 exe 확인 후 상태 결정만 가능. S1-G TODO, Gate 판단·레벨 배치·T1~T4 기능 변경·Sprint 2·push 미실시. 승인 범위 종료.
+- **회귀:** 위 단계 외 입력·이동·방 연결·CP 결과는 S1-{02,04,07,08}-night-S2-01.txt / S2-02-rerun.txt / S2-03-rollback.txt / S2-04.txt / S2-night.txt로 각각 보존, 모두 PASS. 자동 경로 휴리스틱은 사용하지 않음. P0 최초 실패와 S2-02/03 첫·두 번째 결과도 덮어쓰지 않음.
+- **실행/검증:** Builds/S2-night/Afterglow-S2.exe. Menu·A01~A05, 테스트 씬/B01 제외. 최종 빌드 오류/경고 0·exe FAIL 0. 지정 입력 최대 같은 높이 중심 이동은 일반 점프 4.680u, 점프 0.30초 뒤 Dash 6.888u. 저장은 버전·Dash·마지막 CP만 기록, 실제 종료 후 Dash 및 CP-A03 복원, 반복 사망 유지, 새 게임 패드 A 확인/B 취소, 손상 보존/안내, 쓰기 실패 원본 보존·재시도 PASS. 자동 검증은 격리 저장 파일을 사용해 일반 사용자 슬롯을 변경하지 않음.
+- **Decisions Needed:** S2-03-001 — 일반 벽 시험의 출구/공중 상태 간섭을 더 조사하지 않고 두 번째 실패에서 복원. A03 격자는 계속 고체이며 대시 통과 기능·B01은 없음. 재개는 별도 사용자 판단 필요. A05 5u 간격은 지정 좌표 유지; 중심 거리 측정만으로 발판 끝 걸침/Coyote 극단 입력 차단을 전수 증명하지 않았으므로 사용자 연습 플레이에서 확인. Editor 새 방 로드를 위해 A05를 EditorBuildSettings에 추가했으며 빌드는 명시 목록 사용.
+- **아침 약 30분:** Menu 새 게임→A01~A05 왕복으로 S1-10 exe 플레이·카메라·키보드/패드 A 점프 일관성 확인. A04에서 T2 피격/넉백·T3 공격 판정·T4 E1 순찰/2타 제거, A05에서 T1 대시 감각·획득 안내·점프 후 대시 연습 확인. CP-A03 접촉·사망 및 종료→이어하기로 복귀 위치/능력 유지 확인. A03 격자는 외형/막힘만 확인하고 통과는 기대하지 않음(실패 단계 복원). 이월 체감 항목과 S2-01/02/04는 사용자 수락 전 REVIEW.
+- **수정 위치/저장:** Player.prefab의 Dash/Health/Attack, A04의 E1/양끝 Scene 참조, A05의 DashPickup·PracticeA/B, Menu SaveMenu. 기존 이동 설정과 PlayerTuning·CombatTuning·E1Tuning 값은 보존. 레벨은 Scene의 Level 프리팹 인스턴스 Rect Tool/Scale. Play 변경은 Stop 후 다시 입력·저장하며 공통 prefab Apply는 의도할 때만 수행. 로컬 슬롯은 `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json`, 초기화는 새 게임 확인 또는 exe 종료 후 파일 삭제. Editor A01 직접 Play는 기존 저장을 읽거나 덮어쓰지 않는 새 상태.
+- **보존/다음:** A01/A02/A03 씬·Level 원본·지정 tuning·MovementTest·Packages·ProjectVersion은 시작 커밋 대비 그대로. A04 기존 배치 좌표도 그대로이며 E1·오른쪽 출구만 추가. 작성 도구는 삭제. 다음 작업과 S2-05 이후 제안 TODO는 별도 승인 후 진행. 이번 승인 범위 종료.
