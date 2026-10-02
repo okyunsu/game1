@@ -1,0 +1,13 @@
+PASS C2 exact user design coordinates; A01 not opened or saved
+MEASURE A02_Ceiling: center=(6.50, 5.10, 0.00), world size=(5.00, 1.00, 0.00), top=5.600, layer=6, trigger=False
+MEASURE A02_Hurdle: center=(6.50, 1.50, 0.00), world size=(1.00, 1.00, 0.00), top=2.000, layer=6, trigger=False
+MEASURE A02_LedgeHigh: center=(12.50, 2.00, 0.00), world size=(3.00, 2.00, 0.00), top=3.000, layer=6, trigger=False
+MEASURE A02_LedgeAfterPit: center=(23.00, 2.00, 0.00), world size=(2.00, 2.00, 0.00), top=3.000, layer=6, trigger=False
+PASS: A02 existing 23 transforms/spawns/exits/checkpoints/colliders preserved; exactly 4 table objects added
+MEASURE A03_Step: center=(8.00, 2.00, 0.00), world size=(2.00, 2.00, 0.00), top=3.000, layer=6, trigger=False
+MEASURE A03_Shelf: center=(23.00, 4.50, 0.00), world size=(24.00, 1.00, 0.00), top=5.000, layer=6, trigger=False
+MEASURE A03_GateGD: center=(16.50, 8.00, 0.00), world size=(1.00, 6.00, 0.00), top=11.000, layer=6, trigger=False
+PASS: A03 existing 23 transforms/spawns/exits/checkpoints/colliders preserved; exactly 3 table objects added
+MEASURE A04_Step: center=(8.00, 2.00, 0.00), world size=(2.00, 2.00, 0.00), top=3.000, layer=6, trigger=False
+MEASURE A04_Arena: center=(18.00, 2.00, 0.00), world size=(12.00, 2.00, 0.00), top=3.000, layer=6, trigger=False
+PASS: A04 existing 16 transforms/spawns/exits/checkpoints/colliders preserved; exactly 2 table objects added

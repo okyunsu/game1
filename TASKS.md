@@ -36,7 +36,7 @@ S1-01~05·07·08 DONE, S1-06 REVIEW, S1-09 DOING(사용자 배치 대기), S1-10
 | S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 36×14u, 전체 양방향·안전 도착·단일 플레이어·입력 초기화 재검증. Tilemap DEFERRED |
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
-| S1-09 | 첫 Vertical Slice 통합 | DOING | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | DEC-SLICE-USER: 사용자 배치 대기. 반복 자동 레이아웃 폐기, Level 프리팹과 빈 방 제공 |
+| S1-09 | 첫 Vertical Slice 통합 | DOING | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1, A02~A04 사용자 설계 좌표 v1을 Codex가 배치. 사용자 Slice 플레이 후 수정 예정 |
 | S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | S1-09 사용자 배치 대기. 배치 완료 후 재빌드·왕복 검증 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
@@ -167,6 +167,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 2026-10-02 C2 사용자 설계 좌표
+
+C2-layout.txt PASS. A02 4개·A03 3개·A04 2개만 Level prefab으로 추가. 이전 오브젝트 snapshot 모두 동일, A01은 저장하지 않음. GateGD 범위 x16~17/y5~11. S1-02/04-night-C2.txt 회귀 PASS. S1-09 DOING 유지. 배치 작성 도구 삭제, Scene이 배치 원본.
+
 
 ### 2026-10-02 C0/C1
 
