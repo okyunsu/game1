@@ -28,7 +28,11 @@ Sprint 1: S1-07/08 검증 완료, S1-09 DOING(사용자 배치 대기), S1-10 TO
 
 ## 로컬 빌드 실행
 
-**S1-10 보류: 사용자 배치 후 재빌드.** 기존 Builds/Slice는 폐기된 자동 레이아웃 기준이므로 현재 빈 방과 다르다. 이전 N1 이동 회귀 빌드는 `Builds/N1/Afterglow.exe`에 보존한다.
+현재 그레이박스 v1 Windows x64 빌드: `Builds/Slice/Afterglow-Slice.exe`를 실행한다. A01에서 시작하며 A01~A04만 포함한다. 폐기된 자동 레이아웃 빌드를 교체했다. 사용자 exe 실행 5분 확인 대기(S1-10 REVIEW).
+
+이동: A/D 또는 ←/→·패드 왼쪽 스틱/D-pad. 점프: Space·패드 A. Pause: Esc·패드 Menu. 재개: Enter/Esc·패드 A/B.
+
+알려진 한계: 테스트용 임시 그레이박스 v1이며 실제 진행 때 배치를 수정할 예정이다. 대시·공격은 Slice에 미통합이고 DashTest·CombatTest·MovementTest는 포함하지 않는다. 자동 exe 검사는 출구 트리거 직접 배치와 복귀 검사이며 사용자 5분 조작 확인을 대체하지 않는다. 이전 N1 이동 회귀 빌드는 `Builds/N1/Afterglow.exe`에 보존한다.
 같은 폴더의 데이터와 DLL이 필요하며 종료는 창 닫기 또는 Alt+F4다.
 Builds는 Git에서 제외하므로 저장소를 새로 내려받으면 실행 파일은 포함되지 않는다.
 

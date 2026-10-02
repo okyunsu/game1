@@ -1,0 +1,80 @@
+PASS Slice v1 exe; Unity=6000.3.24f1; UTC=2026-10-02T13:08:41.4145923Z
+NOTE: exe trigger/respawn checks use direct actor placement; no heuristic traversal. Physical input disabled only for this command-line run.
+PASS: exe starts in A01
+PASS: build contains exactly four scenes
+MEASURE build scene[0]=Assets/Scenes/A01.unity
+PASS: ordered build scene Assets/Scenes/A01.unity
+MEASURE build scene[1]=Assets/Scenes/A02.unity
+PASS: ordered build scene Assets/Scenes/A02.unity
+MEASURE build scene[2]=Assets/Scenes/A03.unity
+PASS: ordered build scene Assets/Scenes/A03.unity
+MEASURE build scene[3]=Assets/Scenes/A04.unity
+PASS: ordered build scene Assets/Scenes/A04.unity
+PASS: test scene excluded DashTest
+PASS: test scene excluded CombatTest
+PASS: test scene excluded MovementTest
+PASS: initial Entry exists
+MEASURE A01 initial player=(3.50, 1.81, 0.00); Entry=(3.50, 1.81, 0.00)
+PASS: initial player at A01 Entry
+PASS: checkpoint exists CP-A01
+PASS: physical contact activates CP-A01
+PASS: authored exit A01->A02
+PASS: arrival spawn ID A02/FromLeft
+MEASURE A01->A02: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.040s
+PASS: arrival matches authored spawn A02
+PASS: single player after A02
+PASS: authored exit A02->A03
+PASS: arrival spawn ID A03/FromLeft
+MEASURE A02->A03: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.023s
+PASS: arrival matches authored spawn A03
+PASS: single player after A03
+PASS: authored exit A03->A04
+PASS: arrival spawn ID A04/FromLeft
+MEASURE A03->A04: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.032s
+PASS: arrival matches authored spawn A04
+PASS: single player after A04
+PASS: authored exit A04->A03
+PASS: arrival spawn ID A03/FromRight
+MEASURE A04->A03: trigger=(1.75, 2.00), spawn=FromRight, expected=(32.50, 1.81), actual=(32.50, 1.81), elapsed=0.021s
+PASS: arrival matches authored spawn A03
+PASS: single player after A03
+PASS: authored exit A03->A02
+PASS: arrival spawn ID A02/FromRight
+MEASURE A03->A02: trigger=(1.75, 2.00), spawn=FromRight, expected=(32.50, 1.81), actual=(32.50, 1.81), elapsed=0.021s
+PASS: arrival matches authored spawn A02
+PASS: single player after A02
+PASS: authored exit A02->A01
+PASS: arrival spawn ID A01/FromRight
+MEASURE A02->A01: trigger=(1.75, 2.00), spawn=FromRight, expected=(32.50, 1.81), actual=(32.50, 1.81), elapsed=0.021s
+PASS: arrival matches authored spawn A01
+PASS: single player after A01
+PASS: authored exit A01->A02
+PASS: arrival spawn ID A02/FromLeft
+MEASURE A01->A02: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.021s
+PASS: arrival matches authored spawn A02
+PASS: single player after A02
+PASS: authored KillZone exists in A02
+PASS: death locks input
+MEASURE death return checkpoint=CP-A01, room=A01, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.922s; fall=True
+PASS: return to CP-A01 spawn
+PASS: input restored after return
+PASS: authored exit A01->A02
+PASS: arrival spawn ID A02/FromLeft
+MEASURE A01->A02: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.020s
+PASS: arrival matches authored spawn A02
+PASS: single player after A02
+PASS: authored exit A02->A03
+PASS: arrival spawn ID A03/FromLeft
+MEASURE A02->A03: trigger=(34.25, 2.00), spawn=FromLeft, expected=(3.50, 1.81), actual=(3.50, 1.81), elapsed=0.021s
+PASS: arrival matches authored spawn A03
+PASS: single player after A03
+PASS: checkpoint exists CP-A03
+PASS: physical contact activates CP-A03
+NOTE: A03 has no authored KillZone; invoke existing RoomSession.Die after physical CP-A03 contact. No hazard or scene change.
+PASS: A03 existing death flow requested
+PASS: death locks input
+MEASURE death return checkpoint=CP-A03, room=A03, expected=(16.00, 1.81), actual=(16.00, 1.81), elapsed=0.600s; fall=False
+PASS: return to CP-A03 spawn
+PASS: input restored after return
+MEASURE runtime Error/Exception/Assert=0
+FAIL 0

@@ -14,7 +14,7 @@
 ## Current Sprint
 
 **Sprint 1**, 진행 재개 기준일 **2026-09-30**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용자 수락), S1-10 TODO. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
+S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용자 수락), S1-10 REVIEW. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G 미착수.
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
@@ -41,7 +41,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | DONE | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1·A02~A04 사용자 설계 좌표 v1: 테스트용 이동 경로로 사용자 수락(2026-10-02). 임시 그레이박스이며 실제 진행 때 수정 예정 |
-| S1-10 | Slice 검증·실행 안내 | TODO | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·실행 검증 예정; 사용자 exe 5분 확인 후 완료 |
+| S1-10 | Slice 검증·실행 안내 | REVIEW | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·exe 전환/복귀 PASS. 사용자 exe 실행 5분 확인 대기 |
 | S1-G | Sprint 1 Gate | TODO | S1-06:DONE, S1-09:DONE, S1-10:DONE | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
 ### 야간 시스템 작업 — DEC-S2-PRE
@@ -173,6 +173,17 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### 2026-10-02 S1-10 — 그레이박스 v1 빌드 / REVIEW
+
+- [S1-10-build-v1.txt](Validation/S1-10-build-v1.txt) 및 최종 [S1-10-build-v1-rerun.txt](Validation/S1-10-build-v1-rerun.txt): Windows x64 Mono Succeeded, errors=0·warnings=0. BuildPlayerOptions에서 A01/A02/A03/A04 순서만 명시, EditorBuildSettings 미수정. A01 시작·테스트 씬 제외.
+- 최초 빌드 후 실행 검사 준비에서 A03에 KillZone이 없음을 확인해, CP-A03 접촉 후 기존 RoomSession.Die를 호출하도록 검사 코드를 바로잡고 재빌드. 빌드·런타임 검증 실패는 없었으며 두 빌드 결과 모두 보존.
+- [S1-10-runtime-v1.txt](Validation/S1-10-runtime-v1.txt) 첫 줄 PASS·FAIL 0·exe exit=0. 실제 exe에서 포함 씬 4개 및 순서 일치, DashTest/CombatTest/MovementTest 로드 불가, A01 Entry (3.50,1.81) 시작 확인.
+- 출구 트리거에 플레이어 직접 배치: A01→A02→A03→A04→A03→A02→A01. 실제 트리거 콜백→RoomSession 전환을 사용하고 각 도착 Spawn ID·위치·단일 플레이어 확인. 순방향 FromLeft=(3.50,1.81), 역방향 FromRight=(32.50,1.81), 전환 0.020~0.040초. 휴리스틱 자동 이동·경로 재미 검사는 실행하지 않음.
+- A02 구멍의 실제 KillZone 낙하→CP-A01/A01 (3.50,1.81), 낙하 포함 0.922초. A03 CP-A03 실제 접촉 후 기존 사망 흐름 호출→CP-A03 (16.00,1.81), 0.600초. 사망 입력 차단·복귀 후 입력 상태 해제 PASS. A03에 위험 지역 추가 없음.
+- 런타임 Error/Exception/Assert 0. 별도 [Player.log 보존본](Validation/S1-10-player-v1.log)에서 Exception/Error/Assertion 문자열 없음. 사용자 exe 5분 조작·실물 패드 확인 미실시, S1-10 REVIEW. S1-06/09 사용자 수락 DONE, S1-G TODO.
+- 보호 확인: A01~A04·Level 원본·모든 지정 tuning·Player.prefab·MovementTest·Packages·ProjectVersion·EditorBuildSettings 변경 없음. 기존 S1-10 기록은 폐기 레이아웃 기준으로 보존.
+
 
 ### 2026-10-02 C3 — 배치 보고만 / 자동 경로 FAIL
 
@@ -345,9 +356,16 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Latest Handoff
 
-2026-10-02 S1-10 실행 전 사용자 결정 기록.
+2026-10-02 S1-10 그레이박스 v1 빌드·exe 검사 완료. 로컬 커밋만, push 없음.
 
-- S1-06 DONE: lead0 적용 후 사용자 플레이에서 카메라 문제 없음.
-- S1-09 DONE: 사용자 A01→A04 플레이 후 테스트용 이동 경로로 수락. 임시 그레이박스 v1이며 실제 진행 때 수정 예정.
-- C3 자동 왕복 FAIL은 입력 휴리스틱 한계로 보존. 사용자 직접 왕복 성공 보고를 근거로 레이아웃 결함으로 보지 않음.
-- 다음 승인 작업: S1-10 Windows x64 빌드·출구 트리거 직접 배치 기반 전환·체크포인트 exe 검증. S1-G TODO, T1~T4 REVIEW 유지. 레벨·기능 변경 및 push 없음.
+| 작업 | 상태 | 커밋 / 증거 |
+| --- | --- | --- |
+| 사용자 S1-06·S1-09 수락 | DONE. lead0 카메라 문제 없음, 임시 테스트용 이동 경로 수락 | 73a92e1 — docs: record user acceptance of S1-06 and S1-09 |
+| S1-10 Windows x64 Slice v1 | REVIEW. 빌드·exe 기술 검사 PASS, 사용자 exe 5분 확인 대기 | 본 build: S1-10 slice v1 커밋. S1-10-build-v1.txt; S1-10-build-v1-rerun.txt; S1-10-runtime-v1.txt; S1-10-player-v1.log |
+
+- **실행:** Builds/Slice/Afterglow-Slice.exe. A01 시작·A01~A04만 포함. 같은 폴더 데이터/DLL을 유지한다. 이동 A/D·방향키/왼쪽 스틱·D-pad, 점프 Space/A, Pause Esc/Menu, 재개 Enter/Esc 또는 A/B, 종료 Alt+F4. README 로컬 빌드 실행 절 갱신.
+- **실제 검증:** 최종 빌드 Succeeded, errors=0·warnings=0. exe PASS·FAIL 0·exit=0. 출구 트리거 직접 배치로 6개 연결 왕복 및 Spawn 위치 확인, 포함 씬 정확히 4개·테스트 씬 제외. A02 실제 구멍 낙하→CP-A01 복귀 0.922초, A03 CP-A03 접촉 후 기존 사망 흐름→CP-A03 복귀 0.600초. Player.log 오류 없음.
+- **검사 한계:** A03에는 KillZone이 없어 사망 API를 호출했으며 지형/위험을 추가하지 않았다. CLI 옵션 -slice-v1-verify로 실행할 때만 검사기를 만들고 입력 장치를 격리하며, 평상시 실행에서는 검사기를 만들지 않는다. 자동 검사는 이동 경로 조작감·가시성·실물 패드와 사용자 5분 exe 확인을 대신하지 않는다. C3 FAIL은 자동 입력 한계로 보존하고 사용자 직접 왕복 성공 보고에 따라 레이아웃 결함으로 보지 않음.
+- **사용자 확인:** exe를 5분 실행해 A01~A04 이동·문 전환·카메라·점프·Pause 재개·A02 구멍 복귀를 확인하고 S1-10 수락/반려. 현재 배치는 임시 그레이박스 v1, 대시/공격 미통합. 수정은 이후 별도 승인 때 Scene에서 진행.
+- **주요 파일·보존:** N2BBuild.cs(씬 목록을 BuildPlayerOptions로만 지정), SliceBuildVerification.cs(명시 CLI 실행 검사), README·TASKS·새 Validation. A01~A04·Level prefab 원본·지정 tuning·Player.prefab·MovementTest·Packages·ProjectVersion·EditorBuildSettings 불변. 이전 S1-10 기록은 폐기된 레이아웃 기준으로 보존.
+- **다음:** 사용자 exe 확인 후 상태 결정만 가능. S1-G TODO, Gate 판단·레벨 배치·T1~T4 기능 변경·Sprint 2·push 미실시. 승인 범위 종료.
