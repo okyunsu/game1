@@ -1,0 +1,93 @@
+이번 실행은 P0(push), G2, P3, S3-01~S3-05, 최종 빌드, 최종 push만 순서대로 수행한다. C지역(C01 이후), 보스, 엔딩, 선택 방(A06/B06/C05), 아트, K2 카메라 재시도, A01~A05 기존 배치 수정은 하지 않는다. 무인 실행이므로 질문하지 않고, 판단이 필요한 항목은 TASKS "Decisions Needed"에 남기고 가장 보수적인 선택으로 진행한다.
+
+[읽을 범위]
+AGENTS.md, PRD.md의 World Scope·Scope Cut Policy·Definition of Done, TASKS.md의 Roadmap·Current Sprint·S2-01~06·Decisions Needed·Latest Handoff, GAME_DESIGN.md 5절(Double Jump)·8·9·10·12·14·15·22절만.
+
+[사전 승인]
+- origin main으로 push 승인. 시점은 P0와 최종 push 두 번뿐. force push 금지.
+
+## P0. 현재 진행사항 push
+- 브랜치 main, 작업 트리 깨끗한지 확인. 아니면 아무것도 하지 말고 보고 후 멈춘다.
+- git push origin main. 실패하면 pull·merge·force 하지 말고 오류만 기록한 뒤 로컬 커밋으로 계속 진행하고 최종 push는 생략한다.
+
+[공통 실행 규칙]
+- 수정 금지: PlayerTuning·CombatTuning·E1Tuning 기존 값(새 필드 추가는 허용), MovementTest.unity, Packages/, ProjectVersion.txt, Level 프리팹 원본. A01~A05 기존 배치 변경 금지. B01은 아래 명시한 추가만 허용.
+- 수치는 GAME_DESIGN 22절 초기값 그대로 ScriptableObject에 노출. 임의 조정 금지.
+- 단계마다 구현 → 검증 → 통과 시 로컬 커밋. 각 단계 후 S1-02/04 입력·이동 회귀, S1-07 방 연결, S1-08 체크포인트 검사 실행. 깨지면 그 단계 실패.
+- 실패 시 1회만 수정 후 재시도. 두 번째도 실패하면 그 단계 변경만 되돌리고 실패 로그만 커밋. 의존 단계는 건너뛰고 이유를 기록, 의존하지 않는 다음 단계로 진행.
+- 의존: S3-03은 S3-01·S3-02 필요, S3-04는 S3-03 필요, S3-05는 S3-01·S3-03 필요.
+- 자동 이동 로봇으로 판정하지 않는다. 직접 배치·지정 입력으로 검사한다. 출구 근처에서 벽 충돌 검사를 하지 않는다.
+- 새 방 공통 셸: 36×14u, 바닥 윗면 y=1, 좌우 벽, 카메라 경계, RoomCameraRig 5.5u/0u/0.15s, 방 이름 표시. 출구 트리거 1×2u, Door 표시. 바닥 스폰 y=1.81.
+- 새 체크포인트·능력은 저장(유효 CP ID, 이어하기 씬 매핑)에 연결한다.
+- Validation은 새 파일로만 저장.
+
+## G2. Sprint 2 Gate 통과와 범위 결정 기록 (사용자 결정 2026-10-03)
+- 사용자 S2-day exe 플레이: 방향키+Z/X/C 조작 편함, 대시 없이 A03 격자 막힘·대시로 통과 확인, B01 이동 확인. S2-01~04, K1, S2-03 DONE. 이월 체감 항목(T1~T4, 점프 일관성) 사용자 수락으로 처리. S1-10 DONE.
+- K2(CAM-002) 대시 카메라 밀림: 사용자 판단 "아트 적용 후 다시 확인, 우선순위 낮음". DEFERRED로 Sprint 4 Polish 후보에 기록. 참고: 2차 실패는 절대 위치 비교 때문으로 보임(카메라-플레이어 거리는 2.06u 대 2.08u로 동일). 재시도 시 상대 거리로 비교할 것.
+- S2-05·S2-06 DONE(사용자 플레이로 대체), Sprint 2 Gate 통과.
+- 범위 결정: Target 15방(선택 방 A06·B06·C05 보류, 여유 시 18방 확장). PRD World Scope와 GAME_DESIGN 8절에 현재 적용 범위로 기록. Current Sprint를 Sprint 3으로 갱신.
+커밋: "docs: Sprint 2 gate pass and Target 15-room scope"
+
+## P3. Sprint 3 작업 목록 (문서만)
+- S3-01~S3-05를 아래 내용으로 TASKS에 기록. 나머지 Sprint 3 범위(C01~C04, C06 보스, 엔딩, Sprint 3 Gate)는 S3-06 이후 TODO 제안으로만 적는다.
+커밋: "docs: break down Sprint 3 tasks"
+
+## S3-01. 더블 점프 시스템 (테스트 씬 + Player, 보유 false)
+- GAME_DESIGN 5절 Double Jump 규칙 그대로: 일반 점프와 같은 초기 수직 속도(PlayerTuning 새 필드 doubleJumpVelocity 12), 버튼을 다시 눌러야 발동, 접지 시 회복, 걸어서 떨어져도 Coyote 후 1회 가능, 대시·방 전환으로 회복 안 됨, 3번째 점프 불가. 공중 대시와 함께 사용 가능.
+- Player.prefab에 추가하되 보유 기본 false(A01~A05에서 사용 불가). 테스트 씬 Assets/Scenes/Test/DoubleJumpTest.unity(보유 true, 3.6u 턱 포함).
+- 키: 점프와 같은 키(Z/Space/패드 A).
+검증 → Validation/S3-01-doublejump.txt: 30/60/120fps에서 일반 점프 최대 발 높이와 더블 점프 최대 발 높이 MEASURE, 3번째 점프 불가, 홀드 자동 발동 없음, 걸어서 떨어진 뒤 1회, 대시 후 회복 없음, 미보유 시 동작 안 함, 저장된 보유 상태 로드.
+- G-J 기준 확인: 3.6u가 "일반 최대 +0.8u 이상, 더블 최대 −0.5u 이하"를 만족하는지 MEASURE. 만족하지 않으면 S3-03의 턱 높이를 범위 안 가장 가까운 값으로 바꾸고 Decisions Needed에 기록.
+커밋: "feat: S3-01 double jump system (unowned in rooms)"
+
+## S3-02. E2 돌진형 적 (CombatTest 한정)
+- GAME_DESIGN 12절: 대기 → 감지(5u) → 0.6초 예고(색/점멸 등 눈에 보이게) → 0.4초 수평 돌진 6u/s(방향 고정) → 1초 회복. 벽에서 정지. HP 3, 접촉 피해 1, 받는 넉백 3u/s. E2Tuning 에셋으로 노출.
+- CombatTest에 1마리 추가. A01~A05에는 넣지 않는다.
+검증 → Validation/S3-02-E2.txt: 감지 범위 밖 대기, 예고 시간, 돌진 거리·방향 고정, 벽 정지, 3회 공격 처치, 접촉 피해·무적, 대시로 회피 가능(돌진 중 대시로 통과·이탈 시 피해 없음은 요구하지 않음, 대시는 무적기가 아님 — 거리를 벌려 피할 수 있는지만 측정), 사망·재입장 초기화.
+커밋: "feat: S3-02 E2 charger enemy in CombatTest"
+
+## S3-03. B01 G-J 턱과 B02
+1. B01 추가(기존 Exit Left·CP-B01·안내는 유지, "다음 Sprint에서 제작" 안내 문구만 제거):
+   | 이름 | 프리팹 | Position | Scale |
+   | B01_GJLedge | Landing | (30.5, 4.1) | (9, 1) |
+   - 턱은 x 26~35, 윗면 y=4.6(바닥에서 3.6u), 아래 통로 높이 2.6u.
+   - 위쪽 출구: Exit Upper x 34.25, y 5.6 → B05/FromLeft. 아래쪽 출구: Exit Right x 34.25, y 2 → B02/FromLeft. 두 트리거가 겹치지 않음을 MEASURE.
+   - 위 출구로 돌아오는 스폰 B01/FromUpper: (28, 5.41). B02에서 돌아오는 스폰 B01/FromRight: (32.5, 1.81).
+   - B01에 "B02 →" 방향 표식(방 안내 텍스트로 충분).
+2. B02 새 씬: Exit Left (1.75, 2) → B01/FromRight, Exit Right (34.25, 2) → B03/FromLeft. 스폰 FromLeft (3.5, 1.81), FromRight (32.5, 1.81).
+   | 이름 | 프리팹 | Position | Scale |
+   | B02_SafeStep | Landing | (11, 2) | (4, 2) |
+   - E2 1마리: 바닥 x 24, 왼쪽을 바라봄. 플레이어가 B02_SafeStep(윗면 y=3) 위에서 E2의 예고를 먼저 볼 수 있게 한다(피할 공간 먼저).
+검증 → Validation/S3-03-B01-B02.txt: 일반 점프로 B01 턱 도달 불가, 더블 점프 보유 시 도달 가능(지정 입력), 대시 조합으로 미보유 우회 불가, B01↔B02 왕복, B01↔B05 출구 트리거 존재(B05는 S3-05에서 생성, 그 전에는 출구만 비활성 또는 S3-05 이후 검사), E2 동작·처치·재입장 초기화, CP-B01 사망 복귀.
+커밋: "level: S3-03 B01 G-J ledge and B02 with E2"
+
+## S3-04. E3 사격형과 B03
+1. E3 (GAME_DESIGN 12절): 이동 0, 감지 7u, 0.7초 예고 후 고정 방향 단발, 주기 2초, 탄속 5u/s, 벽 뒤 플레이어에는 발사 안 함, 벽 충돌·방 전환 시 탄 제거, 화면 밖 기습 금지. HP 2, 탄 피해 1. E3Tuning 노출. CombatTest에도 1마리.
+2. B03 새 씬: Exit Left (1.75, 2) → B02/FromRight, Exit Right (34.25, 2) → B04/FromLeft. 스폰 FromLeft, FromRight 공통 규칙.
+   | 이름 | 프리팹 | Position | Scale |
+   | B03_Cover | Wall | (14, 2) | (1, 2) |
+   | B03_TurretBase | Landing | (26, 2) | (4, 2) |
+   - E3 1마리: B03_TurretBase 위(윗면 y=3), 왼쪽을 향해 사격. B03_Cover(x 13.5~14.5, 높이 2u) 뒤에서 탄을 피할 수 있게 한다.
+검증 → Validation/S3-04-E3-B03.txt: 예고·주기·탄속, 엄폐물 뒤 탄 차단, 화면 밖에서 발사 안 함, 2회 공격 처치, 탄 피해·무적, 방 전환 시 탄 제거, B02↔B03 왕복.
+커밋: "feat: S3-04 E3 turret and B03"
+
+## S3-05. B04 더블 점프 획득·연습과 B05 자리
+1. B04 새 씬: Exit Left (1.75, 2) → B03/FromRight. 오른쪽 출구 없음.
+   - 더블 점프 획득물: 바닥 x 10. 접촉 시 보유 true, 사라짐, 3초 안내 "더블 점프 획득 — 공중에서 Z 한 번 더". 마지막 체크포인트를 바꾸지 않음. 이미 보유 시 미등장. 저장에 연결.
+   | 이름 | 프리팹 | Position | Scale |
+   | B04_PracticeLow | Landing | (18, 2) | (3, 2) |
+   | B04_PracticeHigh | Landing | (25, 3.3) | (4, 1) |
+   - PracticeLow 윗면 y=3, PracticeHigh 윗면 y=3.8(x 23~27, 떠 있는 발판). 아래는 바닥(죽지 않음). 목적: 일반 점프로 안 닿고 더블 점프로 닿는 높이 연습. 실제 측정으로 일반 점프로 닿으면 PracticeHigh의 Y만 올리고 기록.
+2. B05 새 씬: Exit Left (1.75, 6) → B01/FromUpper, 스폰 FromLeft (3.5, 1.81)는 바닥. 방 이름 + "다음 Sprint에서 제작" 안내만. 오른쪽 출구 없음.
+검증 → Validation/S3-05-B04-B05.txt: 획득 전 더블 점프 불가·후 가능, 재입장 미등장, 사망 후 보유 유지, 연습 발판 일반 점프 도달 불가·더블 점프 도달 가능(MEASURE), B01 위 출구 ↔ B05 왕복, 종료→이어하기 시 더블 점프 유지.
+커밋: "feat: S3-05 B04 double jump pickup and B05 placeholder"
+
+## 최종 빌드
+- 성공 단계를 포함한 Windows x64 빌드를 Builds/S3-B에 만든다(Menu, A01~A05, B01 + 성공한 B02~B05). 테스트 씬 제외.
+- exe 실행 검사(직접 배치): 새 게임, 모든 문 왕복, 체크포인트 복귀, 능력 획득 저장·이어하기, Error/Exception 0 → Validation/S3-B-build.txt, S3-B-runtime.txt.
+커밋: "build: S3 B-region build"
+
+## 마무리와 최종 push
+1. TASKS Latest Handoff: 단계별 결과(성공/실패/건너뜀), 커밋 해시, Validation 목록, Decisions Needed, 사용자 확인 항목(B01 턱 높이 체감, E2 예고가 보이는지·피할 만한지, E3 엄폐 체감, B04 더블 점프 감각, A05 대시 획득부터 B05까지 전체 흐름 시간)을 정리하고 커밋.
+2. P0가 성공했다면 git push origin main. 실패 시 오류만 기록. pull·merge·force 금지.
+3. 최종 보고에 push 결과와 마지막 커밋 해시 포함.
