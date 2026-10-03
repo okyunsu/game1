@@ -1,0 +1,11 @@
+BLOCKED S3-09 specification preflight; Unity=6000.3.24f1
+No boss implementation or C06 asset authored; approved common shell measured in C04 with proposed C06 positions.
+Required: camera size5.5, boss x28 width2, start when player x>8; boss and full warning visible before start.
+MEASURE player x=3.50; size=5.500; aspect=1.778; camera=(7.33, 4.50, -10.00); boss left viewport=(1.51, 0.18, 10.00); boss right=(1.61, 0.45, 10.00); warning left=(1.35, 0.18, 10.00)
+MEASURE boss fully visible=False; warning fully visible=False
+MEASURE player x=7.99; size=5.500; aspect=1.778; camera=(9.78, 4.50, -10.00); boss left viewport=(1.38, 0.18, 10.00); boss right=(1.48, 0.45, 10.00); warning left=(1.23, 0.18, 10.00)
+MEASURE boss fully visible=False; warning fully visible=False
+MEASURE available horizontal view=19.556u; smallest required span from pre-start player left(7.99-0.4) to boss right29=21.410u
+CONFLICT: even optimally centering the camera cannot show both the player and full boss before x8 at16:9. 1280x720 and1920x1080 share this aspect.
+STOP: fixing requires changing approved start line, boss placement or camera size/framing contract. AGENTS Stop Conditions: game rule change requires user decision. No unapproved adjustment or cosmetic inset added.
+S3-10 skipped: depends on successful S3-09. S3-06/07/08 remain valid. Final build must contain only successful stages and C04 Right remain disabled.

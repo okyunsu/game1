@@ -1,0 +1,1 @@
+SKIPPED S3-10: S3-09 BLOCKED at specification preflight (S3-C06-VIEW). No implementation performed. Boss defeat, Ending, bossDefeated/endingReached, Quit and Pause title changes and corresponding tests not performed. See S3-09-boss.txt and TASKS Decisions Needed.
