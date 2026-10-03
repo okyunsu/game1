@@ -9,7 +9,7 @@
 
 ## 현재 상태
 
-2026-10-04 Sprint 3 / Target 15방. 기존 보스·엔딩 후보에 F2R 공격/적 피격 표시와 LOGR 플레이테스트 CSV를 더한 S4-pre 빌드다. F2R·LOGR REVIEW, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 판단 대기다. 이름이 S4-pre여도 Sprint 4 튜닝·콘텐츠를 시작한 것은 아니다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
+2026-10-04 Sprint 3 / Target 15방. TM 검사 정비와 U1 통합 HUD·첫 조작 안내·사망 표시를 더한 S4-pre2 빌드다. TM/U0 DONE, U1·F2R·LOGR REVIEW, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 판단 대기다. U1 상태검사와 회귀는 PASS지만 요청 스크린샷 6장은 촬영 도구 중단으로 미실시다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
 
 ## Unity에서 실행
 
@@ -24,11 +24,15 @@
 
 ## 로컬 빌드 실행
 
+S4-pre2에서 확인할 것: `Builds/S4-pre2/Afterglow-S4-pre2.exe`에서 왼쪽 위 HP칸·대시/더블 점프 아이콘과 키 표기가 잘 보이고 이동 공간을 가리지 않는지 확인한다.
+새 게임 A01의 첫 안내가 시간 경과/첫 이동으로 사라지고 Continue에는 안 나오며, 사망 중 검정 표시가 복귀 직후 걷히는지 확인한다.
+수정은 `Assets/Resources/UITuning.asset`(HUD 위치·크기/HP칸/안내 시간/글자/사망 음영); Play 종료 후 원하는 값·이전 값을 명시 저장. `Validation/U1-shots/`에는 촬영 중단 안내만 있으며 스크린샷 6장은 미실시다.
+
 S4-pre에서 확인할 것: `Builds/S4-pre/Afterglow-S4-pre.exe`에서 공격 표시·적 HP칸/흰 번쩍임·처치 효과·보스 상단 HP 막대의 가시성을 확인한다.
 새 게임을 시작하면 CSV를 자동 기록하며 사망 원인은 `unrecorded`, 활동 시간에서 Pause를 제외한다. 이어하기는 새 기록 세션을 시작하지 않는다.
 CSV 실제 폴더: `C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest` (타 PC에서는 해당 사용자의 LocalLow/Afterglow/Afterglow/Playtest).
 
-현재 통합 빌드: `Builds/S4-pre/Afterglow-S4-pre.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow-S4-pre_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 기존 `Builds/S3-complete/Afterglow.exe`는 표시 추가 전 기준으로 보존했다.
+현재 통합 빌드: `Builds/S4-pre2/Afterglow-S4-pre2.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow-S4-pre2_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 기존 `Builds/S4-pre/Afterglow-S4-pre.exe`와 `Builds/S3-complete/Afterglow.exe`는 보존했다.
 
 이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. Pause에서는 ↑/↓로 재개/타이틀을 고르고 Z/Enter/패드 A로 확인한다. 종료는 타이틀 Quit 또는 창 닫기/Alt+F4.
 

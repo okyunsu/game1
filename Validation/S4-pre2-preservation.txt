@@ -1,0 +1,8 @@
+Protection comparison vs approved baseline 80c9dbf. OnGUI-only exceptions explicitly allowed.
+PASS Assets/Scripts/PlayerHealth.cs: all code outside OnGUI unchanged
+PASS Assets/Scripts/PlayerInputReader.cs: all code outside OnGUI unchanged
+PASS Assets/Scripts/RoomLabel.cs: all code outside OnGUI unchanged
+PASS Assets/Scripts/DashPickup.cs: all code outside OnGUI unchanged
+PASS Assets/Scripts/DoubleJumpPickup.cs: all code outside OnGUI unchanged
+PASS protected gameplay/progression/save/boss/enemy/camera/Scene/Prefab/existing Tuning/Packages/ProjectSettings diff0
+New UITuning/GameHUD and opt-in verification only. Existing Validation never overwritten. No push.

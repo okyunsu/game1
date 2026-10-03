@@ -8,3 +8,4 @@ Respawning overlay active during existing input lock and inactive after return; 
 New assets: Assets/Resources/UITuning.asset, GameHUD.cs. Existing OnGUI display only changed; exact protection comparison U1-preservation.txt.
 Screenshots: NOT RUN (6 requested captures). Tool module compilation failed twice, stopped under B rule; no package changes. Source and limitation preserved. No pixel or human display acceptance claimed.
 Editor resolutions/manual physical gamepad/natural completion not tested. Actual exe validation follows final build.
+Final actual exe state/integration: S4-pre2-ui-runtime-tool-rerun.txt PASS/Error0; C06 inspection corrected once, see U1-boss-tool-correction.txt. Final REG-S4-pre2 13/13 PASS. Screenshots remain NOT RUN.

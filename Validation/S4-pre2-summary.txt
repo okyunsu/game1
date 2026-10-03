@@ -1,0 +1,10 @@
+S4-pre2 final summary — 2026-10-04 (KST)
+Regression: 13/13 PASS / KNOWN-FAIL none (REG-S4-pre2-summary.txt), same as TM and U1.
+Final build: S4-pre2-build-tool-rerun.txt Succeeded/errors0/warnings0, Windows x64, 17 scenes. Actual executable: Builds/S4-pre2/Afterglow-S4-pre2.exe.
+UI integration actual exe: S4-pre2-ui-runtime-tool-rerun.txt PASS / Error/Exception/Assert0. New game first notice -> actual hit -> death/respawn shade -> real Dash/DoubleJump pickups by direct placement -> Continue/new game distinctions -> both abilities -> direct boss defeat -> Ending -> title.
+Initial UI runtime failed only in added boss test with nonexistent C06 Entry. One inspection correction to authored FromLeft; retest PASS. Existing game/UI code unchanged through rebuild.
+Independent actual exe: S4-pre2-runtime.txt PASS / Error0. Existing verifier header says S4-pre due fixed legacy label, but launch path was S4-pre2 exe. 1920x1080 launch; new CSV/attack/enemy feedback/death/Pause exclusion/save hashes/boss/Ending/title PASS. CSV copied to S4-pre2-session.csv.
+Final UI integration launched 1280x720. Neither launch verifies pixel layout. Six requested HUD screenshots NOT CAPTURED; capture tool failed compilation and one correction also failed; stopped per B rule. U1 REVIEW with user readability pending, screenshot path BLOCKED.
+Actual exe inputs were virtual keyboard/gamepad; room placement and direct20 damage used for boss; not natural full play or physical pad acceptance.
+Protection: S4-pre2-preservation.txt; all protected gameplay/progression/save/camera/scene/prefab/existing tuning/package/project settings diff0. Existing OnGUI display-only exceptions. S4-pre and S3-complete preserved, no push.
+After final regression the only source correction was opt-in UIVerification C06 spawn string and build evidence filename; normal UI/gameplay source identical, relevant corrected executable path retested PASS.

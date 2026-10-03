@@ -81,7 +81,7 @@ public sealed class UIVerification : MonoBehaviour
         yield return Enter("A05");Place(FindFirstObjectByType<DashPickup>().transform.position);yield return new WaitForFixedUpdate();yield return null;
         yield return Enter("B04");Place(FindFirstObjectByType<DoubleJumpPickup>().transform.position);yield return new WaitForFixedUpdate();yield return null;
         Check(RoomSession.Instance.Player.GetComponent<PlayerDash>().hasDash&&RoomSession.Instance.Player.GetComponent<PlayerMotor>().hasDoubleJump,"both abilities acquired before final boss flow");
-        yield return Enter("C04","FromLeft");yield return Enter("C06");Place(new Vector2(8,1.81f));var boss=FindFirstObjectByType<BossEncounter>();yield return Until(()=>boss.Fighting);yield return null;boss.ReceiveHit(20,RoomSession.Instance.Player.transform.position);
+        yield return Enter("C04","FromLeft");yield return Enter("C06","FromLeft");Place(new Vector2(8,1.81f));var boss=FindFirstObjectByType<BossEncounter>();yield return Until(()=>boss.Fighting);yield return null;boss.ReceiveHit(20,RoomSession.Instance.Player.transform.position);
         yield return Until(()=>FindFirstObjectByType<EndingMenu>()!=null);Check(true,"direct boss defeat reaches Ending");yield return Keys(Key.Z);yield return Keys();yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null);Check(true,"Ending returns title");
         Check(PlaytestLogger.Instance!=null,"existing CSV logger retained");lines.Add("Presentation acceptance pending user; synthetic input and direct placements, not natural completion.");
     }

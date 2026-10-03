@@ -1,0 +1,21 @@
+PASS S4-pre actual exe
+PASS: Menu logging inactive before new game
+PASS: new game CSV created C:/Users/gosu3/AppData/LocalLow/Afterglow/Afterglow\Playtest\20261004-033811.csv
+PASS: new game A01
+PASS: A01 AttackSlash activation
+PASS: door A02
+PASS: one death requested in A02
+PASS: ProgressSave SHA256 unchanged through room/death test
+PASS: Pause ~3s excluded from active elapsed
+PASS: ProgressSave SHA256 unchanged after Pause
+PASS: CSV room/death exact location/unrecorded/Pause rows
+MEASURE death=(8.00, 1.81) active=1.687556 pause=3.016253; hash=+uSnDOKC21Xvb0Skc9/7xE2pLKsRMQufJzpA0yaY+4E=
+PASS: door A02
+PASS: door A03
+PASS: door A04
+PASS: actual exe enemy HitFeedback event
+PASS: direct C04 setup
+PASS: door C06
+PASS: CSV boss defeat / Ending summary
+PASS: Ending returns title
+Error/Exception/Assert=0

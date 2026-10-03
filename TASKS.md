@@ -13,11 +13,13 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
+**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
 2026-10-04 최신 추가 승인 D0/F2R/LOGR 종료: 기준T2 실패 재현·T2v2 PASS, F2R/LOGR REVIEW, S4-pre 빌드·실제exe·최종회귀PASS. 아래 S3 후보/사용자 Gate 상태 유지.
 G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
 ## Current Tasks
+
+2026-10-04 최종: **TM/U0 DONE, U1 REVIEW(촬영 경로 BLOCKED/B 규칙 기능보존), S4-pre2 빌드·실제exe PASS/Error0, 회귀13/13PASS/KNOWN-FAIL 없음**. [최종요약](Validation/S4-pre2-summary.txt). 사용자 HUD 가독성 대기·6장 미촬영, 보호파일불변/push없음. 아래 진행중 문단은 단계 이력, Latest Handoff/최상단 최신 상태 우선.
 
 2026-10-04 U1 REVIEW(촬영도구 한계/가독성 사용자 대기): Unity 상태검사 PASS/Error0, [U1](Validation/U1-ui.txt), 회귀13/13PASS/TM동일([REG-U1](Validation/REG-U1-summary.txt)). 화면6장 미실시/B 규칙 기능보존. S4-pre2 최종빌드 진행.
 
@@ -600,23 +602,23 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-**D0: 표시 없는 기준에서도 기존 T2 잠금 검사가 같은 줄에서 FAIL. 직접 시각 측정 T2v2는 검사 위치의 CP 간섭을 피한 뒤 30/60/120fps PASS.** 기존 T4의 파괴된 적 참조 및 S2 통합 HP assertion도 기준/F2R 동일 FAIL. 이 결과를 F2R 신규 회귀로 보지 않는 새 사용자 결정 적용. F1의 모든 독립 영향을 해명했다는 뜻은 아님.
+**회귀 묶음 13/13 PASS / KNOWN-FAIL 없음. U1 상태·실제 exe PASS / Error0. 요청 HUD 스크린샷 6장은 촬영 검사1회보정 재실패로 미실시.**
 
-2026-10-04 승인 D0 → F2R → LOGR → 최종 빌드 종료. **main / 로컬 커밋 / push 없음. F2R REVIEW(표시 검사 도구 한계), LOGR REVIEW, S4-pre 실제 exe 및 최종 회귀 PASS.** S3-06~10 REVIEW / Sprint3 Gate 사용자 판단 유지, Sprint4 튜닝·콘텐츠 미착수. [직전 실패 인계](Validation/F2-first-prior-handoff.md).
+2026-10-04 승인 **TM → U0 → U1 → S4-pre2 빌드** 종료. **TM/U0 DONE, U1 REVIEW(명세 B 규칙: 기능 보존·촬영 경로 BLOCKED/가독성 사용자 대기)**. F2R 처치효과 생성·소멸 검사는 TM에서 재확인 PASS, 감각 수락 상태는 REVIEW 유지. LOGR·S3-06~10 REVIEW/Sprint3 Gate 사용자 판단 유지. main / 단계 로컬 커밋 / push 없음. [직전 인계](Validation/TM-U1-prior-handoff.md).
 
-| 단계 | 결과 / 커밋 | 증거 |
+| 작업 | 결과 | 증거 |
 | --- | --- | --- |
-| 승인 | 전문·새 사용자 판단 보존 / b5e9828 | [명세](Validation/F2R-LOGR-approved-request.txt) |
-| D0 | 원본 T1/T3 PASS, T2/T4 기준FAIL; T2v2 보정PASS / 0a769f6 | [요약](Validation/D0-summary.txt), [측정](Validation/D0-rerun-T2v2.txt) |
-| F2R | 표시·E2예고/보스회복/T2v2/S1/카메라 PASS, 처치효과 도구참조 한계 REVIEW / 7350171 | [요약](Validation/F2R-summary.txt), [표시+도구한계](Validation/F2R-feedback-tool-rerun.txt), [보스명중](Validation/F2R-boss-recovery.txt) |
-| LOGR | CSV·사망위치·Pause제외·저장해시·S1 PASS, REVIEW / 531c51e | [결과](Validation/LOGR-playtest.txt), [CSV](Validation/LOGR-session.csv), [설계/한계](Validation/LOGR-summary.txt) |
-| 최종 빌드 | Windows x64 errors0/warnings0, 실제exe/최종S1·카메라 PASS / 3da46e9 | [빌드](Validation/S4-pre-build.txt), [exe](Validation/S4-pre-runtime.txt), [CSV](Validation/S4-pre-session.csv), [보존](Validation/S4-pre-preservation.txt) |
+| 승인 | 원문 보존 / 3fdcf8f | [명세](Validation/TM-U1-approved-request.txt) |
+| TM | DONE / a480ddf; 정식 T2 직접 시계·CP 분리, T2Legacy 보존, T4/S2/F2R 적 참조 정비 | [TM 요약](Validation/TM-summary.txt), [13/13](Validation/REG-TM2-summary.txt) |
+| U0 | DONE / c946876; PRD 11개 UI 항목 점검 | [UI 표](Validation/U0-ui-audit.txt) |
+| U1 | REVIEW / fba51b3; 표시 구현·Unity 상태·회귀 PASS, 촬영 한계 | [UI 결과](Validation/U1-ui.txt), [U1 회귀](Validation/REG-U1-summary.txt) |
+| 최종 | Windows x64 17씬 errors0/warnings0, 실제 exe UI·보스/엔딩·CSV PASS | [전체 요약](Validation/S4-pre2-summary.txt), [빌드](Validation/S4-pre2-build-tool-rerun.txt), [UI exe](Validation/S4-pre2-ui-runtime-tool-rerun.txt), [CSV exe](Validation/S4-pre2-runtime.txt), [CSV](Validation/S4-pre2-session.csv), [최종 회귀](Validation/REG-S4-pre2-summary.txt) |
 
-- **켤 exe:** [Afterglow-S4-pre.exe](Builds/S4-pre/Afterglow-S4-pre.exe). 같은 폴더의 Afterglow-S4-pre_Data/DLL 유지. Menu+15플레이방+Ending(17씬), 테스트 씬 제외. S3-complete·Experimental-F1 보존. Builds/Logs는 Git 제외.
-- **실제 검증:** 표시30/60/120fps 좌우 startup/active/end·판정 중심/크기0.01u 이내·hit1/miss0·남은HP 흰칸수·번쩍임±1프레임·E2 예고중 오버레이 PASS. 보스 회복 실제X 1명중/HP20→19/표시1회 PASS. T2v2 해제는 F2R .133326/.133336/.124994초, 설정 .12초+관찰프레임 안이며 반대방향 입력에도 잠금중 x부호 유지. 기존 T2/T4/S2통합 실패는 기준과 동일. F2R 처음 Asset GUID 불일치1회수정 후 도구 stale E2참조1회보정; 최종 도구는 stale E1 body에서 중단해 처치효과 생성/소멸 항목 재확인 못함. 기능은 명세 B 규칙으로 보존/REVIEW, 전체 표시검사PASS로 기록하지 않음.
-- **LOGR/실제exe:** 새 게임 CSV 생성→A01 공격표시→A02 사망(8,1.81)/unrecorded→Pause3.017초 제외→A04 적 HitFeedback→C04/C06 직접 검증배치→보스 시작/직접20피해 처치→2초빛/Ending→Z 타이틀 PASS, Error/Exception/Assert0. 저장 SHA256은 방/사망/Pause 전후 동일. 직접 처치는 자연 보스전 완주 증거가 아님. CSV에서 boss_start/defeated/ending·지역/방별사망/시도1/누적Pause 요약 확인.
-- **최종 회귀:** [S1-02](Validation/S1-02-night-S2-S4-pre.txt), [S1-04](Validation/S1-04-night-S2-S4-pre.txt), [S1-07](Validation/S1-07-night-S2-S4-pre.txt), [S1-08](Validation/S1-08-night-S2-S4-pre.txt), [카메라lead0](Validation/S1-06-lead0-night-S2-S4-pre.txt) PASS. F2R/LOGR 단계별 지정 회귀도 PASS. 가상 입력·자동 지정배치이며 물리패드·사용자눈·자연완주시간 미실시.
-- **보호/주요 파일:** 입력·이동·대시·피격·GameState·RoomSession·KillZone·원래Tuning·모든Scene·RoomCameraRig·Packages·ProjectSettings diff0. NightTests/BossVerification 원본도 불변. PlayerAttack/ReceiveHit에는 허용 표시호출만. 7개 프리팹에 표시 컴포넌트/자식만 추가, boss/dummy는 새 FeedbackSceneBinding으로 연결. LOGR은 PlaytestLogger 자체 생성·관찰만, 기존 저장코드 수정 없음. 신규 스크립트/FeedbackTuning.asset·검사 도구·README/TASKS/Validation 변경.
-- **사용자 확인/수정 위치:** 공격 표시, 적 HP칸·흰번쩍임·처치효과, 보스 기존 상단 HP 막대가 실제로 보이는지 확인. `Assets/ScriptableObjects/FeedbackTuning.asset`: slashAlpha .7/연노랑, hitFlashSeconds .10, hpPipSize .18u/gap .06u/offset .35u, deathPopSeconds .20/scale1.6. 히트스톱/소리/흔들림 없음. Asset은 Play 종료 후 원하는값/이전값을 명시 저장; Scene 변경은 Stop 뒤 다시 입력·저장.
-- **CSV 위치:** `C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest\YYYYMMDD-HHMMSS.csv`. 새 게임부터 기록, 이어하기/메뉴/테스트는 새 세션 시작 안 함. 체크포인트는 ID 변화만(같은 CP 재활성은 기록 안 함), 사망원인은 의도적으로 unrecorded. 쓰기 실패는 한 경고 후 기록 세션만 중단. 검증 CSV 025024/025455는 자동검사 자료이고 사용자 관찰 기록이 아님.
-- **문제/다음:** 도구 stale참조·기준T2/T4/S2 검사 정비는 별도 승인 범위. 표시 가독성/처치효과와 자연완주·CSV 활용을 사용자 확인 후 판단. S3 Gate·수치 채택·추가 작업은 수행하지 않음. 이번 승인 범위 종료.
+- **켤 exe:** [Afterglow-S4-pre2.exe](Builds/S4-pre2/Afterglow-S4-pre2.exe). 같은 폴더의 Afterglow-S4-pre2_Data/DLL 유지. Menu+15플레이방+Ending, 테스트 씬 제외. 기존 S4-pre/S3-complete/Experimental-F1 보존. Builds/Logs는 Git 제외.
+- **UI 변경:** 타이틀·새 게임 확인창·Pause·엔딩·저장 실패 안내는 기존 구현이 있어 기능 보존. 텍스트 HP를 흰색/회색 5칸으로 교체, 대시/더블 점프 아이콘과 현재 장치 C/Z 또는 B/A 표기 통합, 방 ID/Scene notice 유지. 새 게임 첫 A01에서만 3초/첫 이동까지 조작 안내, Continue CP-A01(능력 없음)에서도 미표시. 기존 두 획득 안내는 통합 패널·장치 표기로 표시 정리. Respawning 상태 동안만 검정 음영, 기존 .6초 복귀·입력 잠금 불변.
+- **실제 검증:** Unity Play 및 실제 exe에서 HP5→4→5, 보유 false/false→Dash→둘 다, 획득 안내3초/키보드·가상 패드, 새 게임/Continue 구분, 사망 오버레이 활성→복귀 비활성, 보스 처치→엔딩→타이틀 PASS/Error0. 1280×720 UI exe / 1920×1080 독립 CSV exe로 실행했지만 픽셀 배치 검수는 아님. 직접 방 배치·실제 픽업 접촉·보스 직접20피해이며 자연 완주/물리패드/사용자 눈 수락은 미실시. 최초 UI 보스 검사 Entry 실패는 C06 실제 FromLeft로 검사1회보정 후 PASS, 게임 불변.
+- **스크린샷 문제:** [U1-shots](Validation/U1-shots/NOT-CAPTURED.txt)는 미촬영 안내만 있음. ScreenCapture 모듈 참조 실패 후 ReadPixels 방식 검사1회보정에서도 EncodeToPNG 참조 실패, 해당 촬영 경로 중단. 컴파일을 막는 검사 부분만 제거하고 기능/독립 검증 보존(B 규칙). [도구 기록](Validation/U1-tool-correction.txt), [보존 소스](Validation/U1-capture-stopped-source.txt). 다른 Camera 이미지들은 월드만 렌더하므로 HUD 스크린샷으로 대체하지 않음.
+- **사용자 확인:** HUD 칸/능력 아이콘·키가 보이고 이동 공간을 가리지 않는지, 새 게임 첫 안내가 적절히 사라지는지, 사망 중 어두워지고 복귀 후 즉시 걷히는지, 기존 공격/적HP 표시도 계속 보이는지 판단. U1 가독성 수락 전 DONE 전환하지 않음.
+- **수정 위치:** [UITuning.asset](Assets/Resources/UITuning.asset): HUD Position/Size(1280×720 기준 px), HP Pip Size/Gap, Ability Icon Size, Notice Seconds(3s), Font Size(16px), Death Display Seconds(.15s 음영 진입/기존 Respawning 안에서만), Death Opacity(.65). Play 종료 후 원하는 값·이전 값을 명시 저장. Scene 배치는 Stop 후 다시 입력/저장하되 이번 작업에서 변경하지 않음.
+- **주요 파일/보호:** 신규 GameHUD.cs/UITuning.cs/UIVerification.cs/UICheck.cs/S4Pre2Build.cs, Assets/Resources/UITuning.asset, 검사 도구/회귀·보호 실행기/README/TASKS/Validation. 기존 입력·체력·RoomLabel·픽업은 OnGUI만 수정. [보호 검사](Validation/S4-pre2-preservation.txt): OnGUI 밖 diff0; 이동/대시/피격 게임 로직·GameState/RoomSession·저장·보스/적·카메라·모든 Scene/Prefab·기존 Tuning·Packages/ProjectSettings diff0.
+- **다음:** 사용자 exe UI/완주 판단, 필요 시 별도 승인 촬영 도구 경로. GAME_DESIGN §18의 구키 표기는 Decisions Needed에 기록하고 최신 K1 명시 지시를 적용. Sprint3 Gate·튜닝/레벨배치·새 시스템/후속 Sprint는 수행하지 않음. 이번 승인 범위 종료.

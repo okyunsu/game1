@@ -1,0 +1,4 @@
+Actual exe UI initial: every UI/Continue/death/real ability pickup state check PASS/Error0, then independent final-boss inspection requested nonexistent C06 Entry.
+The existing game correctly rejected mismatched Room/Spawn and retained C04; inspector dereferenced missing boss and stopped. No gameplay failure.
+Inspection correction1: C06 Entry -> authored FromLeft (confirmed Scene spawnId). No saved scene or game/UI code change.
+Rebuild evidence uses new filename; original build and failed runtime evidence preserved. Final regression 13/13 PASS completed before this CLI-only inspector correction; normal gameplay/HUD source identical.
