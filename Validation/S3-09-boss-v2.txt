@@ -1,0 +1,5 @@
+FAIL S3-09 v2 initial scene authoring
+Actual Unity execution: BossSetup.Run threw InvalidOperationException: DontDestroyOnLoad only allowed in Play mode.
+C06 not saved; C04 untouched. Existing tuning/wave candidate created.
+One allowed correction: move cloned camera into an additive new scene, close source without saving.
+Gameplay tests not run on this attempt. See Logs/S3-09-v2-setup.log.

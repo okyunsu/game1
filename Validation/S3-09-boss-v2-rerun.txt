@@ -1,0 +1,79 @@
+PASS S3-09 boss v2 rerun Unity=6000.3.24f1
+PASS: CP-C04 selected before combat
+PASS: enabled door C06
+PASS: single player after C06
+PASS: fresh boss idle HP20 unlocked
+PASS: common camera values untouched
+PASS: actual camera viewport (1280, 720) playerX=3.5 point=(16.50, 1.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=3.5 point=(18.50, 4.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=3.5 point=(13.50, 1.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=3.5 point=(16.50, 2.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=3.5 point=(1.00, 1.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=4.9 point=(16.50, 1.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=4.9 point=(18.50, 4.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=4.9 point=(13.50, 1.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=4.9 point=(16.50, 2.00, 0.00)
+PASS: actual camera viewport (1280, 720) playerX=4.9 point=(1.00, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=3.5 point=(16.50, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=3.5 point=(18.50, 4.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=3.5 point=(13.50, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=3.5 point=(16.50, 2.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=3.5 point=(1.00, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=4.9 point=(16.50, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=4.9 point=(18.50, 4.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=4.9 point=(13.50, 1.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=4.9 point=(16.50, 2.00, 0.00)
+PASS: actual camera viewport (1920, 1080) playerX=4.9 point=(1.00, 1.00, 0.00)
+PASS: enabled door C04
+PASS: single player after C04
+PASS: enabled door C06
+PASS: single player after C06
+PASS: cross x5 locks and shows tell
+PASS: melee exact front3u
+MEASURE melee tell=0.8167s dash x=8.348
+PASS: tell .8 and dash avoids
+MEASURE direct recovery attacks hits=3; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+PASS: melee recovery1.2
+PASS: wave tell1 and height1
+PASS: wave survives ground contact
+MEASURE wave speed=5.0000u/s
+PASS: speed5 and jump avoids
+PASS: Pause freezes wave and pattern
+PASS: wave destroyed at left wall / null-safe
+MEASURE rear entry x=16.135 feet=1.015
+PASS: no entry into .5u rear gap
+PASS: boss top contact damage1
+MEASURE dash-location walk+X hits=1 x=15.212 (informational only)
+PASS: boss death accepted
+PASS: death returns CP-C04 HP max
+PASS: enabled door C06
+PASS: single player after C06
+PASS: reentry resets HP and pattern unlock
+MEASURE direct recovery attacks hits=3; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=2; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=3; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=2; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=3; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=2; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=3; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+MEASURE direct recovery attacks hits=2; playerFront=16.150, bossFront=16.5; recovery=1.200s
+PASS: recovery in-range X lands at least once
+PASS: 20 actual X damage wins and unlocks
+PASS: defeat priority suppresses subsequent death
+PASS: enabled door C04
+PASS: single player after C04
+PASS: enabled door C06
+PASS: single player after C06
+PASS: same-frame death queued
+PASS: same frame death first then boss HP0 wins
+PASS: final timeScale1
+F1 omitted after regression failure; physical gamepad / natural boss fight / perception not tested.
+Error/Exception/Assert 0

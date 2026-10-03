@@ -109,6 +109,8 @@ public sealed class RoomSession : MonoBehaviour
     public void GrantDoubleJump() { Player.GetComponent<PlayerMotor>().hasDoubleJump = true; ProgressSave.SaveCurrent(this); }
     public bool Die()
     {
+        var boss=FindFirstObjectByType<BossEncounter>();
+        if(boss!=null&&boss.DeferDeath())return true;
         if (Transitioning || Respawning) return false;
         Player.GetComponent<PlayerHealth>()?.MarkDead();
         StartCoroutine(Respawn());
@@ -178,3 +180,4 @@ public sealed class RoomSession : MonoBehaviour
     }
     void OnDestroy() { if (Instance == this) Instance = null; }
 }
+
