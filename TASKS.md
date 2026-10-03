@@ -88,7 +88,8 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 | S3-06 | B02 E2 소개 위치 수정 | REVIEW | G3:DONE | E2 x17/왼쪽/바닥, 발판 위 감지4.787u·반복 돌진 벽앞0.140u 정지·피해 없음·바닥 피해·B01/B02/B03 왕복 및 필수 회귀 PASS |
 | S3-07 | B05 연결·C01 휴식·C02 조합 | REVIEW | G3:DONE | 지정 배치·CP-C01 저장/사망·왕복·바닥 더블 최대발5.905<6.8·Start 일반5.535<6.8/더블 착지·5u 간격 일반실패/대시성공·스폰 비겹침·필수 회귀 PASS |
 | S3-08 | C03 종합 이동·C04 휴식 | REVIEW | S3-07:REVIEW | 지정 E1/E3/엄폐·CP-C04 저장/사망·C02/C03/C04 왕복·CP→C06 입구1.280s·필수 회귀 PASS, Right는 C06 생성까지 비활성 |
-| S3-09 | C06 최종 보스 | BLOCKED | S3-08:REVIEW | 사전 Unity 투영 검사에서 시작 전 시야 조건 충돌. 구현 미착수, 승인된 좌표/시작선/카메라 변경 없이 해결 불가 |
+| F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | 2회 검사 실패, 전체 복원; 실제 잔존 피드백 없음 |
+| S3-09 | C06 최종 보스 | TODO | S3-08:REVIEW | 사전 Unity 투영 검사에서 시작 전 시야 조건 충돌. 구현 미착수, 승인된 좌표/시작선/카메라 변경 없이 해결 불가 |
 | S3-10 | 엔딩·저장·타이틀 흐름 | BLOCKED (SKIPPED) | S3-09:REVIEW | S3-09 성공 의존 미충족. 엔딩/진행필드/Quit/Pause 타이틀 미구현 |
 | S3-G | Sprint 3 Gate | TODO | 사용자 판단 | Content Complete 미충족, 다음 Sprint 미착수 |
 
@@ -207,6 +208,11 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
 ## Decisions Needed
+
+2026-10-03 사용자 S3-C06-VIEW 결정: C06 폭20u(벽0~1/19~20), 보스중심17.5/폭2, 시작선x>5, 공통5.5/0/0.15 플레이어 추적 유지. 이전36u/x28/x8 시야충돌은 이 후보로 재검사. A01~C04 배치/RoomCameraRig 변경 금지(C04 Right 활성화만 허용). 현재 승인 F1→S3-09→S3-10→S3-complete, push 없음.
+
+FX-001 / F1 — 두 번의 검사 실패 후 전체 복원(BLOCKED). 첫 검사30fps 명중/실시간Stop/Flash와 60fps Slash까지 통과했으나 재사용 HitFlash 컴포넌트를 새 효과로 오판한 miss assertion FAIL. 검사만 1회 보정 후 재검증에서60fps 명중 직후 대상색=흰색 확인 FAIL. Update/LateUpdate 관찰 순서 영향 가능성은 미확정, 추가 수정/실행 금지 규칙에 따라 코드/에셋/Prefab/검사 도구 전체 복원. F1 T1~T4/S2-01 및 단계 후 회귀는 미실시. 독립 S3-09는 계속하되 F1 피드백은 성공 빌드에 포함할 수 없고 보스에도 미적용.
+
 
 S3-C06-VIEW — 2026-10-03 사전 검사 BLOCKED: 공통 RoomCameraRig size5.5u·16:9의 가시폭19.556u, 시작 직전 플레이어 왼쪽7.59~보스 오른쪽29의 필요폭21.410u. 실제 x3.5/x7.99 카메라 투영에서 보스·전방예고 모두 화면밖([S3-09-boss.txt](Validation/S3-09-boss.txt)). 보스x28, 전투시작x>8, 시작전 안전바닥에서 보스/예고전체 표시 조건을 모두 만족할 수 없음. 시작선/보스좌표/카메라 프레이밍 중 변경 범위에 대한 사용자 결정 필요. AGENTS Stop Conditions에 따라 구현 전에 해당 경로 중단, S3-10 의존 건너뜀. 오류 재시도 대상이 아닌 명세 충돌이므로 허용되지 않은 후보 수정/반복 실행 없음. 임시 사전 검사 스크립트 제거, 씬/튜닝 변경 없음. C04 Right는 성공 C06 부재로 비활성 유지. 기존 G3 수락/S3-06~08 회귀는 유효.
 
@@ -455,6 +461,10 @@ Simple/Transform Scale 프리팹 6종과 36×14u 빈 방 저장. Validation/Veri
 - README에 Editor A01 Play·MovementTest 회귀 용도·로컬 Slice 경로와 검증 실패 한계 추가. 기존 Validation 전부 보존. 로컬 Builds/Slice는 Git 제외이며 완성/수락 빌드가 아님.
 ## Playtest Records
 
+### 2026-10-03 FX-001 — 사용자 공격 피드백 관찰
+사용자: ‘공격하는지조차 모르겠다. 임팩트가 조금이라도 있어야 테스트하기도 좋다.’ F1 최소 베기/흰색번쩍임/히트스톱 승인. 아트/사운드/흔들림 추가 없음. F1 검증 재실패로 전체 복원, 사용자 개선효과 수락 미실시.
+
+
 ### 2026-10-03 S2-night 사용자 exe 관찰
 
 WASD가 불편하며 방향키·Z/X/C 선호, 공격 X가 편함(KEY-001). Dash 중 카메라 밀림 관찰(CAM-002). A05 턱 간 5u는 점프만으로 못 건너고 Dash 필요: 설계 의도대로 사용자 확인 완료, 간격 유지. A03 오른쪽 출구가 벽에 붙어 정지 후 전환: 사용자는 S2-03 실패 원인을 출구/벽 간섭으로 판단. K3는 새 선반 출구를 x30으로 지정, 기존 문 위치 보존.
@@ -471,6 +481,10 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 `Test ID / 일시 / 빌드·수치 버전 / 참가자 코드·숙련도 / 입력 장치 / 전체 활동 시간 / A·B·C 시간 / 방별 사망·반복 사망 / 길 잃음 위치 / 능력 후 첫 행동 / 게이트 기억·복귀 / 보스 재시도 / 방향 오판 / 관찰 메모 / 증거 위치`
 
 ## Design Decision / Before-After
+
+### FX-001 — 공격 피드백 후보 / 복원
+Before: 기존 공격은 판정 Gizmo 외 활성표시/타격번쩍임/히트스톱이 없어 사용자가 공격 여부를 알기 어렵다고 보고. 승인 후보: slash0.10s/alpha0.5·hitFlash0.08s·real hitStop0.05s, 공격/넉백 값 보존. 실제30fps slash0.10s, stop0.0659s/flash0.0993s(프레임 관찰 포함), 60fps slash0.10s 확인했으나 최종60fps 명중 색 확인 FAIL. After 구현은 재실패 규칙으로 전부 복원, 감각 개선 미검증/미채택. 증거 [첫검사](Validation/F1-feedback.txt), [재검사](Validation/F1-feedback-rerun.txt), [사전검사](Validation/F1-preflight.txt).
+
 
 ### KEY-001 — 사용자 키 배치 변경
 

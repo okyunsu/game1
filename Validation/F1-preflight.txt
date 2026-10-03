@@ -1,0 +1,1 @@
+PASS F1 coordinate/timing preflight: existing hitbox is collider-front + facing*0.55u, size1.1x1.2u; startup0.08s/active0.10s. Slash follows same runtime center and size, white alpha0.5, capped at0.10s. No authored placement or attack values need changes. Flash uses real0.08s, hit stop real0.05s; GameState arbitrates Pause/transition/death priority.

@@ -1,0 +1,21 @@
+FAIL F1-feedback Unity=6000.3.24f1
+PASS: startup has no slash at 30
+PASS: visible slash equals exact active hitbox at 30
+PASS: right slash orientation and alpha0.5
+MEASURE fps=30 miss slash duration=0.1000s size=(1.10, 1.20)
+PASS: miss has no flash/stop, only active slash
+PASS: left slash follows left fixed attack direction
+PASS: hit flashes target white at 30
+PASS: hit stop freezes game time
+MEASURE fps=30 real hit stop=0.0659s flash=0.0993s hits=1
+PASS: measured real flash0.08/stop0.05 within frame sampling
+PASS: same one-hit result and one stop per attack at 30
+PASS: startup has no slash at 60
+PASS: visible slash equals exact active hitbox at 60
+PASS: right slash orientation and alpha0.5
+MEASURE fps=60 miss slash duration=0.1000s size=(1.10, 1.20)
+FAIL: System.Exception: miss has no flash/stop, only active slash
+  at CompleteRunner.Check (System.Boolean ok, System.String m) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\CompleteVerification.cs:37 
+  at CompleteRunner+<FeedbackChecks>d__18.MoveNext () [0x004ff] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\CompleteVerification.cs:84 
+  at CompleteRunner+<Start>d__13.MoveNext () [0x0008f] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\CompleteVerification.cs:46 
+Error/Exception/Assert 0
