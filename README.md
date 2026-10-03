@@ -36,7 +36,7 @@ A05 Dash → A03 격자 → B01 턱 관찰 → B02 E2 → B03 E3 → B04 Double 
 
 Menu의 이어하기 / 새 게임을 방향키·Enter 또는 패드 D-pad·A로 선택한다. 새 게임은 기존 저장이 있으면 확인을 요청하며 Esc/패드 B로 취소할 수 있다. 유효한 저장이 없거나 손상됐으면 이어하기가 비활성이고 안내 후 새 게임을 선택한다.
 
-단일 파일: `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json` (`Application.persistentDataPath`). 현재 저장 값은 형식 버전·Dash/Double Jump 보유·마지막 CP-A01/CP-A03/CP-B01이며 HP·좌표·적 상태는 저장하지 않는다. 체크포인트 접촉·능력 획득 때만 자동 저장한다. 실행 파일을 닫은 뒤 이 파일을 지우면 초기화되고, 새 게임으로도 초기화할 수 있다. 손상 파일은 명시적 새 게임 선택 시 `.invalid-시간` 이름으로 보존한다. 쓰기 실패는 화면에 표시하고 다음 저장에서 재시도한다.
+단일 파일: `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json` (`Application.persistentDataPath`). 현재 저장 값은 형식 버전·Dash/Double Jump 보유·마지막 CP-A01/CP-A03/CP-B01/CP-C01/CP-C04이며 HP·좌표·적 상태는 저장하지 않는다. 체크포인트 접촉·능력 획득 때만 자동 저장한다. 실행 파일을 닫은 뒤 이 파일을 지우면 초기화되고, 새 게임으로도 초기화할 수 있다. 손상 파일은 명시적 새 게임 선택 시 `.invalid-시간` 이름으로 보존한다. 쓰기 실패는 화면에 표시하고 다음 저장에서 재시도한다.
 
 Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거나 덮어쓰지 않는 새 게임 상태다. 저장 검토는 Menu 또는 Windows 빌드에서 한다. 테스트 CLI의 `-save-path`는 자동 검증용 격리 파일이며 일반 실행의 저장 위치를 바꾸지 않는다.
 ## 전용 시스템 테스트 (REVIEW)
@@ -84,8 +84,8 @@ Scene의 Play 중 배치 변경은 되돌아가므로 Stop 후 다시 입력한�
 
 ## 다음 사용자 확인
 
-B01 턱 높이·E2 소개/예고/회피 공간·E3 엄폐·B04 Double Jump와 보정 연습 높이, A05 획득부터 B05까지 전체 흐름 시간을 확인한다. S3-01~05는 REVIEW이며 체감 수락 후 DONE으로 변경한다. 실제 패드 조작·탈착은 직접 확인이 남았다.
-수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. C01 이후·보스·엔딩·선택 방·아트·K2 재시도는 별도 승인 전 추가하지 않는다.
+S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수락(DONE). S3-06~08은 기술 PASS/REVIEW: B02 소개 위치, C02 조합 난이도, C03 종합 이동과 C04 휴식 체감을 확인한다. 실제 패드 조작·탈착과 자연스러운 전체 플레이 시간은 미실시.
+수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-09 보스는 지정 시작선/보스 위치/카메라의 시야 조건 충돌로 BLOCKED, S3-10 엔딩/메뉴확장은 의존 건너뜀. Decisions Needed의 S3-C06-VIEW 판단 후 해당 경로를 재승인해야 한다. 선택 방·아트·사운드·K2 미포함.
 
 ## 문서
 
@@ -93,3 +93,9 @@ B01 턱 높이·E2 소개/예고/회피 공간·E3 엄폐·B04 Double Jump와 �
 - [GAME_DESIGN](GAME_DESIGN.md): 게임 규칙·레벨·튜닝 가설
 - [TASKS](TASKS.md): 현재 작업·검토·검증 증거
 - [AGENTS](AGENTS.md): 에이전트 작업 규칙
+
+## S3-full — 성공 단계 빌드 (2026-10-03)
+
+실행 파일: `Builds/S3-full/Afterglow-S3-full.exe` (Windows x64). Menu+A01~A05+B01~B05+C01~C04, 총15씬/14플레이방. 테스트 씬 제외. B05에서 C01로 연결되며 C01/C04 체크포인트 저장과 Continue를 지원한다. C04가 현재 마지막 방이고 C06 방향 Door는 비활성이다. 보스·엔딩·타이틀 Quit·Pause 타이틀은 S3-09 BLOCKED/S3-10 SKIPPED로 포함하지 않았다. 완주 빌드가 아니다.
+
+배치 수정 위치는 B02(E2 Reset x17), B05(B05_Step), C01(CP-C01 x8), C02(Start/High1/High2/ExitLedge), C03(Patrol/Patrol Left·Right/Cover/TurretBase), C04(CP-C04 x26) Scene이다. 적 공통값은 기존 E1/E3 Tuning Asset, 반복 오브젝트는 기존 Prefab을 사용한다. Play 중 Scene 수정은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적 저장하며 이번 실행에서 기존 수치를 변경하지 않았다.

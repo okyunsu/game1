@@ -1,0 +1,5 @@
+PASS protected files unchanged from initial clean main (77aac15 parent).
+Checked Player/Combat/E1/E2/E3 tuning assets, MovementTest, A01~A05/B01/B03/B04, Level prefab originals, Packages, ProjectVersion.
+B02 only E2 Reset position x24→17. B05 only notice removal, Step, Right door, FromRight spawn.
+S3-09 preflight used C04 common shell only during Play; no C06/boss assets persisted. Temporary preflight code removed.
+All Validation outputs are newly named; old evidence preserved.

@@ -1,0 +1,15 @@
+PASS S3-full successful-stage Windows x64 exe validation; Unity6000.3.24f1
+Process1 PID25716: fresh isolated save, New Game, A/B all door round trips, Dash/DoubleJump acquisition, B04 corrected practice jump, CP-A01/A03/B01 death, C01/C02/C03/C04 doors both ways, C02 prescribed combo jumps, CP-C01/C04 activation/save/death.
+Process2 PID27720: after process1 exit, Continue CP-C04 with both abilities, safe spawn, long-distance death from B04 returns CP-C04, owned pickup absent.
+Each process exit0, Error/Exception/Assert0. Single persistent player and scene confirmed.
+1280x720 route /1920x1080 Continue executed (automated input/placement, not visual clipping acceptance).
+Isolated Logs/S3-full-runtime-slot.json used; user progress.json untouched. Direct placement/prescribed Unity virtual keyboard inputs, no navigation robot.
+C06 and Ending not included/tested: S3-09 BLOCKED (specification visibility conflict), S3-10 SKIPPED. This is not Content Complete / Sprint3 Gate pass.
+Physical gamepad, natural end-to-end time, boss/ending/UI additions, manual appearance acceptance NOT performed.
+Detail: S3-full-runtime-route.txt, S3-full-runtime-continue.txt, raw Logs/S3-full-runtime-route.log and -continue.log.
+MEASURE death->control=0.717s
+MEASURE death->control=0.767s
+MEASURE death->control=0.767s
+MEASURE death->control=0.767s
+MEASURE death->control=0.716s
+MEASURE death->control=0.767s

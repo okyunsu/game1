@@ -1,0 +1,181 @@
+PASS Windows exe route Unity=6000.3.24f1
+PASS: exe starts in Menu
+PASS: known runtime phase
+PASS: fresh isolated save has Continue disabled
+PASS: new game abilities false
+PASS: checkpoint CP-A01
+PASS: physical activation CP-A01
+PASS: door exists to A02
+PASS: physical door transition A02
+PASS: safe spawn A02/FromLeft
+PASS: physical A02 hazard returns CP-A01
+PASS: door exists to A02
+PASS: physical door transition A02
+PASS: safe spawn A02/FromLeft
+PASS: door exists to A03
+PASS: physical door transition A03
+PASS: safe spawn A03/FromLeft
+PASS: checkpoint CP-A03
+PASS: physical activation CP-A03
+PASS: death accepted
+PASS: checkpoint death return CP-A03
+MEASURE death->control=0.717s
+PASS: door exists to A04
+PASS: physical door transition A04
+PASS: safe spawn A04/FromLeft
+PASS: door exists to A05
+PASS: physical door transition A05
+PASS: safe spawn A05/FromLeft
+PASS: A05 physical Dash acquisition
+PASS: door exists to A04
+PASS: physical door transition A04
+PASS: safe spawn A04/FromRight
+PASS: door exists to A03
+PASS: physical door transition A03
+PASS: safe spawn A03/FromRight
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromLeft
+PASS: checkpoint CP-B01
+PASS: physical activation CP-B01
+PASS: door exists to A03
+PASS: physical door transition A03
+PASS: safe spawn A03/FromShelf
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromLeft
+PASS: door exists to B02
+PASS: physical door transition B02
+PASS: safe spawn B02/FromLeft
+PASS: door exists to B03
+PASS: physical door transition B03
+PASS: safe spawn B03/FromLeft
+PASS: door exists to B04
+PASS: physical door transition B04
+PASS: safe spawn B04/FromLeft
+PASS: B04 unowned on first entry
+PASS: pre-acquisition additional jump unavailable
+PASS: B04 physical pickup preserves checkpoint
+PASS: exe double jump lands on corrected High
+MEASURE corrected High top=5.835 feet=5.850
+PASS: door exists to B03
+PASS: physical door transition B03
+PASS: safe spawn B03/FromRight
+PASS: door exists to B02
+PASS: physical door transition B02
+PASS: safe spawn B02/FromRight
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromRight
+PASS: door exists to B05
+PASS: physical door transition B05
+PASS: safe spawn B05/FromLeft
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromUpper
+PASS: door exists to B02
+PASS: physical door transition B02
+PASS: safe spawn B02/FromLeft
+PASS: door exists to B03
+PASS: physical door transition B03
+PASS: safe spawn B03/FromLeft
+PASS: door exists to B04
+PASS: physical door transition B04
+PASS: safe spawn B04/FromLeft
+PASS: B04 reentry owned pickup absent
+PASS: death accepted
+PASS: checkpoint death return CP-B01
+MEASURE death->control=0.767s
+PASS: B04 death returns CP-B01 retaining ability
+PASS: disk save contains abilities and valid CP
+PASS: door exists to B05
+PASS: physical door transition B05
+PASS: safe spawn B05/FromLeft
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromUpper
+PASS: door exists to A03
+PASS: physical door transition A03
+PASS: safe spawn A03/FromShelf
+PASS: door exists to A02
+PASS: physical door transition A02
+PASS: safe spawn A02/FromRight
+PASS: door exists to A01
+PASS: physical door transition A01
+PASS: safe spawn A01/FromRight
+PASS: all graph doors traversed both ways with ownership retained
+NOTE: exit this process, launch Continue verification separately
+PASS: door exists to A02
+PASS: physical door transition A02
+PASS: safe spawn A02/FromLeft
+PASS: door exists to A03
+PASS: physical door transition A03
+PASS: safe spawn A03/FromLeft
+PASS: door exists to B01
+PASS: physical door transition B01
+PASS: safe spawn B01/FromLeft
+PASS: door exists to B05
+PASS: physical door transition B05
+PASS: safe spawn B05/FromLeft
+PASS: door exists to C01
+PASS: physical door transition C01
+PASS: safe spawn C01/FromLeft
+PASS: checkpoint CP-C01
+PASS: physical activation CP-C01
+PASS: door exists to C02
+PASS: physical door transition C02
+PASS: safe spawn C02/FromLeft
+PASS: death accepted
+PASS: checkpoint death return CP-C01
+MEASURE death->control=0.767s
+PASS: C02 death restores CP-C01 in exe
+PASS: door exists to C02
+PASS: physical door transition C02
+PASS: safe spawn C02/FromLeft
+PASS: exe C02 Start double jump lands High1
+PASS: exe C02 jump plus dash lands High2
+PASS: door exists to C03
+PASS: physical door transition C03
+PASS: safe spawn C03/FromLeft
+PASS: door exists to C04
+PASS: physical door transition C04
+PASS: safe spawn C04/FromLeft
+PASS: checkpoint CP-C04
+PASS: physical activation CP-C04
+PASS: door exists to C03
+PASS: physical door transition C03
+PASS: safe spawn C03/FromRight
+PASS: death accepted
+PASS: checkpoint death return CP-C04
+MEASURE death->control=0.767s
+PASS: exe C03 death restores CP-C04
+PASS: door exists to C03
+PASS: physical door transition C03
+PASS: safe spawn C03/FromRight
+PASS: door exists to C02
+PASS: physical door transition C02
+PASS: safe spawn C02/FromRight
+PASS: door exists to C01
+PASS: physical door transition C01
+PASS: safe spawn C01/FromRight
+PASS: door exists to B05
+PASS: physical door transition B05
+PASS: safe spawn B05/FromRight
+PASS: door exists to C01
+PASS: physical door transition C01
+PASS: safe spawn C01/FromLeft
+PASS: door exists to C02
+PASS: physical door transition C02
+PASS: safe spawn C02/FromLeft
+PASS: door exists to C03
+PASS: physical door transition C03
+PASS: safe spawn C03/FromLeft
+PASS: door exists to C04
+PASS: physical door transition C04
+PASS: safe spawn C04/FromLeft
+PASS: full route persisted both abilities and CP-C04
+PASS: C06 door disabled; unsuccessful stages excluded safely
+PASS: single scene and persistent player after all doors
+S3-09 BLOCKED / S3-10 SKIPPED: boss, Ending, Quit and Pause title not implemented or tested. Physical pad/natural route play time not tested.
+Error/Exception/Assert 0
+NOTE: direct placement and prescribed inputs; no navigation robot; isolated save slot

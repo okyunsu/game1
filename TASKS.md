@@ -18,7 +18,7 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 
 ## Current Tasks
 
-2026-10-03 S3 실행: G2·P3 DONE, S3-01~05 기술 PASS/REVIEW, S3-B Windows x64 빌드와 실제 두 프로세스 runtime PASS. P0 GitHub 연결 실패로 최종 push 생략. 상세 최신 결과는 Latest Handoff와 S3 Validation Records 참조.
+2026-10-03 S3-full 실행: G3 DONE(S3-01~05 사용자 수락), S3-06~08 기술 PASS/REVIEW, S3-09 명세 시야 충돌 BLOCKED, S3-10 의존 SKIPPED. 성공 단계 Windows x64 빌드 및 두 exe 프로세스 runtime PASS(Error/Exception/Assert0). 현재 Menu+14방/C04까지, C06/Ending 미포함, Content Complete/Gate 미충족. push 없음. 상세 Latest Handoff 및 S3-full Validation 참조.
 
 아래는 같은 날짜의 앞선 실행 이력이며 위 최신 상태를 우선한다.
 
@@ -245,6 +245,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-full — 성공 단계 빌드 / 실제 exe PASS
+[S3-full-build.txt](Validation/S3-full-build.txt): Windows x64 Menu+A01~A05+B01~B05+C01~C04(15씬/14방), 오류/경고0. [S3-full-runtime.txt](Validation/S3-full-runtime.txt): PID25716 새 게임/모든 문 양방향/5CP 복귀/두능력/조합과 PID27720 프로세스 종료후 CP-C04 Continue/능력유지/먼방사망복귀 PASS, Error/Exception/Assert0. 상세 route·continue 별도 새 파일. [보호파일 검사](Validation/S3-full-protected-files.txt) PASS. 보스/엔딩/새 UI/물리패드/자연 완주시간/화면 잘림 수락 미검사, Content Complete 아님.
+
 
 ### S3-09 / S3-10 — 명세 충돌 BLOCKED / 의존 SKIPPED
 [S3-09-boss.txt](Validation/S3-09-boss.txt): 실제 Unity 카메라 투영과 가시폭 측정. 보스 동작/HP/패턴/동시사망/Pause 검사는 구현 전 중단되어 미실시. [S3-10-ending.txt](Validation/S3-10-ending.txt): 의존 미충족, 엔딩/새 저장필드/메뉴확장 검증 미실시. 실패한 구현 변경은 없으며 임시 검사 스크립트도 제거. 실패 로그와 TASKS만 커밋.
