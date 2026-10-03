@@ -14,6 +14,7 @@
 ## Current Sprint
 
 **Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
+2026-10-04 추가 승인 F2/LOG 실행 종료: F2 필수 회귀 재실패로 전체복원/BLOCKED, LOG 관찰 이벤트 제약으로 BLOCKED, 신규 빌드 없음. 기준 복원 회귀PASS이며 아래 S3 후보/사용자 Gate 상태 유지.
 G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
 ## Current Tasks
@@ -574,20 +575,16 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-03 시작 → 2026-10-04 인계. 승인 **F1 → S3-09 → S3-10 → 최종 빌드 v2** 종료. **main / 로컬 커밋 / push 없음.** S3-09·10 기술 PASS/REVIEW, F1 전체복원/BLOCKED. **보스·엔딩 포함 Content Complete 후보(F1 미포함), Sprint 3 Gate는 사용자 완주 후 판단.** S3-06~08 REVIEW 유지. 다음 Sprint 콘텐츠는 시작하지 않았다.
+2026-10-04 F2 → LOG → 최종 빌드 승인 실행 종료. **main / 로컬 커밋 / push 없음. F2 전체복원·BLOCKED, LOG 독립 BLOCKED·미구현, S4-pre 빌드 미생성.** 현재 플레이 대상은 기존 [S3-complete/Afterglow.exe](Builds/S3-complete/Afterglow.exe). S3-06~10 REVIEW / Sprint3 Gate 대기는 그대로 유지. [직전 보스·엔딩 인계](Validation/S3-v2-prior-handoff.md).
 
-| 단계 | 결과 / 커밋 | 새 Validation |
+| 단계 | 결과 / 커밋 | 증거 |
 | --- | --- | --- |
-| F1 | 120fps 지정방향 검사FAIL→1회보정→효과PASS→필수T2 FAIL, 실험빌드/전체복원 / 5c54277 | F1-feedback-v2.txt / -rerun.txt, Verification-night-T2-F1-v2.txt, Experimental-F1-v2-build.txt / -runtime.txt |
-| S3-09 | 씬작성FAIL→additive 카메라이동1회보정→보스/필수회귀PASS·REVIEW / a969663 | S3-09-boss-v2.txt / -rerun.txt |
-| S3-10 | 실제exe/즉시종료후Continue/초기화/패드UI/필수회귀PASS·REVIEW / 3beed76 | S3-10-ending-v2.txt, -route.txt / -kill-now.txt / -continue.txt, S3-10-verification-v2-build.txt |
-| 최종 | 검사전용 ScreenCapture 컴파일FAIL→호출제거1회보정→build/exe/회귀PASS / 3ea3e8a | S3-complete-v2-build-attempt1.txt, -build.txt, -runtime.txt, -runtime-route.txt / -runtime-continue.txt / -runtime-boss-ending.txt, -preservation.txt |
+| 명세·관찰 | 중복인 두 첨부 중 동일 전문 보존, FX-001 두 번째 관찰 / 7ca75e6 | [승인 명세](Validation/F2-LOG-approved-request.txt) |
+| F2 | 초기 더미 연결FAIL→새 표시 코드 1회보정→표시PASS→T2 FAIL→검사60fps 1회보정→재FAIL→전체복원 / dfe00b4 | [결과·미실시·복원 요약](Validation/F2-rollback-summary.txt), [표시PASS](Validation/F2-feedback-night-F2-rerun.txt), [T2 재실패](Validation/Verification-night-T2-F2-rerun.txt) |
+| LOG / 빌드 | 정확한 사망 원인 이벤트 부재로 LOG BLOCKED, 새 성공 단계 없음으로 빌드 중단 / f6c2b04 | [LOG 인터페이스 근거](Validation/LOG-playtest.txt) |
 
-- **최종 실행:** [Afterglow.exe](Builds/S3-complete/Afterglow.exe). Menu+15플레이방(A01~A05/B01~B05/C01~C04/C06)+Ending, 17씬, 테스트 씬 제외. 같은 폴더의 Afterglow_Data와 DLL을 보존한다. 기존 Afterglow-S3-complete.exe는 이전 실행 파일이므로 현재 파일명 **Afterglow.exe**를 실행한다. Builds/Logs는 Git 제외.
-- **F1 실험:** [Experimental-F1/Afterglow.exe](Builds/Experimental-F1/Afterglow.exe), Menu+14방/C04까지, 보스/엔딩 없음. slash .10s / flash .08s / real hitStop .05s. 효과 이벤트 30/60/120fps PASS, miss/off 이벤트0, Pause/시간복원PASS. 필수 T2의 0.12s 넉백잠금 검사FAIL로 모든 F1 코드/Asset/Player 변경 복원. 원인이 기능/검사 타이밍인지 미확정, 추가보정 없음. 실험은 기동만 확인(Error/Exception/Assert0), 사용자 플레이 미실시. 현재 프로젝트에 FeedbackTuning은 없다.
-- **보스 실제 검증:** 두 해상도 입장전 시야/근접3u·예고0.8167s·회복1.2s/wave5u/s·높이1u/대시·점프회피/Pause/왼벽소멸/뒤틈차단/위접촉피해/잠금·해제/CP-C04사망복귀·재진입초기화/동시프레임처치우선PASS. 회복 시작 직접배치(플레이어앞16.15/보스앞16.5) X3타; 대시위치11.3에서 걸어들어가 X1타는 MEASURE만. 실제X20타처치PASS. F1 미적용.
-- **엔딩·최종exe:** S3-10 PID24412/10268/25612에서 즉시저장→엔딩전종료→다음프로세스Ending, 새게임전체초기화, 패드만 메뉴/Pause/엔딩, Z/Enter PASS. 최종exe 별도3프로세스는 새게임/모든문양방향(C04↔C06 전투전포함)/5CP사망/두능력물리획득·별도Continue/C02지정조합 PASS; PID18184(1920×1080) 실제X20타→2.0432s빛→Ending→타이틀 PASS. 모든 runtime Error/Exception/Assert0, build errors0/warnings0. 격리 Logs 슬롯만 사용, 사용자 저장 미접근.
-- **회귀 목록:** F1/S3-09/S3-10/S3-complete 각각 S1-02/04/07/08-night-해당단계-v2.txt와 S1-06-lead0-night-S2-해당단계-v2-camera.txt PASS, 새 Camera/Run-20261003-* PNG 보존. F1 T1 PASS, T2 FAIL, T3/T4/S2-01은 실패중단으로 미실시. 직접배치·지정가상입력이며 자동이동로봇 없음. 물리패드·자연완주시간·사용자 화면/체감수락 미실시.
-- **주요 변경·수정 위치:** C06 Scene의 배치/시작선/예고/경계, Assets/ScriptableObjects/BossTuning.asset의 HP/피해/시간/거리/속도/높이, Assets/Prefabs/BossWave.prefab. BossEncounter/BossWave/BossTuning·RoomSession.Die 보스우선처리. C04 Right enabled만0→1. C06 보스 Inspector의 EndingFlow / Light Duration(2s), EndingMenu·Ending 씬의 문구/버튼. ProgressSave의 bossDefeated/endingReached, SaveMenu Quit, PlayerInputReader Pause 타이틀. Scene Play 변경은 Stop 후 다시 입력·저장, Asset은 Stop 후 원하는 값/이전 값을 명시적으로 저장한다.
-- **보존:** 기존 Player/Combat/E1/E2/E3 값, MovementTest, Packages, ProjectVersion, Level Prefab 원본, A01~C03/다른방배치, RoomCameraRig/카메라값 유지. 선택방/아트/사운드/흔들림/K2 미실시. 실험·최종 폴더는 남기고 검증 프로세스는 종료했다.
-- **Decisions Needed·사용자 확인·다음:** F1 T2 실패 원인과 실험 공격 손맛/피드백 수치. 최종 새게임→엔딩 자연완주시간, C02 조합 난이도, 보스 예고 가시성·회피 여유·첫 승리 시도 횟수, 엔딩 표현·물리패드 조작. 이전 보스회복0타/시야차단은 v2로 해결됐으나 기술PASS는 사용자수락/Gate를 대신하지 않는다. 사용자 완주 후 Sprint3 Gate 판단, F1 추가수정/다음Sprint는 별도 승인. **push는 사용자가 직접 수행.**
+- **실제 검증:** 표시만 30/60/120fps 좌우 startup/active/end, 판정 중심·크기0.01u 이내, hit1/miss0, 번쩍임0.10초±프레임, HP 표시 상태, E1 처치효과 생성·소멸, Cancel 즉시OFF PASS. 별도 잠금 관찰0.1333초/설정0.1200초는 프레임 관찰이며 전후 동일성 증거가 아님. 필수T2는 두 번 같은 잠금 assertion FAIL. 실제 동작/검사 대기 원인은 미확정이며 애매하면A 규칙 적용. 전체 회귀가 통과한 검사도구 한계(B)로 판단하지 않았다.
+- **복원 회귀:** [입력](Validation/S1-02-night-S2-F2-rollback.txt), [Coyote/Buffer](Validation/S1-04-night-S2-F2-rollback.txt), [방](Validation/S1-07-night-S2-F2-rollback.txt), [체크포인트](Validation/S1-08-night-S2-F2-rollback.txt), [카메라lead0](Validation/S1-06-lead0-night-S2-F2-rollback.txt) PASS. 새 카메라 PNG 보존. 가상 입력이며 사용자 눈·물리패드·자연완주 검증 아님. T1/T3/T4/S2-01/보스회복·E2 경고중 표시·최종exe·CSV 검사는 미실시.
+- **변경/보존:** 게임 코드·프리팹·Scene·기존 Tuning·Packages·ProjectSettings 최종 diff0. 이번 신규 코드/FeedbackTuning 제거, 기존 검사 코드도 원복. 주요 변경 파일은 TASKS/README/Validation뿐. 시도 patch는 실패 증거이며 재적용용 승인 아님. 기존 S3-complete/Experimental-F1 빌드 보존, 신규 실험빌드 없음.
+- **사용자 확인:** 켤 exe는 S3-complete/Afterglow.exe. 이번 F2 공격 표시·적 HP칸/번쩍임은 남아 있지 않고 기존 보스 HP 막대 유지. CSV 없음(예정 위치 LocalLow/Afterglow/Afterglow/Playtest). FeedbackTuning 수정 위치는 복원으로 존재하지 않음. 기존 수치 Asset 변경은 Play 종료 후 원하는 값/이전 값을 명시 저장, Scene은 Stop 후 다시 입력·저장.
+- **문제/다음 판단:** F2-T2-001 원인 분석은 새 승인 필요. LOG-001은 관찰 이벤트 추가 허용 또는 unknown 원인/기록 보장 축소 선택 필요. Sprint4 튜닝·새 콘텐츠·push는 수행하지 않음. 이번 승인 범위 실행 종료.
