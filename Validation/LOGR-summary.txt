@@ -1,0 +1,8 @@
+2026-10-04 LOGR REVIEW / polling-only observer.
+Editor scenario PASS: Menu inactive -> new game A01 CSV -> A02 -> one death x8/y1.81 cause=unrecorded -> return -> Pause3s -> summary.
+Pause observed3.016264s excluded from active elapsed1.426830s. ProgressSave SHA256 same before/after room/death and Pause. Error/Exception/Assert0.
+CSV proof LOGR-session.csv. Actual test CSV C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest\20261004-025024.csv.
+New singleton DontDestroyOnLoad PlaytestLogger initializes itself; no scene/prefab/GameState/RoomSession/ProgressSave modifications. Read-only save timestamp distinguishes new-game slot reset from Continue to pristine A01; Continue is intentionally not a new session.
+GameState.Changed + frame comparisons; sceneLoaded/pending room; checkpoint ID changes (same-ID reactivation not logged); ability false->true; Fighting false->true; Defeated; Ending; pause accumulation; regional A/B/C/Boss seconds (boss time separated), deaths per room, attempts. No damage cause inference. File errors stop this logging session with one warning and do not affect gameplay.
+LOGR S1-02/04/07/08 PASS. Virtual input only. Extended ability/boss rows are implemented; executable verification will exercise boss/Ending. No natural user playtest or physical device validation claimed.
+Protected files and existing save code unchanged; tracked diff from F2R commit is zero before adding logger/test files.

@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 LOGR 핵심검사/필수 S1 회귀PASS, REVIEW. cause=unrecorded·폴링 방식, CSV 방/사망위치/Pause/요약 및 저장해시 불변 확인. F2R REVIEW와 함께 S4-pre 최종빌드 진행.
+
 2026-10-04 새 승인 D0/F2R/LOGR: D0 기존 T2 기준FAIL·T1/T3 PASS·T4 기준 검사참조FAIL, T2v2 검사위치1회보정 후30/60/120fps PASS. F2R T2v2/보스회복/S1-02/04/07/08/카메라PASS, 기존T2/T4 및 추가 기준S2통합과 같은 실패로 새 회귀 없음. 표시30/60/120/E2 PASS 뒤 처치효과 검사 stale E1참조로 도구한계 REVIEW. LOGR 후속 진행. 보호파일 무변경, 보스는 허용 표시호출만.
 
 2026-10-04 F2→LOG→최종 빌드 승인 실행: F2 표시 검사 보정 후 PASS였으나 필수 T2 넉백 잠금 검사 FAIL, 검사 60fps 고정 1회 보정 후 재FAIL. F2 전체복원/BLOCKED. LOG는 기존 사망 원인 이벤트 부재와 기존 로직 수정 금지 충돌로 독립 BLOCKED(미구현). 성공한 신규 단계가 없어 S4-pre 빌드/CSV 미생성. 기준 S3-complete와 기존 S3 REVIEW 상태 유지, push 없음. 상세 증거와 복원 회귀는 Latest Handoff 참고.
