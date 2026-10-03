@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 U0 DONE: [UI 표](Validation/U0-ui-audit.txt). 타이틀·확인·Pause·엔딩·저장실패 안내 있음, HP/능력HUD·첫안내·DJ 패드표기 부분, 사망UI 없음. U1은 이 항목의 표시만 보완.
+
 2026-10-04 승인 TM → U0 → U1 → S4-pre2 실행 중. TM DONE: 회귀 13/13 PASS / KNOWN-FAIL 없음([요약](Validation/REG-TM2-summary.txt)). 검사 도구만 변경, 보호 게임 파일 무변경. U0/UI 점검 후 누락·부분 UI만 구현, push 금지.
 
 2026-10-04 최신 완료: **D0 DONE / F2R REVIEW(처치효과 검사 도구 한계) / LOGR REVIEW / S4-pre 빌드·실제exe·최종회귀 PASS.** 기준T2·T4·S2통합과 같은 실패는 새 명세대로 회귀에서 제외, T2v2/보스회복/필수S1·카메라 PASS. 보호파일 불변·push 없음. 아래 문단은 앞선 실행 이력이며 Latest Handoff를 우선한다.
@@ -227,6 +229,8 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 두 번째 실패 경로: 실행기 DontDestroyOnLoad로 수명 보장. 이 변경만 반영한 T1~T3 재검증 PASS, 최종 C4에서 CombatTest→DashTest→CombatTest 왕복과 E1 정리·재생성 PASS.
 - E1 코드·프리팹·E1Tuning은 CombatTest에만 보존. 순찰 x=15.975~23.031, 왕복 2회 방향 전환, 벽·낭떠러지 회전, 실제 공격 2타 제거, 접촉 피해·무적 중 중복 방지, KillZone 제거, 플레이어 사망 후 1개 HP2 초기화 PASS.
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
+
+2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
 
 ## Decisions Needed
 

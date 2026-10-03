@@ -1,0 +1,17 @@
+U0 UI audit — 2026-10-04 / after TM a480ddf / read-only source inspection.
+Item | State | Source | Current wording | K1 agreement / action
+Title New Game/Continue/Quit | 있음 | Assets/Scripts/SaveMenu.cs | 새 게임 / 이어하기 / 종료 | Z/Enter/A; X/Esc/B correct; preserve
+New game confirmation | 있음 | SaveMenu.cs | 새 게임: 기존 진행을 초기화할까요? Z / Enter / A 확인, X / Esc / B 취소 | correct; preserve
+HP HUD | 부분 | PlayerHealth.cs OnGUI | HP n/5 | text only, replace with five white/gray pips
+Ability HUD Dash/Double Jump | 부분 | RoomLabel.cs OnGUI | Attack X (J) / gamepad X / Dash C (K / Left Shift) / B or not acquired | Dash text only, no Double Jump icon/state; integrate two icons and K1 labels
+First controls notice | 부분 | PlayerInputReader.cs OnGUI | Move: Arrows (A/D) Jump: Z (Space) Pause: Esc; pad Move/Jump/Pause | permanent + overlaps RoomLabel; replace display with timed new-game A01 notice and unified controls line
+Dash acquisition notice | 있음 | DashPickup.cs OnGUI | 대시 획득 — C (K / Left Shift) / 패드 B | correct, display alignment/device adaptation only
+Double Jump acquisition notice | 부분 | DoubleJumpPickup.cs OnGUI | 더블 점프 획득 — 공중에서 Z 한 번 더 | K1 keyboard correct, gamepad A missing; keep existing ability behavior, display alignment/device adaptation only
+Pause resume/title | 있음 | PlayerInputReader.cs OnGUI | Paused / 재개 (Z / Enter / A) / 타이틀 | correct; preserve controls and panel
+Death/respawn notice | 없음 | RoomSession.Respawning hides sprite but no UI | none | add state-driven dark overlay; preserve .6s flow
+Ending | 있음 | EndingMenu.cs | 정상의 빛이 다시 켜졌습니다. 당신의 여정은 새로운 아침을 열었습니다. / 타이틀로 (Z / Enter / A) | correct; preserve
+Save read/write failure | 있음 | ProgressSave.cs, RoomLabel.cs, SaveMenu.cs, EndingMenu.cs | 저장 파일을 읽을 수 없습니다. 새 게임을 선택하세요. / 저장 실패. 다음 체크포인트/능력 획득에서 다시 저장합니다. | preserve text/logic, move room message with HUD
+Room ID / authored notice | 있음 | RoomLabel.cs, Scene notice | roomId / authored notice | preserve room ID and authored notice; legacy scene notice may contain old keys, use generic K1 controls alongside unchanged authored content
+Implementation only partial/missing items; no map/settings/rebinding, game or saving changes.
+GAME_DESIGN section18 still lists old keyboard controls; latest explicit K1/TM-U1 request takes precedence. Record documentation mismatch in TASKS Decisions Needed without changing gameplay design.
+Protected diff: U0 adds audit/TASKS only, no Assets changes.
