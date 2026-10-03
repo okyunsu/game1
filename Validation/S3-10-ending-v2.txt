@@ -1,0 +1,8 @@
+PASS S3-10 v2 ending/save/title integration — Unity 6000.3.24f1 Windows x64
+Actual processes: route PID24412, kill-now PID10268, continue PID25612.
+Route: kill->Ending 2.0552 real seconds; bossDefeated saved before light; attack/damage disabled; endingReached saved; pad Ending->Menu.
+Immediate kill process exits before Ending; second process confirms bossDefeated=true/endingReached=false and Continue->Ending.
+Virtual pad NewGame, Pause->Title, Ending->Title and confirmed NewGame reset PASS. Enter Continue and Z title PASS. Quit menu reachable.
+S1-02/04/07/08/N2 camera regression PASS (night-S3-10-v2 files). Error/Exception/Assert0 in all runtime phases.
+Source evidence: S3-10-ending-v2-route.txt, -kill-now.txt, -continue.txt; S3-10-verification-v2-build.txt.
+Physical pad, screen/user acceptance and natural full-route time not tested. User save never accessed; isolated Logs slots.

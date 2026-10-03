@@ -1,0 +1,13 @@
+PASS Windows exe continue Unity=6000.3.24f1 PID=25612
+PASS: starts Menu
+PASS: fresh process finds kill saved before ending
+PASS: Continue routes Ending and saves reached
+PASS: pad Ending title return
+PASS: Enter Continue / Z Ending title
+PASS: pad new game enters A01
+PASS: confirmed new game resets all progress
+PASS: pad Start Pause
+PASS: pad selects Pause title
+PASS: pad Pause title / session cleanup / scale1
+PASS: Quit reachable by pad
+Error/Exception/Assert 0

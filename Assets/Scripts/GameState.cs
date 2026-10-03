@@ -10,6 +10,8 @@ public sealed class GameState : MonoBehaviour
             instance = new GameObject("Game State").AddComponent<GameState>();
         return instance;
     }
+    public bool Completing { get; private set; }
+    public void SetCompleting(bool value) { Completing=value;Paused=false;Notify(); }
     public bool Paused { get; private set; }
     public bool GamepadDisconnected { get; private set; }
     public bool Transitioning { get; private set; }
@@ -24,19 +26,19 @@ public sealed class GameState : MonoBehaviour
     }
     void Notify()
     {
-        Time.timeScale = Paused || Transitioning || Respawning ? 0 : 1;
+        Time.timeScale = Paused || Transitioning || Respawning || Completing ? 0 : 1;
         Changed?.Invoke();
     }
     public void SetPaused(bool paused)
     {
-        if (Transitioning || Respawning || Paused == paused) return;
+        if (Transitioning || Respawning || Completing || Paused == paused) return;
         Paused = paused;
         if (!paused) GamepadDisconnected = false;
         Notify();
     }
     public void PauseForDisconnect()
     {
-        if (Transitioning || Respawning) return;
+        if (Transitioning || Respawning || Completing) return;
         GamepadDisconnected = true;
         Paused = true;
         Notify();
@@ -66,3 +68,4 @@ public sealed class GameState : MonoBehaviour
         if (instance == this) { instance = null; Time.timeScale = 1; }
     }
 }
+

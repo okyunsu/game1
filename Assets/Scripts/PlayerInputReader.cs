@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public sealed class PlayerInputReader : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public sealed class PlayerInputReader : MonoBehaviour
     InputAction move, jump;
     InputDevice lastDevice;
     bool suppressJump;
+    public int PauseSelection { get; private set; }
     GameState state;
-    public bool InputLocked => state != null && (state.Paused || state.Transitioning || state.Respawning);
+    public bool InputLocked => state != null && (state.Paused || state.Transitioning || state.Respawning || state.Completing);
     public Vector2 Move => InputLocked ? Vector2.zero : move.ReadValue<Vector2>();
     public bool JumpHeld => !InputLocked && !suppressJump && jump.IsPressed();
     public uint JumpSequence { get; private set; }
@@ -41,8 +43,8 @@ public sealed class PlayerInputReader : MonoBehaviour
         runtime.FindAction("Gameplay/Dash",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked)DashPressed?.Invoke(); };
         runtime.FindAction("Gameplay/Attack",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked)AttackPressed?.Invoke(); };
         runtime.FindAction("Gameplay/Pause", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(true); };
-        runtime.FindAction("UI/Navigate", true).performed += ctx => lastDevice = ctx.control.device;
-        runtime.FindAction("UI/Submit", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(false); };
+        runtime.FindAction("UI/Navigate", true).performed += ctx => { lastDevice = ctx.control.device; if(Paused && Mathf.Abs(ctx.ReadValue<Vector2>().y)>.5f)PauseSelection=ctx.ReadValue<Vector2>().y<0?1:0; };
+        runtime.FindAction("UI/Submit", true).performed += ctx => { lastDevice = ctx.control.device; if(Paused && PauseSelection==1)ReturnTitle();else SetPaused(false); };
         runtime.FindAction("UI/Cancel", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(false); };
     }
 
@@ -71,6 +73,7 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     public void SetPaused(bool paused)
     {
+        if(paused)PauseSelection=0;
         state.SetPaused(paused);
     }
 
@@ -78,7 +81,7 @@ public sealed class PlayerInputReader : MonoBehaviour
     {
         runtime.Disable();
         ClearTransientInput();
-        if (!state.Transitioning && !state.Respawning)
+        if (!state.Transitioning && !state.Respawning && !state.Completing)
             runtime.FindActionMap(Paused ? "UI" : "Gameplay").Enable();
     }
 
@@ -100,11 +103,15 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     void OnDestroy() { if (runtime != null) Destroy(runtime); }
 
+    public void ReturnTitle() { if(!Paused)return;state.SetTransitioning(true);SceneManager.LoadScene("Assets/Scenes/Menu.unity"); }
+
     void OnGUI()
     {
         GUI.Label(new Rect(16, 12, 700, 30), UsingGamepad ? "Move: Left Stick / D-pad   Jump: A   Pause: Menu" : "Move: Arrows (A/D)   Jump: Z (Space)   Pause: Esc");
         if (!Paused) return;
-        GUI.Box(new Rect(20, 55, 420, 110), GamepadDisconnected ? "Gamepad disconnected - Paused" : "Paused");
-        if (GUI.Button(new Rect(40, 95, 380, 45), "Resume (Z / Enter / A / X / Esc / B)")) SetPaused(false);
+        GUI.Box(new Rect(20, 55, 420, 170), GamepadDisconnected ? "Gamepad disconnected - Paused" : "Paused");
+        if (GUI.Button(new Rect(40, 95, 380, 45), (PauseSelection==0?"> ":"")+"재개 (Z / Enter / A)")) SetPaused(false);
+        if(GUI.Button(new Rect(40,145,380,45),(PauseSelection==1?"> ":"")+"타이틀"))ReturnTitle();
     }
 }
+

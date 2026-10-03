@@ -90,7 +90,7 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 현재 승인 F1�
 | S3-08 | C03 종합 이동·C04 휴식 | REVIEW | S3-07:REVIEW | 지정 E1/E3/엄폐·CP-C04 저장/사망·C02/C03/C04 왕복·CP→C06 입구1.280s·필수 회귀 PASS, Right는 C06 생성까지 비활성 |
 | F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | 2회 검사 실패, 전체 복원; 실제 잔존 피드백 없음 |
 | S3-09 | C06 최종 보스 | REVIEW | S3-08:REVIEW | v2 작성 실패 1회 보정 후 시야/회피/회복 X명중/20타/사망/동시프레임/Pause/문 왕복과 필수 회귀 PASS. 사용자 체감 대기. F1 미적용 |
-| S3-10 | 엔딩·저장·타이틀 흐름 | BLOCKED (SKIPPED) | S3-09:REVIEW | S3-09 성공 의존 미충족. 엔딩/진행필드/Quit/Pause 타이틀 미구현 |
+| S3-10 | 엔딩·저장·타이틀 흐름 | REVIEW | S3-09:REVIEW | v2 실제 exe 처치즉시저장/2초빛/엔딩/타이틀/즉시종료후Continue/새게임초기화/가상패드 UI와 필수 회귀 PASS. 엔딩 표현 사용자 판단 대기 |
 | S3-G | Sprint 3 Gate | TODO | 사용자 판단 | Content Complete 미충족, 다음 Sprint 미착수 |
 
 새 방 공통 셸 36×14u/바닥윗면y1/좌우벽/경계/카메라5.5·0·0.15/방이름/Door 표시/트리거1×2/바닥스폰y1.81. B02~B04 왼쪽출구(1.75,2), 양쪽 있는 방 오른쪽(34.25,2), FromLeft(3.5,1.81)/FromRight(32.5,1.81). G-J 높이는 일반최대+0.8以上/더블최대−0.5以下 측정 후 조건 불충족 시 범위 안 가장 가까운 값만 적용·결정 기록. S3-05의 B03 연결은 S3-04 실패 시 활성화하지 않고 독립 구현 가능한 부분만 보수적으로 처리한다.
@@ -256,6 +256,9 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+2026-10-03 v2 S3-10 PASS/REVIEW: EndingFlow(2초 실시간)/EndingMenu/Ending 씬, bossDefeated·endingReached 저장, Continue 엔딩 분기, Menu Quit 및 Pause 재개/타이틀. 실제 별도 Windows 프로세스 route PID24412/kill-now PID10268/continue PID25612: 처치직후 종료→Continue 엔딩·새게임 전체초기화·패드UI·Z/Enter PASS, 엔딩전환2.0552s. S1-02/04/07/08/N2 회귀 PASS, Error/Exception/Assert0. 엔딩표현/물리패드/자연완주 미수락. 증거 Validation/S3-10-ending-v2.txt 및 하위3로그.
+
 
 2026-10-03 v2 S3-09: C06 20x14u/보스17.5/공통카메라5.5·0·.15 구현. 작성도구 Edit-mode DontDestroy 실패를 additive 이동으로 1회 수정. 실제 보스검사+S1-02/04/07/08/N2카메라 PASS, 런타임 Error/Exception/Assert0. 회복 내 직접배치 X 3타, 대시위치 걸어들어가기1타(MEASURE), X20타처치/CP-C04사망복귀/동시사망 승리 우선 확인. REVIEW, S3-10 기술 의존 충족. F1 복원 유지. 새 Assets/Scripts/BossEncounter.cs·BossWave.cs·BossTuning.cs, C06 Scene/BossTuning.asset/BossWave.prefab, RoomSession.Die 보스 우선 처리, C04 Right enabled 한 항목만 변경. 기존 수치·카메라·방 배치 보존. 보스 가시성/회피 여유/첫 승리 횟수는 사용자 판단 대기.
 
@@ -550,5 +553,6 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-F1 복원/BLOCKED (5c54277), 실험 Builds/Experimental-F1/Afterglow.exe. 2026-10-03 v2 S3-09: C06 20x14u/보스17.5/공통카메라5.5·0·.15 구현. 작성도구 Edit-mode DontDestroy 실패를 additive 이동으로 1회 수정. 실제 보스검사+S1-02/04/07/08/N2카메라 PASS, 런타임 Error/Exception/Assert0. 회복 내 직접배치 X 3타, 대시위치 걸어들어가기1타(MEASURE), X20타처치/CP-C04사망복귀/동시사망 승리 우선 확인. REVIEW, S3-10 기술 의존 충족. F1 복원 유지. 새 Assets/Scripts/BossEncounter.cs·BossWave.cs·BossTuning.cs, C06 Scene/BossTuning.asset/BossWave.prefab, RoomSession.Die 보스 우선 처리, C04 Right enabled 한 항목만 변경. 기존 수치·카메라·방 배치 보존. 보스 가시성/회피 여유/첫 승리 횟수는 사용자 판단 대기.
+F1 BLOCKED/복원 (5c54277), 실험 Builds/Experimental-F1/Afterglow.exe. S3-09 REVIEW (a969663). 2026-10-03 v2 S3-10 PASS/REVIEW: EndingFlow(2초 실시간)/EndingMenu/Ending 씬, bossDefeated·endingReached 저장, Continue 엔딩 분기, Menu Quit 및 Pause 재개/타이틀. 실제 별도 Windows 프로세스 route PID24412/kill-now PID10268/continue PID25612: 처치직후 종료→Continue 엔딩·새게임 전체초기화·패드UI·Z/Enter PASS, 엔딩전환2.0552s. S1-02/04/07/08/N2 회귀 PASS, Error/Exception/Assert0. 엔딩표현/물리패드/자연완주 미수락. 증거 Validation/S3-10-ending-v2.txt 및 하위3로그.
+다음 승인 작업: 최종 S3-complete Windows x64 빌드와 실제 전체 문/저장/20타 보스→엔딩 검증. push 없음.
 

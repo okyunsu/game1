@@ -1,0 +1,16 @@
+PASS Windows exe route Unity=6000.3.24f1 PID=24412
+PASS: starts Menu
+PASS: pad new game enters A01
+PASS: pad Start Pause
+PASS: pad selects Pause title
+PASS: pad Pause title / session cleanup / scale1
+PASS: direct C04 verification setup
+PASS: C04 C06 door enabled
+PASS: boss flag persisted synchronously before light
+PASS: victory stops attacks and damage
+MEASURE kill -> Ending real=2.0552s
+PASS: approximately2s light then Ending
+PASS: endingReached saved
+PASS: pad Ending returns Menu scale1
+Prescribed virtual gamepad / keyboard. Physical pad and natural play time not tested.
+Error/Exception/Assert 0
