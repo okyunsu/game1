@@ -20,7 +20,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 
 ## Current Tasks
 
-2026-10-03 승인: P0 push → K1 새 키 → K2 Dash 카메라 → K3 격자/B01 재시도 → S2-day 빌드 → 최종 push. P0 성공(main/origin/main 7b48ef4). 기존 배치·튜닝 보존. 사용자 지정 B01 셸 이외 콘텐츠 미승인.
+2026-10-03 실행 결과: P0 push 성공. K1 PASS/REVIEW, K2 2회 실패 후 복원/BLOCKED, K3 PASS/S2-03 REVIEW, S2-day 빌드/실행 PASS. 최종 push는 인계 커밋 후 실행. 기존 배치·튜닝 보존, B01 지정 셸 외 콘텐츠 미승인.
 
 2026-10-03 야간 종료: G0·P0 완료, S2-01/02/04 REVIEW, S2-03 BLOCKED(두 번 실패·전체 복원). 최종 Menu+A01~A05 빌드/실행 PASS. B01·격자 통과·더블 점프·후속 방·보스·아트 미포함, 기존 배치/튜닝 보존, push 없음.
 
@@ -439,21 +439,21 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-02 밤 → 2026-10-03 야간 실행 종료. main, 로컬 커밋만, push 없음. Sprint 2. S1-G DONE(조건부), S1-10 REVIEW 유지. S2-01/02/04 REVIEW, S2-03 BLOCKED. B01 콘텐츠·더블 점프·후속 방·보스·아트 미착수.
+2026-10-03 P0→K1→K2→K3→S2-day 종료. main. K1·K3 기술 PASS/체감 REVIEW, K2 BLOCKED(2회 실패 후 복원). S2-03 REVIEW, S2-01/02/04 REVIEW 유지. S2-02 A05 5u 간격은 사용자 확인 완료. Sprint 2 Gate·더블 점프·B01 콘텐츠·후속 방·아트 미실시.
 
-| 단계 | 결과 / 상태 | 커밋 | 주요 Validation |
-| --- | --- | --- | --- |
-| G0 Gate 기록 | 성공 / 조건부 DONE, 체감 검토 이월 | f29b8ab | S1-02/04/07/08-night-G0.txt |
-| P0 목록 | 성공, S1-04 검사 물리 틱 대기 1회 보정 | 3d8c9bd | S1-04-night-P0-assertions.txt·failure.txt; S1-02-night-P0.txt; S1-02/04/07/08-night-P0-rerun.txt |
-| S2-01 통합 | 성공 / REVIEW, HP·공격·미보유 Dash·A04 E1 | 6c696be | S2-01-integration.txt; S1-06-lead0-night-S2-01.txt; Verification-night-T1/T2/T3-S2-01.txt; Verification-T4-night-S2-01-T4.txt |
-| S2-02 A05 | 성공 / REVIEW, 지정 입력 타이밍 1회 보정 | a96f720 | S2-02-A05.txt(첫 실패), S2-02-A05-rerun.txt(PASS) |
-| S2-03 G-D/B01 | 실패 / BLOCKED, 2회 실패 후 전체 복원·로그만 | 41c2d19 | S2-03-gate.txt; S2-03-gate-rerun.txt |
-| S2-04 저장·Menu | 성공 / REVIEW, 실제 exe 5회 종료/재시작 | 777e2c0 | S2-04-save.txt; S2-04-save-acquire/continue/continuecp/new/corrupt.txt; S2-04-editor-direct.txt; S2-04-save-build.txt |
-| 최종 빌드 | 성공 / 기술 PASS | 5029ad0 | S2-night-build.txt; S2-night-runtime.txt; S2-night-Player.log |
+| 단계 | 결과 / 커밋 | Validation |
+| --- | --- | --- |
+| P0 push | 성공; 기존16커밋 a2f8afc→7b48ef4, main/origin 일치 | P0-push-20261003.txt |
+| K1 키 | PASS / REVIEW, 3c70614 | K1-keys.txt |
+| K2 카메라 | 2회 FAIL→전체 복원, e9ed368 | K2-camera.txt, K2-camera-rerun.txt, K2-camera-first-timeout.log |
+| K3 격자/B01 | PASS / REVIEW, a46b72d | S2-03-retry.txt |
+| 최종 빌드 | PASS, b7adde2 | S2-day-build.txt, S2-day-runtime.txt, S2-day-runtime-day.txt/daycontinue.txt, S2-day-Player-day.log/daycontinue.log |
 
-- **회귀:** 위 단계 외 입력·이동·방 연결·CP 결과는 S1-{02,04,07,08}-night-S2-01.txt / S2-02-rerun.txt / S2-03-rollback.txt / S2-04.txt / S2-night.txt로 각각 보존, 모두 PASS. 자동 경로 휴리스틱은 사용하지 않음. P0 최초 실패와 S2-02/03 첫·두 번째 결과도 덮어쓰지 않음.
-- **실행/검증:** Builds/S2-night/Afterglow-S2.exe. Menu·A01~A05, 테스트 씬/B01 제외. 최종 빌드 오류/경고 0·exe FAIL 0. 지정 입력 최대 같은 높이 중심 이동은 일반 점프 4.680u, 점프 0.30초 뒤 Dash 6.888u. 저장은 버전·Dash·마지막 CP만 기록, 실제 종료 후 Dash 및 CP-A03 복원, 반복 사망 유지, 새 게임 패드 A 확인/B 취소, 손상 보존/안내, 쓰기 실패 원본 보존·재시도 PASS. 자동 검증은 격리 저장 파일을 사용해 일반 사용자 슬롯을 변경하지 않음.
-- **Decisions Needed:** S2-03-001 — 일반 벽 시험의 출구/공중 상태 간섭을 더 조사하지 않고 두 번째 실패에서 복원. A03 격자는 계속 고체이며 대시 통과 기능·B01은 없음. 재개는 별도 사용자 판단 필요. A05 5u 간격은 지정 좌표 유지; 중심 거리 측정만으로 발판 끝 걸침/Coyote 극단 입력 차단을 전수 증명하지 않았으므로 사용자 연습 플레이에서 확인. Editor 새 방 로드를 위해 A05를 EditorBuildSettings에 추가했으며 빌드는 명시 목록 사용.
-- **아침 약 30분:** Menu 새 게임→A01~A05 왕복으로 S1-10 exe 플레이·카메라·키보드/패드 A 점프 일관성 확인. A04에서 T2 피격/넉백·T3 공격 판정·T4 E1 순찰/2타 제거, A05에서 T1 대시 감각·획득 안내·점프 후 대시 연습 확인. CP-A03 접촉·사망 및 종료→이어하기로 복귀 위치/능력 유지 확인. A03 격자는 외형/막힘만 확인하고 통과는 기대하지 않음(실패 단계 복원). 이월 체감 항목과 S2-01/02/04는 사용자 수락 전 REVIEW.
-- **수정 위치/저장:** Player.prefab의 Dash/Health/Attack, A04의 E1/양끝 Scene 참조, A05의 DashPickup·PracticeA/B, Menu SaveMenu. 기존 이동 설정과 PlayerTuning·CombatTuning·E1Tuning 값은 보존. 레벨은 Scene의 Level 프리팹 인스턴스 Rect Tool/Scale. Play 변경은 Stop 후 다시 입력·저장하며 공통 prefab Apply는 의도할 때만 수행. 로컬 슬롯은 `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json`, 초기화는 새 게임 확인 또는 exe 종료 후 파일 삭제. Editor A01 직접 Play는 기존 저장을 읽거나 덮어쓰지 않는 새 상태.
-- **보존/다음:** A01/A02/A03 씬·Level 원본·지정 tuning·MovementTest·Packages·ProjectVersion은 시작 커밋 대비 그대로. A04 기존 배치 좌표도 그대로이며 E1·오른쪽 출구만 추가. 작성 도구는 삭제. 다음 작업과 S2-05 이후 제안 TODO는 별도 승인 후 진행. 이번 승인 범위 종료.
+- **회귀:** S1-{02,04,07,08}-night-K1.txt / K2-rollback.txt / K3.txt / S2-day.txt 모두 실제 Unity PASS. 지정 입력/트리거 직접 배치 사용, 자동 이동 로봇 없음. 물리 게임패드 실사용은 미실시(가상 장치·바인딩 유지 확인).
+- **실행:** `Builds/S2-day/Afterglow-S2.exe`, Menu+A01~A05+B01 정확히7씬, 테스트 씬 제외. 빌드 오류/경고0, 실제 exe 두 프로세스 Error/Exception/Assert0. 모든 문 왕복/안전 도착·A02 구멍 CP-A01 복귀·CP-A03/CP-B01 사망 복귀·B01 다른 방 사망 복귀·실제 종료→Z 이어하기 Dash/CP-B01/좌표 유지 PASS. 검사 저장은 Logs/S2-day-slot.json 격리 슬롯이며 사용자 슬롯 변경 없음.
+- **수정 위치:** 키는 Assets/Input/PlayerControls.inputactions. ←/→, Z 점프, X 공격, C 대시, Esc Pause; 메뉴 ↑/↓·Z/Enter 확인·X/Esc 취소. 기존 A/D·Space·J·K/Shift 보조, 패드 유지, LCtrl 미바인딩/다음 능력 예약. Z/Space 짧은 높이1.464u·긴 높이2.520u 동일. 안내 및 README 조작 표 갱신.
+- **격자/배치:** A03 기존 GateGD 인스턴스에 DashGate 추가, 보유+Dash 중만 양방향 통과. 새 선반 출구(30,6), 트리거1×2, FromShelf(27,5.81). 기존 바닥 출구 그대로(y1~3); 새 출구는 y5~7, 오른쪽 벽과4.5u 여유. B01은36×14셸·왼쪽 문·CP-B01(x6)·다음 Sprint 안내만. ProgressSave에 CP-B01 유효 ID/Continue 씬 연결. A01~A05 기존 배치/튜닝/Level 원본/Player.prefab/MovementTest/Packages/ProjectVersion 보존. A03 diff는 새 요소 추가뿐. 새 방 Editor 전환을 위해 EditorBuildSettings에 B01 추가; 배포 빌드는 명시 목록 사용. 일회성 작성 스크립트 삭제.
+- **미해결 K2:** 대시 최대 X 차이1.089→0.684u 감소했지만 평상시/반전 좌표 비교가 FAIL. 최초 batchmode 프레임 종료 대기 실패 후 검사 대기만1회 수정했고, 재실패에서 전체 복원. 시간 기반 검사 틱 차이 가능성은 미확정; 추가 수정을 하지 않음. 카메라는 기존 선행0/직교5.5/감쇠0.15, dashDamping 필드 미배포. N2 Camera 전체 검사는 미실시. CAM-002 대시 밀림 체감은 해결되지 않음.
+- **사용자 확인:** 새 키 조작감(짧고 긴 Z 점프 포함), 현재 대시 카메라 체감, A05 획득 후 A03 격자 양방향 C 통과→선반 문→B01 및 돌아오기, CP-B01 사망/종료/이어하기. Inspector/씬 수정은 Play 종료 후 다시 입력하고 저장; Level 원본 Apply는 의도할 때만 수행.
+- **push:** P0 성공. 이 인계 커밋 이후 승인된 최종 `git push origin main` 한 번을 실행하고 origin/main 동기화 여부를 최종 응답으로 보고한다. pull·merge·force 없음. 실패하면 오류를 여기에 추가하고 재push하지 않는다.
+- **다음:** K1/S2-03 체감 수락 및 K2 재시도는 사용자 판단 대기. 새 콘텐츠 자동 착수 없음.
