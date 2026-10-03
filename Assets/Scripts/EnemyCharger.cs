@@ -26,7 +26,7 @@ public sealed class EnemyCharger:MonoBehaviour,IDamageable
         body.linearVelocity=new Vector2(speed,body.linearVelocity.y);
         sprite.color=State==Phase.Warning?Color.Lerp(original,Color.yellow,Mathf.PingPong(PhaseElapsed*12,1)):original;
     }
-    public void ReceiveHit(int damage,Vector2 source){if(HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);LastHitVelocity=new Vector2((body.position.x>=source.x?1:-1)*tuning.knockback,body.linearVelocity.y);body.linearVelocity=LastHitVelocity;hitPending=true;if(HP==0)Destroy(gameObject);}
+    public void ReceiveHit(int damage,Vector2 source){if(HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);LastHitVelocity=new Vector2((body.position.x>=source.x?1:-1)*tuning.knockback,body.linearVelocity.y);body.linearVelocity=LastHitVelocity;hitPending=true;GetComponent<HitFeedback>()?.Hit(HP);if(HP==0)Destroy(gameObject);}
     void Contact(Collision2D c){c.collider.GetComponentInParent<PlayerHealth>()?.TakeDamage(tuning.contactDamage,body.position);}
     void OnCollisionEnter2D(Collision2D c)=>Contact(c);
     void OnCollisionStay2D(Collision2D c)=>Contact(c);

@@ -17,5 +17,5 @@ public sealed class EnemyTurret:MonoBehaviour,IDamageable
     void Update(){if(HP<=0)return;if(Warning){sprite.color=Color.Lerp(original,Color.yellow,Mathf.PingPong((float)(Time.timeAsDouble-started)*10,1));if(!CanSeePlayer()){Warning=false;sprite.color=original;return;}if(Time.timeAsDouble-started>=tuning.warningSeconds){Fire();Warning=false;sprite.color=original;}}
         else if(Time.timeAsDouble>=nextWarning&&CanSeePlayer()){Warning=true;started=Time.timeAsDouble;nextWarning=started+tuning.shotPeriod;}}
     void Fire(){var go=Instantiate(projectilePrefab,(Vector2)transform.position+Vector2.right*direction*muzzleOffset,Quaternion.identity);SceneManager.MoveGameObjectToScene(go,gameObject.scene);var shot=go.GetComponent<EnemyShot>();shot.damage=tuning.projectileDamage;shot.speed=tuning.projectileSpeed;shot.direction=direction<0?-1:1;ShotsFired++;LastShotAt=Time.timeAsDouble;}
-    public void ReceiveHit(int damage,Vector2 source){if(HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);if(HP==0)Destroy(gameObject);}
+    public void ReceiveHit(int damage,Vector2 source){if(HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);GetComponent<HitFeedback>()?.Hit(HP);if(HP==0)Destroy(gameObject);}
 }

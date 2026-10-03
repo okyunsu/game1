@@ -1,0 +1,41 @@
+PASS T2v2 F2R
+MEASURE health RestoreMax callback time=0.62000879393424
+PASS: no invincibility before direct hit 30
+PASS: direct hit immediately locks/right knockback 30
+PASS: opposite input preserves x sign while locked 30
+PASS: opposite input preserves x sign while locked 30
+PASS: opposite input preserves x sign while locked 30
+MEASURE fps=30 unlock=0.133326s maxObservedFrame=0.033344s configured=0.120000s opposingFrames=3
+PASS: unlock within configured lock plus one observed frame 30
+MEASURE health RestoreMax callback time=2.20332799036281
+PASS: no invincibility before direct hit 60
+PASS: direct hit immediately locks/right knockback 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+PASS: opposite input preserves x sign while locked 60
+MEASURE fps=60 unlock=0.133336s maxObservedFrame=0.016681s configured=0.120000s opposingFrames=7
+PASS: unlock within configured lock plus one observed frame 60
+MEASURE health RestoreMax callback time=3.75332869189342
+PASS: no invincibility before direct hit 120
+PASS: direct hit immediately locks/right knockback 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+PASS: opposite input preserves x sign while locked 120
+MEASURE fps=120 unlock=0.124994s maxObservedFrame=0.008356s configured=0.120000s opposingFrames=14
+PASS: unlock within configured lock plus one observed frame 120
+Error/Exception/Assert=0

@@ -15,9 +15,10 @@ public sealed class PlayerAttack:MonoBehaviour
     void OnDisable(){input.AttackPressed-=Begin;input.DashPressed-=DashCancel;input.Cleared-=Cancel;health.Hit-=Cancel;Cancel();}
     void Begin(){if(input.InputLocked||health.HP<=0||health.KnockbackLocked||GetComponent<PlayerDash>()?.IsDashing==true||Time.timeAsDouble-started<tuning.attackCooldown)return;started=Time.timeAsDouble;direction=Mathf.Abs(input.Move.x)>.01f?(input.Move.x>0?1:-1):motor.Facing;damaged.Clear();Attacking=true;Sequence++;}
     void DashCancel(){if(GetComponent<PlayerDash>()?.hasDash==true)Cancel();}
-    public void Cancel(){Attacking=false;damaged.Clear();}
+    public void Cancel(){Attacking=false;damaged.Clear();GetComponent<AttackFeedback>()?.Hide();}
     Vector2 Center(){var bounds=shape.bounds;return new Vector2((direction>0?bounds.max.x:bounds.min.x)+direction*tuning.attackRange*.5f,bounds.center.y);}
     void Update(){if(!Attacking)return;if(input.InputLocked||health.KnockbackLocked||GetComponent<PlayerDash>()?.IsDashing==true){Cancel();return;}double elapsed=Time.timeAsDouble-started;if(elapsed>=tuning.attackStartup+tuning.attackActive){Cancel();return;}if(elapsed<tuning.attackStartup)return;
+        GetComponent<AttackFeedback>()?.Show(Center(),new Vector2(tuning.attackRange,tuning.attackHeight));
         int count=Physics2D.OverlapBox(Center(),new Vector2(tuning.attackRange,tuning.attackHeight),0,new ContactFilter2D{useTriggers=true},contacts);
         for(int i=0;i<count;i++){var target=contacts[i].GetComponentInParent<IDamageable>();if(target!=null&&damaged.Add(target))target.ReceiveHit(tuning.attackDamage,transform.position);}
     }

@@ -1,0 +1,15 @@
+ Assets/Prefabs/CombatTestPlayer.prefab     | 118 ++++++++++++++++++++++++++-
+ Assets/Prefabs/DashTestPlayer.prefab       | 125 ++++++++++++++++++++++++++++-
+ Assets/Prefabs/DoubleJumpTestPlayer.prefab | 109 ++++++++++++++++++++++++-
+ Assets/Prefabs/E1.prefab                   | 109 ++++++++++++++++++++++++-
+ Assets/Prefabs/E2.prefab                   | 109 ++++++++++++++++++++++++-
+ Assets/Prefabs/E3.prefab                   | 110 ++++++++++++++++++++++++-
+ Assets/Prefabs/Player.prefab               | 109 ++++++++++++++++++++++++-
+ Assets/Scripts/BossEncounter.cs            |   2 +-
+ Assets/Scripts/DummyTarget.cs              |   2 +-
+ Assets/Scripts/EnemyCharger.cs             |   2 +-
+ Assets/Scripts/EnemyPatrol.cs              |   1 +
+ Assets/Scripts/EnemyTurret.cs              |   2 +-
+ Assets/Scripts/PlayerAttack.cs             |   3 +-
+ TASKS.md                                   |   5 ++
+ 14 files changed, 793 insertions(+), 13 deletions(-)

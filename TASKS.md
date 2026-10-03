@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 새 승인 D0/F2R/LOGR: D0 기존 T2 기준FAIL·T1/T3 PASS·T4 기준 검사참조FAIL, T2v2 검사위치1회보정 후30/60/120fps PASS. F2R T2v2/보스회복/S1-02/04/07/08/카메라PASS, 기존T2/T4 및 추가 기준S2통합과 같은 실패로 새 회귀 없음. 표시30/60/120/E2 PASS 뒤 처치효과 검사 stale E1참조로 도구한계 REVIEW. LOGR 후속 진행. 보호파일 무변경, 보스는 허용 표시호출만.
+
 2026-10-04 F2→LOG→최종 빌드 승인 실행: F2 표시 검사 보정 후 PASS였으나 필수 T2 넉백 잠금 검사 FAIL, 검사 60fps 고정 1회 보정 후 재FAIL. F2 전체복원/BLOCKED. LOG는 기존 사망 원인 이벤트 부재와 기존 로직 수정 금지 충돌로 독립 BLOCKED(미구현). 성공한 신규 단계가 없어 S4-pre 빌드/CSV 미생성. 기준 S3-complete와 기존 S3 REVIEW 상태 유지, push 없음. 상세 증거와 복원 회귀는 Latest Handoff 참고.
 
 2026-10-03 v2 최신: F1 BLOCKED/전체복원(5c54277), 실험 Builds/Experimental-F1. S3-09 REVIEW(a969663), S3-10 REVIEW(3beed76), 최종 S3-complete Windows x64 PASS. 15플레이방/17씬, X20타보스→엔딩→타이틀/모든문왕복/저장Continue/필수회귀PASS, Error/Exception/Assert0. 사용자 완주와 체감 대기, push 없음. 이전 실행 실패 기록은 이력으로 보존.
@@ -130,6 +132,9 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 사용자 수락 값을 명시적으로 반영하고 저장한다. Scene 변경은 Stop 후 다시 입력한다. 후보 실험과 기본값 확정을 구분한다.
 
 ## Bugs
+
+### D0-T2-001 / D0-T4-001 / D0-S2-001 — 기준 검사 실패
+실제 기준 상태(표시 미적용)에서 T2 잠금 assertion FAIL, T4 처치된 Rigidbody 참조FAIL, S2 기존통합 HP persists in A04 FAIL 재현. T2v2는 CP x5.5 인접 x6 검사 간섭을 피한30/60/120fps 직접측정PASS. 이전 F1/F2가 원인이라는 결론의 근거로 기존 T2 assertion을 쓰지 않음(F1 독립 영향이 모두 해명된 것은 아님). F2R의 같은 기준 결과는 새 명세대로 회귀 아님. [D0 요약](Validation/D0-summary.txt), [추가 S2 기준](Validation/D0-S2-integration.txt), [F2R 결과·도구한계](Validation/F2R-summary.txt).
 
 ### F2-T2-001 — 필수 넉백 잠금 검사 재실패 / 전체복원 (2026-10-04)
 - F2 초기 더미 표시 바인딩 실패를 새 표시 스크립트에서 1회 보정한 뒤, 30/60/120fps 좌우 표시·판정 일치·명중/빗나감·번쩍임·E1 처치효과 검사 PASS.

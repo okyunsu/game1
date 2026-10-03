@@ -1,0 +1,53 @@
+FAIL F2R
+PASS: player/dummy recovered display binding
+PASS: 30 1 startup inactive
+PASS: active slash 30
+PASS: center/size <=.01u 30 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.133339299886621
+PASS: 30 -1 startup inactive
+PASS: active slash 30
+PASS: center/size <=.01u 30 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100001700680273
+PASS: 60 1 startup inactive
+PASS: active slash 60
+PASS: center/size <=.01u 60 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.116662301587302
+PASS: 60 -1 startup inactive
+PASS: active slash 60
+PASS: center/size <=.01u 60 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100000403911565
+PASS: 120 1 startup inactive
+PASS: active slash 120
+PASS: center/size <=.01u 120 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.108338102324263
+PASS: 120 -1 startup inactive
+PASS: active slash 120
+PASS: center/size <=.01u 120 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100001098356008
+UnityEngine.MissingReferenceException: The object of type 'EnemyCharger' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x0006a] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x00010] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Component.GetComponentFastPath (System.Type type, System.IntPtr oneFurtherThanResultValue) [0x00006] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Component.GetComponent[T] () [0x00021] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at F2RRunner+<Tests>d__8.MoveNext () [0x0085c] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RVerification.cs:27 
+  at F2RRunner+<Start>d__5.MoveNext () [0x00084] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RVerification.cs:22 
+Error/Exception/Assert=0

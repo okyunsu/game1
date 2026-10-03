@@ -1,0 +1,27 @@
+FAIL F2R
+PASS: base player health/attack; Dash false
+PASS: HP persistence setup
+PASS: HP persists in A01
+PASS: single integrated components in A01
+PASS: A01 J attack
+PASS: A01 gamepad X attack
+PASS: A01 unowned Dash ignored
+PASS: transition A02
+PASS: HP persists in A02
+PASS: single integrated components in A02
+PASS: A02 J attack
+PASS: A02 gamepad X attack
+PASS: A02 unowned Dash ignored
+PASS: transition A03
+PASS: HP persists in A03
+PASS: single integrated components in A03
+PASS: A03 J attack
+PASS: A03 gamepad X attack
+PASS: A03 unowned Dash ignored
+PASS: CP-A03 contact
+PASS: transition A04
+FAIL: System.Exception: HP persists in A04
+  at F2RIntegrationRunner.Check (System.Boolean ok, System.String msg) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RIntegration.cs:19 
+  at F2RIntegrationRunner+<Integration>d__13.MoveNext () [0x0022d] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RIntegration.cs:50 
+  at F2RIntegrationRunner+<Start>d__4.MoveNext () [0x00080] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RIntegration.cs:21 
+FAIL 1

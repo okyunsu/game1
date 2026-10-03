@@ -1,0 +1,18 @@
+FAIL C4 E1 Unity=6000.3.24f1
+PASS: one CombatTest E1; exact 22-section values
+MEASURE old body-only relocation body=(20.00, 1.50) Transform=(34.00, 1.50, 0.00) collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00)
+MEASURE old attack box x=33.100..34.200, y=1.210..2.410; enemy collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00); HP before=2, velocity before=(0.00, 0.00)
+MEASURE old relocation attack HP after=2, velocity after=(0.00, 0.00), instant hit velocity=(0.00, 0.00); body=(20.00, 1.51), Transform=(20.00, 1.51, 0.00)
+CAUSE reproduction: body-only relocation used a stale Transform to place attacker outside the actual hit range. Correct test setup synchronizes both positions.
+MEASURE synchronized attack box x=19.100..20.200; E1 collider=Center: (20.00, 1.50, 0.00), Extents: (0.50, 0.50, 0.00); HP before=2; velocity before=(0.00, 0.00)
+MEASURE first hit HP 2->1, instant velocity=(3.00, 0.00), sampled velocity=(3.00, 0.00)
+PASS: actual first attack loses one HP and applies 3u/s knockback
+PASS: second actual attack removes E1 (no duplicate damage on one attack)
+UnityEngine.MissingReferenceException: The object of type 'UnityEngine.Rigidbody2D' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x0006a] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x00010] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Rigidbody2D.get_position () [0x00006] in <b742555f6e024594a477adbd0e8dffb2>:0 
+  at C4Runner+<Tests>d__9.MoveNext () [0x00712] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\C4Verification.cs:53 
+  at C4Runner+<Start>d__4.MoveNext () [0x00067] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\C4Verification.cs:21 
+FAIL 1

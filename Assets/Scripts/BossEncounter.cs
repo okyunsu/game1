@@ -40,7 +40,7 @@ public sealed class BossEncounter:MonoBehaviour,IDamageable
   else if(State==Phase.WaveTell&&elapsed>=tuning.waveTell){var go=Instantiate(wavePrefab,new Vector3(GetComponent<BoxCollider2D>().bounds.min.x-.3f,floorY+tuning.waveHeight*.5f,0),Quaternion.identity);SceneManager.MoveGameObjectToScene(go,gameObject.scene);go.transform.localScale=new Vector3(.6f,tuning.waveHeight,1);wave=go.GetComponent<BossWave>();wave.speed=tuning.waveSpeed;wave.damage=tuning.damage;wave.leftWallX=leftWallX;WavesSpawned++;SetPhase(Phase.WaveRecovery);}
   else if(State==Phase.WaveRecovery&&elapsed>=tuning.recovery)SetPhase(Phase.MeleeTell);
  }
- public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;if(HP==0){SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);wave=null;warning.enabled=false;Defeated?.Invoke();}}
+ public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;GetComponent<HitFeedback>()?.Hit(HP);if(HP==0){SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);wave=null;warning.enabled=false;Defeated?.Invoke();}}
  public bool DeferDeath(){if(resolvingDeath)return false;if(State==Phase.Defeated)return true;if(!Fighting)return false;if(!deathQueued){deathQueued=true;}return true;}
  void LateUpdate(){if(!deathQueued)return;if(State==Phase.Defeated){deathQueued=false;return;}resolvingDeath=true;deathQueued=false;RoomSession.Instance.Die();}
  void Contact(Collision2D c){if(Fighting&&!deathQueued)c.collider.GetComponent<PlayerHealth>()?.TakeDamage(tuning.damage,transform.position);}

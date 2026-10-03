@@ -35,6 +35,7 @@ public sealed class EnemyPatrol : MonoBehaviour, IDamageable
         LastHitHPBefore=HP;HP=Mathf.Max(0,HP-damage);
         LastHitVelocity=new Vector2((body.position.x>=source.x?1:-1)*tuning.knockback,body.linearVelocity.y);
         body.linearVelocity=LastHitVelocity;hitPending=true;
+        GetComponent<HitFeedback>()?.Hit(HP);
         if(HP==0)Destroy(gameObject);
     }
     void Contact(Collision2D collision){collision.collider.GetComponentInParent<PlayerHealth>()?.TakeDamage(tuning.contactDamage,body.position);}

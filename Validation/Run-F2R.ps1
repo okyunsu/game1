@@ -1,0 +1,4 @@
+$ErrorActionPreference='Stop'
+$taskUnity='C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe'
+$taskChecks=@(@('BossRecoveryCheck.Run','F2R'),@('Nightly.Input','F2R'),@('Nightly.Buffer','F2R'),@('N2Verification.RoomsNight','F2R'),@('N2BVerification.CheckpointsNight','F2R'),@('N2Verification.CameraLead0','S2-F2R'))
+foreach($taskCheck in $taskChecks){$taskMethod=$taskCheck[0];$taskTag=$taskCheck[1];$taskProcess=Start-Process $taskUnity -ArgumentList @('-batchmode','-projectPath','.', '-executeMethod',$taskMethod,'-nightTask',$taskTag,'-save-path','Logs/F2R-save.json','-logFile',('Logs/F2R-'+$taskMethod+'.log')) -WindowStyle Hidden -PassThru;$taskProcess.WaitForExit();Write-Output ($taskMethod+' '+$taskTag+' exit='+$taskProcess.ExitCode);if($taskProcess.ExitCode -ne 0 -and $taskTag -notin @('T2-F2R','S2-F2R')){throw ('Unexpected failure '+$taskMethod)}}
