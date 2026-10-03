@@ -1,0 +1,39 @@
+FAIL F1-feedback-v2 Unity=6000.3.24f1
+PASS: startup slash absent 30
+PASS: active slash equals hitbox 30
+PASS: right direction alpha .5 30
+MEASURE fps=30 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 30
+PASS: isolated miss zero flash/stop events 30
+PASS: left slash orientation 30
+PASS: same one hit per attack 30
+PASS: flash start/end exactly once 30
+PASS: stop start/end exactly once 30
+MEASURE fps=30 flash=0.09960s stop=0.06609s
+PASS: real flash length 30
+PASS: real stop length / scale restored 30
+PASS: startup slash absent 60
+PASS: active slash equals hitbox 60
+PASS: right direction alpha .5 60
+MEASURE fps=60 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 60
+PASS: isolated miss zero flash/stop events 60
+PASS: left slash orientation 60
+PASS: same one hit per attack 60
+PASS: flash start/end exactly once 60
+PASS: stop start/end exactly once 60
+MEASURE fps=60 flash=0.08340s stop=0.06664s
+PASS: real flash length 60
+PASS: real stop length / scale restored 60
+PASS: startup slash absent 120
+PASS: active slash equals hitbox 120
+PASS: right direction alpha .5 120
+MEASURE fps=120 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 120
+PASS: isolated miss zero flash/stop events 120
+PASS: left slash orientation 120
+System.Exception: same one hit per attack 120
+  at AuthorizedRunner.Check (System.Boolean ok, System.String text) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\AuthorizedVerification.cs:20 
+  at AuthorizedRunner+<Feedback>d__7.MoveNext () [0x00894] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\AuthorizedVerification.cs:36 
+  at AuthorizedRunner+<Start>d__4.MoveNext () [0x00067] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\AuthorizedVerification.cs:22 
+Error/Exception/Assert 0

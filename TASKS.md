@@ -209,6 +209,8 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+2026-10-03 v2 F1: 효과 검사 첫120fps 명중FAIL → 방향 입력을 FixedUpdate까지 유지하도록 1회 보정 → 30/60/120fps 효과 이벤트 PASS. 필수 T2 회귀 knockback lock0.12s FAIL로 단계 실패/전체 복원. 추가 재시도 없음. 실험 Builds/Experimental-F1/Afterglow.exe 유지(기동 Error/Exception/Assert0), 사용자가 공격 손맛을 직접 판단. S1-02/04/07/08/N2카메라/T1 PASS, T3/T4/S2-01 미실시. 독립 S3-09 진행; 보스 F1 미적용. 증거 F1-feedback-v2.txt, F1-feedback-v2-rerun.txt, Verification-night-T2-F1-v2.txt, Experimental-F1-v2-build/runtime.txt.
+
 S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](Validation/S3-09-narrow-preflight.txt), [첫검사](Validation/S3-09-boss-narrow.txt), [재검사](Validation/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
 
 
@@ -545,20 +547,5 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-03 승인 **F1 → S3-09 → S3-10 → S3-complete** 종료. **main / 로컬 커밋 / push 없음.** F1과 S3-09는 각각2회 검사 실패 후 전체 복원/BLOCKED, S3-10 의존SKIPPED. 기존 성공 콘텐츠의 새 빌드와 복원 후 검증만 PASS. **Content Complete 후보가 아니며 Sprint3 Gate 미충족.** S3-01~05 DONE, S3-06~08 REVIEW 유지.
+2026-10-03 v2 F1: 효과 검사 첫120fps 명중FAIL → 방향 입력을 FixedUpdate까지 유지하도록 1회 보정 → 30/60/120fps 효과 이벤트 PASS. 필수 T2 회귀 knockback lock0.12s FAIL로 단계 실패/전체 복원. 추가 재시도 없음. 실험 Builds/Experimental-F1/Afterglow.exe 유지(기동 Error/Exception/Assert0), 사용자가 공격 손맛을 직접 판단. S1-02/04/07/08/N2카메라/T1 PASS, T3/T4/S2-01 미실시. 독립 S3-09 진행; 보스 F1 미적용. 증거 F1-feedback-v2.txt, F1-feedback-v2-rerun.txt, Verification-night-T2-F1-v2.txt, Experimental-F1-v2-build/runtime.txt.
 
-| 단계 | 결과 / 커밋 | 새 Validation |
-| --- | --- | --- |
-| F1 / FX-001 | FAIL→1회 검사보정→FAIL, 전체복원 / f5ab8c8 | F1-preflight.txt, F1-feedback.txt, F1-feedback-rerun.txt |
-| S3-09 사전 | 좁은20u 추적 시야 PASS / 9d04dca | S3-09-narrow-preflight.txt |
-| S3-09 구현 | FAIL→1회 수정→FAIL, 전체복원 / 9d04dca | S3-09-boss-narrow.txt, S3-09-boss-narrow-rerun.txt |
-| S3-10 | SKIPPED, S3-09 성공 의존 미충족 / 9d04dca | S3-10-ending-skipped-F1-run.txt |
-| 최종 빌드 | 기존 성공 콘텐츠 PASS / 5eddee4 | S3-complete-build.txt, S3-complete-runtime.txt, S3-complete-runtime-route.txt, S3-complete-runtime-continue.txt, S3-complete-restoration.txt |
-
-- **실행:** [Afterglow-S3-complete.exe](Builds/S3-complete/Afterglow-S3-complete.exe), Windows x64. Menu+A01~A05+B01~B05+C01~C04 =15씬/14플레이방, 테스트 씬 제외. C04가 마지막 방이며 C06 Door 비활성. **공격 피드백/C06/보스/엔딩/Quit/Pause타이틀 미포함.** 출력 이름은 Content Complete 달성을 뜻하지 않는다. Builds는 Git 제외, README 최신 설명 반영.
-- **F1 실패:** 30fps slash0.10s/size1.1×1.2, real stop0.0659s/flash0.0993s(프레임관찰 포함)와 좌우표시/1타 일부PASS. 첫60fps miss assertion이 이전 HitFlash 재사용을 새 효과로 오판해 검사만1회 보정. 재검사60fps 명중 대상 흰색 확인FAIL. 관찰 Update/LateUpdate 순서 영향 가능성은 미확정. 지시대로 모든 F1 코드/설정/Prefab/검사도구 복원. T1~T4/S2-01 및 단계 후 회귀는 미실시. FX-001 Before–After와 사용자 ‘공격하는지조차 모르겠다’ 관찰은 보존, 개선효과 수락 없음.
-- **좁은방 사전PASS:** 사용자 결정20u/보스중심17.5/시작선x>5/추적5.5·0·0.15. 실제 카메라 투영1280×720·1920×1080에서 스폰3.5/직전4.9와 전투구간1~13.5의 보스/근접예고/충격파경로 전체 표시 확인. 이전36u 시야충돌은 이 후보에서 해소됨. RoomCameraRig/다른 방 값 변경 없음.
-- **보스 실패:** 첫 파형 바닥 접촉 조기소멸FAIL → 벽만 소멸하도록1회 수정(검사 점프시점 예고0.90s 지정). 재검사 근접예고0.800s/회복1.200s/대시회피, 파형예고1.000s/속도5.000u/s/높이1u/점프회피/Pause정지/왼쪽벽소멸/뒤틈진입차단·위접촉피해 일부PASS. 회복구간 X 명중0타FAIL. 실제 공격/배치/검사 진입시점 중 원인 미확정. 20타처치·사망초기화·동시프레임·후속회귀 미실시. 전체 Boss 코드/Prefab/Asset/C06/임시Probe/빌드설정 및 C04 Right 활성화 복원. 재시도 없음.
-- **최종 실제 검증:** build errors0/warnings0. exe PID18732(1280×720) 격리 새게임/두능력/모든 성공방 문 양방향/5CP사망/C02 지정조합, PID5584(1920×1080) 프로세스 종료후 CP-C04 Continue/두능력/장거리복귀 PASS, Error/Exception/Assert0. 직접배치/지정가상입력, 자동이동로봇 없음. `Logs/S3-complete-runtime-slot.json`, 사용자 저장 미접근. 복원 후 S1-02/04/07/08-night-S3-complete-restored.txt 및 S1-06-lead0-night-S2-S3-complete-camera.txt 모두PASS, 새 카메라 PNG2개. 물리패드/자연완주시간/화면·체감수락 미실시.
-- **Decisions Needed / 다음:** FX-001의60fps flash 관찰/효과 실패, S3-09-NARROW의회복구간0타 원인을 다음 승인에서 확인해야 한다. 이번2회 제한에 따라 중단했으며 후속 엔딩은 승인 의존 미충족. 좁은20u 시야 결정은 유효하지만 실제 보스는 미존재. 게임규칙/수치 후보를 임의 확정하지 않았다. 사용자 확인은 현재 S3-06~08/C02 체감이며, 공격손맛·피드백수치/보스예고·회피여유·첫승리횟수/엔딩표현/새게임→엔딩시간은 구현 성공 후 남는다.
-- **보존 / 수정 위치:** 런타임 코드·Player/Combat/E1/E2/E3 값·Prefab·A01~C04·MovementTest·RoomCameraRig·Packages·ProjectVersion·Level원본은 이번 실행 전과 동일(`S3-complete-restoration.txt`). 잔존 변경은 새 빌드도구 `Assets/Editor/S3CompleteBuild.cs`, README/TASKS 및 새 증거뿐. 기존 Scene 배치 Play 수정은 Stop 후 다시 입력·저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 명시적 저장. 새 FeedbackTuning/BossTuning 수정 위치는 복원되어 존재하지 않는다. 선택방·아트·사운드·카메라흔들림·K2·기존배치 수정 없음. push는 사용자가 직접 수행.

@@ -1,0 +1,4 @@
+Experimental F1 launch PID=22680; Windows x64
+Player log lines=37
+Error/Exception/Assert matches=0
+Launch-only verification; gameplay not retested. F1 effect events passed; T2 0.12s lock regression failed. Build retained for user play.

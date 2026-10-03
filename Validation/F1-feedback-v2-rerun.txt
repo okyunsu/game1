@@ -1,0 +1,46 @@
+PASS F1-feedback-v2-rerun Unity=6000.3.24f1
+PASS: startup slash absent 30
+PASS: active slash equals hitbox 30
+PASS: right direction alpha .5 30
+MEASURE fps=30 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 30
+PASS: isolated miss zero flash/stop events 30
+PASS: left slash orientation 30
+PASS: same one hit per attack 30
+PASS: flash start/end exactly once 30
+PASS: stop start/end exactly once 30
+MEASURE fps=30 flash=0.09965s stop=0.06615s
+PASS: real flash length 30
+PASS: real stop length / scale restored 30
+PASS: startup slash absent 60
+PASS: active slash equals hitbox 60
+PASS: right direction alpha .5 60
+MEASURE fps=60 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 60
+PASS: isolated miss zero flash/stop events 60
+PASS: left slash orientation 60
+PASS: same one hit per attack 60
+PASS: flash start/end exactly once 60
+PASS: stop start/end exactly once 60
+MEASURE fps=60 flash=0.08342s stop=0.05004s
+PASS: real flash length 60
+PASS: real stop length / scale restored 60
+PASS: startup slash absent 120
+PASS: active slash equals hitbox 120
+PASS: right direction alpha .5 120
+MEASURE fps=120 slash=0.1000s size=(1.10, 1.20, 0.20)
+PASS: slash active duration 120
+PASS: isolated miss zero flash/stop events 120
+PASS: left slash orientation 120
+PASS: same one hit per attack 120
+PASS: flash start/end exactly once 120
+PASS: stop start/end exactly once 120
+MEASURE fps=120 flash=0.08332s stop=0.05829s
+PASS: real flash length 120
+PASS: real stop length / scale restored 120
+PASS: all effects off zero events
+PASS: Pause immediately after stop remains paused
+PASS: hit during Pause ignored
+PASS: transition clears hit stop
+PASS: death clears hit stop
+Error/Exception/Assert 0
