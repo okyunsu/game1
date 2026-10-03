@@ -1,0 +1,12 @@
+BLOCKED LOG — 2026-10-04
+No implementation, CSV creation, Unity LOG tests or save-write tests performed.
+Read-only interface audit at baseline 7ca75e6:
+RoomSession has no public events for room entry, checkpoint activation, ability grants or death.
+PlayerHealth.Hit is Action without damage source/cause. MarkDead also invokes Hit and supplies no cause.
+KillZone calls RoomSession.Die directly without an observer event.
+EnemyPatrol/EnemyCharger/EnemyTurret/BossEncounter/BossWave call TakeDamage with a Vector2 source; that source is not exposed by the Hit event.
+GameState.Changed provides pause/transition/respawn state and BossEncounter.Defeated provides defeat. These cover some requested records but cannot recover exact accepted fatal damage origin.
+Polling HP/nearby enemies/overlapping hazards cannot distinguish the source actually accepted under simultaneous contacts or invincibility; recording a guessed cause would misrepresent evidence.
+Scope only permits new subscribed scripts and explicitly prohibits modifying existing game logic. Complete LOG requires a user decision permitting observer notifications at accepted damage/death/new-game/checkpoint/ability boundaries, or accepting explicitly unknown death causes and reduced logging guarantees.
+LOG remains independent of F2. No ProgressSave or other existing runtime file changed for LOG.
+Final S4-pre build blocked: no new successful stage, and required AttackSlash/HitFeedback/CSV executable checks cannot pass after rollback.

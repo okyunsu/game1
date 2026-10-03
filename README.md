@@ -24,6 +24,10 @@
 
 ## 로컬 빌드 실행
 
+S4-pre 빌드에서 확인할 것(2026-10-04): F2 필수 회귀 재실패로 전체복원하여 새 S4-pre exe는 생성하지 않았다. 현재 실행 파일은 아래 S3-complete다.
+공격 표시·적 HP칸/번쩍임은 이번 시도로 추가되지 않았으며, 기존 보스 HP 표시를 유지한다.
+CSV 예정 위치는 `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\Playtest`이나 LOG가 BLOCKED이므로 이번에는 CSV를 생성하지 않는다.
+
 현재 통합 빌드: `Builds/S3-complete/Afterglow.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 다른 이름의 실행 파일과 이전 S3-B/S3-full/S3-complete 빌드는 과거 검증용이다.
 
 이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. Pause에서는 ↑/↓로 재개/타이틀을 고르고 Z/Enter/패드 A로 확인한다. 종료는 타이틀 Quit 또는 창 닫기/Alt+F4.
