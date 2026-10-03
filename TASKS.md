@@ -14,10 +14,13 @@
 ## Current Sprint
 
 **Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
-2026-10-04 추가 승인 F2/LOG 실행 종료: F2 필수 회귀 재실패로 전체복원/BLOCKED, LOG 관찰 이벤트 제약으로 BLOCKED, 신규 빌드 없음. 기준 복원 회귀PASS이며 아래 S3 후보/사용자 Gate 상태 유지.
+2026-10-04 최신 추가 승인 D0/F2R/LOGR 종료: 기준T2 실패 재현·T2v2 PASS, F2R/LOGR REVIEW, S4-pre 빌드·실제exe·최종회귀PASS. 아래 S3 후보/사용자 Gate 상태 유지.
 G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
 ## Current Tasks
+
+2026-10-04 최신 완료: **D0 DONE / F2R REVIEW(처치효과 검사 도구 한계) / LOGR REVIEW / S4-pre 빌드·실제exe·최종회귀 PASS.** 기준T2·T4·S2통합과 같은 실패는 새 명세대로 회귀에서 제외, T2v2/보스회복/필수S1·카메라 PASS. 보호파일 불변·push 없음. 아래 문단은 앞선 실행 이력이며 Latest Handoff를 우선한다.
+
 
 2026-10-04 LOGR 핵심검사/필수 S1 회귀PASS, REVIEW. cause=unrecorded·폴링 방식, CSV 방/사망위치/Pause/요약 및 저장해시 불변 확인. F2R REVIEW와 함께 S4-pre 최종빌드 진행.
 
@@ -585,16 +588,23 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-04 F2 → LOG → 최종 빌드 승인 실행 종료. **main / 로컬 커밋 / push 없음. F2 전체복원·BLOCKED, LOG 독립 BLOCKED·미구현, S4-pre 빌드 미생성.** 현재 플레이 대상은 기존 [S3-complete/Afterglow.exe](Builds/S3-complete/Afterglow.exe). S3-06~10 REVIEW / Sprint3 Gate 대기는 그대로 유지. [직전 보스·엔딩 인계](Validation/S3-v2-prior-handoff.md).
+**D0: 표시 없는 기준에서도 기존 T2 잠금 검사가 같은 줄에서 FAIL. 직접 시각 측정 T2v2는 검사 위치의 CP 간섭을 피한 뒤 30/60/120fps PASS.** 기존 T4의 파괴된 적 참조 및 S2 통합 HP assertion도 기준/F2R 동일 FAIL. 이 결과를 F2R 신규 회귀로 보지 않는 새 사용자 결정 적용. F1의 모든 독립 영향을 해명했다는 뜻은 아님.
+
+2026-10-04 승인 D0 → F2R → LOGR → 최종 빌드 종료. **main / 로컬 커밋 / push 없음. F2R REVIEW(표시 검사 도구 한계), LOGR REVIEW, S4-pre 실제 exe 및 최종 회귀 PASS.** S3-06~10 REVIEW / Sprint3 Gate 사용자 판단 유지, Sprint4 튜닝·콘텐츠 미착수. [직전 실패 인계](Validation/F2-first-prior-handoff.md).
 
 | 단계 | 결과 / 커밋 | 증거 |
 | --- | --- | --- |
-| 명세·관찰 | 중복인 두 첨부 중 동일 전문 보존, FX-001 두 번째 관찰 / 7ca75e6 | [승인 명세](Validation/F2-LOG-approved-request.txt) |
-| F2 | 초기 더미 연결FAIL→새 표시 코드 1회보정→표시PASS→T2 FAIL→검사60fps 1회보정→재FAIL→전체복원 / dfe00b4 | [결과·미실시·복원 요약](Validation/F2-rollback-summary.txt), [표시PASS](Validation/F2-feedback-night-F2-rerun.txt), [T2 재실패](Validation/Verification-night-T2-F2-rerun.txt) |
-| LOG / 빌드 | 정확한 사망 원인 이벤트 부재로 LOG BLOCKED, 새 성공 단계 없음으로 빌드 중단 / f6c2b04 | [LOG 인터페이스 근거](Validation/LOG-playtest.txt) |
+| 승인 | 전문·새 사용자 판단 보존 / b5e9828 | [명세](Validation/F2R-LOGR-approved-request.txt) |
+| D0 | 원본 T1/T3 PASS, T2/T4 기준FAIL; T2v2 보정PASS / 0a769f6 | [요약](Validation/D0-summary.txt), [측정](Validation/D0-rerun-T2v2.txt) |
+| F2R | 표시·E2예고/보스회복/T2v2/S1/카메라 PASS, 처치효과 도구참조 한계 REVIEW / 7350171 | [요약](Validation/F2R-summary.txt), [표시+도구한계](Validation/F2R-feedback-tool-rerun.txt), [보스명중](Validation/F2R-boss-recovery.txt) |
+| LOGR | CSV·사망위치·Pause제외·저장해시·S1 PASS, REVIEW / 531c51e | [결과](Validation/LOGR-playtest.txt), [CSV](Validation/LOGR-session.csv), [설계/한계](Validation/LOGR-summary.txt) |
+| 최종 빌드 | Windows x64 errors0/warnings0, 실제exe/최종S1·카메라 PASS / 3da46e9 | [빌드](Validation/S4-pre-build.txt), [exe](Validation/S4-pre-runtime.txt), [CSV](Validation/S4-pre-session.csv), [보존](Validation/S4-pre-preservation.txt) |
 
-- **실제 검증:** 표시만 30/60/120fps 좌우 startup/active/end, 판정 중심·크기0.01u 이내, hit1/miss0, 번쩍임0.10초±프레임, HP 표시 상태, E1 처치효과 생성·소멸, Cancel 즉시OFF PASS. 별도 잠금 관찰0.1333초/설정0.1200초는 프레임 관찰이며 전후 동일성 증거가 아님. 필수T2는 두 번 같은 잠금 assertion FAIL. 실제 동작/검사 대기 원인은 미확정이며 애매하면A 규칙 적용. 전체 회귀가 통과한 검사도구 한계(B)로 판단하지 않았다.
-- **복원 회귀:** [입력](Validation/S1-02-night-S2-F2-rollback.txt), [Coyote/Buffer](Validation/S1-04-night-S2-F2-rollback.txt), [방](Validation/S1-07-night-S2-F2-rollback.txt), [체크포인트](Validation/S1-08-night-S2-F2-rollback.txt), [카메라lead0](Validation/S1-06-lead0-night-S2-F2-rollback.txt) PASS. 새 카메라 PNG 보존. 가상 입력이며 사용자 눈·물리패드·자연완주 검증 아님. T1/T3/T4/S2-01/보스회복·E2 경고중 표시·최종exe·CSV 검사는 미실시.
-- **변경/보존:** 게임 코드·프리팹·Scene·기존 Tuning·Packages·ProjectSettings 최종 diff0. 이번 신규 코드/FeedbackTuning 제거, 기존 검사 코드도 원복. 주요 변경 파일은 TASKS/README/Validation뿐. 시도 patch는 실패 증거이며 재적용용 승인 아님. 기존 S3-complete/Experimental-F1 빌드 보존, 신규 실험빌드 없음.
-- **사용자 확인:** 켤 exe는 S3-complete/Afterglow.exe. 이번 F2 공격 표시·적 HP칸/번쩍임은 남아 있지 않고 기존 보스 HP 막대 유지. CSV 없음(예정 위치 LocalLow/Afterglow/Afterglow/Playtest). FeedbackTuning 수정 위치는 복원으로 존재하지 않음. 기존 수치 Asset 변경은 Play 종료 후 원하는 값/이전 값을 명시 저장, Scene은 Stop 후 다시 입력·저장.
-- **문제/다음 판단:** F2-T2-001 원인 분석은 새 승인 필요. LOG-001은 관찰 이벤트 추가 허용 또는 unknown 원인/기록 보장 축소 선택 필요. Sprint4 튜닝·새 콘텐츠·push는 수행하지 않음. 이번 승인 범위 실행 종료.
+- **켤 exe:** [Afterglow-S4-pre.exe](Builds/S4-pre/Afterglow-S4-pre.exe). 같은 폴더의 Afterglow-S4-pre_Data/DLL 유지. Menu+15플레이방+Ending(17씬), 테스트 씬 제외. S3-complete·Experimental-F1 보존. Builds/Logs는 Git 제외.
+- **실제 검증:** 표시30/60/120fps 좌우 startup/active/end·판정 중심/크기0.01u 이내·hit1/miss0·남은HP 흰칸수·번쩍임±1프레임·E2 예고중 오버레이 PASS. 보스 회복 실제X 1명중/HP20→19/표시1회 PASS. T2v2 해제는 F2R .133326/.133336/.124994초, 설정 .12초+관찰프레임 안이며 반대방향 입력에도 잠금중 x부호 유지. 기존 T2/T4/S2통합 실패는 기준과 동일. F2R 처음 Asset GUID 불일치1회수정 후 도구 stale E2참조1회보정; 최종 도구는 stale E1 body에서 중단해 처치효과 생성/소멸 항목 재확인 못함. 기능은 명세 B 규칙으로 보존/REVIEW, 전체 표시검사PASS로 기록하지 않음.
+- **LOGR/실제exe:** 새 게임 CSV 생성→A01 공격표시→A02 사망(8,1.81)/unrecorded→Pause3.017초 제외→A04 적 HitFeedback→C04/C06 직접 검증배치→보스 시작/직접20피해 처치→2초빛/Ending→Z 타이틀 PASS, Error/Exception/Assert0. 저장 SHA256은 방/사망/Pause 전후 동일. 직접 처치는 자연 보스전 완주 증거가 아님. CSV에서 boss_start/defeated/ending·지역/방별사망/시도1/누적Pause 요약 확인.
+- **최종 회귀:** [S1-02](Validation/S1-02-night-S2-S4-pre.txt), [S1-04](Validation/S1-04-night-S2-S4-pre.txt), [S1-07](Validation/S1-07-night-S2-S4-pre.txt), [S1-08](Validation/S1-08-night-S2-S4-pre.txt), [카메라lead0](Validation/S1-06-lead0-night-S2-S4-pre.txt) PASS. F2R/LOGR 단계별 지정 회귀도 PASS. 가상 입력·자동 지정배치이며 물리패드·사용자눈·자연완주시간 미실시.
+- **보호/주요 파일:** 입력·이동·대시·피격·GameState·RoomSession·KillZone·원래Tuning·모든Scene·RoomCameraRig·Packages·ProjectSettings diff0. NightTests/BossVerification 원본도 불변. PlayerAttack/ReceiveHit에는 허용 표시호출만. 7개 프리팹에 표시 컴포넌트/자식만 추가, boss/dummy는 새 FeedbackSceneBinding으로 연결. LOGR은 PlaytestLogger 자체 생성·관찰만, 기존 저장코드 수정 없음. 신규 스크립트/FeedbackTuning.asset·검사 도구·README/TASKS/Validation 변경.
+- **사용자 확인/수정 위치:** 공격 표시, 적 HP칸·흰번쩍임·처치효과, 보스 기존 상단 HP 막대가 실제로 보이는지 확인. `Assets/ScriptableObjects/FeedbackTuning.asset`: slashAlpha .7/연노랑, hitFlashSeconds .10, hpPipSize .18u/gap .06u/offset .35u, deathPopSeconds .20/scale1.6. 히트스톱/소리/흔들림 없음. Asset은 Play 종료 후 원하는값/이전값을 명시 저장; Scene 변경은 Stop 뒤 다시 입력·저장.
+- **CSV 위치:** `C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest\YYYYMMDD-HHMMSS.csv`. 새 게임부터 기록, 이어하기/메뉴/테스트는 새 세션 시작 안 함. 체크포인트는 ID 변화만(같은 CP 재활성은 기록 안 함), 사망원인은 의도적으로 unrecorded. 쓰기 실패는 한 경고 후 기록 세션만 중단. 검증 CSV 025024/025455는 자동검사 자료이고 사용자 관찰 기록이 아님.
+- **문제/다음:** 도구 stale참조·기준T2/T4/S2 검사 정비는 별도 승인 범위. 표시 가독성/처치효과와 자연완주·CSV 활용을 사용자 확인 후 판단. S3 Gate·수치 채택·추가 작업은 수행하지 않음. 이번 승인 범위 종료.
