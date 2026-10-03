@@ -9,6 +9,17 @@ using UnityEngine.SceneManagement;
 // Explicit stage entry points; never run implicitly during import.
 public static class S3Authoring
 {
+    public static void E3B03()
+    {
+        var tuning=ScriptableObject.CreateInstance<E3Tuning>();AssetDatabase.CreateAsset(tuning,"Assets/ScriptableObjects/E3Tuning.asset");
+        var shot=new GameObject("E3 shot");var sr=shot.AddComponent<SpriteRenderer>();sr.sprite=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/E1.prefab").GetComponent<SpriteRenderer>().sprite;sr.color=Color.yellow;
+        var shape=shot.AddComponent<BoxCollider2D>();shape.size=Vector2.one*1.2f;shape.isTrigger=true;var body=shot.AddComponent<Rigidbody2D>();body.bodyType=RigidbodyType2D.Kinematic;body.gravityScale=0;body.collisionDetectionMode=CollisionDetectionMode2D.Continuous;shot.AddComponent<EnemyShot>();var bullet=PrefabUtility.SaveAsPrefabAsset(shot,"Assets/Prefabs/E3Shot.prefab");UnityEngine.Object.DestroyImmediate(shot);
+        var enemy=PrefabUtility.LoadPrefabContents("Assets/Prefabs/E1.prefab");UnityEngine.Object.DestroyImmediate(enemy.GetComponent<EnemyPatrol>());enemy.GetComponent<Rigidbody2D>().bodyType=RigidbodyType2D.Kinematic;enemy.GetComponent<Rigidbody2D>().gravityScale=0;enemy.GetComponent<SpriteRenderer>().color=new Color(.6f,.2f,.85f);var turret=enemy.AddComponent<EnemyTurret>();turret.tuning=tuning;turret.projectilePrefab=bullet;PrefabUtility.SaveAsPrefabAsset(enemy,"Assets/Prefabs/E3.prefab");PrefabUtility.UnloadPrefabContents(enemy);
+        EditorSceneManager.OpenScene("Assets/Scenes/Test/CombatTest.unity");Enemy("E3",new Vector2(31,1.51f));EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        EditorSceneManager.OpenScene("Assets/Scenes/B02.unity");foreach(var e in UnityEngine.Object.FindObjectsByType<RoomExit>(FindObjectsSortMode.None))if(e.exitId=="Right")e.enabled=true;EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        var room=Shell("B03");Block(room,"Wall","B03_Cover",new Vector2(14,2),new Vector2(1,2));Block(room,"Landing","B03_TurretBase",new Vector2(26,2),new Vector2(4,2));Enemy("E3",new Vector2(26,3.5f));
+        Exit(room,"Left",new Vector2(1.75f,2),"B02","FromRight");Exit(room,"Right",new Vector2(34.25f,2),"B04","FromLeft",false);Spawn(room,"FromLeft",new Vector2(3.5f,1.81f));Spawn(room,"FromRight",new Vector2(32.5f,1.81f));Save("Assets/Scenes/B03.unity");AssetDatabase.SaveAssets();
+    }
     public static void B01B02()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/B01.unity");var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();

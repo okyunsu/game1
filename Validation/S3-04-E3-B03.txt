@@ -1,0 +1,16 @@
+FAIL S3-04-E3-B03 Unity=6000.3.24f1
+PASS: visible turret warning
+MEASURE warning=0.693s
+PASS: 0.7s warning
+PASS: single fixed left shot
+MEASURE projectile distance=1.500 time=0.300 speed=5.000u/s
+PASS: projectile speed 5u/s
+PASS: authored B03 cover physically stops emitted projectile
+PASS: behind cover no fire
+MEASURE shot period=2.000s
+PASS: 2s period
+FAIL: System.Exception: projectile damages player
+  at S3Runner.Check (System.Boolean ok, System.String m) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:24 
+  at S3Runner+<E3B03>d__15.MoveNext () [0x005ac] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:33 
+  at S3Runner+<Start>d__11.MoveNext () [0x000d4] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:26 
+Error/Exception/Assert 0

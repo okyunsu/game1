@@ -81,7 +81,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | S3-01 | 더블 점프 시스템 | REVIEW | G2:DONE | Player 기본 보유 false, DoubleJumpTest true/3.6u 턱; 추가 속도12·재입력·접지회복·Coyote 후1회·대시/전환 회복 없음·저장. 30/60/120fps 일반/더블 최대 발 높이 및 G-J 기준 MEASURE, 3번째/홀드/미보유 차단 |
 | S3-02 | E2 돌진형 적 | REVIEW | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
 | S3-03 | B01 G-J 턱·B02 | REVIEW | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
-| S3-04 | E3 사격형·B03 | TODO | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
+| S3-04 | E3 사격형·B03 | REVIEW | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 | S3-05 | B04 획득·연습·B05 자리 | TODO | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High(25,3.3)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
 | S3-06 (제안) | C01~C04 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-07 (제안) | C06 보스 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
@@ -232,6 +232,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-04 — 기술 PASS / REVIEW (1회 검사 보정)
+[S3-04-E3-B03.txt](Validation/S3-04-E3-B03.txt) 첫 피해 검사 FAIL: 검사 발판이 탄을 막음; 첫 로그의 엄폐 PASS는 충돌 대상 미식별로 근거 무효. 발판 간섭 보정·충돌 대상 기록을 추가한 [S3-04-E3-B03-rerun.txt](Validation/S3-04-E3-B03-rerun.txt) PASS: 예고0.693s·탄속5.000u/s·주기2.000s, 실제 emitted 탄의 B03_Cover 충돌 확인·사거리 안 별도 벽 시야차단·화면밖 금지·2타·탄피해/무적·전환 탄 제거·B02↔B03 왕복·재입장HP2, Error/Exception/Assert0. S1-02/04/07/08-night-S3-04-E3-B03-rerun.txt 모두 PASS. E3Shot collider1.2×1.2u/발사offset1.15u는 새 프리팹/Inspector 기본 배치값(22절 기존값 변경 없음); 발사 순간 겹친 받침은 벗어날 때까지만 탄 충돌에서 제외해 즉시 소멸 방지. B03 Right는 S3-05까지 비활성.
+
 
 ### S3-03 — 기술 PASS / REVIEW
 [S3-03-B01-B02.txt](Validation/S3-03-B01-B02.txt): 일반/대시 미보유 발최대3.535/3.283, 보유 지정입력5.839·턱 착지5.41. 상단트리거y4.6~6.6/하단y1~3 분리 MEASURE. B01↔B02 왕복·안전도착·E2 예고/발판회피/3타/재입장·CP-B01 사망복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-03-B01-B02.txt 모두 PASS. B01 Left/CP 보존, B05 출구는 S3-05까지 비활성. B02 오른쪽은 B03 생성까지 비활성. B01 전용 턱의 셸 복사 잔여를 첫 검증 전 B02에서 제거.

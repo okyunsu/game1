@@ -1,0 +1,33 @@
+PASS S3-04-E3-B03-rerun Unity=6000.3.24f1
+PASS: visible turret warning
+MEASURE warning=0.693s
+PASS: 0.7s warning
+PASS: single fixed left shot
+MEASURE projectile distance=1.500 time=0.300 speed=5.000u/s
+PASS: projectile speed 5u/s
+MEASURE wall collision=B03_Cover
+PASS: authored B03 cover physically stops emitted projectile
+PASS: behind cover no fire
+MEASURE shot period=2.000s
+PASS: 2s period
+PASS: projectile damages player
+PASS: projectile hit grants invincibility
+PASS: offscreen turret does not fire
+PASS: wall occlusion blocks detection within range
+PASS: two attacks destroy E3
+PASS: enabled exit to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromRight
+PASS: enabled exit to B03
+PASS: physical door to B03
+PASS: safe arrival B03/FromLeft
+PASS: turret reentry reset
+PASS: projectile before transition
+PASS: enabled exit to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromRight
+PASS: room transition removes projectiles
+PASS: enabled exit to B03
+PASS: physical door to B03
+PASS: safe arrival B03/FromLeft
+Error/Exception/Assert 0
