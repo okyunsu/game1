@@ -1,0 +1,2 @@
+FAIL K2 first verification timeout: WaitForEndOfFrame does not resume in batchmode. No gameplay verdict. See K2-camera-first-timeout.log. One test-only correction: yield null.
+FAIL 1

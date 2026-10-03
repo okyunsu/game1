@@ -208,6 +208,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
 
+### K2 — 2회 실패 / 복원
+
+K2-camera.txt: 배치 모드 WaitForEndOfFrame 대기 중단, K2-camera-first-timeout.log 보존. 검사 대기만 1회 수정한 K2-camera-rerun.txt: 대시 차이 1.089→0.684u 감소, Y 유지·0.2s 복원 PASS, 평상시/반전 좌표 비교 FAIL. 시간 기반 입력의 물리 틱 차이 가능성이 있으나 추가 수정하지 않고 RoomCameraRig·GAME_DESIGN·검사 코드를 K1 기준으로 복원. N2 Camera 전체는 미실시. S1-02/04/07/08-night-K2-rollback.txt로 복원 회귀 확인. K2 BLOCKED, 0.15s 유지.
+
 ### K1 — 새 키 기술 검증
 
 [K1-keys.txt](Validation/K1-keys.txt): 새 방향키/Z/X/C·보조 키·Menu Z/X·Pause Z/X PASS, Z/Space 높이 동일. 게임패드 바인딩 유지; S1-02/04/07/08-night-K1.txt 회귀 결과 별도. [P0 push](Validation/P0-push-20261003.txt) 16개 커밋 main push 성공.
@@ -383,7 +387,7 @@ Before: A/D·Space·J·K/Shift, WASD 불편·공격 X 선호. 변경: 방향키�
 
 ### CAM-002 — 대시 추적 감쇠 가설
 
-Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승인 변경: Dash X만 0.03s, 종료 후 0.2s에 0.15s 복원. Y·평소 값 유지. After: K2 측정 및 사용자 재확인 대기.
+Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승인 변경: Dash X만 0.03s, 종료 후 0.2s에 0.15s 복원. Y·평소 값 유지. After: K2 재시도 대시 X 최대 차이 1.089→0.684u로 감소했으나 평상시/반전 비교 FAIL(17.64/16.03/15.58 대 17.54/15.88/15.46). 최초 배치 모드 대기 실패 후 검사 대기 1회 수정, 재실패하여 K2 코드/설계 변경 전체 복원. 기본값 0.15s 유지. 새 승인 전 재수정하지 않음.
 
 ### CASE-001 — 입력 시각 일치 / 첫 사례 후보 (사용자 미수락)
 

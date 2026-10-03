@@ -1,0 +1,25 @@
+FAIL K2-rerun
+PASS: camera dash setup 0.15
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+MEASURE dash X damping=0.15s max camera/player X gap=1.089u
+PASS: X damping restored after 0.2s
+MEASURE normal forward/reverse/player X (17.64, 16.03, 15.58)
+PASS: no room boundary exposure
+PASS: camera dash setup 0.03
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+PASS: Y damping unchanged
+MEASURE dash X damping=0.03s max camera/player X gap=0.684u
+PASS: X damping restored after 0.2s
+MEASURE normal forward/reverse/player X (17.54, 15.88, 15.46)
+FAIL: System.Exception: ordinary tracking and reversal match baseline
+  at KRunner.Check (System.Boolean ok, System.String m) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\KVerification.cs:20 
+  at KRunner+<CameraTests>d__15.MoveNext () [0x00531] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\KVerification.cs:45 
+  at KRunner+<Start>d__5.MoveNext () [0x000bb] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\KVerification.cs:22 
+FAIL 1
