@@ -35,5 +35,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/DoubleJumpTest.unity
     guid: 8988e735ec40e0d4994e033674f48b7d
+  - enabled: 1
+    path: Assets/Scenes/B02.unity
+    guid: fb7a28d168ea6b349acd58301122e7ae
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

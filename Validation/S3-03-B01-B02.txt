@@ -1,0 +1,31 @@
+PASS S3-03-B01-B02 Unity=6000.3.24f1
+MEASURE B01 owned=False dash=False max feet=3.535 final=(26.96, 1.81)
+PASS: unowned jump/dash cannot reach ledge
+MEASURE B01 owned=False dash=True max feet=3.283 final=(27.92, 1.82)
+PASS: unowned jump/dash cannot reach ledge
+MEASURE B01 owned=True dash=False max feet=5.839 final=(28.64, 5.41)
+PASS: double jump reaches G-J ledge with specified input
+MEASURE upper=(33.75, 4.60, 0.00)/(34.75, 6.60, 0.00), lower=(33.75, 1.00, 0.00)/(34.75, 3.00, 0.00)
+PASS: nonoverlapping exits; upper disabled until B05 exists
+PASS: enabled exit to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromLeft
+PASS: B02 E2 authored
+PASS: safe introduction platform
+PASS: B02 warning faces approaching player
+PASS: step offers safe charge escape
+PASS: B02 E2 three attack defeat
+PASS: enabled exit to B01
+PASS: physical door to B01
+PASS: safe arrival B01/FromRight
+PASS: enabled exit to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromLeft
+PASS: B02 reentry resets E2
+PASS: enabled exit to B01
+PASS: physical door to B01
+PASS: safe arrival B01/FromRight
+PASS: CP-B01 physical activation
+PASS: CP-B01 death request
+PASS: CP-B01 safe death return
+Error/Exception/Assert 0
