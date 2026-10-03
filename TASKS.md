@@ -13,12 +13,14 @@
 
 ## Current Sprint
 
-**Sprint 2**, 조건부 Gate 통과·진입 기준일 **2026-10-02**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
+**Sprint 3**, Sprint 2 Gate 사용자 통과·진입 기준일 **2026-10-03**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
 S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용자 수락), S1-10 REVIEW. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G DONE(사용자 조건부 통과).
 
 일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
 
 ## Current Tasks
+
+2026-10-03 G2: S2-day exe 사용자 확인으로 S2-01~06·K1·S1-10·T1~T4·점프 일관성 DONE, Sprint 2 Gate 통과. 현재 Target 15방(A06/B06/C05 보류). 승인 실행 P0→G2→P3→S3-01~05→최종 빌드. P0 GitHub 연결 실패로 로컬 커밋만 진행, 최종 push 생략.
 
 2026-10-03 실행 결과: P0 push 성공. K1 PASS/REVIEW, K2 2회 실패 후 복원/BLOCKED, K3 PASS/S2-03 REVIEW, S2-day 빌드/실행 PASS. 최종 push는 인계 커밋 후 실행. 기존 배치·튜닝 보존, B01 지정 셸 외 콘텐츠 미승인.
 
@@ -47,27 +49,27 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
 | S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
 | S1-09 | 첫 Vertical Slice 통합 | DONE | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1·A02~A04 사용자 설계 좌표 v1: 테스트용 이동 경로로 사용자 수락(2026-10-02). 임시 그레이박스이며 실제 진행 때 수정 예정 |
-| S1-10 | Slice 검증·실행 안내 | REVIEW | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·exe 전환/복귀 PASS. 사용자 exe 실행 5분 확인 대기 |
+| S1-10 | Slice 검증·실행 안내 | DONE | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·exe 전환/복귀 PASS. 사용자 exe 실행 5분 확인 대기 |
 | S1-G | Sprint 1 Gate | DONE | 2026-10-02 사용자 조건부 결정 | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
 ### 야간 시스템 작업 — DEC-S2-PRE
 
 | ID | Task | Status | Dependency | User Review | Done Criteria |
 | --- | --- | --- | --- | --- | --- |
-| T1 | Dash / DashTest | REVIEW | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
-| T2 | Health / CombatTest | REVIEW | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
-| T3 | 기본 공격 / CombatTest | REVIEW | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
-| T4 | E1 순찰형 / CombatTest | REVIEW | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
+| T1 | Dash / DashTest | DONE | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
+| T2 | Health / CombatTest | DONE | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
+| T3 | 기본 공격 / CombatTest | DONE | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
+| T4 | E1 순찰형 / CombatTest | DONE | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
 ### Sprint 2 승인 작업 — 2026-10-02
 
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
-| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | REVIEW | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
-| S2-02 | A05 대시 획득·안전 연습 | REVIEW | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
-| S2-03 | A03 G-D·B01 자리 | REVIEW | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
-| S2-04 | 단일 슬롯 저장·Menu 이어하기 | REVIEW | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
-| S2-05 (제안) | Core Loop 통합 관찰·재방문 검증 | TODO | 별도 사용자 승인 | A05→A03 귀환·게이트·사망/Continue·이월 체감 검토; 이번 실행 미승인 |
-| S2-06 (제안) | Sprint 2 빌드·Gate 판단 | TODO | 별도 사용자 승인 | PRD 저장 안전 계약·입력·통합 체감 검증 및 사용자 판단; 이번 실행 미승인 |
+| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | DONE | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
+| S2-02 | A05 대시 획득·안전 연습 | DONE | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
+| S2-03 | A03 G-D·B01 자리 | DONE | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
+| S2-04 | 단일 슬롯 저장·Menu 이어하기 | DONE | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
+| S2-05 | Core Loop 통합 관찰·재방문 검증 | DONE | 사용자 결정 G2 | S2-day 사용자 플레이로 대체, 이월 T1~T4·점프 일관성 수락 |
+| S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
 
 이번 구현은 표의 S2-01~04와 성공 단계 최종 빌드만 승인. 향후 Sprint 2 로드맵 범위는 제안 TODO이며 콘텐츠 추가를 승인하지 않음. 기존 블록·스폰·CP·문 위치 보존, 새 방/출구/스폰만 지정 범위 추가. 실패 1회 수정 후 재실패 시 단계 복원·의존 단계 건너뜀. 회귀는 S1-02/04/07/08, 자동 이동 휴리스틱 사용 금지.
 ## Human Review
@@ -183,6 +185,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
 ## Decisions Needed
+
+CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인, 우선순위 낮음. Sprint 4 Polish 후보. 기존 0.15s 유지, 이번 재시도 없음. 이전 두 번째 비교 실패는 절대 좌표 비교 영향 추정; 상대 카메라-플레이어 거리 2.06u/2.08u. 재시도는 상대 거리로 비교.
+
 
 K2 / CAM-002 BLOCKED: 두 번째 검증에서 평상시·반전 비교 FAIL로 승인된 실패 규칙에 따라 전체 복원. 카메라 기본0.15s 유지. 시간 기반 입력의 물리 틱 차이 가능성은 미확정이며 추가 수정/재시도는 별도 승인 필요. 대시 밀림 체감은 미해결.
 

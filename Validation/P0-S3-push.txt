@@ -1,0 +1,4 @@
+FAIL git push origin main
+main; clean working tree before P0
+fatal: unable to access https://github.com/okyunsu/game1.git/: Failed to connect to github.com port 443 after 6 ms: Could not connect to server
+No pull/merge/force/retry. Continue local commits; final push skipped per instruction.
