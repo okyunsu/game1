@@ -85,7 +85,7 @@ Scene의 Play 중 배치 변경은 되돌아가므로 Stop 후 다시 입력한�
 ## 다음 사용자 확인
 
 S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수락(DONE). S3-06~08은 기술 PASS/REVIEW: B02 소개 위치, C02 조합 난이도, C03 종합 이동과 C04 휴식 체감을 확인한다. 실제 패드 조작·탈착과 자연스러운 전체 플레이 시간은 미실시.
-수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-09 보스는 지정 시작선/보스 위치/카메라의 시야 조건 충돌로 BLOCKED, S3-10 엔딩/메뉴확장은 의존 건너뜀. Decisions Needed의 S3-C06-VIEW 판단 후 해당 경로를 재승인해야 한다. 선택 방·아트·사운드·K2 미포함.
+수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-C06-VIEW는 사용자20u 좁은방 결정으로 시야사전PASS. 후속 F1 및 S3-09 실제검사는 각각2회실패해 모두 복원/BLOCKED, S3-10 엔딩/메뉴확장은 의존 건너뜀. Decisions Needed의 FX-001/S3-09-NARROW 실패 원인 확인과 재개 범위 재승인이 필요하다. 선택 방·아트·사운드·K2 미포함.
 
 ## 문서
 
@@ -99,3 +99,9 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 실행 파일: `Builds/S3-full/Afterglow-S3-full.exe` (Windows x64). Menu+A01~A05+B01~B05+C01~C04, 총15씬/14플레이방. 테스트 씬 제외. B05에서 C01로 연결되며 C01/C04 체크포인트 저장과 Continue를 지원한다. C04가 현재 마지막 방이고 C06 방향 Door는 비활성이다. 보스·엔딩·타이틀 Quit·Pause 타이틀은 S3-09 BLOCKED/S3-10 SKIPPED로 포함하지 않았다. 완주 빌드가 아니다.
 
 배치 수정 위치는 B02(E2 Reset x17), B05(B05_Step), C01(CP-C01 x8), C02(Start/High1/High2/ExitLedge), C03(Patrol/Patrol Left·Right/Cover/TurretBase), C04(CP-C04 x26) Scene이다. 적 공통값은 기존 E1/E3 Tuning Asset, 반복 오브젝트는 기존 Prefab을 사용한다. Play 중 Scene 수정은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적 저장하며 이번 실행에서 기존 수치를 변경하지 않았다.
+
+## S3-complete — 복원 후 성공 콘텐츠 빌드 (2026-10-03)
+
+실행: `Builds/S3-complete/Afterglow-S3-complete.exe`. 이름은 이번 실행의 출력 폴더이며 Content Complete를 뜻하지 않는다. Menu와 A01~A05/B01~B05/C01~C04(14방)만 포함한다. F1 피드백과 C06 보스는2회 검증 실패 규칙으로 전부 복원됐고, 의존하는 엔딩·Quit·Pause 타이틀은 미구현이다. C04의 보스방 Door는 비활성이다. 기존 조작/수치/배치/저장과 S3-full 콘텐츠가 유지된다.
+
+좁은20u 보스방의 시야 후보는 두 해상도에서 사전PASS였으나 보스 회복 구간 공격 명중 검증은 실패했다. F1은60fps 명중 번쩍임 검증에 실패했다. 상세 새 Validation과 TASKS Latest Handoff를 참고한다. 이 빌드에는 변경된 피드백 수치나 BossTuning/FeedbackTuning 에셋이 없다.

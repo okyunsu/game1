@@ -1,0 +1,4 @@
+PASS: git diff c88412d confirms all runtime scripts, Prefabs, Scenes, tuning assets, Packages and ProjectSettings unchanged after failed stages.
+F1 feedback and narrow C06 boss changes fully restored; temporary preflight C06Probe scene and all stage authoring/verification files removed.
+RoomCameraRig and A01~C04 placements remain original. C04 Right disabled. No Boss/Feedback assets remain.
+Only new build tool and new documentation/evidence are retained. Old Validation files preserved.

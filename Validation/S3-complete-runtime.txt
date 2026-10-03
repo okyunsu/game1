@@ -1,0 +1,9 @@
+PASS Windows x64 successful-content runtime, Unity6000.3.24f1
+Process1 PID18732 1280x720: fresh isolated New Game, Dash/DoubleJump acquisition, all successful room doors both ways, CP-A01/A03/B01/C01/C04 death return, C02 prescribed combo jumps.
+Process2 PID5584 1920x1080: after process1 exit, Continue at CP-C04 with both abilities, safe position, long-distance death return from B04, owned pickup absent.
+Both processes exit0, Error/Exception/Assert0; single persistent player and current room checked.
+Separate Logs/S3-complete-runtime-slot.json; user progress.json untouched. Direct placement/prescribed virtual keyboard inputs, no navigation robot.
+F1 feedback and C06 boss fully restored after two failed stage tests; Ending/UI additions skipped. Those feature displays/flows NOT present or tested. Name S3-complete is output path, not Content Complete acceptance.
+Physical pad, natural end-to-end time and human appearance/feel acceptance NOT performed.
+Fresh post-restoration S1-02/04/07/08 and N2 Camera regressions PASS; stage-specific F1 and boss downstream checks were not reached.
+Detail: S3-complete-runtime-route.txt / -continue.txt; raw logs in Logs.

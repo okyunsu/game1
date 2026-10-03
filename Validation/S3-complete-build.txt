@@ -1,0 +1,3 @@
+Succeeded; errors=0; warnings=0; Windows x64; Unity=6000.3.24f1
+scenes=Menu,A01,A02,A03,A04,A05,B01,B02,B03,B04,B05,C01,C02,C03,C04; count=15; test scenes excluded
+Included successful S3-06/07/08. C06 and Ending excluded: F1 and S3-09 twice-failed/full restoration / S3-10 dependency skip. C04 Right remains disabled. Camera and exit editor contracts checked before build.

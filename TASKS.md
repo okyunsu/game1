@@ -14,11 +14,11 @@
 ## Current Sprint
 
 **Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
-G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현재 승인 실행: G3 → S3-06(B02 E2 x17) → S3-07(B05/C01/C02) → S3-08(C03/C04) → S3-09(C06 보스) → S3-10(엔딩/저장/UI) → 최종 빌드. 선택 방·아트·사운드·K2 제외, push 금지.
+G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 현재 승인 F1→S3-09 좁은20u 추적카메라→S3-10→S3-complete. F1과 S3-09 두 번 검사 실패 후 전체 복원/BLOCKED, S3-10 의존 SKIPPED. 좁은방 시야 사전 검사는 PASS. 선택 방·아트·사운드·K2·기존 배치 변경 없음, push 금지. Content Complete/Sprint3 Gate 미충족.
 
 ## Current Tasks
 
-2026-10-03 S3-full 실행: G3 DONE(S3-01~05 사용자 수락), S3-06~08 기술 PASS/REVIEW, S3-09 명세 시야 충돌 BLOCKED, S3-10 의존 SKIPPED. 성공 단계 Windows x64 빌드 및 두 exe 프로세스 runtime PASS(Error/Exception/Assert0). 현재 Menu+14방/C04까지, C06/Ending 미포함, Content Complete/Gate 미충족. push 없음. 상세 Latest Handoff 및 S3-full Validation 참조.
+2026-10-03 최신 F1/S3-complete 실행: F1 2회 실패·복원/BLOCKED, S3-09 좁은20u 시야사전PASS/실제검사2회실패·복원/BLOCKED, S3-10 의존SKIPPED. 새 Windows x64 빌드 S3-complete는 기존 성공한 Menu+14방/C04까지. F1/C06/Ending 미포함, Content Complete/Gate 미충족, push 없음. 최신 실제검증은 Latest Handoff 및 S3-complete Validation 참조. 이전 S3-full 결과는 아래 이력으로 보존.
 
 아래는 같은 날짜의 앞선 실행 이력이며 위 최신 상태를 우선한다.
 
@@ -254,6 +254,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-complete — 기존 성공 콘텐츠 / 복원 후 검증 PASS
+[S3-complete-build.txt](Validation/S3-complete-build.txt): Menu+14방/C04까지, errors0/warnings0. [S3-complete-runtime.txt](Validation/S3-complete-runtime.txt): 실제 PID18732/PID5584 새게임/모든 문 왕복/두능력/5CP/프로세스 종료후 CP-C04 Continue 및 장거리복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-complete-restored.txt와 S1-06-lead0-night-S2-S3-complete-camera.txt 모두PASS. [전체복원](Validation/S3-complete-restoration.txt) 확인. F1/C06/엔딩은 미포함·성공 주장 없음, Content Complete 아님.
+
 
 ### F1 / S3-09 narrow — 2회 실패 후 전체 복원
 F1-preflight.txt / F1-feedback.txt / F1-feedback-rerun.txt: 표시 및30fps 측정 일부PASS, 최종60fps flash 확인FAIL. S3-09-narrow-preflight.txt 전체 시야PASS, S3-09-boss-narrow.txt 첫 파형 조기소멸FAIL, S3-09-boss-narrow-rerun.txt 파형/회피/뒤공간/Pause 일부PASS·회복 명중0타FAIL. 두 단계 변경 모두 복원. 단계 후 S1-02/04/07/08/N2카메라 및 F1 T1~T4/S2-01 검사는 미실시. S3-10-ending-skipped-F1-run.txt는 의존SKIPPED 기록.
