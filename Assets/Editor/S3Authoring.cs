@@ -9,6 +9,21 @@ using UnityEngine.SceneManagement;
 // Explicit stage entry points; never run implicitly during import.
 public static class S3Authoring
 {
+    public static void B04B05()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/B03.unity");foreach(var e in UnityEngine.Object.FindObjectsByType<RoomExit>(FindObjectsSortMode.None))if(e.exitId=="Right")e.enabled=true;EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        EditorSceneManager.OpenScene("Assets/Scenes/B01.unity");foreach(var e in UnityEngine.Object.FindObjectsByType<RoomExit>(FindObjectsSortMode.None))if(e.exitId=="Upper")e.enabled=true;EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        var room=Shell("B04");Block(room,"Landing","B04_PracticeLow",new Vector2(18,2),new Vector2(3,2));Block(room,"Landing","B04_PracticeHigh",new Vector2(25,3.3f),new Vector2(4,1));
+        var pickup=new GameObject("Double Jump Pickup");pickup.transform.SetParent(room.transform);pickup.transform.position=new Vector2(10,1.8f);var sprite=pickup.AddComponent<SpriteRenderer>();sprite.sprite=room.playerPrefab.GetComponent<SpriteRenderer>().sprite;sprite.color=Color.green;pickup.AddComponent<BoxCollider2D>().isTrigger=true;pickup.AddComponent<DoubleJumpPickup>();
+        Exit(room,"Left",new Vector2(1.75f,2),"B03","FromRight");Spawn(room,"FromLeft",new Vector2(3.5f,1.81f));Save("Assets/Scenes/B04.unity");
+        room=Shell("B05");room.GetComponent<RoomLabel>().notice="다음 Sprint에서 제작";Exit(room,"Left",new Vector2(1.75f,6),"B01","FromUpper");Spawn(room,"FromLeft",new Vector2(3.5f,1.81f));Save("Assets/Scenes/B05.unity");
+    }
+    public static void ApplyPracticeHeight()
+    {
+        float value=SessionState.GetFloat("S3.HighY",3.3f);EditorSceneManager.OpenScene("Assets/Scenes/B04.unity");var high=GameObject.Find("B04_PracticeHigh");var p=high.transform.position;p.y=value;high.transform.position=p;EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        if(Mathf.Abs(high.transform.position.y-value)>.001f)throw new Exception("Practice height persistence failed");
+        File.AppendAllText(SessionState.GetString("S3.Path",""),$"PASS: after Play stop persisted B04_PracticeHigh Y={value:F3}; only Y changed\n");
+    }
     public static void E3B03()
     {
         var tuning=ScriptableObject.CreateInstance<E3Tuning>();AssetDatabase.CreateAsset(tuning,"Assets/ScriptableObjects/E3Tuning.asset");

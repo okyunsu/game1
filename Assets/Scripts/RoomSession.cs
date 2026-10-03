@@ -106,6 +106,7 @@ public sealed class RoomSession : MonoBehaviour
         ProgressSave.SaveCurrent(this);
     }
     public void GrantDash() { Player.GetComponent<PlayerDash>().hasDash = true; ProgressSave.SaveCurrent(this); }
+    public void GrantDoubleJump() { Player.GetComponent<PlayerMotor>().hasDoubleJump = true; ProgressSave.SaveCurrent(this); }
     public bool Die()
     {
         if (Transitioning || Respawning) return false;

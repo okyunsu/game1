@@ -1,0 +1,537 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-gosu3 doesn't exist
+Built from '6000.3/staging' branch; Version is '6000.3.24f1 (4e7b9b5b6244) revision 5143451'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Core' Language: 'ko' Physical Memory: 31849 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-03T04:05:11Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 11772)
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe
+-batchmode
+-projectPath
+C:\Users\gosu3\OneDrive\문서\ChatGPT\game1
+-executeMethod
+N2Verification.RoomsNight
+-nightTask
+S3-05-B04-B05
+-save-path
+C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Logs\S3-05-B04-B05-slot.json
+-logFile
+C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Validation\S3-05-B04-B05-N2Verification-RoomsNight.log
+Successfully changed project path to: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1
+C:/Users/gosu3/OneDrive/문서/ChatGPT/game1
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [20052]  Target information:
+
+Player connection [20052]  * "[IP] 172.30.1.93 [Port] 55504 [Flags] 2 [Guid] 99284230 [EditorId] 99284230 [Version] 1048832 [Id] WindowsEditor(7,pracro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [20052] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [20052] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-3520" after 0.2 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gosu3" at "2026-10-03T04:05:12.11512Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 11772, path: "C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              0e654d9280694fa1b6756f302a15096e
+  Correlation Id:          95e3d5fa25934ffc3210b0b8621de767
+  External correlation Id: 7941386473906353059
+  Machine Id:              mWr4mgSq4GB+SqNjCxpjA8JGcNE=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-gosu3" (connect: 0.37s, validation: 0.04s, handshake: 0.04s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-gosu3-notifications" at "2026-10-03T04:05:12.1870221Z"
+[Licensing::Module] Connected to LicensingClient (PId: 11772, launch time: 0.01, total connection time: 0.44s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14569804439659-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.49s
+[Licensing::Module] Licensing is initialized (took 0.18s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 0.06 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.3.24f1 (4e7b9b5b6244)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/gosu3/OneDrive/문서/ChatGPT/game1/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        AMD Radeon RX 9070 XT (ID=0x7550)
+    Vendor:          ATI
+    VRAM:            16188 MB
+    App VRAM Budget: 15416 MB
+    Driver:          32.0.31041.1004
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001827 seconds.
+- Loaded All Assemblies, in  0.286 seconds
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.287 seconds
+Domain Reload Profiling: 570ms
+	BeginReloadAssembly (99ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (4ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (112ms)
+		LoadAssemblies (92ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (110ms)
+			TypeCache.Refresh (108ms)
+				TypeCache.ScanAssembly (99ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (287ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (261ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (38ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (98ms)
+			ProcessInitializeOnLoadMethodAttributes (59ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 14 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.inputsystem@1.20.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.cinemachine@3.1.7 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.cinemachine@f3f96bcb59af)
+    com.unity.splines@2.9.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.splines@e6e1d5900acc)
+    com.unity.mathematics@1.3.3 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.settings-manager@2.1.1 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+  Built-in packages:
+    com.unity.modules.audio@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Library\PackageCache\com.unity.modules.physics)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Starting: C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/gosu3/OneDrive/문서/ChatGPT/game1
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s69ms
+*** Tundra build success (0.04 seconds), 0 items updated, 253 evaluated
+AssetDatabase: script compilation time: 0.373910s
+Begin MonoManager ReloadAssembly
+Total cache size 22232816
+Total cache size after purge 22232816, took 00:00:00.0205838
+- Loaded All Assemblies, in  0.262 seconds
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 0.30 ms, found 0 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.383 seconds
+Domain Reload Profiling: 643ms
+	BeginReloadAssembly (174ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (39ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (37ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (32ms)
+		LoadAssemblies (81ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (25ms)
+			TypeCache.Refresh (17ms)
+				TypeCache.ScanAssembly (13ms)
+			BuildScriptInfoCaches (5ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (384ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (256ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (87ms)
+			ProcessInitializeOnLoadAttributes (117ms)
+			ProcessInitializeOnLoadMethodAttributes (27ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (19ms)
+Asset Pipeline Refresh (id=495a0283983022b4cacbb2d1cfe58189): Total: 1.147 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=480 ms
+		Asset DB Callback time: managed=9 ms, native=8 ms
+		Scripting: domain reloads=1, domain reload time=262 ms, compile time=375 ms, other=10 ms
+		Project Asset Count: scripts=219, non-scripts=339
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 10.542ms
+	ApplyChangesToAssetFolders: 0.360ms
+	Scan: 20.791ms
+	OnSourceAssetsModified: 0.003ms
+	CategorizeAssetsWithTransientArtifact: 2.624ms
+	ProcessAssetsWithTransientArtifactChanges: 8.835ms
+	CategorizeAssets: 3.838ms
+	ImportOutOfDateAssets: 385.366ms (9.896ms without children)
+		CompileScripts: 375.080ms
+		ReloadNativeAssets: 0.000ms
+		UnloadImportedAssets: 0.107ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.062ms
+		InitializingProgressBar: 0.000ms
+		OnDemandSchedulerStart: 0.221ms
+	PostProcessAllAssets: 9.924ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.002ms
+	UnloadStreamsBegin: 1.011ms
+	PersistCurrentRevisions: 0.012ms
+	UnloadStreamsEnd: 0.001ms
+	GenerateScriptTypeHashes: 1.062ms
+	Untracked: 704.084ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Scanning for USB devices : 8.273ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Afterglow
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1073 unused Assets / (1.0 MB). Loaded Objects now: 1701.
+Memory consumption went from 106.5 MB to 105.5 MB.
+Total: 4.177400 ms (FindLiveObjects: 0.103800 ms CreateObjectMapping: 0.030600 ms MarkObjects: 3.639300 ms  DeleteObjects: 0.403200 ms)
+
+Opening scene 'Assets/Scenes/A01.unity'
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/A01.unity'
+	Deserialize:            6.275 ms
+	Integration:            11.079 ms
+	Integration of assets:  0.708 ms
+	Thread Wait Time:       0.012 ms
+	Total Operation Time:   18.074 ms
+Unloading 1 unused Assets / (0.5 KB). Loaded Objects now: 1842.
+Memory consumption went from 103.9 MB to 103.9 MB.
+Total: 2.906800 ms (FindLiveObjects: 0.060900 ms CreateObjectMapping: 0.016200 ms MarkObjects: 2.822200 ms  DeleteObjects: 0.007100 ms)
+
+D3D11 device created for Microsoft Media Foundation video decoding.
+[Project] Loading completed in 2.836 seconds
+	Project init time: 				2.611 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.371 seconds
+		Asset Database init time: 		0.124 seconds
+		Global illumination init time: 	0.002 seconds
+		Assemblies load time: 			0.590 seconds
+		Unity extensions init time: 	0.004 seconds
+		Asset Database refresh time: 	1.147 seconds
+	Scene opening time: 			0.104 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1791000314562,"processId":3520,"projectLoad":2.8361859000000004,"projectInit":2.6108682,"templateInit":0.0,"packageManagerInit":0.3710176,"assetDatabaseInit":0.123578,"globalIlluminationInit":0.0020162,"assembliesLoad":0.5903926,"unityExtensionsInit":0.0039557,"assetDatabaseRefresh":1.1474691,"sceneOpening":0.1040442}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1791000314562,"processId":3520,"editorVersion":"6000.3.24f1 (4e7b9b5b6244)","branch":"6000.3/staging","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+[UnityConnectServicesConfig] config is NOT valid, switching to default
+Created GICache directory at C:/Users/gosu3/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.018s, timestamps: [2.839 - 2.856]
+[Licensing::Client] Successfully resolved entitlement details
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.231 seconds
+Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.422 seconds
+Domain Reload Profiling: 651ms
+	BeginReloadAssembly (151ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (27ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (25ms)
+		LoadAssemblies (80ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (3ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (12ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (423ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (271ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (106ms)
+			ProcessInitializeOnLoadAttributes (109ms)
+			ProcessInitializeOnLoadMethodAttributes (30ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (26ms)
+Asset Pipeline Refresh (id=c173a0de63672294783612a299658411): Total: 0.697 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=446 ms
+		Asset DB Callback time: managed=9 ms, native=0 ms
+		Scripting: domain reloads=1, domain reload time=238 ms, compile time=1 ms, other=0 ms
+		Project Asset Count: scripts=219, non-scripts=339
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 1.527ms
+	ApplyChangesToAssetFolders: 0.070ms
+	Scan: 0.001ms
+	OnSourceAssetsModified: 0.001ms
+	CategorizeAssetsWithTransientArtifact: 0.002ms
+	ProcessAssetsWithTransientArtifactChanges: 0.273ms
+	CategorizeAssets: 3.330ms
+	ImportOutOfDateAssets: 423.983ms (422.437ms without children)
+		CompileScripts: 1.270ms
+		CollectScriptTypesHashes: 0.023ms
+		ReloadNativeAssets: 0.019ms
+		UnloadImportedAssets: 0.047ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.053ms
+		InitializingProgressBar: 0.000ms
+		OnDemandSchedulerStart: 0.132ms
+	PostProcessAllAssets: 9.539ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.016ms
+	UnloadStreamsBegin: 0.933ms
+	PersistCurrentRevisions: 0.012ms
+	UnloadStreamsEnd: 0.001ms
+	GenerateScriptTypeHashes: 0.808ms
+	Untracked: 256.842ms
+
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.149 ms
+	Integration:            43.040 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.010 ms
+	Total Operation Time:   44.200 ms
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Loaded scene 'Assets/Scenes/A02.unity'
+	Deserialize:            2.499 ms
+	Integration:            1.062 ms
+	Integration of assets:  0.108 ms
+	Thread Wait Time:       28.152 ms
+	Total Operation Time:   31.821 ms
+Loaded scene 'Assets/Scenes/A03.unity'
+	Deserialize:            2.161 ms
+	Integration:            2.251 ms
+	Integration of assets:  0.070 ms
+	Thread Wait Time:       30.940 ms
+	Total Operation Time:   35.422 ms
+Loaded scene 'Assets/Scenes/A04.unity'
+	Deserialize:            2.382 ms
+	Integration:            0.974 ms
+	Integration of assets:  0.039 ms
+	Thread Wait Time:       30.754 ms
+	Total Operation Time:   34.149 ms
+Loaded scene 'Assets/Scenes/A03.unity'
+	Deserialize:            1.426 ms
+	Integration:            0.903 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       31.739 ms
+	Total Operation Time:   34.068 ms
+Loaded scene 'Assets/Scenes/A02.unity'
+	Deserialize:            1.718 ms
+	Integration:            0.869 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       31.264 ms
+	Total Operation Time:   33.852 ms
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            0.812 ms
+	Integration:            0.762 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       32.358 ms
+	Total Operation Time:   33.933 ms
+Invalid destination Scene or ID
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RoomSession:Reject (string) (at Assets/Scripts/RoomSession.cs:93)
+RoomSession:RequestTransition (string,string,string) (at Assets/Scripts/RoomSession.cs:83)
+N2VerificationRunner/<RoomChecks>d__6:MoveNext () (at Assets/Editor/N2Verification.cs:230)
+N2VerificationRunner/<Start>d__4:MoveNext () (at Assets/Editor/N2Verification.cs:82)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/Scripts/RoomSession.cs Line: 93)
+
+Loaded scene 'Assets/Scenes/A02.unity'
+	Deserialize:            1.214 ms
+	Integration:            0.730 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       30.681 ms
+	Total Operation Time:   32.627 ms
+Missing, mismatched or duplicate Room/Spawn ID; previous room retained
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RoomSession:Reject (string) (at Assets/Scripts/RoomSession.cs:93)
+RoomSession/<Transition>d__43:MoveNext () (at Assets/Scripts/RoomSession.cs:160)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/Scripts/RoomSession.cs Line: 93)
+
+Loaded scene 'Assets/Scenes/A02.unity'
+	Deserialize:            0.932 ms
+	Integration:            0.597 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       31.324 ms
+	Total Operation Time:   32.853 ms
+Missing, mismatched or duplicate Room/Spawn ID; previous room retained
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RoomSession:Reject (string) (at Assets/Scripts/RoomSession.cs:93)
+RoomSession/<Transition>d__43:MoveNext () (at Assets/Scripts/RoomSession.cs:160)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/Scripts/RoomSession.cs Line: 93)
+
+Cannot enter another room while paused
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RoomSession:Reject (string) (at Assets/Scripts/RoomSession.cs:93)
+RoomSession:RequestTransition (string,string,string) (at Assets/Scripts/RoomSession.cs:80)
+N2VerificationRunner/<RoomChecks>d__6:MoveNext () (at Assets/Editor/N2Verification.cs:239)
+N2VerificationRunner/<Start>d__4:MoveNext () (at Assets/Editor/N2Verification.cs:82)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/Scripts/RoomSession.cs Line: 93)
+
+Loaded scene 'Assets/Scenes/A02.unity'
+	Deserialize:            1.111 ms
+	Integration:            0.578 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       31.878 ms
+	Total Operation Time:   33.567 ms
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            0.970 ms
+	Integration:            4.281 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       0.009 ms
+	Total Operation Time:   5.261 ms
+Unloading 61 unused Assets / (17.5 KB). Loaded Objects now: 1865.
+Memory consumption went from 103.1 MB to 103.1 MB.
+Total: 4.066600 ms (FindLiveObjects: 0.078500 ms CreateObjectMapping: 0.017000 ms MarkObjects: 3.923200 ms  DeleteObjects: 0.047500 ms)
+
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-gosu3-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-gosu3 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791000321210,"processId":3520,"allocatedMemory":10558692,"memoryLabels":[{"Default":29313},{"Permanent":15236},{"NewDelete":69067},{"Thread":4237960},{"Manager":33789},{"VertexData":8},{"Geometry":816},{"Texture":296},{"Shader":79381},{"Material":24},{"GfxDevice":57928},{"Animation":392},{"Audio":2664},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":720},{"Input":14984},{"JobScheduler":33024},{"TextLib":280},{"Mono":32},{"ScriptingNativeRuntime":155060},{"BaseObject":1620208},{"Resource":1336},{"Renderer":3000},{"Transform":4685},{"File":12684},{"WebCam":616},{"Culling":32},{"Terrain":11394},{"Wind":24},{"STL":40},{"String":29439},{"DynamicArray":88561},{"HashMap":49520},{"Utility":2660822},{"Curl":2498},{"PoolAlloc":2056},{"AI":80},{"TypeTree":5341},{"ScriptManager":512},{"RuntimeInitializeOnLoadManager":64},{"SpriteAtlas":112},{"GI":7792},{"Director":8240},{"CloudService":10216},{"WebRequest":552},{"VR":47994},{"SceneManager":504},{"Video":208},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":464},{"Hierarchy":608},{"CoreStats":13112},{"Identifiers":6480},{"Gui":96},{"EditorUtility":98361},{"VersionControl":4},{"Undo":947},{"AssetDatabase":739009},{"EditorGi":328},{"UnityConnect":29232},{"Upm":1896},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9778},{"CoreBusinessMetrics":3498},{"Licensing":1264},{"AssetReference":32},{"IPCStream":32}]}

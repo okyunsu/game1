@@ -1,0 +1,47 @@
+PASS S3-05-B04-B05 Unity=6000.3.24f1
+PASS: last checkpoint before pickup
+PASS: enabled exit to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromLeft
+PASS: enabled exit to B03
+PASS: physical door to B03
+PASS: safe arrival B03/FromLeft
+PASS: enabled exit to B04
+PASS: physical door to B04
+PASS: safe arrival B04/FromLeft
+PASS: unowned before acquisition
+PASS: no double jump before pickup
+PASS: practice starts from Low top y3
+MEASURE practice double=False max feet=5.535 final=(24.56, 4.61); high Y=3.300
+PASS: initial High reachable with ordinary jump from Low; authorized Y correction required
+MEASURE authorized PracticeHigh Y correction 3.3 -> 5.335; ordinary feet max 5.535, target top=5.835
+PASS: practice starts from Low top y3
+MEASURE practice double=False max feet=5.535 final=(23.64, 1.82); high Y=5.335
+PASS: adjusted High not reachable by ordinary jump from Low
+PASS: pickup grants ownership without changing checkpoint
+PASS: pickup disappears and contact disabled
+PASS: practice starts from Low top y3
+MEASURE practice double=True max feet=7.839 final=(24.82, 6.65); high Y=5.335
+PASS: double jump reaches adjusted High from Low
+PASS: pickup saved with valid checkpoint
+PASS: enabled exit to B03
+PASS: physical door to B03
+PASS: safe arrival B03/FromRight
+PASS: enabled exit to B04
+PASS: physical door to B04
+PASS: safe arrival B04/FromLeft
+PASS: owned pickup absent on reentry
+PASS: death after acquisition
+PASS: death preserves double jump at CP-B01
+PASS: enabled exit to B05
+PASS: physical door to B05
+PASS: safe arrival B05/FromLeft
+PASS: B05 shell has no inherited ledge
+PASS: enabled exit to B01
+PASS: physical door to B01
+PASS: safe arrival B01/FromUpper
+PASS: B05 return uses FromUpper ledge spawn
+PASS: Continue after saved acquisition
+PASS: session restart/Continue preserves double jump
+Error/Exception/Assert 0
+PASS: after Play stop persisted B04_PracticeHigh Y=5.335; only Y changed
