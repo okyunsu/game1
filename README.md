@@ -55,12 +55,16 @@ Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거�
 
 | 행동 | 키보드 | 게임패드 (Xbox 표기) |
 | --- | --- | --- |
-| 이동 | A/D 또는 ←/→ | 왼쪽 스틱 또는 D-pad |
-| 점프 | Space | A |
+| 이동 | ←/→ (보조 A/D) | 왼쪽 스틱 또는 D-pad |
+| 점프 | Z (보조 Space) | A |
 | Pause | Esc | Menu |
-| 재개 | Enter 또는 Esc | A 또는 B |
+| 재개 | Z/Enter 또는 X/Esc | A 또는 B |
 
-Gameplay / UI 입력은 분리되어 있다. Dash/Attack은 위 테스트 씬에서만 기능을 검토하며 UI 맵의 B 취소는 유지한다.
+| 공격 | X (보조 J) | X |
+| 대시 | C (보조 K / Left Shift) | B |
+| 메뉴 이동 / 확인 / 취소 | ↑/↓ / Z·Enter / X·Esc | D-pad / A / B |
+
+Gameplay / UI 입력은 분리되어 있다. LCtrl은 다음 능력 예약이며 바인딩하지 않는다. 게임패드 바인딩은 유지한다.
 
 ## 주요 Asset
 

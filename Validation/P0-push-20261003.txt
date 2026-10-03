@@ -1,0 +1,21 @@
+PASS P0 main push 2026-10-03
+main clean before push; origin https://github.com/okyunsu/game1.git
+Commits (newest first):
+7b48ef4 docs: hand off S2 night results and carried reviews
+5029ad0 build: S2 night build
+777e2c0 feat: S2-04 save and continue
+41c2d19 test: record S2-03 failures and restore approved baseline
+a96f720 feat: S2-02 add A05 dash pickup and safe practice
+6c696be feat: S2-01 integrate dash, health, attack and E1 into slice rooms
+3d8c9bd docs: break down Sprint 2 tasks
+f29b8ab docs: Sprint 1 gate conditional pass and carried-over reviews
+d19da12 build: S1-10 slice v1
+73a92e1 docs: record user acceptance of S1-06 and S1-09
+62250c4 docs: hand off C0-C4 results and pending greybox play review
+0785b1f feat: C4 E1 test patrol and persistent verification runner
+fbea9b1 test: report C3 greybox reachability and unchanged user layout
+c2f85c5 level: A02-A04 greybox v1 (사용자 설계 좌표)
+d221add fix: C1 camera horizontal lead zero per user observation
+1c55594 level: A01 user layout v1 (사용자 배치)
+git push origin main: a2f8afc..7b48ef4 main -> main
+After push: main...origin/main; no tracked or untracked changes.

@@ -1,0 +1,64 @@
+PASS K1
+PASS: Menu valid isolated save
+PASS: Menu Z opens new-game confirmation
+PASS: Menu X cancels
+PASS: Menu Z confirms new game
+PASS: enter isolated test room
+PASS: move LeftArrow
+PASS: move RightArrow
+PASS: move A
+PASS: move D
+MEASURE Z hold=0.10s height=1.464u
+MEASURE Z hold=0.50s height=2.520u
+MEASURE Space hold=0.10s height=1.464u
+MEASURE Space hold=0.50s height=2.520u
+PASS: Z short/long jump and Space equivalent heights
+PASS: attack X
+PASS: attack J
+PASS: dash C
+PASS: dash K
+PASS: dash LeftShift
+PASS: UI Z resumes Pause
+PASS: UI X cancels Pause
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Move=<Gamepad>/leftStick
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Move=<Gamepad>/dpad
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Jump=<Gamepad>/buttonSouth
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Pause=<Gamepad>/start
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Dash=<Gamepad>/buttonEast
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Attack=<Gamepad>/buttonWest
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Navigate=<Gamepad>/dpad
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Submit=<Gamepad>/buttonSouth
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+MEASURE unchanged gamepad Cancel=<Gamepad>/buttonEast
+PASS: LCtrl remains unbound
+PASS: LCtrl remains unbound
+FAIL 0
