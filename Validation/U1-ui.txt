@@ -1,0 +1,10 @@
+U1 REVIEW (state validation PASS; screenshot tool limitation, user readability pending).
+Unity Play: PASS U1-ui-night-U1-states.txt / Error/Exception/Assert0.
+TM comparison: REG-U1-summary.txt 13/13 PASS, same as REG-TM2; KNOWN-FAIL none in regression suite.
+HUD HP5->4->5 matches PlayerHealth read state; drawing loop uses white for i<HP / gray otherwise. Ownership states initial false/false -> Dash true -> both true.
+First notice: new game A01 only; configured expiry; first movement dismisses; Continue CP-A01 with no abilities has no notice. Second new game displays again.
+Dash and Double Jump real pickups; notice duration from UITuning; keyboard C/Z and gamepad DJ A adaptation. Pause suppresses HUD/notice to preserve existing panel.
+Respawning overlay active during existing input lock and inactive after return; original .6s flow remains <1s measured in test.
+New assets: Assets/Resources/UITuning.asset, GameHUD.cs. Existing OnGUI display only changed; exact protection comparison U1-preservation.txt.
+Screenshots: NOT RUN (6 requested captures). Tool module compilation failed twice, stopped under B rule; no package changes. Source and limitation preserved. No pixel or human display acceptance claimed.
+Editor resolutions/manual physical gamepad/natural completion not tested. Actual exe validation follows final build.

@@ -1,0 +1,3 @@
+U1 tool compilation attempt1: ScreenCapture module unavailable in existing project (same documented S3 build limitation). No Packages change.
+One tool correction: capture actual exe backbuffer using Texture2D.ReadPixels after WaitForEndOfFrame; includes IMGUI unlike Camera.Render world-only captures.
+Correction failed: runtime Texture2D.EncodeToPNG unavailable. Screenshot path stopped per B rule; failed source preserved in U1-capture-stopped-source.txt. Removed only compiler-breaking optional capture method; independent state checks retained. Six screenshots NOT RUN.

@@ -19,6 +19,10 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 U1 REVIEW(촬영도구 한계/가독성 사용자 대기): Unity 상태검사 PASS/Error0, [U1](Validation/U1-ui.txt), 회귀13/13PASS/TM동일([REG-U1](Validation/REG-U1-summary.txt)). 화면6장 미실시/B 규칙 기능보존. S4-pre2 최종빌드 진행.
+
+2026-10-04 U1 DOING: 새 표시/HUD의 Unity 상태검사 PASS/Error0([증거](Validation/U1-ui-night-U1-states.txt)), 회귀/최종빌드 대기. 스크린샷 경로는 캡처모듈 컴파일 실패→검사1회보정 재실패로 중단(B 규칙); 6장 미실시, 기능 보존. [상세](Validation/U1-tool-correction.txt).
+
 2026-10-04 U0 DONE: [UI 표](Validation/U0-ui-audit.txt). 타이틀·확인·Pause·엔딩·저장실패 안내 있음, HP/능력HUD·첫안내·DJ 패드표기 부분, 사망UI 없음. U1은 이 항목의 표시만 보완.
 
 2026-10-04 승인 TM → U0 → U1 → S4-pre2 실행 중. TM DONE: 회귀 13/13 PASS / KNOWN-FAIL 없음([요약](Validation/REG-TM2-summary.txt)). 검사 도구만 변경, 보호 게임 파일 무변경. U0/UI 점검 후 누락·부분 UI만 구현, push 금지.
@@ -142,6 +146,8 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
+- UI-CAP-001 (2026-10-04): 새 런타임 캡처 도구 ScreenCapture/EncodeToPNG 모듈 참조 불가. 검사1회보정 재실패로 촬영 경로 중단, 컴파일을 막는 부분만 제거. 기존 Packages 보호. U1 표시 상태검사는 독립 PASS; 1280×720/1920×1080 6장 및 시각 검수 미실시. 다음 판단: 사용자 exe 가독성 확인 또는 별도 승인 촬영 도구 경로.
+
 ### D0-T2-001 / D0-T4-001 / D0-S2-001 — 기준 검사 실패
 실제 기준 상태(표시 미적용)에서 T2 잠금 assertion FAIL, T4 처치된 Rigidbody 참조FAIL, S2 기존통합 HP persists in A04 FAIL 재현. T2v2는 CP x5.5 인접 x6 검사 간섭을 피한30/60/120fps 직접측정PASS. 이전 F1/F2가 원인이라는 결론의 근거로 기존 T2 assertion을 쓰지 않음(F1 독립 영향이 모두 해명된 것은 아님). F2R의 같은 기준 결과는 새 명세대로 회귀 아님. [D0 요약](Validation/D0-summary.txt), [추가 S2 기준](Validation/D0-S2-integration.txt), [F2R 결과·도구한계](Validation/F2R-summary.txt).
 
@@ -230,9 +236,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - E1 코드·프리팹·E1Tuning은 CombatTest에만 보존. 순찰 x=15.975~23.031, 왕복 2회 방향 전환, 벽·낭떠러지 회전, 실제 공격 2타 제거, 접촉 피해·무적 중 중복 방지, KillZone 제거, 플레이어 사망 후 1개 HP2 초기화 PASS.
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
-2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
-
 ## Decisions Needed
+
+- 2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
 
 ### 2026-10-04 DEC-F2R-LOGR — 새 승인
 첨부 명세의 사용자 판단: 기존 T2 잠금 검사는 여러 프레임 대기 후 남은 잠금만 보므로 기준 상태 실패 가능성을 D0로 확인한다. 기준 실패 검사는 새 회귀 판정에 쓰지 않고, 직접 시각 측정 T2v2와 나머지 기준 대비 결과로 판단한다. LOGR은 폴링을 허용하며 사망 원인을 `unrecorded`로 기록한다. 진행은 D0→F2R→LOGR→성공 단계 빌드만, 보호 로직/배치/수치 불변·push 금지. 과거 F1 실패 원인 확정은 D0 결과로도 별도 구분한다.

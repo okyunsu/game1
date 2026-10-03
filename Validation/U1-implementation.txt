@@ -1,0 +1,4 @@
+U1 provisional: Unity Editor state path PASS; Error/Exception/Assert0.
+Evidence U1-ui-night-U1-states.txt. No game/scene/tuning/save changes; old OnGUI calls only suppressed when GameHUD is present.
+Screenshot path stopped after one correction failed, per B rule. Requested 6 images NOT RUN; readability remains user review.
+New independent actual exe integration checks real pickups by direct placement, boss defeat -> Ending -> title. Natural complete play not claimed.

@@ -1,0 +1,7 @@
+    IEnumerator Shot(string name,int width,int height)
+    {
+        if(!screenshots)yield break;
+        Screen.SetResolution(width,height,false);yield return new WaitForSecondsRealtime(.25f);yield return new WaitForEndOfFrame();
+        Check(Screen.width==width&&Screen.height==height,"actual capture resolution "+width+"x"+height);
+        var image=new Texture2D(Screen.width,Screen.height,TextureFormat.RGB24,false);image.ReadPixels(new Rect(0,0,Screen.width,Screen.height),0,0);image.Apply();string path="Validation/U1-shots/"+width+"x"+height+"-"+name+".png";Directory.CreateDirectory(Path.GetDirectoryName(path));if(File.Exists(path))throw new IOException("Preserve screenshot");File.WriteAllBytes(path,image.EncodeToPNG());Destroy(image);lines.Add("SHOT "+path);
+    }

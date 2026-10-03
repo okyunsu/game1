@@ -24,5 +24,5 @@ public sealed class PlayerHealth:MonoBehaviour
     public void MarkDead(){HP=0;lockUntil=invincibleUntil=0;Hit?.Invoke();}
     public void RestoreMax(){HP=tuning.playerMaxHP;lockUntil=invincibleUntil=0;sprite.color=original;Restored?.Invoke();}
     void Update(){var color=original;if(Invincible&&((int)(Time.time*10)%2==0))color.a=.25f;sprite.color=color;}
-    void OnGUI(){GUI.Label(new Rect(16,76,200,24),$"HP {HP}/{tuning.playerMaxHP}");}
+    void OnGUI(){if(GameHUD.Instance!=null)return;GUI.Label(new Rect(16,76,200,24),$"HP {HP}/{tuning.playerMaxHP}");}
 }

@@ -107,7 +107,7 @@ public sealed class PlayerInputReader : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(16, 12, 700, 30), UsingGamepad ? "Move: Left Stick / D-pad   Jump: A   Pause: Menu" : "Move: Arrows (A/D)   Jump: Z (Space)   Pause: Esc");
+        if(GameHUD.Instance==null)GUI.Label(new Rect(16, 12, 700, 30), UsingGamepad ? "Move: Left Stick / D-pad   Jump: A   Pause: Menu" : "Move: Arrows (A/D)   Jump: Z (Space)   Pause: Esc");
         if (!Paused) return;
         GUI.Box(new Rect(20, 55, 420, 170), GamepadDisconnected ? "Gamepad disconnected - Paused" : "Paused");
         if (GUI.Button(new Rect(40, 95, 380, 45), (PauseSelection==0?"> ":"")+"재개 (Z / Enter / A)")) SetPaused(false);

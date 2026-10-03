@@ -1,0 +1,5 @@
+Requested 1280x720 and 1920x1080 A01-start / after-hit / both-abilities screenshots were NOT captured.
+Capture tool compilation failed, one correction failed; stopped under approved B rule.
+See ../U1-tool-correction.txt and ../U1-capture-stopped-source.txt.
+Camera regression pictures elsewhere are world-only captures and are NOT U1 HUD screenshots.
+User readability/layout acceptance remains pending in S4-pre2 executable.
