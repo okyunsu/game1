@@ -74,9 +74,9 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 | S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
 
 이번 구현은 표의 S2-01~04와 성공 단계 최종 빌드만 승인. 향후 Sprint 2 로드맵 범위는 제안 TODO이며 콘텐츠 추가를 승인하지 않음. 기존 블록·스폰·CP·문 위치 보존, 새 방/출구/스폰만 지정 범위 추가. 실패 1회 수정 후 재실패 시 단계 복원·의존 단계 건너뜀. 회귀는 S1-02/04/07/08, 자동 이동 휴리스틱 사용 금지.
-### Sprint 3 승인 작업 — 2026-10-03 (P3)
+### Sprint 3 승인 작업 — 2026-10-03 (P3 및 G3 후속)
 
-승인 원문: [S3 실행 명세](Validation/S3-approved-request.txt). 이번 범위는 S3-01~05와 성공 단계 Windows x64 빌드만. C지역·보스·엔딩·선택 방·아트·K2·A01~A05 배치 변경 없음. 단계별 구현→Unity 검증→S1-02/04/07/08 회귀→로컬 커밋. 실패 1회 수정 후 재실패는 해당 단계 복원·실패 기록 커밋, 의존 단계 건너뜀. Validation 기존 파일 덮어쓰기 금지.
+승인 원문: [이전 P3 실행 명세](Validation/S3-approved-request.txt), [현재 G3/S3-full 실행 명세](Validation/S3-full-approved-request.txt). 이전 P3는 S3-01~05, 현재 G3 후속은 S3-06~10와 성공 단계 Windows x64 빌드만. 선택 방·아트·사운드·K2·무관 기존 배치 변경 금지. 단계별 구현→Unity 검증→S1-02/04/07/08 회귀→로컬 커밋. 실패 1회 수정 후 재실패는 해당 단계 복원·실패 기록 커밋, 의존 단계 건너뜀. Validation 기존 파일 덮어쓰기 금지.
 
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
@@ -520,26 +520,22 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-03 승인 P0→G2→P3→S3-01~05→S3-B 종료. **main, 로컬 커밋 완료.** S3-01~05는 기술 PASS/**REVIEW**(체감 수락 대기). Sprint 2 Gate 통과·현재 Target 15방. 이번 구현/빌드는 A01~A05/B01~B05의 10방까지이며 Menu 포함11씬이다.
+2026-10-03 승인 **G3 → S3-06~10 → 최종 빌드** 실행 종료. **main / 로컬 커밋, push 없음.** G3로 S3-01~05와 B04 높이 보정 수락(DONE). S3-06~08 기술 PASS/REVIEW. S3-09는 지정 시야 조건 충돌로 BLOCKED, S3-10은 의존 SKIPPED. **Content Complete / Sprint 3 Gate는 미충족**, 다음 Sprint 착수 없음.
 
-| 단계 | 결과 / 로컬 커밋 | 주요 증거 |
+| 단계 | 결과 / 로컬 커밋 | Validation |
 | --- | --- | --- |
-| P0 push | FAIL — main/clean 확인 후 GitHub 443 연결 오류; pull/merge/force/재시도 없음 | P0-S3-push.txt |
-| G2 | DONE, a097a4e — S1-10/T1~T4/K1/S2-01~06 사용자 수락, Sprint 2 Gate·15방·K2 DEFERRED | PRD/설계8절/TASKS |
-| P3 | DONE, 59ef631 — 승인 S3-01~05와 미승인 S3-06 이후 TODO 제안 | S3-approved-request.txt |
-| S3-01 | PASS / REVIEW, e1137cc | S3-01-doublejump.txt |
-| S3-02 | 1회 검사 보정 후 PASS / REVIEW, 82a9c53 | S3-02-E2.txt / S3-02-E2-rerun.txt |
-| S3-03 | PASS / REVIEW, a657a38 | S3-03-B01-B02.txt |
-| S3-04 | 1회 검사 보정 후 PASS / REVIEW, c60bb5d | S3-04-E3-B03.txt / S3-04-E3-B03-rerun.txt |
-| S3-05 | PASS / REVIEW, 1cf6dff | S3-05-B04-B05.txt |
-| 최종 빌드 | PASS, 6b54d74 | S3-B-build.txt / S3-B-runtime.txt / route·continue 상세 |
-| 최종 push | SKIPPED — P0 실패 시 생략하라는 명시 지시 적용 | 로컬 커밋 유지, 재push 없음 |
+| G3 | DONE / 77aac15 | S3-full-approved-request.txt, 사용자 수락 기록 |
+| S3-06 | PASS / REVIEW, e517002 | S3-06-B02.txt(벽정지 근거 불충분), S3-06-B02-rerun.txt(유효 최종) |
+| S3-07 | PASS / REVIEW, bcb95cf | S3-07-C01-C02.txt |
+| S3-08 | PASS / REVIEW, c725cdc | S3-08-C03-C04.txt |
+| S3-09 | BLOCKED / 구현 전 명세 검사, ca0af07 | S3-09-boss.txt |
+| S3-10 | SKIPPED / S3-09 성공 의존 미충족, ca0af07 | S3-10-ending.txt |
+| 최종 빌드 | 성공 단계 PASS, e7eee59 | S3-full-build.txt, S3-full-runtime.txt, S3-full-runtime-route.txt, S3-full-runtime-continue.txt, S3-full-protected-files.txt |
 
-- **빌드:** `Builds/S3-B/Afterglow-S3.exe` Windows x64. Menu+A01~A05+B01~B05, 테스트 씬 제외, 빌드 오류/경고0. Builds는 Git 제외이며 로컬에 있다. 실행 안내 README 갱신.
-- **실제 검증:** 단계마다 S1-02/04 입력·이동, S1-07 방 연결, S1-08 CP 회귀 전부 PASS. 파일은 `S1-{02,04,07,08}-night-{S3-01-doublejump,S3-02-E2-rerun,S3-03-B01-B02,S3-04-E3-B03-rerun,S3-05-B04-B05}.txt`. exe 두 프로세스 PID2920/7444: 새 게임·모든 문 양방향·CP-A01/A03/B01 복귀·두 능력 획득/재입장/사망/종료/Continue PASS, Error/Exception/Assert0, 복귀→조작0.716~0.767s. 사용자 저장을 건드리지 않은 `Logs/S3-B-runtime-slot.json` 사용. 직접 배치/지정 입력만 사용, 자동 경로 로봇 없음. `S3-extra-walkoff.txt` 실제 걷기 낙하→Coyote 이후 1회·공중 Dash+추가점프 PASS. 물리 패드·자연스러운 전체 흐름 시간은 미실시.
-- **높이:** 일반 점프 발 최대(바닥 대비)2.535u, 더블4.965~5.049u → B01 턱3.6u 유지. B04 High 초기Y3.3은 Low에서 일반 점프로 닿아, 승인된 보정으로 **Y만5.335**(윗면5.835u) 반영. 일반 실패/더블 착지, Play 종료 후 Scene 저장 확인.
-- **주요 변경:** PlayerMotor/PlayerTuning(새 DoubleJumpVelocity12, 보유 기본false), ProgressSave/RoomSession(두 능력 저장), DoubleJumpPickup, E2Tuning/EnemyCharger/E2.prefab, E3Tuning/EnemyTurret/EnemyShot/E3·E3Shot.prefab, EnemyReset, DoubleJumpTest·CombatTest, B01 지정 추가·B02~B05, S3 검증/빌드 도구. `S3-protected-files.txt`에서 A01~A05·MovementTest·Packages·ProjectVersion·Level 원본·Combat/E1 기존값 변경 없음 확인. PlayerTuning 기존값도 보존.
-- **문제/판단:** `S3-B02-INTRO` — SafeStep x11(오른쪽끝13)과 E2 x24/감지5u의 지정 조합에서는 발판 위 예고가 시작되지 않는다. 접근x20 예고와 안전 발판으로 피하기는 검증했으나 소개 의도 수락/후속 좌표 변경 판단은 필요하다. 이번에는 좌표/감지값 유지. CAM-002/K2는 아트 후 Sprint 4 Polish 후보 DEFERRED, 기본감쇠0.15 유지, 상대 거리로 재비교할 것. S3-02 첫 실패는 E1 검사 간섭, S3-04 첫 실패는 검사 발판 간섭; 재검증 근거만 유효하며 첫 로그 보존.
-- **사용자 확인:** B01 턱 높이 체감, E2 소개/예고 가시성·회피 여유, E3 엄폐 체감, B04 Double Jump/보정 발판 감각, A05 Dash 획득부터 B05까지 자연스러운 전체 흐름 시간. S3-01~05 체감 수락 후 DONE 변경.
-- **수정 위치:** 속도는 PlayerTuning.asset/Double Jump Velocity, 적 공통값은 E2Tuning.asset/E3Tuning.asset. 배치/방향/엄폐/연습은 B01~B04 Scene, 반복 적/탄은 E2/E3/E3Shot.prefab(탄Collider1.2×1.2, muzzleOffset1.15u Inspector). Scene Play 변경은 Stop 후 다시 입력·저장, SO는 Stop 후 원하는 값 또는 이전 값으로 명시적 저장.
-- **다음:** 이번 승인 범위 종료. 인계 검토와 체감 수락만 대기; S3-06 이후/C01~C04/C06/엔딩/Gate는 TODO 제안이며 자동 착수 없음. C지역·보스·엔딩·선택 방·아트·K2 재시도 미실시.
+- **빌드:** [Afterglow-S3-full.exe](Builds/S3-full/Afterglow-S3-full.exe), Windows x64. Menu+A01~A05+B01~B05+C01~C04 = 15씬/14플레이방. 테스트 씬/C06/Ending 제외. 빌드 errors0/warnings0. C04가 마지막 방이며 C06 방향 Door는 비활성. Builds는 Git 제외. 보스·엔딩 완주 빌드가 아니다.
+- **실제 검증:** S3-06~08 각각 S1-02/04 입력·이동, S1-07 방 연결, S1-08 체크포인트 회귀 모두 PASS. 새 파일 패턴 `S1-{02,04,07,08}-night-{S3-06-B02-rerun,S3-07-C01-C02,S3-08-C03-C04}.txt`. exe PID25716(1280×720) 새 게임/두 능력/전체 성공방 문 양방향/5개CP 사망복귀/C02 지정 조합, PID27720(1920×1080) 종료 후 CP-C04 Continue/두능력/장거리 사망복귀 PASS. Error/Exception/Assert0, 사망→검사상 조작 가능0.716~0.767s. 격리 `Logs/S3-full-runtime-slot.json`, 사용자 저장 미접근. 직접 배치/지정 가상 입력이며 자동 이동 로봇 없음. 물리패드·화면잘림 수락·자연 완주시간 미실시.
+- **핵심 결과:** B02 E2만 x24→17, SafeStep 위 감지4.787u. 첫 돌진은 벽 도달 전 끝나며 반복 돌진은 벽앞 간격0.140u에서 정지, 발판위 무피해/바닥피해. 첫 검사의 부정확한 벽정지 assertion을 검사만 1회 보정했다. C02 top3에서 일반최대발5.535<high top6.8, 더블 착지. 바닥 더블최대발5.905<6.8. High1→High2 5u는 지정 일반점프 실패/점프+대시 성공. 높이 보정 없음. C03 E1 순찰·E3 발사탄의 authored Cover 충돌 확인. CP-C04→C06 입구1.280s(씬 전환 전 입구까지).
+- **Decisions Needed:** `S3-C06-VIEW` — 보스x28/시작선x>8/카메라5.5u를 유지하면 16:9의 가시폭19.556u로 시작전 플레이어~보스전체 필요폭21.410u를 담을 수 없다. 실제 x3.5/x7.99 투영에서 보스와 예고 모두 화면밖. 시작선·보스위치·카메라 프레이밍 중 변경 허용 범위의 사용자 판단이 필요하다. AGENTS Stop Conditions에 따라 구현 전에 중단, 임시 검사 코드 제거. S3-09 패턴/HP/동시사망/Pause, S3-10 엔딩/보스진행저장/Quit/Pause타이틀 모두 미구현·미검증. 기존 S3-06~08 검증은 유효. 질문 없이 보수적으로 성공 단계만 빌드했다.
+- **주요 파일 / 수정 위치:** B02(E2 Reset x17), B05(Step/Right/FromRight), C01(CP-C01 x8), C02(Start/High1/High2/ExitLedge), C03(Patrol/Patrol Left·Right/Cover/TurretBase), C04(CP-C04 x26) Scene. ProgressSave의 CP-C01/C04 유효ID·Continue 매핑. S3FinalAuthoring/S3FinalVerification/S3FullBuild Editor 도구와 opt-in S3BuildVerification CLI 검사. README 실행 안내 갱신. Scene 배치는 Play Stop 후 다시 입력·저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 명시적 저장. Player/Combat/E1/E2/E3 기존 튜닝, A01~A05/B01/B03/B04, MovementTest, Level원본, Packages/ProjectVersion 보존.
+- **사용자 확인:** 현재 빌드에서 B02 소개 예고, C02 두 능력 조합 난이도, C03 이동·엄폐 체감, C04까지 자연 진행시간. 보스 경로 재승인·기술검증 후 새게임→엔딩 완주시간, 보스예고 가시성/회피여유/첫승리 시도횟수, 엔딩표현 확인이 남는다. 물리패드 검증도 미실시.
+- **다음:** 현재 승인 실행 종료. S3-C06-VIEW 결정 후 해당 보스/엔딩 경로 재개 범위를 정한다. 선택방 A06/B06/C05·아트·사운드·K2·새능력/새적유형·기존 무관배치 변경은 하지 않았다. push는 사용자가 직접 수행.
