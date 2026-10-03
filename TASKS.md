@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 승인 TM → U0 → U1 → S4-pre2 실행 중. TM DONE: 회귀 13/13 PASS / KNOWN-FAIL 없음([요약](Validation/REG-TM2-summary.txt)). 검사 도구만 변경, 보호 게임 파일 무변경. U0/UI 점검 후 누락·부분 UI만 구현, push 금지.
+
 2026-10-04 최신 완료: **D0 DONE / F2R REVIEW(처치효과 검사 도구 한계) / LOGR REVIEW / S4-pre 빌드·실제exe·최종회귀 PASS.** 기준T2·T4·S2통합과 같은 실패는 새 명세대로 회귀에서 제외, T2v2/보스회복/필수S1·카메라 PASS. 보호파일 불변·push 없음. 아래 문단은 앞선 실행 이력이며 Latest Handoff를 우선한다.
 
 

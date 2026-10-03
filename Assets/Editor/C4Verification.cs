@@ -40,7 +40,7 @@ public sealed class C4Runner:MonoBehaviour
         lines.Add($"MEASURE old relocation attack HP after={enemy.HP}, velocity after={body.linearVelocity}, instant hit velocity={enemy.LastHitVelocity}; body={body.position}, Transform={enemy.transform.position}");
         lines.Add(enemy.HP==2?"CAUSE reproduction: body-only relocation used a stale Transform to place attacker outside the actual hit range. Correct test setup synchronizes both positions.":"CAUSE old first failure not reproduced; original saved evidence cannot establish the exact HP/velocity cause. No game value change.");
         // Correct the measured test placement; no combat tuning changes.
-        health.RestoreMax();yield return new WaitForSeconds(.4f);enemy=spawner.live;body=enemy.GetComponent<Rigidbody2D>();enemy.enabled=false;
+        health.RestoreMax();yield return new WaitForSeconds(.4f);enemy=spawner.live;Check(enemy!=null,"fresh E1 after RestoreMax");body=enemy.GetComponent<Rigidbody2D>();enemy.enabled=false;
         PlaceEnemy(enemy,new Vector2(20,1.5f));PlacePlayer(new Vector2(18.75f,1.81f));
         bounds=player.GetComponent<BoxCollider2D>().bounds;
         lines.Add($"MEASURE synchronized attack box x={bounds.max.x:F3}..{bounds.max.x+attack.tuning.attackRange:F3}; E1 collider={enemy.GetComponent<BoxCollider2D>().bounds}; HP before={enemy.HP}; velocity before={body.linearVelocity}");
@@ -49,7 +49,7 @@ public sealed class C4Runner:MonoBehaviour
         Check(enemy.HP==1&&Mathf.Abs(enemy.LastHitVelocity.x-3)<.001f,"actual first attack loses one HP and applies 3u/s knockback");
         yield return new WaitForSeconds(.4f);PlacePlayer(new Vector2(body.position.x-1.25f,1.81f));yield return Attack(kb);
         Check(enemy==null,"second actual attack removes E1 (no duplicate damage on one attack)");
-        health.RestoreMax();yield return new WaitForSeconds(.1f);enemy=spawner.live;body=enemy.GetComponent<Rigidbody2D>();PlacePlayer(new Vector2(6,1.81f));
+        health.RestoreMax();yield return new WaitForSeconds(.1f);enemy=spawner.live;Check(enemy!=null,"fresh E1 after RestoreMax");body=enemy.GetComponent<Rigidbody2D>();PlacePlayer(new Vector2(8,1.81f));
         int turns=enemy.Turns;float low=body.position.x,high=low;float end=Time.time+9;while(Time.time<end){low=Mathf.Min(low,body.position.x);high=Mathf.Max(high,body.position.x);yield return null;}
         lines.Add($"MEASURE patrol x={low:F3}..{high:F3} turns={enemy.Turns-turns}");
         Check(enemy.Turns-turns>=2&&low<16.2f&&high>22.8f,"patrol round trip between Scene endpoints");
@@ -60,7 +60,7 @@ public sealed class C4Runner:MonoBehaviour
         lines.Add($"MEASURE ledge x={low:F3}..{high:F3} y={body.position.y:F3} turns={enemy.Turns-turns}");Check(enemy.Turns>turns&&body.position.y>5.8f&&low>47&&high<53,"ledge turns without falling");Destroy(ledge);spawner.leftPoint.position=new Vector3(16,1.5f,0);spawner.rightPoint.position=new Vector3(23,1.5f,0);
         enemy.enabled=false;PlaceEnemy(enemy,new Vector2(20,1.5f));health.RestoreMax();yield return null;enemy=spawner.live;enemy.enabled=false;PlaceEnemy(enemy,new Vector2(20,1.5f));PlacePlayer(new Vector2(19.15f,1.81f));yield return new WaitForSeconds(.1f);
         Check(health.HP==4&&health.Invincible,"physical E1 contact deals one HP and starts invincibility");PlacePlayer(new Vector2(19.15f,1.81f));yield return new WaitForSeconds(.1f);Check(health.HP==4,"repeated contact during invincibility cannot duplicate damage");
-        PlacePlayer(new Vector2(6,1.81f));PlaceEnemy(enemy,new Vector2(26.48f,1.5f));enemy.ReceiveHit(1,new Vector2(25,1.5f));yield return new WaitForSeconds(.15f);Check(enemy==null,"E1 knocked into KillZone is removed");
+        PlacePlayer(new Vector2(8,1.81f));PlaceEnemy(enemy,new Vector2(26.48f,1.5f));enemy.ReceiveHit(1,new Vector2(25,1.5f));yield return new WaitForSeconds(.15f);Check(enemy==null,"E1 knocked into KillZone is removed");
         Check(session.Die(),"player death requested");yield return new WaitForSecondsRealtime(.85f);enemy=spawner.live;Check(enemy!=null&&enemy.HP==2&&FindObjectsByType<EnemyPatrol>(FindObjectsSortMode.None).Length==1,"player death restores one full-HP E1");
         Check(session.RequestTransition("DashTest","Assets/Scenes/Test/DashTest.unity","Entry"),"test room departure accepted");while(session.Transitioning)yield return null;
         Check(this!=null&&FindObjectsByType<EnemyPatrol>(FindObjectsSortMode.None).Length==0,"verification survives departure; previous E1 cleaned up");
