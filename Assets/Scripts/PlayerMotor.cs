@@ -5,6 +5,11 @@ public sealed class PlayerMotor : MonoBehaviour
 {
     [SerializeField, Tooltip("Single source of shared movement values. Changes apply on the next physics tick.")] PlayerTuning tuning;
     [SerializeField, Tooltip("Only this layer can provide floor contact.")] LayerMask groundLayers;
+    [Header("Double jump ownership")]
+    [Tooltip("Permanent ability ownership. Default false in production rooms.")] public bool hasDoubleJump;
+    bool doubleJumpUsed;
+    public bool DoubleJumpAvailable => hasDoubleJump && !doubleJumpUsed;
+    public int DoubleJumpsPerformed { get; private set; }
     readonly ContactPoint2D[] contacts = new ContactPoint2D[16];
     Rigidbody2D body;
     BoxCollider2D shape;
@@ -52,6 +57,7 @@ public sealed class PlayerMotor : MonoBehaviour
 
         if (Grounded)
         {
+            doubleJumpUsed = false;
             lastGrounded = now;
             groundJumpAvailable = true;
         }
@@ -77,6 +83,18 @@ public sealed class PlayerMotor : MonoBehaviour
                 consumedJump = input.JumpSequence;
                 velocity.y = tuning.jumpVelocity;
                 Grounded = false;
+                groundJumpAvailable = false;
+                lastGrounded = double.NegativeInfinity;
+                jumpCutAvailable = true;
+                jumpPressTime = input.JumpPressedAt;
+                jumpStartedAt = now;
+            }
+            else if (DoubleJumpAvailable)
+            {
+                consumedJump = input.JumpSequence;
+                velocity.y = tuning.doubleJumpVelocity;
+                doubleJumpUsed = true;
+                DoubleJumpsPerformed++;
                 groundJumpAvailable = false;
                 lastGrounded = double.NegativeInfinity;
                 jumpCutAvailable = true;

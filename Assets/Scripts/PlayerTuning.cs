@@ -10,6 +10,7 @@ public sealed class PlayerTuning : ScriptableObject
     [Range(.8f, 1), Tooltip("Air acceleration/braking multiplier; does not reduce maximum speed.")] public float airControl = .9f;
     [Header("Vertical movement (Prototype Values)")]
     [Range(11, 13), Tooltip("Initial upward velocity, units/second. Independent of mass.")] public float jumpVelocity = 12;
+    [Range(11, 13), Tooltip("Additional airborne jump initial vertical velocity, units/second.")] public float doubleJumpVelocity = 12;
     [Range(26, 34), Tooltip("Downward acceleration, units/second²; Rigidbody gravity scale stays zero.")] public float gravity = 30;
     [Range(1.2f, 1.8f), Tooltip("Gravity multiplier while descending.")] public float fallGravityMultiplier = 1.5f;
     [Range(16, 22), Tooltip("Maximum downward speed, units/second.")] public float maxFallSpeed = 18;

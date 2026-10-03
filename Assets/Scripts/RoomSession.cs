@@ -48,6 +48,7 @@ public sealed class RoomSession : MonoBehaviour
         if (pending != null)
         {
             Player.GetComponent<PlayerDash>().hasDash = pending.dash;
+            Player.GetComponent<PlayerMotor>().hasDoubleJump = pending.doubleJump;
             CheckpointId = pending.checkpointId;
             checkpointRoom = room.roomId;
             checkpointScene = room.gameObject.scene.path;

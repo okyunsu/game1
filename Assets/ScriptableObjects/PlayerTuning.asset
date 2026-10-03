@@ -17,6 +17,7 @@ MonoBehaviour:
   deceleration: 100
   airControl: 0.9
   jumpVelocity: 12
+  doubleJumpVelocity: 12
   gravity: 30
   fallGravityMultiplier: 1.5
   maxFallSpeed: 18

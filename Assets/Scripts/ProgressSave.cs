@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 [Serializable]
-public sealed class ProgressData { public int version=1; public bool dash; public string checkpointId; }
+public sealed class ProgressData { public int version=1; public bool dash; public bool doubleJump; public string checkpointId; }
 public static class ProgressSave
 {
  public static bool Enabled;
@@ -20,7 +20,7 @@ public static class ProgressSave
   try{Directory.CreateDirectory(Path.GetDirectoryName(FilePath));string temporary=FilePath+".tmp";File.WriteAllText(temporary,JsonUtility.ToJson(data,true));if(File.Exists(FilePath))File.Replace(temporary,FilePath,null);else File.Move(temporary,FilePath);Message="";return true;}
   catch(Exception e) when(e is IOException or UnauthorizedAccessException){Message="저장 실패. 다음 체크포인트/능력 획득에서 다시 저장합니다.";return false;}
  }
- public static void SaveCurrent(RoomSession session){if(Enabled)Write(new ProgressData{dash=session.Player.GetComponent<PlayerDash>().hasDash,checkpointId=session.CheckpointId??"CP-A01"});}
+ public static void SaveCurrent(RoomSession session){if(Enabled)Write(new ProgressData{dash=session.Player.GetComponent<PlayerDash>().hasDash,doubleJump=session.Player.GetComponent<PlayerMotor>().hasDoubleJump,checkpointId=session.CheckpointId??"CP-A01"});}
  public static bool NewGame()
  {
   if(File.Exists(FilePath)&&!TryLoad(out _))
