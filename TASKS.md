@@ -545,22 +545,20 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-03 승인 **G3 → S3-06~10 → 최종 빌드** 실행 종료. **main / 로컬 커밋, push 없음.** G3로 S3-01~05와 B04 높이 보정 수락(DONE). S3-06~08 기술 PASS/REVIEW. S3-09는 지정 시야 조건 충돌로 BLOCKED, S3-10은 의존 SKIPPED. **Content Complete / Sprint 3 Gate는 미충족**, 다음 Sprint 착수 없음.
+2026-10-03 승인 **F1 → S3-09 → S3-10 → S3-complete** 종료. **main / 로컬 커밋 / push 없음.** F1과 S3-09는 각각2회 검사 실패 후 전체 복원/BLOCKED, S3-10 의존SKIPPED. 기존 성공 콘텐츠의 새 빌드와 복원 후 검증만 PASS. **Content Complete 후보가 아니며 Sprint3 Gate 미충족.** S3-01~05 DONE, S3-06~08 REVIEW 유지.
 
-| 단계 | 결과 / 로컬 커밋 | Validation |
+| 단계 | 결과 / 커밋 | 새 Validation |
 | --- | --- | --- |
-| G3 | DONE / 77aac15 | S3-full-approved-request.txt, 사용자 수락 기록 |
-| S3-06 | PASS / REVIEW, e517002 | S3-06-B02.txt(벽정지 근거 불충분), S3-06-B02-rerun.txt(유효 최종) |
-| S3-07 | PASS / REVIEW, bcb95cf | S3-07-C01-C02.txt |
-| S3-08 | PASS / REVIEW, c725cdc | S3-08-C03-C04.txt |
-| S3-09 | BLOCKED / 구현 전 명세 검사, ca0af07 | S3-09-boss.txt |
-| S3-10 | SKIPPED / S3-09 성공 의존 미충족, ca0af07 | S3-10-ending.txt |
-| 최종 빌드 | 성공 단계 PASS, e7eee59 | S3-full-build.txt, S3-full-runtime.txt, S3-full-runtime-route.txt, S3-full-runtime-continue.txt, S3-full-protected-files.txt |
+| F1 / FX-001 | FAIL→1회 검사보정→FAIL, 전체복원 / f5ab8c8 | F1-preflight.txt, F1-feedback.txt, F1-feedback-rerun.txt |
+| S3-09 사전 | 좁은20u 추적 시야 PASS / 9d04dca | S3-09-narrow-preflight.txt |
+| S3-09 구현 | FAIL→1회 수정→FAIL, 전체복원 / 9d04dca | S3-09-boss-narrow.txt, S3-09-boss-narrow-rerun.txt |
+| S3-10 | SKIPPED, S3-09 성공 의존 미충족 / 9d04dca | S3-10-ending-skipped-F1-run.txt |
+| 최종 빌드 | 기존 성공 콘텐츠 PASS / 5eddee4 | S3-complete-build.txt, S3-complete-runtime.txt, S3-complete-runtime-route.txt, S3-complete-runtime-continue.txt, S3-complete-restoration.txt |
 
-- **빌드:** [Afterglow-S3-full.exe](Builds/S3-full/Afterglow-S3-full.exe), Windows x64. Menu+A01~A05+B01~B05+C01~C04 = 15씬/14플레이방. 테스트 씬/C06/Ending 제외. 빌드 errors0/warnings0. C04가 마지막 방이며 C06 방향 Door는 비활성. Builds는 Git 제외. 보스·엔딩 완주 빌드가 아니다.
-- **실제 검증:** S3-06~08 각각 S1-02/04 입력·이동, S1-07 방 연결, S1-08 체크포인트 회귀 모두 PASS. 새 파일 패턴 `S1-{02,04,07,08}-night-{S3-06-B02-rerun,S3-07-C01-C02,S3-08-C03-C04}.txt`. exe PID25716(1280×720) 새 게임/두 능력/전체 성공방 문 양방향/5개CP 사망복귀/C02 지정 조합, PID27720(1920×1080) 종료 후 CP-C04 Continue/두능력/장거리 사망복귀 PASS. Error/Exception/Assert0, 사망→검사상 조작 가능0.716~0.767s. 격리 `Logs/S3-full-runtime-slot.json`, 사용자 저장 미접근. 직접 배치/지정 가상 입력이며 자동 이동 로봇 없음. 물리패드·화면잘림 수락·자연 완주시간 미실시.
-- **핵심 결과:** B02 E2만 x24→17, SafeStep 위 감지4.787u. 첫 돌진은 벽 도달 전 끝나며 반복 돌진은 벽앞 간격0.140u에서 정지, 발판위 무피해/바닥피해. 첫 검사의 부정확한 벽정지 assertion을 검사만 1회 보정했다. C02 top3에서 일반최대발5.535<high top6.8, 더블 착지. 바닥 더블최대발5.905<6.8. High1→High2 5u는 지정 일반점프 실패/점프+대시 성공. 높이 보정 없음. C03 E1 순찰·E3 발사탄의 authored Cover 충돌 확인. CP-C04→C06 입구1.280s(씬 전환 전 입구까지).
-- **Decisions Needed:** `S3-C06-VIEW` — 보스x28/시작선x>8/카메라5.5u를 유지하면 16:9의 가시폭19.556u로 시작전 플레이어~보스전체 필요폭21.410u를 담을 수 없다. 실제 x3.5/x7.99 투영에서 보스와 예고 모두 화면밖. 시작선·보스위치·카메라 프레이밍 중 변경 허용 범위의 사용자 판단이 필요하다. AGENTS Stop Conditions에 따라 구현 전에 중단, 임시 검사 코드 제거. S3-09 패턴/HP/동시사망/Pause, S3-10 엔딩/보스진행저장/Quit/Pause타이틀 모두 미구현·미검증. 기존 S3-06~08 검증은 유효. 질문 없이 보수적으로 성공 단계만 빌드했다.
-- **주요 파일 / 수정 위치:** B02(E2 Reset x17), B05(Step/Right/FromRight), C01(CP-C01 x8), C02(Start/High1/High2/ExitLedge), C03(Patrol/Patrol Left·Right/Cover/TurretBase), C04(CP-C04 x26) Scene. ProgressSave의 CP-C01/C04 유효ID·Continue 매핑. S3FinalAuthoring/S3FinalVerification/S3FullBuild Editor 도구와 opt-in S3BuildVerification CLI 검사. README 실행 안내 갱신. Scene 배치는 Play Stop 후 다시 입력·저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 명시적 저장. Player/Combat/E1/E2/E3 기존 튜닝, A01~A05/B01/B03/B04, MovementTest, Level원본, Packages/ProjectVersion 보존.
-- **사용자 확인:** 현재 빌드에서 B02 소개 예고, C02 두 능력 조합 난이도, C03 이동·엄폐 체감, C04까지 자연 진행시간. 보스 경로 재승인·기술검증 후 새게임→엔딩 완주시간, 보스예고 가시성/회피여유/첫승리 시도횟수, 엔딩표현 확인이 남는다. 물리패드 검증도 미실시.
-- **다음:** 현재 승인 실행 종료. S3-C06-VIEW 결정 후 해당 보스/엔딩 경로 재개 범위를 정한다. 선택방 A06/B06/C05·아트·사운드·K2·새능력/새적유형·기존 무관배치 변경은 하지 않았다. push는 사용자가 직접 수행.
+- **실행:** [Afterglow-S3-complete.exe](Builds/S3-complete/Afterglow-S3-complete.exe), Windows x64. Menu+A01~A05+B01~B05+C01~C04 =15씬/14플레이방, 테스트 씬 제외. C04가 마지막 방이며 C06 Door 비활성. **공격 피드백/C06/보스/엔딩/Quit/Pause타이틀 미포함.** 출력 이름은 Content Complete 달성을 뜻하지 않는다. Builds는 Git 제외, README 최신 설명 반영.
+- **F1 실패:** 30fps slash0.10s/size1.1×1.2, real stop0.0659s/flash0.0993s(프레임관찰 포함)와 좌우표시/1타 일부PASS. 첫60fps miss assertion이 이전 HitFlash 재사용을 새 효과로 오판해 검사만1회 보정. 재검사60fps 명중 대상 흰색 확인FAIL. 관찰 Update/LateUpdate 순서 영향 가능성은 미확정. 지시대로 모든 F1 코드/설정/Prefab/검사도구 복원. T1~T4/S2-01 및 단계 후 회귀는 미실시. FX-001 Before–After와 사용자 ‘공격하는지조차 모르겠다’ 관찰은 보존, 개선효과 수락 없음.
+- **좁은방 사전PASS:** 사용자 결정20u/보스중심17.5/시작선x>5/추적5.5·0·0.15. 실제 카메라 투영1280×720·1920×1080에서 스폰3.5/직전4.9와 전투구간1~13.5의 보스/근접예고/충격파경로 전체 표시 확인. 이전36u 시야충돌은 이 후보에서 해소됨. RoomCameraRig/다른 방 값 변경 없음.
+- **보스 실패:** 첫 파형 바닥 접촉 조기소멸FAIL → 벽만 소멸하도록1회 수정(검사 점프시점 예고0.90s 지정). 재검사 근접예고0.800s/회복1.200s/대시회피, 파형예고1.000s/속도5.000u/s/높이1u/점프회피/Pause정지/왼쪽벽소멸/뒤틈진입차단·위접촉피해 일부PASS. 회복구간 X 명중0타FAIL. 실제 공격/배치/검사 진입시점 중 원인 미확정. 20타처치·사망초기화·동시프레임·후속회귀 미실시. 전체 Boss 코드/Prefab/Asset/C06/임시Probe/빌드설정 및 C04 Right 활성화 복원. 재시도 없음.
+- **최종 실제 검증:** build errors0/warnings0. exe PID18732(1280×720) 격리 새게임/두능력/모든 성공방 문 양방향/5CP사망/C02 지정조합, PID5584(1920×1080) 프로세스 종료후 CP-C04 Continue/두능력/장거리복귀 PASS, Error/Exception/Assert0. 직접배치/지정가상입력, 자동이동로봇 없음. `Logs/S3-complete-runtime-slot.json`, 사용자 저장 미접근. 복원 후 S1-02/04/07/08-night-S3-complete-restored.txt 및 S1-06-lead0-night-S2-S3-complete-camera.txt 모두PASS, 새 카메라 PNG2개. 물리패드/자연완주시간/화면·체감수락 미실시.
+- **Decisions Needed / 다음:** FX-001의60fps flash 관찰/효과 실패, S3-09-NARROW의회복구간0타 원인을 다음 승인에서 확인해야 한다. 이번2회 제한에 따라 중단했으며 후속 엔딩은 승인 의존 미충족. 좁은20u 시야 결정은 유효하지만 실제 보스는 미존재. 게임규칙/수치 후보를 임의 확정하지 않았다. 사용자 확인은 현재 S3-06~08/C02 체감이며, 공격손맛·피드백수치/보스예고·회피여유·첫승리횟수/엔딩표현/새게임→엔딩시간은 구현 성공 후 남는다.
+- **보존 / 수정 위치:** 런타임 코드·Player/Combat/E1/E2/E3 값·Prefab·A01~C04·MovementTest·RoomCameraRig·Packages·ProjectVersion·Level원본은 이번 실행 전과 동일(`S3-complete-restoration.txt`). 잔존 변경은 새 빌드도구 `Assets/Editor/S3CompleteBuild.cs`, README/TASKS 및 새 증거뿐. 기존 Scene 배치 Play 수정은 Stop 후 다시 입력·저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 명시적 저장. 새 FeedbackTuning/BossTuning 수정 위치는 복원되어 존재하지 않는다. 선택방·아트·사운드·카메라흔들림·K2·기존배치 수정 없음. push는 사용자가 직접 수행.
