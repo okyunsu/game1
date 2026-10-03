@@ -1,0 +1,83 @@
+이번 실행은 G3, S3-06~S3-10, 최종 빌드만 순서대로 수행한다. 선택 방(A06·B06·C05), 아트·사운드, K2 카메라, 새 능력·새 적 유형, 기존 A01~B04 배치 수정(S3-06 명시 항목 제외)은 하지 않는다. 무인 실행이므로 질문하지 않고, 판단이 필요한 항목은 TASKS "Decisions Needed"에 남기고 가장 보수적인 선택으로 진행한다. push는 하지 않는다(실행 환경에서 GitHub 접속 불가, 사용자가 직접 push).
+
+[읽을 범위]
+AGENTS.md, PRD.md의 UI Scope·Save·Definition of Done, TASKS.md의 Current Sprint·S3-01~05·Decisions Needed·Latest Handoff, GAME_DESIGN.md 8·10·12·13·14·15·18·21·22절만.
+
+[시작 조건]
+- 브랜치 main, 작업 트리 깨끗한지 확인. 아니면 아무것도 하지 말고 보고 후 멈춘다.
+
+[공통 실행 규칙]
+- 수정 금지: PlayerTuning·CombatTuning·E1/E2/E3Tuning 기존 값(새 필드 추가 허용), MovementTest.unity, Packages/, ProjectVersion.txt, Level 프리팹 원본. A01~B04 배치 변경 금지(S3-06 제외). B05는 아래 명시한 추가만 허용.
+- 수치는 GAME_DESIGN 22절 초기값 그대로 ScriptableObject에 노출. 임의 조정 금지.
+- 단계마다 구현 → 검증 → 통과 시 로컬 커밋. 각 단계 후 S1-02/04 입력·이동 회귀, S1-07 방 연결, S1-08 체크포인트 검사 실행. 깨지면 그 단계 실패.
+- 실패 시 1회만 수정 후 재시도. 두 번째도 실패하면 그 단계 변경만 되돌리고 실패 로그만 커밋. 의존 단계는 건너뛰고 이유를 기록, 의존하지 않는 다음 단계로 진행.
+- 의존: S3-08은 S3-07, S3-09는 S3-08, S3-10은 S3-09 성공 필요. S3-06은 독립.
+- 자동 이동 로봇으로 판정하지 않는다. 직접 배치·지정 입력으로 검사한다. 출구 근처에서 벽 충돌 검사를 하지 않는다.
+- 높이 검사는 반드시 "실제로 뛰는 발판 윗면" 기준으로 측정한다(바닥 기준 아님). 측정 결과 일반 점프나 바닥 더블 점프로 우회되면 해당 발판 Y만 올리고 Decisions Needed에 기록.
+- 새 방 공통 셸: 36×14u, 바닥 윗면 y=1, 좌우 벽, 카메라 경계, RoomCameraRig 5.5u/0u/0.15s, 방 이름 표시. 출구 트리거 1×2u, Door 표시. 바닥 스폰 y=1.81, 발판 위 스폰은 윗면+0.81.
+- 새 체크포인트·진행 상태는 저장(유효 CP ID, 이어하기 씬 매핑)에 연결한다.
+- Validation은 새 파일로만 저장.
+
+## G3. 사용자 수락 기록 (2026-10-03)
+- 사용자 S3-B exe 플레이로 S3-01~05 동작 확인. S3-01~05 DONE. S3-B04-HIGH 보정 수락.
+- S3-B02-INTRO: 설계 의도(안전 발판에서 예고 먼저 보기)를 살리기 위해 E2를 x 17로 이동하기로 결정(S3-06).
+커밋: "docs: accept S3-01~05 and record B02 intro decision"
+
+## S3-06. B02 E2 소개 위치 수정
+- B02의 E2만 x 24 → x 17(바닥, 왼쪽을 바라봄). 다른 배치·수치는 그대로.
+검증 → Validation/S3-06-B02.txt: B02_SafeStep(윗면 y=3, 오른쪽 끝 x 13) 위에서 E2 감지·예고 시작(MEASURE 거리), E2 돌진이 발판 벽에서 멈춰 발판 위 플레이어가 맞지 않음, 바닥에서는 기존처럼 피격 가능, B01↔B02↔B03 왕복.
+커밋: "level: S3-06 move B02 E2 to x17 for visible intro"
+
+## S3-07. B05 연결, C01 휴식방, C02 두 능력 조합
+1. B05: "다음 Sprint에서 제작" 안내 제거. Exit Right (34.25, 2) → C01/FromLeft, 스폰 FromRight (32.5, 1.81). 디딤돌 B05_Step Landing (18, 2) Scale (4, 2) 하나만 추가.
+2. C01 새 씬: Exit Left (1.75, 2) → B05/FromRight, Exit Right (34.25, 2) → C02/FromLeft. CP-C01 바닥 x 8. 안내 "정상 관측탑 — 대시와 더블 점프를 모두 쓴다". 적·위험 없음.
+3. C02 새 씬: Exit Left (1.75, 2) → C01/FromRight. Exit Right (34.25, 7.8) → C03/FromLeft.
+   | 이름 | 프리팹 | Position | Scale |
+   | C02_Start | Landing | (8, 2) | (4, 2) |
+   | C02_High1 | Landing | (14, 6.3) | (4, 1) |
+   | C02_High2 | Landing | (23, 6.3) | (4, 1) |
+   | C02_ExitLedge | Landing | (31, 6.3) | (8, 1) |
+   - Start 윗면 3, High1·High2·ExitLedge 윗면 6.8. High1(x 12~16)과 High2(x 21~25) 간격 5u는 대시 필요, High2와 ExitLedge(x 27~35) 간격 2u. 아래는 모두 바닥(죽지 않음).
+   - 스폰 C02/FromRight는 ExitLedge 위 (32, 7.61).
+   - 의도: Start에서 더블 점프로 High1 → 점프+대시로 High2 → ExitLedge → 출구. 바닥에서 더블 점프로 어느 높은 발판에도 닿지 않아야 하고, Start에서 일반 점프로 High1에 닿지 않아야 한다.
+검증 → Validation/S3-07-C01-C02.txt: B05↔C01↔C02 왕복, CP-C01 활성·사망 복귀, 위 의도의 각 조건 MEASURE(바닥 더블 점프 최대 발 높이, Start 일반 점프 최대 발 높이, High1→High2 일반 점프 실패·대시 성공), C02 출구 트리거와 스폰 겹침 없음.
+커밋: "level: S3-07 B05 link, C01 rest and C02 combo"
+
+## S3-08. C03 종합 이동, C04 보스 전 휴식
+1. C03 새 씬: Exit Left (1.75, 2) → C02/FromRight, Exit Right (34.25, 2) → C04/FromLeft. 스폰 FromLeft (3.5, 1.81), FromRight (32.5, 1.81).
+   | 이름 | 프리팹 | Position | Scale |
+   | C03_Patrol | Landing | (12, 2) | (8, 2) |
+   | C03_Cover | Wall | (21, 2) | (1, 2) |
+   | C03_TurretBase | Landing | (29, 2) | (4, 2) |
+   - E1 1마리 C03_Patrol 위(윗면 y=3, 순찰 x 9~15). E3 1마리 C03_TurretBase 위, 왼쪽을 향해 사격. 기존 Tuning 그대로.
+2. C04 새 씬: Exit Left (1.75, 2) → C03/FromRight, Exit Right (34.25, 2) → C06/FromLeft. CP-C04 바닥 x 26(보스방 입구 가까이). 적·위험 없음. 안내 "이 앞은 정상의 수문장".
+검증 → Validation/S3-08-C03-C04.txt: C02↔C03↔C04 왕복, E1·E3 동작과 엄폐, CP-C04 활성·사망 복귀, CP-C04에서 C06 입구까지 이동 시간 MEASURE(목표 15초 이내).
+커밋: "level: S3-08 C03 mixed route and C04 rest"
+
+## S3-09. C06 최종 보스 (GAME_DESIGN 13절)
+1. BossTuning 에셋: HP 20, 피해 1, 예고 0.8s(근접)·1s(충격파), 회복 1.2s, 근접 범위 3u, 충격파 속도 5u/s, 충격파 높이 1u.
+2. C06 새 씬: 36×14u 아레나. Exit Left (1.75, 2) → C04/FromRight, 스폰 FromLeft (3.5, 1.81). 오른쪽 출구 없음.
+   - 보스: 바닥 x 28 고정 위치, 플레이어 쪽을 바라봄, 크기 약 2×3u(회색 블록 + 구별되는 색).
+   - 전투 시작: 플레이어가 x 8을 넘으면 시작하고 왼쪽 출구 잠금(Door 표시 변화). 시작 전에는 안전 바닥에서 보스와 예고 영역이 모두 보인다.
+   - 패턴 고정 순서 반복: (1) 보스 앞 3u 바닥에 0.8초 예고 표시 → 근접 타격(피해 1) → 1.2초 회복. (2) 보스 앞 바닥에 1초 예고 → 높이 1u 충격파 1개가 왼쪽으로 5u/s 이동, 왼쪽 벽에서 소멸(피해 1) → 1.2초 회복.
+   - 보스는 플레이어 공격(X)으로 피해, HP 표시를 화면 상단에 표시. 소환·회복·분노 없음.
+   - 플레이어 사망: CP-C04 복귀, 보스 HP·패턴 초기화, 출구 잠금 해제.
+   - 보스 HP 0과 플레이어 사망이 같은 프레임이면 보스 처치를 우선.
+검증 → Validation/S3-09-boss.txt: 예고 시간·근접 범위·충격파 속도·높이 MEASURE, 대시로 근접 범위 이탈 가능, 점프로 충격파 회피 가능, 회복 시간 동안 공격 가능 횟수 MEASURE, 20 피해로 처치, 잠금/해제, 사망 초기화, 동시 프레임 처리, Pause 중 패턴 정지.
+커밋: "feat: S3-09 C06 boss"
+
+## S3-10. 엔딩·저장·타이틀 흐름 (GAME_DESIGN 21절, PRD UI Scope)
+1. 보스 처치 → 공격·피격 중지 → 진행 저장(bossDefeated) → 약 2초 "정상의 빛이 켜지는" 간단한 표현(화면 밝아짐 등) → Ending 씬: 엔딩 문구 + "타이틀로" 버튼(키보드 Z/Enter, 패드 A).
+2. 저장: bossDefeated·endingReached 추가. 처치 직후 종료해도 유지. 처치 후 이어하기 → Ending으로. 새 게임은 모두 초기화.
+3. 타이틀(Menu)에 Quit 항목이 없으면 추가(빌드에서 종료). Pause 메뉴에 "재개 / 타이틀" 두 항목이 없으면 추가. 이미 있으면 그대로.
+4. Ending 씬을 빌드 목록에 추가.
+검증 → Validation/S3-10-ending.txt: 처치→엔딩→타이틀 복귀, 처치 직후 프로세스 종료 후 이어하기 → Ending, 새 게임 초기화, Pause→타이틀, 패드만으로 메뉴·엔딩 조작.
+커밋: "feat: S3-10 ending, save and title flow"
+
+## 최종 빌드
+- 성공 단계를 포함한 Windows x64 빌드를 Builds/S3-full에 만든다(Menu, A01~A05, B01~B05, 성공한 C01~C04·C06, Ending). 테스트 씬 제외.
+- exe 실행 검사(직접 배치): 새 게임, 모든 문 왕복, 체크포인트 복귀, 능력 저장·이어하기, 보스 처치→엔딩→타이틀(성공 시), Error/Exception 0 → Validation/S3-full-build.txt, S3-full-runtime.txt.
+커밋: "build: S3 full build"
+
+[마무리]
+TASKS Latest Handoff: 단계별 결과(성공/실패/건너뜀), 커밋 해시, Validation 목록, Decisions Needed, 사용자 확인 항목(새 게임부터 엔딩까지 완주 시간, C02 조합 난이도, 보스 예고 가시성·회피 여유·첫 승리까지 시도 횟수, 엔딩 표현)을 정리하고 커밋. push하지 않는다.
