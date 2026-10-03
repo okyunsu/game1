@@ -24,7 +24,7 @@ public static class S3FinalVerification
         string path = "Validation/" + Nightly.Tag + ".txt";
         if (File.Exists(path)) throw new IOException("Preserve evidence");
         SessionState.SetString("S3Final.Path", path); SessionState.SetBool("S3Final.Run", true);
-        EditorSceneManager.OpenScene(Nightly.Tag.StartsWith("S3-07") ? "Assets/Scenes/B05.unity" : "Assets/Scenes/B02.unity");
+        EditorSceneManager.OpenScene(Nightly.Tag.StartsWith("S3-08") ? "Assets/Scenes/C02.unity" : Nightly.Tag.StartsWith("S3-07") ? "Assets/Scenes/B05.unity" : "Assets/Scenes/B02.unity");
         EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
     }
 }
@@ -42,7 +42,7 @@ public sealed class S3FinalRunner : MonoBehaviour
         InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
         InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
         kb = InputSystem.AddDevice<Keyboard>(); ProgressSave.Enabled = false;
-        var stack = new Stack<IEnumerator>(); stack.Push(Nightly.Tag.StartsWith("S3-07") ? C01C02() : B02()); bool failed = false;
+        var stack = new Stack<IEnumerator>(); stack.Push(Nightly.Tag.StartsWith("S3-08") ? C03C04() : Nightly.Tag.StartsWith("S3-07") ? C01C02() : B02()); bool failed = false;
         while (stack.Count > 0 && !failed) { object next = null; try { if (!stack.Peek().MoveNext()) { stack.Pop(); continue; } next = stack.Peek().Current; } catch (Exception e) { failed = true; lines.Add("FAIL: " + e); } if (next is IEnumerator child) stack.Push(child); else if (!failed) yield return next; }
         Application.logMessageReceived -= Log; InputSystem.RemoveDevice(kb); failed |= errors.Count > 0;
         lines.Insert(0, (failed ? "FAIL " : "PASS ") + Nightly.Tag + " Unity=" + Application.unityVersion);
@@ -97,6 +97,33 @@ public sealed class S3FinalRunner : MonoBehaviour
         peak = max;
     }
     float peak;
+    IEnumerator C03C04()
+    {
+        yield return new WaitForSeconds(.3f); ProgressSave.Enabled = true;
+        Motor.hasDoubleJump = true; Player.GetComponent<PlayerDash>().hasDash = true;
+        yield return ExitTo("C03"); var patrol = FindFirstObjectByType<EnemyPatrol>(); var turret = FindFirstObjectByType<EnemyTurret>();
+        Check(patrol != null && turret != null && turret.direction == -1, "C03 has exactly E1 and left-facing E3");
+        yield return new WaitForSeconds(3.5f);
+        Check(patrol.Turns > 0 && patrol.transform.position.x >= 8.9f && patrol.transform.position.x <= 15.1f && Mathf.Abs(patrol.transform.position.y - 3.5f) < .05f, "E1 patrol stays on authored top3 between x9 and15");
+        var perch = new GameObject("Verification perch"); perch.layer = 6; perch.transform.position = new Vector2(24, 2.5f); perch.AddComponent<BoxCollider2D>().size = new Vector2(2, 1);
+        Place(new Vector2(24, 3.81f)); yield return Until(() => turret.Warning); yield return Until(() => turret.ShotsFired == 1);
+        Place(new Vector2(32, 1.81f)); perch.SetActive(false);
+        yield return Until(() => EnemyShot.LastWallHit == "C03_Cover", 4);
+        Check(EnemyShot.LastWallHit == "C03_Cover", "C03 cover physically stops emitted E3 projectile");
+        Place(new Vector2(19, 1.81f)); int shots = turret.ShotsFired; yield return new WaitForSeconds(2.2f);
+        Check(turret.ShotsFired == shots && Player.GetComponent<PlayerHealth>().HP == 5, "player behind cover remains safe");
+        yield return ExitTo("C02"); yield return ExitTo("C03"); yield return ExitTo("C04");
+        var cp = FindFirstObjectByType<Checkpoint>(); Place(cp.transform.position); yield return new WaitForSeconds(.2f);
+        Check(RoomSession.Instance.CheckpointId == "CP-C04", "CP-C04 activates at x26");
+        Check(ProgressSave.TryLoad(out var data) && data.checkpointId == "CP-C04", "CP-C04 persisted valid");
+        Check(ProgressSave.Continue() && ProgressSave.PendingScene.EndsWith("C04.unity"), "CP-C04 Continue mapping"); ProgressSave.Pending = null;
+        yield return ExitTo("C03"); Check(RoomSession.Instance.Die(), "death in C03"); yield return Until(() => !RoomSession.Instance.Respawning);
+        Check(RoomSession.Instance.CurrentRoomId == "C04" && Mathf.Abs(Body.position.x - 26) < .1f, "death returns to CP-C04");
+        double started = Time.timeAsDouble; yield return Keys(Key.RightArrow); yield return Until(() => Body.position.x >= 33.4f);
+        double elapsed = Time.timeAsDouble - started; yield return Keys(); lines.Add($"MEASURE CP-C04 x26 to C06 entry trigger x33.75: {elapsed:F3}s");
+        Check(elapsed < 15, "CP-C04 to C06 entry less than15s by prescribed right input");
+        yield return ExitTo("C03"); yield return ExitTo("C02"); yield return ExitTo("C03"); yield return ExitTo("C04");
+    }
     IEnumerator C01C02()
     {
         yield return new WaitForSeconds(.3f); ProgressSave.Enabled = true;

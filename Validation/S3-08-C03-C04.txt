@@ -1,0 +1,40 @@
+PASS S3-08-C03-C04 Unity=6000.3.24f1
+PASS: enabled door to C03
+PASS: physical door to C03
+PASS: safe arrival C03/FromLeft
+PASS: C03 has exactly E1 and left-facing E3
+PASS: E1 patrol stays on authored top3 between x9 and15
+PASS: C03 cover physically stops emitted E3 projectile
+PASS: player behind cover remains safe
+PASS: enabled door to C02
+PASS: physical door to C02
+PASS: safe arrival C02/FromRight
+PASS: enabled door to C03
+PASS: physical door to C03
+PASS: safe arrival C03/FromLeft
+PASS: enabled door to C04
+PASS: physical door to C04
+PASS: safe arrival C04/FromLeft
+PASS: CP-C04 activates at x26
+PASS: CP-C04 persisted valid
+PASS: CP-C04 Continue mapping
+PASS: enabled door to C03
+PASS: physical door to C03
+PASS: safe arrival C03/FromRight
+PASS: death in C03
+PASS: death returns to CP-C04
+MEASURE CP-C04 x26 to C06 entry trigger x33.75: 1.280s
+PASS: CP-C04 to C06 entry less than15s by prescribed right input
+PASS: enabled door to C03
+PASS: physical door to C03
+PASS: safe arrival C03/FromRight
+PASS: enabled door to C02
+PASS: physical door to C02
+PASS: safe arrival C02/FromRight
+PASS: enabled door to C03
+PASS: physical door to C03
+PASS: safe arrival C03/FromLeft
+PASS: enabled door to C04
+PASS: physical door to C04
+PASS: safe arrival C04/FromLeft
+Error/Exception/Assert 0
