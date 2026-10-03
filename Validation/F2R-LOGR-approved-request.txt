@@ -1,0 +1,64 @@
+이번 실행은 승인된 아래 순서만 수행한다: D0(기준 T2 진단) → F2R(F2 재적용) → LOGR(폴링 방식 기록) → 최종 빌드. 그 밖의 작업·리팩터링·배치 변경·튜닝은 하지 않는다. push 금지.
+
+## 0. 시작 전
+- 읽을 범위: AGENTS.md, TASKS.md Latest Handoff, Validation/F2-rollback-summary.txt, LOG-playtest.txt, F2-feedback-night-F2-rerun.txt, Verification-night-T2-*.txt.
+- `git status` 깨끗한지 확인, HEAD가 F2 복원 커밋(기준 7ca75e6 + 기록 커밋)인지 확인. 아니면 전체 중단·기록만.
+- 이 지시문 전문을 `Validation/F2R-LOGR-approved-request.txt`로 저장·커밋.
+
+## 사용자 판단 (이번 실행의 근거, TASKS Decisions에 기록)
+Claude 원본 확인 결과:
+- T2 실패 지점은 F1-v2와 F2에서 똑같다(`NightTests.cs` T2의 “knockback movement lock active for 0.12s”). F2는 보호 파일을 하나도 바꾸지 않았는데 같은 줄에서 실패했다.
+- 이 검사는 피격 후 `WaitForFixedUpdate` + 프레임 대기 + 키 입력 이벤트를 거친 뒤에도 0.12초 잠금이 남아 있는지를 본다. 그래서 그 사이 걸린 실제 시간에 따라 결과가 바뀐다. 잠금 길이를 직접 재지 않는다.
+- F2 측정에서 잠금은 0.1333s(설정 0.12s, 60fps 프레임 단위)로 정상 동작했다.
+- T2가 마지막으로 PASS한 것은 S2-01(2026-10-03)이다. 이후 보스·S3 콘텐츠·S3-v2에서는 T2를 돌리지 않았다. **기준 상태에서도 이미 실패할 가능성이 있다.**
+- 사용자 결정: LOG의 사망 원인은 기록하지 않는다(“unrecorded”). 사망 방·위치만 기록한다.
+
+## 공통 규칙 (지난번과 같음 + 추가)
+- 수정 금지: PlayerInputReader, PlayerMotor, PlayerDash, PlayerHealth, GameState, RoomSession, KillZone, 모든 Tuning 기존 값, 씬 배치, 보스 로직, RoomCameraRig, Packages, ProjectVersion.
+- 단계마다 `git diff --stat`으로 보호 파일 무변경을 확인해 기록한다.
+- 실패 분류 (A) 게임 동작 실패 → 1회 수정, 재실패 시 단계 복원. (B) 검사 도구 실패 → 검사만 1회 보정, 기능 보존·REVIEW.
+- **추가 규칙: D0에서 기준 상태로 이미 실패하는 검사는 회귀 판정에 쓰지 않는다.** “기준과 같은 결과”면 회귀 없음으로 본다.
+- 기존 Validation은 덮어쓰지 않는다. 단계마다 로컬 커밋.
+
+## D0 — 기준 상태 T 검사 (코드 변경 없음)
+1. 아무것도 바꾸지 않은 현재 HEAD에서 T1, T2, T3, T4를 각각 실행하고 `Validation/D0-baseline-T1..T4.txt`로 저장. 기존 NightTests 그대로 실행한다(60fps 줄 추가 같은 변경도 하지 않는다).
+2. T2가 기준에서도 FAIL이면 BUG로 기록한다: “T2 0.12s 잠금 검사는 프레임 대기 시간 의존. 기준 상태에서 이미 FAIL. F1-v2/F2 원인 아님.”
+3. 이어서 **검사만** 고친 T2v2를 새 파일(`Assets/Editor/T2LockCheck.cs`)로 추가한다. NightTests.cs는 수정하지 않는다. 같은 CombatTest에서:
+   - 무적이 끝난 상태에서 `health.TakeDamage(1, 왼쪽 source)` 직접 호출 → 즉시 `KnockbackLocked==true`.
+   - 실제 경과 시간(Time.timeAsDouble)을 기록하며 프레임마다 확인 → 잠금 해제 시각 MEASURE. 합격: 0.12s ≤ 해제 ≤ 0.12s + 1프레임.
+   - 잠금 중 반대 방향 키를 눌러도 x속도 부호 유지(기존 항목과 동일).
+   - 30/60/120fps 각각 실행. `Validation/D0-T2v2.txt`.
+4. 기준 HEAD에서 T2v2가 PASS여야 다음 단계로 간다. FAIL이면 진짜 게임 문제이므로 F2R은 건너뛰고 LOGR만 진행한다.
+
+## F2R — F2 재적용
+- `Validation/F2-attempt.patch`를 적용하되 `Assets/Editor/NightTests.cs`와 `Assets/Editor/BossVerification.cs` 변경은 제외한다. F2 검사 도구(F2Verification 등)는 지난번 PASS한 버전으로 복구한다(지난 실행 로그 기준, 표시 바인딩 1회 보정 포함).
+- 적용 후 검사:
+  - F2 표시 검사 30/60/120fps (지난번 F2-feedback-night-F2-rerun과 같은 항목)
+  - T1, T2(기존), T2v2, T3, T4, S2-01, 보스 회복 구간 명중, E2 경고 중 명중 오버레이
+  - S1-02/04/07/08, 카메라 lead0
+- 판정: T2v2 PASS이고 나머지가 **D0 기준과 같거나 더 좋으면** 회귀 없음 → F2 REVIEW. 기존 T2가 기준과 같은 줄에서 FAIL하는 것은 회귀가 아니다.
+- 기준에서 PASS였던 검사가 FAIL로 바뀌면 (A). 1회 진단·수정만 하고, 그래도 실패하면 **적 쪽(HitFeedback, HP칸, 처치 효과)만 남기고 플레이어 AttackSlash만 복원**한 상태로 재검사한다. 적 쪽만으로 통과하면 그 상태를 REVIEW로 둔다(“적 피 안 보임” 문제는 해결). 그래도 실패하면 전체 복원.
+
+## LOGR — 플레이테스트 기록 (폴링 방식, 기존 로직 수정 없음)
+- 새 스크립트 `PlaytestLogger` 하나만 추가. 기존 이벤트 구독 + 매 프레임 상태 비교로 기록하고, 기존 파일은 수정하지 않는다. (RoomSession/GameState에 이벤트를 추가하지 않는다.)
+  - 방 입장: `SceneManager.sceneLoaded` (방 ID, 경과 시간)
+  - 사망: `GameState.Respawning`이 false→true로 바뀔 때. 방 ID와 그 순간 플레이어 x/y, cause=unrecorded
+  - 체크포인트: `RoomSession.CheckpointId` 값이 바뀔 때
+  - 능력: 대시·더블점프 보유 플래그가 false→true로 바뀔 때
+  - 보스: 전투 시작(Fighting false→true), 보스 중 사망(위 사망 + 방=C06), `BossEncounter.Defeated`
+  - 엔딩 씬 진입, Pause 누적 시간(`GameState.Paused`)
+- 새 게임 시작 시 `Application.persistentDataPath/Playtest/YYYYMMDD-HHMMSS.csv`를 만든다. 엔딩 또는 종료 시 요약 줄(지역별 A/B/C·보스 시간, 방별 사망 수, 보스 시도 수)을 쓴다. 화면에는 표시하지 않는다. 쓰기 실패 시 게임은 계속하고 로그 한 줄만 남긴다.
+- 로거 오브젝트는 DontDestroyOnLoad로 하나만 둔다. 생성은 새 스크립트의 `[RuntimeInitializeOnLoadMethod]`로 해서 씬·프리팹을 건드리지 않는다. 메뉴·테스트 씬에서는 새 게임 전까지 기록하지 않는다.
+- 합격 기준(`Validation/LOGR-playtest.txt`): 지정 입력으로 새 게임 → A01→A02 이동 → 사망 1회 → Pause 3초 → CSV에 방 입장·사망(방/위치)·Pause가 기록되고, 경과 시간에서 Pause가 제외됨. ProgressSave 파일 해시 전후 동일. S1-02/04/07/08 PASS. Error 0.
+- 실패 규칙 (A)/(B). LOGR은 F2R 결과와 무관하게 진행한다.
+
+## 최종 빌드
+- 성공(REVIEW)한 단계만 포함해 `Builds/S4-pre/Afterglow-S4-pre.exe` 빌드. 아무 단계도 성공 못 하면 빌드하지 않는다.
+- 실행 검사: 새 게임 → (F2R 성공 시) A01 공격 시 AttackSlash 활성 로그, 적 명중 HitFeedback 로그 → (LOGR 성공 시) CSV 생성·사망 줄 확인 → 보스 처치 → 엔딩, Error 0. 최종 S1-02/04/07/08 + 카메라 lead0.
+- README에 “S4-pre에서 확인할 것”과 CSV 폴더 경로(실제 경로 문자열) 3줄.
+
+## 인계 (TASKS Latest Handoff, 5분 분량)
+- D0 결과 한 줄(기준 T2가 원래 실패했는지)을 맨 위에 쓴다.
+- 단계별 결과, 커밋 해시, Validation 링크, 보호 파일 diff 결과.
+- 사용자 확인 목록: 켤 exe, 공격 표시·적 HP칸·번쩍임·보스 HP 막대가 보이는지, CSV 위치.
+- 끝나면 종료.

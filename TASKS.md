@@ -218,6 +218,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### 2026-10-04 DEC-F2R-LOGR — 새 승인
+첨부 명세의 사용자 판단: 기존 T2 잠금 검사는 여러 프레임 대기 후 남은 잠금만 보므로 기준 상태 실패 가능성을 D0로 확인한다. 기준 실패 검사는 새 회귀 판정에 쓰지 않고, 직접 시각 측정 T2v2와 나머지 기준 대비 결과로 판단한다. LOGR은 폴링을 허용하며 사망 원인을 `unrecorded`로 기록한다. 진행은 D0→F2R→LOGR→성공 단계 빌드만, 보호 로직/배치/수치 불변·push 금지. 과거 F1 실패 원인 확정은 D0 결과로도 별도 구분한다.
+
 ### LOG-001 — 정확한 사망 원인 기록과 구독 전용 제한
 LOG BLOCKED/미구현. RoomSession 진행 이벤트 없음, PlayerHealth.Hit은 원인·source 없는 Action이며 KillZone도 직접 Die만 호출함. 근처 적/접촉체 추정은 동시 피격·무적 상황에서 실제 사망 원인을 보장하지 못함. 기존 로직은 그대로 유지함. 필요 판단: 관찰 전용 이벤트 추가를 허용할지, 또는 사망 원인 unknown 및 일부 기록 보장 축소를 허용할지. [인터페이스 확인 및 미실시 내역](Validation/LOG-playtest.txt).
 
