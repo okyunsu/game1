@@ -79,7 +79,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
 | S3-01 | 더블 점프 시스템 | REVIEW | G2:DONE | Player 기본 보유 false, DoubleJumpTest true/3.6u 턱; 추가 속도12·재입력·접지회복·Coyote 후1회·대시/전환 회복 없음·저장. 30/60/120fps 일반/더블 최대 발 높이 및 G-J 기준 MEASURE, 3번째/홀드/미보유 차단 |
-| S3-02 | E2 돌진형 적 | TODO | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
+| S3-02 | E2 돌진형 적 | REVIEW | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
 | S3-03 | B01 G-J 턱·B02 | TODO | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
 | S3-04 | E3 사격형·B03 | TODO | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 | S3-05 | B04 획득·연습·B05 자리 | TODO | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High(25,3.3)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
@@ -232,6 +232,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-02 — 기술 PASS / REVIEW (1회 검사 보정)
+[S3-02-E2.txt](Validation/S3-02-E2.txt) 첫 돌진거리1.466u FAIL: 기존 E1 접촉 간섭. 게임 코드/값 변경 없이 검사 중 기존 fixture만 비활성화해 [S3-02-E2-rerun.txt](Validation/S3-02-E2-rerun.txt) 재검증 PASS. 예고0.620s·돌진0.420s/2.400u, 방향고정·회복1s·벽정지·3타처치·넉백3·접촉/무적·대시거리회피·사망/재입장 초기화, Error/Exception/Assert0. S1-02/04/07/08-night-S3-02-E2-rerun.txt 모두 PASS. E2Tuning.asset·E2.prefab·CombatTest만 추가, 실제 방 미배치.
+
 
 ### S3-01 — 기술 PASS / REVIEW
 [S3-01-doublejump.txt](Validation/S3-01-doublejump.txt): 실제 Unity 30/60/120fps 일반 최대2.535u, 더블4.965/5.049/5.049u(바닥 대비 발 높이). 3.6u G-J 여유조건 충족, 후보 높이 변경 없음. 홀드/3번째/대시회복/미보유 차단·Coyote 이후 낙하 추가1회·저장 CP-B01 로드 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-01-doublejump.txt 실제 모두 PASS. Player 기본 false, 전용 테스트 true. 기존 수치/배치 보존.

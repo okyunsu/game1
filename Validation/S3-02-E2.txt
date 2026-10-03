@@ -1,0 +1,11 @@
+FAIL S3-02-E2 Unity=6000.3.24f1
+PASS: outside 5u detection waits
+PASS: visible warning changes color
+MEASURE warning=0.620s
+PASS: 0.6s warning
+MEASURE charge duration=0.420s distance=1.466u
+FAIL: System.Exception: fixed direction 0.4s charge at 6u/s
+  at S3Runner.Check (System.Boolean ok, System.String m) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:24 
+  at S3Runner+<E2>d__15.MoveNext () [0x00343] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:30 
+  at S3Runner+<Start>d__11.MoveNext () [0x000a2] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3Verification.cs:26 
+Error/Exception/Assert 0

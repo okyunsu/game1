@@ -1,0 +1,24 @@
+PASS S3-02-E2-rerun Unity=6000.3.24f1
+NOTE: unrelated CombatTest fixtures disabled only in this verification run; first charge was obstructed by E1 patrol
+PASS: outside 5u detection waits
+PASS: visible warning changes color
+MEASURE warning=0.620s
+PASS: 0.6s warning
+MEASURE charge duration=0.420s distance=2.400u
+PASS: fixed direction 0.4s charge at 6u/s
+PASS: 1s recovery
+PASS: wall stops charger
+PASS: contact damage one and invincibility
+PASS: invincibility rejects repeated contact
+PASS: dash increases separation to evade charge; no invulnerability claim
+PASS: attack reduces E2 HP 0
+PASS: received knockback 3u/s
+PASS: attack reduces E2 HP 1
+PASS: received knockback 3u/s
+PASS: three attacks destroy E2
+PASS: death reset request
+PASS: death restores E2 HP and idle state
+PASS: leave CombatTest
+PASS: reenter CombatTest
+PASS: reentry resets E2
+Error/Exception/Assert 0

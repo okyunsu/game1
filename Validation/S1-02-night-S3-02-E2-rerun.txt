@@ -1,0 +1,20 @@
+PASS S1-02; Unity=6000.3.24f1; UTC=2026-10-03T03:49:31.0819153Z; input=Unity virtual Keyboard/Gamepad (physical devices not tested)
+PASS: D moves right
+PASS: left arrow moves left
+PASS: gamepad stick and device switch
+PASS: gamepad D-pad
+PASS: Space press once
+PASS: hold does not repeat
+PASS: jump release
+PASS: gamepad A jump
+PASS: Esc pauses physics and gameplay map
+PASS: UI map blocks gameplay input
+PASS: A resumes without jump leakage
+PASS: Menu button pauses
+PASS: B cancels pause
+PASS: active gamepad disconnect pauses
+PASS: keyboard resumes after disconnect
+PASS: pause/resume clears pending jump
+PASS: disable clears pause and disconnect flags
+PASS: reenabled gameplay map accepts movement
+PASS: reenabled gameplay map accepts jump

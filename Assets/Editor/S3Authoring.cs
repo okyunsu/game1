@@ -9,6 +9,18 @@ using UnityEngine.SceneManagement;
 // Explicit stage entry points; never run implicitly during import.
 public static class S3Authoring
 {
+    public static void E2()
+    {
+        var tuning=ScriptableObject.CreateInstance<E2Tuning>();AssetDatabase.CreateAsset(tuning,"Assets/ScriptableObjects/E2Tuning.asset");
+        var go=PrefabUtility.LoadPrefabContents("Assets/Prefabs/E1.prefab");UnityEngine.Object.DestroyImmediate(go.GetComponent<EnemyPatrol>());
+        go.name="E2 Charger";go.GetComponent<SpriteRenderer>().color=new Color(.9f,.4f,.15f);go.AddComponent<EnemyCharger>().tuning=tuning;
+        PrefabUtility.SaveAsPrefabAsset(go,"Assets/Prefabs/E2.prefab");PrefabUtility.UnloadPrefabContents(go);
+        EditorSceneManager.OpenScene("Assets/Scenes/Test/CombatTest.unity");Enemy("E2",new Vector2(25,1.81f));EditorSceneManager.SaveScene(SceneManager.GetActiveScene());AssetDatabase.SaveAssets();
+    }
+    public static GameObject Enemy(string id,Vector2 at)
+    {
+        var root=new GameObject(id+" Reset");root.transform.position=at;var reset=root.AddComponent<EnemyReset>();reset.prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/"+id+".prefab");return root;
+    }
     public static void DoubleJump()
     {
         var root = PrefabUtility.LoadPrefabContents("Assets/Prefabs/Player.prefab");
