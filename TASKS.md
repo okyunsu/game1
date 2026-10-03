@@ -14,11 +14,11 @@
 ## Current Sprint
 
 **Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
-G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 현재 승인 F1→S3-09 좁은20u 추적카메라→S3-10→S3-complete. F1과 S3-09 두 번 검사 실패 후 전체 복원/BLOCKED, S3-10 의존 SKIPPED. 좁은방 시야 사전 검사는 PASS. 선택 방·아트·사운드·K2·기존 배치 변경 없음, push 금지. Content Complete/Sprint3 Gate 미충족.
+G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
 ## Current Tasks
 
-2026-10-03 최신 F1/S3-complete 실행: F1 2회 실패·복원/BLOCKED, S3-09 좁은20u 시야사전PASS/실제검사2회실패·복원/BLOCKED, S3-10 의존SKIPPED. 새 Windows x64 빌드 S3-complete는 기존 성공한 Menu+14방/C04까지. F1/C06/Ending 미포함, Content Complete/Gate 미충족, push 없음. 최신 실제검증은 Latest Handoff 및 S3-complete Validation 참조. 이전 S3-full 결과는 아래 이력으로 보존.
+2026-10-03 v2 최신: F1 BLOCKED/전체복원(5c54277), 실험 Builds/Experimental-F1. S3-09 REVIEW(a969663), S3-10 REVIEW(3beed76), 최종 S3-complete Windows x64 PASS. 15플레이방/17씬, X20타보스→엔딩→타이틀/모든문왕복/저장Continue/필수회귀PASS, Error/Exception/Assert0. 사용자 완주와 체감 대기, push 없음. 이전 실행 실패 기록은 이력으로 보존.
 
 아래는 같은 날짜의 앞선 실행 이력이며 위 최신 상태를 우선한다.
 
@@ -88,7 +88,7 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 현재 승인 F1�
 | S3-06 | B02 E2 소개 위치 수정 | REVIEW | G3:DONE | E2 x17/왼쪽/바닥, 발판 위 감지4.787u·반복 돌진 벽앞0.140u 정지·피해 없음·바닥 피해·B01/B02/B03 왕복 및 필수 회귀 PASS |
 | S3-07 | B05 연결·C01 휴식·C02 조합 | REVIEW | G3:DONE | 지정 배치·CP-C01 저장/사망·왕복·바닥 더블 최대발5.905<6.8·Start 일반5.535<6.8/더블 착지·5u 간격 일반실패/대시성공·스폰 비겹침·필수 회귀 PASS |
 | S3-08 | C03 종합 이동·C04 휴식 | REVIEW | S3-07:REVIEW | 지정 E1/E3/엄폐·CP-C04 저장/사망·C02/C03/C04 왕복·CP→C06 입구1.280s·필수 회귀 PASS, Right는 C06 생성까지 비활성 |
-| F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | 2회 검사 실패, 전체 복원; 실제 잔존 피드백 없음 |
+| F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | v2 첫120fps 명중FAIL→검사1회보정→효과PASS, 필수T2 .12s 넉백잠금FAIL. 전체복원, 실험빌드 사용자 판단 대기 |
 | S3-09 | C06 최종 보스 | REVIEW | S3-08:REVIEW | v2 작성 실패 1회 보정 후 시야/회피/회복 X명중/20타/사망/동시프레임/Pause/문 왕복과 필수 회귀 PASS. 사용자 체감 대기. F1 미적용 |
 | S3-10 | 엔딩·저장·타이틀 흐름 | REVIEW | S3-09:REVIEW | v2 실제 exe 처치즉시저장/2초빛/엔딩/타이틀/즉시종료후Continue/새게임초기화/가상패드 UI와 필수 회귀 PASS. 엔딩 표현 사용자 판단 대기 |
 | S3-G | Sprint 3 Gate | TODO | 사용자 판단 | Content Complete 미충족, 다음 Sprint 미착수 |
@@ -209,14 +209,17 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+현재 v2 판단: F1 필수 T2 넉백잠금0.12s 검사 실패 원인·공격 손맛/피드백 후보 수락. 효과 이벤트 30/60/120fps는 PASS이나 단계는 전체복원/BLOCKED다. Builds/Experimental-F1/Afterglow.exe 사용자 직접 플레이 후 재개 범위를 결정한다. 보스 좁은방 시야/회복 공격 이전 차단은 v2로 해결. 보스·엔딩 기술PASS는 체감/Gate 수락을 뜻하지 않으며 사용자 완주 후 Sprint3 Gate 판단. 선택방/에셋/K2/다음Sprint 미승인.
+
+
 2026-10-03 v2 F1: 효과 검사 첫120fps 명중FAIL → 방향 입력을 FixedUpdate까지 유지하도록 1회 보정 → 30/60/120fps 효과 이벤트 PASS. 필수 T2 회귀 knockback lock0.12s FAIL로 단계 실패/전체 복원. 추가 재시도 없음. 실험 Builds/Experimental-F1/Afterglow.exe 유지(기동 Error/Exception/Assert0), 사용자가 공격 손맛을 직접 판단. S1-02/04/07/08/N2카메라/T1 PASS, T3/T4/S2-01 미실시. 독립 S3-09 진행; 보스 F1 미적용. 증거 F1-feedback-v2.txt, F1-feedback-v2-rerun.txt, Verification-night-T2-F1-v2.txt, Experimental-F1-v2-build/runtime.txt.
 
-S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](Validation/S3-09-narrow-preflight.txt), [첫검사](Validation/S3-09-boss-narrow.txt), [재검사](Validation/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
+[이전 실행 이력 — v2 회복 직접배치 X명중 및 20타/회피/사망 검증으로 해결] S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](Validation/S3-09-narrow-preflight.txt), [첫검사](Validation/S3-09-boss-narrow.txt), [재검사](Validation/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
 
 
 2026-10-03 사용자 S3-C06-VIEW 결정: C06 폭20u(벽0~1/19~20), 보스중심17.5/폭2, 시작선x>5, 공통5.5/0/0.15 플레이어 추적 유지. 이전36u/x28/x8 시야충돌은 이 후보로 재검사. A01~C04 배치/RoomCameraRig 변경 금지(C04 Right 활성화만 허용). 현재 승인 F1→S3-09→S3-10→S3-complete, push 없음.
 
-FX-001 / F1 — 두 번의 검사 실패 후 전체 복원(BLOCKED). 첫 검사30fps 명중/실시간Stop/Flash와 60fps Slash까지 통과했으나 재사용 HitFlash 컴포넌트를 새 효과로 오판한 miss assertion FAIL. 검사만 1회 보정 후 재검증에서60fps 명중 직후 대상색=흰색 확인 FAIL. Update/LateUpdate 관찰 순서 영향 가능성은 미확정, 추가 수정/실행 금지 규칙에 따라 코드/에셋/Prefab/검사 도구 전체 복원. F1 T1~T4/S2-01 및 단계 후 회귀는 미실시. 독립 S3-09는 계속하되 F1 피드백은 성공 빌드에 포함할 수 없고 보스에도 미적용.
+[이전 실행 이력 — v2 이벤트 기반 효과검사 PASS, 현재 차단은 T2 회귀] FX-001 / F1 — 두 번의 검사 실패 후 전체 복원(BLOCKED). 첫 검사30fps 명중/실시간Stop/Flash와 60fps Slash까지 통과했으나 재사용 HitFlash 컴포넌트를 새 효과로 오판한 miss assertion FAIL. 검사만 1회 보정 후 재검증에서60fps 명중 직후 대상색=흰색 확인 FAIL. Update/LateUpdate 관찰 순서 영향 가능성은 미확정, 추가 수정/실행 금지 규칙에 따라 코드/에셋/Prefab/검사 도구 전체 복원. F1 T1~T4/S2-01 및 단계 후 회귀는 미실시. 독립 S3-09는 계속하되 F1 피드백은 성공 빌드에 포함할 수 없고 보스에도 미적용.
 
 
 S3-C06-VIEW — 2026-10-03 사전 검사 BLOCKED: 공통 RoomCameraRig size5.5u·16:9의 가시폭19.556u, 시작 직전 플레이어 왼쪽7.59~보스 오른쪽29의 필요폭21.410u. 실제 x3.5/x7.99 카메라 투영에서 보스·전방예고 모두 화면밖([S3-09-boss.txt](Validation/S3-09-boss.txt)). 보스x28, 전투시작x>8, 시작전 안전바닥에서 보스/예고전체 표시 조건을 모두 만족할 수 없음. 시작선/보스좌표/카메라 프레이밍 중 변경 범위에 대한 사용자 결정 필요. AGENTS Stop Conditions에 따라 구현 전에 해당 경로 중단, S3-10 의존 건너뜀. 오류 재시도 대상이 아닌 명세 충돌이므로 허용되지 않은 후보 수정/반복 실행 없음. 임시 사전 검사 스크립트 제거, 씬/튜닝 변경 없음. C04 Right는 성공 C06 부재로 비활성 유지. 기존 G3 수락/S3-06~08 회귀는 유효.
@@ -256,6 +259,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-complete v2 — 보스·엔딩 포함 기술 PASS
+[빌드](Validation/S3-complete-v2-build.txt), [실제 exe 요약](Validation/S3-complete-v2-runtime.txt), [보존 확인](Validation/S3-complete-v2-preservation.txt). 15방/17씬, build errors0/warnings0, 실제 새게임/전체문왕복/5CP/두능력별도Continue/X20타보스→2.0432s엔딩→타이틀 PASS, Error/Exception/Assert0. 최종 S1-02/04/07/08/N2 회귀 PASS. 최초 검사 스크린샷 API 컴파일 실패는 호출 제거1회보정 후 성공. F1 미포함, 사용자 완주/Gate/체감 대기.
+
 
 2026-10-03 v2 S3-10 PASS/REVIEW: EndingFlow(2초 실시간)/EndingMenu/Ending 씬, bossDefeated·endingReached 저장, Continue 엔딩 분기, Menu Quit 및 Pause 재개/타이틀. 실제 별도 Windows 프로세스 route PID24412/kill-now PID10268/continue PID25612: 처치직후 종료→Continue 엔딩·새게임 전체초기화·패드UI·Z/Enter PASS, 엔딩전환2.0552s. S1-02/04/07/08/N2 회귀 PASS, Error/Exception/Assert0. 엔딩표현/물리패드/자연완주 미수락. 증거 Validation/S3-10-ending-v2.txt 및 하위3로그.
 
@@ -553,6 +560,4 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-F1 BLOCKED/복원 (5c54277), 실험 Builds/Experimental-F1/Afterglow.exe. S3-09 REVIEW (a969663). 2026-10-03 v2 S3-10 PASS/REVIEW: EndingFlow(2초 실시간)/EndingMenu/Ending 씬, bossDefeated·endingReached 저장, Continue 엔딩 분기, Menu Quit 및 Pause 재개/타이틀. 실제 별도 Windows 프로세스 route PID24412/kill-now PID10268/continue PID25612: 처치직후 종료→Continue 엔딩·새게임 전체초기화·패드UI·Z/Enter PASS, 엔딩전환2.0552s. S1-02/04/07/08/N2 회귀 PASS, Error/Exception/Assert0. 엔딩표현/물리패드/자연완주 미수락. 증거 Validation/S3-10-ending-v2.txt 및 하위3로그.
-다음 승인 작업: 최종 S3-complete Windows x64 빌드와 실제 전체 문/저장/20타 보스→엔딩 검증. push 없음.
-
+2026-10-03 v2 승인 순서 종료. F1 복원/BLOCKED(5c54277), S3-09 REVIEW(a969663), S3-10 REVIEW(3beed76), 최종 빌드/실제exe/필수회귀PASS. Content Complete 후보(F1 미포함), Sprint 3 Gate는 사용자 완주 후 판단. 실험 Builds/Experimental-F1/Afterglow.exe, 최종 Builds/S3-complete/Afterglow.exe. 상세 커밋/증거/사용자 판단은 최종 인계에 기록. main, 로컬 커밋만, push 없음.

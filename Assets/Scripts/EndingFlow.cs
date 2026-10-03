@@ -6,6 +6,7 @@ public sealed class EndingFlow:MonoBehaviour
 {
  [Min(0),Tooltip("Summit light duration, real seconds.")]public float lightDuration=2;
  bool lighting;double began;
+ public double LightStartedAt=>began;
  void OnEnable()=>GetComponent<BossEncounter>().Defeated+=Victory;
  void OnDisable()=>GetComponent<BossEncounter>().Defeated-=Victory;
  void Victory(){if(lighting)return;lighting=true;began=Time.realtimeSinceStartupAsDouble;ProgressSave.MarkBossDefeated(RoomSession.Instance);GameState.GetOrCreate().SetCompleting(true);StartCoroutine(Finish());}

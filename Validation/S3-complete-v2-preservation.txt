@@ -1,0 +1,7 @@
+PASS protected baseline preservation against initial main 5eddee4
+Protected diff: 
+
+Packages/ProjectVersion/MovementTest/Level originals/RoomCameraRig/existing tuning assets unchanged
+A01-C03 unchanged; C04 only right-exit m_Enabled 0->1. C06 and Ending are new.
+F1 runtime files removed; Player.prefab restored; feedback excluded from final build.
+No push. Build and Logs ignored. Validation written only as new files.

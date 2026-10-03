@@ -50,8 +50,9 @@ public sealed class S3BuildVerification:MonoBehaviour
         yield return ExitTo("C03");yield return ExitTo("C04");yield return TouchCP("CP-C04");yield return ExitTo("C03");yield return Death("CP-C04");Check(RoomSession.Instance.CurrentRoomId=="C04","exe C03 death restores CP-C04");
         yield return ExitTo("C03");yield return ExitTo("C02");yield return ExitTo("C01");yield return ExitTo("B05");yield return ExitTo("C01");yield return ExitTo("C02");yield return ExitTo("C03");yield return ExitTo("C04");
         Check(ProgressSave.TryLoad(out var data)&&data.checkpointId=="CP-C04"&&data.dash&&data.doubleJump,"full route persisted both abilities and CP-C04");
-        var blocked=Array.Find(FindObjectsByType<RoomExit>(FindObjectsSortMode.None),e=>e.destinationRoomId=="C06");Check(blocked!=null&&!blocked.enabled,"C06 door disabled; unsuccessful stages excluded safely");
+        var blocked=Array.Find(FindObjectsByType<RoomExit>(FindObjectsSortMode.None),e=>e.destinationRoomId=="C06");Check(blocked!=null&&blocked.enabled,"C06 door enabled; boss stage included");
+        yield return ExitTo("C06");Check(FindFirstObjectByType<BossEncounter>().State==BossEncounter.Phase.Idle,"C06 precombat safe spawn");yield return ExitTo("C04");
         Check(SceneManager.sceneCount==1&&FindObjectsByType<PlayerInputReader>(FindObjectsSortMode.None).Length==1,"single scene and persistent player after all doors");
-        lines.Add("S3-09 BLOCKED / S3-10 SKIPPED: boss, Ending, Quit and Pause title not implemented or tested. Physical pad/natural route play time not tested.");
+        lines.Add("All world doors including C04-C06 traversed both ways. Boss/Ending checked separately by CompletionBuildVerification; physical pad/natural route play time not tested.");
     }
 }

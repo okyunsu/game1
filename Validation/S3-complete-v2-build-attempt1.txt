@@ -1,0 +1,4 @@
+FAIL final build attempt 1: verification-only ScreenCapture API not present in installed project modules.
+Actual Unity compilation errors CS0103 in CompletionBuildVerification.cs; build pipeline not entered.
+One correction: remove optional screenshot calls; packages and game behavior unchanged.
+Retry evidence: S3-complete-v2-build.txt. See Logs/S3-complete-v2-build.log.

@@ -1,0 +1,14 @@
+PASS Windows exe final Unity=6000.3.24f1 PID=18184
+PASS: starts Menu
+PASS: final route slot can Continue CP-C04
+PASS: final Continue both abilities CP-C04
+PASS: C04 C06 door enabled
+PASS: exe actual X twenty hits defeats boss
+PASS: boss flag persisted synchronously before light
+PASS: victory stops attacks and damage
+MEASURE kill -> Ending real=2.0432s
+PASS: approximately2s light then Ending
+PASS: endingReached saved
+PASS: pad Ending returns Menu scale1
+Prescribed virtual gamepad / keyboard. Physical pad and natural play time not tested.
+Error/Exception/Assert 0

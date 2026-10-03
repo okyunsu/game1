@@ -9,7 +9,7 @@
 
 ## 현재 상태
 
-2026-10-03 Sprint 2 Gate 사용자 통과, 현재 Sprint 3 / Target 15방. S3-01~05 기술 검증 PASS·체감 REVIEW. Dash·Double Jump·E1/E2/E3·단일 슬롯 저장, A01~A05/B01~B05를 구현했다. 현재 A/B 10방만 빌드에 포함하며 C지역·보스·엔딩·선택 방·아트는 이번 실행에서 제외했다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
+2026-10-03 Sprint 3 / Target 15방. A01~A05/B01~B05/C01~C04/C06와 단일 Ending을 포함한 Content Complete 후보를 만들었다. S3-01~05 DONE, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 완주 후 판단한다. F1은 필수 T2 회귀 실패로 복원/BLOCKED, 최종 빌드에는 공격 피드백이 없다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
 
 ## Unity에서 실행
 
@@ -24,19 +24,19 @@
 
 ## 로컬 빌드 실행
 
-현재 통합 빌드: `Builds/S3-B/Afterglow-S3.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 데이터와 DLL을 함께 보존한다. Menu·A01~A05·B01~B05 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 이전 S2-day/S2-night/Slice/N1 빌드는 과거 검증용이다.
+현재 통합 빌드: `Builds/S3-complete/Afterglow.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 다른 이름의 실행 파일과 이전 S3-B/S3-full/S3-complete 빌드는 과거 검증용이다.
 
-이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. 종료는 창 닫기/Alt+F4.
+이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. Pause에서는 ↑/↓로 재개/타이틀을 고르고 Z/Enter/패드 A로 확인한다. 종료는 타이틀 Quit 또는 창 닫기/Alt+F4.
 
-A05 Dash → A03 격자 → B01 턱 관찰 → B02 E2 → B03 E3 → B04 Double Jump → B01 높은 출구 → B05 자리까지 플레이할 수 있다. B04는 왼쪽으로 되돌아간다. B05는 왼쪽 높은 문으로 B01에 돌아가며 오른쪽 출구는 없다. A01~A05 기존 배치는 보존했다. 대시 카메라 밀림 CAM-002는 아트 적용 후 확인 예정(DEFERRED), 기존 감쇠0.15s 유지.
+A05 Dash → A03 격자 → B01 → B02/B03 → B04 Double Jump → B01 높은 출구 → B05 → C01~C04 → C06 보스 → Ending으로 연결된다. B04에서는 왼쪽으로 되돌아간다. C06에서 x5를 넘으면 전투 시작, 사망 시 CP-C04 복귀. 보스 처치 후 약2초 빛 표현과 엔딩을 거쳐 타이틀로 돌아간다. 기존 배치와 공통 카메라5.5/0/.15는 유지했다.
 
-사용자 확인: B01 3.6u 턱 높이, E2 예고 가시성·회피 여유, E3 엄폐 체감, B04 추가점프/연습 높이, A05 획득부터 B05까지 자연스러운 전체 흐름 시간. 지정 입력/배치 exe 검증과 저장·별도 프로세스 Continue는 통과했으며 실제 게임패드·자연스러운 완주 시간은 이번 자동 검증에 포함하지 않았다.
+사용자 확인: 새 게임부터 엔딩까지 자연 완주 시간, C02 조합 난이도, 보스 예고 가시성·회피 여유·첫 승리 시도 횟수, 엔딩 표현. 공격 손맛과 F1 수치는 `Builds/Experimental-F1/Afterglow.exe`에서 별도 확인한다(보스/엔딩 미포함). 자동 지정 입력은 물리 게임패드·사용자 체감 수락을 대체하지 않는다.
 
 ## 저장·이어하기
 
 Menu의 이어하기 / 새 게임을 방향키·Enter 또는 패드 D-pad·A로 선택한다. 새 게임은 기존 저장이 있으면 확인을 요청하며 Esc/패드 B로 취소할 수 있다. 유효한 저장이 없거나 손상됐으면 이어하기가 비활성이고 안내 후 새 게임을 선택한다.
 
-단일 파일: `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json` (`Application.persistentDataPath`). 현재 저장 값은 형식 버전·Dash/Double Jump 보유·마지막 CP-A01/CP-A03/CP-B01/CP-C01/CP-C04이며 HP·좌표·적 상태는 저장하지 않는다. 체크포인트 접촉·능력 획득 때만 자동 저장한다. 실행 파일을 닫은 뒤 이 파일을 지우면 초기화되고, 새 게임으로도 초기화할 수 있다. 손상 파일은 명시적 새 게임 선택 시 `.invalid-시간` 이름으로 보존한다. 쓰기 실패는 화면에 표시하고 다음 저장에서 재시도한다.
+단일 파일: `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\progress.json` (`Application.persistentDataPath`). 현재 저장 값은 형식 버전·Dash/Double Jump 보유·마지막 CP-A01/CP-A03/CP-B01/CP-C01/CP-C04·bossDefeated·endingReached이며 HP·좌표·적 상태는 저장하지 않는다. 체크포인트 접촉·능력 획득·보스 처치·엔딩 도달 때 자동 저장한다. 보스 처치 직후 종료하거나 엔딩 후 이어하기를 선택하면 Ending으로 간다. 실행 파일을 닫은 뒤 이 파일을 지우면 초기화되고, 새 게임으로도 초기화할 수 있다. 손상 파일은 명시적 새 게임 선택 시 `.invalid-시간` 이름으로 보존한다. 쓰기 실패는 화면에 표시하고 다음 저장에서 재시도한다.
 
 Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거나 덮어쓰지 않는 새 게임 상태다. 저장 검토는 Menu 또는 Windows 빌드에서 한다. 테스트 CLI의 `-save-path`는 자동 검증용 격리 파일이며 일반 실행의 저장 위치를 바꾸지 않는다.
 ## 전용 시스템 테스트 (REVIEW)
@@ -85,7 +85,7 @@ Scene의 Play 중 배치 변경은 되돌아가므로 Stop 후 다시 입력한�
 ## 다음 사용자 확인
 
 S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수락(DONE). S3-06~08은 기술 PASS/REVIEW: B02 소개 위치, C02 조합 난이도, C03 종합 이동과 C04 휴식 체감을 확인한다. 실제 패드 조작·탈착과 자연스러운 전체 플레이 시간은 미실시.
-수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-C06-VIEW는 사용자20u 좁은방 결정으로 시야사전PASS. 후속 F1 및 S3-09 실제검사는 각각2회실패해 모두 복원/BLOCKED, S3-10 엔딩/메뉴확장은 의존 건너뜀. Decisions Needed의 FX-001/S3-09-NARROW 실패 원인 확인과 재개 범위 재승인이 필요하다. 선택 방·아트·사운드·K2 미포함.
+수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-09/10 v2는 실제 보스·엔딩과 필수 회귀 PASS/REVIEW다. F1 효과 이벤트 검사는 PASS였으나 T2 회귀 실패로 전체 복원했다. 선택 방·아트·사운드·흔들림·K2는 포함하지 않았다.
 
 ## 문서
 
@@ -94,14 +94,10 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 - [TASKS](TASKS.md): 현재 작업·검토·검증 증거
 - [AGENTS](AGENTS.md): 에이전트 작업 규칙
 
-## S3-full — 성공 단계 빌드 (2026-10-03)
+## S3-complete v2 (2026-10-03)
 
-실행 파일: `Builds/S3-full/Afterglow-S3-full.exe` (Windows x64). Menu+A01~A05+B01~B05+C01~C04, 총15씬/14플레이방. 테스트 씬 제외. B05에서 C01로 연결되며 C01/C04 체크포인트 저장과 Continue를 지원한다. C04가 현재 마지막 방이고 C06 방향 Door는 비활성이다. 보스·엔딩·타이틀 Quit·Pause 타이틀은 S3-09 BLOCKED/S3-10 SKIPPED로 포함하지 않았다. 완주 빌드가 아니다.
+실행: `Builds/S3-complete/Afterglow.exe`. [빌드 결과](Validation/S3-complete-v2-build.txt), [실제 exe 결과](Validation/S3-complete-v2-runtime.txt). 15방/17씬, Error/Exception/Assert0. 최초 최종 빌드의 검사 전용 ScreenCapture 컴파일 오류는 호출 제거 1회 보정 후 성공했다.
 
-배치 수정 위치는 B02(E2 Reset x17), B05(B05_Step), C01(CP-C01 x8), C02(Start/High1/High2/ExitLedge), C03(Patrol/Patrol Left·Right/Cover/TurretBase), C04(CP-C04 x26) Scene이다. 적 공통값은 기존 E1/E3 Tuning Asset, 반복 오브젝트는 기존 Prefab을 사용한다. Play 중 Scene 수정은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적 저장하며 이번 실행에서 기존 수치를 변경하지 않았다.
+C06 배치와 전투 시작선·예고 영역은 `Assets/Scenes/C06.unity`, 공통 보스 값은 `Assets/ScriptableObjects/BossTuning.asset`, 반복 충격파는 `Assets/Prefabs/BossWave.prefab`에서 수정한다. 빛 시간(2s)은 C06 보스의 EndingFlow / Light Duration, 엔딩 문구·버튼은 `Assets/Scripts/EndingMenu.cs`다. Scene의 Play 변경은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적으로 저장한다. 기존 Player/Combat/E1/E2/E3 값은 변경하지 않았다.
 
-## S3-complete — 복원 후 성공 콘텐츠 빌드 (2026-10-03)
-
-실행: `Builds/S3-complete/Afterglow-S3-complete.exe`. 이름은 이번 실행의 출력 폴더이며 Content Complete를 뜻하지 않는다. Menu와 A01~A05/B01~B05/C01~C04(14방)만 포함한다. F1 피드백과 C06 보스는2회 검증 실패 규칙으로 전부 복원됐고, 의존하는 엔딩·Quit·Pause 타이틀은 미구현이다. C04의 보스방 Door는 비활성이다. 기존 조작/수치/배치/저장과 S3-full 콘텐츠가 유지된다.
-
-좁은20u 보스방의 시야 후보는 두 해상도에서 사전PASS였으나 보스 회복 구간 공격 명중 검증은 실패했다. F1은60fps 명중 번쩍임 검증에 실패했다. 상세 새 Validation과 TASKS Latest Handoff를 참고한다. 이 빌드에는 변경된 피드백 수치나 BossTuning/FeedbackTuning 에셋이 없다.
+F1 실패 실험: `Builds/Experimental-F1/Afterglow.exe`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.

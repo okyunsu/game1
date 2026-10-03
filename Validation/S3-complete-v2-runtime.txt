@@ -1,0 +1,11 @@
+PASS S3-complete v2 Windows x64 runtime integration — Unity 6000.3.24f1
+Build: Menu+A01-A05+B01-B05+C01-C04+C06+Ending; 15 play rooms / 17 scenes; test scenes excluded.
+Actual exe processes: route and continue at1280x720; boss-ending PID18184 at1920x1080. Full evidence in S3-complete-v2-runtime-route.txt / -continue.txt / -boss-ending.txt.
+New Game, all enabled doors in both directions including C04<->C06 precombat, CP-A01/A03/B01/C01/C04 death return, physical Dash/DoubleJump pickups and second-process Continue PASS.
+C02 prescribed DoubleJump and Jump+Dash scenarios PASS. Direct placement and prescribed virtual input; no navigation robot.
+Actual X twenty-hit boss defeat -> synchronous bossDefeated save -> 2.0432s light -> Ending save -> pad title return PASS.
+S1-02/04/07/08/N2 camera final stage regressions PASS (night-S3-complete-v2 files).
+Runtime Error/Exception/Assert0 in all three processes. Final build errors0/warnings0 after one verification-only compile correction.
+F1 omitted after required T2 regression failure and full restoration; experimental build retained at Builds/Experimental-F1/Afterglow.exe.
+Content Complete candidate for world/boss/ending; Sprint3 Gate requires user full playthrough. Physical pad, natural completion time, C02 feel, boss readability/dodge margin/attempt count and ending presentation remain user review.
+No user save file accessed: Logs/S3-complete-v2-slot.json isolated slot.
