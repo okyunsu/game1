@@ -1,0 +1,51 @@
+이번 실행은 승인된 아래 순서만 수행한다: TM(검사 도구 정비) → U0(PRD UI 범위 점검, 읽기 전용) → U1(누락된 PRD UI 항목 구현) → 최종 빌드. 튜닝·레벨 배치·새 시스템·Sprint 3 Gate 판단은 하지 않는다. push 금지.
+
+## 0. 시작 전
+- 읽을 범위: AGENTS.md, TASKS.md Latest Handoff, PRD.md의 UI Scope·Save/Checkpoint Scope·Definition of Done, GAME_DESIGN의 UI/HUD 관련 절, Validation/D0-summary.txt.
+- `git status` 깨끗한지, HEAD가 S4-pre 인계 커밋(3da46e9 이후)인지 확인. 아니면 전체 중단·기록만.
+- 이 지시문 전문을 `Validation/TM-U1-approved-request.txt`로 저장·커밋.
+
+## 공통 규칙
+- 수정 금지: PlayerInputReader, PlayerMotor, PlayerDash, PlayerHealth의 게임 로직, GameState, RoomSession의 진행·전환 로직, KillZone, 보스·적 로직, 모든 Tuning 기존 값, 씬의 블록·적·출구·체크포인트 배치, RoomCameraRig, Packages, ProjectVersion, ProgressSave의 저장 형식.
+- 허용: 새 스크립트, 새 Asset(`UITuning`), 기존 OnGUI 표시 코드 교체(표시만), `[RuntimeInitializeOnLoadMethod]`로 생성하는 HUD 오브젝트, 검사 도구 파일.
+- 단계마다 `git diff --stat`으로 보호 파일 무변경을 확인해 기록한다.
+- 실패 분류: (A) 게임 동작 실패 → 1회 수정, 재실패 시 단계 복원. (B) 검사 도구 실패 → 검사만 1회 보정, 기능 보존·REVIEW. 기준에서 이미 실패하던 검사는 회귀 판정에 쓰지 않는다.
+- 기존 Validation은 덮어쓰지 않는다. 단계마다 로컬 커밋.
+
+## TM — 검사 도구 정비 (게임 코드 변경 없음)
+목적: Sprint 4 동안 믿고 쓸 회귀 묶음을 만든다. 지금은 기존 T2/T4/S2 통합 검사가 기준 상태에서도 실패해서, 매번 "원래 실패하던 것"을 따로 따져야 한다.
+1. 기존 T2(NightTests): D0에서 찾은 원인(검사 위치 x6이 CP-CombatTest x5.5와 겹쳐 RestoreMax가 잠금을 지움)을 반영해, D0 T2v2 방식을 정식 T2로 승격한다. 기존 T2 코드는 주석이나 별도 함수로 보존하고 지우지 않는다.
+2. T4(C4Verification.cs:53): 2타 처치로 파괴된 적의 Rigidbody2D에 접근하는 부분을 Destroy 이후 접근하지 않도록 고친다(파괴 확인은 null/`== null` 검사로).
+3. S2 통합 HP assertion, F2R 검사의 stale E1/E2 참조: 실패 원인을 기록하고, 검사 쪽 참조를 매 단계 새로 찾도록 고친다. 고친 뒤 F2R의 처치 효과 생성·소멸 항목을 다시 확인한다.
+4. 회귀 묶음 스크립트 `Validation/Run-Regression.ps1` 하나를 만든다. S1-02/04/07/08, 카메라 lead0, T1~T4, S2 통합, F2R 표시, LOGR, 보스 회복 명중을 순서대로 돌리고 요약 1개 파일(`Validation/REG-<태그>-summary.txt`)에 PASS/FAIL 한 줄씩 쓴다.
+5. 합격: 현재 HEAD(게임 코드 무변경)에서 회귀 묶음 전 항목 PASS. 고칠 수 없는 항목은 이유와 함께 KNOWN-FAIL로 표시하고 다음 단계는 계속한다.
+
+## U0 — PRD UI 범위 점검 (읽기 전용, 코드 변경 없음)
+PRD UI Scope 항목별로 현재 상태를 `Validation/U0-ui-audit.txt`에 표로 남긴다: 타이틀(New Game/Continue/Quit), 새 게임 확인창, HP HUD, 능력 상태 HUD(대시·더블 점프), 첫 조작 안내, 능력 획득 안내(대시·더블 점프 각각), Pause(재개/타이틀), 사망·리스폰 표시, 엔딩, 저장 읽기/쓰기 실패 안내.
+- 각 항목: 있음 / 부분 / 없음, 구현 위치(파일), 현재 표시 문구, 현재 키 표기가 K1 배치(방향키·Z 점프·X 공격·C 대시, 패드 A/X/B)와 맞는지.
+- 이미 확인된 사항(Claude 원본 확인): HP는 `PlayerHealth.OnGUI`의 텍스트 "HP n/5". `RoomLabel`은 방 ID와 "Attack X (J)… Dash …" 텍스트만 있고 더블 점프 상태가 없다. 대시 획득 안내는 있음.
+
+## U1 — 누락·부분 항목만 구현 (PRD에 있는 것만)
+U0에서 "없음/부분"인 항목만 구현한다. PRD 밖 UI(맵, 설정, 키 재지정 등)는 추가하지 않는다.
+1. `UITuning` ScriptableObject(Header·단위·Tooltip): HUD 위치·크기, HP 칸 크기·간격, 안내 표시 시간, 사망 표시 시간, 글자 크기. 값은 Inspector에서 조정 가능하게 둔다.
+2. HUD(화면 왼쪽 위, 하나로 통합):
+   - HP: "HP n/5" 텍스트를 칸(5칸, 남은 칸 흰색 / 잃은 칸 회색)으로 바꾼다. HP 값은 PlayerHealth.HP를 읽기만 한다.
+   - 능력: 대시·더블 점프 아이콘 2개(획득 전 회색 윤곽, 획득 후 흰색 + 키 표기). 보유 상태는 읽기만 한다.
+   - 방 ID 표시는 유지한다(지역 표식 겸 플레이테스트 기록용). 기존 "Attack X (J)…" 줄은 HUD로 옮기면서 K1 키 표기로 정리한다.
+3. 첫 조작 안내: 새 게임 첫 A01 진입 시에만 "←→ 이동 / Z 점프 / X 공격 / Esc 일시정지" (패드 사용 중이면 패드 표기). UITuning의 시간만큼 보이거나 첫 이동 입력 후 사라진다. 저장 형식은 바꾸지 않는다(이어하기에서는 표시하지 않아도 됨).
+4. 더블 점프 획득 안내: 없으면 대시와 같은 형식으로 추가한다.
+5. 사망·리스폰 표시: 없으면 GameState.Respawning 동안 화면을 어둡게(반투명 검정) 하고 리스폰 후 걷어낸다. 사망 0.6초 흐름·입력 차단 시간은 바꾸지 않는다.
+6. 저장 실패 안내·Pause·엔딩·타이틀이 U0에서 "있음"이면 손대지 않는다.
+- 합격(`Validation/U1-ui.txt`): 상태 기준으로 HUD HP 칸 수 = HP, 능력 아이콘 상태 = 보유 플래그, 첫 안내는 새 게임 A01에서만 표시·이어하기에서는 미표시, 획득 안내 표시 시간, 사망 중 오버레이 활성 → 리스폰 후 비활성. 1280×720·1920×1080 스크린샷 각 3장(A01 시작, 피격 후, 두 능력 획득 후)을 `Validation/U1-shots/`에 저장한다(판단은 사용자가 한다). 회귀 묶음 전 항목이 TM 결과와 같거나 더 좋음. Error 0.
+- 상태: REVIEW(가독성·위치는 사용자 판단).
+
+## 최종 빌드
+- 성공한 단계를 포함해 `Builds/S4-pre2/Afterglow-S4-pre2.exe`. S4-pre는 보존한다.
+- 실제 exe 검사: 새 게임 → 첫 안내 → 공격·피격 → 사망·리스폰 오버레이 → (직접 배치로) 두 능력 → 보스 처치 → 엔딩 → 타이틀, CSV 생성, Error 0. 최종 회귀 묶음 실행 결과 첨부.
+- README에 "S4-pre2에서 확인할 것" 3줄.
+
+## 인계 (5분 분량)
+- 맨 위: 회귀 묶음 결과 한 줄(전 PASS 여부, KNOWN-FAIL 목록).
+- U0 표 요약(무엇이 이미 있었고 무엇을 추가했는지).
+- 사용자 확인: 켤 exe, HUD·첫 안내·사망 표시가 보이고 방해되지 않는지, 스크린샷 폴더, UITuning 수정 위치.
+- 끝나면 종료.
