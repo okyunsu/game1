@@ -1,0 +1,11 @@
+2026-10-04 F2 full rollback, baseline 7ca75e6.
+Authoring compiled successfully. Initial display binding failed because RoomDefinition creates player in Start after sceneLoaded; corrected new display scripts once.
+Display rerun PASS 30/60/120fps both directions, startup/active/end, center and dimensions <=0.01u, miss0, accepted hit1, HP display state, flash duration, E1 death pop creation/expiration, immediate Cancel.
+Display run measured lock observation 0.1333s at 60fps for unchanged configured 0.1200s; this is frame-level observation, not a proven change in lock duration or before/after equivalence.
+Required T2 physical collision/input wait test FAIL. Test-only 60fps correction also FAIL at same assertion. No protected runtime logic changed. Not proven whether failure is game behavior or tool timing. Classified A conservatively under approved ambiguity rule and fully restored.
+T1/T3/T4/S2-01/boss recovery/E2 warning tests not run after T2 stopped the sequence. No F2 REVIEW, no user visual acceptance, no F2 final executable.
+All new runtime/editor F2 scripts and asset removed. All seven prefab changes, PlayerAttack/ReceiveHit display calls, test tool modifications restored. Attempt patch is evidence only and must not be reapplied without a new request.
+git diff --exit-code -- Assets Packages ProjectSettings = exit 0 after rollback.
+Protected files had zero diff during attempt: PlayerInputReader, PlayerMotor, PlayerDash, PlayerHealth, GameState, scene placements, existing tuning values, RoomCameraRig, Packages, ProjectVersion. Boss only had permitted HitFeedback call, then fully restored.
+Rollback Unity 6000.3.24f1: S1-02, S1-04, S1-07, S1-08 and camera lead0 PASS. Evidence: *night-S2-F2-rollback*.txt. Virtual input only; physical pad/user visual checks not performed.
+Existing S3-complete unchanged. No S4-pre build. No push.

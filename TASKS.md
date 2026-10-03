@@ -18,6 +18,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-04 F2→LOG→최종 빌드 승인 실행: F2 표시 검사 보정 후 PASS였으나 필수 T2 넉백 잠금 검사 FAIL, 검사 60fps 고정 1회 보정 후 재FAIL. F2 전체복원/BLOCKED. LOG는 기존 사망 원인 이벤트 부재와 기존 로직 수정 금지 충돌로 독립 BLOCKED(미구현). 성공한 신규 단계가 없어 S4-pre 빌드/CSV 미생성. 기준 S3-complete와 기존 S3 REVIEW 상태 유지, push 없음. 상세 증거와 복원 회귀는 Latest Handoff 참고.
+
 2026-10-03 v2 최신: F1 BLOCKED/전체복원(5c54277), 실험 Builds/Experimental-F1. S3-09 REVIEW(a969663), S3-10 REVIEW(3beed76), 최종 S3-complete Windows x64 PASS. 15플레이방/17씬, X20타보스→엔딩→타이틀/모든문왕복/저장Continue/필수회귀PASS, Error/Exception/Assert0. 사용자 완주와 체감 대기, push 없음. 이전 실행 실패 기록은 이력으로 보존.
 
 아래는 같은 날짜의 앞선 실행 이력이며 위 최신 상태를 우선한다.
@@ -128,6 +130,12 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
+### F2-T2-001 — 필수 넉백 잠금 검사 재실패 / 전체복원 (2026-10-04)
+- F2 초기 더미 표시 바인딩 실패를 새 표시 스크립트에서 1회 보정한 뒤, 30/60/120fps 좌우 표시·판정 일치·명중/빗나감·번쩍임·E1 처치효과 검사 PASS.
+- T2 기존 검사에서 물리 피격→여러 프레임 입력/FixedUpdate 대기 후 `KnockbackLocked` FAIL. 검사만 60fps로 고정해도 동일 FAIL. 원인이 검사 대기인지 실제 동작인지 미확정, 명세의 애매하면 A 규칙으로 전체복원. 입력·이동·피격·GameState 및 기존 수치는 변경하지 않았음.
+- F2 Asset/새 런타임·작성·검사 코드 삭제, 7개 프리팹/표시 호출/기존 검사 도구 원복. 성공한 표시 검사만으로 REVIEW 판정하지 않음. T1/T3/T4/S2-01/보스회복·E2 경고중 표시는 실패 중단으로 미실시.
+- 증거: [표시 첫실패](Validation/F2-feedback.txt), [표시 보정PASS](Validation/F2-feedback-night-F2-rerun.txt), [T2 첫실패](Validation/Verification-night-T2-F2.txt), [T2 재실패](Validation/Verification-night-T2-F2-rerun.txt).
+
 ### S2-03-001 — 격자 재시도 2회 실패 / 구현 복원 (2026-10-03)
 
 - 첫 S2-03-gate.txt: 미보유/보유 걷기·점프·넉백 차단, 대시 양방향 PASS 뒤 일반 벽 시험이 기존 오른쪽 출구를 밟아 B01 출구 찾기 실패. 해당 최초 벽 PASS는 방 전환으로 오염된 결과여서 무효.
@@ -208,6 +216,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
 ## Decisions Needed
+
+### LOG-001 — 정확한 사망 원인 기록과 구독 전용 제한
+LOG BLOCKED/미구현. RoomSession 진행 이벤트 없음, PlayerHealth.Hit은 원인·source 없는 Action이며 KillZone도 직접 Die만 호출함. 근처 적/접촉체 추정은 동시 피격·무적 상황에서 실제 사망 원인을 보장하지 못함. 기존 로직은 그대로 유지함. 필요 판단: 관찰 전용 이벤트 추가를 허용할지, 또는 사망 원인 unknown 및 일부 기록 보장 축소를 허용할지. [인터페이스 확인 및 미실시 내역](Validation/LOG-playtest.txt).
 
 현재 v2 판단: F1 필수 T2 넉백잠금0.12s 검사 실패 원인·공격 손맛/피드백 후보 수락. 효과 이벤트 30/60/120fps는 PASS이나 단계는 전체복원/BLOCKED다. Builds/Experimental-F1/Afterglow.exe 사용자 직접 플레이 후 재개 범위를 결정한다. 보스 좁은방 시야/회복 공격 이전 차단은 v2로 해결. 보스·엔딩 기술PASS는 체감/Gate 수락을 뜻하지 않으며 사용자 완주 후 Sprint3 Gate 판단. 선택방/에셋/K2/다음Sprint 미승인.
 

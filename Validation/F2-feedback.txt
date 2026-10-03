@@ -1,0 +1,6 @@
+FAIL F2
+System.Exception: authored player and scene dummy display binding
+  at F2VerificationRunner.Check (System.Boolean ok, System.String message) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2Verification.cs:23 
+  at F2VerificationRunner+<Tests>d__7.MoveNext () [0x0016c] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2Verification.cs:33 
+  at F2VerificationRunner+<Start>d__5.MoveNext () [0x00084] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2Verification.cs:25 
+Error/Exception/Assert=0

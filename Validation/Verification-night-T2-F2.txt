@@ -1,0 +1,8 @@
+FAIL T2-F2 Unity=6000.3.24f1
+PASS: max HP 5 and test checkpoint active
+PASS: simultaneous physical damage blocks deal only one HP
+PASS: invincibility rejects duplicate ordinary damage
+System.Exception: knockback movement lock active for 0.12s
+  at NightTestRunner.Check (System.Boolean ok, System.String msg) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:20 
+  at NightTestRunner+<T2>d__10.MoveNext () [0x0023f] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:51 
+  at NightTestRunner+<Start>d__4.MoveNext () [0x000b2] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\NightTests.cs:21 

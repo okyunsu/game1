@@ -1,0 +1,50 @@
+PASS F2
+PASS: authored player and scene dummy display binding
+PASS: 30fps direction1 startup inactive
+PASS: 30fps active slash
+PASS: 30fps direction1 center and dimensions <=0.01u
+PASS: 30fps end inactive and miss has zero hit calls
+PASS: 30fps one accepted hit / HP pips
+PASS: 30fps overlay active
+PASS: 30fps flash duration 0.1000s
+PASS: 30fps direction-1 startup inactive
+PASS: 30fps active slash
+PASS: 30fps direction-1 center and dimensions <=0.01u
+PASS: 30fps end inactive and miss has zero hit calls
+PASS: 30fps one accepted hit / HP pips
+PASS: 30fps overlay active
+PASS: 30fps flash duration 0.1000s
+PASS: 60fps direction1 startup inactive
+PASS: 60fps active slash
+PASS: 60fps direction1 center and dimensions <=0.01u
+PASS: 60fps end inactive and miss has zero hit calls
+PASS: 60fps one accepted hit / HP pips
+PASS: 60fps overlay active
+PASS: 60fps flash duration 0.1167s
+PASS: 60fps direction-1 startup inactive
+PASS: 60fps active slash
+PASS: 60fps direction-1 center and dimensions <=0.01u
+PASS: 60fps end inactive and miss has zero hit calls
+PASS: 60fps one accepted hit / HP pips
+PASS: 60fps overlay active
+PASS: 60fps flash duration 0.1167s
+PASS: 120fps direction1 startup inactive
+PASS: 120fps active slash
+PASS: 120fps direction1 center and dimensions <=0.01u
+PASS: 120fps end inactive and miss has zero hit calls
+PASS: 120fps one accepted hit / HP pips
+PASS: 120fps overlay active
+PASS: 120fps flash duration 0.1000s
+PASS: 120fps direction-1 startup inactive
+PASS: 120fps active slash
+PASS: 120fps direction-1 center and dimensions <=0.01u
+PASS: 120fps end inactive and miss has zero hit calls
+PASS: 120fps one accepted hit / HP pips
+PASS: 120fps overlay active
+PASS: 120fps flash duration 0.1000s
+MEASURE unchanged T2 lock=0.1333s configured=0.1200s; damage=1 cooldown=0.35 knockback=4/3
+PASS: E1 death creates exactly one death pop
+PASS: death pop expires
+PASS: Cancel immediately hides slash
+E2 warning overlap and boss recovery exercised separately. No pixel sampling. User perception pending.
+Error/Exception/Assert=0

@@ -1,0 +1,1 @@
+F2 new tuning asset and display-only prefab components/children. Boss/Dummy runtime binding; scene files unchanged. No colliders added.
