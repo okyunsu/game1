@@ -9,7 +9,7 @@
 
 ## 현재 상태
 
-2026-10-03 Sprint 3 / Target 15방. A01~A05/B01~B05/C01~C04/C06와 단일 Ending을 포함한 Content Complete 후보를 만들었다. S3-01~05 DONE, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 완주 후 판단한다. F1은 필수 T2 회귀 실패로 복원/BLOCKED, 최종 빌드에는 공격 피드백이 없다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
+2026-10-04 Sprint 3 / Target 15방. 기존 보스·엔딩 후보에 F2R 공격/적 피격 표시와 LOGR 플레이테스트 CSV를 더한 S4-pre 빌드다. F2R·LOGR REVIEW, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 판단 대기다. 이름이 S4-pre여도 Sprint 4 튜닝·콘텐츠를 시작한 것은 아니다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
 
 ## Unity에서 실행
 
@@ -24,17 +24,17 @@
 
 ## 로컬 빌드 실행
 
-S4-pre 빌드에서 확인할 것(2026-10-04): F2 필수 회귀 재실패로 전체복원하여 새 S4-pre exe는 생성하지 않았다. 현재 실행 파일은 아래 S3-complete다.
-공격 표시·적 HP칸/번쩍임은 이번 시도로 추가되지 않았으며, 기존 보스 HP 표시를 유지한다.
-CSV 예정 위치는 `%USERPROFILE%\AppData\LocalLow\Afterglow\Afterglow\Playtest`이나 LOG가 BLOCKED이므로 이번에는 CSV를 생성하지 않는다.
+S4-pre에서 확인할 것: `Builds/S4-pre/Afterglow-S4-pre.exe`에서 공격 표시·적 HP칸/흰 번쩍임·처치 효과·보스 상단 HP 막대의 가시성을 확인한다.
+새 게임을 시작하면 CSV를 자동 기록하며 사망 원인은 `unrecorded`, 활동 시간에서 Pause를 제외한다. 이어하기는 새 기록 세션을 시작하지 않는다.
+CSV 실제 폴더: `C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest` (타 PC에서는 해당 사용자의 LocalLow/Afterglow/Afterglow/Playtest).
 
-현재 통합 빌드: `Builds/S3-complete/Afterglow.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 다른 이름의 실행 파일과 이전 S3-B/S3-full/S3-complete 빌드는 과거 검증용이다.
+현재 통합 빌드: `Builds/S4-pre/Afterglow-S4-pre.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow-S4-pre_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 기존 `Builds/S3-complete/Afterglow.exe`는 표시 추가 전 기준으로 보존했다.
 
 이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. Pause에서는 ↑/↓로 재개/타이틀을 고르고 Z/Enter/패드 A로 확인한다. 종료는 타이틀 Quit 또는 창 닫기/Alt+F4.
 
 A05 Dash → A03 격자 → B01 → B02/B03 → B04 Double Jump → B01 높은 출구 → B05 → C01~C04 → C06 보스 → Ending으로 연결된다. B04에서는 왼쪽으로 되돌아간다. C06에서 x5를 넘으면 전투 시작, 사망 시 CP-C04 복귀. 보스 처치 후 약2초 빛 표현과 엔딩을 거쳐 타이틀로 돌아간다. 기존 배치와 공통 카메라5.5/0/.15는 유지했다.
 
-사용자 확인: 새 게임부터 엔딩까지 자연 완주 시간, C02 조합 난이도, 보스 예고 가시성·회피 여유·첫 승리 시도 횟수, 엔딩 표현. 공격 손맛과 F1 수치는 `Builds/Experimental-F1/Afterglow.exe`에서 별도 확인한다(보스/엔딩 미포함). 자동 지정 입력은 물리 게임패드·사용자 체감 수락을 대체하지 않는다.
+사용자 확인: 새 게임부터 엔딩까지 자연 완주 시간, C02 조합 난이도, 보스 예고 가시성·회피 여유·첫 승리 시도 횟수, 엔딩 표현과 F2R 공격/피격 표시. FeedbackTuning.asset에서 표시 수치를 바꿀 수 있으며 Play 종료 후 원하는 값/이전 값을 명시 저장한다. 자동 지정 입력은 물리 게임패드·사용자 체감 수락을 대체하지 않는다.
 
 ## 저장·이어하기
 
