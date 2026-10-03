@@ -1,0 +1,59 @@
+PASS K3
+MEASURE gate direction=1 owned=False jump=False position=(15.63, 5.81)
+PASS: gate blocks walk/jump both directions, owned=False
+MEASURE gate direction=1 owned=False jump=True position=(15.64, 8.30)
+PASS: gate blocks walk/jump both directions, owned=False
+MEASURE gate direction=1 owned=True jump=False position=(15.63, 5.81)
+PASS: gate blocks walk/jump both directions, owned=True
+MEASURE gate direction=1 owned=True jump=True position=(15.64, 8.30)
+PASS: gate blocks walk/jump both directions, owned=True
+MEASURE gate direction=-1 owned=False jump=False position=(17.37, 5.81)
+PASS: gate blocks walk/jump both directions, owned=False
+MEASURE gate direction=-1 owned=False jump=True position=(17.37, 8.30)
+PASS: gate blocks walk/jump both directions, owned=False
+MEASURE gate direction=-1 owned=True jump=False position=(17.37, 5.81)
+PASS: gate blocks walk/jump both directions, owned=True
+MEASURE gate direction=-1 owned=True jump=True position=(17.37, 8.30)
+PASS: gate blocks walk/jump both directions, owned=True
+PASS: unowned Dash blocked direction 1
+PASS: knockback setup
+PASS: knockback blocked direction 1
+PASS: owned Dash starts direction 1
+MEASURE Dash through gate direction=1 position=(18.08, 5.81)
+PASS: owned Dash passes direction 1
+PASS: collision restored, gate not removed
+PASS: unowned Dash blocked direction -1
+PASS: knockback setup
+PASS: knockback blocked direction -1
+PASS: owned Dash starts direction -1
+MEASURE Dash through gate direction=-1 position=(14.92, 5.81)
+PASS: owned Dash passes direction -1
+PASS: collision restored, gate not removed
+MEASURE gate min/max=(16.00, 5.00, 0.00)/(17.00, 11.00, 0.00); shelf top=5
+MEASURE floor under right shelf jump max feet=2.385u; shelf top=5u; gate height=6u
+PASS: right shelf unreachable directly from floor; gate too tall for ordinary jump
+PASS: FromShelf authored
+MEASURE shelf exit=(29.50, 5.00, 0.00)/(30.50, 7.00, 0.00), floor exit=(33.75, 1.00, 0.00)/(34.75, 3.00, 0.00), spawn=(27.00, 5.81, 0.00); wall separation=4.500u
+PASS: floor/shelf exits and FromShelf do not overlap; wall clear
+PASS: exit exists to B01
+PASS: physical exit to B01
+PASS: arrival ID FromLeft
+MEASURE arrival B01/FromLeft expected=(3.50, 1.81, 0.00) actual=(3.50, 1.81)
+PASS: safe arrival B01
+PASS: exit exists to A03
+PASS: physical exit to A03
+PASS: arrival ID FromShelf
+MEASURE arrival A03/FromShelf expected=(27.00, 5.81, 0.00) actual=(27.00, 5.81)
+PASS: safe arrival A03
+PASS: exit exists to B01
+PASS: physical exit to B01
+PASS: arrival ID FromLeft
+MEASURE arrival B01/FromLeft expected=(3.50, 1.81, 0.00) actual=(3.50, 1.81)
+PASS: safe arrival B01
+PASS: B01 checkpoint unique
+PASS: physical CP-B01 activation
+PASS: B01 death accepted
+PASS: B01 death returns safely
+PASS: B01 spawn does not overlap exit
+PASS evidence: ordinary wall cancellation at 30/60/120fps = Validation/Verification-night-T1-S2-01.txt (DashTest, away from A03 exits).
+FAIL 0
