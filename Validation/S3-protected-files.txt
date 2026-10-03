@@ -1,0 +1,4 @@
+PASS git diff baseline c28da2e (P0 pre-work) to current
+Protected A01~A05/MovementTest/Packages/ProjectVersion/Level prefabs/CombatTuning/E1Tuning byte unchanged in tracked content.
+PlayerTuning.asset only new doubleJumpVelocity:12; existing values unchanged.
+B01 original Left/CP/Entry/FromLeft retained; authorized notice removal and specified ledge/exits/spawns added.

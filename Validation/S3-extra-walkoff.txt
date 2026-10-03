@@ -1,0 +1,14 @@
+PASS S3-extra-walkoff Unity=6000.3.24f1
+PASS: actual ledge ground contact before walk-off
+PASS: walked left beyond ledge and Coyote with movement input only
+MEASURE walk-off dashFirst=False position=(24.41, 4.43) velocity=(-6.00, -9.00)
+PASS: one double jump after actual walk-off/air dash
+PASS: no second airborne extra jump after walk-off
+PASS: actual ledge ground contact before walk-off
+PASS: walked left beyond ledge and Coyote with movement input only
+MEASURE walk-off dashFirst=True position=(24.41, 4.43) velocity=(-6.00, -9.00)
+PASS: air dash active with unconsumed double jump
+PASS: one double jump after actual walk-off/air dash
+PASS: no second airborne extra jump after walk-off
+PASS: fresh isolated supplemental save absent
+Error/Exception/Assert 0

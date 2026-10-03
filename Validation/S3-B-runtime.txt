@@ -1,0 +1,4 @@
+PASS Windows x64 exe: route and Continue in two separate processes
+New game; all doors both ways; CP-A01/A03/B01 death return; Dash and Double Jump acquisition; corrected B04 High landing; pickup reentry suppression; disk save and process restart/Continue
+Error/Exception/Assert 0 in each phase. Evidence S3-B-runtime-route.txt, S3-B-runtime-continue.txt, S3-B-Player-route.log, S3-B-Player-continue.log
+Direct placement and prescribed input; no navigation robot. Isolated Logs/S3-B-runtime-slot.json; user save untouched.

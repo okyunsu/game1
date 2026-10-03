@@ -13,12 +13,14 @@
 
 ## Current Sprint
 
-**Sprint 3**, Sprint 2 Gate 사용자 통과·진입 기준일 **2026-10-03**. 기존 이력: 2026-09-16 최초 착수, 2026-09-17 N1 기술 구현·Unity 검증 완료. 설계 기준 v0.2 유지.
-S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용자 수락), S1-10 REVIEW. 야간 DEC-S2-PRE 예외로 T1~T3 전용 테스트 씬 구현 REVIEW, T4 E1 CombatTest 한정 REVIEW. Tilemap DEFERRED·ROOM-001 OPEN. S1-G DONE(사용자 조건부 통과).
-
-일정 지연에 따라 오늘부터 다시 진행한다. 당장 수행할 작업량·단기 목표·Sprint 종료일·최종 완료일은 아직 정하지 않는다. 사용자가 토큰 사용량을 확인하고 업그레이드 여부를 판단한 뒤 진행 규모를 정한다. 기존 Roadmap은 순서와 범위의 참고로 유지하며 이번 일정 갱신으로 새 구현 작업을 승인하거나 기존 작업을 재실행하지 않는다.
+**Sprint 3**, 진입일 **2026-10-03**. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
+이번 승인 범위 S3-01~05와 성공 단계 빌드 기술 검증 완료, S3-01~05 REVIEW(체감 수락 대기). C01 이후·보스·엔딩·선택 방·아트·K2 재시도는 이번 실행 제외. CAM-002/K2는 아트 적용 후 Sprint 4 Polish 후보 DEFERRED. 다음 Sprint 3 콘텐츠 착수는 별도 승인 필요.
 
 ## Current Tasks
+
+2026-10-03 S3 실행: G2·P3 DONE, S3-01~05 기술 PASS/REVIEW, S3-B Windows x64 빌드와 실제 두 프로세스 runtime PASS. P0 GitHub 연결 실패로 최종 push 생략. 상세 최신 결과는 Latest Handoff와 S3 Validation Records 참조.
+
+아래는 같은 날짜의 앞선 실행 이력이며 위 최신 상태를 우선한다.
 
 2026-10-03 G2: S2-day exe 사용자 확인으로 S2-01~06·K1·S1-10·T1~T4·점프 일관성 DONE, Sprint 2 Gate 통과. 현재 Target 15방(A06/B06/C05 보류). 승인 실행 P0→G2→P3→S3-01~05→최종 빌드. P0 GitHub 연결 실패로 로컬 커밋만 진행, 최종 push 생략.
 
@@ -82,7 +84,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | S3-02 | E2 돌진형 적 | REVIEW | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
 | S3-03 | B01 G-J 턱·B02 | REVIEW | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
 | S3-04 | E3 사격형·B03 | REVIEW | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
-| S3-05 | B04 획득·연습·B05 자리 | REVIEW | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High(25,3.3)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
+| S3-05 | B04 획득·연습·B05 자리 | REVIEW | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
 | S3-06 (제안) | C01~C04 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-07 (제안) | C06 보스 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-08 (제안) | 엔딩 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
@@ -204,13 +206,16 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+S3-B02-INTRO — 지정 배치 우선 유지: SafeStep 중심x11·오른쪽끝x13, E2 x24·감지5u이므로 발판 위에서는 감지 예고가 시작되지 않는다(중심 간 수평13u, 끝에서도11u). 이번 검증은 접근 x20에서 예고와 발판으로 피할 공간을 확인했다. 발판 위에서 예고를 먼저 보는 의도와 지정 좌표/감지 값 사이에 사용자 판단이 남음. 무인 지시에 따라 좌표/감지 수치 변경 없음. E2 소개 배치 체감 수락 또는 후속 변경 범위 판단 필요.
+
+
 S3-B04-HIGH — 승인된 측정 보정: Low 윗면3u에서 일반점프 최대발5.535u, 초기 High 윗면3.8u 착지 가능. High Position Y만3.3→5.335(윗면5.835u) 반영해 일반 차단/더블 착지 검증. 사용자는 B04 연습 높이·점프 감각 확인. 다른 위치/Scale/튜닝 변경 없음.
 
 
 CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인, 우선순위 낮음. Sprint 4 Polish 후보. 기존 0.15s 유지, 이번 재시도 없음. 이전 두 번째 비교 실패는 절대 좌표 비교 영향 추정; 상대 카메라-플레이어 거리 2.06u/2.08u. 재시도는 상대 거리로 비교.
 
 
-K2 / CAM-002 BLOCKED: 두 번째 검증에서 평상시·반전 비교 FAIL로 승인된 실패 규칙에 따라 전체 복원. 카메라 기본0.15s 유지. 시간 기반 입력의 물리 틱 차이 가능성은 미확정이며 추가 수정/재시도는 별도 승인 필요. 대시 밀림 체감은 미해결.
+이전 K2 / CAM-002 기술 실패 기록(현재 DEFERRED): 두 번째 검증에서 평상시·반전 비교 FAIL로 승인된 실패 규칙에 따라 전체 복원. 카메라 기본0.15s 유지. 시간 기반 입력의 물리 틱 차이 가능성은 미확정이며 추가 수정/재시도는 별도 승인 필요. 대시 밀림 체감은 미해결.
 
 2026-10-03 K3 재개 승인: 사용자 관찰상 기존 출구/오른쪽 벽 간섭. 새 선반 출구 x30,y6·FromShelf x27,y5.81로 지정, 기존 바닥 출구 보존. S2-03-retry.txt 기술 PASS, 체감 수락 전 REVIEW. B01은 지정 셸/CP/돌아오는 문/안내뿐. CP-B01을 단일 슬롯 유효 ID 및 이어하기 씬 매핑에 추가(새 CP 복귀를 위한 최소 연결).
 
@@ -235,6 +240,11 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-B — 최종 빌드·exe 기술 PASS
+[S3-B-build.txt](Validation/S3-B-build.txt): Windows x64 Succeeded·errors0·warnings0, Menu/A01~A05/B01~B05 정확히11씬, 테스트 씬 제외. [S3-B-runtime.txt](Validation/S3-B-runtime.txt)과 route/continue.txt: 실제 exe 두 프로세스(PID2920/7444) Menu Z 새 게임·모든 문 양방향·CP-A01/A03/B01 복귀·A05 Dash/B04 DoubleJump 접촉·B04 High 착지·재입장미등장·타방사망/보유·종료/Continue CP-B01/두능력 유지 PASS. 복귀→조작0.716~0.767s, High top5.835/feet5.850, Error/Exception/Assert0. 지정 배치/입력, 자동 경로 로봇 없음, 사용자 저장은 변경하지 않고 Logs/S3-B-runtime-slot.json 격리. 물리 패드 및 자연스러운 A05→B05 흐름 시간은 미실시/사용자 확인.
+[S3-extra-walkoff.txt](Validation/S3-extra-walkoff.txt): 실제 ledge에서 LeftArrow만으로 이탈→Coyote 종료 후 추가1회, 공중 Dash 활성 후 추가점프 가능·추가연타차단·런타임오류0 PASS. 이 보완 검사는 Editor 코드만 추가하며 빌드 게임 코드 변경 없음.
+
 
 ### S3-05 — 기술 PASS / REVIEW
 [S3-05-B04-B05.txt](Validation/S3-05-B04-B05.txt): 초기 High Y3.3은 Low에서 일반점프 발최대5.535u로 착지 확인. 명시 승인 보정으로 Y만5.335(윗면5.835, 일반 최대+0.3) 적용, 일반 실패·더블 최대7.839u/안전 착지6.65. Play 종료 후 Scene Y 저장 증거 포함. 획득 전 불가/후 가능·마지막CP보존·재입장미등장·사망보유·B01↔B05·저장/Session Continue PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-05-B04-B05.txt 모두 PASS. 실제 프로세스 종료/Continue는 최종 빌드에서 검사.
