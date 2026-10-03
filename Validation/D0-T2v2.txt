@@ -1,0 +1,16 @@
+FAIL T2v2 D0
+PASS: no invincibility before direct hit 30
+PASS: direct hit immediately locks/right knockback 30
+PASS: opposite input preserves x sign while locked 30
+PASS: opposite input preserves x sign while locked 30
+PASS: opposite input preserves x sign while locked 30
+MEASURE fps=30 unlock=0.133331s maxObservedFrame=0.033335s configured=0.120000s opposingFrames=3
+PASS: unlock within configured lock plus one observed frame 30
+PASS: no invincibility before direct hit 60
+PASS: direct hit immediately locks/right knockback 60
+MEASURE fps=60 unlock=0.016710s maxObservedFrame=0.016710s configured=0.120000s opposingFrames=0
+System.Exception: unlock within configured lock plus one observed frame 60
+  at T2LockRunner.Check (System.Boolean ok, System.String text) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\T2LockCheck.cs:20 
+  at T2LockRunner+<Tests>d__6.MoveNext () [0x00363] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\T2LockCheck.cs:26 
+  at T2LockRunner+<Start>d__5.MoveNext () [0x00084] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\T2LockCheck.cs:22 
+Error/Exception/Assert=0

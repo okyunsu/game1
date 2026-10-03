@@ -1,0 +1,6 @@
+D0 baseline bd7d5c2 / runtime unchanged vs 7ca75e6; 2026-10-04.
+Original NightTests unchanged: T1 PASS, T2 FAIL at knockback movement lock active for 0.12s, T3 PASS. Original C4 T4 FAIL after successful two-hit removal because test accesses destroyed Rigidbody2D at C4Verification.cs:53.
+T2 failure exists without F2 or F1; this assertion cannot establish those features caused it. Previous F1-specific behavior is not independently exonerated by this result.
+T2v2 first test failed at 60fps after positioning x6 adjacent to CP-CombatTest x5.5; checkpoint re-entry can RestoreMax and clear the lock. Test-only correction disables checkpoints in the temporary Play scene and uses x8; no saved scene changed.
+T2v2 corrected PASS: 30fps 0.133326s (frame .033336), 60fps .133338s (frame .016672), 120fps .124984s (frame .008379). Direct hit immediate lock, opposite input retains positive x velocity during lock, unlock within .12s + one observed frame. Error/Exception/Assert0.
+Evidence: D0-baseline-T1..T4.txt, D0-T2v2.txt, D0-rerun-T2v2.txt. No existing test files modified.
