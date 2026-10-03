@@ -1,0 +1,26 @@
+PASS S3-06-B02 Unity=6000.3.24f1
+PASS: E2 x17 on floor facing left
+MEASURE SafeStep top=3 right=13 player=(12.80, 3.81) E2=(17.00, 1.51, 0.00) detection distance=4.787u
+PASS: warning starts while standing on actual SafeStep
+MEASURE charge stopped x=14.480; SafeStep wall x13
+PASS: step wall stops charge; player on top unharmed
+PASS: floor contact still damages player
+PASS: enabled door to B01
+PASS: physical door to B01
+PASS: safe arrival B01/FromRight
+PASS: enabled door to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromLeft
+PASS: enabled door to B03
+PASS: physical door to B03
+PASS: safe arrival B03/FromLeft
+PASS: enabled door to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromRight
+PASS: enabled door to B01
+PASS: physical door to B01
+PASS: safe arrival B01/FromRight
+PASS: enabled door to B02
+PASS: physical door to B02
+PASS: safe arrival B02/FromLeft
+Error/Exception/Assert 0

@@ -85,7 +85,7 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 | S3-03 | B01 G-J 턱·B02 | DONE | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
 | S3-04 | E3 사격형·B03 | DONE | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 | S3-05 | B04 획득·연습·B05 자리 | DONE | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
-| S3-06 (제안) | C01~C04 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
+| S3-06 | B02 E2 소개 위치 수정 | REVIEW | G3:DONE | E2 x17/왼쪽/바닥, 발판 위 감지4.787u·반복 돌진 벽앞0.140u 정지·피해 없음·바닥 피해·B01/B02/B03 왕복 및 필수 회귀 PASS |
 | S3-07 (제안) | C06 보스 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-08 (제안) | 엔딩 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-09 (제안) | Sprint 3 Gate | TODO | 별도 사용자 승인 | Content Complete 검증·사용자 판단, 이번 실행 미승인 |
@@ -240,6 +240,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-06 — 기술 PASS / REVIEW
+[S3-06-B02-rerun.txt](Validation/S3-06-B02-rerun.txt), S1-02/04/07/08-night-S3-06-B02-rerun.txt 모두 PASS. 최초 S3-06-B02.txt는 첫 돌진이 벽에 닿기 전에 끝났으므로 벽 정지 assertion 근거가 불충분하여 무효. 검사만 1회 보정: 반복 돌진의 실제 벽 간격0.140u 확인. 배치/튜닝 추가 변경 없음. 물리 패드/체감 미검사.
+
 
 ### S3-B — 최종 빌드·exe 기술 PASS
 [S3-B-build.txt](Validation/S3-B-build.txt): Windows x64 Succeeded·errors0·warnings0, Menu/A01~A05/B01~B05 정확히11씬, 테스트 씬 제외. [S3-B-runtime.txt](Validation/S3-B-runtime.txt)과 route/continue.txt: 실제 exe 두 프로세스(PID2920/7444) Menu Z 새 게임·모든 문 양방향·CP-A01/A03/B01 복귀·A05 Dash/B04 DoubleJump 접촉·B04 High 착지·재입장미등장·타방사망/보유·종료/Continue CP-B01/두능력 유지 PASS. 복귀→조작0.716~0.767s, High top5.835/feet5.850, Error/Exception/Assert0. 지정 배치/입력, 자동 경로 로봇 없음, 사용자 저장은 변경하지 않고 Logs/S3-B-runtime-slot.json 격리. 물리 패드 및 자연스러운 A05→B05 흐름 시간은 미실시/사용자 확인.
