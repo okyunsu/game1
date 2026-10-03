@@ -1,0 +1,82 @@
+PASS checkpoint/death; Unity=6000.3.24f1; UTC=2026-10-03T07:05:26.7859106Z
+NOTE: physical devices isolated inside Unity for automated input only
+PASS: A01 startup
+PASS: no checkpoint fallback case
+PASS: prepare A02 physical KillZone fallback
+PASS: respawn/transition completes within 3s
+NOTE: physical KillZone trigger
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.660s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: checkpoint prefab/unique ID CP-A01
+PASS: contact activates checkpoint CP-A01
+PASS: active checkpoint visual state
+PASS: death request in safe room without hazard
+NOTE: explicit death request; no authored hazard in this safe room
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.617s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A01
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: load alternate checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: checkpoint prefab/unique ID CP-A03
+PASS: contact activates checkpoint CP-A03
+PASS: active checkpoint visual state
+PASS: death request in safe room without hazard
+NOTE: explicit death request; no authored hazard in this safe room
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.617s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: leave checkpoint room
+PASS: respawn/transition completes within 3s
+PASS: room entry preserves checkpoint
+PASS: death request in safe room without hazard
+NOTE: explicit death request; no authored hazard in this safe room
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.650s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: death request in safe room without hazard
+NOTE: explicit death request; no authored hazard in this safe room
+PASS: Kill Zone blocks input during death
+PASS: duplicate death and room transition rejected during death
+PASS: respawn/transition completes within 3s
+MEASURE: death->control=0.617s; target=3s; delay=0.60s
+PASS: death delay ~0.6s and playable time restored
+PASS: returned to expected checkpoint room A03
+PASS: respawn Spawn ID resolves
+PASS: respawn at safe authored spawn
+PASS: no immediate redeath or sticking
+PASS: respawn clears pending jump buffer
+PASS: movement available after respawn
+PASS: one player retained across repeated cross-room respawn

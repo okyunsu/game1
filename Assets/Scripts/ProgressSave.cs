@@ -12,7 +12,7 @@ public static class ProgressSave
  public static bool TryLoad(out ProgressData data)
  {
   data=null;Message="";if(!File.Exists(FilePath))return false;
-  try{data=JsonUtility.FromJson<ProgressData>(File.ReadAllText(FilePath));if(data==null||data.version!=1||data.checkpointId is not ("CP-A01" or "CP-A03" or "CP-B01"))throw new InvalidDataException("Unsupported save data");return true;}
+  try{data=JsonUtility.FromJson<ProgressData>(File.ReadAllText(FilePath));if(data==null||data.version!=1||data.checkpointId is not ("CP-A01" or "CP-A03" or "CP-B01" or "CP-C01"))throw new InvalidDataException("Unsupported save data");return true;}
   catch(Exception e) when(e is IOException or UnauthorizedAccessException or ArgumentException){data=null;Message="저장 파일을 읽을 수 없습니다. 새 게임을 선택하세요.";return false;}
  }
  public static bool Write(ProgressData data)
@@ -31,5 +31,5 @@ public static class ProgressSave
   Pending=new ProgressData{dash=false,checkpointId="CP-A01"};Enabled=true;Write(Pending);return true;
  }
  public static bool Continue(){if(!TryLoad(out var data))return false;Pending=data;Enabled=true;return true;}
- public static string PendingScene=>Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity";
+ public static string PendingScene=>Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity";
 }

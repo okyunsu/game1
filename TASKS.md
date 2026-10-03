@@ -86,7 +86,7 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 | S3-04 | E3 사격형·B03 | DONE | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 | S3-05 | B04 획득·연습·B05 자리 | DONE | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
 | S3-06 | B02 E2 소개 위치 수정 | REVIEW | G3:DONE | E2 x17/왼쪽/바닥, 발판 위 감지4.787u·반복 돌진 벽앞0.140u 정지·피해 없음·바닥 피해·B01/B02/B03 왕복 및 필수 회귀 PASS |
-| S3-07 (제안) | C06 보스 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
+| S3-07 | B05 연결·C01 휴식·C02 조합 | REVIEW | G3:DONE | 지정 배치·CP-C01 저장/사망·왕복·바닥 더블 최대발5.905<6.8·Start 일반5.535<6.8/더블 착지·5u 간격 일반실패/대시성공·스폰 비겹침·필수 회귀 PASS |
 | S3-08 (제안) | 엔딩 | TODO | 별도 사용자 승인 | 이번 실행 미승인 |
 | S3-09 (제안) | Sprint 3 Gate | TODO | 별도 사용자 승인 | Content Complete 검증·사용자 판단, 이번 실행 미승인 |
 
@@ -240,6 +240,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S3-07 — 기술 PASS / REVIEW
+[S3-07-C01-C02.txt](Validation/S3-07-C01-C02.txt), S1-02/04/07/08-night-S3-07-C01-C02.txt 모두 PASS. 실제 발판 윗면 기준 검사, 보정 없음. C02 Right는 C03 생성까지 비활성. B05는 승인된 안내제거/Step/Right/FromRight만 추가. CP-C01 저장·Continue 매핑 포함. 사용자 C02 난이도/전체 흐름 수락 대기.
+
 
 ### S3-06 — 기술 PASS / REVIEW
 [S3-06-B02-rerun.txt](Validation/S3-06-B02-rerun.txt), S1-02/04/07/08-night-S3-06-B02-rerun.txt 모두 PASS. 최초 S3-06-B02.txt는 첫 돌진이 벽에 닿기 전에 끝났으므로 벽 정지 assertion 근거가 불충분하여 무효. 검사만 1회 보정: 반복 돌진의 실제 벽 간격0.140u 확인. 배치/튜닝 추가 변경 없음. 물리 패드/체감 미검사.

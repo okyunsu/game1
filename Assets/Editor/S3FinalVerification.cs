@@ -24,7 +24,7 @@ public static class S3FinalVerification
         string path = "Validation/" + Nightly.Tag + ".txt";
         if (File.Exists(path)) throw new IOException("Preserve evidence");
         SessionState.SetString("S3Final.Path", path); SessionState.SetBool("S3Final.Run", true);
-        EditorSceneManager.OpenScene("Assets/Scenes/B02.unity");
+        EditorSceneManager.OpenScene(Nightly.Tag.StartsWith("S3-07") ? "Assets/Scenes/B05.unity" : "Assets/Scenes/B02.unity");
         EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
     }
 }
@@ -42,7 +42,7 @@ public sealed class S3FinalRunner : MonoBehaviour
         InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
         InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
         kb = InputSystem.AddDevice<Keyboard>(); ProgressSave.Enabled = false;
-        var stack = new Stack<IEnumerator>(); stack.Push(B02()); bool failed = false;
+        var stack = new Stack<IEnumerator>(); stack.Push(Nightly.Tag.StartsWith("S3-07") ? C01C02() : B02()); bool failed = false;
         while (stack.Count > 0 && !failed) { object next = null; try { if (!stack.Peek().MoveNext()) { stack.Pop(); continue; } next = stack.Peek().Current; } catch (Exception e) { failed = true; lines.Add("FAIL: " + e); } if (next is IEnumerator child) stack.Push(child); else if (!failed) yield return next; }
         Application.logMessageReceived -= Log; InputSystem.RemoveDevice(kb); failed |= errors.Count > 0;
         lines.Insert(0, (failed ? "FAIL " : "PASS ") + Nightly.Tag + " Unity=" + Application.unityVersion);
@@ -80,5 +80,50 @@ public sealed class S3FinalRunner : MonoBehaviour
         Place(new Vector2(14.3f, 1.81f)); yield return Until(() => Player.GetComponent<PlayerHealth>().HP < 5, 4);
         Check(Player.GetComponent<PlayerHealth>().HP == 4, "floor contact still damages player");
         yield return ExitTo("B01"); yield return ExitTo("B02"); yield return ExitTo("B03"); yield return ExitTo("B02"); yield return ExitTo("B01"); yield return ExitTo("B02");
+    }
+    IEnumerator JumpFrom(Vector2 start, bool twice, bool dash, float seconds = 1.15f)
+    {
+        yield return Keys(); Place(start); yield return new WaitForSeconds(.2f);
+        Check(Motor.Grounded, "jump begins on authored top at " + start);
+        yield return Keys(Key.RightArrow, Key.Z); float max = Body.position.y - .8f;
+        double end = Time.realtimeSinceStartupAsDouble + .28;
+        while (Time.realtimeSinceStartupAsDouble < end) { max = Mathf.Max(max, Body.position.y - .8f); yield return null; }
+        if (twice) { yield return Keys(Key.RightArrow); yield return Keys(Key.RightArrow, Key.Z); }
+        if (dash) yield return Keys(Key.RightArrow, Key.Z, Key.C);
+        end = Time.realtimeSinceStartupAsDouble + seconds - .28;
+        while (Time.realtimeSinceStartupAsDouble < end) { max = Mathf.Max(max, Body.position.y - .8f); yield return null; }
+        yield return Keys(); yield return new WaitForSeconds(.15f);
+        lines.Add($"MEASURE start={start} double={twice} dash={dash} max feet={max:F3} final={Body.position} grounded={Motor.Grounded}");
+        peak = max;
+    }
+    float peak;
+    IEnumerator C01C02()
+    {
+        yield return new WaitForSeconds(.3f); ProgressSave.Enabled = true;
+        Motor.hasDoubleJump = true; Player.GetComponent<PlayerDash>().hasDash = true;
+        yield return ExitTo("C01"); var cp = FindFirstObjectByType<Checkpoint>();
+        Place(cp.transform.position); yield return new WaitForSeconds(.2f);
+        Check(RoomSession.Instance.CheckpointId == "CP-C01", "CP-C01 activates");
+        Check(ProgressSave.TryLoad(out var data) && data.checkpointId == "CP-C01", "CP-C01 valid in disk save");
+        Check(ProgressSave.Continue() && ProgressSave.PendingScene.EndsWith("C01.unity"), "CP-C01 Continue scene mapping"); ProgressSave.Pending = null;
+        yield return ExitTo("C02");
+        Check(RoomSession.Instance.Die(), "C02 death request"); yield return Until(() => !RoomSession.Instance.Respawning);
+        Check(RoomSession.Instance.CurrentRoomId == "C01" && Mathf.Abs(Body.position.x - 8) < .1f, "C02 death returns to safe CP-C01");
+        yield return ExitTo("B05"); yield return ExitTo("C01"); yield return ExitTo("C02");
+        yield return JumpFrom(new Vector2(18, 1.81f), true, false);
+        Check(peak < 6.8f && Body.position.y - .8f < 6.8f, "floor double jump cannot reach authored high platforms top6.8");
+        yield return JumpFrom(new Vector2(9.3f, 3.81f), false, false);
+        Check(peak < 6.8f, "Start top3 ordinary jump cannot reach High1 top6.8");
+        yield return JumpFrom(new Vector2(9.3f, 3.81f), true, false, .95f);
+        Check(Body.position.x >= 12 && Body.position.x <= 16.4f && Motor.Grounded && Mathf.Abs(Body.position.y - 7.6f) < .08f, "Start double jump lands on High1");
+        yield return JumpFrom(new Vector2(15.3f, 7.61f), false, false, .9f);
+        Check(Body.position.y - .8f < 6.7f, "High1 to High2 ordinary jump fails at 5u gap");
+        yield return JumpFrom(new Vector2(15.3f, 7.61f), false, true, .9f);
+        Check(Body.position.x >= 21 && Body.position.x <= 25.4f && Motor.Grounded && Mathf.Abs(Body.position.y - 7.6f) < .08f, "High1 to High2 jump plus dash succeeds");
+        var room = FindFirstObjectByType<RoomDefinition>(); room.TryGetSpawn("FromRight", out var spawn);
+        var exit = Array.Find(FindObjectsByType<RoomExit>(FindObjectsSortMode.None), e => e.exitId == "Right");
+        var playerBounds = Player.GetComponent<BoxCollider2D>().bounds; playerBounds.center = spawn.transform.position;
+        Check(!playerBounds.Intersects(exit.GetComponent<BoxCollider2D>().bounds), "C02 FromRight player bounds do not overlap exit trigger");
+        yield return ExitTo("C01"); yield return ExitTo("C02");
     }
 }

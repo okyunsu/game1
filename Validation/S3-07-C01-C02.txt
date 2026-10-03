@@ -1,0 +1,44 @@
+PASS S3-07-C01-C02 Unity=6000.3.24f1
+PASS: enabled door to C01
+PASS: physical door to C01
+PASS: safe arrival C01/FromLeft
+PASS: CP-C01 activates
+PASS: CP-C01 valid in disk save
+PASS: CP-C01 Continue scene mapping
+PASS: enabled door to C02
+PASS: physical door to C02
+PASS: safe arrival C02/FromLeft
+PASS: C02 death request
+PASS: C02 death returns to safe CP-C01
+PASS: enabled door to B05
+PASS: physical door to B05
+PASS: safe arrival B05/FromRight
+PASS: enabled door to C01
+PASS: physical door to C01
+PASS: safe arrival C01/FromLeft
+PASS: enabled door to C02
+PASS: physical door to C02
+PASS: safe arrival C02/FromLeft
+PASS: jump begins on authored top at (18.00, 1.81)
+MEASURE start=(18.00, 1.81) double=True dash=False max feet=5.905 final=(21.66, 1.81) grounded=True
+PASS: floor double jump cannot reach authored high platforms top6.8
+PASS: jump begins on authored top at (9.30, 3.81)
+MEASURE start=(9.30, 3.81) double=False dash=False max feet=5.535 final=(14.44, 1.82) grounded=True
+PASS: Start top3 ordinary jump cannot reach High1 top6.8
+PASS: jump begins on authored top at (9.30, 3.81)
+MEASURE start=(9.30, 3.81) double=True dash=False max feet=7.905 final=(14.81, 7.61) grounded=True
+PASS: Start double jump lands on High1
+PASS: jump begins on authored top at (15.30, 7.61)
+MEASURE start=(15.30, 7.61) double=False dash=False max feet=9.335 final=(20.78, 1.81) grounded=False
+PASS: High1 to High2 ordinary jump fails at 5u gap
+PASS: jump begins on authored top at (15.30, 7.61)
+MEASURE start=(15.30, 7.61) double=False dash=True max feet=9.155 final=(22.61, 7.61) grounded=True
+PASS: High1 to High2 jump plus dash succeeds
+PASS: C02 FromRight player bounds do not overlap exit trigger
+PASS: enabled door to C01
+PASS: physical door to C01
+PASS: safe arrival C01/FromRight
+PASS: enabled door to C02
+PASS: physical door to C02
+PASS: safe arrival C02/FromLeft
+Error/Exception/Assert 0
