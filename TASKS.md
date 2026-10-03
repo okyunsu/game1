@@ -495,21 +495,26 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-03 P0→K1→K2→K3→S2-day 종료. main. K1·K3 기술 PASS/체감 REVIEW, K2 BLOCKED(2회 실패 후 복원). S2-03 REVIEW, S2-01/02/04 REVIEW 유지. S2-02 A05 5u 간격은 사용자 확인 완료. Sprint 2 Gate·더블 점프·B01 콘텐츠·후속 방·아트 미실시.
+2026-10-03 승인 P0→G2→P3→S3-01~05→S3-B 종료. **main, 로컬 커밋 완료.** S3-01~05는 기술 PASS/**REVIEW**(체감 수락 대기). Sprint 2 Gate 통과·현재 Target 15방. 이번 구현/빌드는 A01~A05/B01~B05의 10방까지이며 Menu 포함11씬이다.
 
-| 단계 | 결과 / 커밋 | Validation |
+| 단계 | 결과 / 로컬 커밋 | 주요 증거 |
 | --- | --- | --- |
-| P0 push | 성공; 기존16커밋 a2f8afc→7b48ef4, main/origin 일치 | P0-push-20261003.txt |
-| K1 키 | PASS / REVIEW, 3c70614 | K1-keys.txt |
-| K2 카메라 | 2회 FAIL→전체 복원, e9ed368 | K2-camera.txt, K2-camera-rerun.txt, K2-camera-first-timeout.log |
-| K3 격자/B01 | PASS / REVIEW, a46b72d | S2-03-retry.txt |
-| 최종 빌드 | PASS, b7adde2 | S2-day-build.txt, S2-day-runtime.txt, S2-day-runtime-day.txt/daycontinue.txt, S2-day-Player-day.log/daycontinue.log |
+| P0 push | FAIL — main/clean 확인 후 GitHub 443 연결 오류; pull/merge/force/재시도 없음 | P0-S3-push.txt |
+| G2 | DONE, a097a4e — S1-10/T1~T4/K1/S2-01~06 사용자 수락, Sprint 2 Gate·15방·K2 DEFERRED | PRD/설계8절/TASKS |
+| P3 | DONE, 59ef631 — 승인 S3-01~05와 미승인 S3-06 이후 TODO 제안 | S3-approved-request.txt |
+| S3-01 | PASS / REVIEW, e1137cc | S3-01-doublejump.txt |
+| S3-02 | 1회 검사 보정 후 PASS / REVIEW, 82a9c53 | S3-02-E2.txt / S3-02-E2-rerun.txt |
+| S3-03 | PASS / REVIEW, a657a38 | S3-03-B01-B02.txt |
+| S3-04 | 1회 검사 보정 후 PASS / REVIEW, c60bb5d | S3-04-E3-B03.txt / S3-04-E3-B03-rerun.txt |
+| S3-05 | PASS / REVIEW, 1cf6dff | S3-05-B04-B05.txt |
+| 최종 빌드 | PASS, 6b54d74 | S3-B-build.txt / S3-B-runtime.txt / route·continue 상세 |
+| 최종 push | SKIPPED — P0 실패 시 생략하라는 명시 지시 적용 | 로컬 커밋 유지, 재push 없음 |
 
-- **회귀:** S1-{02,04,07,08}-night-K1.txt / K2-rollback.txt / K3.txt / S2-day.txt 모두 실제 Unity PASS. 지정 입력/트리거 직접 배치 사용, 자동 이동 로봇 없음. 물리 게임패드 실사용은 미실시(가상 장치·바인딩 유지 확인).
-- **실행:** `Builds/S2-day/Afterglow-S2.exe`, Menu+A01~A05+B01 정확히7씬, 테스트 씬 제외. 빌드 오류/경고0, 실제 exe 두 프로세스 Error/Exception/Assert0. 모든 문 왕복/안전 도착·A02 구멍 CP-A01 복귀·CP-A03/CP-B01 사망 복귀·B01 다른 방 사망 복귀·실제 종료→Z 이어하기 Dash/CP-B01/좌표 유지 PASS. 검사 저장은 Logs/S2-day-slot.json 격리 슬롯이며 사용자 슬롯 변경 없음.
-- **수정 위치:** 키는 Assets/Input/PlayerControls.inputactions. ←/→, Z 점프, X 공격, C 대시, Esc Pause; 메뉴 ↑/↓·Z/Enter 확인·X/Esc 취소. 기존 A/D·Space·J·K/Shift 보조, 패드 유지, LCtrl 미바인딩/다음 능력 예약. Z/Space 짧은 높이1.464u·긴 높이2.520u 동일. 안내 및 README 조작 표 갱신.
-- **격자/배치:** A03 기존 GateGD 인스턴스에 DashGate 추가, 보유+Dash 중만 양방향 통과. 새 선반 출구(30,6), 트리거1×2, FromShelf(27,5.81). 기존 바닥 출구 그대로(y1~3); 새 출구는 y5~7, 오른쪽 벽과4.5u 여유. B01은36×14셸·왼쪽 문·CP-B01(x6)·다음 Sprint 안내만. ProgressSave에 CP-B01 유효 ID/Continue 씬 연결. A01~A05 기존 배치/튜닝/Level 원본/Player.prefab/MovementTest/Packages/ProjectVersion 보존. A03 diff는 새 요소 추가뿐. 새 방 Editor 전환을 위해 EditorBuildSettings에 B01 추가; 배포 빌드는 명시 목록 사용. 일회성 작성 스크립트 삭제.
-- **미해결 K2:** 대시 최대 X 차이1.089→0.684u 감소했지만 평상시/반전 좌표 비교가 FAIL. 최초 batchmode 프레임 종료 대기 실패 후 검사 대기만1회 수정했고, 재실패에서 전체 복원. 시간 기반 검사 틱 차이 가능성은 미확정; 추가 수정을 하지 않음. 카메라는 기존 선행0/직교5.5/감쇠0.15, dashDamping 필드 미배포. N2 Camera 전체 검사는 미실시. CAM-002 대시 밀림 체감은 해결되지 않음.
-- **사용자 확인:** 새 키 조작감(짧고 긴 Z 점프 포함), 현재 대시 카메라 체감, A05 획득 후 A03 격자 양방향 C 통과→선반 문→B01 및 돌아오기, CP-B01 사망/종료/이어하기. Inspector/씬 수정은 Play 종료 후 다시 입력하고 저장; Level 원본 Apply는 의도할 때만 수행.
-- **push:** P0 성공. 이 인계 커밋 이후 승인된 최종 `git push origin main` 한 번을 실행하고 origin/main 동기화 여부를 최종 응답으로 보고한다. pull·merge·force 없음. 실패하면 오류를 여기에 추가하고 재push하지 않는다.
-- **다음:** K1/S2-03 체감 수락 및 K2 재시도는 사용자 판단 대기. 새 콘텐츠 자동 착수 없음.
+- **빌드:** `Builds/S3-B/Afterglow-S3.exe` Windows x64. Menu+A01~A05+B01~B05, 테스트 씬 제외, 빌드 오류/경고0. Builds는 Git 제외이며 로컬에 있다. 실행 안내 README 갱신.
+- **실제 검증:** 단계마다 S1-02/04 입력·이동, S1-07 방 연결, S1-08 CP 회귀 전부 PASS. 파일은 `S1-{02,04,07,08}-night-{S3-01-doublejump,S3-02-E2-rerun,S3-03-B01-B02,S3-04-E3-B03-rerun,S3-05-B04-B05}.txt`. exe 두 프로세스 PID2920/7444: 새 게임·모든 문 양방향·CP-A01/A03/B01 복귀·두 능력 획득/재입장/사망/종료/Continue PASS, Error/Exception/Assert0, 복귀→조작0.716~0.767s. 사용자 저장을 건드리지 않은 `Logs/S3-B-runtime-slot.json` 사용. 직접 배치/지정 입력만 사용, 자동 경로 로봇 없음. `S3-extra-walkoff.txt` 실제 걷기 낙하→Coyote 이후 1회·공중 Dash+추가점프 PASS. 물리 패드·자연스러운 전체 흐름 시간은 미실시.
+- **높이:** 일반 점프 발 최대(바닥 대비)2.535u, 더블4.965~5.049u → B01 턱3.6u 유지. B04 High 초기Y3.3은 Low에서 일반 점프로 닿아, 승인된 보정으로 **Y만5.335**(윗면5.835u) 반영. 일반 실패/더블 착지, Play 종료 후 Scene 저장 확인.
+- **주요 변경:** PlayerMotor/PlayerTuning(새 DoubleJumpVelocity12, 보유 기본false), ProgressSave/RoomSession(두 능력 저장), DoubleJumpPickup, E2Tuning/EnemyCharger/E2.prefab, E3Tuning/EnemyTurret/EnemyShot/E3·E3Shot.prefab, EnemyReset, DoubleJumpTest·CombatTest, B01 지정 추가·B02~B05, S3 검증/빌드 도구. `S3-protected-files.txt`에서 A01~A05·MovementTest·Packages·ProjectVersion·Level 원본·Combat/E1 기존값 변경 없음 확인. PlayerTuning 기존값도 보존.
+- **문제/판단:** `S3-B02-INTRO` — SafeStep x11(오른쪽끝13)과 E2 x24/감지5u의 지정 조합에서는 발판 위 예고가 시작되지 않는다. 접근x20 예고와 안전 발판으로 피하기는 검증했으나 소개 의도 수락/후속 좌표 변경 판단은 필요하다. 이번에는 좌표/감지값 유지. CAM-002/K2는 아트 후 Sprint 4 Polish 후보 DEFERRED, 기본감쇠0.15 유지, 상대 거리로 재비교할 것. S3-02 첫 실패는 E1 검사 간섭, S3-04 첫 실패는 검사 발판 간섭; 재검증 근거만 유효하며 첫 로그 보존.
+- **사용자 확인:** B01 턱 높이 체감, E2 소개/예고 가시성·회피 여유, E3 엄폐 체감, B04 Double Jump/보정 발판 감각, A05 Dash 획득부터 B05까지 자연스러운 전체 흐름 시간. S3-01~05 체감 수락 후 DONE 변경.
+- **수정 위치:** 속도는 PlayerTuning.asset/Double Jump Velocity, 적 공통값은 E2Tuning.asset/E3Tuning.asset. 배치/방향/엄폐/연습은 B01~B04 Scene, 반복 적/탄은 E2/E3/E3Shot.prefab(탄Collider1.2×1.2, muzzleOffset1.15u Inspector). Scene Play 변경은 Stop 후 다시 입력·저장, SO는 Stop 후 원하는 값 또는 이전 값으로 명시적 저장.
+- **다음:** 이번 승인 범위 종료. 인계 검토와 체감 수락만 대기; S3-06 이후/C01~C04/C06/엔딩/Gate는 TODO 제안이며 자동 착수 없음. C지역·보스·엔딩·선택 방·아트·K2 재시도 미실시.
