@@ -1,0 +1,6 @@
+PASS S2-day runtime; FAIL 0
+Executed two separate exe processes, isolated Logs/S2-day-slot.json
+S2-day-runtime-day.txt: Menu Z new game, exact Menu+A01..A05+B01, test scenes excluded, every door round trip, CP-A01 pit return, CP-A03 return, Dash acquisition, CP-B01 save/same-room and cross-room death
+S2-day-runtime-daycontinue.txt: real process restart, Menu Z Continue restores Dash + CP-B01 at safe spawn; death return
+Error/Exception/Assert 0 in both processes. Player logs: S2-day-Player-day.log, S2-day-Player-daycontinue.log
+No heuristic movement; direct placement into real exit/checkpoint/kill-zone triggers.

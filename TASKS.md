@@ -63,7 +63,7 @@ S1-01~05·07·08 DONE, S1-06 DONE, S1-09 DONE(임시 그레이박스 v1 사용�
 | ID | Task | Status | Dependency | User Review / Done Criteria |
 | --- | --- | --- | --- | --- |
 | S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | REVIEW | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
-| S2-02 | A05 대시 획득·안전 연습 | REVIEW | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습, 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
+| S2-02 | A05 대시 획득·안전 연습 | REVIEW | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | REVIEW | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
 | S2-04 | 단일 슬롯 저장·Menu 이어하기 | REVIEW | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
 | S2-05 (제안) | Core Loop 통합 관찰·재방문 검증 | TODO | 별도 사용자 승인 | A05→A03 귀환·게이트·사망/Continue·이월 체감 검토; 이번 실행 미승인 |
@@ -184,6 +184,8 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+K2 / CAM-002 BLOCKED: 두 번째 검증에서 평상시·반전 비교 FAIL로 승인된 실패 규칙에 따라 전체 복원. 카메라 기본0.15s 유지. 시간 기반 입력의 물리 틱 차이 가능성은 미확정이며 추가 수정/재시도는 별도 승인 필요. 대시 밀림 체감은 미해결.
+
 2026-10-03 K3 재개 승인: 사용자 관찰상 기존 출구/오른쪽 벽 간섭. 새 선반 출구 x30,y6·FromShelf x27,y5.81로 지정, 기존 바닥 출구 보존. S2-03-retry.txt 기술 PASS, 체감 수락 전 REVIEW. B01은 지정 셸/CP/돌아오는 문/안내뿐. CP-B01을 단일 슬롯 유효 ID 및 이어하기 씬 매핑에 추가(새 CP 복귀를 위한 최소 연결).
 
 
@@ -207,6 +209,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### S2-day 최종 빌드 — PASS
+
+[S2-day-build.txt](Validation/S2-day-build.txt): Windows x64 Succeeded, 오류/경고0, Menu,A01~A05,B01 정확히7씬. [S2-day-runtime.txt](Validation/S2-day-runtime.txt): exe 실제 두 프로세스, Menu Z 새 게임→기존 모든 문 및 선반 B01 양방향 직접 접촉/안전 도착, A02 구멍→CP-A01, CP-A03·CP-B01 접촉/사망·B01 다른 방 사망 복귀, A05 획득 저장, 종료→Z 이어하기 Dash+CP-B01/좌표 유지 PASS·FAIL0·Error/Exception/Assert0. 상세 S2-day-runtime-day.txt/daycontinue.txt, S2-day-Player-day.log/daycontinue.log. 사용자 슬롯은 변경하지 않고 Logs/S2-day-slot.json 격리 슬롯 사용. 자동 이동 로봇 없음. K1·K3 포함, 실패 K2는 기존0.15s. S1-02/04/07/08-night-S2-day.txt 최종 회귀 별도.
 
 ### K3 — S2-03 재시도 PASS / REVIEW
 

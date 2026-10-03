@@ -1,0 +1,91 @@
+PASS S2 exe day
+PASS: starts in Menu
+PASS: Continue disabled without save
+PASS: new game at A01 without Dash
+PASS: exact successful-stage scene count
+MEASURE included scene Assets/Scenes/Menu.unity
+PASS: scene order 0
+MEASURE included scene Assets/Scenes/A01.unity
+PASS: scene order 1
+MEASURE included scene Assets/Scenes/A02.unity
+PASS: scene order 2
+MEASURE included scene Assets/Scenes/A03.unity
+PASS: scene order 3
+MEASURE included scene Assets/Scenes/A04.unity
+PASS: scene order 4
+MEASURE included scene Assets/Scenes/A05.unity
+PASS: scene order 5
+MEASURE included scene Assets/Scenes/B01.unity
+PASS: scene order 6
+PASS: excluded DashTest
+PASS: excluded CombatTest
+PASS: excluded MovementTest
+PASS: checkpoint authored CP-A01
+PASS: checkpoint writes disk CP-A01
+PASS: authored exit A02
+PASS: spawn ID FromLeft
+MEASURE arrival A02/FromLeft expected=(3.50, 1.81, 0.00), actual=(3.50, 1.81)
+PASS: safe arrival A02
+PASS: authored exit A03
+PASS: spawn ID FromLeft
+MEASURE arrival A03/FromLeft expected=(3.50, 1.81, 0.00), actual=(3.50, 1.81)
+PASS: safe arrival A03
+PASS: authored exit A04
+PASS: spawn ID FromLeft
+MEASURE arrival A04/FromLeft expected=(3.50, 1.81, 0.00), actual=(3.50, 1.81)
+PASS: safe arrival A04
+PASS: authored exit A05
+PASS: spawn ID FromLeft
+MEASURE arrival A05/FromLeft expected=(3.50, 1.81, 0.00), actual=(3.50, 1.81)
+PASS: safe arrival A05
+PASS: authored exit A04
+PASS: spawn ID FromRight
+MEASURE arrival A04/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A04
+PASS: authored exit A03
+PASS: spawn ID FromRight
+MEASURE arrival A03/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A03
+PASS: authored exit A02
+PASS: spawn ID FromRight
+MEASURE arrival A02/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A02
+PASS: authored exit A01
+PASS: spawn ID FromRight
+MEASURE arrival A01/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A01
+PASS: load A02
+PASS: A02 physical pit returns CP-A01 with HP5
+PASS: load A03
+PASS: checkpoint authored CP-A03
+PASS: checkpoint writes disk CP-A03
+PASS: death
+PASS: checkpoint return CP-A03
+PASS: load A05
+PASS: pickup exists
+PASS: acquisition writes Dash to disk
+PASS: authored exit A04
+PASS: spawn ID FromRight
+MEASURE arrival A04/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A04
+PASS: authored exit A03
+PASS: spawn ID FromRight
+MEASURE arrival A03/FromRight expected=(32.50, 1.81, 0.00), actual=(32.50, 1.81)
+PASS: safe arrival A03
+PASS: authored exit B01
+PASS: spawn ID FromLeft
+MEASURE arrival B01/FromLeft expected=(3.50, 1.81, 0.00), actual=(3.50, 1.81)
+PASS: safe arrival B01
+PASS: checkpoint authored CP-B01
+PASS: checkpoint writes disk CP-B01
+PASS: death
+PASS: checkpoint return CP-B01
+PASS: authored exit A03
+PASS: spawn ID FromShelf
+MEASURE arrival A03/FromShelf expected=(27.00, 5.81, 0.00), actual=(27.00, 5.81)
+PASS: safe arrival A03
+PASS: death
+PASS: checkpoint return CP-B01
+PASS: cross-room death returns B01
+MEASURE Error/Exception/Assert=0
+FAIL 0

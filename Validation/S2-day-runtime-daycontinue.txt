@@ -1,0 +1,9 @@
+PASS S2 exe daycontinue
+PASS: starts in Menu
+PASS: valid day save enables Continue after real process restart
+PASS: Continue restores day checkpoint and Dash
+PASS: Continue exact safe spawn
+PASS: death
+PASS: checkpoint return CP-B01
+MEASURE Error/Exception/Assert=0
+FAIL 0
