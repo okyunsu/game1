@@ -89,7 +89,7 @@ G3 사용자 S3-B exe 플레이로 S3-01~05 DONE, S3-B04-HIGH 보정 수락. 현
 | S3-07 | B05 연결·C01 휴식·C02 조합 | REVIEW | G3:DONE | 지정 배치·CP-C01 저장/사망·왕복·바닥 더블 최대발5.905<6.8·Start 일반5.535<6.8/더블 착지·5u 간격 일반실패/대시성공·스폰 비겹침·필수 회귀 PASS |
 | S3-08 | C03 종합 이동·C04 휴식 | REVIEW | S3-07:REVIEW | 지정 E1/E3/엄폐·CP-C04 저장/사망·C02/C03/C04 왕복·CP→C06 입구1.280s·필수 회귀 PASS, Right는 C06 생성까지 비활성 |
 | F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | 2회 검사 실패, 전체 복원; 실제 잔존 피드백 없음 |
-| S3-09 | C06 최종 보스 | TODO | S3-08:REVIEW | 사전 Unity 투영 검사에서 시작 전 시야 조건 충돌. 구현 미착수, 승인된 좌표/시작선/카메라 변경 없이 해결 불가 |
+| S3-09 | C06 최종 보스 | BLOCKED | S3-08:REVIEW | 좁은20u 추적 시야 사전PASS. 구현 검사 첫 충격파 조기소멸 FAIL, 1회 수정 재검사 회복 공격0타 FAIL. 전체 복원, C04 Right 비활성 |
 | S3-10 | 엔딩·저장·타이틀 흐름 | BLOCKED (SKIPPED) | S3-09:REVIEW | S3-09 성공 의존 미충족. 엔딩/진행필드/Quit/Pause 타이틀 미구현 |
 | S3-G | Sprint 3 Gate | TODO | 사용자 판단 | Content Complete 미충족, 다음 Sprint 미착수 |
 
@@ -209,6 +209,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](Validation/S3-09-narrow-preflight.txt), [첫검사](Validation/S3-09-boss-narrow.txt), [재검사](Validation/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
+
+
 2026-10-03 사용자 S3-C06-VIEW 결정: C06 폭20u(벽0~1/19~20), 보스중심17.5/폭2, 시작선x>5, 공통5.5/0/0.15 플레이어 추적 유지. 이전36u/x28/x8 시야충돌은 이 후보로 재검사. A01~C04 배치/RoomCameraRig 변경 금지(C04 Right 활성화만 허용). 현재 승인 F1→S3-09→S3-10→S3-complete, push 없음.
 
 FX-001 / F1 — 두 번의 검사 실패 후 전체 복원(BLOCKED). 첫 검사30fps 명중/실시간Stop/Flash와 60fps Slash까지 통과했으나 재사용 HitFlash 컴포넌트를 새 효과로 오판한 miss assertion FAIL. 검사만 1회 보정 후 재검증에서60fps 명중 직후 대상색=흰색 확인 FAIL. Update/LateUpdate 관찰 순서 영향 가능성은 미확정, 추가 수정/실행 금지 규칙에 따라 코드/에셋/Prefab/검사 도구 전체 복원. F1 T1~T4/S2-01 및 단계 후 회귀는 미실시. 독립 S3-09는 계속하되 F1 피드백은 성공 빌드에 포함할 수 없고 보스에도 미적용.
@@ -251,6 +254,10 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### F1 / S3-09 narrow — 2회 실패 후 전체 복원
+F1-preflight.txt / F1-feedback.txt / F1-feedback-rerun.txt: 표시 및30fps 측정 일부PASS, 최종60fps flash 확인FAIL. S3-09-narrow-preflight.txt 전체 시야PASS, S3-09-boss-narrow.txt 첫 파형 조기소멸FAIL, S3-09-boss-narrow-rerun.txt 파형/회피/뒤공간/Pause 일부PASS·회복 명중0타FAIL. 두 단계 변경 모두 복원. 단계 후 S1-02/04/07/08/N2카메라 및 F1 T1~T4/S2-01 검사는 미실시. S3-10-ending-skipped-F1-run.txt는 의존SKIPPED 기록.
+
 
 ### S3-full — 성공 단계 빌드 / 실제 exe PASS
 [S3-full-build.txt](Validation/S3-full-build.txt): Windows x64 Menu+A01~A05+B01~B05+C01~C04(15씬/14방), 오류/경고0. [S3-full-runtime.txt](Validation/S3-full-runtime.txt): PID25716 새 게임/모든 문 양방향/5CP 복귀/두능력/조합과 PID27720 프로세스 종료후 CP-C04 Continue/능력유지/먼방사망복귀 PASS, Error/Exception/Assert0. 상세 route·continue 별도 새 파일. [보호파일 검사](Validation/S3-full-protected-files.txt) PASS. 보스/엔딩/새 UI/물리패드/자연 완주시간/화면 잘림 수락 미검사, Content Complete 아님.

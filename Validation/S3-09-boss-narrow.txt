@@ -1,0 +1,30 @@
+FAIL S3-09-boss-narrow Unity=6000.3.24f1
+PASS: CP-C04 selected before combat
+PASS: enabled exit C06
+PASS: physical door C06
+PASS: single persistent player after C06
+PASS: enabled exit C04
+PASS: physical door C04
+PASS: single persistent player after C04
+PASS: enabled exit C06
+PASS: physical door C06
+PASS: single persistent player after C06
+PASS: fresh C06 boss20 idle unlocked
+PASS: crossing x5 locks exit and changes Door display
+MEASURE authored melee x=13.500..16.500 width=3.000
+PASS: exact 3u melee range
+MEASURE melee tell=0.800s dash destination=(11.45, 1.82)
+PASS: 0.8 tell and dash escapes melee without damage
+MEASURE melee recovery=1.200s
+PASS: melee recovery1.2
+PASS: single wave emitted
+MEASURE wave tell=1.017s height=1.000u
+PASS: wave tell1s and height1u
+FAIL: UnityEngine.MissingReferenceException: The object of type 'BossWave' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+  at UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) [0x0006a] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) [0x00010] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at UnityEngine.Component.get_transform () [0x00006] in <4188a0f79dff4b4191dbeaff03bfe462>:0 
+  at S3CompleteRunner+<BossChecks>d__18.MoveNext () [0x00635] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3CompleteVerification.cs:95 
+  at S3CompleteRunner+<Start>d__11.MoveNext () [0x0008f] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3CompleteVerification.cs:44 
+Error/Exception/Assert 0

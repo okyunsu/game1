@@ -1,0 +1,35 @@
+FAIL S3-09-boss-narrow-rerun Unity=6000.3.24f1
+PASS: CP-C04 selected before combat
+PASS: enabled exit C06
+PASS: physical door C06
+PASS: single persistent player after C06
+PASS: enabled exit C04
+PASS: physical door C04
+PASS: single persistent player after C04
+PASS: enabled exit C06
+PASS: physical door C06
+PASS: single persistent player after C06
+PASS: fresh C06 boss20 idle unlocked
+PASS: crossing x5 locks exit and changes Door display
+MEASURE authored melee x=13.500..16.500 width=3.000
+PASS: exact 3u melee range
+MEASURE melee tell=0.817s dash destination=(11.33, 1.82)
+PASS: 0.8 tell and dash escapes melee without damage
+MEASURE melee recovery=1.217s
+PASS: melee recovery1.2
+PASS: single wave emitted
+MEASURE wave tell=1.000s height=1.000u
+PASS: wave tell1s and height1u
+MEASURE wave speed=5.000u/s
+PASS: jump avoids moving5u/s wave
+PASS: Pause freezes pattern and wave
+PASS: wave disappears at authored left wall
+MEASURE rear-gap attempt position=(15.60, 1.82) feet=1.015 boss right18.5 wall left19
+PASS: prescribed jump cannot enter floor gap behind boss
+PASS: standing on boss causes contact damage
+MEASURE1.2s recovery attack hits=0; cooldown unchanged0.35s
+FAIL: System.Exception: recovery affords actual X attacks
+  at S3CompleteRunner.Check (System.Boolean ok, System.String m) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3CompleteVerification.cs:35 
+  at S3CompleteRunner+<BossChecks>d__18.MoveNext () [0x00b11] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3CompleteVerification.cs:111 
+  at S3CompleteRunner+<Start>d__11.MoveNext () [0x0008f] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\S3CompleteVerification.cs:44 
+Error/Exception/Assert 0

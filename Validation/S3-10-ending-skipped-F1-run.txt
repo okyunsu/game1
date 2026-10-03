@@ -1,0 +1,1 @@
+SKIPPED S3-10: S3-09 narrow stage failed twice and was fully restored. No Ending, bossDefeated/endingReached, Quit/Pause-title implementation or tests. Existing C04 Right remains disabled. F1 failed/restored independently.
