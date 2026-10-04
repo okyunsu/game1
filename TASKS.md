@@ -148,6 +148,13 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
+### Q1-SAVE-001 — 빈 파일·미지원 버전의 읽기 예외 미처리 (2026-10-04)
+- 심각도: High / PRD DoD 저장 오류 0건 조건 미충족. 일반 플레이 저장 손실은 확인되지 않음.
+- 재현: S4-pre2 실제 exe에 격리 `-save-path`로 빈 파일 또는 `{"version":999,"checkpointId":"CP-A01"}`를 전달하고 `-s2-verify corrupt` 실행.
+- 실제: `ProgressSave.TryLoad`의 `InvalidDataException: Unsupported save data`가 `SaveMenu.Start` 밖으로 나감. Error/Exception=1, 손상 저장 안내 검사 FAIL. 잘린 JSON·잘못된 JSON은 안내와 명시적 새 게임/원본 보존 PASS.
+- 영향: 이 두 저장 조건에서 정상 안내·새 게임 경로가 검증되지 않았고 명백한 런타임 오류가 발생. Q1은 게임 코드 수정 금지이므로 수정하지 않음.
+- 관련: `Assets/Scripts/ProgressSave.cs` TryLoad catch 필터, `Assets/Scripts/SaveMenu.cs` Start. [빈 파일](Validation/Q1-corrupt-empty.txt), [미지원 버전](Validation/Q1-corrupt-version.txt), [전체](Validation/Q1-dod-robustness.txt).
+
 - UI-CAP-001 (2026-10-04): 새 런타임 캡처 도구 ScreenCapture/EncodeToPNG 모듈 참조 불가. 검사1회보정 재실패로 촬영 경로 중단, 컴파일을 막는 부분만 제거. 기존 Packages 보호. U1 표시 상태검사는 독립 PASS; 1280×720/1920×1080 6장 및 시각 검수 미실시. 다음 판단: 사용자 exe 가독성 확인 또는 별도 승인 촬영 도구 경로.
 
 ### D0-T2-001 / D0-T4-001 / D0-S2-001 — 기준 검사 실패

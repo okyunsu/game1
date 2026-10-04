@@ -1,0 +1,10 @@
+PASS S2 exe continue
+PASS: starts in Menu
+PASS: Continue enabled with valid save
+PASS: Dash survives process restart/Continue
+PASS: Continue at CP-A01 after acquisition
+PASS: load A03
+PASS: checkpoint authored CP-A03
+PASS: checkpoint writes disk CP-A03
+MEASURE Error/Exception/Assert=0
+FAIL 0

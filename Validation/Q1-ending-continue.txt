@@ -1,0 +1,8 @@
+FAIL S2 exe continuecp
+PASS: starts in Menu
+PASS: Continue enabled with valid save
+FAIL: System.Exception: Timeout room ready
+  at S2BuildVerification+<Until>d__13.MoveNext () [0x0004b] in <4854dbb82c84440a8da4b55ea0779a8a>:0 
+  at S2BuildVerification+<Start>d__10.MoveNext () [0x00079] in <4854dbb82c84440a8da4b55ea0779a8a>:0 
+MEASURE Error/Exception/Assert=0
+FAIL 1

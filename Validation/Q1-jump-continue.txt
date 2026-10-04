@@ -1,0 +1,21 @@
+PASS Windows exe continue Unity=6000.3.24f1
+PASS: exe starts in Menu
+PASS: Continue enabled after previous process acquisition
+PASS: second process Continue maps CP-B01
+PASS: both abilities survive process exit/Continue
+PASS: Continue safe checkpoint position
+PASS: death accepted
+PASS: checkpoint death return CP-B01
+MEASURE death->control=0.716s
+PASS: door exists to B02
+PASS: physical door transition B02
+PASS: safe spawn B02/FromLeft
+PASS: door exists to B03
+PASS: physical door transition B03
+PASS: safe spawn B03/FromLeft
+PASS: door exists to B04
+PASS: physical door transition B04
+PASS: safe spawn B04/FromLeft
+PASS: loaded ownership suppresses pickup
+Error/Exception/Assert 0
+NOTE: direct placement and prescribed inputs; no navigation robot; isolated save slot

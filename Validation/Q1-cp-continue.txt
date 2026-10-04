@@ -1,0 +1,15 @@
+PASS S2 exe continuecp
+PASS: starts in Menu
+PASS: Continue enabled with valid save
+PASS: Dash survives process restart/Continue
+PASS: Continue restores CP-A03
+PASS: Continue checkpoint position
+PASS: death
+PASS: checkpoint return CP-A03
+PASS: death
+PASS: checkpoint return CP-A03
+PASS: death
+PASS: checkpoint return CP-A03
+PASS: repeated deaths preserve saved progress
+MEASURE Error/Exception/Assert=0
+FAIL 0

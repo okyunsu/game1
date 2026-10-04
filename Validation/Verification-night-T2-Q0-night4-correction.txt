@@ -1,0 +1,50 @@
+PASS T2-Q0-night4-correction Unity=6000.3.24f1
+PASS: max HP 5 and test checkpoint active
+PASS: simultaneous physical damage blocks deal only one HP
+PASS: invincibility rejects duplicate ordinary damage
+PASS: direct hit locks X4/Y3 30
+PASS: opposite input preserves locked sign 30
+PASS: opposite input preserves locked sign 30
+MEASURE fps=30 unlock=0.133328s frame=0.066666s
+PASS: lock duration within configured plus observed frame 30
+PASS: right source knocks left 30
+PASS: direct hit locks X4/Y3 60
+PASS: opposite input preserves locked sign 60
+PASS: opposite input preserves locked sign 60
+PASS: opposite input preserves locked sign 60
+PASS: opposite input preserves locked sign 60
+PASS: opposite input preserves locked sign 60
+PASS: opposite input preserves locked sign 60
+MEASURE fps=60 unlock=0.133345s frame=0.033332s
+PASS: lock duration within configured plus observed frame 60
+PASS: right source knocks left 60
+PASS: direct hit locks X4/Y3 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+PASS: opposite input preserves locked sign 120
+MEASURE fps=120 unlock=0.124991s frame=0.016675s
+PASS: lock duration within configured plus observed frame 120
+PASS: right source knocks left 120
+PASS: dash before damage setup
+PASS: damage cancels dash
+PASS: ordinary damage accepted 0
+PASS: ordinary damage accepted 1
+PASS: ordinary damage accepted 2
+PASS: ordinary damage accepted 3
+PASS: ordinary damage accepted 4
+PASS: HP 0 uses S1-08 death flow
+PASS: respawn restores max HP in test checkpoint room
+PASS: respawn safe ground
+PASS: KillZone invincibility setup
+PASS: physical KillZone bypasses invincibility and sets HP 0
+PASS: KillZone return restores max HP

@@ -1,0 +1,11 @@
+FAIL S2 exe corrupt
+PASS: starts in Menu
+FAIL: System.Exception: corrupt save disables Continue and shows message
+  at S2BuildVerification.Check (System.Boolean ok, System.String m) [0x00003] in <4854dbb82c84440a8da4b55ea0779a8a>:0 
+  at S2BuildVerification+<Tests>d__21.MoveNext () [0x00c64] in <4854dbb82c84440a8da4b55ea0779a8a>:0 
+  at S2BuildVerification+<Start>d__10.MoveNext () [0x00079] in <4854dbb82c84440a8da4b55ea0779a8a>:0 
+InvalidDataException: Unsupported save dataProgressSave.TryLoad (ProgressData& data) (at <4854dbb82c84440a8da4b55ea0779a8a>:0)
+SaveMenu.Start () (at <4854dbb82c84440a8da4b55ea0779a8a>:0)
+
+MEASURE Error/Exception/Assert=1
+FAIL 1

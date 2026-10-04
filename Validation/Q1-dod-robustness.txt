@@ -1,0 +1,58 @@
+Q1 PARTIAL / item evidence required; forced termination poll timing is recorded, not exact same-frame termination.
+MEASURE dash-kill forced Stop-Process PID=20952 observed=4.446s save={
+    "version": 1,
+    "dash": true,
+    "doubleJump": false,
+    "bossDefeated": false,
+    "endingReached": false,
+    "checkpointId": "CP-A01"
+}
+MEASURE dash-continue-cp-kill forced Stop-Process PID=2276 observed=4.447s save={
+    "version": 1,
+    "dash": true,
+    "doubleJump": false,
+    "bossDefeated": false,
+    "endingReached": false,
+    "checkpointId": "CP-A03"
+}
+cp-continue exit=0 evidence=Q1-cp-continue.txt
+PASS S2 exe continuecp
+MEASURE jump-kill forced Stop-Process PID=25680 observed=8.903s save={
+    "version": 1,
+    "dash": true,
+    "doubleJump": true,
+    "bossDefeated": false,
+    "endingReached": false,
+    "checkpointId": "CP-B01"
+}
+jump-continue exit=0 evidence=Q1-jump-continue.txt
+PASS Windows exe continue Unity=6000.3.24f1
+MEASURE boss-kill forced Stop-Process PID=26652 observed=5.928s save={
+    "version": 1,
+    "dash": true,
+    "doubleJump": true,
+    "bossDefeated": true,
+    "endingReached": false,
+    "checkpointId": "CP-C04"
+}
+MEASURE ending-kill forced Stop-Process PID=1524 observed=4.395s save={
+    "version": 1,
+    "dash": true,
+    "doubleJump": true,
+    "bossDefeated": true,
+    "endingReached": true,
+    "checkpointId": "CP-C04"
+}
+ending-continue exit=1 evidence=Q1-ending-continue.txt
+FAIL S2 exe continuecp
+corrupt-truncated exit=0 evidence=Q1-corrupt-truncated.txt
+PASS S2 exe corrupt
+corrupt-empty exit=1 evidence=Q1-corrupt-empty.txt
+FAIL S2 exe corrupt
+corrupt-invalid exit=0 evidence=Q1-corrupt-invalid.txt
+PASS S2 exe corrupt
+corrupt-version exit=1 evidence=Q1-corrupt-version.txt
+FAIL S2 exe corrupt
+NOT RUN read-only file / unwritable directory: existing verifier has no write-failure assertion; no game-code changes allowed in Q1.
+NOT RUN three boss deaths/reset/exit-lock: existing executable runners do not expose this sequence; Editor regression is separate evidence.
+Ending-continue runner expects CP-A03 and cannot certify ending branch. See ending-kill: Continue from boss save reaches and persists ending; after-ending repeat needs a suitable observer.

@@ -1,0 +1,11 @@
+PASS S2 exe acquire
+PASS: starts in Menu
+PASS: Continue disabled without save
+PASS: new game at A01 without Dash
+PASS: load A05
+PASS: pickup exists
+PASS: acquisition writes Dash to disk
+PASS: pickup preserves CP-A01
+NOTE: process exits now; next phase starts a new exe process.
+MEASURE Error/Exception/Assert=0
+FAIL 0

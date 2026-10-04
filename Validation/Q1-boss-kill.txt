@@ -1,0 +1,12 @@
+PASS Windows exe kill-now Unity=6000.3.24f1 PID=26652
+PASS: starts Menu
+PASS: pad new game enters A01
+PASS: pad Start Pause
+PASS: pad selects Pause title
+PASS: pad Pause title / session cleanup / scale1
+PASS: direct C04 verification setup
+PASS: C04 C06 door enabled
+PASS: boss flag persisted synchronously before light
+PASS: victory stops attacks and damage
+MEASURE process exits 0.0047s after kill, before 2s Ending. Separate Continue process required.
+Error/Exception/Assert 0
