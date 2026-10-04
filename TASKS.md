@@ -91,7 +91,7 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 | S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | DONE | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
 | S2-02 | A05 대시 획득·안전 연습 | DONE | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | DONE | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
-| S2-04 | 단일 슬롯 저장·Menu 이어하기 | BLOCKED | S2-02:REVIEW | Q1-SAVE-001: 빈 파일·미지원 버전 처리 실패. 정상 저장/Continue 기존 검사 유지, 예외 경로 수정 승인·재검증 전 저장 견고성 완료 보류 |
+| S2-04 | 단일 슬롯 저장·Menu 이어하기 | REVIEW | S2-02:REVIEW | N5 Part1: 예외 필터 수정, 손상 4종 실제 exe/기존 저장 검사/회귀13/13 PASS. 사용자 수락 대기 |
 | S2-05 | Core Loop 통합 관찰·재방문 검증 | DONE | 사용자 결정 G2 | S2-day 사용자 플레이로 대체, 이월 T1~T4·점프 일관성 수락 |
 | S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
 
@@ -617,6 +617,9 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+2026-10-04 N5 진행: Part1 PASS. Q1-SAVE-001 예외 필터 수정 후 손상 4종 실제 exe·기존 저장 검사·회귀13/13 PASS, S2-04 REVIEW 복귀. [증거](Validation/N5-Part1-save-fix.txt). T-A~G 도구 제작/실행 진행 중. 아래 night4 인계는 이전 이력.
+
 
 **Q0 SKIPPED / Q1 FAIL(저장 버그 1건·2조건) / Q2 BLOCKED / Q3 BLOCKED / Q4 BLOCKED / Q5 BLOCKED / Q6 PASS / Q7 KNOWN-LIMIT. 큐 기록 기준 총 40.4분(사전 문서 검토 제외).**
 

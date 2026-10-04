@@ -1,0 +1,10 @@
+PASS N5 Part1: four corruption cases + existing acquire/Continue/CP/repeated death/new-game suite; actual exe Error0; regression13/13.
+truncated exit=0 PASS S2 exe corrupt
+empty exit=0 PASS S2 exe corrupt
+invalid exit=0 PASS S2 exe corrupt
+version exit=0 PASS S2 exe corrupt
+acquire exit=0 PASS S2 exe acquire
+continue exit=0 PASS S2 exe continue
+continuecp exit=0 PASS S2 exe continuecp
+new exit=0 PASS S2 exe new
+Only ProgressSave.TryLoad catch filter changed: InvalidDataException added; existing JsonUtility ArgumentException handling retained. Save fields/version and other lines unchanged.

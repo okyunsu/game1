@@ -14,7 +14,7 @@ public static class ProgressSave
  {
   data=null;Message="";if(!File.Exists(FilePath))return false;
   try{data=JsonUtility.FromJson<ProgressData>(File.ReadAllText(FilePath));if(data==null||data.version!=1||data.checkpointId is not ("CP-A01" or "CP-A03" or "CP-B01" or "CP-C01" or "CP-C04"))throw new InvalidDataException("Unsupported save data");return true;}
-  catch(Exception e) when(e is IOException or UnauthorizedAccessException or ArgumentException){data=null;Message="저장 파일을 읽을 수 없습니다. 새 게임을 선택하세요.";return false;}
+  catch(Exception e) when(e is InvalidDataException or IOException or UnauthorizedAccessException or ArgumentException){data=null;Message="저장 파일을 읽을 수 없습니다. 새 게임을 선택하세요.";return false;}
  }
  public static bool Write(ProgressData data)
  {
