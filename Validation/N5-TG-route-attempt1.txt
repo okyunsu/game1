@@ -1,0 +1,20 @@
+FAIL FullRouteVerifier actual=exe
+PASS actual keyboard New Game
+PASS route authored exit A01 -> A02
+PASS physical natural route reaches A02
+PASS route authored exit A02 -> A03
+PASS physical natural route reaches A03
+PASS route authored exit A03 -> A04
+PASS physical natural route reaches A04
+PASS route authored exit A04 -> A05
+PASS physical natural route reaches A05
+PASS natural pickup A05
+PASS route authored exit A05 -> A04
+PASS physical natural route reaches A04
+PASS route authored exit A04 -> A03
+PASS physical natural route reaches A03
+PASS route authored exit A03 -> B01
+FAIL System.Exception: natural route timeout A03 -> B01 pos=(29.18, 2.20) goal=(30.00, 6.00)
+  at FullRouteVerifier+<Tests>d__3.MoveNext () [0x00292] in <dfebf5a3baea4f97a1c2eee5668b8d2a>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <dfebf5a3baea4f97a1c2eee5668b8d2a>:0 
+Error/Exception/Assert=0

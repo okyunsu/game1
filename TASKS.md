@@ -19,7 +19,9 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
-2026-10-04 **night4 큐 종료:** Q0 SKIPPED / Q1 FAIL(저장 버그1건·2조건, S2-04 BLOCKED) / Q2~Q5 BLOCKED(각 미실시 범위 명시) / Q6 PASS(후보3개 실제 수치·exe·회귀) / Q7 KNOWN-LIMIT(캡처 오류→보정 후 검정6장, 유효12장 없음). 종료 회귀 Q0~Q7 각각13/13 PASS. U1/F2R/LOGR 사용자 수락·Sprint3 Gate 유지. [후보 비교](Validation/Q6-feedback-candidates.txt), [최종 인계](#latest-handoff). 아래는 단계 이력이다.
+2026-10-04 **N5 최신: 1부 PASS/S2-04 REVIEW, T-B/T-C PASS, T-F 57유효PNG, T-A/T-D/T-E/T-G 일부 KNOWN-LIMIT. S4-pre3 빌드 PASS, 단계별회귀104/104. 자연 전체 완주/60분 안정성 미검증. Latest Handoff 우선.**
+
+2026-10-04 **night4 큐 종료(이전 이력):** Q0 SKIPPED / Q1 FAIL(저장 버그1건·2조건, S2-04 BLOCKED) / Q2~Q5 BLOCKED(각 미실시 범위 명시) / Q6 PASS(후보3개 실제 수치·exe·회귀) / Q7 KNOWN-LIMIT(캡처 오류→보정 후 검정6장, 유효12장 없음). 종료 회귀 Q0~Q7 각각13/13 PASS. U1/F2R/LOGR 사용자 수락·Sprint3 Gate 유지. [후보 비교](Validation/Q6-feedback-candidates.txt), [최종 인계](#latest-handoff). 아래는 단계 이력이다.
 
 2026-10-04 최종: **TM/U0 DONE, U1 REVIEW(촬영 경로 BLOCKED/B 규칙 기능보존), S4-pre2 빌드·실제exe PASS/Error0, 회귀13/13PASS/KNOWN-FAIL 없음**. [최종요약](Validation/S4-pre2-summary.txt). 사용자 HUD 가독성 대기·6장 미촬영, 보호파일불변/push없음. 아래 진행중 문단은 단계 이력, Latest Handoff/최상단 최신 상태 우선.
 
@@ -250,6 +252,15 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - E1 코드·프리팹·E1Tuning은 CombatTest에만 보존. 순찰 x=15.975~23.031, 왕복 2회 방향 전환, 벽·낭떠러지 회전, 실제 공격 2타 제거, 접촉 피해·무적 중 중복 방지, KillZone 제거, 플레이어 사망 후 1개 HP2 초기화 PASS.
 - 증거: [재시도](Validation/Verification-T4-retry.txt), Verification-night-T1-C4.txt·T2-C4.txt·T3-C4.txt. 회귀 S1-02/04-night-C4.txt. 사용자 감각 수락 전 REVIEW.
 
+
+### N5 검증 도구 한계 (2026-10-04; 제품 버그 판정 없음)
+
+- T-A: checkpoint 쓰기 실패 경로 2회 실패. A01 x8 목표 앞 지형에 걸림; 권한은 복원. folder ACL/복구 후 다음 쓰기는 미검증. Ending Continue 반복은 PASS.
+- T-D: G-D 좌표 보정에도 시작 높이1.81이 선반 높이5보다 낮아 유효하지 않음. 나머지32칸 결과는 4fps에서 일관됨. 제품 게이트 우회 BUG로 해석하지 않는다.
+- T-E: Pause 고정틱 대기 보정 후 A04(없음)의 KillZone 선택으로 재실패. 60분 안정성·메모리/오브젝트·행동 수 기준은 미검증. T-E 재실패 이후 도구를 추가 수정하지 않음.
+- T-F: 화면56조합/D3D12 probe/PNG57장 PASS; 포커스 강제 상실·복귀 미검증. 기본 focus 설정을 보존했고 IgnoreFocus로 대신하지 않음.
+- T-G: 자연 입력 경로 1회 보정 후 B01 상단 B05 대신 하단 B02로 진입. 두 능력 자연 획득까지 확인; 새 게임→엔딩 자동 완주 미검증.
+- 추가 도구 보정은 이번 큐의 1회 보정 한도를 넘으므로 후속 승인 범위에서 판단한다. 사용자 전체 플레이·감각 수락과 Sprint3 Gate는 계속 대기한다.
 ## Decisions Needed
 
 ### 2026-10-04 Q-night4 후속 판단
@@ -620,27 +631,21 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-2026-10-04 N5 진행: Part1 PASS. Q1-SAVE-001 예외 필터 수정 후 손상 4종 실제 exe·기존 저장 검사·회귀13/13 PASS, S2-04 REVIEW 복귀. [증거](Validation/N5-Part1-save-fix.txt). T-A~G 도구 제작/실행 진행 중. 아래 night4 인계는 이전 이력.
+2026-10-04 **N5 큐 종료(실행 기록 약69분, 15:17~16:26 KST).** **1부 PASS / S2-04 REVIEW 복귀.** 항목별 회귀8묶음 **104/104 PASS**, 보호파일·기본값 불변, main/로컬 단계 커밋/push 없음. 아래 미검증 조건을 회귀가 대신하지 않는다. [최종 인계·명령·사용자 할 일](Validation/N5-final-handoff.md), [보호/회귀 검사](Validation/N5-final-checks.txt), [진행 시각](Validation/N5-progress.txt), [night4 인계](Validation/Q-night4-final-handoff.md).
 
+| 항목 | 최종 결과 |
+|---|---|
+| 1부 | PASS. 예외 필터 한 줄 수정, 손상4종 실제exe/기존 저장 검사/Error0. Q1-SAVE-001 해결, S2-04 REVIEW |
+| T-A | 부분 PASS / KNOWN-LIMIT. Ending Continue 반복 PASS; 지형 앞 이동2회 실패로 폴더 ACL·다음 저장 복구 미검증 |
+| T-B | PASS. 보스 사망·CP-C04·재진입3회/HP20·첫 패턴·잠금, 실제 입력 처치→엔딩/Error0 |
+| T-C | PASS 짧은 경로. tick299, 60fps3회+30/120 모두 틱/위치 차0. 사용자 관찰 녹화 JSON 저장 확인 |
+| T-D | 부분 PASS / KNOWN-LIMIT. 실제4fps, A05/G-J/B04/C02/C03 32칸 일관됨. G-D 8칸 시작높이 오류로 무효 |
+| T-E | KNOWN-LIMIT. 1회 보정 후 KillZone 없는 A04 선택으로 재실패. 실제60분/메모리·오브젝트/행동 수 기준 미검증 |
+| T-F | PASS 57유효PNG/Error0. D3D11 56조합+D3D12 시작1회. 실제Screen/GUI/뷰포트 기록; 강제 focus 상실·복귀 미검증 |
+| T-G | S4-pre3 빌드·손상·최종 재생 PASS. 두 능력 자연 획득 후 B01→B05 대신 B02로 재실패; 자연 새 게임→엔딩 미검증 |
 
-**Q0 SKIPPED / Q1 FAIL(저장 버그 1건·2조건) / Q2 BLOCKED / Q3 BLOCKED / Q4 BLOCKED / Q5 BLOCKED / Q6 PASS / Q7 KNOWN-LIMIT. 큐 기록 기준 총 40.4분(사전 문서 검토 제외).**
+주요 파일: ProgressSave.cs의 TryLoad catch, 새 Assets/Scripts/Verification/ 도구11개, README, Validation/N5-* 증거. 기존 게임 규칙·Scene·Prefab·튜닝·Packages/ProjectSettings/저장 형식은 유지했다. [화면 최종 증거](Validation/N5-TF-display-final.txt), [최종 exe 결과](Validation/N5-TG-final.txt). 이전 Latest Handoff 원문은 Validation/N5-prior-handoff-preserved.txt에 보존했다.
 
-2026-10-04 night4 큐를 Q0~Q7까지 검토·실행하고 종료했다. **Q0~Q7 종료 회귀는 각각 13/13 PASS**(Q0 최초 격리 라이선스 오류 후 보정, Q6 참조 보정 후 재회귀 포함). 이 통과는 아래 추가 저장 실패·미검증 조건을 덮지 않는다. **S2-04 BLOCKED(Q1-SAVE-001)**, U1/F2R/LOGR·S3-06~10 REVIEW, Sprint 3 Gate 사용자 판단 유지. main / 단계별 로컬 커밋 / push 없음. [진행·시각](Validation/Q-night4-progress.txt), [원문](Validation/Q-night4-approved-request.txt), [이전 작업 검토](Validation/Q-night4-prior-review.txt), [직전 인계](Validation/TM-U1-final-handoff.md).
+새 제품 버그 확정 없음. 도구 한계는 Bugs의 N5 절과 각 결과에 기록했다. S2-04/U1/F2R/LOGR 및 기존 S3 REVIEW와 Sprint3 Gate는 사용자 수락 대기다. 승인한 큐의 보정 횟수를 소진한 경로에는 추가 수정을 하지 않았다.
 
-| 큐 | 결과·실제 범위 | 증거 |
-| --- | --- | --- |
-| Q0 | SKIPPED: 완주 메모 비어 있음. PT-001/사용자 CSV 요약/문제 후보·수락 판단 생성 안 함 | [승인 원문](Validation/Q-night4-approved-request.txt) |
-| Q1 | FAIL·버그 1건: 빈 파일/미지원 버전에서 미처리 예외. Dash/Double Jump/CP/보스/엔딩 저장 감지 후 실제 프로세스 강제 종료, 능력·CP 재실행 PASS. 읽기전용·폴더 쓰기 실패/보스 사망3회/엔딩 후 Continue 완전 검증은 미실시 | [결과](Validation/Q1-dod-robustness.txt), [빈 파일](Validation/Q1-corrupt-empty.txt), [미지원](Validation/Q1-corrupt-version.txt) |
-| Q2 | BLOCKED: 4개 요청 해상도에서 실제 exe UI 상태/Error0 PASS. 렌더 픽셀 좌표·보스/예고 시야·전체화면·크기변경·포커스 미검증. 별도 Windows API 확인했으나 격리 CLI 창이 대상 목록에 없음 | [결과](Validation/Q2-display.txt) |
-| Q3 | BLOCKED: Editor 30/60/120fps 설정 일반점프2.535u, 더블4.965/5.055/5.049u, G-J 여유 PASS/Error0. 144fps/전체 구간 행렬/수평 최대거리 미실시 | [표](Validation/Q3-fps-baseline.txt), [실측](Validation/Q3-night4-jump.txt) |
-| Q4 | BLOCKED: 기존 성공 경로는 출구에 직접 배치함. 실제 구간 최단 이동 시간으로 사용할 수 없어 목표 대비 표는 NOT MEASURED | [근거·목표](Validation/Q4-route-times.txt) |
-| Q5 | BLOCKED: 45분·50사망·100Pause·300전환 반복과 내부 GameObject/EnemyShot 샘플을 지원하는 기존 exe 도구 없음. 45분 시험/CSV 생성 안 함 | [한계](Validation/Q5-soak.txt) |
-| Q6 | PASS: A/B/C 빌드0errors/0warnings, 실제 AttackSlash·적 명중/Error0·후보 Asset 이름/4수치 일치, 보정 후 회귀13/13 | [후보 표·비교](Validation/Q6-feedback-candidates.txt), [1회 보정](Validation/Q6-tool-correction.txt), [회귀](Validation/REG-Q6-night4-correction-summary.txt) |
-| Q7 | KNOWN-LIMIT: 실제 exe ScreenCapture 첫 호출 오류. D3D11+영문 임시 경로 1회 보정에서 6장 모두 같은 검정 이미지. 시각검수 FAIL, 유효 12장 없음, 1920 후속 촬영 중단. 최종 회귀13/13 | [결과](Validation/Q7-screenshots.txt), [실패 증거](Validation/Q7-shots/NOT-CAPTURED.txt), [최종 회귀](Validation/REG-Q7-night4-summary.txt) |
-
-- **새 버그:** High Q1-SAVE-001. `ProgressSave.TryLoad`의 `InvalidDataException`이 catch 필터에 잡히지 않아 빈 파일·version999에서 `SaveMenu.Start` 예외/Error1. 정상 저장 손실은 확인하지 않았으나 안내/새 게임 안전 경로와 DoD 오류0 조건 미충족. Q1 수정 금지로 미수정, S2-04 BLOCKED로 되돌림. 잘린 JSON·잘못된 JSON의 안내·명시 새 게임·원본 보존은 PASS. 일반 슬롯/기존 사용자 CSV는 수정하지 않음.
-- **Q0 Sprint 4 후보:** 사용자 완주 메모가 없어 생성하지 않음. 자동 검사 CSV를 사용자 PT-001로 취급하지 않았음. [자동 CSV 구분](Validation/Q-night4-auto-csv/README.txt). 사용자 감각 수락/DONE 전환 없음.
-- **사용자가 비교할 빌드(각 2분):** [A 현재](Builds/Q6-A/Afterglow-Q6-A.exe), [B 강하게](Builds/Q6-B/Afterglow-Q6-B.exe), [C 약하게](Builds/Q6-C/Afterglow-Q6-C.exe). 타이틀 왼쪽 아래 후보명 확인 → A01 공격 표시 → A04 명중 번쩍임/HP칸/처치 효과 비교. 같은 폴더 Data/DLL 유지. `Q6-*-attempt1`은 참조 보정 전 증거이므로 비교용으로 쓰지 않음.
-- **판단·다음 작업:** Q6에서 선호 후보를 선택하되 원본 기본값 반영은 별도 명시 결정. 저장 버그 수정 승인 여부, Q2~Q5에 필요한 검증 도구/입력 경로의 별도 범위 결정. Q4는 실측이 없어 초과 구간 판단을 요청하지 않음. U1 HUD 가독성·Sprint 3 완주/Gate 판단 유지. 승인 없이 새 Sprint 콘텐츠·레벨/규칙·기본값 변경 없음.
-- **수정 위치:** 후보만 `Assets/Resources/Q6/Feedback-A/B/C.asset`(기존 FeedbackTuning의 단위·Tooltip·그룹 유지), 원본 `Assets/ScriptableObjects/FeedbackTuning.asset` 불변. Play 후 원하는 값/이전 값을 다시 명시 저장하고 후보 빌드를 재생성해야 exe에 반영됨. 기존 UI는 `Assets/Resources/UITuning.asset`이며 변경하지 않음. Scene 배치도 변경 없음.
-- **주요 파일·보존:** 신규 Q6NightBuild/Q6CandidateLabel(후보 define에서만 실행·표시 참조 바인딩)/후보 Asset, Q7NightBuild/Q7ExeCapture(`-capture` 없으면 비활성), TASKS/README/Validation. 기존 게임 로직·Scene·Prefab·Tuning·Packages·ProjectSettings baseline diff0, 원본 튜닝 SHA256 일치([보존 검사](Validation/Q-night4-preservation.txt)). Q7 파일 존재 기반 PASS는 검정 화면 QA로 무효화해 KNOWN-LIMIT으로 기록. 실행하지 않은 검증은 통과로 기록하지 않았음.
+사용자 확인: **Builds/S4-pre3/Afterglow-S4-pre3.exe 직접 완주(가능하면 -record), 기존 Q6 후보3개 비교, 새 스크린샷57장 UI 검토.** README의 실행·수정 위치 안내를 따른다. Scene Play 변경은 Stop 후 다시 입력/저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 저장한다. 다음 작업은 사용자 검토 및 별도 후속 도구 보정 판단이며 다음 Sprint 콘텐츠를 확장하지 않는다.

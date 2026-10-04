@@ -1,0 +1,11 @@
+PASS InputReplayer actual=exe
+PASS fixture enables Continue
+PASS same scene/spawn/ability metadata
+ticks=300 fps=60 final=(3.53, 1.81)
+room=A01 tick=0
+room=A02 tick=299
+PASS same room entry count
+PASS room tick tolerance +/-1 0
+PASS room tick tolerance +/-1 1
+PASS final position tolerance .05u
+Error/Exception/Assert=0

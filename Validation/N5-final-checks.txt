@@ -1,0 +1,12 @@
+PASS N5 final protection/evidence checks.
+N5-Part1 13/13 PASS
+N5-TA 13/13 PASS
+N5-TB 13/13 PASS
+N5-TC 13/13 PASS
+N5-TD 13/13 PASS
+N5-TE 13/13 PASS
+N5-TF 13/13 PASS
+N5-TG 13/13 PASS
+Capture PNGs57; spot visual inspection A01/boss/2560x1440 full death overlay confirmed. All final scenario text reports Error0 and nonconstant pixel variance.
+Protected assets/packages/project settings diff0 vs483a6ad; existing runtime change limited to single ProgressSave.TryLoad catch filter. New tool scripts confined to Verification and opt-in guarded. PRD/GAME_DESIGN/default tuning unchanged.
+Own test read-only file attributes restored; folder ACL stage never applied because readonly traversal stopped the host queue. Existing user/default save paths untouched.
