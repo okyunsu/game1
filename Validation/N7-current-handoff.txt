@@ -12,4 +12,4 @@ N7 부분 인계 — 실행 범위 검토 후 독립 항목 진행. 전체 완�
 빌드: N7-hard-verify / N7-hard-verify-a2 / N7-hard-capture / N7-hard-capture-a2는 모두 errors0/warnings0인 진단 빌드. S5-hard·S5-attack·PogoTest 최종 산출물로 취급하지 않는다. 기존 비교용 S4-pre3 유지.
 사용자 필요 사항: 1) Assets/Input/PlayerControls.inputactions의 keyboard Up/Down 바인딩 추가를 허용할지(첨부 ATK1 화이트리스트 예외). PlayerInputReader 수정 불필요. 2) N6 2부 원문 제공 또는 R01~R17 구간 정의 재작성 허용. 촬영은 현재 hidden-window 제한으로 불충족.
 새 능력·포고 수치 수정 위치는 아직 구현되지 않았다. Hard 수치 수정은 Assets/ScriptableObjects/CombatTuning.asset, E1/E2/E3Tuning.asset, BossTuning.asset. Stop 후 Asset 값을 저장하며 normal 복구는 v1-normal 사본의 필드값만 원본에 복사한다(원본 meta/GUID 교체 금지).
-push 없음. 미실시 검사는 PASS로 기록하지 않았다. 120분 검사가 종료되면 최종 CSV·증거를 별도로 확인해야 한다.
+push 없음. 미실시 검사는 PASS로 기록하지 않았다. 120분 검사가 종료되면 최종 CSV·증거를 별도로 확인해야 한다.Final snapshot: restored attack source regression REG-N7-V2345-final-summary.txt=13/13 PASS. Builds/N7-hard-only/Afterglow-N7-hard-only.exe succeeded errors0/warnings0 and excludes experimental directional attack. It is a Hard-only candidate, not requested full S5-hard. Actual120min soak still running; input Asset exception unanswered.
