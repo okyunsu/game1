@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3486dcfb752db2b4b877e9b2afb21a5d, type: 3}
   m_Name: E1Tuning
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTuning
-  maxHP: 2
-  speed: 1.8
+  maxHP: 3
+  speed: 2.5
   contactDamage: 1
   knockback: 3

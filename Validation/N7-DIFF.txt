@@ -1,0 +1,8 @@
+PARTIAL N7 Hard candidate validation; attack/pogo-dependent acceptance pending.
+All before/after values: N7-DIFF-values.txt.
+Regression: REG-N7-DIFF-a1-summary.txt 13/13 PASS; final restored attack regression must be assessed separately.
+BossRetryVerifier actual exe: N7-DIFF-boss-a1 FAIL input no hits/timeout; correction 2 grounded right-facing input; N7-DIFF-boss-a2 PASS retry3 / actual attack victory / saved ending / Error0. Evidence strings HP20/HP5 are legacy labels; assertions use boss.tuning.maxHP=28 and Health.tuning.playerMaxHP=4. No player/boss HP writes in fight.
+Reaction-time calculation (feasibility estimate, separate from observed automated fight): player jumpVelocity12 gravity30, body half-height.8, floor1, melee/wave upper edge2, initial feet1.01. Need feet rise>.99u. Continuous ascent t=(12-sqrt(144-2*30*.99))/30=.0934s. Conservative fixed-tick delay.02 + rendered input at30fps.0333 + reaction.25 gives clearance at~.397s after tell. Hard melee tell.6 leaves~.203s; wave tell.75 leaves~.353s for scheduling jump. Dash and jump are acquired in fixture. This proves a timing opportunity under these assumptions, not a human fairness acceptance; actual body collision/phase results belong to runtime evidence. Holding jump at minimum reaction time need not be optimal for later wave contact.
+ATK3 recovery-window pogo maximum hits unmeasured; boss HP remains candidate28 pending requested24/32 conditional rule.
+N5 T-D remaining32 success booleans unchanged, G-D8 newly valid: N7-DIFF-fps-comparison.txt.
+All diagnostic build reports succeeded errors0/warnings0. N5Build generic sentence "default tuning preserved" is inapplicable to this N7 invocation; Hard source assets were used. S5-hard and S5-attack final requested builds are not produced.

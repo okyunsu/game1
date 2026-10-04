@@ -17,5 +17,5 @@ MonoBehaviour:
   knockback: 3
   detectionRange: 7
   warningSeconds: 0.7
-  shotPeriod: 2
-  projectileSpeed: 5
+  shotPeriod: 1.6
+  projectileSpeed: 6

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ddc50ef4848f0469011552dc7a040a, type: 3}
   m_Name: E2Tuning
   m_EditorClassIdentifier: Assembly-CSharp::E2Tuning
-  maxHP: 3
+  maxHP: 4
   contactDamage: 1
   knockback: 3
   detectionRange: 5
-  warningSeconds: 0.6
+  warningSeconds: 0.48
   chargeSeconds: 0.4
-  chargeSpeed: 6
+  chargeSpeed: 7
   recoverySeconds: 1

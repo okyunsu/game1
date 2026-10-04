@@ -1,0 +1,17 @@
+Part2 Hard candidate values; ATK3 pogo hits not measured; conditional boss HP adjustment pending.
+Asset,field,before,after
+CombatTuning,invincibility,1,0.8
+CombatTuning,playerMaxHP,5,4
+BossTuning,maxHP,20,28
+BossTuning,waveTell,1,0.75
+BossTuning,meleeTell,0.8,0.6
+BossTuning,waveSpeed,5,6.5
+BossTuning,recovery,1.2,0.8
+BossTuning,damage,1,2
+E3Tuning,projectileSpeed,5,6
+E3Tuning,shotPeriod,2,1.6
+E2Tuning,maxHP,3,4
+E2Tuning,warningSeconds,0.6,0.48
+E2Tuning,chargeSpeed,6,7
+E1Tuning,maxHP,2,3
+E1Tuning,speed,1.8,2.5

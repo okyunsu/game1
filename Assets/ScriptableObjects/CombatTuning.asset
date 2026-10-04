@@ -18,8 +18,8 @@ MonoBehaviour:
   attackStartup: 0.08
   attackActive: 0.1
   attackCooldown: 0.35
-  playerMaxHP: 5
-  invincibility: 1
+  playerMaxHP: 4
+  invincibility: 0.8
   knockbackX: 4
   knockbackY: 3
   knockbackLock: 0.12
