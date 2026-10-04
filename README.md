@@ -103,6 +103,32 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 
 ## 문서
 
+## N5 검증 도구 (2026-10-04)
+
+작업 폴더에서 PowerShell로 실행한다. 일반 플레이는 `Builds/S4-pre3/Afterglow-S4-pre3.exe`; 아래 플래그를 주지 않으면 새 검증 도구는 오브젝트를 만들지 않는다. 기존 저장 대신 별도 `-save-path`를 사용하고, 기존 증거 파일에는 덮어쓰지 않는다.
+
+사용자 플레이 녹화와 같은 시작 슬롯 재생:
+
+```powershell
+& .\Builds\S4-pre3\Afterglow-S4-pre3.exe -record Logs/user-play.json -save-path Logs/user-play-save.json
+& .\Validation\Prepare-N5-Replay.ps1 -Recording Logs/user-play.json -SavePath Logs/user-replay-save.json
+& .\Builds\S4-pre3\Afterglow-S4-pre3.exe -replay Logs/user-play.json -save-path Logs/user-replay-save.json -verify-fps 60 -verify-output Validation/user-replay.txt
+```
+
+`-record`는 사용자가 Menu에서 시작한 플레이의 Gameplay 축/점프/대시/공격 held·pressed·released를 물리 틱마다 관찰한다. 엔딩 도달 또는 정상 종료 시 JSON을 저장한다(강제 프로세스 종료는 저장하지 못한다). 시작 씬·체크포인트·스폰·능력, 방 입장 틱, 최종 위치가 포함된다. `-replay`는 새 격리 슬롯에서 같은 메타데이터를 확인한 뒤 가상 키보드로 재생한다. 자동 검증용 녹화에는 `-verify-record-route`를 추가한다. 검증된 범위는 A01→A02 짧은 지정 경로이며, 사용자의 임의 전체 경로·Pause·사망이 섞인 재생은 별도 확인이 필요하다. JSON의 방 입장 `tick × fixedDeltaTime(기본 .02s)`으로 구간 시간을 계산한다.
+
+| 플래그/명령 | 용도·출력 |
+|---|---|
+| `-verify-save-failure readonly/folder -verify-marker Logs/test -verify-output Validation/test.txt` | 호스트 준비 마커와 격리 권한을 쓰는 저장 실패 검사. `Run-N5-TA.ps1` 참고; 이동 분기 KNOWN-LIMIT |
+| `-verify-save-failure ending -save-path <ending-fixture>` | 새 프로세스 Ending Continue/타이틀/재Continue; N5-TA-ending.txt |
+| `-verify-boss-retry -save-path <CP-C04-fixture>` | 3회 물리 사망·복귀·재진입 후 가상 입력 처치·엔딩; N5-TB-boss-retry.txt |
+| Editor `-executeMethod N5Editor.Run -verify-fps-matrix -save-path <CP-A01-both-fixture>` | 30/60/120/144fps 구간 행렬; N5-TD-fps-matrix.txt |
+| `-verify-soak 60 -save-path <CP-A01-both-fixture> -verify-csv Validation/soak.csv` | 실제 시간 안정성 러너. 현재 A04 KillZone 선택 오류로 KNOWN-LIMIT; 60분 PASS 아님 |
+| `-verify-display start/hit/abilities/death/B04/boss/ending -verify-shot <PNG> -verify-output <TXT>` | 일반 창 EOF 캡처·픽셀 분산·화면/GUI/뷰포트 기록. `Run-N5-TF.ps1`의 씬별 시작 빌드 사용. 기존 Q7 `-capture`와 충돌을 피하는 별도 플래그 |
+| `-verify-route -save-path <new-slot> -verify-output <TXT>` | 가상 입력만으로 새 게임 전체 경로 시도; 성공 여부는 N5-TG 증거 확인 |
+
+모든 수치·Scene·Prefab 기본값은 유지했다. 구간 시작/출구/KillZone 배치는 승인된 T-D/T-E 검증 설정에만 사용한다. 실제 결과와 미검증 항목은 [N5 인계](Validation/N5-final-handoff.md)를 따른다.
+
 - [PRD](PRD.md): 제품 범위·Target / Minimum·완료 조건
 - [GAME_DESIGN](GAME_DESIGN.md): 게임 규칙·레벨·튜닝 가설
 - [TASKS](TASKS.md): 현재 작업·검토·검증 증거

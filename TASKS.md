@@ -13,7 +13,7 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~03·05~06 DONE, S2-04 BLOCKED(Q1-SAVE-001). 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
+**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~03·05~06 DONE, S2-04 REVIEW(N5 Part1 재검증 PASS). 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
 2026-10-04 최신 추가 승인 D0/F2R/LOGR 종료: 기준T2 실패 재현·T2v2 PASS, F2R/LOGR REVIEW, S4-pre 빌드·실제exe·최종회귀PASS. 아래 S3 후보/사용자 Gate 상태 유지.
 G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
@@ -150,7 +150,9 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
-### Q1-SAVE-001 — 빈 파일·미지원 버전의 읽기 예외 미처리 (2026-10-04)
+### Q1-SAVE-001 — 빈 파일·미지원 버전의 읽기 예외 미처리 (2026-10-04) — RESOLVED N5 Part1
+
+N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 실제 exe 키보드 새 게임·원본 보존/Error0, 기존 저장 검사, 회귀13/13 PASS. S2-04 REVIEW 복귀. [증거](Validation/N5-Part1-save-fix.txt). 아래는 최초 재현 이력.
 - 심각도: High / PRD DoD 저장 오류 0건 조건 미충족. 일반 플레이 저장 손실은 확인되지 않음.
 - 재현: S4-pre2 실제 exe에 격리 `-save-path`로 빈 파일 또는 `{"version":999,"checkpointId":"CP-A01"}`를 전달하고 `-s2-verify corrupt` 실행.
 - 실제: `ProgressSave.TryLoad`의 `InvalidDataException: Unsupported save data`가 `SaveMenu.Start` 밖으로 나감. Error/Exception=1, 손상 저장 안내 검사 FAIL. 잘린 JSON·잘못된 JSON은 안내와 명시적 새 게임/원본 보존 PASS.
@@ -251,7 +253,7 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 ## Decisions Needed
 
 ### 2026-10-04 Q-night4 후속 판단
-- Q1-SAVE-001 저장 예외 처리 수정 범위 승인·재검증 필요. S2-04 BLOCKED, 정상 저장/Continue 이전 증거는 유지하되 최종 저장 견고성 수락 보류.
+- Q1-SAVE-001 N5 Part1에서 수정·재검증 완료. S2-04 REVIEW, 사용자 수락 대기. T-A 쓰기 실패 확장 검증은 도구 한계로 별도 미검증.
 - Q6 A/B/C를 각각2분 비교한 후 선호 후보 결정. 현재 원본 기본값은 미변경이며 후보 선택과 원본 적용은 명시 결정으로 구분함.
 - Q2 전체 디스플레이/포커스·Q3 144fps 및 전체 구간·Q4 연속 입력 경로·Q5 실제45분 반복/내부 수집은 기존 도구로 미완료. 검증 도구 확장이 필요하면 별도 범위를 정하고 승인할 것. 출구 직접 배치 시간/유휴 메모리를 요청 측정의 대체 PASS로 쓰지 않음.
 - Q7은 한 번의 보정에서도 검정 화면으로 실패해 추가 촬영 시도를 중단. 유효 스크린샷 없음. U1 가독성/완주·Sprint3 Gate는 사용자 판단 대기 유지.
