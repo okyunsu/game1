@@ -1,0 +1,2 @@
+These five workspace CSV files were produced by Q1 automatic executable checks started in the sandbox, not a human completion session. Original workspace git status was clean and Playtest was untracked after these checks.
+Do not classify as PT-001/user playtest. User LocalLow save files and preexisting user CSVs were not changed. Further automatic runs in the normal-user environment generated new CSVs whose filenames are recorded by runtime evidence. No existing user CSV copied/edited/removed.

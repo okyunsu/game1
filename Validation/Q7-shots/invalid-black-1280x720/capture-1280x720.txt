@@ -1,0 +1,9 @@
+PASS Q7 actual exe photography
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-A01-start.png actual=1280x720 scene=A01
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-after-hit.png actual=1280x720 scene=A01
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-both-abilities.png actual=1280x720 scene=B04
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-death-overlay.png actual=1280x720 scene=B04
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-boss-tell.png actual=1280x720 scene=C06
+CAPTURE C:\Users\gosu3\AppData\Local\Temp\Afterglow-Q7-night4-8ce99b4e71384b2a8c5a49e46129bde1\1280x720-ending.png actual=1280x720 scene=Ending
+Prescribed capture placements; not natural completion or readability acceptance. Screenshot API invoked inside actual exe after rendered frame.
+Error/Exception/Assert=0

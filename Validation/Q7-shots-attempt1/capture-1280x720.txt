@@ -1,0 +1,6 @@
+KNOWN-LIMIT Q7 actual exe photography
+System.Exception: Capture setup timeout
+  at Q7ExeCapture+<Until>d__8.MoveNext () [0x00039] in <2c342061e59e43b083fd2a403b3cc5b1>:0 
+  at Q7ExeCapture+<Start>d__7.MoveNext () [0x000b7] in <2c342061e59e43b083fd2a403b3cc5b1>:0 
+Failed to capture screen shot.
+Error/Exception/Assert=1

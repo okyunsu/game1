@@ -1,0 +1,2 @@
+Succeeded errors=0 warnings=0
+Default tuning and source scenes unchanged; capture script inert without -capture.

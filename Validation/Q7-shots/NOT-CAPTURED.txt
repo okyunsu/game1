@@ -1,0 +1,1 @@
+No valid shots. Six black diagnostic PNGs are under invalid-black-1280x720; both attempts and content failure are documented in ../Q7-screenshots.txt.

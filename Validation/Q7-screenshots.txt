@@ -1,0 +1,6 @@
+KNOWN-LIMIT Q7 actual-exe screenshots. No valid UI screenshots delivered.
+Attempt1 D3D12/default absolute Unicode output: ScreenCapture runtime method resolved and invoked, engine Error Failed to capture screen shot, then timeout. Evidence Q7-shots-attempt1/capture-1280x720.txt.
+Single correction: -force-d3d11 and ASCII temporary output directory. API produced six 1280x720 PNGs with Error0, but content QA FAIL: all six SHA256=5CAAF573FFC294827DF39B5DE5BF9F433AC2D1F443C29FF696D19FD12D36C47B and viewed A01 image is entirely black. API file existence success is insufficient and runtime PASS line is superseded by visual failure.
+Black diagnostic files retained under Q7-shots/invalid-black-1280x720; screenshot verification evidence retained there.
+1920x1080 NOT RUN after repeated capture failure. No third attempt, no package/default/scene edits. Visible rendering/CLI isolation combination requires a separately supported execution path.
+Q7 opt-in capture script remains inert without -capture. Capture-specific errors are tool failures, not an ordinary-play game bug. Original S4-pre2 and Q6 builds preserved.
