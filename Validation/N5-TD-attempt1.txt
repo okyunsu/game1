@@ -1,0 +1,113 @@
+PASS FpsMatrixVerifier actual=Editor
+PASS fixture enables Continue
+PASS fixture owned abilities via normal Continue
+PASS enabled physical exit A02
+PASS enabled physical exit A03
+CELL G-D-walk targetfps=30 actualfps=24.32 success=False maxHorizontal=5.232 maxFeet=1.015 final=(3.61, 1.81)
+CELL G-D-dash targetfps=30 actualfps=23.79 success=False maxHorizontal=5.389 maxFeet=3.463 final=(3.61, 1.81)
+CELL A05-normal targetfps=30 actualfps=23.82 success=False maxHorizontal=4.861 maxFeet=5.535 final=(25.64, 1.82)
+CELL A05-dash targetfps=30 actualfps=23.82 success=True maxHorizontal=6.469 maxFeet=5.355 final=(27.37, 3.82)
+PASS enabled physical exit A04
+PASS enabled physical exit A03
+PASS enabled physical exit B01
+CELL G-J-normal targetfps=30 actualfps=24.16 success=False maxHorizontal=3.263 maxFeet=3.535 final=(27.36, 1.82)
+CELL G-J-double targetfps=30 actualfps=24.16 success=True maxHorizontal=4.583 maxFeet=5.923 final=(28.58, 5.41)
+PASS enabled physical exit B02
+PASS enabled physical exit B03
+PASS enabled physical exit B04
+CELL B04 targetfps=30 actualfps=24.16 success=True maxHorizontal=5.221 maxFeet=7.905 final=(24.82, 6.65)
+PASS enabled physical exit B03
+PASS enabled physical exit B02
+PASS enabled physical exit B01
+PASS enabled physical exit B05
+PASS enabled physical exit C01
+PASS enabled physical exit C02
+CELL C02-double targetfps=30 actualfps=24.16 success=True maxHorizontal=4.785 maxFeet=7.905 final=(14.57, 7.61)
+CELL C02-dash targetfps=30 actualfps=24.00 success=True maxHorizontal=6.829 maxFeet=9.263 final=(22.61, 7.61)
+PASS enabled physical exit C03
+CELL C03-cover targetfps=30 actualfps=24.88 success=True maxHorizontal=7.635 maxFeet=3.403 final=(26.64, 1.82)
+PASS enabled physical exit C02
+PASS enabled physical exit C01
+PASS enabled physical exit B05
+PASS enabled physical exit B01
+PASS enabled physical exit A03
+CELL G-D-walk targetfps=60 actualfps=50.43 success=False maxHorizontal=5.232 maxFeet=1.015 final=(3.50, 1.81)
+CELL G-D-dash targetfps=60 actualfps=48.24 success=False maxHorizontal=5.269 maxFeet=3.355 final=(3.50, 1.81)
+CELL A05-normal targetfps=60 actualfps=50.00 success=False maxHorizontal=5.101 maxFeet=5.535 final=(25.64, 1.81)
+CELL A05-dash targetfps=60 actualfps=49.09 success=True maxHorizontal=6.829 maxFeet=5.355 final=(27.37, 3.82)
+PASS enabled physical exit A04
+PASS enabled physical exit A03
+PASS enabled physical exit B01
+CELL G-J-normal targetfps=60 actualfps=50.30 success=False maxHorizontal=3.263 maxFeet=3.535 final=(27.12, 1.82)
+CELL G-J-double targetfps=60 actualfps=50.43 success=True maxHorizontal=4.823 maxFeet=5.839 final=(28.68, 5.41)
+PASS enabled physical exit B02
+PASS enabled physical exit B03
+PASS enabled physical exit B04
+CELL B04 targetfps=60 actualfps=49.56 success=True maxHorizontal=5.341 maxFeet=7.839 final=(24.82, 6.65)
+PASS enabled physical exit B03
+PASS enabled physical exit B02
+PASS enabled physical exit B01
+PASS enabled physical exit B05
+PASS enabled physical exit C01
+PASS enabled physical exit C02
+CELL C02-double targetfps=60 actualfps=50.44 success=True maxHorizontal=4.905 maxFeet=7.839 final=(14.57, 7.61)
+CELL C02-dash targetfps=60 actualfps=49.85 success=True maxHorizontal=6.829 maxFeet=9.155 final=(22.37, 7.61)
+PASS enabled physical exit C03
+CELL C03-cover targetfps=60 actualfps=51.43 success=True maxHorizontal=7.600 maxFeet=3.319 final=(26.64, 1.82)
+PASS enabled physical exit C02
+PASS enabled physical exit C01
+PASS enabled physical exit B05
+PASS enabled physical exit B01
+PASS enabled physical exit A03
+CELL G-D-walk targetfps=120 actualfps=100.30 success=False maxHorizontal=5.232 maxFeet=1.015 final=(3.50, 1.81)
+CELL G-D-dash targetfps=120 actualfps=95.76 success=False maxHorizontal=5.269 maxFeet=3.355 final=(3.50, 1.81)
+CELL A05-normal targetfps=120 actualfps=100.61 success=False maxHorizontal=5.221 maxFeet=5.535 final=(25.64, 1.81)
+CELL A05-dash targetfps=120 actualfps=100.46 success=True maxHorizontal=6.829 maxFeet=5.355 final=(27.37, 3.82)
+PASS enabled physical exit A04
+PASS enabled physical exit A03
+PASS enabled physical exit B01
+CELL G-J-normal targetfps=120 actualfps=101.47 success=False maxHorizontal=3.503 maxFeet=3.535 final=(27.24, 1.82)
+CELL G-J-double targetfps=120 actualfps=101.33 success=True maxHorizontal=4.943 maxFeet=5.803 final=(28.68, 5.41)
+PASS enabled physical exit B02
+PASS enabled physical exit B03
+PASS enabled physical exit B04
+CELL B04 targetfps=120 actualfps=100.73 success=True maxHorizontal=5.461 maxFeet=7.839 final=(24.82, 6.65)
+PASS enabled physical exit B03
+PASS enabled physical exit B02
+PASS enabled physical exit B01
+PASS enabled physical exit B05
+PASS enabled physical exit C01
+PASS enabled physical exit C02
+CELL C02-double targetfps=120 actualfps=101.33 success=True maxHorizontal=5.027 maxFeet=7.803 final=(14.57, 7.61)
+CELL C02-dash targetfps=120 actualfps=100.62 success=True maxHorizontal=6.949 maxFeet=9.155 final=(22.37, 7.61)
+PASS enabled physical exit C03
+CELL C03-cover targetfps=120 actualfps=102.86 success=True maxHorizontal=7.635 maxFeet=3.319 final=(26.64, 1.82)
+PASS enabled physical exit C02
+PASS enabled physical exit C01
+PASS enabled physical exit B05
+PASS enabled physical exit B01
+PASS enabled physical exit A03
+CELL G-D-walk targetfps=144 actualfps=121.99 success=False maxHorizontal=5.232 maxFeet=1.015 final=(3.50, 1.81)
+CELL G-D-dash targetfps=144 actualfps=115.20 success=False maxHorizontal=5.269 maxFeet=3.415 final=(3.50, 1.81)
+CELL A05-normal targetfps=144 actualfps=120.77 success=False maxHorizontal=5.101 maxFeet=5.535 final=(25.64, 1.81)
+CELL A05-dash targetfps=144 actualfps=120.78 success=True maxHorizontal=6.829 maxFeet=5.355 final=(27.37, 3.82)
+PASS enabled physical exit A04
+PASS enabled physical exit A03
+PASS enabled physical exit B01
+CELL G-J-normal targetfps=144 actualfps=121.04 success=False maxHorizontal=3.503 maxFeet=3.535 final=(27.24, 1.82)
+CELL G-J-double targetfps=144 actualfps=121.03 success=True maxHorizontal=4.943 maxFeet=5.839 final=(28.68, 5.41)
+PASS enabled physical exit B02
+PASS enabled physical exit B03
+PASS enabled physical exit B04
+CELL B04 targetfps=144 actualfps=121.03 success=True maxHorizontal=5.461 maxFeet=7.839 final=(24.82, 6.65)
+PASS enabled physical exit B03
+PASS enabled physical exit B02
+PASS enabled physical exit B01
+PASS enabled physical exit B05
+PASS enabled physical exit C01
+PASS enabled physical exit C02
+CELL C02-double targetfps=144 actualfps=121.03 success=True maxHorizontal=5.025 maxFeet=7.839 final=(14.57, 7.61)
+CELL C02-dash targetfps=144 actualfps=120.78 success=True maxHorizontal=6.829 maxFeet=9.155 final=(22.37, 7.61)
+PASS enabled physical exit C03
+CELL C03-cover targetfps=144 actualfps=125.12 success=True maxHorizontal=7.635 maxFeet=3.319 final=(26.64, 1.82)
+Error/Exception/Assert=0

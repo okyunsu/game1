@@ -1,0 +1,1 @@
+FAIL tool: first Pause freezes fixed-time wait in virtual-key release. CSV actual60s has transitions1/Pause0, not completed 60min. Process stopped; one correction switches Keys release wait to realtime and uses native read-only Working Set fallback for Mono0. Original CSV preserved.

@@ -1,0 +1,8 @@
+PASS InputRecorder actual=exe
+PASS fixture enables Continue
+PASS record A01 start
+ticks=300 fps=60 final=(3.59, 1.81)
+room=A01 tick=0
+room=A02 tick=299
+PASS record reached A02 by physical traversal
+Error/Exception/Assert=0

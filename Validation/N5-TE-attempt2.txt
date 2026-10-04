@@ -1,0 +1,23 @@
+FAIL SoakRunner actual=exe
+PASS positive real soak duration
+PASS fixture enables Continue
+PASS enabled physical exit A02
+PASS soak Pause 0
+PASS soak resume
+PASS enabled physical exit A03
+PASS soak Pause 1
+PASS soak resume
+PASS enabled physical exit A04
+PASS soak Pause 2
+PASS soak resume
+PASS enabled physical exit A05
+PASS soak Pause 3
+PASS soak resume
+PASS enabled physical exit A04
+PASS soak Pause 4
+PASS soak resume
+FAIL System.Exception: physical KillZone setup
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <00deaa000bdf49d6acb20abc5919a2e3>:0 
+  at SoakRunner+<Tests>d__19.MoveNext () [0x00399] in <00deaa000bdf49d6acb20abc5919a2e3>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <00deaa000bdf49d6acb20abc5919a2e3>:0 
+Error/Exception/Assert=0
