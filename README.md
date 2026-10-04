@@ -9,6 +9,8 @@
 
 ## 현재 상태
 
+2026-10-04 night4 큐 검토·실행 종료. Q6 A/B/C 후보3개 실제 수치 적용·exe·회귀PASS, 기본값은 미변경. Q1 빈 저장/미지원 버전 예외 버그로 S2-04 BLOCKED. Q2~Q5 전체 요구 검증은 미완료, Q7 캡처 오류/검정 이미지로 유효 스크린샷 없음. 종료 회귀는 각각13/13PASS이지만 추가 저장 오류와 미검증 항목은 남아 있다. 최신 결과는 TASKS Latest Handoff를 따른다. 아래 S4-pre2 설명은 기존 기준 빌드 안내다.
+
 2026-10-04 Sprint 3 / Target 15방. TM 검사 정비와 U1 통합 HUD·첫 조작 안내·사망 표시를 더한 S4-pre2 빌드다. TM/U0 DONE, U1·F2R·LOGR REVIEW, S3-06~10 REVIEW이며 Sprint 3 Gate는 사용자 판단 대기다. U1 상태검사와 회귀는 PASS지만 요청 스크린샷 6장은 촬영 도구 중단으로 미실시다. 상태와 증거의 원본은 [TASKS](TASKS.md)다.
 
 ## Unity에서 실행
@@ -23,6 +25,10 @@
 레벨 배치는 Assets/Prefabs/Level 프리팹, 크기는 Rect Tool 또는 Scale로 조절한다. 지형은 Simple Sprite·1×1u 콜라이더 기준이다. Scene Play 변경은 Stop 후 다시 반영·저장한다.
 
 ## 로컬 빌드 실행
+
+night4 피드백 비교용: `Builds/Q6-A/Afterglow-Q6-A.exe`(현재), `Builds/Q6-B/Afterglow-Q6-B.exe`(강하게), `Builds/Q6-C/Afterglow-Q6-C.exe`(약하게). 각2분간 타이틀 왼쪽 아래 후보명과 A01 공격/A04 적 명중·HP칸·처치 효과를 비교한다. 같은 폴더의 Data/DLL을 유지한다. `Q6-*-attempt1`은 참조 보정 전 증거이며 비교용이 아니다. [후보 표](Validation/Q6-feedback-candidates.txt).
+
+후보 수정 위치는 `Assets/Resources/Q6/Feedback-A/B/C.asset`이다. 원본 `Assets/ScriptableObjects/FeedbackTuning.asset` 기본값은 변경하지 않았다. Play 종료 후 원하는 값/이전 값을 명시 저장하고 후보를 다시 빌드해야 exe에 반영된다. 원본 기본값 적용은 사용자 결정 후 별도 수행한다. Q7 캡처 스크립트는 `-capture` 없으면 비활성이고 현재 촬영 결과는 검정 이미지라 참고 화면으로 사용할 수 없다.
 
 S4-pre2에서 확인할 것: `Builds/S4-pre2/Afterglow-S4-pre2.exe`에서 왼쪽 위 HP칸·대시/더블 점프 아이콘과 키 표기가 잘 보이고 이동 공간을 가리지 않는지 확인한다.
 새 게임 A01의 첫 안내가 시간 경과/첫 이동으로 사라지고 Continue에는 안 나오며, 사망 중 검정 표시가 복귀 직후 걷히는지 확인한다.

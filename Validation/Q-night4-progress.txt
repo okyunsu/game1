@@ -16,3 +16,5 @@
 2026-10-04T03:20:26.5448170Z Q6 END PASS user acceptance pending
 2026-10-04T03:21:18.3871148Z Q7 START
 2026-10-04T03:27:00.3918272Z Q7 END KNOWN-LIMIT capture error then black images after single correction
+2026-10-04T03:28:30.1613989+00:00 Q1 FINAL FAIL 1 game bug in 2 corruption cases; partial coverage retained
+2026-10-04T03:28:30.1664651+00:00 QUEUE END elapsed-minutes=40.4
