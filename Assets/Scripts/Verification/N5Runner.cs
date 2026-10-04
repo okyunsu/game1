@@ -33,7 +33,7 @@ public abstract class N5Runner:MonoBehaviour
  }
  protected void Check(bool ok,string message){if(!ok)throw new Exception(message);lines.Add("PASS "+message);}
  protected IEnumerator Until(Func<bool> test,string reason,float seconds=12){double end=Time.realtimeSinceStartupAsDouble+seconds;while(!test()){if(Time.realtimeSinceStartupAsDouble>end)throw new Exception("Timeout "+reason);yield return null;}}
- protected IEnumerator Keys(params Key[] keys){InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys));yield return null;yield return new WaitForFixedUpdate();}
+ protected IEnumerator Keys(params Key[] keys){InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys));yield return null;yield return new WaitForSecondsRealtime(.03f);}
  protected IEnumerator Tap(Key key){yield return Keys(key);yield return Keys();}
  protected IEnumerator Ready(){yield return Until(()=>Player!=null&&!RoomSession.Instance.Transitioning&&!RoomSession.Instance.Respawning,"room ready");yield return null;yield return null;}
  protected IEnumerator ContinueGame(){yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"title");yield return new WaitForSecondsRealtime(.2f);Check(FindFirstObjectByType<SaveMenu>().CanContinue,"fixture enables Continue");yield return Tap(Key.Z);yield return Ready();}
