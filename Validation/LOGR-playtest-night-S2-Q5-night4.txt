@@ -1,0 +1,13 @@
+PASS LOGR Editor
+PASS: Menu logging inactive before new game
+PASS: new game CSV created C:/Users/gosu3/AppData/LocalLow/Afterglow/Afterglow\Playtest\20261004-121027.csv
+PASS: new game A01
+PASS: door A02
+PASS: one death requested in A02
+PASS: ProgressSave SHA256 unchanged through room/death test
+PASS: Pause ~3s excluded from active elapsed
+PASS: ProgressSave SHA256 unchanged after Pause
+PASS: CSV room/death exact location/unrecorded/Pause rows
+MEASURE death=(8.00, 1.81) active=1.433287 pause=3.016302; hash=+uSnDOKC21Xvb0Skc9/7xE2pLKsRMQufJzpA0yaY+4E=
+PASS: summary rows
+Error/Exception/Assert=0
