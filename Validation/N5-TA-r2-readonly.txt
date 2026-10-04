@@ -1,0 +1,7 @@
+FAIL SaveFailureVerifier actual=exe
+PASS fixture enables Continue
+PASS write failure fixture at A01
+FAIL System.Exception: Timeout leave CP room=A01 pos=(7.64, 1.82) move=(1.00, 0.00) locked=False hp=5
+  at N5Runner+<WalkTo>d__27.MoveNext () [0x0013f] in <19d35708c289433fa5d356e079638025>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <19d35708c289433fa5d356e079638025>:0 
+Error/Exception/Assert=0

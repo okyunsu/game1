@@ -1,0 +1,8 @@
+PASS SaveFailureVerifier actual=exe
+PASS fresh exe reads reached-ending fixture
+PASS ending Continue enabled 0
+PASS Continue routes Ending 0
+PASS ending Continue enabled 1
+PASS Continue routes Ending 1
+PASS repeat ending preserves flags
+Error/Exception/Assert=0

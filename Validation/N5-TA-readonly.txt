@@ -1,0 +1,7 @@
+FAIL SaveFailureVerifier actual=exe
+PASS fixture enables Continue
+PASS write failure fixture at A01
+FAIL System.Exception: Timeout leave CP
+  at N5Runner+<Until>d__20.MoveNext () [0x00049] in <f24710138b2e48afa8fbd9dd01ca4676>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <f24710138b2e48afa8fbd9dd01ca4676>:0 
+Error/Exception/Assert=0
