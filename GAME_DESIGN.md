@@ -52,11 +52,15 @@
 
 ## 6. Combat
 
-**설계·이유:** 이동을 방해하지 않는 근접 공격 한 가지로 전투 구현량과 학습량을 제한한다. 지상·공중 좌우 공격만 있다.
+**설계·이유:** 이동을 방해하지 않는 근접 공격 한 가지로 전투 구현량과 학습량을 제한한다. DEC-ATK-001에 따라 좌우·위 공격과 공중 아래 공격(포고)을 제공한다.
 
 **규칙:** 누를 때 1회, 홀드 연사 없음. 전방 판정의 대상당 피해는 공격 1회에 1번. 선딜 0.08초, 유효 0.10초, 시작 간격 0.35초. 이동은 유지하고 공격 방향은 시작 시 고정한다. 공격 중 대시 입력은 공격 판정을 취소하고 대시를 실행한다. 피격은 공격·대시를 취소한다. 우선순위는 사망 > 전환/일시정지 > 피격 > 대시 > 공격 > 이동이다.
 
 **경험·연결·레벨:** A04의 넓은 공간에서 순찰형 1개를 처음 상대한다. **Unity 조정:** 피해·판정 거리·간격·판정 표시 Gizmo. **테스트:** 한 번의 공격 중복 피해 없음, 공중 공격으로 이동 정지 없음, 적 수를 줄여도 탐색이 유지됨.
+
+### 방향 공격·포고 (DEC-ATK-001 / 2026-10-05)
+기존 공격 입력 X(J)/패드 X에서 Move.y > 0.5이면 지상·공중 위 공격, 공중 Move.y < -0.5이면 아래 공격이다. 지상 아래 입력과 수직 입력 없는 경우 기존 좌우 공격을 유지한다. 시작·활성·쿨다운을 공유하고 방향은 공격 시작에 고정한다. 위 판정은 충돌체 윗면 위, 아래 판정은 아랫면 아래의 1.2×1.3u 박스이며 기존 AttackSlash로 같은 위치·크기를 표시한다.
+아래 공격이 적·보스·PogoTarget에 처음 명중하면 공격당 한 번 수직 속도를 pogoVelocity(11u/s, 9~13)로 설정한다. pogoRefreshesAir=true일 때 획득한 더블 점프와 대시 사용권만 회복한다. PogoTarget은 피해를 받지 않으며 PogoTest 가시에만 붙인다. 같은 프레임 KillZone 접촉보다 포고를 먼저 적용할 수 없으면 BUG로 남기며 판정 높이를 키워 우회하지 않는다.
 
 ## 7. Health / Damage / Death
 
@@ -202,6 +206,8 @@ G-D는 영구 삭제하지 않으며 매 통과 시 대시를 쓴다. 전용 게
 
 A는 조작·관찰, B는 능력 응용·재방문, C는 익숙한 요소 조합·보스다. 난이도는 새 시스템 대신 안전 착지 폭, 장애물 간격, 적 수와 예고 시간으로 조절한다. 필수 도전에서 같은 참가자가 3회 연속 사망하면 원인을 관찰하고 5회 이상이면 우선 개선 후보로 기록한다. 자동 난이도 조절은 없다.
 
+DEC-DIFF-001(2026-10-05): 기준 플레이어는 Hollow Knight와 Silksong을 클리어한 숙련자이며 전투·지형·보스 전반의 난이도 상향을 실험한다. 22절 범위를 넘는 Hard 후보를 허용하되 모든 이전 Tuning Asset을 Profiles/v1-normal에 보존한다. 기존 방 배치는 변경하지 않고 제안만 기록한다. 후보의 감각 수락은 사용자 플레이 대기다.
+
 ## 17. Camera
 
 **설계·이유:** Cinemachine 2D 직교 카메라가 이동 방향과 착지를 미리 보여 준다. 방 경계를 제한하고 방 전환은 즉시 재배치한다. 대시마다 과한 흔들림·줌을 넣지 않는다.
@@ -239,39 +245,43 @@ A는 조작·관찰, B는 능력 응용·재방문, C는 익숙한 요소 조합
 
 다음은 모두 검증 가설인 Prototype Value이며 탐색 범위도 경험적 보증이 아니다. 설정 Asset은 공통 수치의 단일 원본, Scene은 위치·영역·참조의 원본이다. 값 편집·저장 방법은 README를 따른다. 아래 이동 초기값은 현재 N1 설정에도 유지되어 있으며 실제 검증과 사용자 검토 상태는 TASKS에서 확인한다.
 
-| 묶음 / 저장 위치 | Parameter | 초기값 | 권장 탐색 범위 |
-| --- | --- | --- | --- |
-| PlayerTuning | Move Speed | 6u/s | 5~7 |
-| PlayerTuning | Acceleration | 80u/s² | 60~100 |
-| PlayerTuning | Deceleration | 100u/s² | 80~120 |
-| PlayerTuning | Air Control 배율 | 0.9 | 0.8~1 |
-| PlayerTuning | Jump Velocity (질량 무관 초기 수직 속도) | 12u/s | 11~13 |
-| PlayerTuning | Gravity / Fall Gravity 배율 | 30u/s² / 1.5 | 26~34 / 1.2~1.8 |
-| PlayerTuning | Max Fall Speed / Jump Cut 배율 | 18u/s / 0.5 | 16~22 / 0.4~0.7 |
-| PlayerTuning | Coyote Time | 0.10s | 0.06~0.14 |
-| PlayerTuning | Jump Buffer | 0.12s | 0.08~0.16 |
-| PlayerTuning | Dash Speed | 18u/s | 16~20 |
-| PlayerTuning | Dash Duration | 0.16s | 0.14~0.20 |
-| PlayerTuning | Dash Cooldown | 0.45s | 0.35~0.60 |
-| PlayerTuning | Double Jump Velocity | 12u/s | 11~13 |
-| CombatTuning | Attack Damage | 1HP | 1~2 |
-| CombatTuning | Attack Range (충돌체 앞면 기준) | 1.1u | 0.9~1.3 |
-| CombatTuning | Attack Cooldown | 0.35s | 0.3~0.5 |
-| CombatTuning | Attack Startup / Active / Height | 0.08s / 0.10s / 1.2u | 각 ±20% |
-| CombatTuning | Player HP | 5 | 4~6 정수 |
-| CombatTuning | Invincibility Duration | 1s | 0.8~1.2 |
-| CombatTuning | Player Knockback X/Y / Lock | 4/3u/s / 0.12s | ±20% |
-| EnemyTuning (E1/E2/E3) | HP | 2 / 3 / 2 | 1~4 정수 |
-| EnemyTuning (E1/E2/E3) | Move Speed | 1.8 / 6(돌진) / 0u/s | 1~2.5 / 5~7 / 0 |
-| EnemyTuning (E1/E2/E3) | Detection Range | 0(미사용) / 5 / 7u | 0 / 4~6 / 6~8 |
-| EnemyTuning | Attack Damage | 모두 1HP | 1~2 |
-| EnemyTuning | Knockback (적이 받는 수평 속도) | 3u/s | 2~4 |
-| EnemyTuning | Tell / Recovery / Projectile Speed | 12절 기준 | 기준의 ±20% |
-| BossTuning | HP / Damage / Tell / Recovery | 20 / 1 / 0.8·1s / 1.2s | HP 16~24, 시간 ±20% |
-| BossTuning | Melee Range / Wave Speed | 3u / 5u/s | 2.5~3.5 / 4~6 |
-| Camera 설정 | Size / Look Ahead / Damping | 5.5u / 0u / 0.15s | 실제 버전 필드로 대응 확인 |
-| Scene / Checkpoint Prefab | Spawn / Trigger / Gate 치수 | 8~14절 기준 | 항상 경로 재검증 |
+| 묶음 / 저장 위치 | Parameter | 초기값 | 권장 탐색 범위 | Hard 후보 |
+| --- | --- | --- | --- | 기존 유지 |
+| PlayerTuning | Move Speed | 6u/s | 5~7 | 기존 유지 |
+| PlayerTuning | Acceleration | 80u/s² | 60~100 | 기존 유지 |
+| PlayerTuning | Deceleration | 100u/s² | 80~120 | 기존 유지 |
+| PlayerTuning | Air Control 배율 | 0.9 | 0.8~1 | 기존 유지 |
+| PlayerTuning | Jump Velocity (질량 무관 초기 수직 속도) | 12u/s | 11~13 | 기존 유지 |
+| PlayerTuning | Gravity / Fall Gravity 배율 | 30u/s² / 1.5 | 26~34 / 1.2~1.8 | 기존 유지 |
+| PlayerTuning | Max Fall Speed / Jump Cut 배율 | 18u/s / 0.5 | 16~22 / 0.4~0.7 | 기존 유지 |
+| PlayerTuning | Coyote Time | 0.10s | 0.06~0.14 | 기존 유지 |
+| PlayerTuning | Jump Buffer | 0.12s | 0.08~0.16 | 기존 유지 |
+| PlayerTuning | Dash Speed | 18u/s | 16~20 | 기존 유지 |
+| PlayerTuning | Dash Duration | 0.16s | 0.14~0.20 | 기존 유지 |
+| PlayerTuning | Dash Cooldown | 0.45s | 0.35~0.60 | 기존 유지 |
+| PlayerTuning | Double Jump Velocity | 12u/s | 11~13 | 기존 유지 |
+| CombatTuning | Attack Damage | 1HP | 1~2 | 기존 유지 |
+| CombatTuning | Attack Range (충돌체 앞면 기준) | 1.1u | 0.9~1.3 | 기존 유지 |
+| CombatTuning | Attack Cooldown | 0.35s | 0.3~0.5 | 기존 유지 |
+| CombatTuning | Attack Startup / Active / Height | 0.08s / 0.10s / 1.2u | 각 ±20% | 기존 유지 |
+| CombatTuning | Player HP | 5 | 4~6 정수 | 기존 유지 |
+| CombatTuning | Invincibility Duration | 1s | 0.8~1.2 | 기존 유지 |
+| CombatTuning | Player Knockback X/Y / Lock | 4/3u/s / 0.12s | ±20% | 기존 유지 |
+| EnemyTuning (E1/E2/E3) | HP | 2 / 3 / 2 | 1~4 정수 | 기존 유지 |
+| EnemyTuning (E1/E2/E3) | Move Speed | 1.8 / 6(돌진) / 0u/s | 1~2.5 / 5~7 / 0 | 기존 유지 |
+| EnemyTuning (E1/E2/E3) | Detection Range | 0(미사용) / 5 / 7u | 0 / 4~6 / 6~8 | 기존 유지 |
+| EnemyTuning | Attack Damage | 모두 1HP | 1~2 | 기존 유지 |
+| EnemyTuning | Knockback (적이 받는 수평 속도) | 3u/s | 2~4 | 기존 유지 |
+| EnemyTuning | Tell / Recovery / Projectile Speed | 12절 기준 | 기준의 ±20% | 기존 유지 |
+| BossTuning | HP / Damage / Tell / Recovery | 20 / 1 / 0.8·1s / 1.2s | HP 16~24, 시간 ±20% | 기존 유지 |
+| BossTuning | Melee Range / Wave Speed | 3u / 5u/s | 2.5~3.5 / 4~6 | 기존 유지 |
+| Camera 설정 | Size / Look Ahead / Damping | 5.5u / 0u / 0.15s | 실제 버전 필드로 대응 확인 | 기존 유지 |
+| Scene / Checkpoint Prefab | Spawn / Trigger / Gate 치수 | 8~14절 기준 | 항상 경로 재검증 | 기존 유지 |
 
+| CombatTuning | Up / Down Width × Height | 1.2×1.3u | 각 ±20% | 동일 |
+| CombatTuning | pogoVelocity / pogoRefreshesAir | 11u/s / true | 9~13 / bool | 동일 |
+
+DEC-DIFF-001 Hard 후보: Player HP 4 / 무적 0.8s; E1 HP 3 / 이동 2.5u/s; E2 HP 4 / 돌진 7u/s / 예고 기존×0.8; E3 발사 주기 기존×0.8 / 탄속 기존×1.2; 보스 HP 28(회복 구간 포고 4타 이상이면 32, 1타 이하이면 24), 피해 2, 근접 예고 0.6s, 파형 예고 0.75s, 회복 0.8s, 파형 속도 6.5u/s. 실제 적용·측정 결과는 N7-DIFF 증거에서 구분한다.
 가속·감속은 방향 전환에도 적용하되 현재 입력 반대 방향 속도를 빠르게 줄인다. 초기 최대 일반 점프 높이는 단순 추정 약 2.4u, 추가 점프 포함 약 4.8u다. G-J 높이는 발 위치 기준 3.6u에서 시작하여 실제 충돌체로 확정한다. 수락 기준은 일반 점프 여유 0.8u와 더블 점프 여유 0.5u다. Dash 조합을 포함해 실제 최대 도달 높이를 측정한다. 튜닝 범위 끝값에서도 통과/차단이 유지되지 않으면 높이와 수치를 함께 재조정한다.
 
 ## 23. Playtest Metrics

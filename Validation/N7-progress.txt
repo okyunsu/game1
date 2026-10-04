@@ -1,1 +1,2 @@
 N7 preflight: source reviewed; preserved existing N6 documentation changes. Implementation and validation pending.
+Part0 complete: N6 changes committed and preserved; N7 scope documents updated. No push.
