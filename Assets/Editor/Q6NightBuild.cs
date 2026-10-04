@@ -12,7 +12,7 @@ public sealed class Q6NightBuild : IProcessSceneWithReport
  static string candidate;
  public void OnProcessScene(Scene scene,BuildReport report){
   if(report==null||candidate==null)return;
-  var tuning=AssetDatabase.LoadAssetAtPath<FeedbackTuning>("Assets/ScriptableObjects/Q6/Feedback-"+candidate+".asset");
+  var tuning=AssetDatabase.LoadAssetAtPath<FeedbackTuning>("Assets/Resources/Q6/Feedback-"+candidate+".asset");
   foreach(var root in scene.GetRootGameObjects()){
    foreach(var fx in root.GetComponentsInChildren<AttackFeedback>(true))fx.tuning=tuning;
    foreach(var fx in root.GetComponentsInChildren<HitFeedback>(true))fx.tuning=tuning;
@@ -21,9 +21,9 @@ public sealed class Q6NightBuild : IProcessSceneWithReport
  public static void Run(){
   var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-candidate");candidate=i>=0?args[i+1]:null;
   if(candidate is not ("A" or "B" or "C"))throw new Exception("Expected Q6 candidate A/B/C");
-  string evidence="Validation/Q6-"+candidate+"-build.txt";if(File.Exists(evidence))throw new IOException("Preserve evidence");
-  Directory.CreateDirectory("Assets/ScriptableObjects/Q6");AssetDatabase.Refresh();
-  string assetPath="Assets/ScriptableObjects/Q6/Feedback-"+candidate+".asset";
+  string evidence="Validation/Q6-"+candidate+"-build-correction.txt";if(File.Exists(evidence))throw new IOException("Preserve evidence");
+  Directory.CreateDirectory("Assets/Resources/Q6");AssetDatabase.Refresh();
+  string assetPath="Assets/Resources/Q6/Feedback-"+candidate+".asset";
   if(AssetDatabase.LoadAssetAtPath<FeedbackTuning>(assetPath)!=null)throw new IOException("Preserve candidate asset");
   var original=AssetDatabase.LoadAssetAtPath<FeedbackTuning>("Assets/ScriptableObjects/FeedbackTuning.asset");
   var copy=UnityEngine.Object.Instantiate(original);copy.name="Feedback-"+candidate;

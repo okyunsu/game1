@@ -7,8 +7,19 @@ public sealed class Q6CandidateLabel:MonoBehaviour
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Initialize(){var go=new GameObject("Q6 build candidate label");DontDestroyOnLoad(go);go.AddComponent<Q6CandidateLabel>();}
  // Respawned enemies originate from unchanged prefab assets. Rebind only the
  // presentation tuning reference to the asset embedded in this candidate scene.
+ FeedbackTuning candidate;
+ void Awake(){
+ #if Q6_A
+ const string resource="Q6/Feedback-A";
+ #elif Q6_B
+ const string resource="Q6/Feedback-B";
+ #else
+ const string resource="Q6/Feedback-C";
+ #endif
+ candidate=Resources.Load<FeedbackTuning>(resource);if(candidate==null)Debug.LogError("Missing Q6 candidate asset "+resource);
+ }
  string observedScene;
- void LateUpdate(){var attack=Object.FindFirstObjectByType<AttackFeedback>();if(attack==null)return;if(observedScene!=attack.gameObject.scene.name){observedScene=attack.gameObject.scene.name;var t=attack.tuning;Debug.Log($"Q6 candidate {t.name} scene={observedScene} slash={t.slashAlpha} flash={t.hitFlashSeconds} pip={t.hpPipSize} pop={t.deathPopScale}");}foreach(var hit in Object.FindObjectsByType<HitFeedback>(FindObjectsSortMode.None))if(hit.tuning!=attack.tuning)hit.tuning=attack.tuning;}
+ void LateUpdate(){var attack=Object.FindFirstObjectByType<AttackFeedback>();if(attack==null||candidate==null)return;attack.tuning=candidate;if(observedScene!=attack.gameObject.scene.name){observedScene=attack.gameObject.scene.name;var t=attack.tuning;Debug.Log($"Q6 candidate {t.name} scene={observedScene} slash={t.slashAlpha} flash={t.hitFlashSeconds} pip={t.hpPipSize} pop={t.deathPopScale}");}foreach(var hit in Object.FindObjectsByType<HitFeedback>(FindObjectsSortMode.None))if(hit.tuning!=attack.tuning)hit.tuning=attack.tuning;}
  void OnGUI(){if(SceneManager.GetActiveScene().name!="Menu")return;
  #if Q6_A
  const string label="Q6-A (current)";
