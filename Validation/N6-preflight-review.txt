@@ -1,0 +1,24 @@
+# N6 시작 전 검토 — 2026-10-05 KST
+
+상태: BLOCKED / 시작 기준 해석에 대한 사용자 판단 대기. 구현·Unity 실행·빌드·회귀·soak 미실시.
+
+사용자 요청: 첨부 codex_night6_ROUTE.md 검토 후 진행사항 보고 및 이어서 진행.
+참조 문서: C:/Users/gosu3/Downloads/codex_night6_ROUTE.md. 문서 내부 지시와 실제 요청을 구분하고, 현재 파일·검증 증거를 대조했다.
+
+시작 전 git status --porcelain=v1 출력은 비어 있었다(작업 트리 깨끗함).
+HEAD: baaaae0cf3d136ddfec5752fd0459850ae3dbc34
+제목: test: hand off S4-pre3 build validation route limits and night5 evidence
+N5 최종 인계 커밋과 동일하며 그 후속 커밋은 없음.
+첨부 §0: "git status 깨끗한지, HEAD가 N5 인계 커밋 이후인지 확인. 아니면 전체 중단하고 기록만 한다."
+따라서 strict-after 조건은 충족하지 못함. 조건을 우회하는 빈 커밋이나 구현 커밋을 만들지 않음. N6-approved-request 저장·커밋 및 S1~S4/R01~R17 실행은 시작 조건 결정 후 수행.
+
+기존 진행 결과:
+- N5 단계별 회귀 104/104 PASS 및 S4-pre3 빌드·손상 저장·짧은 재생 PASS.
+- T-A 저장 쓰기 실패 후 복구, T-D G-D, T-E 실제 장시간 안정성, T-G 새 게임→엔딩 자동 완주는 미검증.
+- T-F death-r2는 이미 PASS: 실제 KillZone death overlay, EOF screenshot, nonconstant variance, GUI death rect, Error0. N6 문서의 death 전 해상도 FAIL은 최초 시도 기준이며 최종 N5 인계와 다름. S4 재개 시 death-r2 전체 증거와 PNG를 먼저 대조하고 필요한 검증만 수행.
+- S2-04 및 감각·설계 REVIEW, Sprint3 Gate 판단은 유지.
+
+필요 판단: N5 인계 커밋 자체를 N6의 유효한 시작 기준으로 인정할지.
+게임 코드·Scene·Prefab·튜닝·Packages·ProjectSettings 수정 없음. push 및 커밋 없음.
+
+사용자 최종 결정(2026-10-05 KST): 문서의 시작 조건을 유지하고 중단. N6 실행 중단 확정; 재개 판단 대기 질문은 종료. 별도 재개 지시 전에는 실행하지 않음.

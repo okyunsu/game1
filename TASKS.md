@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-05 **N6 중단 — 사용자 결정**: 초기 작업 트리는 깨끗하지만 HEAD가 N5 인계 커밋 baaaae0와 동일하여 첨부 §0의 이후 조건을 엄격히 충족하지 못함. 사용자가 시작 조건 유지·중단을 선택함. 구현·Unity 검사·120분 soak 미실시. [검토 기록](Validation/N6-preflight-review.txt).
+
 2026-10-04 **N5 최신: 1부 PASS/S2-04 REVIEW, T-B/T-C PASS, T-F 57유효PNG, T-A/T-D/T-E/T-G 일부 KNOWN-LIMIT. S4-pre3 빌드 PASS, 단계별회귀104/104. 자연 전체 완주/60분 안정성 미검증. Latest Handoff 우선.**
 
 2026-10-04 **night4 큐 종료(이전 이력):** Q0 SKIPPED / Q1 FAIL(저장 버그1건·2조건, S2-04 BLOCKED) / Q2~Q5 BLOCKED(각 미실시 범위 명시) / Q6 PASS(후보3개 실제 수치·exe·회귀) / Q7 KNOWN-LIMIT(캡처 오류→보정 후 검정6장, 유효12장 없음). 종료 회귀 Q0~Q7 각각13/13 PASS. U1/F2R/LOGR 사용자 수락·Sprint3 Gate 유지. [후보 비교](Validation/Q6-feedback-candidates.txt), [최종 인계](#latest-handoff). 아래는 단계 이력이다.
@@ -262,6 +264,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - T-G: 자연 입력 경로 1회 보정 후 B01 상단 B05 대신 하단 B02로 진입. 두 능력 자연 획득까지 확인; 새 게임→엔딩 자동 완주 미검증.
 - 추가 도구 보정은 이번 큐의 1회 보정 한도를 넘으므로 후속 승인 범위에서 판단한다. 사용자 전체 플레이·감각 수락과 Sprint3 Gate는 계속 대기한다.
 ## Decisions Needed
+
+### 2026-10-05 N6 시작 기준
+첨부 codex_night6_ROUTE.md §0은 HEAD가 N5 인계 커밋 이후가 아니면 전체 중단하고 기록만 하도록 명시한다. 검토 시작 HEAD는 baaaae0cf3d136ddfec5752fd0459850ae3dbc34로 N5 최종 인계와 동일하며 초기 작업 트리는 깨끗했다. 후속 커밋을 인위적으로 만들어 조건을 우회하지 않았다. **사용자 결정: 문서의 시작 조건을 유지하고 중단.** 현재 인계 커밋을 시작 기준으로 인정하지 않으며 N6를 진행하지 않는다. S1~S4/R01~R17 미실시; 기존 N5 검증 상태 유지. T-F death-r2 PASS 증거가 있으므로 첨부의 최초 death FAIL 설명은 재개 시 최신 증거와 대조한다. [상세](Validation/N6-preflight-review.txt).
 
 ### 2026-10-04 Q-night4 후속 판단
 - Q1-SAVE-001 N5 Part1에서 수정·재검증 완료. S2-04 REVIEW, 사용자 수락 대기. T-A 쓰기 실패 확장 검증은 도구 한계로 별도 미검증.
@@ -630,6 +635,10 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+2026-10-05 **N6 사전 검토 / 사용자 결정으로 중단**. 첨부 계획과 기존 N5 결과 대조 완료. 초기 git clean, HEAD=N5 최종 인계 baaaae0로 첨부 §0의 이후 조건을 유지하고 중단하라는 사용자 답변 확정. 변경 파일은 TASKS.md와 Validation/N6-preflight-review.txt뿐이다. 게임·검증 도구 변경, Unity 실행, 회귀, 빌드, 120분 soak, 커밋, push는 미실시. 기존 N5의 104/104 PASS는 아래 과거 결과이며 N6 결과가 아니다. 사용자 확인 사항 없음. 다음 작업: 별도 재개 지시 전에는 N6 실행하지 않음. [검토 기록](Validation/N6-preflight-review.txt).
+
+### 이전 N5 인계 (보존)
 
 2026-10-04 **N5 큐 종료(실행 기록 약69분, 15:17~16:26 KST).** **1부 PASS / S2-04 REVIEW 복귀.** 항목별 회귀8묶음 **104/104 PASS**, 보호파일·기본값 불변, main/로컬 단계 커밋/push 없음. 아래 미검증 조건을 회귀가 대신하지 않는다. [최종 인계·명령·사용자 할 일](Validation/N5-final-handoff.md), [보호/회귀 검사](Validation/N5-final-checks.txt), [진행 시각](Validation/N5-progress.txt), [night4 인계](Validation/Q-night4-final-handoff.md).
 
