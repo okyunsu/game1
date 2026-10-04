@@ -1,0 +1,9 @@
+FAIL DisplayVerifier actual=exe
+PASS actual KillZone death overlay
+MEASURE death capture delay=0.1168
+PASS EOF screenshot texture
+FAIL System.Exception: nonconstant screenshot variance=0.000
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <2ab2becdb15e45f59df0e788f0e951ab>:0 
+  at DisplayVerifier+<Tests>d__13.MoveNext () [0x00465] in <2ab2becdb15e45f59df0e788f0e951ab>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <2ab2becdb15e45f59df0e788f0e951ab>:0 
+Error/Exception/Assert=0

@@ -1,2 +1,10 @@
 N7 preflight: source reviewed; preserved existing N6 documentation changes. Implementation and validation pending.
 Part0 complete: N6 changes committed and preserved; N7 scope documents updated. No push.
+ATK-1 attempt 1: added upward hitbox and shared slash geometry; existing horizontal branch unchanged. Regression starting.
+Part2 START: copied all 7 original tuning assets to unreferenced v1-normal profile; original GUIDs unchanged. Hard changes pending implementation gate/input scope answer.
+Part2 attempt 1: applied Hard candidates; test tool correction 1 uses tuning-based HP and defeat counts. Boss conditional pogo HP pending ATK3.
+Part4 preparations: Soak death only in rooms with real KillZone; N7 action totals. G-D setup x15.2 y5.81. Save-failure initial placement at CP trigger edge. Death capture .1s after death observed. Tools correction attempt 1.
+BossRetry tool correction 2: attempt1 three deaths/re-entry PASS but fight timed out HP28 with no hits; force right-facing attack input on grounded samples instead of airborne left-facing presses. Game boss/movement unchanged.
+V4 tool correction 2: hidden background capture input stayed at spawn; death-only verifier now uses IgnoreFocus via base runner. This validates death rendering, not focus behavior. Product input defaults unchanged.
+ATK1 BLOCKED: keyboard Up/Down absent in protected input Asset. Restored experimental PlayerAttack/CombatTuning code and removed dependent verifier from Assets; preserved patch in chat outputs and verifier in chat work. Hard candidate HP/invincibility and other assets retained. ATK2/3/4 not started, dependent chain blocked by scope answer.
+Snapshot KST 2026-10-05 01:44:54; elapsed since N7 request preservation=29.7min checkpoint: current handoff, blockers and measured independent results recorded; actual120min soak remains running.

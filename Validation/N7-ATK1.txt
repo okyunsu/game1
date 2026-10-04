@@ -1,0 +1,8 @@
+FAIL ATK-1
+PASS up+X starts at 30
+FAIL up hitbox center/size tolerance .01u 30
+System.Exception: up hitbox center/size tolerance .01u 30
+  at N7AttackRunner.Check (System.Boolean ok, System.String what) [0x0002a] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N7AttackVerification.cs:19 
+  at N7AttackRunner+<Tests>d__11.MoveNext () [0x00397] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N7AttackVerification.cs:27 
+  at N7AttackRunner+<Start>d__8.MoveNext () [0x0005c] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\N7AttackVerification.cs:21 
+Errors=0

@@ -19,6 +19,9 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-05 **N7 PARTIAL / 공격 입력 범위 답변 대기**: ATK1 회귀13/13·실검사FAIL(input Asset keyboard y absent), 공격 실험 원복; Hard 후보 회귀13/13·보스 처치PASS, V2/V3 PASS, V4 촬영KNOWN-LIMIT, V5 원문/공격 의존BLOCKED, V1 실제120분 진행 중. [현재 인계](Validation/N7-current-handoff.txt).
+
+
 2026-10-05 **N6 중단 — 사용자 결정**: 초기 작업 트리는 깨끗하지만 HEAD가 N5 인계 커밋 baaaae0와 동일하여 첨부 §0의 이후 조건을 엄격히 충족하지 못함. 사용자가 시작 조건 유지·중단을 선택함. 구현·Unity 검사·120분 soak 미실시. [검토 기록](Validation/N6-preflight-review.txt).
 
 2026-10-04 **N5 최신: 1부 PASS/S2-04 REVIEW, T-B/T-C PASS, T-F 57유효PNG, T-A/T-D/T-E/T-G 일부 KNOWN-LIMIT. S4-pre3 빌드 PASS, 단계별회귀104/104. 자연 전체 완주/60분 안정성 미검증. Latest Handoff 우선.**
@@ -588,6 +591,10 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Design Decision / Before-After
 
+### DIFF-001 — Hard 후보 / 사용자 플레이 대기
+Before: PT-001의 모든 영역이 쉽다는 첨부 관찰. After: 백업 후 Hard 후보 적용, 회귀·보스 처치·게이트fps 기술 검사 통과; 실제 사용자 체감 플레이 대기. 포고 의존 HP조정 미실시. [실제 값](Validation/N7-DIFF-values.txt), [검증](Validation/N7-DIFF.txt).
+
+
 ### DEC-ATK-001 / DEC-DIFF-001 — N7 첨부 계획
 위 공격 + 공중 아래 공격 추가. 아래 공격이 적·보스·지정 위험물에 맞으면 위로 튕겨 오른다(포고). PRD의 공격 1종 / 추가 공격 제외를 이 결정으로 변경한다.
 전투·지형·보스 전반의 난이도를 올린다. 기준 플레이어는 위 숙련자다. GAME_DESIGN 22절 범위를 넘는 값도 이 결정에 따라 허용한다. 단, 이전 값은 반드시 백업한다.
@@ -645,6 +652,12 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+### N7 현재 인계 — 전체 완료 아님
+[5분 인계 및 필요 결정](Validation/N7-current-handoff.txt). 키보드 ↑/↓ 입력 Asset 예외 허용 답변 대기. Hard 후보 유지, 포고/공격 체인 및 PogoTest 미완료. V1 백그라운드 PID23712, 최종120분 결과 미검증. push 없음.
+
+### 이전 인계 보존
+
 
 2026-10-05 **N6 사전 검토 / 사용자 결정으로 중단**. 첨부 계획과 기존 N5 결과 대조 완료. 초기 git clean, HEAD=N5 최종 인계 baaaae0로 첨부 §0의 이후 조건을 유지하고 중단하라는 사용자 답변 확정. 변경 파일은 TASKS.md와 Validation/N6-preflight-review.txt뿐이다. 게임·검증 도구 변경, Unity 실행, 회귀, 빌드, 120분 soak, 커밋, push는 미실시. 기존 N5의 104/104 PASS는 아래 과거 결과이며 N6 결과가 아니다. 사용자 확인 사항 없음. 다음 작업: 별도 재개 지시 전에는 N6 실행하지 않음. [검토 기록](Validation/N6-preflight-review.txt).
 

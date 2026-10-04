@@ -1,0 +1,1 @@
+KNOWN-LIMIT: 8 first attempts focus blocked; 8 second attempts actual death overlay state true and delay ~.12s, hidden swapchain EOF texture all black; no visual PASS or product BUG conclusion. Product default focus behavior unchanged; death-only tool IgnoreFocus used.

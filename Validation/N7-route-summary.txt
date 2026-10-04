@@ -1,0 +1,1 @@
+BLOCKED exact N6 R01-R17 source missing / new attacks unavailable. Existing FullRouteVerifier exploratory Hard run preserved in N7-V5-exploratory-a1.txt; abilities/G-D pass, B01->B05 wrong destination fail. No segment/all-route acceptance or RouteAll regression addition.

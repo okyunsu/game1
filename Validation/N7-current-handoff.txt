@@ -1,0 +1,15 @@
+Snapshot KST 2026-10-05 01:44:54; elapsed since N7 request preservation=29.7min
+N7 부분 인계 — 실행 범위 검토 후 독립 항목 진행. 전체 완료 아님.
+0부: N6 기존 변경 보존 커밋, 요청 원문·진행 기록·PRD/GAME_DESIGN/TASKS 반영 완료.
+1부: ATK1 기존 회귀 13/13 PASS, 방향 공격 실검사는 keyboard Up input absent로 FAIL. PlayerControls.inputactions의 Gameplay Move에는 키보드 Left/Right만 존재한다. ATK1 허용 파일에 입력 Asset이 없으므로 사용자에게 추가 허용을 질문함. 답변 대기. 공격 실험 코드는 복원, 패치는 채팅 outputs에 보존. ATK2/3/4 체인 BLOCKED / 미실시. S5-attack 미제작.
+2부: 원본 Tuning Asset 7개를 unreferenced Profiles/v1-normal에 백업; 복사 meta는 새 GUID, 원본 GUID 불변. Hard 후보 적용. 회귀 13/13 PASS, BossRetryVerifier 재시도3회+실제 입력 처치→저장 엔딩 PASS(도구 입력 보정2회). 이동 행렬 32칸의 성공/실패 결과는 N5-TD-attempt2와 동일. 포고 최대 타수 미측정이므로 보스 HP 조건부 24/32 조정은 보류, 현재 후보28. 감각 수락·전체 N7 완료 아님.
+3부: LEVEL_PROPOSALS.md에 현재 씬 좌표 확인한 A/B/C 각2개 후보(총6개), 변경·의도·선택 경로·검증 방법 작성. 기존 방 배치 불변. PogoTest 씬은 미구현 포고에 의존해 BLOCKED / 미제작.
+4부 V1: 실제120분 soak background RUNNING, PID23712. CSV 1분 단위, 10분 기준점 존재. 120분·최종 증가율·500/100/200 총계는 아직 미검증. 실행중 진단 exe에는 ATK1 실험이 들어 있지만 테스트 입력은 수직 공격을 사용하지 않는다. 새 입력/게임 변경 시 해당 바이너리의 검증 범위를 구분할 것.
+4부 V2: 실제 exe 읽기전용 파일·쓰기불가 전용 폴더 2조건 모두 PASS; 실패 메시지·플레이 지속·기존 저장 바이트 보존·원래 권한 복원 뒤 다음 체크포인트 저장 성공. 원래 권한 모두 복원.
+4부 V3: x15.2 y5.81에서 30/60/120/144fps 대시없음 False / 대시 True 8칸 PASS. 기타 N5 행렬32칸 결과 동일.
+4부 V4: 첫8조건 hidden window focus로 입력 불가. death-only IgnoreFocus 보정 후4해상도×2모드 실제 사망 상태/약.12s 지연은 확인했지만 EOF framebuffer는 variance0 검정색으로 시각 검사 FAIL/KNOWN-LIMIT. 제품 오버레이 미표시 BUG로 확정하지 않음. 유효 PNG 없음, focus 동작 미검증.
+4부 V5: N6 2부 R01~R17 원문이 현재 Downloads/Validation에서 없음. 정확한 구간 정의와 새로운 공격도 미충족해 요구 방식 BLOCKED. 독립 참고로 기존 FullRouteVerifier를 Hard에서 실행, 두 능력 자연 획득 및 G-D까지 PASS; B01→B05 대신 다른 방 진입으로 FAIL/KNOWN-LIMIT. R01~R17, -verify-route all, 양장치/fps 전체 완주 미실시.
+빌드: N7-hard-verify / N7-hard-verify-a2 / N7-hard-capture / N7-hard-capture-a2는 모두 errors0/warnings0인 진단 빌드. S5-hard·S5-attack·PogoTest 최종 산출물로 취급하지 않는다. 기존 비교용 S4-pre3 유지.
+사용자 필요 사항: 1) Assets/Input/PlayerControls.inputactions의 keyboard Up/Down 바인딩 추가를 허용할지(첨부 ATK1 화이트리스트 예외). PlayerInputReader 수정 불필요. 2) N6 2부 원문 제공 또는 R01~R17 구간 정의 재작성 허용. 촬영은 현재 hidden-window 제한으로 불충족.
+새 능력·포고 수치 수정 위치는 아직 구현되지 않았다. Hard 수치 수정은 Assets/ScriptableObjects/CombatTuning.asset, E1/E2/E3Tuning.asset, BossTuning.asset. Stop 후 Asset 값을 저장하며 normal 복구는 v1-normal 사본의 필드값만 원본에 복사한다(원본 meta/GUID 교체 금지).
+push 없음. 미실시 검사는 PASS로 기록하지 않았다. 120분 검사가 종료되면 최종 CSV·증거를 별도로 확인해야 한다.

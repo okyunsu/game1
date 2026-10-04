@@ -1,0 +1,9 @@
+PASS SaveFailureVerifier actual=exe
+PASS fixture enables Continue
+PASS write failure fixture at A01
+PASS checkpoint write failure message visible
+PASS game remains playable after write failure
+PASS normal save bytes protected
+PASS next checkpoint write succeeds after permission recovery
+Scenario=readonly slot=C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Logs\N7-V2-readonly-a1\progress.json
+Error/Exception/Assert=0
