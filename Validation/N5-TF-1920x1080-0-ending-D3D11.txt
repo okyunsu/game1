@@ -1,0 +1,8 @@
+PASS DisplayVerifier actual=exe
+PASS Ending UI
+PASS EOF screenshot texture
+PASS nonconstant screenshot variance=127.444
+scene=Ending scenario=ending actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1920x1080-0-ending-D3D11.png
+KNOWN-LIMIT focus loss/regain not forced; default focus settings preserved, no IgnoreFocus substitution
+Error/Exception/Assert=0

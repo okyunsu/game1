@@ -1,0 +1,302 @@
+PASS N5 T-F primary display matrix: seven scenes x four resolutions x window/fullscreen =56 valid PNGs. D3D11 full matrix + D3D12 A01 1280x720 window probe =57 valid PNGs; every final scenario Error/Exception/Assert0 and variance>0.
+First death traversal eight failures (A02 hurdle) preserved. One correction jumps across initial hurdles then walks off pit; eight death r2 cases PASS. Other first-run images remain original. Scene source untouched; hit/death/tell are natural input/contact; scene startup order only changed in dedicated capture builds.
+KNOWN-LIMIT focus loss/regain not deliberately forced. Default Input System focus behavior preserved, no IgnoreFocus substitution. GUI Repaint observer maps exact GameHUD tuning-based source rectangles; PNGs visually spot-checked A01/boss. D3D12 other scenes/resolutions not tested.
+1280x720-0-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13702.196
+scene=A01 scenario=start actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-start-D3D11.png
+Error/Exception/Assert=0
+1280x720-0-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13771.033
+scene=A04 scenario=hit actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-hit-D3D11.png
+Error/Exception/Assert=0
+1280x720-0-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14881.213
+scene=A01 scenario=abilities actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-abilities-D3D11.png
+Error/Exception/Assert=0
+1280x720-0-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=2958.020
+scene=A02 scenario=death actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-death-r2-D3D11.png
+Error/Exception/Assert=0
+1280x720-0-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13270.458
+scene=B04 scenario=B04 actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-B04-D3D11.png
+Error/Exception/Assert=0
+1280x720-0-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14844.756
+scene=C06 scenario=boss actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-0-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1280x720-0-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=286.649
+scene=Ending scenario=ending actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1280x720-0-ending-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13702.196
+scene=A01 scenario=start actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-start-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13757.328
+scene=A04 scenario=hit actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-hit-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14881.213
+scene=A01 scenario=abilities actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-abilities-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=2958.540
+scene=A02 scenario=death actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-death-r2-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13270.458
+scene=B04 scenario=B04 actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-B04-D3D11.png
+Error/Exception/Assert=0
+1280x720-1-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14856.399
+scene=C06 scenario=boss actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1280x720-1-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=286.649
+scene=Ending scenario=ending actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1280x720-1-ending-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13778.854
+scene=A01 scenario=start actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-start-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13799.187
+scene=A04 scenario=hit actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-hit-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14948.707
+scene=A01 scenario=abilities actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-abilities-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3002.770
+scene=A02 scenario=death actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-death-r2-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13317.030
+scene=B04 scenario=B04 actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-B04-D3D11.png
+Error/Exception/Assert=0
+1600x900-0-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14861.008
+scene=C06 scenario=boss actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-0-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1600x900-0-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=183.498
+scene=Ending scenario=ending actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1600x900-0-ending-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13778.854
+scene=A01 scenario=start actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-start-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13786.973
+scene=A04 scenario=hit actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-hit-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14948.707
+scene=A01 scenario=abilities actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-abilities-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3004.441
+scene=A02 scenario=death actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-death-r2-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13317.030
+scene=B04 scenario=B04 actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-B04-D3D11.png
+Error/Exception/Assert=0
+1600x900-1-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14872.599
+scene=C06 scenario=boss actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1600x900-1-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=183.498
+scene=Ending scenario=ending actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1600x900-1-ending-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13813.706
+scene=A01 scenario=start actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-start-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13830.618
+scene=A04 scenario=hit actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-hit-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14983.377
+scene=A01 scenario=abilities actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-abilities-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3049.414
+scene=A02 scenario=death actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-death-r2-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13355.488
+scene=B04 scenario=B04 actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-B04-D3D11.png
+Error/Exception/Assert=0
+1920x1080-0-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14853.711
+scene=C06 scenario=boss actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-0-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1920x1080-0-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=127.444
+scene=Ending scenario=ending actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1920x1080-0-ending-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13813.706
+scene=A01 scenario=start actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-start-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13840.293
+scene=A04 scenario=hit actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-hit-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14983.377
+scene=A01 scenario=abilities actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-abilities-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3050.103
+scene=A02 scenario=death actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-death-r2-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13355.488
+scene=B04 scenario=B04 actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-B04-D3D11.png
+Error/Exception/Assert=0
+1920x1080-1-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14853.711
+scene=C06 scenario=boss actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:24.00, y:24.00, width:525.00, height:177.00) abilities=(x:42.00, y:121.50, width:486.00, height:36.00) death=(x:0.00, y:504.00, width:1920.00, height:72.00); screenshot=Validation/N5-TF-shots/1920x1080-1-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+1920x1080-1-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=127.444
+scene=Ending scenario=ending actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/1920x1080-1-ending-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13881.505
+scene=A01 scenario=start actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-start-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13877.525
+scene=A04 scenario=hit actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-hit-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=15013.738
+scene=A01 scenario=abilities actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-abilities-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3108.696
+scene=A02 scenario=death actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-death-r2-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13399.851
+scene=B04 scenario=B04 actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-B04-D3D11.png
+Error/Exception/Assert=0
+2560x1440-0-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14896.846
+scene=C06 scenario=boss actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+2560x1440-0-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=71.696
+scene=Ending scenario=ending actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/2560x1440-0-ending-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-start-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13881.505
+scene=A01 scenario=start actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-start-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-hit-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13876.680
+scene=A04 scenario=hit actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-hit-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-abilities-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=15013.738
+scene=A01 scenario=abilities actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-abilities-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-death-r2-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=3108.696
+scene=A02 scenario=death actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-death-r2-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-B04-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=13399.851
+scene=B04 scenario=B04 actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-B04-D3D11.png
+Error/Exception/Assert=0
+2560x1440-1-boss-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=14895.474
+scene=C06 scenario=boss actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-1-boss-D3D11.png
+boss/tell viewport=(0.89, 0.23, 10.00)
+boss/tell viewport=(0.77, 0.14, 10.00)
+Error/Exception/Assert=0
+2560x1440-1-ending-D3D11 PASS DisplayVerifier actual=exe
+PASS nonconstant screenshot variance=71.696
+scene=Ending scenario=ending actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=False
+HUD rectangles observed in Repaint top=(x:0.00, y:0.00, width:0.00, height:0.00) abilities=(x:0.00, y:0.00, width:0.00, height:0.00) death=(x:0.00, y:0.00, width:0.00, height:0.00); screenshot=Validation/N5-TF-shots/2560x1440-1-ending-D3D11.png
+Error/Exception/Assert=0
+D3D12 probe: PASS variance13702.196 actual1280x720 Error0; N5-TF-D3D12.txt
+Regression pending.
+Regression N5-TF 13/13 PASS.

@@ -1,0 +1,9 @@
+PASS DisplayVerifier actual=exe
+PASS fixture enables Continue
+PASS actual both-ability HUD
+PASS EOF screenshot texture
+PASS nonconstant screenshot variance=14881.213
+scene=A01 scenario=abilities actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=Validation/N5-TF-shots/1280x720-1-abilities-D3D11.png
+KNOWN-LIMIT focus loss/regain not forced; default focus settings preserved, no IgnoreFocus substitution
+Error/Exception/Assert=0

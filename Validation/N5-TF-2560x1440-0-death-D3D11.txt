@@ -1,0 +1,5 @@
+FAIL DisplayVerifier actual=exe
+FAIL System.Exception: capture traversal timeout room=A02 pos=(5.64, 1.82)
+  at DisplayVerifier+<Traverse>d__14.MoveNext () [0x00085] in <db3b931139de44c6b10c5ad1789eaf5d>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <db3b931139de44c6b10c5ad1789eaf5d>:0 
+Error/Exception/Assert=0

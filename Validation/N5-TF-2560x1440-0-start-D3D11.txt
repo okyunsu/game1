@@ -1,0 +1,7 @@
+PASS DisplayVerifier actual=exe
+PASS EOF screenshot texture
+PASS nonconstant screenshot variance=13881.505
+scene=A01 scenario=start actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:32.00, y:32.00, width:700.00, height:236.00) abilities=(x:56.00, y:162.00, width:648.00, height:48.00) death=(x:0.00, y:672.00, width:2560.00, height:96.00); screenshot=Validation/N5-TF-shots/2560x1440-0-start-D3D11.png
+KNOWN-LIMIT focus loss/regain not forced; default focus settings preserved, no IgnoreFocus substitution
+Error/Exception/Assert=0

@@ -1,0 +1,8 @@
+PASS DisplayVerifier actual=exe
+PASS B04 startup scene unmodified
+PASS EOF screenshot texture
+PASS nonconstant screenshot variance=13317.030
+scene=B04 scenario=B04 actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:20.00, y:20.00, width:437.50, height:147.50) abilities=(x:35.00, y:101.25, width:405.00, height:30.00) death=(x:0.00, y:420.00, width:1600.00, height:60.00); screenshot=Validation/N5-TF-shots/1600x900-1-B04-D3D11.png
+KNOWN-LIMIT focus loss/regain not forced; default focus settings preserved, no IgnoreFocus substitution
+Error/Exception/Assert=0
