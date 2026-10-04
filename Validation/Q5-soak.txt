@@ -2,3 +2,5 @@ Q5 BLOCKED required 45min repeated-route instrumentation.
 Existing executable CLI verifiers run finite sequences then quit. None supports 45min loop, 300 room changes, 50 deaths, 100 pauses and in-process scene GameObject/EnemyShot count export. Native application controls are unavailable; game code modifications are forbidden in Q5.
 NOT RUN 45min workload. No idle memory test substituted for the prescribed workload. Working Set/GameObject/EnemyShot/Error samples and CSV were not generated.
 Needed: separately approved opt-in runtime soak verification runner, or a supported native input session plus in-process observation. Gameplay/default tuning/scene assets remain unchanged.
+
+Capability clarification: separate @oai/sky native API is present. Its documented press_key API has no held-input duration and no game-internal object count export. Isolated CLI exe exposed no targetable native window. Earlier generic native-unavailable statement is superseded; required full workload remains unexecuted.

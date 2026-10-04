@@ -1,0 +1,5 @@
+Q6 first binding attempt failed actual candidate-value audit.
+First A/B/C builds succeeded and basic actual-exe feedback assertions passed, but label log showed FeedbackTuning .7/.1/.18/1.6 in all three. Those basic assertions alone were insufficient; initial candidate PASS summary is superseded.
+Cause: player is instantiated from unchanged runtime prefab and lives in DontDestroyOnLoad, so build-scene remapping alone never reaches its AttackFeedback.
+Single correction: candidate asset copies under Assets/Resources/Q6. Build-only Q6 label selects correct Resource asset by candidate define, binds AttackFeedback and HitFeedback presentation references including runtime-prefab respawns; original prefab/gameplay/default values unchanged.
+Actual runtime tuning name and all four candidate values must match expected log before corrected PASS. First build/runtime/partial or full regression evidence retained. No second correction allowed.

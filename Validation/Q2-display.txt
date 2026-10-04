@@ -9,3 +9,7 @@ MEASURE requested window 2560x1440 exit=0; evidence=Q2-2560x1440-runtime.txt
 CALCULATED HUD bounds=(32,32,700,236) reference GameHUD/UITuning; not observed rendered coordinates
 NOT RUN native focus/Alt-Tab, fullscreen and live resize: native computer automation unavailable in this session; existing verifier forces IgnoreFocus, invalidating focus testing.
 NOT VERIFIED actual resolved dimensions, per-room HUD rendered bounds, boss/tell visibility; requested resolution and calculated bounds do not prove rendered output. Q7 is separate capture attempt.
+
+Native capability correction: @oai/sky imported and list_windows/list_apps succeeded. Initial blanket statement that native automation was unavailable is superseded.
+Actual isolated-slot executable PID 27244 was launched with hidden-window CLI flags; list_windows and list_apps exposed no Afterglow target and process MainWindowHandle=0. Native input was not sent and no non-target app was manipulated.
+Available launch_app API accepts an app identifier/path but no CLI arguments for save-slot isolation. Supported press_key provides a tap/chord but no sustained input. Native full-screen/focus/resize gameplay tests remain NOT RUN; no custom UI helper or raw PowerShell UIAutomation used.

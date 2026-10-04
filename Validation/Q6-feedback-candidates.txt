@@ -1,0 +1,12 @@
+PASS Q6 feedback candidates; presentation acceptance pending user.
+PASS Q6-A build + actual exe attack activation + enemy hit + Error0; see Q6-A-build.txt / Q6-A-runtime.txt
+Q6 candidate FeedbackTuning scene=DontDestroyOnLoad slash=0.7 flash=0.1 pip=0.18 pop=1.6
+PASS Q6-B build + actual exe attack activation + enemy hit + Error0; see Q6-B-build.txt / Q6-B-runtime.txt
+Q6 candidate FeedbackTuning scene=DontDestroyOnLoad slash=0.7 flash=0.1 pip=0.18 pop=1.6
+PASS Q6-C build + actual exe attack activation + enemy hit + Error0; see Q6-C-build.txt / Q6-C-runtime.txt
+Q6 candidate FeedbackTuning scene=DontDestroyOnLoad slash=0.7 flash=0.1 pip=0.18 pop=1.6
+A | slashAlpha .7 | hitFlash .10s | hpPip .18u | deathPopScale 1.6
+B | slashAlpha .9 | hitFlash .14s | hpPip .24u | deathPopScale 2.0
+C | slashAlpha .5 | hitFlash .07s | hpPip .14u | deathPopScale 1.3
+Default FeedbackTuning untouched. Candidate copies Assets/ScriptableObjects/Q6; build-scene copies remap presentation references. Q6CandidateLabel exists only in extra build defines Q6_A/B/C; displays title bottom-left and rebinds presentation tuning for enemies spawned from unchanged prefabs. No gameplay/default source-scene edits.
+Compare each build for two minutes: title candidate name, A01 attack stroke, A04 enemy flash/HP/death pop. Do not change defaults until user selects a candidate. Play-mode experimentation requires re-entering/saving desired values after Stop; candidate asset changes require candidate rebuild.

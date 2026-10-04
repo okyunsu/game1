@@ -1,0 +1,3 @@
+Succeeded errors=0 warnings=0
+Candidate B: slashAlpha=0.9; hitFlashSeconds=0.14; hpPipSize=0.24; deathPopScale=2
+Build scene copies remapped by IProcessSceneWithReport; source scenes/prefabs/default asset untouched.
