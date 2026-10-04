@@ -1,0 +1,7 @@
+Q4 BLOCKED route measurement validity.
+Reviewed S3BuildVerification.ExitTo, S3FinalVerification.ExitTo, S2Tests.ExitTo and existing exe route evidence: they place player directly on exit triggers. These routes cannot measure CP-to-challenge or return traversal time. No successful continuous prescribed input route for these full intervals is available.
+CP->challenge goal 30..90s: NOT MEASURED
+CP-C04->boss goal <=15s: NOT MEASURED
+A05->A03 goal <=90s: NOT MEASURED
+B04->B01 goal <=120s: NOT MEASURED
+PT-001 comparison unavailable: empty user memo, Q0 SKIPPED. No teleport time or theoretical speed estimate reported as observed route time.

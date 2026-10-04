@@ -13,7 +13,7 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~06 DONE. 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
+**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~03·05~06 DONE, S2-04 BLOCKED(Q1-SAVE-001). 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
 2026-10-04 최신 추가 승인 D0/F2R/LOGR 종료: 기준T2 실패 재현·T2v2 PASS, F2R/LOGR REVIEW, S4-pre 빌드·실제exe·최종회귀PASS. 아래 S3 후보/사용자 Gate 상태 유지.
 G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
 
@@ -89,7 +89,7 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 | S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | DONE | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
 | S2-02 | A05 대시 획득·안전 연습 | DONE | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 | S2-03 | A03 G-D·B01 자리 | DONE | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
-| S2-04 | 단일 슬롯 저장·Menu 이어하기 | DONE | S2-02:REVIEW | 능력/마지막 CP만 저장, Menu 새 게임/이어하기·손상 안전 처리·종료/재개 검사 PASS 후 REVIEW |
+| S2-04 | 단일 슬롯 저장·Menu 이어하기 | BLOCKED | S2-02:REVIEW | Q1-SAVE-001: 빈 파일·미지원 버전 처리 실패. 정상 저장/Continue 기존 검사 유지, 예외 경로 수정 승인·재검증 전 저장 견고성 완료 보류 |
 | S2-05 | Core Loop 통합 관찰·재방문 검증 | DONE | 사용자 결정 G2 | S2-day 사용자 플레이로 대체, 이월 T1~T4·점프 일관성 수락 |
 | S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
 
@@ -153,6 +153,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 - 재현: S4-pre2 실제 exe에 격리 `-save-path`로 빈 파일 또는 `{"version":999,"checkpointId":"CP-A01"}`를 전달하고 `-s2-verify corrupt` 실행.
 - 실제: `ProgressSave.TryLoad`의 `InvalidDataException: Unsupported save data`가 `SaveMenu.Start` 밖으로 나감. Error/Exception=1, 손상 저장 안내 검사 FAIL. 잘린 JSON·잘못된 JSON은 안내와 명시적 새 게임/원본 보존 PASS.
 - 영향: 이 두 저장 조건에서 정상 안내·새 게임 경로가 검증되지 않았고 명백한 런타임 오류가 발생. Q1은 게임 코드 수정 금지이므로 수정하지 않음.
+- 상태 영향: S2-04를 BLOCKED로 되돌림. 정상 슬롯 Continue 증거는 유지하되 저장 오류 처리·최종 DoD 수락 경로는 수정 승인/재검증까지 보류. 독립 표시 후보/촬영은 계속함.
 - 관련: `Assets/Scripts/ProgressSave.cs` TryLoad catch 필터, `Assets/Scripts/SaveMenu.cs` Start. [빈 파일](Validation/Q1-corrupt-empty.txt), [미지원 버전](Validation/Q1-corrupt-version.txt), [전체](Validation/Q1-dod-robustness.txt).
 
 - UI-CAP-001 (2026-10-04): 새 런타임 캡처 도구 ScreenCapture/EncodeToPNG 모듈 참조 불가. 검사1회보정 재실패로 촬영 경로 중단, 컴파일을 막는 부분만 제거. 기존 Packages 보호. U1 표시 상태검사는 독립 PASS; 1280×720/1920×1080 6장 및 시각 검수 미실시. 다음 판단: 사용자 exe 가독성 확인 또는 별도 승인 촬영 도구 경로.
