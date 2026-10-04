@@ -1,0 +1,13 @@
+Q3 BLOCKED complete section x fps matrix; existing unchanged Editor double-jump measurement executed.
+S3Verification.Run exit=0; evidence Q3-night4-jump.txt
+Measured ordinary/double jump at 30/60/120fps; vSync off. See actual MEASURE rows. 144fps and full A05/G-D/G-J/B04/C02/C03 matrix NOT RUN: current tools do not expose fps-parametrized full routes; no game code modification allowed.
+Existing S3-05 runner includes old practice-height authoring and must not be rerun; no authoring scripts restored or executed.
+
+Observed test-scene vertical baseline (target frame cap; actual fps not separately sampled):
+fps | ordinary height u | double height u | G-J 3.6 margin check
+30 | 2.535 | 4.965 | PASS
+60 | 2.535 | 5.055 | PASS
+120 | 2.535 | 5.049 | PASS
+144 | NOT RUN | NOT RUN | NOT RUN
+A05/G-D/B04/C02/C03 full route matrix: NOT RUN. No horizontal maxima measured in this Q.
+Error/Exception/Assert=0; values copied from Q3-night4-jump.txt.
