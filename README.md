@@ -101,8 +101,6 @@ Scene의 Play 중 배치 변경은 되돌아가므로 Stop 후 다시 입력한�
 S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수락(DONE). S3-06~08은 기술 PASS/REVIEW: B02 소개 위치, C02 조합 난이도, C03 종합 이동과 C04 휴식 체감을 확인한다. 실제 패드 조작·탈착과 자연스러운 전체 플레이 시간은 미실시.
 수락/수정 의견은 [TASKS의 Latest Handoff](TASKS.md#latest-handoff)를 따른다. S3-09/10 v2는 실제 보스·엔딩과 필수 회귀 PASS/REVIEW다. F1 효과 이벤트 검사는 PASS였으나 T2 회귀 실패로 전체 복원했다. 선택 방·아트·사운드·흔들림·K2는 포함하지 않았다.
 
-## 문서
-
 ## N5 검증 도구 (2026-10-04)
 
 작업 폴더에서 PowerShell로 실행한다. 일반 플레이는 `Builds/S4-pre3/Afterglow-S4-pre3.exe`; 아래 플래그를 주지 않으면 새 검증 도구는 오브젝트를 만들지 않는다. 기존 저장 대신 별도 `-save-path`를 사용하고, 기존 증거 파일에는 덮어쓰지 않는다.
@@ -128,6 +126,8 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 | `-verify-route -save-path <new-slot> -verify-output <TXT>` | 가상 입력만으로 새 게임 전체 경로 시도; 성공 여부는 N5-TG 증거 확인 |
 
 모든 수치·Scene·Prefab 기본값은 유지했다. 구간 시작/출구/KillZone 배치는 승인된 T-D/T-E 검증 설정에만 사용한다. 실제 결과와 미검증 항목은 [N5 인계](Validation/N5-final-handoff.md)를 따른다.
+
+## 문서
 
 - [PRD](PRD.md): 제품 범위·Target / Minimum·완료 조건
 - [GAME_DESIGN](GAME_DESIGN.md): 게임 규칙·레벨·튜닝 가설

@@ -1,0 +1,13 @@
+S1-02 PASS evidence=S1-02-night-S2-N5-TD.txt
+S1-04 PASS evidence=S1-04-night-S2-N5-TD.txt
+S1-07 PASS evidence=S1-07-night-S2-N5-TD.txt
+S1-08 PASS evidence=S1-08-night-S2-N5-TD.txt
+Camera PASS evidence=S1-06-lead0-night-S2-N5-TD.txt
+T1 PASS evidence=Verification-night-T1-N5-TD.txt
+T2 PASS evidence=Verification-night-T2-N5-TD.txt
+T3 PASS evidence=Verification-night-T3-N5-TD.txt
+T4 PASS evidence=Verification-T4-night-S2-N5-TD.txt
+S2 PASS evidence=S2-01-integration-night-S2-N5-TD.txt
+F2R PASS evidence=F2R-feedback-night-S2-N5-TD.txt
+LOGR PASS evidence=LOGR-playtest-night-S2-N5-TD.txt
+Boss PASS evidence=boss-recovery-night-S2-N5-TD.txt
