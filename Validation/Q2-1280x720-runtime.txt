@@ -1,0 +1,38 @@
+PASS U1 UI actual exe
+PASS: runtime HUD and UITuning asset
+PASS: title present
+PASS: new game A01 first controls visible
+PASS: HP5 and both gray ownership states
+PASS: first notice expires at configured duration
+PASS: actual hit accepted
+PASS: HUD four white pips after hit
+PASS: death accepted
+PASS: Respawning dark overlay active, existing input lock
+PASS: respawn removes overlay and restores HP
+PASS: existing .6s death flow preserved
+PASS: direct verification placement A05
+PASS: authored Dash pickup
+PASS: Dash white icon and keyboard C notice
+PASS: Dash notice expires at UITuning seconds
+PASS: direct verification placement B04
+PASS: authored Double Jump pickup
+PASS: both white icons; Double Jump keyboard Z notice
+PASS: gamepad ownership labels and Double Jump A notice
+PASS: Double Jump notice expires
+PASS: Pause panel unobstructed by notices
+PASS: Continue valid after abilities saved
+PASS: Continue has no first/acquisition notice; saved ownership read only
+PASS: title present
+PASS: second new game gets its own first notice
+PASS: first movement dismisses notice
+PASS: Continue at CP-A01 without abilities still suppresses first notice
+PASS: direct verification placement A05
+PASS: direct verification placement B04
+PASS: both abilities acquired before final boss flow
+PASS: direct verification placement C04
+PASS: direct verification placement C06
+PASS: direct boss defeat reaches Ending
+PASS: Ending returns title
+PASS: existing CSV logger retained
+Presentation acceptance pending user; synthetic input and direct placements, not natural completion.
+Error/Exception/Assert=0

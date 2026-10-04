@@ -1,0 +1,11 @@
+Q2 BLOCKED complete display validation; partial actual-exe UI state checks only.
+MEASURE requested window 1280x720 exit=0; evidence=Q2-1280x720-runtime.txt
+CALCULATED HUD bounds=(16,16,350,118) reference GameHUD/UITuning; not observed rendered coordinates
+MEASURE requested window 1600x900 exit=0; evidence=Q2-1600x900-runtime.txt
+CALCULATED HUD bounds=(20,20,437.5,147.5) reference GameHUD/UITuning; not observed rendered coordinates
+MEASURE requested window 1920x1080 exit=0; evidence=Q2-1920x1080-runtime.txt
+CALCULATED HUD bounds=(24,24,525,177) reference GameHUD/UITuning; not observed rendered coordinates
+MEASURE requested window 2560x1440 exit=0; evidence=Q2-2560x1440-runtime.txt
+CALCULATED HUD bounds=(32,32,700,236) reference GameHUD/UITuning; not observed rendered coordinates
+NOT RUN native focus/Alt-Tab, fullscreen and live resize: native computer automation unavailable in this session; existing verifier forces IgnoreFocus, invalidating focus testing.
+NOT VERIFIED actual resolved dimensions, per-room HUD rendered bounds, boss/tell visibility; requested resolution and calculated bounds do not prove rendered output. Q7 is separate capture attempt.

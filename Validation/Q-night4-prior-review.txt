@@ -1,0 +1,19 @@
+2026-10-04 night4 prior-work review
+Initial HEAD: 4e99845, tracked and untracked working tree clean.
+Reviewed AGENTS, TASKS Current Sprint/Current Tasks/Latest Handoff,
+Validation/TM-U1-final-handoff.md, PRD UI/Save/DoD, GAME_DESIGN 9..18/21..23,
+README execution and save instructions, existing regression/executable runners.
+TM/U0 DONE; U1 REVIEW, not user accepted. F2R/LOGR and S3-06..10 remain REVIEW.
+Sprint 3 Gate remains pending; no Sprint 4 content or rule changes authorized.
+S4-pre2 prior actual exe and regression evidence PASS; six UI captures unavailable.
+Prior regression PASS is not proof of PRD full DoD or newly requested edge cases.
+Prior verifiers use virtual devices/direct placement, not natural completion.
+Prior S3-05 tool performs historical practice-height authoring; not rerun.
+No one-off historical generation script restored or executed.
+User completion memo is empty; Q0 skips CSV analysis and PT-001 creation.
+Read failure review: ProgressSave.TryLoad throws InvalidDataException but its catch
+filter only handles IOException/UnauthorizedAccessException/ArgumentException.
+Actual Q1 empty/unsupported-version runs confirm escaping runtime exception.
+Task scope: queue validation and explicit Q6 build copies/Q7 capture scripts only.
+No default tuning, gameplay logic, Packages/ProjectVersion or source room layout edits.
+No user readability/sensory acceptance inferred, no push.
