@@ -1,0 +1,1 @@
+PASS git diff against fb7b8b2: protected GameState/RoomSession/KillZone/ProgressSave/RoomCameraRig/InputReader/Motor/Dash, existing Scenes/Prefabs, Packages/ProjectSettings unchanged. Boss HP28 unchanged; normal backup assets unchanged. No push.

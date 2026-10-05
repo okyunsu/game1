@@ -1,0 +1,1 @@
+KNOWN-LIMIT interrupted attempt counted against20. R14 input correction1: jump onto C02 initial platform before double-jump phase; no Scene/movement changes.

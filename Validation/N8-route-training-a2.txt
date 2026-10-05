@@ -1,0 +1,10 @@
+FAIL RouteRunner actual=Editor
+PASS segment-start scene setup A03
+PASS segment-start Entry
+R03 attempt=7 ticks=251 startTeleport=True PASS
+R04 attempt=1 ticks=438 startTeleport=False PASS
+FAIL System.IO.IOException: Preserve Validation/N8-R04-a1.txt
+  at RouteRunner.SaveAttempt (System.Int32 n) [0x0009e] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\RouteRunner.cs:41 
+  at RouteRunner+<Tests>d__20.MoveNext () [0x00508] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\RouteRunner.cs:32 
+  at N5Runner+<Start>d__18.MoveNext () [0x000b6] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\N5Runner.cs:27 
+Error/Exception/Assert=0

@@ -1,0 +1,1 @@
+KNOWN-LIMIT interrupted attempt counted against20. R14 input correction2: preserve High2 height and jump to ExitLedge instead of walking off.

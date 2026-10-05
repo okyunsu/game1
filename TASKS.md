@@ -157,6 +157,10 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
+### N8-POGO-001 — 동일 프레임 포고 우선 처리 요구 미충족 / BLOCKED
+보호된 KillZone→RoomSession 즉시 사망 호출과 ATK2 우선 처리 요구가 충돌한다. 기존 게임에서 포고를 실행해 관찰한 버그가 아니라, 미구현 경로의 설계/허용범위 차단이다. 판정 높이 확대·사망 상태 되돌리기·콜백 순서 추측으로 우회하지 않았다. ATK2 및 의존 PogoTest/S5-hard 중단, 독립 경로·촬영은 수행. 필요한 연결부 판단은 Decisions Needed N8-POGO-ORDER와 [근거](Validation/N8-ATK2.txt).
+
+
 ### Q1-SAVE-001 — 빈 파일·미지원 버전의 읽기 예외 미처리 (2026-10-04) — RESOLVED N5 Part1
 
 N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 실제 exe 키보드 새 게임·원본 보존/Error0, 기존 저장 검사, 회귀13/13 PASS. S2-04 REVIEW 복귀. [증거](Validation/N5-Part1-save-fix.txt). 아래는 최초 재현 이력.
@@ -341,7 +345,7 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 ## Validation Records
 
 ### N8 사전 검토 / N7 V1 확정 (2026-10-06)
-N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working Set360886272→362958848 bytes(+0.574%), GameObject29~49, 전환2911/사망116/Pause2911, Error0. 원본은 fb7b8b2에 보존. N8 변경 이전 진단 바이너리 결과로 구분하며 새 실행으로 기록하지 않는다. [검토](Validation/N8-soak-review.txt).
+N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working Set360886272→362958848 bytes(+0.574%), GameObject 종료29→33(+13.8%), 전체 순간샘플23~61(첨부 29~49 정정), 전환2911/사망116/Pause2911, Error0. 원본은 fb7b8b2에 보존. N8 변경 이전 진단 바이너리 결과로 구분하며 새 실행으로 기록하지 않는다. [검토](Validation/N8-soak-review.txt).
 입력 Asset ↑/↓·W/S 추가, Digital Composite로 수직 입력 동시 좌우 속도 보존. S1-02/K1 PASS, 회귀13/13 PASS. 최초 sandbox 실행13개는 Unity 라이선스 접근 실패(exit198)로 테스트 미진입; 권한 범위 밖 실행으로 정상 확인. ATK1은 bounds기준1.2×1.3u 판정과 표시를 실제 Unity30/60/120fps에서 확인, 키보드↑/W·패드·기존좌우·T3 포함13/13 PASS. [ATK1](Validation/N8-ATK1.txt).
 사망 화면은 기존 A02 진단 exe를 Normal창으로 실행하여 4해상도×창/전체화면8/8 유효PNG·사망후약0.12s·Error0. [결과](Validation/N8-death-capture.txt).
 
@@ -691,4 +695,7 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 새 제품 버그 확정 없음. 도구 한계는 Bugs의 N5 절과 각 결과에 기록했다. S2-04/U1/F2R/LOGR 및 기존 S3 REVIEW와 Sprint3 Gate는 사용자 수락 대기다. 승인한 큐의 보정 횟수를 소진한 경로에는 추가 수정을 하지 않았다.
 
 사용자 확인: **Builds/S4-pre3/Afterglow-S4-pre3.exe 직접 완주(가능하면 -record), 기존 Q6 후보3개 비교, 새 스크린샷57장 UI 검토.** README의 실행·수정 위치 안내를 따른다. Scene Play 변경은 Stop 후 다시 입력/저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 저장한다. 다음 작업은 사용자 검토 및 별도 후속 도구 보정 판단이며 다음 Sprint 콘텐츠를 확장하지 않는다.
+
+
+
 

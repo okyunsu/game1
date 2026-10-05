@@ -1,0 +1,8 @@
+FAIL F2R
+PASS: player/dummy recovered display binding
+PASS: 30 1 startup inactive
+PASS: active slash 30
+System.NullReferenceException: Object reference not set to an instance of an object
+  at F2RRunner+<Tests>d__8.MoveNext () [0x00408] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RVerification.cs:26 
+  at F2RRunner+<Start>d__5.MoveNext () [0x00084] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Editor\F2RVerification.cs:22 
+Error/Exception/Assert=0

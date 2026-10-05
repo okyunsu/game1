@@ -1,0 +1,1 @@
+KNOWN-LIMIT interrupted uncompleted R05 attempt counted against20. No completion asserted.

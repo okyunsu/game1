@@ -1,0 +1,9 @@
+PASS RouteRunner actual=Editor
+PASS segment-start scene setup C02
+PASS segment-start Entry
+R14 attempt=11 ticks=242 startTeleport=True PASS
+R15 attempt=1 ticks=276 startTeleport=False PASS
+R16 attempt=1 ticks=1308 startTeleport=False PASS
+R17 attempt=1 ticks=1 startTeleport=False PASS
+Training complete; per-segment outcomes are in library. Training success does not mean all-route acceptance.
+Error/Exception/Assert=0

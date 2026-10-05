@@ -1,0 +1,37 @@
+PASS RouteRunner actual=exe
+R01 attempt=1 ticks=299 startTeleport=False PASS
+PASS continuous recording R01 
+R02 attempt=1 ticks=254 startTeleport=False PASS
+PASS continuous recording R02 
+R03 attempt=1 ticks=264 startTeleport=False PASS
+PASS continuous recording R03 
+R04 attempt=1 ticks=438 startTeleport=False PASS
+PASS continuous recording R04 
+R05 attempt=1 ticks=113 startTeleport=False PASS
+PASS continuous recording R05 
+R06 attempt=1 ticks=238 startTeleport=False PASS
+PASS continuous recording R06 
+R07 attempt=1 ticks=281 startTeleport=False PASS
+PASS continuous recording R07 
+R08 attempt=1 ticks=267 startTeleport=False PASS
+PASS continuous recording R08 
+R09 attempt=1 ticks=348 startTeleport=False PASS
+PASS continuous recording R09 
+R10 attempt=1 ticks=603 startTeleport=False PASS
+PASS continuous recording R10 
+R11 attempt=1 ticks=164 startTeleport=False PASS
+PASS continuous recording R11 
+R12 attempt=1 ticks=264 startTeleport=False PASS
+PASS continuous recording R12 
+R13 attempt=1 ticks=264 startTeleport=False PASS
+PASS continuous recording R13 
+R14 attempt=1 ticks=242 startTeleport=False PASS
+PASS continuous recording R14 
+R15 attempt=1 ticks=276 startTeleport=False PASS
+PASS continuous recording R15 
+R16 attempt=1 ticks=1387 startTeleport=False PASS
+PASS continuous recording R16 
+R17 attempt=1 ticks=1 startTeleport=False PASS
+PASS continuous recording R17 
+Training complete; per-segment outcomes are in library. Training success does not mean all-route acceptance.
+Error/Exception/Assert=0

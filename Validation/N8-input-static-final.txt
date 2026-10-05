@@ -1,0 +1,3 @@
+PASS JSON parse / UI map unchanged / Gameplay gamepad unchanged
+Gameplay Move keyboard Up/Down arrows/W/S and Digital mode only. PlayerInputReader unchanged. Final source compared to fb7b8b2.
+PASS full InputAction JSON after removing only new four Move keyboard parts and normalizing only Gameplay composite mode equals original; all other actions/maps/bindings unchanged.

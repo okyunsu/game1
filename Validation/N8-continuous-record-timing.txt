@@ -1,0 +1,2 @@
+fixed input ticks=5703 at50Hz activeSeconds=114.06
+Includes segment input simulation only; excludes loading and boundary grounding waits. Not human playtime, not proven shortest global route. Source GAME_DESIGN/PRD first human play target60..120min; keep separate.

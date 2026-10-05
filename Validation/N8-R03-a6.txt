@@ -1,0 +1,1 @@
+KNOWN-LIMIT interrupted attempt; counted against20. Launcher-owned Unity stopped for tool correction1 after five recorded R03 failures.

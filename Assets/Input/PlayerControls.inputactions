@@ -363,7 +363,7 @@
                 {
                     "name": "2DVector",
                     "id": "6cdbfd65-645b-4a8b-8e02-cba08f5da3fd",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -1,0 +1,5 @@
+PASS boss recovery
+PASS: recovery begins
+PASS: actual X hits in recovery; display called once
+PASS: HP19 and unchanged recovery1.2s
+Error/Exception/Assert=0

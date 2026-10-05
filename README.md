@@ -76,8 +76,11 @@ Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거�
 | 재개 | Z/Enter 또는 X/Esc | A 또는 B |
 
 | 공격 | X (보조 J) | X |
+| 위 공격 — N8 Unity 소스 | ↑(보조 W)+X | 스틱 위+X |
 | 대시 | C (보조 K / Left Shift) | B |
 | 메뉴 이동 / 확인 / 취소 | ↑/↓ / Z·Enter / X·Esc | D-pad / A / B |
+
+N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/N8-route-tools-a2`는 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
 
 Gameplay / UI 입력은 분리되어 있다. LCtrl은 다음 능력 예약이며 바인딩하지 않는다. 게임패드 바인딩은 유지한다.
 
@@ -123,7 +126,10 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 | Editor `-executeMethod N5Editor.Run -verify-fps-matrix -save-path <CP-A01-both-fixture>` | 30/60/120/144fps 구간 행렬; N5-TD-fps-matrix.txt |
 | `-verify-soak 60 -save-path <CP-A01-both-fixture> -verify-csv Validation/soak.csv` | 실제 시간 안정성 러너. 현재 A04 KillZone 선택 오류로 KNOWN-LIMIT; 60분 PASS 아님 |
 | `-verify-display start/hit/abilities/death/B04/boss/ending -verify-shot <PNG> -verify-output <TXT>` | 일반 창 EOF 캡처·픽셀 분산·화면/GUI/뷰포트 기록. `Run-N5-TF.ps1`의 씬별 시작 빌드 사용. 기존 Q7 `-capture`와 충돌을 피하는 별도 플래그 |
-| `-verify-route -save-path <new-slot> -verify-output <TXT>` | 가상 입력만으로 새 게임 전체 경로 시도; 성공 여부는 N5-TG 증거 확인 |
+| `-verify-route-legacy -save-path <new-slot> -verify-output <TXT>` | 이전 N5 자연 경로 러너; bare `-verify-route`도 호환 유지 |
+| `-verify-route R01` (R01~R17) | 구간 시작점만 설정하고 고정틱 가상 입력을 기록. `-route-prefix`, `-route-library`, `-verify-output`, `-save-path`에 새 경로 지정 |
+| `-verify-route all -route-library <JSON> -verify-fps 60` | 저장된 성공 구간을 새 게임부터 실제 종료 상태로 재생. 텔레포트·능력 지급 없음. `-route-gamepad`로 가상 패드 사용 |
+| `-verify-route train -route-continuous -route-attempt-limit 1` | 새 게임부터 연속 기록; 첫 구간 실패 시 중단. 결과 원본은 TASKS의 N8 경로 요약을 확인 |
 
 모든 수치·Scene·Prefab 기본값은 유지했다. 구간 시작/출구/KillZone 배치는 승인된 T-D/T-E 검증 설정에만 사용한다. 실제 결과와 미검증 항목은 [N5 인계](Validation/N5-final-handoff.md)를 따른다.
 
@@ -141,3 +147,4 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 C06 배치와 전투 시작선·예고 영역은 `Assets/Scenes/C06.unity`, 공통 보스 값은 `Assets/ScriptableObjects/BossTuning.asset`, 반복 충격파는 `Assets/Prefabs/BossWave.prefab`에서 수정한다. 빛 시간(2s)은 C06 보스의 EndingFlow / Light Duration, 엔딩 문구·버튼은 `Assets/Scripts/EndingMenu.cs`다. Scene의 Play 변경은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적으로 저장한다. 기존 Player/Combat/E1/E2/E3 값은 변경하지 않았다.
 
 F1 실패 실험: `Builds/Experimental-F1/Afterglow.exe`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.
+

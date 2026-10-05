@@ -3,3 +3,7 @@ baseline bytes=360886272 final bytes=362958848 growth=0.574%
 GameObjects min/max=23/61
 elapsed_s=7200.014 transitions=2911 deaths=116 Pause=2911 errors=0
 Source N7-V1-soak-a1.txt tail: actual elapsed7201.264s, duration/action/+15% checks PASS. This N7 diagnostic binary predates N8 keyboard/up attack and is not an N8 whole-build acceptance.
+
+Correction to attached secondary summary: full CSV instantaneous GameObject samples23..61; baseline10min29/final33 (+13.793%). Original final-vs-baseline acceptance passes; do not claim every sample29..49 or every sample<=+15%. Peak cause not instrumented; counts vary with room/transition state and this is not a measured attribution; no new N8 soak was run.
+
+

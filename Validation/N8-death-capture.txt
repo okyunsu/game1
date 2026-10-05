@@ -41,3 +41,4 @@ MEASURE death capture delay=0.1002
 PASS nonconstant screenshot variance=1808.871
 scene=A02 scenario=death actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
 Error/Exception/Assert=0
+Clarification: N7 capture-a2 death-only verifier uses the IgnoreFocus override. Its inherited KNOWN-LIMIT sentence claiming default focus/no IgnoreFocus is inaccurate. All eight screenshots report focused=True. This validates visible death pixels, not production focus loss/regain behavior.

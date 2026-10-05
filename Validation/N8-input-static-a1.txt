@@ -1,0 +1,4 @@
+PASS JSON parse
+UI map unchanged=False
+Gameplay pad unchanged=True
+Gameplay keyboard additions Up/Down arrows/W/S only; keyboard Digital Composite avoids diagonal normalization. Other actions preserved; PlayerInputReader unchanged.

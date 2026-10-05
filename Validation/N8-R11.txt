@@ -1,0 +1,4 @@
+PASS
+startScene=B01 start={"x":32.5,"y":1.8144631385803223} abilities=True/True HP=3
+goal=B05 attempts=1/20 ticks=164 limit=25s
+Library=Validation/N8-route-library.json; attempt logs N8-R*, N8-c2/c3/c4-R*. Teleports allowed only at independent segment starts. This does not prove full continuous route.
