@@ -1,0 +1,3 @@
+N8 start: request reviewed against AGENTS/PRD/design/current handoff. No push.
+Input-a1 Unity sandbox failed before tests (license exit198); outside sandbox input-a2 PASS and regression input-a3 13/13 PASS. Keyboard composite Digital mode preserves x=1 when up/down held; K1 and S1 rerun required.
+ATK1 attempt1: common bounds-based OverlapBox and slash; independent upper/side dummy, keyboard/pad and diagonal speed checks. No movement/dash code change.

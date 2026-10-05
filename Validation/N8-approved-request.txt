@@ -1,0 +1,72 @@
+이번 실행은 아래 0부 → 1부(방향 공격·포고, 체인) → 2부(포고 테스트 방·보스 HP 확정·S5 빌드) → 3부(구간별 자동 경로) → 4부(사망 화면 촬영)를 끝까지 수행한다. 2·3·4부는 1부 결과와 상관없이 진행한다. push 금지.
+
+## 가장 중요한 규칙: 사용자 답변을 기다리지 않는다
+지난 N7은 29분 만에 "입력 Asset 수정 허용 여부" 질문을 남기고 멈췄다. 사용자는 자고 있어서 답할 수 없다.
+- 실행 중 사용자에게 질문하거나 답변을 기다리지 않는다.
+- 범위 밖 수정이 필요하면 아래 "사전 승인 목록"을 먼저 확인한다. 목록에 있으면 그대로 진행한다.
+- 목록에 없으면 TASKS Decisions Needed에 문제·영향·선택지를 기록하고, **그 항목만 건너뛰고 다음 항목으로 간다.** 전체를 멈추지 않는다.
+
+## 사전 승인 목록 (사용자 결정 2026-10-05)
+1. **입력 Asset:** `Assets/Input/PlayerControls.inputactions`의 Gameplay/Move 키보드 바인딩에 위·아래 방향을 추가한다. 주 키는 ↑/↓, 보조 키는 W/S(K1의 보조 키 규칙과 같음). 다른 액션·맵·게임패드 바인딩은 바꾸지 않는다. `PlayerInputReader.cs`는 수정하지 않는다(패드 스틱은 이미 y값을 주므로 코드 경로는 그대로). 추가 후 S1-02 입력 회귀와 K1 키 검사를 반드시 실행한다.
+2. **방향 공격용 코드:** `PlayerAttack.cs`, `AttackFeedback.cs`, `CombatTuning.cs`(새 필드), CombatTuning.asset(새 필드 값), `PlayerMotor.cs`·`PlayerDash.cs`에는 새 public 메서드 추가만 허용. 새 `PogoTarget.cs`.
+3. **위 입력이 다른 동작과 겹치는 경우**(예: 위를 누른 채 점프·대시): 위·아래 입력은 공격 방향에만 쓰고 이동·점프·대시 동작은 바꾸지 않는다.
+4. **보스 HP:** ATK-3에서 회복 구간당 포고 최대 타수를 측정하고, 4타 이상이면 32, 2~3타면 28 유지, 1타 이하면 24로 정한다.
+5. **N7 진단 빌드 정리:** `Builds/N7-hard-verify*`, `N7-hard-capture*` 진단 빌드는 지워도 된다. `N7-hard-only`와 `S4-pre3`는 보존한다.
+
+## 0부 — 시작 전
+- 읽을 범위: AGENTS.md, TASKS Latest Handoff, Validation/N7-current-handoff.txt, N7-progress.txt, N7-ATK1.txt, N7-DIFF.txt, N7-V4-summary.txt, N7-route-summary.txt, LEVEL_PROPOSALS.md, GAME_DESIGN 6절(방향 공격·포고)과 22절.
+- `git status` 확인. N7 V1 soak가 Codex 종료 후에 끝났기 때문에 `Validation/N7-V1-*` 파일이 커밋되지 않았을 수 있다. 미커밋 변경이 N7-V1 결과 파일과 진단 빌드 로그뿐이면 커밋하고 진행한다. 그 밖의 미커밋 변경이 있으면 `Validation/N8-preflight-status.txt`에 목록을 기록하고 커밋한 뒤 진행한다(되돌리지 않는다).
+- 이 지시문 전문을 `Validation/N8-approved-request.txt`로 저장. 진행 기록 `Validation/N8-progress.txt`.
+- N7 V1 120분 soak 결과를 정리해서 TASKS에 기록한다. Claude 원본 확인: 7200초 동안 Working Set 360.9MB(10분) → 363.0MB(120분, +0.6%), GameObject 29~49 범위로 증가 없음, 방 전환·Pause 2911, 사망 116, Error 0. 합격 기준(+15% 이내, 500/100/200 이상, Error 0)을 모두 충족하므로 V1 PASS로 기록한다.
+
+## 공통 규칙
+- 사전 승인 목록 외 수정 금지: GameState, RoomSession, KillZone, ProgressSave, RoomCameraRig, 기존 Scene 배치, Packages, ProjectVersion, 1부 외 Tuning 값.
+- **기존 동작 보존:** 위·아래 입력 없이 X를 누르면 지금과 같은 좌우 공격이어야 한다.
+- 단계마다 `Validation/Run-Regression.ps1` 13/13 PASS. 값 의존 검사는 Asset 값을 읽도록 검사 쪽만 고친다(N7 방식 유지).
+- 실패 처리: 게임 코드는 1회 수정 후 재실패하면 그 단계를 복원한다. 검사 도구는 최대 3회 보정한다(매번 바꾼 점 기록, 같은 수정 반복 금지).
+- **exe 실행 규칙:** 화면이 필요한 검사는 일반 창(`-WindowStyle Normal`), `-batchmode`·`-nographics` 금지. N5 T-F에서 유효 PNG 57장을 얻은 실행 방식을 그대로 재사용한다. 숨김 창으로 실행하지 않는다.
+- 기존 Validation은 덮어쓰지 않는다. 단계마다 로컬 커밋.
+
+## 1부 — 방향 공격과 포고 (체인, GAME_DESIGN 6절 규칙 그대로)
+### ATK-1 위 공격
+- 사전 승인 1번의 입력 바인딩을 먼저 추가하고 S1-02·K1 검사를 통과시킨다.
+- 위(Move.y > 0.5) + X → 위 공격. 판정은 충돌체 윗면 위로 폭 1.2u × 높이 1.3u. 시작·활성·쿨다운은 기존 공유. AttackSlash를 같은 박스로 표시.
+- N7 ATK-1은 "up hitbox center/size 0.01u" 검사에서 실패했다. 실제 판정 박스(OverlapBox 인자)와 표시 박스, 검사의 기대값이 같은 기준(충돌체 bounds)으로 계산되는지 먼저 확인한다. 검사 기대값이 틀렸으면 검사를, 표시가 틀렸으면 표시를 고친다.
+- 합격(`Validation/N8-ATK1.txt`): 30/60/120fps 박스 정확도, 위 더미 1타·옆 더미 0타, 키보드 ↑/W와 패드 스틱 모두 동작, 위 입력 없는 좌우 공격 결과 기존과 동일, T3 전 항목 PASS.
+
+### ATK-2 공중 아래 공격 + 포고
+- 공중에서만 아래(Move.y < -0.5) + X. 지상에서 아래+X는 좌우 공격.
+- 판정은 충돌체 아랫면 아래로 1.2u × 1.3u. 적·보스·PogoTarget에 처음 명중하면 vy=pogoVelocity(11u/s), 공격당 1회. pogoRefreshesAir=true이면 획득한 능력(더블 점프·대시)만 회복.
+- 같은 프레임에 PogoTarget 명중과 KillZone 접촉이 겹치면 포고를 먼저 적용한다. 불가능하면 BUG로 기록하고 우회하지 않는다.
+- 합격(`Validation/N8-ATK2.txt`): 30/60/120fps 박스 정확도, 지상 아래+X는 좌우, 명중 시 vy, 공격당 1회, 능력 회복 규칙, 빗나가면 포고 없음, 포고 높이 fps 간 ±0.05u.
+
+### ATK-3 적·보스 연결
+- E1/E2/E3/보스에 위·아래 공격의 피해·HitFeedback·처치 효과가 동작하는지 확인한다. 보스 회복 구간(Hard 0.8s)당 포고 최대 타수를 MEASURE하고, 사전 승인 4번으로 보스 HP를 확정한다.
+- 결과: `Validation/N8-ATK3.txt`
+
+### ATK-4 안내
+- HUD 첫 안내와 README 조작표에 "↑+X 위 공격 / 공중 ↓+X 아래 공격(튕기기)"를 추가한다(패드: 스틱 위·아래 + X).
+
+## 2부 — 포고 테스트 방과 최종 빌드
+- **PogoTest 씬**(1부 ATK-2 성공 시): 메인 경로 밖. 메뉴 Afterglow > Open Pogo Test. 가시(PogoTarget) 위 포고 연속 3회, 적 위 포고로 높은 선반 도달, 포고 → 더블 점프 → 대시 조합. 지정 입력으로 각 구간 통과와 실패 시 복귀를 검증한다.
+- **S5-hard 빌드:** 1부 성공분 + N7 Hard 수치 + 확정 보스 HP. 실제 exe에서 새 게임 → 위·아래 공격 표시와 포고 로그 → BossRetryVerifier(3회 사망 → 처치 → 엔딩) → Error 0.
+- 1부가 실패하면 S5-hard 대신 `N7-hard-only`를 유지하고, 그 사유를 기록한다.
+
+## 3부 — 구간별 자동 경로 (N7 V5 재시도, 구간 정의는 여기 있음)
+목적: 새 게임 → 엔딩을 가상 입력만으로 가는 경로를 구간별로 만들고 이어 붙인다. 이후 수치를 바꿀 때마다 완주 가능성을 자동으로 확인하는 데 쓴다.
+- 도구: `RouteSegment`(구간 ID, 시작 씬·위치·능력, FixedUpdate 틱 기준 입력 시퀀스, 목표, 제한 시간)와 `RouteRunner`(`-verify-route <ID|all>`). 입력 형식은 N5 InputRecorder를 재사용한다. 텔레포트는 구간 시작점에만 허용한다. `all`은 직전 구간의 실제 종료 상태에서 이어서 실행한다.
+- 구간(연결과 출구 ID는 GAME_DESIGN 8절 연결표와 씬 RoomExit를 우선한다. 다르면 차이를 기록하고 GAME_DESIGN을 따른다):
+  R01 A01→A02 / R02 A02→A03 / R03 A03→A04 / R04 A04→A05 대시 획득 / R05 A05→A03 복귀(G-D) / R06 A03→B01 / R07 B01→B02 / R08 B02→B03 / R09 B03→B04 더블 점프 획득 / R10 B04→B01 복귀 / R11 B01→B05(지정 출구, 기존 FullRouteVerifier가 다른 방으로 잘못 나간 지점) / R12 B05→C01 / R13 C01→C02 / R14 C02→C03 / R15 C03→C04 / R16 C04→C06 보스 처치 / R17 엔딩→타이틀
+- 구간마다 도구 보정은 최대 3회, 입력 시퀀스 조정은 최대 20회. 넘으면 KNOWN-LIMIT으로 두고 다음 구간은 끝 지점 텔레포트로 시작한다.
+- 결과: 구간마다 `Validation/N8-R<번호>.txt`. 성공 구간을 이어 `all`을 60fps에서 3회 실행해 재현성을 확인한다. 전체 성공이면 30/120fps와 패드 가상 장치로도 실행하고, 회귀 묶음에 `RouteAll-60fps`를 추가한다. 요약은 `Validation/N8-route-summary.txt`(구간 표, 연속 범위, 자동 최단 시간과 GAME_DESIGN 목표 비교, "사람 시간 아님" 명시).
+- Hard 수치와 1부 결과를 반영한 경로로 만든다(1부 실패 시 좌우 공격만 사용).
+
+## 4부 — 사망 화면 촬영 (N7 V4 재시도)
+- N7 V4는 숨김 창으로 실행해서 검정 화면이 나왔다. N5 T-F 러너(유효 PNG 57장)와 같은 실행 방식으로, 사망 직후 0.1~0.3초에 촬영한다.
+- 4해상도 × 창/전체 화면. 픽셀 분산 0이면 실패. 결과 `Validation/N8-death-capture.txt`, PNG는 `Validation/N8-death-shots/`.
+
+## 인계 (TASKS Latest Handoff, 5분 분량)
+- 맨 위: 총 소요 시간, 각 부 결과 한 줄씩, Decisions Needed에 새로 남긴 항목(있으면).
+- 켤 exe: S5-hard(또는 N7-hard-only), PogoTest 씬 여는 법.
+- 사용자 확인: PogoTest 포고 손맛(10분), S5-hard 완주로 난이도 판단, LEVEL_PROPOSALS.md 후보 고르기, pogoVelocity·pogoRefreshesAir 수정 위치.
+- 끝나면 종료.
