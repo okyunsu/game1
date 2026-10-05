@@ -162,7 +162,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
-### N8-POGO-001 — 동일 프레임 포고 우선 처리 요구 미충족 / BLOCKED
+### N8-POGO-001 — 이전 차단 / N9 DEC-POGO-001로 해소
 보호된 KillZone→RoomSession 즉시 사망 호출과 ATK2 우선 처리 요구가 충돌한다. 기존 게임에서 포고를 실행해 관찰한 버그가 아니라, 미구현 경로의 설계/허용범위 차단이다. 판정 높이 확대·사망 상태 되돌리기·콜백 순서 추측으로 우회하지 않았다. ATK2 및 의존 PogoTest/S5-hard 중단, 독립 경로·촬영은 수행. 필요한 연결부 판단은 Decisions Needed N8-POGO-ORDER와 [근거](Validation/N8-ATK2.txt).
 
 
@@ -280,7 +280,7 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 ### DEC-POGO-001 — N9 사용자 결정 (2026-10-06)
 동일 프레임 포고 우선 규칙 폐기. 몸이 가시에 먼저 닿으면 사망하며, 아래 공격만 FixedUpdate의 물리 전 판정을 사용한다. KillZone/RoomSession은 수정하지 않는다. N8-POGO-ORDER는 이 결정으로 해소; 구현·실제 검증은 N9에서 수행. [사용자 계획](Validation/N9-approved-request.txt).
 
-### N8-POGO-ORDER — 동일 프레임 사망 우선 처리 연결부 (2026-10-06)
+### N8-POGO-ORDER — 해소됨: DEC-POGO-001 (2026-10-06)
 KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입력 초기화·물리 중단을 확정한다. 허용된 공격/표적 코드만으로 포고를 먼저 보장할 수 없으며 KillZone/RoomSession은 첨부 공통 보호 파일이다. ATK2·ATK3 포고 최대 타수/HP 확정·ATK4·PogoTest·S5-hard 경로 BLOCKED. 선택지: KillZone의 공격 판정 호출 연결부를 좁게 허용하거나, RoomSession의 사망 확정을 한 프레임 말미로 모으는 연결부를 허용. 규칙 자체를 바꾸거나 판정 높이를 키우는 우회는 적용하지 않았다. [근거](Validation/N8-ATK2.txt). 다른 독립 N8 검증은 계속한다.
 
 
@@ -613,6 +613,10 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 
 ## Design Decision / Before-After
 
+### DEC-POGO-001 — N9 포고 순서 규칙 확정
+사용자가 동일 프레임 포고 우선 규칙을 폐기하고 몸이 가시에 먼저 닿으면 사망하도록 결정. 아래 공격만 FixedUpdate에서 처리, 공통 Time.timeAsDouble 시계 사용. KillZone/RoomSession 불변. 실제30/60/120fps 조기 포고 생존·몸 우선 사망·최고높이2.128u 동일 확인. 능력 소모/회복은 실제 PogoTest 입력으로 검증. [근거](Validation/N9-ATK2.txt).
+
+
 ### DIFF-001 — Hard 후보 / 사용자 플레이 대기
 Before: PT-001의 모든 영역이 쉽다는 첨부 관찰. After: 백업 후 Hard 후보 적용, 회귀·보스 처치·게이트fps 기술 검사 통과; 실제 사용자 체감 플레이 대기. 포고 의존 HP조정 미실시. [실제 값](Validation/N7-DIFF-values.txt), [검증](Validation/N7-DIFF.txt).
 
@@ -674,6 +678,10 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+### N9 진행 인계 — 1부 REVIEW / 2부 회귀 중
+포고·방향 공격 기술 증거 확보, 1부14/14 PASS. S5-hard(18씬) errors0/warnings0, 기존 위·좌우 검사PASS, PogoTest3구간/각 구간 사망복귀/소모한 능력 회복PASS, 보스3회 사망→처치→엔딩PASS. 현재 HP24(6개 자연 포고 회복 구간 관측 각1타). 난이도·포고 감각 사용자 수락 대기. 2부14회귀 및 승인된3부 FPS/패드 재확인·4부 후보 비교를 계속한다. 기존 검사 실패와 optional 캡처 한계는 [진행 기록](Validation/N9-progress.txt)에 보존. push 없음.
+
 
 ### N8 최종 인계 — 승인 독립 작업 종료 / 포고 체인 BLOCKED
 요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](Validation/N8-route-summary.txt).

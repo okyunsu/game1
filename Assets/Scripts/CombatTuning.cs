@@ -10,8 +10,8 @@ public sealed class CombatTuning:ScriptableObject
     [Min(0),Tooltip("Active duration, seconds.")] public float attackActive=.10f;
     [Min(0),Tooltip("Cooldown from attack start, seconds.")] public float attackCooldown=.35f;
     [Header("Directional attack (Prototype Values)")]
-    [Min(0),Tooltip("Up/down hitbox width, world units.")] public float verticalAttackWidth=1.2f;
-    [Min(0),Tooltip("Up/down hitbox height measured from collider face, world units.")] public float verticalAttackHeight=1.3f;
+    [Min(0),Tooltip("Up hitbox width, world units.")] public float verticalAttackWidth=1.2f;
+    [Min(0),Tooltip("Up hitbox height measured from collider face, world units.")] public float verticalAttackHeight=1.3f;
     [Header("Down attack / pogo (Prototype Values)")]
     [Min(0),Tooltip("Down hitbox width, world units.")] public float downAttackWidth=1.2f;
     [Min(0),Tooltip("Down hitbox height below collider face, world units.")] public float downAttackHeight=1.3f;

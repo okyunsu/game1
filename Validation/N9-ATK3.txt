@@ -72,3 +72,4 @@ PASS HitFeedback direction=1
 PASS boss actual directional defeat/feedback
 PASS boss uses existing defeat/ending effect, no generic enemy DeathPop
 Error/Exception/Assert=0
+Confirmed HP24 S5 BossRetryVerifier PASS: three natural deaths→CP-C04→actual attacks→saved Ending. Final fight18.784s. Evidence N9-S5-boss-retry-a1.txt. Legacy checker labels HP20/HP5 are text only; assertions read current tuning (boss24/player4).

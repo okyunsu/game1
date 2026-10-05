@@ -1,0 +1,5 @@
+FAIL DisplayVerifier actual=exe
+FAIL System.NullReferenceException: Object reference not set to an instance of an object
+  at N5Runner+<NewGame>d__25.MoveNext () [0x000a3] in <91b4f2ab1e82467bae6cf7f1e41ecf91>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <91b4f2ab1e82467bae6cf7f1e41ecf91>:0 
+Error/Exception/Assert=0

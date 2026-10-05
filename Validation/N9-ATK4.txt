@@ -1,1 +1,2 @@
 Directional first-notice HUD and README updated. Keyboard/pad text; runtime visibility/regression pending.
+S5 actual NewGame first-notice screenshot N9-hud-a1.png + N9-hud-display-a1.txt PASS/Error0. Keyboard guide visible two lines; physical pad feel pending.

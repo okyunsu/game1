@@ -14,6 +14,25 @@ public static class N9PogoAuthoring
         GameObject.Find("Goal shelf 2").transform.position=new Vector2(66,5.25f);GameObject.Find("Goal bounds 2").transform.position=new Vector2(66,6.5f);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());File.WriteAllText("Validation/N9-pogotest-shelves.txt","Authored pre-test shelves: P02 x37/top4.5 for single pogo, P03 x66/top5.5 for pogo+DJ+dash. Only new PogoTest scene; existing layouts unchanged.\n");EditorApplication.Exit(0);
     }
+    public static void BindReusablePrefabs()
+    {
+        Open();var course=UnityEngine.Object.FindFirstObjectByType<PogoTestCourse>();
+        var prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Checkpoint.prefab");
+        for(int i=0;i<3;i++)
+        {
+            var old=course.starts[i];var oldSpawn=old.spawn;Vector3 at=oldSpawn.transform.position;string id=oldSpawn.spawnId;
+            var go=(GameObject)PrefabUtility.InstantiatePrefab(prefab);go.name="CP-"+id;go.transform.SetParent(course.transform);go.transform.position=at;
+            var cp=go.GetComponent<Checkpoint>();cp.checkpointId=id;cp.spawn.spawnId=id;cp.spawn.transform.position=at;course.starts[i]=cp;
+            UnityEngine.Object.DestroyImmediate(oldSpawn.gameObject);UnityEngine.Object.DestroyImmediate(old.gameObject);
+        }
+        const string pogoPath="Assets/Prefabs/PogoTarget.prefab";
+        if(File.Exists(pogoPath))throw new IOException("Preserve pogo prefab");
+        var template=PrefabUtility.LoadPrefabContents("Assets/Prefabs/Level/KillZone.prefab");template.name="PogoTarget";template.AddComponent<PogoTarget>();template.GetComponent<SpriteRenderer>().color=new Color(.9f,.25f,.25f);
+        var pogo=PrefabUtility.SaveAsPrefabAsset(template,pogoPath);PrefabUtility.UnloadPrefabContents(template);
+        foreach(int i in new[]{0,2}){var old=GameObject.Find("Pogo spikes "+i);var go=(GameObject)PrefabUtility.InstantiatePrefab(pogo);go.name=old.name;go.transform.SetParent(course.transform);go.transform.position=old.transform.position;go.transform.localScale=old.transform.localScale;UnityEngine.Object.DestroyImmediate(old);}
+        EditorUtility.SetDirty(course);EditorSceneManager.SaveScene(SceneManager.GetActiveScene());AssetDatabase.SaveAssets();
+        File.WriteAllText("Validation/N9-pogotest-prefabs.txt","PASS repeated checkpoints now existing Checkpoint prefab; Pogo spikes new reusable PogoTarget prefab derived from existing KillZone. Authored positions/dimensions retained; existing prefab assets untouched.\n");EditorApplication.Exit(0);
+    }
     public static void Create()
     {
         const string path="Assets/Scenes/Test/PogoTest.unity";

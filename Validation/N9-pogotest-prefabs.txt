@@ -1,0 +1,1 @@
+PASS repeated checkpoints now existing Checkpoint prefab; Pogo spikes new reusable PogoTarget prefab derived from existing KillZone. Authored positions/dimensions retained; existing prefab assets untouched.

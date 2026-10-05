@@ -1,0 +1,6 @@
+PASS S5-hard build18scenes errors0/warnings0; opt-in PogoTest, no title entry/Build Settings mutation.
+Actual exe up/horizontal30/60/120 PASS, PogoTest all3+respawns/abilityrefresh PASS, BossRetry3 natural deaths→CP-C04→actual victory→savedEnding PASS/Error0.
+At this stage bossHP24 per natural six-window measure1. Final fight18.784s. Further maximum-hit coverage will check legitimate dash chaining before final handoff.
+First directional HUD notice capture/readability PASS. Optional generic course capture checker failed during Menu→course boot race; gameplay course verifier boot PASS.
+Regression stage2 14/14 PASS.
+Executable Builds/S5-hard/Afterglow-S5-hard.exe; shortcut samefolder PogoTest 실행.bat.

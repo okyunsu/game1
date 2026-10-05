@@ -10,7 +10,7 @@ public sealed class PogoTestCourse : MonoBehaviour
     public int Section { get; private set; }
     public int Completed { get; private set; }
     public int SectionPogos => RoomSession.Instance.Player.GetComponent<PlayerAttack>().PogosPerformed-initialPogos;
-    int initialPogos,initialJumps;bool changing,sawDash;
+    int initialPogos,initialJumps;bool changing,sawDash,wasRespawning;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Boot(){if(!N5Args.Has("-pogotest"))return;var go=new GameObject("PogoTest launch");DontDestroyOnLoad(go);go.AddComponent<PogoTestLaunch>();}
     IEnumerator Start(){while(RoomSession.Instance?.Player==null)yield return null;ProgressSave.Enabled=false;BeginSection(0);}
@@ -23,7 +23,9 @@ public sealed class PogoTestCourse : MonoBehaviour
     }
     void Update()
     {
-        var s=RoomSession.Instance;if(s?.Player==null||s.Respawning||changing)return;
+        var s=RoomSession.Instance;if(s?.Player==null||changing)return;
+        if(s.Respawning){wasRespawning=true;return;}
+        if(wasRespawning){wasRespawning=false;initialPogos=s.Player.GetComponent<PlayerAttack>().PogosPerformed;initialJumps=s.Player.GetComponent<PlayerMotor>().DoubleJumpsPerformed;sawDash=false;}
         var p=s.Player;if(p.GetComponent<PlayerDash>().IsDashing)sawDash=true;
         bool needed=SectionPogos>=(Section==0?3:1)&&(Section!=2||p.GetComponent<PlayerMotor>().DoubleJumpsPerformed>initialJumps&&sawDash);
         if(needed&&p.GetComponent<PlayerMotor>().Grounded&&goals[Section].bounds.Contains(p.transform.position)){Completed=Mathf.Max(Completed,Section+1);Debug.Log("PogoTest P0"+(Section+1)+" goal");if(Section<2&&!N5Args.Has("-verify-pogotest"))StartCoroutine(Next());}
