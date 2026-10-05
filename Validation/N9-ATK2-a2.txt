@@ -1,0 +1,13 @@
+FAIL N9PogoVerifier actual=exe
+PASS ground down+X is horizontal fps=30
+PASS down bounds/size .01u fps=30
+PASS same physics tick vy=pogoVelocity fps=30
+PASS damage one fps=30
+PASS unowned abilities remain unowned fps=30
+PASS down slash size fps=30
+PASS one pogo/hit per attack fps=30
+PASS miss no pogo fps=30
+FAIL System.Exception: Timeout spike outcome
+  at N5Runner+<Until>d__20.MoveNext () [0x00049] in <bcad797f9c034f8fb81fb1b0124a731a>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <bcad797f9c034f8fb81fb1b0124a731a>:0 
+Error/Exception/Assert=0

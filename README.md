@@ -80,7 +80,7 @@ Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거�
 | 대시 | C (보조 K / Left Shift) | B |
 | 메뉴 이동 / 확인 / 취소 | ↑/↓ / Z·Enter / X·Esc | D-pad / A / B |
 
-N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/REG-route-N8-route-gate-final`은 현재 소스의 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
+아래 문단은 N8 당시 인계 이력입니다. 현재 N9 실행·조작 안내는 문서 끝의 N9 절과 TASKS Latest Handoff를 따르세요. N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/REG-route-N8-route-gate-final`은 현재 소스의 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
 
 Gameplay / UI 입력은 분리되어 있다. LCtrl은 다음 능력 예약이며 바인딩하지 않는다. 게임패드 바인딩은 유지한다.
 
@@ -151,3 +151,14 @@ F1 실패 실험: `Builds/Experimental-F1/Afterglow.exe`, Menu+14방이며 보�
 
 N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이며 순차60fps3회·30/120fps·가상 패드 완주와 저장을 확인했다. 기본13회귀에 현재소스 새빌드 `RouteAll-60fps`를 더했다. `Validation/Run-Regression.ps1 -Tag <새태그>`는14개, `-OnlyRoute`는 새빌드 경로 검사만 실행한다. 자동 활동시간 약2분은 사람 플레이시간이 아니다. [최종 인계](Validation/N8-final-handoff.md).
 
+
+## N9 방향 공격·포고
+
+| 동작 | 키보드 | 패드 |
+| --- | --- | --- |
+| 위 공격 | ↑+X (W+X) | 스틱 위+X |
+| 아래 공격·튕기기 | 공중 ↓+X (S+X) | 공중 스틱 아래+X |
+
+지상 아래+X는 좌우 공격입니다. 포고는 획득한 더블 점프·대시 사용권만 회복합니다. 몸이 가시에 먼저 닿으면 사망합니다. 설정은 CombatTuning.asset의 Down attack / pogo, 보스 HP는 BossTuning.asset maxHP입니다. Play를 종료한 뒤 Asset에 원하는 값을 다시 입력하고 저장하세요.
+
+PogoTest는 에디터 Afterglow > Open Pogo Test 또는 S5-hard.exe의 -pogotest 인자로 엽니다. Build Settings와 타이틀 메뉴에는 추가하지 않았습니다. 테스트 과정은 저장을 쓰지 않습니다.

@@ -19,6 +19,9 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-06 **N9 DOING**: 사용자 계획 승인에 따라 아래 공격 FixedUpdate·포고 체인, PogoTest/S5-hard, 경로 재검증, H1/H2/H3 비교 빌드를 수행. DEC-POGO-001로 N8 설계 차단 해소. [원문](Validation/N9-approved-request.txt).
+
+
 2026-10-06 **N8 종료 — PARTIAL**: 상향 공격 REVIEW, 포고·PogoTest·S5-hard BLOCKED(보호된 사망 처리 연결부 변경 필요). 동일 기록의 실제 exe 전체 완주 60fps 3회·30/120fps·패드 PASS, 기본 회귀13개와 추가 RouteAll-60fps PASS, 사망 화면8장 검증. N7 soak 기존 증거 검토 완료. [최종 인계](Validation/N8-final-handoff.md).
 
 2026-10-05 **N7 PARTIAL / 공격 입력 범위 답변 대기**: ATK1 회귀13/13·실검사FAIL(input Asset keyboard y absent), 공격 실험 원복; Hard 후보 회귀13/13·보스 처치PASS, V2/V3 PASS, V4 촬영KNOWN-LIMIT, V5 원문/공격 의존BLOCKED, V1 실제120분 진행 중. [현재 인계](Validation/N7-current-handoff.txt).
@@ -273,6 +276,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - T-G: 자연 입력 경로 1회 보정 후 B01 상단 B05 대신 하단 B02로 진입. 두 능력 자연 획득까지 확인; 새 게임→엔딩 자동 완주 미검증.
 - 추가 도구 보정은 이번 큐의 1회 보정 한도를 넘으므로 후속 승인 범위에서 판단한다. 사용자 전체 플레이·감각 수락과 Sprint3 Gate는 계속 대기한다.
 ## Decisions Needed
+
+### DEC-POGO-001 — N9 사용자 결정 (2026-10-06)
+동일 프레임 포고 우선 규칙 폐기. 몸이 가시에 먼저 닿으면 사망하며, 아래 공격만 FixedUpdate의 물리 전 판정을 사용한다. KillZone/RoomSession은 수정하지 않는다. N8-POGO-ORDER는 이 결정으로 해소; 구현·실제 검증은 N9에서 수행. [사용자 계획](Validation/N9-approved-request.txt).
 
 ### N8-POGO-ORDER — 동일 프레임 사망 우선 처리 연결부 (2026-10-06)
 KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입력 초기화·물리 중단을 확정한다. 허용된 공격/표적 코드만으로 포고를 먼저 보장할 수 없으며 KillZone/RoomSession은 첨부 공통 보호 파일이다. ATK2·ATK3 포고 최대 타수/HP 확정·ATK4·PogoTest·S5-hard 경로 BLOCKED. 선택지: KillZone의 공격 판정 호출 연결부를 좁게 허용하거나, RoomSession의 사망 확정을 한 프레임 말미로 모으는 연결부를 허용. 규칙 자체를 바꾸거나 판정 높이를 키우는 우회는 적용하지 않았다. [근거](Validation/N8-ATK2.txt). 다른 독립 N8 검증은 계속한다.

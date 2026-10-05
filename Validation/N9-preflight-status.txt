@@ -1,0 +1,2 @@
+?? Validation/N9-approved-request.txt
+Initial git status before request copy was clean at6036b9e. The sole listed untracked file was the just-created N9 request preservation, not a pre-existing user change.

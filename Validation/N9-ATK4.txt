@@ -1,0 +1,1 @@
+Directional first-notice HUD and README updated. Keyboard/pad text; runtime visibility/regression pending.

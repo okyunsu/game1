@@ -1,0 +1,6 @@
+FAIL N9PogoVerifier actual=exe
+PASS ground down+X is horizontal fps=30
+FAIL System.Exception: Timeout enemy down hit
+  at N5Runner+<Until>d__20.MoveNext () [0x00049] in <02000678709a496a95087594eb482b28>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <02000678709a496a95087594eb482b28>:0 
+Error/Exception/Assert=0

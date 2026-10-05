@@ -1,0 +1,1 @@
+Authored pre-test shelves: P02 x37/top4.5 for single pogo, P03 x66/top5.5 for pogo+DJ+dash. Only new PogoTest scene; existing layouts unchanged.

@@ -1,0 +1,6 @@
+PARTIAL original checker owned-spend setup FAIL preserved at N9-ATK2-a4.txt; no fourth correction.
+Actual exe30/60/120 all required geometry/damage/velocity/one-hit/miss/unowned/spike/apex checks PASS in a4.
+Owned ability spending/refresh independently PASS in planned PogoTest checker N9-pogotest-a2.txt.
+Apex2.1280u eachFPS/spread0. Clock Time.timeAsDouble; down FixedUpdate after Motor before physics.
+Acceptance requires associated full14 regression; pending.
+ACCEPTANCE: all required behaviors covered by composite actual evidence; REG-N9-Part1-a2 14/14 PASS. Technical REVIEW, checker a4 overall FAIL remains explicitly preserved.

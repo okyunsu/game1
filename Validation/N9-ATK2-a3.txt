@@ -1,0 +1,14 @@
+FAIL N9PogoVerifier actual=exe
+PASS ground down+X is horizontal fps=30
+PASS down bounds/size .01u fps=30
+PASS same physics tick vy=pogoVelocity fps=30
+PASS damage one fps=30
+PASS unowned abilities remain unowned fps=30
+PASS down slash size fps=30
+PASS one pogo/hit per attack fps=30
+PASS miss no pogo fps=30
+FAIL System.Exception: early max-fall spike pogo/deaths0 fps=30
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <a783bdd7877b4b35abd2161d330e39e4>:0 
+  at N9PogoVerifier+<Tests>d__7.MoveNext () [0x009a5] in <a783bdd7877b4b35abd2161d330e39e4>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <a783bdd7877b4b35abd2161d330e39e4>:0 
+Error/Exception/Assert=0

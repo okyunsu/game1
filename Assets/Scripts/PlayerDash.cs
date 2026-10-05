@@ -12,6 +12,7 @@ public sealed class PlayerDash:MonoBehaviour
     void OnEnable(){input.DashPressed+=Request;input.Cleared+=Cancel;}
     void OnDisable(){input.DashPressed-=Request;input.Cleared-=Cancel;Cancel();}
     void Request(){var health=GetComponent<PlayerHealth>();if(hasDash&&!input.InputLocked&&(health==null||!health.KnockbackLocked))pending=true;}
+    public void RefreshAirFromPogo(){if(hasDash)AirUsed=false;}
     public void Cancel(){pending=false;IsDashing=false;DashGate.Apply(this);if(body!=null){body.gravityScale=0;body.linearVelocity=new Vector2(0,0);}}
     public bool Tick(bool grounded,double now)
     {

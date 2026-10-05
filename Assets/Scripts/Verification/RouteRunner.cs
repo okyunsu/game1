@@ -17,7 +17,8 @@ using UnityEngine.SceneManagement;
 {
  public Keyboard device;public Gamepad pad;public Func<N5InputTick> produce;public Action observe;public bool active;public int tick;
  void FixedUpdate(){if(!active)return;observe?.Invoke();if(!active)return;if(RoomSession.Instance?.Transitioning==true){if(pad!=null)InputSystem.QueueStateEvent(pad,new GamepadState());else InputSystem.QueueStateEvent(device,new KeyboardState());InputSystem.Update();return;}var entry=produce();var keys=new List<Key>();if(entry.axis>.1f)keys.Add(Key.RightArrow);else if(entry.axis<-.1f)keys.Add(Key.LeftArrow);if((entry.held&2)!=0)keys.Add(Key.Z);if((entry.held&4)!=0)keys.Add(Key.C);if((entry.held&8)!=0)keys.Add(Key.X);if((entry.held&16)!=0)keys.Add(Key.Enter);
- if(pad!=null){var state=new GamepadState{leftStick=new Vector2(entry.axis,0)};if((entry.held&18)!=0)state=state.WithButton(GamepadButton.South);if((entry.held&4)!=0)state=state.WithButton(GamepadButton.East);if((entry.held&8)!=0)state=state.WithButton(GamepadButton.West);InputSystem.QueueStateEvent(pad,state,Time.fixedUnscaledTimeAsDouble);}else InputSystem.QueueStateEvent(device,new KeyboardState(keys.ToArray()),Time.fixedUnscaledTimeAsDouble);InputSystem.Update();tick++;}
+ if((entry.held&32)!=0)keys.Add(Key.DownArrow);if((entry.held&64)!=0)keys.Add(Key.UpArrow);
+ if(pad!=null){var state=new GamepadState{leftStick=new Vector2(entry.axis,(entry.held&32)!=0?-1:(entry.held&64)!=0?1:0)};if((entry.held&18)!=0)state=state.WithButton(GamepadButton.South);if((entry.held&4)!=0)state=state.WithButton(GamepadButton.East);if((entry.held&8)!=0)state=state.WithButton(GamepadButton.West);InputSystem.QueueStateEvent(pad,state,Time.fixedUnscaledTimeAsDouble);}else InputSystem.QueueStateEvent(device,new KeyboardState(keys.ToArray()),Time.fixedUnscaledTimeAsDouble);InputSystem.Update();tick++;}
 }
 public sealed class RouteRunner:N5Runner
 {

@@ -1,0 +1,4 @@
+maxPogoHits=1
+approvedBossHP=24
+recovery=0.8
+Six consecutive actual live recovery windows, virtual down attack, no damage/HP writes or repositioning after setup.

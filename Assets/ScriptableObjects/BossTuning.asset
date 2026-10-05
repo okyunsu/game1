@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53afd4ba201ae340ae809e165580a14, type: 3}
   m_Name: BossTuning
   m_EditorClassIdentifier: Assembly-CSharp::BossTuning
-  maxHP: 28
+  maxHP: 24
   damage: 2
   meleeTell: 0.6
   waveTell: 0.75

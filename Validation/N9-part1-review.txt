@@ -1,0 +1,6 @@
+Review candidate, not human acceptance.
+ATK2 combined requirements: actual N9-ATK2-a4 30/60/120 checks + N9-pogotest-a2 owned ability spend/refresh. Original checker FAIL remains preserved.
+ATK3 actual enemies+b oss measurement a2 PASS; six recovery windows each1, maxHP24 per approved conditional. BossRetry with confirmed24 pending.
+ATK4 HUD guide two lines in existing44px first notice; no UITuning mutation; visible capture pending.
+Protected baseline6036b9e verified; no protected changes.
+Full stage1 regression REG-N9-Part1-a2-summary.txt 14/14 PASS; actual source-build route completes/ending saved/Error0. Part1 technical REVIEW; feel unaccepted.

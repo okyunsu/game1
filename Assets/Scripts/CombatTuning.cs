@@ -12,6 +12,11 @@ public sealed class CombatTuning:ScriptableObject
     [Header("Directional attack (Prototype Values)")]
     [Min(0),Tooltip("Up/down hitbox width, world units.")] public float verticalAttackWidth=1.2f;
     [Min(0),Tooltip("Up/down hitbox height measured from collider face, world units.")] public float verticalAttackHeight=1.3f;
+    [Header("Down attack / pogo (Prototype Values)")]
+    [Min(0),Tooltip("Down hitbox width, world units.")] public float downAttackWidth=1.2f;
+    [Min(0),Tooltip("Down hitbox height below collider face, world units.")] public float downAttackHeight=1.3f;
+    [Min(0),Tooltip("Upward velocity on first down hit, units/second; exploration 9–13.")] public float pogoVelocity=11f;
+    [Tooltip("Refresh only already-owned double jump and air dash on pogo.")] public bool pogoRefreshesAir=true;
     [Header("Player health (Prototype Values)")]
     [Min(1),Tooltip("Maximum player HP.")] public int playerMaxHP=5;
     [Min(0),Tooltip("Invincibility after ordinary damage, seconds.")] public float invincibility=1;

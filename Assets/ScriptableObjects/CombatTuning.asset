@@ -25,3 +25,7 @@ MonoBehaviour:
   knockbackLock: 0.12
   verticalAttackWidth: 1.2
   verticalAttackHeight: 1.3
+  downAttackWidth: 1.2
+  downAttackHeight: 1.3
+  pogoVelocity: 11
+  pogoRefreshesAir: 1

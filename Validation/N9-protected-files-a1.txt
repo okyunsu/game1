@@ -1,0 +1,1 @@
+Baseline6036b9e. Protected file changes=0 System.Object[] Motor/Dash changes are additive public ApplyPogo/RefreshAirFromPogo only; existing methods untouched. Only new PogoTest scene added; source Player/E1/E2/E3 prefabs untouched; candidate prefabs will be new copied assets.

@@ -1,0 +1,82 @@
+이번 실행은 아래 0부 → 1부(포고, 체인) → 2부(PogoTest·보스 HP·S5-hard) → 3부(자동 경로 재확인과 포고 경로 추가) → 4부(난이도 후보 빌드)를 끝까지 수행한다. 2~4부는 1부 결과와 상관없이 진행한다. push 금지. 사용자는 낮 동안 자리에 없다.
+
+## 가장 중요한 규칙 (N8과 같음)
+- 실행 중 사용자에게 질문하거나 답변을 기다리지 않는다. 막히면 TASKS Decisions Needed에 기록하고 그 항목만 건너뛴다.
+- 사전 승인 목록에 있는 것은 그대로 진행한다.
+
+## N8 BLOCKED 원인과 사용자 결정 (2026-10-06)
+N8 진단: KillZone은 물리 트리거(OnTriggerEnter2D)에서 즉시 사망을 처리하고, 공격 판정은 Update에서 돈다. 그래서 "같은 프레임이면 포고 우선" 규칙을 보호 파일 수정 없이 지킬 수 없었다. 진단은 맞다. 규칙을 아래처럼 바꾼다.
+- **"같은 프레임 포고 우선" 규칙을 폐기한다.** 몸이 가시에 먼저 닿으면 사망하는 것이 맞다(Hollow Knight와 같은 처리). KillZone·RoomSession은 계속 수정하지 않는다.
+- **대신 아래 공격의 판정·포고 적용은 `PlayerAttack.FixedUpdate`에서 한다.** FixedUpdate는 물리 시뮬레이션 전에 돌기 때문에, 판정이 먼저 PogoTarget에 닿으면 그 물리 틱 전에 vy가 위로 바뀌어 몸이 가시에 들어가지 않는다. 아래 판정은 몸 아래로 1.3u이고 최대 낙하 속도 18u/s는 60Hz 물리 틱당 0.3u이므로, 정상 타이밍이면 판정이 몸보다 4틱 이상 먼저 닿는다.
+- 좌우·위 공격의 기존 Update 처리는 바꾸지 않는다(ATK1 결과 보존). 아래 공격만 FixedUpdate 경로를 쓴다. Startup·active 시간 계산은 기존과 같은 시계(Time.timeAsDouble 또는 fixedTime 중 하나로 통일하고 기록)를 쓴다.
+
+## 사전 승인 목록
+1. `PlayerAttack.cs`(아래 공격 FixedUpdate 경로 추가), `AttackFeedback.cs`, `CombatTuning.cs`·CombatTuning.asset(새 필드: downAttackWidth 1.2, downAttackHeight 1.3, pogoVelocity 11, pogoRefreshesAir true), `PlayerMotor.cs`·`PlayerDash.cs`는 새 public 메서드 추가만, 새 `PogoTarget.cs`.
+2. 보스 HP: 회복 구간(0.8s)당 포고 최대 타수 4타 이상이면 32, 2~3타면 28 유지, 1타 이하면 24.
+3. PogoTest 새 씬 생성, Build Settings에는 넣지 않는다(에디터 메뉴로만 연다). 단, S5-hard에 넣을 수 있도록 메뉴에서 열 수 있는 옵션은 4번 참고.
+4. S5-hard 빌드에 PogoTest를 포함할지: 포함한다. 타이틀 메뉴에는 넣지 않고, 실행 인자 `-pogotest`로만 열리게 한다(사용자가 바로가기로 실행).
+5. 자동 경로 입력 라이브러리는 포고 추가 후 깨지면 입력 후보 추가로 고친다(게임 수정 아님, N8 방식).
+6. N8 진단 빌드(`Builds/REG-route-*` 중 최종 1개 제외)는 지워도 된다.
+
+## 0부 — 시작 전
+- 읽을 범위: AGENTS.md, TASKS Latest Handoff, Validation/N8-progress.txt, N8-ATK1.txt, N8-ATK2.txt, N8-route-summary.txt, GAME_DESIGN 6절(방향 공격·포고)·22절, LEVEL_PROPOSALS.md.
+- `git status`: 미커밋 변경이 있으면 목록을 `Validation/N9-preflight-status.txt`에 기록하고 커밋한 뒤 진행한다.
+- 이 지시문 전문을 `Validation/N9-approved-request.txt`로 저장. 진행 기록 `Validation/N9-progress.txt`.
+- GAME_DESIGN 6절의 포고 규칙에서 "같은 프레임 포고 우선"을 위 결정으로 교체하고 TASKS Decisions에 DEC-POGO-001로 기록한다.
+
+## 공통 규칙
+- 수정 금지: PlayerInputReader, 입력 Asset, GameState, RoomSession, KillZone, ProgressSave, RoomCameraRig, 기존 Scene 배치, Packages, ProjectVersion, CombatTuning 외 Tuning 값(보스 HP 확정 제외).
+- 위·아래 입력 없이 X를 누르면 기존 좌우 공격과 같아야 한다. 위 공격은 N8 결과와 같아야 한다.
+- 단계마다 회귀 묶음(기본 13 + RouteAll-60fps, 총 14) PASS. 값 의존 검사는 Asset 값을 읽도록 검사 쪽만 고친다.
+- 실패 처리: 게임 코드 1회 수정 후 재실패 시 그 단계 복원. 검사 도구 최대 3회 보정(매번 바꾼 점 기록).
+- exe 검사는 순차 실행(N8에서 확인한 대로 동시 실행 금지), 일반 창, -batchmode·-nographics 금지.
+- 기존 Validation은 덮어쓰지 않는다. 단계마다 로컬 커밋.
+
+## 1부 — 아래 공격과 포고 (체인)
+### ATK-2
+- 공중에서만 아래(Move.y < -0.5) + X → 아래 공격. 지상에서 아래+X는 기존 좌우 공격.
+- 판정: 충돌체 아랫면 아래 1.2u × 1.3u. FixedUpdate에서 OverlapBox. 적·보스·PogoTarget에 처음 명중하면 그 틱에 vy=pogoVelocity, 공격당 1회. 적·보스에는 기존 피해(ReceiveHit)도 준다. PogoTarget은 피해 없이 포고만.
+- pogoRefreshesAir=true이면 **획득한 능력만** 더블 점프·대시 사용 가능 상태를 회복.
+- 표시: AttackSlash를 아래 박스로 표시.
+- 합격(`Validation/N9-ATK2.txt`), 30/60/120fps 각각:
+  - 박스 위치·크기 0.01u, 지상 아래+X는 좌우 공격
+  - 적 명중 시 vy=pogoVelocity·피해 1, 공격당 포고 1회, 빗나가면 포고 없음
+  - 능력 회복: 대시 미획득 상태에서는 대시가 회복되지 않음
+  - **가시 위 포고:** 최대 낙하 속도로 PogoTarget 가시에 떨어지며, 판정이 가시에 닿는 첫 틱 이전에 아래+X를 누르면 포고하고 사망 0. 몸이 가시에 닿은 뒤 누르면 사망(정상).
+  - 포고 최고 높이 fps 간 차이 ±0.05u
+  - 회귀 14/14
+
+### ATK-3
+- E1/E2/E3/보스에 위·아래 공격 피해·HitFeedback·처치 효과 확인.
+- 보스 회복 구간당 포고 최대 타수 MEASURE → 사전 승인 2번으로 HP 확정 → BossRetryVerifier(3회 사망 → 처치 → 엔딩) 재실행.
+- 결과 `Validation/N9-ATK3.txt`
+
+### ATK-4
+- HUD 첫 안내·README 조작표에 "↑+X 위 공격 / 공중 ↓+X 아래 공격(튕기기)" (패드: 스틱 위·아래 + X).
+
+## 2부 — PogoTest와 S5-hard
+- **PogoTest 씬:** 메인 경로 밖. 구간 3개: ① 가시(PogoTarget) 위 연속 포고 3회 ② 적 위 포고로 높은 선반 도달 ③ 포고 → 더블 점프 → 대시 조합. 시작 시 두 능력 보유. 실패 시 구간 시작점으로 복귀. 에디터 메뉴 Afterglow > Open Pogo Test, 빌드에서는 `-pogotest` 인자로 실행.
+- 검증: 구간마다 지정 입력으로 통과, 실패 시 복귀. `Validation/N9-pogotest.txt`
+- **S5-hard 빌드** `Builds/S5-hard/Afterglow-S5-hard.exe`: 1부 성공분 + Hard 수치 + 확정 보스 HP + PogoTest(`-pogotest`). 실제 exe: 새 게임 → 위·아래 공격 표시·포고 로그 → BossRetryVerifier → Error 0. `-pogotest`로 PogoTest 기동 확인. 같은 폴더에 `PogoTest 실행.bat`(한 줄: exe -pogotest)을 만든다.
+- 1부가 실패하면 S5-hard는 위 공격 + Hard 수치로 빌드하고 사유를 기록한다.
+
+## 3부 — 자동 경로 재확인과 포고 구간
+- 1부 변경 후 RouteAll(60fps 3회, 30, 120, 가상 패드)을 순차 실행해 N8 결과가 유지되는지 확인한다. 깨지면 사전 승인 5번으로 입력 후보를 추가해 고친다.
+- PogoTest 구간 ①②③을 RouteSegment로 추가하고(`P01~P03`), 회귀 묶음에 `PogoTest-60fps`를 15번째 항목으로 추가한다.
+- 결과 `Validation/N9-route-recheck.txt`
+
+## 4부 — 난이도 후보 빌드 (1~3부 이후, 독립)
+사용자가 퇴근 후 비교해서 고를 수 있도록 Hard 단계 후보를 만든다. **원본 Tuning Asset 값은 바꾸지 않는다.** 후보는 Asset 복사본으로 빌드만 한다(Q6 방식).
+- H1(현재 Hard): 원본 그대로. S5-hard와 같다.
+- H2(더 어렵게): Player HP 4 / 무적 0.7s, E1 이동 3.0u/s, E2 예고 추가 -15%·돌진 8u/s, E3 발사 주기 추가 -15%, 보스 근접 예고 0.5s·파형 예고 0.65s·회복 0.7s·파형 속도 7.5u/s, 보스 HP는 1부 확정값 +4.
+- H3(전투만 어렵게, 지형 그대로): H2의 적·보스 값 + Player HP 5 / 무적 1.0s(실수 허용은 넉넉하게, 적은 빠르게).
+- 각 빌드 `Builds/H1`, `H2`, `H3`. 타이틀 왼쪽 아래에 후보 이름을 작게 표시(빌드 전용).
+- 각 후보로 RouteAll-60fps 1회와 BossRetryVerifier를 실행해 **자동 입력으로 여전히 완주·처치 가능한지** 기록한다. 실패해도 입력 라이브러리는 고치지 않는다(어느 지점에서 막히는지가 난이도 정보다). 막힌 구간·사망 위치·보스 처치 시간을 표로 만든다.
+- 결과 `Validation/N9-difficulty-candidates.txt`(후보별 값 표 + 자동 완주 결과 표).
+
+## 인계 (TASKS Latest Handoff, 5분 분량)
+- 맨 위: 총 소요 시간, ATK-2/3/4, PogoTest, S5-hard, 회귀 항목 수와 결과.
+- 켤 것: `Builds/S5-hard/Afterglow-S5-hard.exe`(본편), 같은 폴더 `PogoTest 실행.bat`.
+- 4부 후보 표 요약(H1/H2/H3 자동 완주 가능 여부, 막힌 곳).
+- 사용자 확인: H1/H2/H3 각 10분 비교 후 하나 선택, PogoTest 10분(포고 높이·판정 크기·능력 회복이 기분 좋은지), S5-hard 완주(여전히 쉬운지, 불공정한 곳), LEVEL_PROPOSALS.md 후보 선택, 수정 위치(CombatTuning: pogoVelocity·pogoRefreshesAir·downAttackHeight, BossTuning: maxHP).
+- 끝나면 종료.

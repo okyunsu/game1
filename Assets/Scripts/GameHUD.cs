@@ -113,7 +113,7 @@ public sealed class GameHUD : MonoBehaviour
             GUI.Label(new Rect(x+12,y+93,tuning.hudSize.x-24,24),input.UsingGamepad?"공격 X  /  일시정지 Menu":"공격 X  /  일시정지 Esc",text);
             if(label!=null&&!string.IsNullOrEmpty(label.notice))GUI.Label(new Rect(x,y+tuning.hudSize.y+4,width-x*2,28),label.notice,text);
             if(!string.IsNullOrEmpty(ProgressSave.Message))GUI.Label(new Rect(x,y+tuning.hudSize.y+34,width-x*2,36),ProgressSave.Message,text);
-            if(FirstNoticeVisible)Notice(new Rect(140,height-88,width-280,tuning.noticeHeight),input.UsingGamepad?"스틱 / D-pad 이동  /  A 점프  /  X 공격  /  Menu 일시정지":"←→ 이동  /  Z 점프  /  X 공격  /  Esc 일시정지");
+            if(FirstNoticeVisible)Notice(new Rect(140,height-88,width-280,tuning.noticeHeight),input.UsingGamepad?"스틱 이동 / A 점프 / X 공격 / Menu 일시정지\n스틱 위+X 위 공격 / 공중 스틱 아래+X 아래 공격(튕기기)":"←→ 이동 / Z 점프 / X 공격 / Esc 일시정지\n↑+X 위 공격 / 공중 ↓+X 아래 공격(튕기기)");
             if(AcquisitionVisible)Notice(new Rect(240,170,width-480,tuning.noticeHeight),AcquisitionText);
         }
         GUI.matrix=oldMatrix;GUI.color=oldColor;GUI.depth=oldDepth;

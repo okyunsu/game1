@@ -24,6 +24,17 @@ public sealed class PlayerMotor : MonoBehaviour
     public PlayerTuning Tuning => tuning;
     public int Facing { get; private set; } = 1;
 
+    public void ApplyPogo(float upwardVelocity, bool refreshOwnedAir)
+    {
+        body.linearVelocity = new Vector2(body.linearVelocity.x, upwardVelocity);
+        Grounded = false;
+        groundJumpAvailable = false;
+        lastGrounded = double.NegativeInfinity;
+        jumpCutAvailable = false;
+        consumedJump = input.JumpSequence;
+        if (refreshOwnedAir && hasDoubleJump) doubleJumpUsed = false;
+    }
+
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();

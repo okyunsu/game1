@@ -1,0 +1,1 @@
+PASS new authored scene + existing reusable Level/Player/E3 prefabs; existing scenes/Build Settings untouched. Three checkpoints; normal KillZone respawn.

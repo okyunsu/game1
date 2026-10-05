@@ -1,0 +1,7 @@
+FAIL N9PogoRoute actual=exe
+PASS course owns both abilities
+PASS P01 input goal pogos=3
+FAIL System.Exception: Timeout course P02
+  at N5Runner+<Until>d__20.MoveNext () [0x00049] in <f49c64df91774f5e968b21e3e93ae121>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <f49c64df91774f5e968b21e3e93ae121>:0 
+Error/Exception/Assert=0
