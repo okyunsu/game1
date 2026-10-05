@@ -1,0 +1,43 @@
+PASS N8 death capture 8/8; existing N7-hard-capture-a2 diagnostic exe/A02, visible Normal window, D3D11, no batchmode/nographics.
+Initial N7-hard-only Menu start attempt timed out at A01 x18.14; corrected launcher to existing A02 capture binary, no tool/game code change.
+Every final capture actual KillZone death, delay .1-.3s, variance>0, GUI observed, Error0; does not validate new N8 up attack or deliberate focus loss/regain.
+N8-death-1280x720-0-a2.txt
+MEASURE death capture delay=0.1169
+PASS nonconstant screenshot variance=1661.071
+scene=A02 scenario=death actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-1280x720-1.txt
+MEASURE death capture delay=0.1168
+PASS nonconstant screenshot variance=1661.071
+scene=A02 scenario=death actual=1280x720 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-1600x900-0.txt
+MEASURE death capture delay=0.1168
+PASS nonconstant screenshot variance=1706.992
+scene=A02 scenario=death actual=1600x900 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-1600x900-1.txt
+MEASURE death capture delay=0.1169
+PASS nonconstant screenshot variance=1707.335
+scene=A02 scenario=death actual=1600x900 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-1920x1080-0.txt
+MEASURE death capture delay=0.1169
+PASS nonconstant screenshot variance=1749.257
+scene=A02 scenario=death actual=1920x1080 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-1920x1080-1.txt
+MEASURE death capture delay=0.1168
+PASS nonconstant screenshot variance=1749.257
+scene=A02 scenario=death actual=1920x1080 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-2560x1440-0.txt
+MEASURE death capture delay=0.1169
+PASS nonconstant screenshot variance=1809.447
+scene=A02 scenario=death actual=2560x1440 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0
+N8-death-2560x1440-1.txt
+MEASURE death capture delay=0.1002
+PASS nonconstant screenshot variance=1808.871
+scene=A02 scenario=death actual=2560x1440 fullscreen=FullScreenWindow graphics=Direct3D11 focused=True GUI-observed=True
+Error/Exception/Assert=0

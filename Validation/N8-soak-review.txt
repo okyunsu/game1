@@ -1,0 +1,5 @@
+PASS N7 V1 retrospective evidence review (no new soak run)
+baseline bytes=360886272 final bytes=362958848 growth=0.574%
+GameObjects min/max=23/61
+elapsed_s=7200.014 transitions=2911 deaths=116 Pause=2911 errors=0
+Source N7-V1-soak-a1.txt tail: actual elapsed7201.264s, duration/action/+15% checks PASS. This N7 diagnostic binary predates N8 keyboard/up attack and is not an N8 whole-build acceptance.

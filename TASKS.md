@@ -268,6 +268,10 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - 추가 도구 보정은 이번 큐의 1회 보정 한도를 넘으므로 후속 승인 범위에서 판단한다. 사용자 전체 플레이·감각 수락과 Sprint3 Gate는 계속 대기한다.
 ## Decisions Needed
 
+### N8-POGO-ORDER — 동일 프레임 사망 우선 처리 연결부 (2026-10-06)
+KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입력 초기화·물리 중단을 확정한다. 허용된 공격/표적 코드만으로 포고를 먼저 보장할 수 없으며 KillZone/RoomSession은 첨부 공통 보호 파일이다. ATK2·ATK3 포고 최대 타수/HP 확정·ATK4·PogoTest·S5-hard 경로 BLOCKED. 선택지: KillZone의 공격 판정 호출 연결부를 좁게 허용하거나, RoomSession의 사망 확정을 한 프레임 말미로 모으는 연결부를 허용. 규칙 자체를 바꾸거나 판정 높이를 키우는 우회는 적용하지 않았다. [근거](Validation/N8-ATK2.txt). 다른 독립 N8 검증은 계속한다.
+
+
 ### 2026-10-05 N6 시작 기준
 첨부 codex_night6_ROUTE.md §0은 HEAD가 N5 인계 커밋 이후가 아니면 전체 중단하고 기록만 하도록 명시한다. 검토 시작 HEAD는 baaaae0cf3d136ddfec5752fd0459850ae3dbc34로 N5 최종 인계와 동일하며 초기 작업 트리는 깨끗했다. 후속 커밋을 인위적으로 만들어 조건을 우회하지 않았다. **사용자 결정: 문서의 시작 조건을 유지하고 중단.** 현재 인계 커밋을 시작 기준으로 인정하지 않으며 N6를 진행하지 않는다. S1~S4/R01~R17 미실시; 기존 N5 검증 상태 유지. T-F death-r2 PASS 증거가 있으므로 첨부의 최초 death FAIL 설명은 재개 시 최신 증거와 대조한다. [상세](Validation/N6-preflight-review.txt).
 
@@ -335,6 +339,12 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 기술 검증: [S1-06 결과](Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 ## Validation Records
+
+### N8 사전 검토 / N7 V1 확정 (2026-10-06)
+N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working Set360886272→362958848 bytes(+0.574%), GameObject29~49, 전환2911/사망116/Pause2911, Error0. 원본은 fb7b8b2에 보존. N8 변경 이전 진단 바이너리 결과로 구분하며 새 실행으로 기록하지 않는다. [검토](Validation/N8-soak-review.txt).
+입력 Asset ↑/↓·W/S 추가, Digital Composite로 수직 입력 동시 좌우 속도 보존. S1-02/K1 PASS, 회귀13/13 PASS. 최초 sandbox 실행13개는 Unity 라이선스 접근 실패(exit198)로 테스트 미진입; 권한 범위 밖 실행으로 정상 확인. ATK1은 bounds기준1.2×1.3u 판정과 표시를 실제 Unity30/60/120fps에서 확인, 키보드↑/W·패드·기존좌우·T3 포함13/13 PASS. [ATK1](Validation/N8-ATK1.txt).
+사망 화면은 기존 A02 진단 exe를 Normal창으로 실행하여 4해상도×창/전체화면8/8 유효PNG·사망후약0.12s·Error0. [결과](Validation/N8-death-capture.txt).
+
 
 ### S3-complete v2 — 보스·엔딩 포함 기술 PASS
 [빌드](Validation/S3-complete-v2-build.txt), [실제 exe 요약](Validation/S3-complete-v2-runtime.txt), [보존 확인](Validation/S3-complete-v2-preservation.txt). 15방/17씬, build errors0/warnings0, 실제 새게임/전체문왕복/5CP/두능력별도Continue/X20타보스→2.0432s엔딩→타이틀 PASS, Error/Exception/Assert0. 최종 S1-02/04/07/08/N2 회귀 PASS. 최초 검사 스크린샷 API 컴파일 실패는 호출 제거1회보정 후 성공. F1 미포함, 사용자 완주/Gate/체감 대기.
@@ -681,3 +691,4 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 새 제품 버그 확정 없음. 도구 한계는 Bugs의 N5 절과 각 결과에 기록했다. S2-04/U1/F2R/LOGR 및 기존 S3 REVIEW와 Sprint3 Gate는 사용자 수락 대기다. 승인한 큐의 보정 횟수를 소진한 경로에는 추가 수정을 하지 않았다.
 
 사용자 확인: **Builds/S4-pre3/Afterglow-S4-pre3.exe 직접 완주(가능하면 -record), 기존 Q6 후보3개 비교, 새 스크린샷57장 UI 검토.** README의 실행·수정 위치 안내를 따른다. Scene Play 변경은 Stop 후 다시 입력/저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 저장한다. 다음 작업은 사용자 검토 및 별도 후속 도구 보정 판단이며 다음 Sprint 콘텐츠를 확장하지 않는다.
+
