@@ -9,6 +9,9 @@ public sealed class CombatTuning:ScriptableObject
     [Min(0),Tooltip("Startup duration, seconds.")] public float attackStartup=.08f;
     [Min(0),Tooltip("Active duration, seconds.")] public float attackActive=.10f;
     [Min(0),Tooltip("Cooldown from attack start, seconds.")] public float attackCooldown=.35f;
+    [Header("Directional attack (Prototype Values)")]
+    [Min(0),Tooltip("Up/down hitbox width, world units.")] public float verticalAttackWidth=1.2f;
+    [Min(0),Tooltip("Up/down hitbox height measured from collider face, world units.")] public float verticalAttackHeight=1.3f;
     [Header("Player health (Prototype Values)")]
     [Min(1),Tooltip("Maximum player HP.")] public int playerMaxHP=5;
     [Min(0),Tooltip("Invincibility after ordinary damage, seconds.")] public float invincibility=1;
@@ -16,3 +19,4 @@ public sealed class CombatTuning:ScriptableObject
     [Min(0),Tooltip("Player vertical knockback, units/second.")] public float knockbackY=3;
     [Min(0),Tooltip("Movement lock during knockback, seconds.")] public float knockbackLock=.12f;
 }
+

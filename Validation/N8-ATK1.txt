@@ -1,0 +1,54 @@
+PASS N8AttackVerifier actual=Editor
+PASS keyboard y UpArrow fps=30
+PASS up+X begins UpArrow fps=30
+PASS actual OverlapBox geometry .01u 30
+PASS rendered slash geometry .01u 30
+PASS upper one hit side zero 30
+PASS keyboard y W fps=30
+PASS up+X begins W fps=30
+PASS actual OverlapBox geometry .01u 30
+PASS rendered slash geometry .01u 30
+PASS upper one hit side zero 30
+PASS pad stick up+X 30
+PASS pad upper damage 30
+PASS no y horizontal -1 30
+PASS original horizontal hit -1 30
+PASS no y horizontal 1 30
+PASS original horizontal hit 1 30
+PASS up does not reduce horizontal input 30
+PASS keyboard y UpArrow fps=60
+PASS up+X begins UpArrow fps=60
+PASS actual OverlapBox geometry .01u 60
+PASS rendered slash geometry .01u 60
+PASS upper one hit side zero 60
+PASS keyboard y W fps=60
+PASS up+X begins W fps=60
+PASS actual OverlapBox geometry .01u 60
+PASS rendered slash geometry .01u 60
+PASS upper one hit side zero 60
+PASS pad stick up+X 60
+PASS pad upper damage 60
+PASS no y horizontal -1 60
+PASS original horizontal hit -1 60
+PASS no y horizontal 1 60
+PASS original horizontal hit 1 60
+PASS up does not reduce horizontal input 60
+PASS keyboard y UpArrow fps=120
+PASS up+X begins UpArrow fps=120
+PASS actual OverlapBox geometry .01u 120
+PASS rendered slash geometry .01u 120
+PASS upper one hit side zero 120
+PASS keyboard y W fps=120
+PASS up+X begins W fps=120
+PASS actual OverlapBox geometry .01u 120
+PASS rendered slash geometry .01u 120
+PASS upper one hit side zero 120
+PASS pad stick up+X 120
+PASS pad upper damage 120
+PASS no y horizontal -1 120
+PASS original horizontal hit -1 120
+PASS no y horizontal 1 120
+PASS original horizontal hit 1 120
+PASS up does not reduce horizontal input 120
+Error/Exception/Assert=0
+Associated mandatory regression: REG-N8-ATK1-a1-summary.txt 13/13 PASS, including T3. S1-02 and K1 passed before implementation. Technical REVIEW; physical devices and feel await user review.

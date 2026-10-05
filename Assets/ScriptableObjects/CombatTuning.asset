@@ -23,3 +23,5 @@ MonoBehaviour:
   knockbackX: 4
   knockbackY: 3
   knockbackLock: 0.12
+  verticalAttackWidth: 1.2
+  verticalAttackHeight: 1.3

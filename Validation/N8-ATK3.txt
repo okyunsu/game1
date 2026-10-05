@@ -1,0 +1,1 @@
+BLOCKED ATK2: vertical enemy/boss connection and recovery-window pogo measurement not performed. Boss HP remains Hard candidate 28; 24/32 conditional rule not evaluated.
