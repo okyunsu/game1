@@ -13,7 +13,14 @@ public sealed class N9Build : IProcessSceneWithReport
     static GameObject player,e1,e2,e3;static BossTuning boss;
     public void OnProcessScene(Scene scene,BuildReport report)
     {
-        if(report==null||candidate==null||candidate=="H1")return;
+        if(report==null)return;
+        string sceneCandidate=N5Args.Value("-n9-candidate",null);
+        string sceneEvidence="Validation/N9-"+N5Args.Value("-n9-build","S5-hard")+"-scene-map.txt";
+        File.AppendAllText(sceneEvidence,scene.name+" candidate="+(sceneCandidate??"main")+"\n");
+        if(sceneCandidate==null||sceneCandidate=="H1")return;
+        string sceneFolder="Assets/N9Candidates/"+sceneCandidate;
+        player=AssetDatabase.LoadAssetAtPath<GameObject>(sceneFolder+"/Player.prefab");e1=AssetDatabase.LoadAssetAtPath<GameObject>(sceneFolder+"/E1.prefab");e2=AssetDatabase.LoadAssetAtPath<GameObject>(sceneFolder+"/E2.prefab");e3=AssetDatabase.LoadAssetAtPath<GameObject>(sceneFolder+"/E3.prefab");boss=AssetDatabase.LoadAssetAtPath<BossTuning>(sceneFolder+"/BossTuning.asset");
+        if(player==null||e1==null||e2==null||e3==null||boss==null)throw new BuildFailedException("Missing copied candidate references");
         foreach(var root in scene.GetRootGameObjects())
         {
             foreach(var room in root.GetComponentsInChildren<RoomDefinition>(true))room.playerPrefab=player;
@@ -46,7 +53,7 @@ public sealed class N9Build : IProcessSceneWithReport
             else
             {
                 var combat=Copy<CombatTuning>("CombatTuning",folder);combat.playerMaxHP=candidate=="H2"?4:5;combat.invincibility=candidate=="H2"?.7f:1;
-                var first=Copy<EnemyTuning>("EnemyTuning",folder);first.speed=3;
+                var first=Copy<EnemyTuning>("E1Tuning",folder);first.speed=3;
                 var second=Copy<E2Tuning>("E2Tuning",folder);second.warningSeconds*=.85f;second.chargeSpeed=8;
                 var third=Copy<E3Tuning>("E3Tuning",folder);third.shotPeriod*=.85f;
                 boss=Copy<BossTuning>("BossTuning",folder);boss.maxHP+=4;boss.meleeTell=.5f;boss.waveTell=.65f;boss.recovery=.7f;boss.waveSpeed=7.5f;
@@ -59,7 +66,8 @@ public sealed class N9Build : IProcessSceneWithReport
         }
         string[] ids={"Menu","A01","A02","A03","A04","A05","B01","B02","B03","B04","B05","C01","C02","C03","C04","C06","Ending","Test/PogoTest"};
         Directory.CreateDirectory("Builds/"+tag);
-        var r=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=ids.Select(id=>"Assets/Scenes/"+id+".unity").ToArray(),locationPathName="Builds/"+tag+"/Afterglow-"+tag+".exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.None,extraScriptingDefines=candidate==null?Array.Empty<string>():new[]{"N9_"+candidate}});
+        var r=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=ids.Select(id=>"Assets/Scenes/"+id+".unity").ToArray(),locationPathName="Builds/"+tag+"/Afterglow-"+tag+".exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.CleanBuildCache,extraScriptingDefines=candidate==null?Array.Empty<string>():new[]{"N9_"+candidate}});
+        if(!File.Exists("Validation/N9-"+tag+"-scene-map.txt")||File.ReadAllLines("Validation/N9-"+tag+"-scene-map.txt").Length!=18)throw new BuildFailedException("Expected eighteen actually processed scenes");
         File.WriteAllText(evidence,$"{r.summary.result} errors={r.summary.totalErrors} warnings={r.summary.totalWarnings}\n18 scenes incl opt-in PogoTest; EditorBuildSettings unchanged. Candidate={candidate??"main Hard"}; source tuning unchanged by candidate build.\n");candidate=null;EditorApplication.Exit(r.summary.result==BuildResult.Succeeded&&r.summary.totalErrors==0?0:1);
     }
 }

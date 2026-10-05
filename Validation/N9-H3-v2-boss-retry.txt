@@ -1,0 +1,22 @@
+PASS BossRetryVerifier actual=exe
+PASS fixture enables Continue
+PASS fixture Continue CP-C04
+PASS runtime candidate player H3 HP=5 inv=1
+PASS runtime candidate boss H3 HP=32 recovery=0.7
+PASS precombat HP20/Idle/unlocked retry 0
+PASS first pattern and combat exit lock retry 0
+PASS death restores CP-C04/HP5 0
+PASS C04 re-entry exit enabled after death 0
+PASS runtime candidate boss H3 HP=32 recovery=0.7
+PASS precombat HP20/Idle/unlocked retry 1
+PASS first pattern and combat exit lock retry 1
+PASS death restores CP-C04/HP5 1
+PASS C04 re-entry exit enabled after death 1
+PASS runtime candidate boss H3 HP=32 recovery=0.7
+PASS precombat HP20/Idle/unlocked retry 2
+PASS first pattern and combat exit lock retry 2
+PASS death restores CP-C04/HP5 2
+PASS C04 re-entry exit enabled after death 2
+MEASURE final boss fight seconds=21.767
+PASS three retries then actual input victory reaches saved ending
+Error/Exception/Assert=0

@@ -1,0 +1,68 @@
+[
+  {
+    "candidate": "H1",
+    "values": {
+      "E3period": "1.6",
+      "E1speed": "2.5",
+      "meleeTell": "0.6",
+      "invincible": "0.8",
+      "E2tell": "0.48",
+      "bossHP": "28",
+      "E2speed": "7",
+      "playerHP": "4",
+      "waveTell": "0.75",
+      "waveSpeed": "6.5",
+      "recovery": "0.8"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30)",
+    "death": "A04 (22.055235,4.299000); cause=unrecorded",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.734",
+    "csv": "20261006-081514.csv"
+  },
+  {
+    "candidate": "H2",
+    "values": {
+      "E3period": "1.36",
+      "E1speed": "3",
+      "meleeTell": "0.5",
+      "invincible": "0.7",
+      "E2tell": "0.408",
+      "bossHP": "32",
+      "E2speed": "8",
+      "playerHP": "4",
+      "waveTell": "0.65",
+      "waveSpeed": "7.5",
+      "recovery": "0.7"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30)",
+    "death": "A04 (22.055235,4.299000); cause=unrecorded",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.734",
+    "csv": "20261006-081643.csv"
+  },
+  {
+    "candidate": "H3",
+    "values": {
+      "E3period": "1.36",
+      "E1speed": "3",
+      "meleeTell": "0.5",
+      "invincible": "1",
+      "E2tell": "0.408",
+      "bossHP": "32",
+      "E2speed": "8",
+      "playerHP": "5",
+      "waveTell": "0.65",
+      "waveSpeed": "7.5",
+      "recovery": "0.7"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30)",
+    "death": "A04 (22.055235,4.299000); cause=unrecorded",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.734",
+    "csv": "20261006-081813.csv"
+  }
+]

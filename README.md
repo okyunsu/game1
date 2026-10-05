@@ -161,4 +161,12 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 
 지상 아래+X는 좌우 공격입니다. 포고는 획득한 더블 점프·대시 사용권만 회복합니다. 몸이 가시에 먼저 닿으면 사망합니다. 설정은 CombatTuning.asset의 Down attack / pogo, 보스 HP는 BossTuning.asset maxHP입니다. Play를 종료한 뒤 Asset에 원하는 값을 다시 입력하고 저장하세요.
 
-PogoTest는 에디터 Afterglow > Open Pogo Test 또는 S5-hard.exe의 -pogotest 인자로 엽니다. Build Settings와 타이틀 메뉴에는 추가하지 않았습니다. 테스트 과정은 저장을 쓰지 않습니다.
+본편은 `Builds/S5-hard/Afterglow-S5-hard.exe`, PogoTest는 같은 폴더의 `PogoTest 실행.bat`로 실행합니다. 에디터 Afterglow > Open Pogo Test 또는 exe의 `-pogotest` 인자로도 엽니다. Build Settings와 타이틀 메뉴에는 추가하지 않았습니다. 테스트 과정은 저장을 쓰지 않습니다.
+
+## N9 후보 비교와 검증 범위
+
+후보 실행 파일은 `Builds/H1/Afterglow-H1.exe`, `Builds/H2/Afterglow-H2.exe`, `Builds/H3/Afterglow-H3.exe`입니다. H1은 현재 Hard(보스 HP28), H2는 승인된 빠른 적·보스(HP32), H3는 H2 전투와 플레이어 HP5/무적1.0s입니다. 원본 설정을 바꾸지 않고 `Assets/N9Candidates/H2`, `H3`의 Asset·Prefab 복사본을 빌드 씬에 연결했습니다. 각 후보를 10분 비교한 뒤 하나를 선택합니다.
+
+포고 값은 `Assets/ScriptableObjects/CombatTuning.asset`의 `pogoVelocity`, `pogoRefreshesAir`, `downAttackWidth`, `downAttackHeight`, 보스 HP는 `BossTuning.asset`의 `maxHP`입니다. PogoTest 배치·안내 위치는 `Assets/Scenes/Test/PogoTest.unity`, 반복 가시 표적은 `Assets/Prefabs/PogoTarget.prefab`입니다. Scene은 Play 종료 후 다시 입력·저장하고, Asset은 원하는 최종 값을 명시적으로 입력·저장합니다. 후보 값을 기본값으로 적용하려면 사용자 선택이 필요합니다.
+
+`Validation/Run-Regression.ps1 -Tag <새이름>`은 기본13 + RouteAll60 + PogoTest60, 총15개를 검사합니다. `-SkipPogo`는 이전14개, `-OnlyRoute`는 경로2개만 실행합니다. 실패를 PASS로 바꾸지 않습니다. 기존 FixedUpdate 관찰의 사망 누락을 바로잡은 뒤 R05 실제 사망이 확인되어 연속 완주 경로는 BLOCKED입니다. Editor 고정 Pogo 입력 재생도 별도 BLOCKED이며, 실제 exe Pogo3구간·체크포인트 복귀·능력 회복 PASS와 구분합니다. 상세 결과와 무효화된 과거 결과는 `Validation/N9-route-recheck.txt`, 최종 상태는 TASKS Latest Handoff를 확인합니다.

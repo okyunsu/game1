@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53afd4ba201ae340ae809e165580a14, type: 3}
+  m_Name: BossTuning
+  m_EditorClassIdentifier: Assembly-CSharp::BossTuning
+  maxHP: 32
+  damage: 2
+  meleeTell: 0.5
+  waveTell: 0.65
+  recovery: 0.7
+  meleeRange: 3
+  waveSpeed: 7.5
+  waveHeight: 1

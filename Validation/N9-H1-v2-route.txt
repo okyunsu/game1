@@ -1,0 +1,37 @@
+FAIL FullRouteVerifier actual=exe
+PASS actual keyboard New Game
+PASS route authored exit A01 -> A02
+PASS physical natural route reaches A02
+PASS route authored exit A02 -> A03
+PASS physical natural route reaches A03
+PASS route authored exit A03 -> A04
+PASS physical natural route reaches A04
+PASS route authored exit A04 -> A05
+PASS physical natural route reaches A05
+PASS natural pickup A05
+PASS route authored exit A05 -> A04
+PASS physical natural route reaches A04
+PASS route authored exit A04 -> A03
+PASS physical natural route reaches A03
+PASS natural Step/Shelf/G-D hub ascent
+PASS route authored exit A03 -> B01
+PASS physical natural route reaches B01
+PASS route authored exit B01 -> B02
+PASS physical natural route reaches B02
+PASS route authored exit B02 -> B03
+PASS physical natural route reaches B03
+PASS route authored exit B03 -> B04
+PASS physical natural route reaches B04
+PASS natural pickup B04
+PASS route authored exit B04 -> B03
+PASS physical natural route reaches B03
+PASS route authored exit B03 -> B02
+PASS physical natural route reaches B02
+PASS route authored exit B02 -> B01
+PASS physical natural route reaches B01
+PASS route authored exit B01 -> B05
+FAIL System.Exception: physical natural route reaches B05
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <f46038346eb641069329d3e0310f3c5c>:0 
+  at FullRouteVerifier+<Tests>d__3.MoveNext () [0x004b7] in <f46038346eb641069329d3e0310f3c5c>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <f46038346eb641069329d3e0310f3c5c>:0 
+Error/Exception/Assert=0

@@ -2,7 +2,7 @@ param(
  [Parameter(Mandatory=$true)][string]$Exe,
  [Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')][string]$Tag,
  [Parameter(Mandatory=$true)][ValidateSet('route','boss-retry','attack-up','pogotest','pogo','directional-enemies')][string]$Check,
- [int]$Fps=60,[switch]$Gamepad,[switch]$Train,
+ [int]$Fps=60,[switch]$Gamepad,[switch]$Train,[string]$Candidate='',
  [string]$Library='Validation/N8-route-final-library.json',
  [string]$PogoLibrary='Validation/N9-pogo-library.json'
 )
@@ -17,6 +17,7 @@ if($Check -eq 'boss-retry'){Set-Content -LiteralPath $taskSave -Encoding utf8NoB
 $taskArgs=@('-verify-'+$Check)
 if($Check -eq 'route'){$taskArgs+=@('all','-route-library',('"'+(Join-Path $taskRoot $Library)+'"'));if($Gamepad){$taskArgs+='-route-gamepad'}}
 if($Check -eq 'pogotest'){$taskArgs+=@($(if($Train){'train'}else{'all'}),'-pogotest','-pogo-library',('"'+(Join-Path $taskRoot $PogoLibrary)+'"'),'-pogo-prefix',('Validation/'+$Tag))}
+if($Candidate){$taskArgs+=@('-verify-candidate',$Candidate)}
 $taskArgs+=@('-verify-fps',"$Fps",'-verify-output',('"'+$taskEvidence+'"'),'-save-path',('"'+$taskSave+'"'),'-screen-width','1280','-screen-height','720','-screen-fullscreen','0','-force-d3d11','-logFile',('"'+(Join-Path $taskRoot "Logs/$Tag.log")+'"'))
 $taskWatch=[Diagnostics.Stopwatch]::StartNew()
 $taskProcess=Start-Process $taskExe -ArgumentList $taskArgs -WorkingDirectory $taskRoot -WindowStyle Normal -PassThru

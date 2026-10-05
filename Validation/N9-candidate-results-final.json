@@ -1,0 +1,68 @@
+[
+  {
+    "candidate": "H1",
+    "values": {
+      "playerHP": "4",
+      "bossHP": "28",
+      "waveTell": "0.75",
+      "meleeTell": "0.6",
+      "invincible": "0.8",
+      "waveSpeed": "6.5",
+      "E1speed": "2.5",
+      "E2tell": "0.48",
+      "E3period": "1.6",
+      "E2speed": "7",
+      "recovery": "0.8"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30)",
+    "death": "A04 (22.055235,4.299000); cause=unrecorded",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.734",
+    "csv": "20261006-082649.csv"
+  },
+  {
+    "candidate": "H2",
+    "values": {
+      "playerHP": "4",
+      "bossHP": "32",
+      "waveTell": "0.65",
+      "meleeTell": "0.5",
+      "invincible": "0.7",
+      "waveSpeed": "7.5",
+      "E1speed": "3",
+      "E2tell": "0.408",
+      "E3period": "1.36",
+      "E2speed": "8",
+      "recovery": "0.7"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R06 fixed-tick replay wrong authored exit destination A04",
+    "death": "none",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.784",
+    "csv": "20261006-082319.csv"
+  },
+  {
+    "candidate": "H3",
+    "values": {
+      "playerHP": "5",
+      "bossHP": "32",
+      "waveTell": "0.65",
+      "meleeTell": "0.5",
+      "invincible": "1",
+      "waveSpeed": "7.5",
+      "E1speed": "3",
+      "E2tell": "0.408",
+      "E3period": "1.36",
+      "E2speed": "8",
+      "recovery": "0.7"
+    },
+    "route": "FAIL",
+    "blocked": "FAIL System.Exception: R06 fixed-tick replay wrong authored exit destination A04",
+    "death": "none",
+    "bossRetry": "PASS",
+    "fightSeconds": "21.767",
+    "csv": "20261006-082500.csv"
+  }
+]

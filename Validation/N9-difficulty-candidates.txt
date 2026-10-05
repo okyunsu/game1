@@ -1,0 +1,35 @@
+N9 H1/H2/H3 actual sequential candidate comparison
+Original tuning hashes unchanged during all candidate builds. New copied assets/prefabs only; build scene remapping; title candidate label compiled only for candidate.
+Fixed N8-route-final-library.json unchanged; candidate failures are comparison data, not claims of impossible human completion. BossRetry uses adaptive virtual inputs and three natural deaths before final victory.
+
+| Candidate | Player HP / invincible(s) | E1 speed(u/s) | E2 tell(s) / speed(u/s) | E3 period(s) | Boss HP / tell melee-wave(s) / recovery(s) / wave speed(u/s) |
+| --- | --- | --- | --- | --- | --- |
+| H1 | 4 / 0.8 | 2.5 | 0.48 / 7 | 1.6 | 28 / 0.6-0.75 / 0.8 / 6.5 |
+| H2 | 4 / 0.7 | 3 | 0.408 / 8 | 1.36 | 32 / 0.5-0.65 / 0.7 / 7.5 |
+| H3 | 5 / 1 | 3 | 0.408 / 8 | 1.36 | 32 / 0.5-0.65 / 0.7 / 7.5 |
+
+| Candidate | Fixed RouteAll60 | blocked | actual death position | BossRetry | final fight(s) | CSV |
+| --- | --- | --- | --- | --- | --- | --- |
+| H1 | FAIL | FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30) | A04 (22.055235,4.299000); cause=unrecorded | PASS | 21.734 | 20261006-081514.csv |
+| H2 | FAIL | FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30) | A04 (22.055235,4.299000); cause=unrecorded | PASS | 21.734 | 20261006-081643.csv |
+| H3 | FAIL | FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30) | A04 (22.055235,4.299000); cause=unrecorded | PASS | 21.734 | 20261006-081813.csv |
+
+Human review: play each candidate10min, choose one. No automatic acceptance/default tuning switch. Final main S5-hard stays H1 values (boss28), candidatesH2/H3 boss32.
+INVALIDATED INITIAL H2/H3 comparison: actual boss log startsHP28, copied Asset alone is insufficient. Rebuild with clean scene conversion, persistent CLI-based remapping and runtime assertions; corrected v2 table will follow. Old outputs retained, no initial H2/H3 difficulty acceptance.
+FINAL CORRECTED N9 candidate comparison. Use only this table for current deliveries.
+InitialH2/H3 ignored scene remaps and are INVALID; H1-v2-route selected legacy mode and is INVALID. Final H1 uses H1-v3-route; H2/H3 use v2 fixed RouteRunner results. All final BossRetry runtime assertions pass expected HP/inv/recovery. Eighteen clean scene conversion callbacks per build. No source tuning switch.
+
+| Candidate | Player HP / inv(s) | E1 speed | E2 tell / speed | E3 period | Boss HP / melee-wave tell / recovery / wave speed |
+| --- | --- | --- | --- | --- | --- |
+| H1 | 4 / 0.8 | 2.5 | 0.48 / 7 | 1.6 | 28 / 0.6-0.75 / 0.8 / 6.5 |
+| H2 | 4 / 0.7 | 3 | 0.408 / 8 | 1.36 | 32 / 0.5-0.65 / 0.7 / 7.5 |
+| H3 | 5 / 1 | 3 | 0.408 / 8 | 1.36 | 32 / 0.5-0.65 / 0.7 / 7.5 |
+
+| Candidate | Fixed RouteAll60 | blocked | death | BossRetry | final fight(s) | CSV |
+| --- | --- | --- | --- | --- | --- | --- |
+| H1 | FAIL | FAIL System.Exception: R05 fixed-tick replay actual death room=A04 pos=(22.06, 4.30) | A04 (22.055235,4.299000); cause=unrecorded | PASS | 21.734 | 20261006-082649.csv |
+| H2 | FAIL | FAIL System.Exception: R06 fixed-tick replay wrong authored exit destination A04 | none | PASS | 21.784 | 20261006-082319.csv |
+| H3 | FAIL | FAIL System.Exception: R06 fixed-tick replay wrong authored exit destination A04 | none | PASS | 21.767 | 20261006-082500.csv |
+
+H2/H3 R06 authored-exit mismatch is an input-library limitation (old R05 recording relied on checkpoint-return goal). Fixed-input failure does not establish impossibility for a human. Compare each candidate10min and choose one; no automatic default adoption.
+Source original tuning hashes unchanged across candidate runs (v2 script). Candidate geometry/source scenes unchanged.
