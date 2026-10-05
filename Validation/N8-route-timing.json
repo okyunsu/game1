@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "60s1",
+    "activeSeconds": 119.920698,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 123.5408555,
+    "csv": "20261006-012846.csv"
+  },
+  {
+    "mode": "60s2",
+    "activeSeconds": 119.928557,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 123.5216003,
+    "csv": "20261006-013051.csv"
+  },
+  {
+    "mode": "60s3",
+    "activeSeconds": 119.960145,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 126.9892935,
+    "csv": "20261006-013258.csv"
+  },
+  {
+    "mode": "30",
+    "activeSeconds": 122.01633,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 125.7279702,
+    "csv": "20261006-013502.csv"
+  },
+  {
+    "mode": "120",
+    "activeSeconds": 119.028361,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 122.5370184,
+    "csv": "20261006-013709.csv"
+  },
+  {
+    "mode": "pad60",
+    "activeSeconds": 119.991148,
+    "pauseSeconds": 0.0,
+    "logWallSeconds": 123.5935832,
+    "csv": "20261006-013912.csv"
+  }
+]

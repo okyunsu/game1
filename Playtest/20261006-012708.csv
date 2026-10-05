@@ -1,0 +1,4 @@
+utc,event,room,x,y,cause,elapsed_active,pause_total,details
+"2026-10-05T16:27:08.6230374Z","new_game","A01",,,"",0.000000,0.000000,"polling; fatal cause intentionally unrecorded"
+"2026-10-05T16:27:08.6649753Z","room_enter","A01",3.500000,1.811200,"",0.047915,0.000000,""
+"2026-10-05T16:27:08.6649753Z","checkpoint","A01",3.500000,1.811200,"",0.047915,0.000000,"CP-A01"

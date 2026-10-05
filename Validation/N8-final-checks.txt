@@ -1,0 +1,7 @@
+PASS final sequential all60x3/30/120/virtualGamepad60: complete title return + actual saved both abilities/bossDefeated/endingReached + Error0
+PASS mandatory source regression13/13 REG-N8-final-a2-summary.txt
+PASS additional current-source built-exe RouteAll60 REG-N8-route-gate-final-summary.txt (13+1 distinct checks; not a claim that the combined fourteen were run in one command)
+PASS eight visible death PNGs (N7 capture-a2 binary); focus-loss behavior unverified
+PASS git diff --check; protected-file differences checked separately
+ATK1 REVIEW; ATK2/3/4,PogoTest,S5-hard BLOCKED protected-death-dispatch hook; HP28 remains unmeasured Hard candidate; no pogo fields to edit
+No push; no running validation process

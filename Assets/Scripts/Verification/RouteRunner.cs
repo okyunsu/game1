@@ -26,7 +26,7 @@ public sealed class RouteRunner:N5Runner
  readonly string[][] paths={new[]{"A01","A02"},new[]{"A02","A03"},new[]{"A03","A04"},new[]{"A04","A05"},new[]{"A05","A04","A03"},new[]{"A03","B01"},new[]{"B01","B02"},new[]{"B02","B03"},new[]{"B03","B04"},new[]{"B04","B03","B02","B01"},new[]{"B01","B05"},new[]{"B05","C01"},new[]{"C01","C02"},new[]{"C02","C03"},new[]{"C03","C04"},new[]{"C04","C06","Ending"},new[]{"Ending","Menu"}};
  RouteTickDriver driver;RouteLibrary library=new();RouteSegment current;int pathIndex,stage,stageTick,previous,attempt;bool complete,failed;string failure;double bossJumped=-1;int jumpUntil,nextAttack;bool teleported;
  protected override void Cleanup(){if(driver!=null){driver.active=false;if(driver.pad!=null)InputSystem.RemoveDevice(driver.pad);}}
- protected override IEnumerator Tests(){string mode=N5Args.Value("-verify-route","all");string file=N5Args.Value("-route-library","Validation/N8-robust-library.json");bool train=mode=="train"||mode.StartsWith("R",StringComparison.OrdinalIgnoreCase);int selected=mode.StartsWith("R",StringComparison.OrdinalIgnoreCase)?int.Parse(mode.Substring(1))-1:-1;
+ protected override IEnumerator Tests(){string mode=N5Args.Value("-verify-route","all");string file=N5Args.Value("-route-library","Validation/N8-route-final-library.json");bool train=mode=="train"||mode.StartsWith("R",StringComparison.OrdinalIgnoreCase);int selected=mode.StartsWith("R",StringComparison.OrdinalIgnoreCase)?int.Parse(mode.Substring(1))-1:-1;
  driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;if(N5Args.Has("-route-gamepad")){driver.pad=InputSystem.AddDevice<Gamepad>();yield return PadNewGame();}else yield return NewGame();
  if(train){int begin=N5Args.Int("-route-start",1)-1;if(File.Exists(file)){library=JsonUtility.FromJson<RouteLibrary>(File.ReadAllText(file));if(library.segments.Count>begin)library.segments.RemoveRange(begin,library.segments.Count-begin);}bool connected=begin==0&&selected<0;for(int n=begin;n<paths.Length;n++){if(selected>=0&&n!=selected)continue;current=new RouteSegment{id=$"R{n+1:00}",startScene=paths[n][0],goal=paths[n][paths[n].Length-1],limitSeconds=n==15?180:n is 4 or 9?45:25};bool success=false;
  for(attempt=n==begin?N5Args.Int("-route-attempt-offset",0):0;attempt<Mathf.Min(20,(n==begin?N5Args.Int("-route-attempt-offset",0):0)+N5Args.Int("-route-attempt-limit",20))&&!success;attempt++){teleported=selected>=0||!connected||attempt>0;if(teleported)yield return Setup(n);else yield return ReadyFor(n);current.startPosition=n==16?Vector2.zero:Body.position;current.dash=n==16||Player.GetComponent<PlayerDash>().hasDash;current.doubleJump=n==16||Motor.hasDoubleJump;current.startHP=n==16?0:Health.HP;current.inputs.Clear();Begin(n,false);yield return Until(()=>complete||failed,"route segment "+current.id,current.limitSeconds+10);driver.active=false;if(driver.pad!=null)InputSystem.QueueStateEvent(driver.pad,new GamepadState());yield return Keys();success=complete&&!failed;current.attempts=attempt+1;current.passed=success;current.result=success?"PASS":"KNOWN-LIMIT "+failure;lines.Add(current.id+" attempt="+(attempt+1)+" ticks="+driver.tick+" startTeleport="+teleported+" "+current.result);SaveAttempt(n);if(!success&&RoomSession.Instance?.Respawning==true)yield return Ready();}
@@ -73,10 +73,3 @@ public sealed class RouteRunner:N5Runner
  RoomExit FindExit(string destination)=>Array.Find(FindObjectsByType<RoomExit>(FindObjectsSortMode.None),e=>e.destinationRoomId==destination);
  static float Axis(float dx)=>dx>.25f?1:dx<-.25f?-1:0;
 }
-
-
-
-
-
-
-

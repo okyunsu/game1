@@ -33,7 +33,7 @@ foreach($taskCheck in $taskChecks){
  Write-Output $taskLine
 }
 # Build the current source before replay; an old exe cannot validate new tuning.
-$taskRouteLibrary=Join-Path $PSScriptRoot 'N8-robust-library.json'
+$taskRouteLibrary=Join-Path $PSScriptRoot 'N8-route-final-library.json'
 if(Test-Path -LiteralPath $taskRouteLibrary){
  $taskRouteEvidence=Join-Path $PSScriptRoot "RouteAll-60fps-$Tag.txt"
  if(Test-Path -LiteralPath $taskRouteEvidence){throw 'Preserve route evidence: use a new tag'}
@@ -54,4 +54,8 @@ if(Test-Path -LiteralPath $taskRouteLibrary){
  Add-Content -LiteralPath $taskSummary -Value $taskRouteLine
  Write-Output $taskRouteLine
 }elseif($OnlyRoute){throw 'Route library is required for OnlyRoute'}
+
+
+
+if((Get-Content -LiteralPath $taskSummary) -match ' FAIL'){exit 1}
 

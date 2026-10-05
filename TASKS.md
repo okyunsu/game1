@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-06 **N8 종료 — PARTIAL**: 상향 공격 REVIEW, 포고·PogoTest·S5-hard BLOCKED(보호된 사망 처리 연결부 변경 필요). 동일 기록의 실제 exe 전체 완주 60fps 3회·30/120fps·패드 PASS, 기본 회귀13개와 추가 RouteAll-60fps PASS, 사망 화면8장 검증. N7 soak 기존 증거 검토 완료. [최종 인계](Validation/N8-final-handoff.md).
+
 2026-10-05 **N7 PARTIAL / 공격 입력 범위 답변 대기**: ATK1 회귀13/13·실검사FAIL(input Asset keyboard y absent), 공격 실험 원복; Hard 후보 회귀13/13·보스 처치PASS, V2/V3 PASS, V4 촬영KNOWN-LIMIT, V5 원문/공격 의존BLOCKED, V1 실제120분 진행 중. [현재 인계](Validation/N7-current-handoff.txt).
 
 
@@ -667,6 +669,15 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
+### N8 최종 인계 — 승인 독립 작업 종료 / 포고 체인 BLOCKED
+요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](Validation/N8-route-summary.txt).
+최종 기본13/13+추가 새빌드RouteAll60 1/1, 실제exe60x3/30/120/가상패드로 새게임→엔딩→타이틀·저장플래그·Error0. 검사 프로세스 종료·로컬커밋·push 없음.
+켤exe는 N7-hard-only 유지(N8 위 공격 없음). 위 공격은 Unity Menu Play 또는 REG-route-N8-route-gate-final 진단exe에서 확인. PogoTest/menu 및 pogoVelocity/pogoRefreshesAir 미생성. 폭/높이는 CombatTuning.asset, Play 종료 후 Asset에 값 재입력·저장. 사용자 위 공격 감각/Hard 완주 난이도·LEVEL_PROPOSALS 후보 검토 대기, Sprint3 Gate 유지.
+N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·메모리+0.574% 기준 PASS. 최초/중간 실패·Editor 재생 한계·focus 미검증은 상세 인계에 남겼다.
+
+### 이전 N7 인계 보존
+
+
 ### N7 현재 인계 — 전체 완료 아님
 [5분 인계 및 필요 결정](Validation/N7-current-handoff.txt). 키보드 ↑/↓ 입력 Asset 예외 허용 답변 대기. Hard 후보 유지, 포고/공격 체인 및 PogoTest 미완료. V1 백그라운드 PID23712, 최종120분 결과 미검증. push 없음.
 
@@ -695,7 +706,3 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 새 제품 버그 확정 없음. 도구 한계는 Bugs의 N5 절과 각 결과에 기록했다. S2-04/U1/F2R/LOGR 및 기존 S3 REVIEW와 Sprint3 Gate는 사용자 수락 대기다. 승인한 큐의 보정 횟수를 소진한 경로에는 추가 수정을 하지 않았다.
 
 사용자 확인: **Builds/S4-pre3/Afterglow-S4-pre3.exe 직접 완주(가능하면 -record), 기존 Q6 후보3개 비교, 새 스크린샷57장 UI 검토.** README의 실행·수정 위치 안내를 따른다. Scene Play 변경은 Stop 후 다시 입력/저장, 설정 Asset은 Stop 후 원하는 값/이전 값으로 저장한다. 다음 작업은 사용자 검토 및 별도 후속 도구 보정 판단이며 다음 Sprint 콘텐츠를 확장하지 않는다.
-
-
-
-

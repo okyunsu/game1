@@ -1,0 +1,31 @@
+PASS final actual exe sequential all60fps3/3,30fps,120fps,virtualGamepad60fps; all saved Ending/title return/Error0.
+Binary: Builds/REG-route-N8-route-gate-final/Afterglow-REG-route-N8-route-gate-final.exe, current source;17scenes; build errors0/warnings0. Diagnostic only, not S5-hard.
+Final input library: N8-route-final-library.json. Fixed-tick N5 format; no teleport/ability/HP writes during all. Independent training only used authorized segment-start fixtures.
+Continuous range R01..R17. Original training interruptions and all failures preserved; original, continuous, robust andv2 libraries retained.
+R02 +60neutral settling ticks; R05/R10 +250 fallback input ticks each; R17 +60neutral scene-load ticks. No game rules/Scene layout modifications.
+Observed automated fastest among final six runs=119.028361 active seconds to Ending (~1.98min); no claim of globally optimal route. 사람 시간 아님.
+GAME_DESIGN/PRD human first-play goal60..120min. This optimized virtual input run does not measure exploration, human deaths/retries or accept that goal.
+Logs-only wall windows122.54..126.99s include startup/title/loading; see N8-route-timing.json + matching Playtest CSVs.
+Base regression13/13 plus current-source built-exe RouteAll-60fps1/1 PASS; new regression workflow builds current tuning before replay. Default full bundle has14 checks.
+Known limit: an earlier Editor replay failed R16; it is not the shipped-exe route gate. The regression gates actual freshly compiled exe. Physical controllers and feel remain human review.
+
+ID | start -> goal | final chain | cumulative input attempts (conservative, includes interrupted candidates)
+R01 | A01 -> A02 | PASS | 2/20
+R02 | A02 -> A03 | PASS | 3/20
+R03 | A03 -> A04 | PASS | 8/20
+R04 | A04 -> A05 | PASS | 3/20
+R05 | A05 -> A03 | PASS | 4/20
+R06 | A03 -> B01 | PASS | 2/20
+R07 | B01 -> B02 | PASS | 2/20
+R08 | B02 -> B03 | PASS | 2/20
+R09 | B03 -> B04 | PASS | 2/20
+R10 | B04 -> B01 | PASS | 3/20
+R11 | B01 -> B05 | PASS | 2/20
+R12 | B05 -> C01 | PASS | 2/20
+R13 | C01 -> C02 | PASS | 2/20
+R14 | C02 -> C03 | PASS | 12/20
+R15 | C03 -> C04 | PASS | 2/20
+R16 | C04 -> Ending | PASS | 2/20
+R17 | Ending -> Menu | PASS | 3/20
+Tool corrections: R03 floor path1;R04 duplicate-evidence handling1;R14 start/exit inputs2 + shared neutral boundary1 (3/3, no further correction);R02/R06 shared async-tick handling1;F2R API checker1. Later neutral/fallback additions are input candidates, not gameplay changes.
+Final evidence: N8-sequential-all-60s1/s2/s3,30,120,pad60.txt; RouteAll-60fps-N8-route-gate-final.txt.

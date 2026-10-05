@@ -1,0 +1,71 @@
+PASS RouteRunner actual=exe
+PASS gamepad New Game
+PASS 17 successful segments required for all; no teleport allowed
+PASS continuous start R01
+PASS recorded ability ownership R01
+MEASURE continuous start deviation R01=0.000u; no placement performed
+PASS R01 fixed-tick replay 
+PASS continuous start R02
+PASS recorded ability ownership R02
+MEASURE continuous start deviation R02=0.000u; no placement performed
+PASS R02 fixed-tick replay 
+PASS continuous start R03
+PASS recorded ability ownership R03
+MEASURE continuous start deviation R03=0.082u; no placement performed
+PASS R03 fixed-tick replay 
+PASS continuous start R04
+PASS recorded ability ownership R04
+MEASURE continuous start deviation R04=0.000u; no placement performed
+PASS R04 fixed-tick replay 
+PASS continuous start R05
+PASS recorded ability ownership R05
+MEASURE continuous start deviation R05=0.120u; no placement performed
+PASS R05 fixed-tick replay 
+PASS continuous start R06
+PASS recorded ability ownership R06
+MEASURE continuous start deviation R06=0.082u; no placement performed
+PASS R06 fixed-tick replay 
+PASS continuous start R07
+PASS recorded ability ownership R07
+MEASURE continuous start deviation R07=0.082u; no placement performed
+PASS R07 fixed-tick replay 
+PASS continuous start R08
+PASS recorded ability ownership R08
+MEASURE continuous start deviation R08=0.082u; no placement performed
+PASS R08 fixed-tick replay 
+PASS continuous start R09
+PASS recorded ability ownership R09
+MEASURE continuous start deviation R09=0.000u; no placement performed
+PASS R09 fixed-tick replay 
+PASS continuous start R10
+PASS recorded ability ownership R10
+MEASURE continuous start deviation R10=0.000u; no placement performed
+PASS R10 fixed-tick replay 
+PASS continuous start R11
+PASS recorded ability ownership R11
+MEASURE continuous start deviation R11=0.000u; no placement performed
+PASS R11 fixed-tick replay 
+PASS continuous start R12
+PASS recorded ability ownership R12
+MEASURE continuous start deviation R12=0.000u; no placement performed
+PASS R12 fixed-tick replay 
+PASS continuous start R13
+PASS recorded ability ownership R13
+MEASURE continuous start deviation R13=0.000u; no placement performed
+PASS R13 fixed-tick replay 
+PASS continuous start R14
+PASS recorded ability ownership R14
+MEASURE continuous start deviation R14=0.000u; no placement performed
+PASS R14 fixed-tick replay 
+PASS continuous start R15
+PASS recorded ability ownership R15
+MEASURE continuous start deviation R15=0.000u; no placement performed
+PASS R15 fixed-tick replay 
+PASS continuous start R16
+PASS recorded ability ownership R16
+MEASURE continuous start deviation R16=0.082u; no placement performed
+PASS R16 fixed-tick replay 
+PASS continuous start R17
+PASS R17 fixed-tick replay 
+PASS all ends at title
+Error/Exception/Assert=0

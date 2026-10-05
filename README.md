@@ -80,7 +80,7 @@ Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거�
 | 대시 | C (보조 K / Left Shift) | B |
 | 메뉴 이동 / 확인 / 취소 | ↑/↓ / Z·Enter / X·Esc | D-pad / A / B |
 
-N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/N8-route-tools-a2`는 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
+N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/REG-route-N8-route-gate-final`은 현재 소스의 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
 
 Gameplay / UI 입력은 분리되어 있다. LCtrl은 다음 능력 예약이며 바인딩하지 않는다. 게임패드 바인딩은 유지한다.
 
@@ -147,4 +147,7 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 C06 배치와 전투 시작선·예고 영역은 `Assets/Scenes/C06.unity`, 공통 보스 값은 `Assets/ScriptableObjects/BossTuning.asset`, 반복 충격파는 `Assets/Prefabs/BossWave.prefab`에서 수정한다. 빛 시간(2s)은 C06 보스의 EndingFlow / Light Duration, 엔딩 문구·버튼은 `Assets/Scripts/EndingMenu.cs`다. Scene의 Play 변경은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적으로 저장한다. 기존 Player/Combat/E1/E2/E3 값은 변경하지 않았다.
 
 F1 실패 실험: `Builds/Experimental-F1/Afterglow.exe`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.
+
+
+N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이며 순차60fps3회·30/120fps·가상 패드 완주와 저장을 확인했다. 기본13회귀에 현재소스 새빌드 `RouteAll-60fps`를 더했다. `Validation/Run-Regression.ps1 -Tag <새태그>`는14개, `-OnlyRoute`는 새빌드 경로 검사만 실행한다. 자동 활동시간 약2분은 사람 플레이시간이 아니다. [최종 인계](Validation/N8-final-handoff.md).
 

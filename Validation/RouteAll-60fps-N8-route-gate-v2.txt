@@ -1,0 +1,14 @@
+FAIL RouteRunner actual=exe
+PASS 17 successful segments required for all; no teleport allowed
+PASS continuous start R01
+PASS recorded ability ownership R01
+MEASURE continuous start deviation R01=0.000u; no placement performed
+PASS R01 fixed-tick replay 
+PASS continuous start R02
+PASS recorded ability ownership R02
+MEASURE continuous start deviation R02=0.000u; no placement performed
+FAIL System.Exception: R02 fixed-tick replay recording exhausted room=A02 pos=(33.80, 3.87)
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <320b18d037194a9cb04d21829b29bc51>:0 
+  at RouteRunner+<Tests>d__20.MoveNext () [0x00958] in <320b18d037194a9cb04d21829b29bc51>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <320b18d037194a9cb04d21829b29bc51>:0 
+Error/Exception/Assert=0
