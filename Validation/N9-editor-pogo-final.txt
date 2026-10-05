@@ -1,0 +1,7 @@
+FAIL N9PogoRoute actual=Editor
+PASS course owns both abilities
+FAIL System.Exception: P01 input goal pogos=3
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00020] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\N5Runner.cs:34 
+  at N9PogoRoute+<Tests>d__16.MoveNext () [0x0052c] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\N9PogoRoute.cs:30 
+  at N5Runner+<Start>d__18.MoveNext () [0x000b6] in C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Assets\Scripts\Verification\N5Runner.cs:27 
+Error/Exception/Assert=0

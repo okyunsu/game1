@@ -1,0 +1,5 @@
+maxPogoHits=2
+approvedBossHP=28
+recovery=0.8
+windows=6 dashChain=True actualDeath=False
+Actual live recovery windows; FixedUpdate probe after damage. Virtual down attack + owned dash; no damage/HP writes or repositioning after setup.

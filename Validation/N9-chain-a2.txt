@@ -1,0 +1,41 @@
+PASS N9CombatVerifier actual=exe
+PASS fixture room A04
+PASS actual enemy A04
+PASS actual EnemyPatrol up damage
+PASS HitFeedback direction=1
+PASS actual EnemyPatrol down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyPatrol down damage
+PASS enemy down pogo
+PASS actual enemy death effect A04
+PASS fixture room B02
+PASS actual enemy B02
+PASS actual EnemyCharger up damage
+PASS HitFeedback direction=1
+PASS actual EnemyCharger down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyCharger down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyCharger down damage
+PASS enemy down pogo
+PASS actual enemy death effect B02
+PASS fixture room B03
+PASS actual enemy B03
+PASS actual EnemyTurret up damage
+PASS HitFeedback direction=1
+PASS actual EnemyTurret down damage
+PASS enemy down pogo
+PASS actual enemy death effect B03
+PASS fixture room C06
+MEASURE recovery window hits=2
+MEASURE recovery window hits=2
+MEASURE recovery window hits=2
+MEASURE recovery window hits=2
+MEASURE recovery window hits=2
+MEASURE recovery window hits=1
+MEASURE recovery=0.8 maxPogoHits=2 approvedBossHP=28
+PASS dash-chain live maximum coverage
+Error/Exception/Assert=0

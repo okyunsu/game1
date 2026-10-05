@@ -1,0 +1,11 @@
+FAIL RouteRunner actual=exe
+PASS recording prefix R01 
+PASS recording prefix R02 
+PASS recording prefix R03 
+PASS recording prefix R04 
+R05 attempt=1 ticks=160 startTeleport=False KNOWN-LIMIT actual death room=A04 pos=(23.08, 4.18)
+FAIL System.Exception: continuous recording R05 actual death room=A04 pos=(23.08, 4.18)
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <0bc716693a9f44dc94c7e964f914eb68>:0 
+  at RouteRunner+<Tests>d__21.MoveNext () [0x007bd] in <0bc716693a9f44dc94c7e964f914eb68>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <0bc716693a9f44dc94c7e964f914eb68>:0 
+Error/Exception/Assert=0

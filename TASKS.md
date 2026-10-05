@@ -162,6 +162,14 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 
 ## Bugs
 
+### N9-ROUTE-001 — R05 사망 및 이전 완주 판정 무효 / BLOCKED
+기존 FixedUpdate 관찰이 TimeScale0 사망을 놓치고 CP-A03 복귀를 R05 목표로 인정했다. 이전60fps 3회 CSV의 실제 A04 사망 확인으로 사망 없는 연속 완주 판정을 철회한다. 새 프레임 관찰과 입력 후보3개도 R05에서 사망; 도구 보정3회 한도 도달로 경로 수정 중단. 게임·보호 파일 추가 수정 없이 후보 비교는 독립 진행. Editor P01 고정 입력 재생도 목표 소진으로 BLOCKED(실제 exe Pogo3연속PASS와 구분). [상세](Validation/N9-route-recheck.txt).
+
+
+### N9-UI-001 — PogoTest 안내와 HUD 겹침 / DONE
+실제1280×720 화면에서 PogoTest 안내 x260이 기존 HUD 우측366까지 겹쳐 구간 번호 일부가 가려짐. 포고/구간 검증은 PASS이나 시각 검토에서 발견. 새 PogoTest 안내를 x390/font16/reference scaling으로 보정하고 실제 exe 화면 재촬영·시각 확인 완료. [화면](Validation/N9-course-ui-final.png), [검사](Validation/N9-course-ui-final.txt). 기존 HUD/UITuning/메인 배치 불변.
+
+
 ### N8-POGO-001 — 이전 차단 / N9 DEC-POGO-001로 해소
 보호된 KillZone→RoomSession 즉시 사망 호출과 ATK2 우선 처리 요구가 충돌한다. 기존 게임에서 포고를 실행해 관찰한 버그가 아니라, 미구현 경로의 설계/허용범위 차단이다. 판정 높이 확대·사망 상태 되돌리기·콜백 순서 추측으로 우회하지 않았다. ATK2 및 의존 PogoTest/S5-hard 중단, 독립 경로·촬영은 수행. 필요한 연결부 판단은 Decisions Needed N8-POGO-ORDER와 [근거](Validation/N8-ATK2.txt).
 
@@ -679,9 +687,9 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-### N9 진행 인계 — 1부 REVIEW / 2부 회귀 중
-포고·방향 공격 기술 증거 확보, 1부14/14 PASS. S5-hard(18씬) errors0/warnings0, 기존 위·좌우 검사PASS, PogoTest3구간/각 구간 사망복귀/소모한 능력 회복PASS, 보스3회 사망→처치→엔딩PASS. 현재 HP24(6개 자연 포고 회복 구간 관측 각1타). 난이도·포고 감각 사용자 수락 대기. 2부14회귀 및 승인된3부 FPS/패드 재확인·4부 후보 비교를 계속한다. 기존 검사 실패와 optional 캡처 한계는 [진행 기록](Validation/N9-progress.txt)에 보존. push 없음.
-
+### N9 중간 인계 — 포고·S5 REVIEW / 자동 연속 경로 BLOCKED / 후보 비교 진행
+최종 보스 HP28: 실제6회 회복 구간의 대시 포고 최대2타(자연 포고1타, 중간24는 이전 증거). 아래 공격·가시 선행 포고·몸 우선 사망·FPS 높이·미획득 보호 검증PASS, 소모 능력 회복은 PogoTest 실제 입력PASS. ATK2 원래 검사 마지막 fixture FAIL을 숨기지 않고 복합 증거로 분리. PogoTest actual exe3연속PASS, UI 겹침 실제 재촬영으로 해결. S5 실제3회 사망→보스→저장엔딩PASS/21.750s. Editor 고정 입력 P01 목표 소진FAIL.
+기존60fps 경로 PASS의 CSV에서 실제 R05 사망을 발견하여 연속 완주 판단 철회. 프레임 관찰 보정 뒤 입력 후보들도 실패, 보정3회 한도/동일 오류 반복으로 경로BLOCKED. 기본13은 Part3에서PASS, 15개 최종 게이트와 H1/H2/H3 독립 비교 진행. [진행](Validation/N9-progress.txt), [경로 한계](Validation/N9-route-recheck.txt). 보호파일 불변·push 없음.
 
 ### N8 최종 인계 — 승인 독립 작업 종료 / 포고 체인 BLOCKED
 요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](Validation/N8-route-summary.txt).

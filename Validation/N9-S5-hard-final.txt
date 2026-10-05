@@ -1,0 +1,8 @@
+PASS final S5 delivery HP28, build N9-S5-hard-final-build.txt18scenes/errors0/warnings0.
+IntermediateHP24 delivered build preserved as Builds/S5-hard-pre-final; source final stage also retained Builds/S5-hard-final.
+Renamed delivered executable+matching_Data folder to requested S5-hard names; actual delivered path re-tested.
+N9-S5-final-attack-up PASS all30/60/120+pad+horizontal; N9-S5-final-pogotest PASS all3+respawns+spent-owned refresh; N9-S5-final-boss-retry PASS3 deaths→victory→savedEnding/fight21.750s/Error0.
+N9-S5-final-pogo-composite overall FAIL at frozen original owned-spend fixture; all30/60/120 geometry/velocity/damage/one-pogo/miss/unowned/spike-deaths/apex checks preceding it PASS; spent-owned requirement independently PASS in final course. No hidden fourth checker correction.
+Final HUD/course screenshots PASS,1280x720 windowedD3D11/nonconstant/visually reviewed.
+PogoTest startup uses -pogotest, no title item/Editor Build Settings mutation; main save remains untouched by course.
+Actual existingphysics≈50Hz/.36u maxfall per tick; retained as protected setting despite attached60Hz rationale.

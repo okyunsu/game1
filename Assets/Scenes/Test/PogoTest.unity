@@ -157,6 +157,8 @@ MonoBehaviour:
   - {fileID: 1894643218}
   - {fileID: 1661550400}
   - {fileID: 1841426130}
+  guidePosition: {x: 390, y: 16}
+  guideFontSize: 16
 --- !u!114 &98258693
 MonoBehaviour:
   m_ObjectHideFlags: 0

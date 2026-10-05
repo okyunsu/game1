@@ -1,0 +1,1 @@
+PASS baseline6036b9e: protected existing scenes/prefabs/input/death/save/camera/GameState/Packages/ProjectSettings unchanged. Motor/Dash existing methods unchanged, additive public methods only. Original Tuning changes only Combat new fields and approved final BossHP28 (equals baseline28); new candidate copies separate.

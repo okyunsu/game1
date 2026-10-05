@@ -1,0 +1,7 @@
+PASS DisplayVerifier actual=exe
+PASS EOF screenshot texture
+PASS nonconstant screenshot variance=13752.620
+scene=A01 scenario=start actual=1280x720 fullscreen=Windowed graphics=Direct3D11 focused=True GUI-observed=True
+HUD rectangles observed in Repaint top=(x:16.00, y:16.00, width:350.00, height:118.00) abilities=(x:28.00, y:81.00, width:324.00, height:24.00) death=(x:0.00, y:336.00, width:1280.00, height:48.00); screenshot=C:\Users\gosu3\OneDrive\문서\ChatGPT\game1\Validation\N9-hud-final.png
+KNOWN-LIMIT focus loss/regain not forced; default focus settings preserved, no IgnoreFocus substitution
+Error/Exception/Assert=0

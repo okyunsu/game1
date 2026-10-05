@@ -1,0 +1,7 @@
+PASS RouteRunner actual=exe
+PASS segment-start scene setup C04
+PASS segment-start Entry
+R16 attempt=1 ticks=1392 startTeleport=True PASS
+PASS continuous recording R16 
+Training complete; per-segment outcomes are in library. Training success does not mean all-route acceptance.
+Error/Exception/Assert=0

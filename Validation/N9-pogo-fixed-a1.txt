@@ -1,0 +1,11 @@
+PASS N9PogoRoute actual=exe
+PASS course owns both abilities
+PASS P01 input goal pogos=3
+PASS P02 input goal pogos=2
+PASS P03 input goal pogos=1
+PASS P01 failure returns section start
+PASS P02 failure returns section start
+PASS P03 failure returns section start
+PASS owned abilities spent (ground jump then air jump/dash)
+PASS owned abilities restored by pogo
+Error/Exception/Assert=0

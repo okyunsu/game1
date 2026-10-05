@@ -1,0 +1,38 @@
+FAIL N9CombatVerifier actual=exe
+PASS fixture room A04
+PASS actual enemy A04
+PASS actual EnemyPatrol up damage
+PASS HitFeedback direction=1
+PASS actual EnemyPatrol down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyPatrol down damage
+PASS enemy down pogo
+PASS actual enemy death effect A04
+PASS fixture room B02
+PASS actual enemy B02
+PASS actual EnemyCharger up damage
+PASS HitFeedback direction=1
+PASS actual EnemyCharger down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyCharger down damage
+PASS HitFeedback direction=-1
+PASS enemy down pogo
+PASS actual EnemyCharger down damage
+PASS enemy down pogo
+PASS actual enemy death effect B02
+PASS fixture room B03
+PASS actual enemy B03
+PASS actual EnemyTurret up damage
+PASS HitFeedback direction=1
+PASS actual EnemyTurret down damage
+PASS enemy down pogo
+PASS actual enemy death effect B03
+PASS fixture room C06
+MEASURE recovery=0.8 maxPogoHits=0 approvedBossHP=24
+FAIL System.Exception: dash-chain live maximum coverage
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <eae9dc9b2c914675a5a7e59384299afa>:0 
+  at N9CombatVerifier+<Tests>d__6.MoveNext () [0x007d0] in <eae9dc9b2c914675a5a7e59384299afa>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <eae9dc9b2c914675a5a7e59384299afa>:0 
+Error/Exception/Assert=0

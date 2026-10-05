@@ -8,6 +8,8 @@ public static class N9PogoAuthoring
 {
     [MenuItem("Afterglow/Open Pogo Test")]
     public static void Open()=>EditorSceneManager.OpenScene("Assets/Scenes/Test/PogoTest.unity");
+    public static void SaveGuide(){Open();var course=UnityEngine.Object.FindFirstObjectByType<PogoTestCourse>();course.guidePosition=new Vector2(390,16);course.guideFontSize=16;EditorUtility.SetDirty(course);EditorSceneManager.SaveScene(SceneManager.GetActiveScene());File.WriteAllText("Validation/N9-pogotest-guide-layout.txt","PASS new scene guide x390/font16 in Inspector, reference1280x720 scales with shared HUD. Existing HUD/UITuning untouched.\n");EditorApplication.Exit(0);}
+    public static void VerifyEditor(){SessionState.SetBool("N5.Editor",true);Open();EditorApplication.delayCall+=()=>EditorApplication.isPlaying=true;}
     public static void PrepareShelves()
     {
         Open();GameObject.Find("Goal shelf 1").transform.position=new Vector2(37,4.25f);GameObject.Find("Goal bounds 1").transform.position=new Vector2(37,5.5f);

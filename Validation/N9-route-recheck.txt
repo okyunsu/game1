@@ -1,0 +1,8 @@
+N9 Part3 BLOCKED (actual death-free continuous route), Pogo exe PASS.
+Frozen original N8-route-final-library.json replay initially reported60a/b/c,120,padPASS,30FAIL. These old PASS files are not death-free acceptance: historical60a/b/c CSV each has A04death(22.055235,4.299); Fixed-only observer missed timeScale0 respawn and accepted CP-A03 return asR05goal. Source R05/damage does not need to have regressed to explain this.
+Frame observer correction exposes genuine R05 failure on fresh60 and30. c1(no dash/attacks16ticks)FAIL A04(23.85,4.16); continuous variant1FAIL(22.20,4.30); continuous variant5/down attackFAIL(23.08,4.18). Training b1 overallPASS includes R05 retry setup teleport+HP4 and is NOT all-route acceptance.
+Three mainRoute tool corrections exhausted. No further game/checker edits; this route and FPS death-free acceptance BLOCKED. All source/fixed libraries/failure files preserved. N9-route30-final-library.json has onlyR16 changed, but full replay failed R05, not accepted.
+PogoTest actual fixed exe final checker P01/P02/P03 + failures to each checkpoint + actual owned-spend/refresh: N9-pogo-fixed-a1/a2/a3 PASS consecutively. Stage3 recheck Pogo PASS.
+Editor same fixed library P01 reaches3pogos but exhausts goal input; N9-editor-pogo-final FAIL/Error0. PogoRoute3 corrections exhausted; Editor replay path BLOCKED, not claimed PASS.
+Current 15-item gate: previous Part3 14/15 (Pogo fixture failure); after fixture correction targeted RouteFAIL/PogoPASS. Final base13+these2 gate still required and must record actual outcome.
+Independent Part4 comparison uses original frozen60 library in all candidates, no input adaptation after failure.

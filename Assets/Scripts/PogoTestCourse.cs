@@ -7,6 +7,9 @@ public sealed class PogoTestCourse : MonoBehaviour
     [Header("Authored section starts / goals")]
     public Checkpoint[] starts;
     public BoxCollider2D[] goals;
+    [Header("Guide (1280×720 reference pixels)")]
+    [Tooltip("Guide top-left; keep clear of the shared HUD at x16..366.")] public Vector2 guidePosition=new Vector2(390,16);
+    [Min(10),Tooltip("Guide text size in reference pixels.")] public int guideFontSize=16;
     public int Section { get; private set; }
     public int Completed { get; private set; }
     public int SectionPogos => RoomSession.Instance.Player.GetComponent<PlayerAttack>().PogosPerformed-initialPogos;
@@ -31,7 +34,8 @@ public sealed class PogoTestCourse : MonoBehaviour
         if(needed&&p.GetComponent<PlayerMotor>().Grounded&&goals[Section].bounds.Contains(p.transform.position)){Completed=Mathf.Max(Completed,Section+1);Debug.Log("PogoTest P0"+(Section+1)+" goal");if(Section<2&&!N5Args.Has("-verify-pogotest"))StartCoroutine(Next());}
     }
     IEnumerator Next(){changing=true;yield return new WaitForSecondsRealtime(.6f);BeginSection(Section+1);changing=false;}
-    void OnGUI(){GUI.Label(new Rect(260,16,1000,50),"PogoTest "+(Section+1)+"/3 — "+new[]{"가시 위 포고 3회 후 오른쪽 착지","적 위 포고로 높은 선반","포고 → 더블 점프 → 대시"}[Section]+" | 공중 ↓+X / 스틱 아래+X");if(Completed==3)GUI.Label(new Rect(260,56,800,30),"3구간 완료 — Esc로 타이틀 복귀");}
+    GUIStyle guideStyle;
+    void OnGUI(){if(guideStyle==null||guideStyle.fontSize!=guideFontSize)guideStyle=new GUIStyle(GUI.skin.label){fontSize=guideFontSize,wordWrap=true};var old=GUI.matrix;float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));float width=Screen.width/scale-guidePosition.x-12;GUI.Label(new Rect(guidePosition.x,guidePosition.y,width,50),"PogoTest "+(Section+1)+"/3 — "+new[]{"가시 위 포고 3회 후 오른쪽 착지","적 위 포고로 높은 선반","포고 → 더블 점프 → 대시"}[Section]+" | 공중 ↓+X / 스틱 아래+X",guideStyle);if(Completed==3)GUI.Label(new Rect(guidePosition.x,guidePosition.y+54,width,40),"3구간 완료 — "+(RoomSession.Instance?.Player?.UsingGamepad==true?"Menu":"Esc")+" 일시정지 → 타이틀",guideStyle);GUI.matrix=old;}
 }
 public sealed class PogoTestLaunch : MonoBehaviour
 {

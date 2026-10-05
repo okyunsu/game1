@@ -47,7 +47,7 @@ if(Test-Path -LiteralPath $taskRouteLibrary){
  if(!$taskRouteBuildProcess.WaitForExit(300000)){Stop-Process -Id $taskRouteBuildProcess.Id;$taskRouteResult='FAIL build timeout'}
  elseif($taskRouteBuildProcess.ExitCode -ne 0 -or !(Test-Path -LiteralPath $taskRouteExe)){$taskRouteResult='FAIL build exit='+$taskRouteBuildProcess.ExitCode}
  else{
-  $taskRouteArgs=@('-verify-route','all','-verify-fps','60','-route-library',('"'+$taskRouteLibrary+'"'),'-verify-output',('"'+$taskRouteEvidence+'"'),'-save-path',"Logs/REG-$Tag-RouteAll-save.json",'-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-RouteAll.log")+'"'))
+  $taskRouteArgs=@('-verify-route','all','-verify-fps','60','-route-library',('"'+$taskRouteLibrary+'"'),'-verify-output',('"'+$taskRouteEvidence+'"'),'-save-path',"Logs/REG-$Tag-RouteAll-save.json",'-screen-width','1280','-screen-height','720','-screen-fullscreen','0','-force-d3d11','-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-RouteAll.log")+'"'))
   $taskRouteProcess=Start-Process $taskRouteExe -ArgumentList $taskRouteArgs -WorkingDirectory $taskRoot -WindowStyle Normal -PassThru
   if(!$taskRouteProcess.WaitForExit(300000)){Stop-Process -Id $taskRouteProcess.Id;$taskRouteResult='FAIL timeout'}
   elseif($taskRouteProcess.ExitCode -eq 0 -and (Test-Path -LiteralPath $taskRouteEvidence) -and (Get-Content -LiteralPath $taskRouteEvidence -First 1).StartsWith('PASS')){$taskRouteResult='PASS'}

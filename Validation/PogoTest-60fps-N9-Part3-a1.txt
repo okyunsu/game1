@@ -1,0 +1,14 @@
+FAIL N9PogoRoute actual=exe
+PASS course owns both abilities
+PASS P01 input goal pogos=3
+PASS P02 input goal pogos=2
+PASS P03 input goal pogos=1
+PASS P01 failure returns section start
+PASS P02 failure returns section start
+PASS P03 failure returns section start
+PASS owned abilities spent (ground jump then air jump/dash)
+FAIL System.Exception: owned abilities restored by pogo
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <080409724a554ee998bd705ac4eea653>:0 
+  at N9PogoRoute+<Tests>d__15.MoveNext () [0x009c8] in <080409724a554ee998bd705ac4eea653>:0 
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <080409724a554ee998bd705ac4eea653>:0 
+Error/Exception/Assert=0

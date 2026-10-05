@@ -1,0 +1,2 @@
+PASS new scene guide x390/font16 in Inspector, reference1280x720 scales with shared HUD. Existing HUD/UITuning untouched.
+Actual N9-course-ui-final.txt screenshotPASS1280x720/D3D11; N9-course-ui-final.png visually inspected clear of HUD. N9-UI-001 resolved.

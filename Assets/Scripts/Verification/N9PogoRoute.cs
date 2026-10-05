@@ -9,6 +9,7 @@ public sealed class N9PogoRoute : N5Runner
     RouteTickDriver driver;PogoTestCourse course;RouteLibrary library=new();RouteSegment segment;
     int index,previous,startPogos,state,stateTick;bool failed,done,release;double nextAttack;
     protected override void Cleanup(){if(driver!=null)driver.active=false;}
+    void Update(){if(driver!=null&&driver.active&&RoomSession.Instance?.Respawning==true){failed=true;driver.active=false;}}
     protected override IEnumerator Tests()
     {
         yield return Until(()=>FindFirstObjectByType<PogoTestCourse>()!=null&&Player!=null,"PogoTest boot");course=FindFirstObjectByType<PogoTestCourse>();yield return Ready();yield return new WaitForSecondsRealtime(.4f);
@@ -35,8 +36,9 @@ public sealed class N9PogoRoute : N5Runner
         course.BeginSection(0);yield return Keys();yield return Until(()=>Motor.Grounded,"refresh start ground");yield return Keys(Key.Z);yield return new WaitForSecondsRealtime(.15f);yield return Keys();yield return Tap(Key.Z);yield return Tap(Key.C);
         Check(!Motor.DoubleJumpAvailable&&Player.GetComponent<PlayerDash>().AirUsed,"owned abilities spent (ground jump then air jump/dash)");
         // The following drop is an authorized check setup, not a route replay.
-        yield return new WaitForSecondsRealtime(.25f);PlaceForAuthorizedSetup(new Vector2(11,3.8f));Body.linearVelocity=Vector2.down*Motor.Tuning.maxFallSpeed;yield return Keys(Key.DownArrow);int pogo=Player.GetComponent<PlayerAttack>().PogosPerformed;
-        yield return Keys(Key.DownArrow,Key.X);yield return Until(()=>Player.GetComponent<PlayerAttack>().PogosPerformed>pogo||RoomSession.Instance.Respawning,"owned refresh on target");
+        yield return new WaitForSecondsRealtime(.25f);PlaceForAuthorizedSetup(new Vector2(11,6.4f));Body.linearVelocity=Vector2.down*Motor.Tuning.maxFallSpeed;int pogo=Player.GetComponent<PlayerAttack>().PogosPerformed;bool fired=false;var attack=Player.GetComponent<PlayerAttack>();
+        driver.tick=0;driver.observe=null;driver.produce=()=>{int held=32;float gap=Player.GetComponent<BoxCollider2D>().bounds.min.y-.25f;if(!fired&&gap<=attack.tuning.downAttackHeight+Motor.Tuning.maxFallSpeed*(attack.tuning.attackStartup+.04f)){fired=true;held|=8;}return new N5InputTick{held=held};};driver.active=true;
+        yield return Until(()=>Player.GetComponent<PlayerAttack>().PogosPerformed>pogo||RoomSession.Instance.Respawning,"owned refresh on target");driver.active=false;yield return Keys();
         Check(!RoomSession.Instance.Respawning&&Motor.DoubleJumpAvailable&&!Player.GetComponent<PlayerDash>().AirUsed,"owned abilities restored by pogo");
     }
     N5InputTick Generate()

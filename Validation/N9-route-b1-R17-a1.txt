@@ -1,0 +1,27 @@
+PASS
+{
+    "id": "R17",
+    "startScene": "Ending",
+    "goal": "Menu",
+    "startPosition": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "dash": true,
+    "doubleJump": true,
+    "startHP": 0,
+    "limitSeconds": 25.0,
+    "inputs": [
+        {
+            "tick": 0,
+            "axis": 0.0,
+            "held": 16,
+            "pressed": 16,
+            "released": 0
+        }
+    ],
+    "passed": true,
+    "attempts": 1,
+    "result": "PASS"
+}
+Actual Unity fixed-tick virtual Keyboard; teleports only at segment start.

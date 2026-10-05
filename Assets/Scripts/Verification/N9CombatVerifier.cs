@@ -3,6 +3,13 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
+[DefaultExecutionOrder(200)]
+public sealed class N9BossPogoProbe : MonoBehaviour
+{
+    public BossEncounter boss;public int maximum,windows,current;
+    int hits;double phase=double.NaN;bool recovery;
+    void FixedUpdate(){if(boss==null)return;if(phase!=boss.PhaseStarted){if(recovery){maximum=Mathf.Max(maximum,current);windows++;}current=0;phase=boss.PhaseStarted;}recovery=boss.State is BossEncounter.Phase.MeleeRecovery or BossEncounter.Phase.WaveRecovery;if(recovery)current+=boss.Hits-hits;hits=boss.Hits;maximum=Mathf.Max(maximum,current);}
+}
 public sealed class N9CombatVerifier : N5Runner
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<N9CombatVerifier>("-verify-directional-enemies");
@@ -33,10 +40,12 @@ public sealed class N9CombatVerifier : N5Runner
             Check(HitFeedback.PopsCreated==pops+1,"actual enemy death effect "+id);Body.constraints=RigidbodyConstraints2D.FreezeRotation;
         }
         yield return Room("C06","FromLeft");var boss=FindFirstObjectByType<BossEncounter>();
+        bool chain=N5Args.Has("-pogo-dash-chain");if(chain){Motor.hasDoubleJump=true;Player.GetComponent<PlayerDash>().hasDash=true;}
         Health.RestoreMax();PlaceForAuthorizedSetup(new Vector2(17.5f,10));Body.linearVelocity=Vector2.down*Motor.Tuning.maxFallSpeed;yield return Keys(Key.DownArrow);
         driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;
-        double next=0;bool release=false;
-        driver.produce=()=>{var a=Player.GetComponent<PlayerAttack>();float gap=Player.GetComponent<BoxCollider2D>().bounds.min.y-boss.GetComponent<BoxCollider2D>().bounds.max.y;if(release){release=false;return new[]{Key.DownArrow};}if(Body.linearVelocity.y<0&&Time.timeAsDouble>=next&&gap<=a.tuning.downAttackHeight+Mathf.Abs(Body.linearVelocity.y)*(a.tuning.attackStartup+.04f)&&gap>.15f){release=true;next=Time.timeAsDouble+a.tuning.attackCooldown+.02;return new[]{Key.DownArrow,Key.X};}return new[]{Key.DownArrow};};
+        var probe=gameObject.AddComponent<N9BossPogoProbe>();probe.boss=boss;
+        double next=0,dashReady=0;int seenPogos=Player.GetComponent<PlayerAttack>().PogosPerformed;bool release=false;
+        driver.produce=()=>{var a=Player.GetComponent<PlayerAttack>();if(chain&&a.PogosPerformed!=seenPogos&&Time.timeAsDouble>=dashReady&&Time.timeAsDouble-a.LastPogoAt>=.12){seenPogos=a.PogosPerformed;dashReady=Time.timeAsDouble+Motor.Tuning.dashCooldown;return new[]{Key.DownArrow,Key.C};}float gap=Player.GetComponent<BoxCollider2D>().bounds.min.y-boss.GetComponent<BoxCollider2D>().bounds.max.y;if(release){release=false;return new[]{Key.DownArrow};}if(Body.linearVelocity.y<0&&Time.timeAsDouble>=next&&gap<=a.tuning.downAttackHeight+Mathf.Abs(Body.linearVelocity.y)*(a.tuning.attackStartup+.04f)&&gap>.15f){release=true;next=Time.timeAsDouble+a.tuning.attackCooldown+(chain?0:.02);return new[]{Key.DownArrow,Key.X};}return new[]{Key.DownArrow};};
         int maximum=0,current=0,windows=0,lastHits=boss.Hits;double phase=boss.PhaseStarted;bool wasRecovery=false;double deadline=Time.realtimeSinceStartupAsDouble+25;
         while(windows<6&&boss.HP>0&&!RoomSession.Instance.Respawning&&Time.realtimeSinceStartupAsDouble<deadline)
         {
@@ -44,10 +53,11 @@ public sealed class N9CombatVerifier : N5Runner
             if(phase!=boss.PhaseStarted){if(wasRecovery){maximum=Mathf.Max(maximum,current);windows++;lines.Add("MEASURE recovery window hits="+current);}current=0;phase=boss.PhaseStarted;}
             if(recovery)current+=boss.Hits-lastHits;lastHits=boss.Hits;wasRecovery=recovery;yield return null;
         }
-        driver.produce=null;yield return Keys();Check(windows==6&&!RoomSession.Instance.Respawning,"six live boss recovery windows without death");
-        maximum=Mathf.Max(maximum,current);int selected=maximum>=4?32:maximum<=1?24:28;
+        driver.produce=null;yield return Keys();if(!chain)Check(windows==6&&!RoomSession.Instance.Respawning,"six live boss recovery windows without death");
+        maximum=Mathf.Max(probe.maximum,Mathf.Max(maximum,current));int selected=maximum>=4?32:maximum<=1?24:28;
         lines.Add("MEASURE recovery="+boss.tuning.recovery+" maxPogoHits="+maximum+" approvedBossHP="+selected);
-        string measure=N5Args.Value("-pogo-measure","Validation/N9-boss-pogo-measure.txt");if(File.Exists(measure))throw new IOException("Preserve "+measure);File.WriteAllText(measure,"maxPogoHits="+maximum+"\napprovedBossHP="+selected+"\nrecovery="+boss.tuning.recovery+"\nSix consecutive actual live recovery windows, virtual down attack, no damage/HP writes or repositioning after setup.\n");
+        string measure=N5Args.Value("-pogo-measure","Validation/N9-boss-pogo-measure.txt");if(File.Exists(measure))throw new IOException("Preserve "+measure);File.WriteAllText(measure,"maxPogoHits="+maximum+"\napprovedBossHP="+selected+"\nrecovery="+boss.tuning.recovery+"\nwindows="+probe.windows+" dashChain="+chain+" actualDeath="+RoomSession.Instance.Respawning+"\nActual live recovery windows; FixedUpdate probe after damage. Virtual down attack"+(chain?" + owned dash":"")+"; no damage/HP writes or repositioning after setup.\n");
+        if(chain){Check(probe.windows>0&&maximum>0,"dash-chain live maximum coverage");yield break;}
         // Isolate geometry for both boss directional damage checks, then use actual attacks to defeat.
         Body.constraints=RigidbodyConstraints2D.FreezeAll;boss.GetComponent<BoxCollider2D>().isTrigger=true;
         int popsBefore=HitFeedback.PopsCreated;yield return Strike(boss,1);yield return Strike(boss,-1);
