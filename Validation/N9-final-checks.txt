@@ -1,0 +1,7 @@
+PASS protected source/files/settings/library/LEVEL_PROPOSALS unchanged from6036b9e. Original tuning only approved Combat new fields; BossHP28 equals baseline28. Motor/Dash diff additive methods only.
+PASS final regression actual14/15, not allPASS; base13+PogoPASS/RouteR05FAIL and Editor replay blocked.
+PASS requested S5 executable/DLL identical to final clean build; actual delivered up/Pogo/BossRetry/display checksPASS/Error0.
+S5 exeSHA256=E1A9D9E062BBCDB91F76983FAE8BB1E4FB8036D55289318EF91033F130D38ECC
+PASS corrected candidate runtime values and three BossRetryEnding tests, fixed route failure locations recorded; original tuning hashes unchanged.
+PASS all actual PNG final capture viewed; old/failure evidence retained. Candidate title label compiled present (no title screenshot claim).
+PASS all Unity/game/crash handler processes0; no push.

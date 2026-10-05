@@ -19,7 +19,7 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
-2026-10-06 **N9 DOING**: 사용자 계획 승인에 따라 아래 공격 FixedUpdate·포고 체인, PogoTest/S5-hard, 경로 재검증, H1/H2/H3 비교 빌드를 수행. DEC-POGO-001로 N8 설계 차단 해소. [원문](Validation/N9-approved-request.txt).
+2026-10-06 **N9 종료 — PARTIAL**: ATK2/3/4·PogoTest 기술 확인/REVIEW, S5-hard 최종 exe 지정 동작·후보3개 보스 재시도PASS. 최종 회귀14/15(기본13+PogoPASS, RouteR05FAIL). 이전 N8 경로 목표 오판을 발견해 완주 판단 철회/경로BLOCKED, Editor Pogo 재생BLOCKED. 사용자 감각·후보 선택 대기. [최종 인계](Validation/N9-final-handoff.md).
 
 
 2026-10-06 **N8 종료 — PARTIAL / 경로 후속 BLOCKED**: N9 CSV 감사로 R05 사망을 놓친 이전 연속 완주 판단은 무효이며, 경로 Task를 BLOCKED로 되돌림. 아래 PASS 표기는 당시 검사 출력의 이력이다. 상향 공격 REVIEW, 포고·PogoTest·S5-hard BLOCKED(보호된 사망 처리 연결부 변경 필요). 동일 기록의 실제 exe 전체 완주 60fps 3회·30/120fps·패드 PASS, 기본 회귀13개와 추가 RouteAll-60fps PASS, 사망 화면8장 검증. N7 soak 기존 증거 검토 완료. [최종 인계](Validation/N8-final-handoff.md).
@@ -163,7 +163,7 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 ## Bugs
 
 ### N9-ROUTE-001 — R05 사망 및 이전 완주 판정 무효 / BLOCKED
-기존 FixedUpdate 관찰이 TimeScale0 사망을 놓치고 CP-A03 복귀를 R05 목표로 인정했다. 이전60fps 3회 CSV의 실제 A04 사망 확인으로 사망 없는 연속 완주 판정을 철회한다. 새 프레임 관찰과 입력 후보3개도 R05에서 사망; 도구 보정3회 한도 도달로 경로 수정 중단. 게임·보호 파일 추가 수정 없이 후보 비교는 독립 진행. Editor P01 고정 입력 재생도 목표 소진으로 BLOCKED(실제 exe Pogo3연속PASS와 구분). [상세](Validation/N9-route-recheck.txt).
+기존 FixedUpdate 관찰이 TimeScale0 사망을 놓치고 CP-A03 복귀를 R05 목표로 인정했다. N8 6회 및 N9 초기60fps 3회 CSV의 실제 A04 사망 확인으로 의도한 R05 출구·G-D 통과를 포함한 연속 완주 판정을 철회한다. 새 프레임 관찰과 입력 후보3개도 R05에서 사망; 도구 보정3회 한도 도달로 경로 수정 중단. 게임·보호 파일 추가 수정 없이 후보 비교는 독립 진행. Editor P01 고정 입력 재생도 목표 소진으로 BLOCKED(실제 exe Pogo3연속PASS와 구분). [상세](Validation/N9-route-recheck.txt).
 
 
 ### N9-UI-001 — PogoTest 안내와 HUD 겹침 / DONE
@@ -691,9 +691,25 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ## Latest Handoff
 
-### N9 중간 인계 — 포고·S5 REVIEW / 자동 연속 경로 BLOCKED / 후보 비교 진행
-최종 보스 HP28: 실제6회 회복 구간의 대시 포고 최대2타(자연 포고1타, 중간24는 이전 증거). 아래 공격·가시 선행 포고·몸 우선 사망·FPS 높이·미획득 보호 검증PASS, 소모 능력 회복은 PogoTest 실제 입력PASS. ATK2 원래 검사 마지막 fixture FAIL을 숨기지 않고 복합 증거로 분리. PogoTest actual exe3연속PASS, UI 겹침 실제 재촬영으로 해결. S5 실제3회 사망→보스→저장엔딩PASS/21.750s. Editor 고정 입력 P01 목표 소진FAIL.
-기존60fps 경로 PASS의 CSV에서 실제 R05 사망을 발견하여 연속 완주 판단 철회. 프레임 관찰 보정 뒤 입력 후보들도 실패, 보정3회 한도/동일 오류 반복으로 경로BLOCKED. 기본13은 Part3에서PASS, 15개 최종 게이트와 H1/H2/H3 독립 비교 진행. [진행](Validation/N9-progress.txt), [경로 한계](Validation/N9-route-recheck.txt). 보호파일 불변·push 없음.
+### N9 최종 인계 — PARTIAL / 사용자 감각·후보 선택 대기
+
+총 **103.1분(06:54~08:37 KST)**. **ATK-2/3/4 기술 확인·REVIEW / PogoTest REVIEW / S5-hard 빌드·지정 동작 PASS / 최종 회귀14/15 / 자동 경로·Editor 재생 BLOCKED**. [5분 인계](Validation/N9-final-handoff.md).
+
+최종 본편 `Builds/S5-hard/Afterglow-S5-hard.exe`, 포고는 같은 폴더 `PogoTest 실행.bat`. 18씬/errors0/warnings0. 실제 배포 exe의 위·좌우·FPS/가상패드 공격, 포고3구간·각 구간 사망복귀·소모 능력 회복, 보스3회 사망→처치→저장엔딩PASS(21.734s), Error0. 최종 안내 화면 재촬영·시각 확인PASS. 실제 대시 포고6회복구간 최대2타 → 최종 보스 HP28, 중간24 증거 보존. 원래 ATK2 마지막 fixture FAIL은 보존하고, 실제 PogoTest 소모/회복 증거로 분리했다.
+
+| 후보 | 플레이어 HP/무적(s) | 보스HP | 고정 경로 | 보스 재시도·처치(s) |
+| --- | --- | --- | --- | --- |
+| H1 현재 Hard | 4/0.8 | 28 | FAIL R05 A04(22.055,4.299) 사망 | PASS 21.734 |
+| H2 빠른 적·보스 | 4/0.7 | 32 | FAIL R06 다른 출구, 사망 없음 | PASS 21.784 |
+| H3 H2 전투·실수 허용 | 5/1.0 | 32 | FAIL R06 같은 입력 불일치 | PASS 21.767 |
+
+후보는 `Builds/H1`, `H2`, `H3`. 원본 설정 해시 불변, 복사 Asset/Prefab으로18씬 재변환·실행 수치 확인. 초기 캐시 누락 및 legacy모드 결과는 무효로 보존. [유효 비교표](Validation/N9-difficulty-final.txt).
+
+최종 기본13/13+Pogo1/1 PASS, Route1FAIL([회귀](Validation/REG-N9-final-summary.txt)). N8 원본6회 및 N9 초기60fps CSV에서 R05 사망을 확인했다. 기존 FixedUpdate 관찰이 CP-A03 복귀를 목표로 인정해 의도한 귀환 출구·G-D 통과를 검사하지 못했으므로 이전 연속 완주 판단을 철회. 새 관찰과 입력 후보도 반복실패/보정3회한도로 경로BLOCKED. H2/H3 R06 불일치도 기존 입력의 체크포인트 시작 가정에서 발생, 사람이 못 깬다는 뜻은 아니다. Editor P01은3포고 후 목표 입력 소진FAIL/Error0, 추가 보정중단. [경로 한계](Validation/N9-route-recheck.txt), [N8 CSV 감사](Validation/N9-N8-route-csv-audit.txt).
+
+사용자 확인: 각 후보10분 후 하나 선택, PogoTest10분(포고 높이·박스·능력 회복), 본편 완주(쉬움·불공정), LEVEL_PROPOSALS 후보 선택. CombatTuning.asset의 pogoVelocity/pogoRefreshesAir/downAttackHeight, BossTuning.asset maxHP, 새 PogoTest Scene/표적 Prefab에서 수정한다. Play 종료 후 Scene 재입력·저장, Asset 원하는 값 명시적 저장. 자동 후보 채택 없음.
+
+주요 파일: PlayerAttack/CombatTuning/PogoTarget/PogoTestCourse/GameHUD, 새 PogoTest Scene·PogoTarget Prefab, N9Build·Verification, GAME_DESIGN/TASKS/README. Motor/Dash는 새public메서드만. 기존 입력·사망·저장·카메라·GameState·Scene/Prefab·Packages/ProjectSettings·LEVEL_PROPOSALS 불변. 실패/실제증거 보존, 모든 검사 프로세스 종료, 단계별 로컬 커밋·push없음. 다음 작업은 사용자 확인 또는 별도 승인된 경로 추가 탐색만, Sprint3 Gate 유지.
 
 ### N8 최종 인계 — 승인 독립 작업 종료 / 포고 체인 BLOCKED
 요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](Validation/N8-route-summary.txt).
