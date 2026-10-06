@@ -624,6 +624,8 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 `Test ID / 일시 / 빌드·수치 버전 / 참가자 코드·숙련도 / 입력 장치 / 전체 활동 시간 / A·B·C 시간 / 방별 사망·반복 사망 / 길 잃음 위치 / 능력 후 첫 행동 / 게이트 기억·복귀 / 보스 재시도 / 방향 오판 / 관찰 메모 / 증거 위치`
 
 ## Design Decision / Before-After
+### PROC-001 — 3단계 운영 전환
+2026-10-06 사용자 결정. 3단계 운영으로 전환: 기존 회귀 재사용, 새 검증 도구 금지, 체감 항목은 직접 QA, 애매한 검증 결과로 게임 변경을 자동 복원하지 않음. 근거: [PROCESS_METRICS.md 2단계 회고](PROCESS_METRICS.md). 규칙 전문은 [AGENTS](AGENTS.md), [사용자 승인 계획](Validation/S3SW-approved-request.txt). 구현 세부 판단: 기능은 독립 플레이 결과를 가진 승인 Task 단위로 묶고, 종속 산출물과 KNOWN-LIMIT을 BLOCKED 수에 중복 합산하지 않았다.
 
 ### DEC-POGO-001 — N9 포고 순서 규칙 확정
 사용자가 동일 프레임 포고 우선 규칙을 폐기하고 몸이 가시에 먼저 닿으면 사망하도록 결정. 아래 공격만 FixedUpdate에서 처리, 공통 Time.timeAsDouble 시계 사용. KillZone/RoomSession 불변. 실제30/60/120fps 조기 포고 생존·몸 우선 사망·최고높이2.128u 동일 확인. 능력 소모/회복은 실제 PogoTest 입력으로 검증. [근거](Validation/N9-ATK2.txt).
@@ -690,6 +692,8 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+2026-10-06 **PROC-001 DONE** — 문서만 변경: [3단계 운영 규칙](AGENTS.md)·[실행 지표/1회 회고](PROCESS_METRICS.md)·[사용자 QA 요약 1쪽](Validation/S3SW-user-qa.md). Unity 미실행, 기존 N9 인계 그대로 유지, 새 플레이 기능0, push 없음.
 
 ### N9 최종 인계 — PARTIAL / 사용자 감각·후보 선택 대기
 

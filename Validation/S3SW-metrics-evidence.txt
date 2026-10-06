@@ -1,0 +1,92 @@
+f29b8ab 2026-10-02T23:48:05+09:00 docs: Sprint 1 gate conditional pass and carried-over reviews
+3d8c9bd 2026-10-02T23:52:20+09:00 docs: break down Sprint 2 tasks
+6c696be 2026-10-03T00:00:09+09:00 feat: S2-01 integrate dash, health, attack and E1 into slice rooms
+a96f720 2026-10-03T00:06:54+09:00 feat: S2-02 add A05 dash pickup and safe practice
+41c2d19 2026-10-03T00:13:18+09:00 test: record S2-03 failures and restore approved baseline
+777e2c0 2026-10-03T00:23:46+09:00 feat: S2-04 save and continue
+5029ad0 2026-10-03T00:27:00+09:00 build: S2 night build
+7b48ef4 2026-10-03T00:29:10+09:00 docs: hand off S2 night results and carried reviews
+3c70614 2026-10-03T11:43:02+09:00 feat: K1 arrow/Z/X/C keyboard layout per user playtest
+e9ed368 2026-10-03T11:47:14+09:00 test: record K2 failures and preserve camera baseline
+a46b72d 2026-10-03T11:51:42+09:00 feat: K3 A03 dash gate and B01 placeholder (retry)
+b7adde2 2026-10-03T11:54:52+09:00 build: S2 day build
+c28da2e 2026-10-03T11:55:45+09:00 docs: hand off K1-K3 and S2 day validation
+a097a4e 2026-10-03T12:39:21+09:00 docs: Sprint 2 gate pass and Target 15-room scope
+59ef631 2026-10-03T12:40:43+09:00 docs: break down Sprint 3 tasks
+e1137cc 2026-10-03T12:45:27+09:00 feat: S3-01 double jump system (unowned in rooms)
+82a9c53 2026-10-03T12:50:43+09:00 feat: S3-02 E2 charger enemy in CombatTest
+a657a38 2026-10-03T12:54:36+09:00 level: S3-03 B01 G-J ledge and B02 with E2
+c60bb5d 2026-10-03T13:02:11+09:00 feat: S3-04 E3 turret and B03
+1cf6dff 2026-10-03T13:06:05+09:00 feat: S3-05 B04 double jump pickup and B05 placeholder
+6b54d74 2026-10-03T13:14:34+09:00 build: S3 B-region build
+c3bd8f5 2026-10-03T13:15:53+09:00 docs: hand off S3 B-region validation and local-only push result
+77aac15 2026-10-03T15:57:22+09:00 docs: accept S3-01~05 and record B02 intro decision
+e517002 2026-10-03T16:02:00+09:00 level: S3-06 move B02 E2 to x17 for visible intro
+bcb95cf 2026-10-03T16:05:57+09:00 level: S3-07 B05 link, C01 rest and C02 combo
+c725cdc 2026-10-03T16:10:06+09:00 level: S3-08 C03 mixed route and C04 rest
+ca0af07 2026-10-03T16:12:07+09:00 docs: record S3-09 visibility block and skip dependent S3-10
+e7eee59 2026-10-03T16:16:29+09:00 build: S3 full build
+c88412d 2026-10-03T16:17:55+09:00 docs: hand off S3 full results and visibility decision
+f5ab8c8 2026-10-03T22:37:33+09:00 docs: record F1 feedback failures and restore stage
+9d04dca 2026-10-03T22:53:19+09:00 docs: record narrow boss failures and skip ending
+5eddee4 2026-10-03T22:58:13+09:00 build: S3 complete build
+56aa13b 2026-10-03T23:00:05+09:00 docs: hand off F1 and narrow boss failures with restored build
+5c54277 2026-10-03T23:34:19+09:00 docs: F1 v2 regression failure and experimental build evidence
+a969663 2026-10-03T23:42:41+09:00 feat: S3-09 C06 boss in narrow follow-camera arena
+3beed76 2026-10-03T23:50:15+09:00 feat: S3-10 ending, save and title flow
+3ea3e8a 2026-10-03T23:59:13+09:00 build: S3 complete build v2
+6c5a3ae 2026-10-04T00:02:43+09:00 docs: S3 v2 final handoff
+7ca75e6 2026-10-04T01:50:56+09:00 docs: record approved F2 LOG scope and user observation
+dfe00b4 2026-10-04T02:03:18+09:00 docs: F2 regression failure, full rollback and verified baseline
+f6c2b04 2026-10-04T02:04:21+09:00 docs: LOG blocked by missing observation events; no S4-pre build
+bd7d5c2 2026-10-04T02:04:49+09:00 docs: F2 LOG final handoff and preserved S3 context
+b5e9828 2026-10-04T02:31:40+09:00 docs: approve D0 F2R LOGR baseline comparison scope
+0a769f6 2026-10-04T02:35:15+09:00 test: diagnose unchanged baseline and directly measure T2 lock
+7350171 2026-10-04T02:49:19+09:00 feat: restore F2 visual feedback with baseline regression comparison
+531c51e 2026-10-04T02:53:25+09:00 feat: add polling playtest CSV logger without gameplay changes
+3da46e9 2026-10-04T02:59:03+09:00 build: S4-pre visual feedback and playtest logging verified
+80c9dbf 2026-10-04T03:01:07+09:00 docs: D0 F2R LOGR final handoff and user review checklist
+3fdcf8f 2026-10-04T03:15:47+09:00 docs: record approved TM U0 U1 build scope
+a480ddf 2026-10-04T03:23:05+09:00 test: repair lifecycle checks and establish passing regression suite
+c946876 2026-10-04T03:23:51+09:00 docs: audit PRD UI scope before display-only changes
+fba51b3 2026-10-04T03:35:39+09:00 feat: add read-only unified HUD first notice and respawn overlay
+4e99845 2026-10-04T03:45:08+09:00 build: verify S4-pre2 UI executable and record final handoff
+e7ad28c 2026-10-04T11:47:09+09:00 docs: preserve approved night4 queue
+7c224af 2026-10-04T11:52:46+09:00 test: record night4 initial sandbox licensing limit
+d9f0363 2026-10-04T11:53:18+09:00 test: record Q0 corrected regression and Q1 save robustness bug
+bb2bc05 2026-10-04T11:56:28+09:00 test: record night4 Q1 evidence and limits
+c4965e8 2026-10-04T12:00:52+09:00 test: record night4 Q2 evidence and limits
+5b77bec 2026-10-04T12:04:17+09:00 test: record night4 Q3 evidence and limits
+f37ebbd 2026-10-04T12:07:27+09:00 test: record night4 Q4 evidence and limits
+20567d5 2026-10-04T12:10:37+09:00 test: record night4 Q5 evidence and limits
+8014292 2026-10-04T12:15:34+09:00 build: create isolated night4 feedback candidates and verify executables
+abd321c 2026-10-04T12:20:26+09:00 build: create isolated night4 feedback candidates and verify executables
+778080e 2026-10-04T12:27:00+09:00 test: record night4 capture limit and final regression
+483a6ad 2026-10-04T12:29:12+09:00 docs: hand off night4 results candidates save bug and validation limits
+9559d4d 2026-10-04T15:19:33+09:00 docs: preserve reviewed night5 approved scope
+ce35811 2026-10-04T15:27:43+09:00 fix: handle invalid save data and verify four exe corruption cases
+df46a03 2026-10-04T15:34:50+09:00 test: add opt-in save-failure tool and document traversal limit
+b3c5bfb 2026-10-04T15:48:01+09:00 test: verify boss death checkpoint reentry three times and input victory
+bdb0a35 2026-10-04T15:51:49+09:00 test: add fixed-tick input recording and replay with five deterministic checks
+ccb72fd 2026-10-04T15:58:12+09:00 test: execute fps segment matrix and preserve invalid gate scope
+e22dd88 2026-10-04T16:03:37+09:00 test: add real-time soak runner and document two failed tool attempts
+28f9eae 2026-10-04T16:12:51+09:00 test: capture seven display scenes in eight modes with nonblack PNG evidence
+baaaae0 2026-10-04T16:26:20+09:00 test: hand off S4-pre3 build validation route limits and night5 evidence
+a072619 2026-10-05T01:17:46+09:00 docs: preserve N6 stopped preflight and N7 request
+75322be 2026-10-05T01:17:46+09:00 docs: define N7 directional attack pogo and hard candidate scope
+05af5d0 2026-10-05T01:45:47+09:00 feat: preserve normal profile and validate N7 hard candidates
+7d9a182 2026-10-05T01:45:47+09:00 docs: propose six optional N7 level changes with scene coordinates
+9fb4784 2026-10-05T01:45:48+09:00 test: hand off N7 partial checks and attack input scope blocker
+bb6ad1f 2026-10-05T01:46:42+09:00 docs: record restored attack regression and hard-only diagnostic build
+fb7b8b2 2026-10-06T00:28:53+09:00 Record completed N7 120 minute soak evidence
+5bc1d3d 2026-10-06T00:36:40+09:00 N8 approve request and validate vertical keyboard bindings
+1feca94 2026-10-06T00:41:21+09:00 N8 validate upward attack and record protected pogo death-order blocker
+8b2518a 2026-10-06T00:42:57+09:00 N8 confirm N7 soak and capture eight visible death screens
+b22dd9c 2026-10-06T01:16:42+09:00 N8 record route segments and continuous exe replay with regression tooling
+6036b9e 2026-10-06T01:52:55+09:00 Finalize N8 route validation and partial attack handoff
+b33be82 2026-10-06T07:17:14+09:00 Implement N9 fixed-step pogo and directional combat validation
+7ab53db 2026-10-06T07:27:20+09:00 Build and verify S5 hard with reusable PogoTest course
+87fca2e 2026-10-06T08:16:51+09:00 Validate final pogo chain and disclose continuous route checker limits
+27aa859 2026-10-06T08:29:19+09:00 Build distinct N9 difficulty candidates and verify actual runtime tuning
+4625757 2026-10-06T08:37:54+09:00 Finalize N9 delivery evidence and partial validation handoff
+Activity intervals calculated from author timestamps (%aI); not actual work time. Functional/blocked counts are manual source-grounded task grouping, with skipped/known-limit exclusions documented in PROCESS_METRICS.md. No Unity/code/test changes.
