@@ -1,0 +1,142 @@
+S3T01 approved Builds cleanup; 2026-10-06T23:28:20.2940066+09:00 Authorization source: user requested execution of codex_S3T01_levels.md; section 4 explicitly says user approved 2026-10-06 and keep only eight named folders. Preserve: S5-levels, S5-hard, S4-pre3, S3-complete, Slice, H1, H2, H3 _tmp retained only during current execution. Planned folder names, recorded before any deletion:
+Experimental-F1
+H1-invalid-initial
+H1-v2
+H2-invalid-initial
+H2-v2
+H3-invalid-initial
+H3-v2
+N1
+N5-AB
+N5-AB-r2
+N5-BC-tools
+N5-DE-tools
+N5-Part1
+N5-r2-tools
+N5-TF-A02
+N5-TF-A02-r2
+N5-TF-A04
+N5-TF-B04
+N5-TF-C06
+N5-TF-Ending
+N5-TF-Menu
+N5-TG-probe
+N7-hard-capture
+N7-hard-capture-a2
+N7-hard-only
+N7-hard-verify
+N7-hard-verify-a2
+N8-route-tools
+N8-route-tools-a2
+N9-atk2-a1
+N9-atk2-a2
+N9-atk2-a3
+N9-atk2-a4
+N9-chain-a1
+N9-chain-a2
+N9-combat-a1
+N9-combat-a2
+N9-route-fix-d1
+N9-route-fix-e1
+N9-stage3-fix-a1
+Q6-A
+Q6-A-attempt1
+Q6-B
+Q6-B-attempt1
+Q6-C
+Q6-C-attempt1
+Q7-capture
+REG-route-N8-route-gate-exe
+REG-route-N8-route-gate-final
+REG-route-N8-route-gate-robust
+REG-route-N8-route-gate-v2
+REG-route-N9-final
+REG-route-N9-Part1-a2
+REG-route-N9-Part2-a1
+REG-route-N9-Part3-a1
+REG-route-N9-Part3-recheck-a1
+S1-01
+S2-day
+S2-night
+S2-save-check
+S3-10-verification
+S3-B
+S3-full
+S4-pre
+S4-pre2
+S5-hard-final
+S5-hard-pre-final
+S5-hard-pre-ui
+S5-hard-ui-final
+DELETED Experimental-F1
+DELETED H1-invalid-initial
+DELETED H1-v2
+DELETED H2-invalid-initial
+DELETED H2-v2
+DELETED H3-invalid-initial
+DELETED H3-v2
+DELETED N1
+DELETED N5-AB
+DELETED N5-AB-r2
+DELETED N5-BC-tools
+DELETED N5-DE-tools
+DELETED N5-Part1
+DELETED N5-r2-tools
+DELETED N5-TF-A02
+DELETED N5-TF-A02-r2
+DELETED N5-TF-A04
+DELETED N5-TF-B04
+DELETED N5-TF-C06
+DELETED N5-TF-Ending
+DELETED N5-TF-Menu
+DELETED N5-TG-probe
+DELETED N7-hard-capture
+DELETED N7-hard-capture-a2
+DELETED N7-hard-only
+DELETED N7-hard-verify
+DELETED N7-hard-verify-a2
+DELETED N8-route-tools
+DELETED N8-route-tools-a2
+DELETED N9-atk2-a1
+DELETED N9-atk2-a2
+DELETED N9-atk2-a3
+DELETED N9-atk2-a4
+DELETED N9-chain-a1
+DELETED N9-chain-a2
+DELETED N9-combat-a1
+DELETED N9-combat-a2
+DELETED N9-route-fix-d1
+DELETED N9-route-fix-e1
+DELETED N9-stage3-fix-a1
+DELETED Q6-A
+DELETED Q6-A-attempt1
+DELETED Q6-B
+DELETED Q6-B-attempt1
+DELETED Q6-C
+DELETED Q6-C-attempt1
+DELETED Q7-capture
+DELETED REG-route-N8-route-gate-exe
+DELETED REG-route-N8-route-gate-final
+DELETED REG-route-N8-route-gate-robust
+DELETED REG-route-N8-route-gate-v2
+DELETED REG-route-N9-final
+DELETED REG-route-N9-Part1-a2
+DELETED REG-route-N9-Part2-a1
+DELETED REG-route-N9-Part3-a1
+DELETED REG-route-N9-Part3-recheck-a1
+DELETED S1-01
+DELETED S2-day
+DELETED S2-night
+DELETED S2-save-check
+DELETED S3-10-verification
+DELETED S3-B
+DELETED S3-full
+DELETED S4-pre
+DELETED S4-pre2
+DELETED S5-hard-final
+DELETED S5-hard-pre-final
+DELETED S5-hard-pre-ui
+DELETED S5-hard-ui-final
+Temporary folders recorded before end cleanup: REG-route-S3T01-a1, REG-route-S3T01-final, S3T01-probe-a1, S3T01-probe-a2, S3T01-probe-a3
+DELETED _tmp (created in this run; end cleanup) 2026-10-06T23:55:38.3079650+09:00
+Final folders: H1, H2, H3, S3-complete, S4-pre3, S5-hard, S5-levels, Slice

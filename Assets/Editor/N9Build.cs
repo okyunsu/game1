@@ -65,8 +65,10 @@ public sealed class N9Build : IProcessSceneWithReport
             }
         }
         string[] ids={"Menu","A01","A02","A03","A04","A05","B01","B02","B03","B04","B05","C01","C02","C03","C04","C06","Ending","Test/PogoTest"};
-        Directory.CreateDirectory("Builds/"+tag);
-        var r=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=ids.Select(id=>"Assets/Scenes/"+id+".unity").ToArray(),locationPathName="Builds/"+tag+"/Afterglow-"+tag+".exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.CleanBuildCache,extraScriptingDefines=candidate==null?Array.Empty<string>():new[]{"N9_"+candidate}});
+        string buildRoot=N5Args.Value("-build-root","Builds");
+        if(buildRoot!="Builds"&&buildRoot!="Builds/_tmp")throw new ArgumentException("Builds or Builds/_tmp only");
+        Directory.CreateDirectory(buildRoot+"/"+tag);
+        var r=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=ids.Select(id=>"Assets/Scenes/"+id+".unity").ToArray(),locationPathName=buildRoot+"/"+tag+"/Afterglow-"+tag+".exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.CleanBuildCache,extraScriptingDefines=candidate==null?Array.Empty<string>():new[]{"N9_"+candidate}});
         if(!File.Exists("Validation/N9-"+tag+"-scene-map.txt")||File.ReadAllLines("Validation/N9-"+tag+"-scene-map.txt").Length!=18)throw new BuildFailedException("Expected eighteen actually processed scenes");
         File.WriteAllText(evidence,$"{r.summary.result} errors={r.summary.totalErrors} warnings={r.summary.totalWarnings}\n18 scenes incl opt-in PogoTest; EditorBuildSettings unchanged. Candidate={candidate??"main Hard"}; source tuning unchanged by candidate build.\n");candidate=null;EditorApplication.Exit(r.summary.result==BuildResult.Succeeded&&r.summary.totalErrors==0?0:1);
     }

@@ -1,0 +1,6 @@
+R05 changed only; other sixteen RouteSegment objects preserved semantically and original text outside R05 preserved byte-for-byte before newline normalization.
+Actual replay: Validation/S3T01-route-manual-a1.txt; R01-R05 PASS without placement; R06 wrong A04 exit, start deviation16.5u.
+R05 total trials: 2 independent segment setups + 6 connected generated variants0..5 + 1 connected authored fixed-input trial =9 (<20). Prefix failures before R05 not counted as R05 trials.
+No R04 update applied; A1 removal restored original A04, so original R04 prefix passes. R06 and other input segments not modified.
+R06 preexisting recorded start {"x":15.971199989318848,"y":1.8147801160812378}; actual A03 FromRight spawn32.5, original target path authored around prior checkpoint position. New optional placements are not in A03/B01.
+R05 replay passed. G-D passage lies in R06 and remains unverified in this continuous sequence; no full RouteAll success claimed.

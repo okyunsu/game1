@@ -1,0 +1,51 @@
+PASS F2R
+PASS: player/dummy recovered display binding
+PASS: 30 1 startup inactive
+PASS: active slash 30
+PASS: center/size <=.01u 30 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100000595238095
+PASS: 30 -1 startup inactive
+PASS: active slash 30
+PASS: center/size <=.01u 30 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.133332199546484
+PASS: 60 1 startup inactive
+PASS: active slash 60
+PASS: center/size <=.01u 60 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100182702664399
+PASS: 60 -1 startup inactive
+PASS: active slash 60
+PASS: center/size <=.01u 60 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.116664200680273
+PASS: 120 1 startup inactive
+PASS: active slash 120
+PASS: center/size <=.01u 120 1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.100004301303855
+PASS: 120 -1 startup inactive
+PASS: active slash 120
+PASS: center/size <=.01u 120 -1
+PASS: end inactive/miss0
+PASS: accepted hit1/HP/overlay
+PASS: white pip count = remaining HP
+PASS: flash duration=0.10833660005669
+PASS: E2 warning setup
+PASS: E2 warning hit overlay independently active
+PASS: E1 death pop1
+PASS: death pop expires
+PASS: Cancel immediate hide
+No pixel sampling; human display acceptance pending.
+Error/Exception/Assert=0

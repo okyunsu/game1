@@ -1,0 +1,8 @@
+PASS RouteRunner actual=exe
+PASS recording prefix R01
+PASS recording prefix R02
+PASS recording prefix R03
+PASS recording prefix R04
+R05 attempt=1 ticks=113 startTeleport=False KNOWN-LIMIT actual death room=A04 pos=(22.06, 4.30)
+Training complete; per-segment outcomes are in library. Training success does not mean all-route acceptance.
+Error/Exception/Assert=0

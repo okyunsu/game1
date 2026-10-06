@@ -19,6 +19,8 @@ G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09
 
 ## Current Tasks
 
+2026-10-06 **S3T-01 종료 — PARTIAL**: 선택 경로5곳·세션 발견 표시 기술 확인/REVIEW, A-1은 조정 후 제외/복원. R05 연속 귀환 입력 교체 및 재생PASS, R06 기존 시작 위치 가정 불일치BLOCKED(새 배치 원인 아님/수정 승인 밖). 기본13/13PASS, 배포exe PogoTestPASS(최종 묶음의 P03 일회 실패는 보존), 전체 RouteAllFAIL. DIFF-002/PT-002/BOSS-2 기록, 보존 목록 밖 기존 빌드69개 정리. [사용자 QA](Validation/S3T01-user-qa.md), [최종 요약](Validation/S3T01-final-summary.txt). **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음.
+
 2026-10-06 **N9 종료 — PARTIAL**: ATK2/3/4·PogoTest 기술 확인/REVIEW, S5-hard 최종 exe 지정 동작·후보3개 보스 재시도PASS. 최종 회귀14/15(기본13+PogoPASS, RouteR05FAIL). 이전 N8 경로 목표 오판을 발견해 완주 판단 철회/경로BLOCKED, Editor Pogo 재생BLOCKED. 사용자 감각·후보 선택 대기. [최종 인계](Validation/N9-final-handoff.md).
 
 
@@ -284,6 +286,15 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 - T-G: 자연 입력 경로 1회 보정 후 B01 상단 B05 대신 하단 B02로 진입. 두 능력 자연 획득까지 확인; 새 게임→엔딩 자동 완주 미검증.
 - 추가 도구 보정은 이번 큐의 1회 보정 한도를 넘으므로 후속 승인 범위에서 판단한다. 사용자 전체 플레이·감각 수락과 Sprint3 Gate는 계속 대기한다.
 ## Decisions Needed
+
+### S3T01-R06 — 기존 자동 경로 시작 가정 수정 범위 / BLOCKED
+새 R05는 사망 없이 A05→A04→A03으로 귀환했으나, R06 기존 기록은 A03의 이전 체크포인트 근처 (15.9712,1.8148)에서 시작한 입력이다. 실제 정상 귀환은 FromRight (32.5,1.81)이고 재생 시작 편차16.418~16.500u에서 A04로 다시 나간다. A03/B01 및 게이트는 이번에 수정하지 않아 새 선택 배치 때문인 회귀로 확인되지 않았다. 다른 구간은 새 배치 때문에 깨진 경우만 수정하라는 승인 범위에 따라 R06 입력은 보존하고 중단했다. 필요 판단: 정상 귀환 시작점에 맞춘 R06 입력 교체 허용 여부. G-D 연속 통과·전체 완주 PASS는 미확인. [실제 배포 재생](Validation/S3T01-route-delivery.txt), [범위·9회 시도 요약](Validation/S3T01-route-summary.txt).
+
+### S3T01-POGO — P03 고정 입력 일회 실패 / REVIEW
+기존 묶음 첫 실행 PogoPASS, 최종 묶음 P03FAIL/Error0, 같은 배포exe의 기존 검사 재실행은 P01/P02/P03·사망복귀·능력 회복 PASS/Error0이다. PogoTest 씬·공격/포고 수치는 불변. 원인 미확정이며 안정적 반복 통과로 확정하지 않았다. 새 도구·게임 복원·Pogo 입력 수정 없이 증거를 보존한다. [최종 묶음 실패](Validation/PogoTest-60fps-S3T01-final.txt), [배포 재실행](Validation/S3T01-pogo-delivery.txt).
+
+### S3T01-LEVEL — 승인으로 해결된 범위 충돌 / A-1 제외
+DEC-LEVEL-001의 사용자 승인으로 GAME_DESIGN의 PogoTarget 전용 씬 제한과 수집 표시 금지 문구를 이번 선택 경로·세션 발견 표시 범위에 한해 갱신했다. 진행·성장·저장 보상은 계속 제외한다. A-1은 추가 선반의 단방향 처리와 두 진입 입력 보정 후에도 지정 입력이 실패해 승인된 제외 규칙을 적용했다. 실제 접근성/게임 결함으로 확정하지 않음. 기존 A04는 복원했고 이번 범위에서 재시도하지 않는다. 다시 적용하려면 별도 사용자 판단이 필요하다. [실패](Validation/S3T01-A-1-shelf-a3.txt).
 
 ### N9-ROUTE-REPLAY — 추가 경로 입력 탐색 범위 / BLOCKED
 프레임 관찰이 R05 실제 사망을 발견해 기존 경로 검증이 무효. 검사 도구3회 보정과 동일 사망 반복 한도로 승인 경로 중단; 추가 자동 입력 탐색은 다음 요청에서 범위를 정한다. 보호된 게임 파일·기존 배치 변경 없이 조사했으며, 현재 후보 난이도 비교에는 고정 원본 입력을 사용한다. Editor Pogo 재생의 추가 보정도 같은 한도에 따라 보류. [실패 증거](Validation/N9-route-recheck.txt).
@@ -595,7 +606,14 @@ Simple/Transform Scale 프리팹 6종과 36×14u 빈 방 저장. Validation/Veri
 - [실제 실행 파일 전체 검사](Validation/S1-10-runtime.txt): 체크포인트/사망·순방향 A01→A04·A04 복귀·A03 역방향 통과, A02 역방향 첫 걷기 실패. A02→A01 복귀는 미실시.
 - [실제 실행 파일 집중 재현](Validation/S1-10-focused.txt): 체크포인트/사망 통과, 입력 장치 격리 후 A02 FromRight 걷기 같은 실패. 목표 x=40.00, 실제 x=42.37. 이후 점프 검사는 미실시. 동일 오류 반복으로 중단, 전체 왕복 PASS로 기록하지 않음.
 - README에 Editor A01 Play·MovementTest 회귀 용도·로컬 Slice 경로와 검증 실패 한계 추가. 기존 Validation 전부 보존. 로컬 Builds/Slice는 Git 제외이며 완성/수락 빌드가 아님.
+## Backlog
+
+- **BOSS-2 TODO** — 보스 이동·패턴 확장(사용자 설계 후). DIFF-002에 따른 후속 작업, 이번 S3T-01 구현 범위 밖.
+
 ## Playtest Records
+
+### PT-002 — 2026-10-06 사용자 난이도 판단
+출처: S3T-01 첨부 문서에 제시된 사용자 원문 요지. “H1~H3는 다 귀찮을 뿐이지 패턴 자체가 단순해서 지금은 의미 없다. 보스는 움직이지도 않는 각목이라 패턴은 추후 더 업데이트할 것.”
 
 ### PT-001 — N7 사용자 관찰(첨부 문서에서 인용)
 직접 돌렸을 때 난이도가 너무 쉽고 별 생각이 안 든다. 하단·상단 공격 같은 게 있어야 다채롭게 할 수 있을 것 같다. 쉬운 지점: 일반 적 전투, 점프·대시 지형, 보스, 길찾기·탐색 전부. 사용자는 Hollow Knight와 Silksong을 모두 클리어한 플레이어다.
@@ -624,6 +642,12 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 `Test ID / 일시 / 빌드·수치 버전 / 참가자 코드·숙련도 / 입력 장치 / 전체 활동 시간 / A·B·C 시간 / 방별 사망·반복 사망 / 길 잃음 위치 / 능력 후 첫 행동 / 게이트 기억·복귀 / 보스 재시도 / 방향 오판 / 관찰 메모 / 증거 위치`
 
 ## Design Decision / Before-After
+
+### DIFF-002 — 수치 난이도 방향 보류
+2026-10-06 S3T-01 사용자 승인 계획. 수치만으로 난이도를 올리는 방향은 보류한다. 기본값은 H1 유지, H2/H3 빌드는 보존만 한다. 다음 난이도 작업은 적·보스 행동 패턴 개선으로 한다. 별도 Task이며 이번에는 구현하지 않는다. 근거: PT-002.
+
+### DEC-LEVEL-001 — 본편 선택 경로 6곳
+2026-10-06 S3T-01 사용자 승인 계획. A-1/A-2/B-1/B-2/C-1/C-2를 기존 방 안의 선택 경로로 배치하고 PogoTarget을 본편에서도 사용한다. 경로 끝의 빛나는 사각형과 세션 한정 발견 n/6 표시만 허용하며 저장·성장·필수 진행 조건은 추가하지 않는다. 필수 경로·G-D/G-J와 PogoTest는 보존한다.기존 설계의 PogoTest 전용/수집 보상 금지 문구와의 충돌은 이 승인 범위에 한해 갱신한다. [승인 문서](Validation/S3T01-approved-request.txt).
 ### PROC-001 — 3단계 운영 전환
 2026-10-06 사용자 결정. 3단계 운영으로 전환: 기존 회귀 재사용, 새 검증 도구 금지, 체감 항목은 직접 QA, 애매한 검증 결과로 게임 변경을 자동 복원하지 않음. 근거: [PROCESS_METRICS.md 2단계 회고](PROCESS_METRICS.md). 규칙 전문은 [AGENTS](AGENTS.md), [사용자 승인 계획](Validation/S3SW-approved-request.txt). 구현 세부 판단: 기능은 독립 플레이 결과를 가진 승인 Task 단위로 묶고, 종속 산출물과 KNOWN-LIMIT을 BLOCKED 수에 중복 합산하지 않았다.
 
@@ -692,6 +716,15 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 2026-09-17: `Assets/Art/Block.png`는 직접 생성한 2×2 흰색 도형 텍스처로 플레이어·발판에 재사용한다. 외부 아트·오디오 및 외부 리소스 표기 의무 없음.
 
 ## Latest Handoff
+
+### S3T-01 최종 인계 — PARTIAL / 사용자 직접 QA 대기
+
+- **선택 배치·표시 REVIEW:** A-2/B-1/B-2/C-1/C-2 실제 배포exe 지정 입력5/5 PASS, 발견1→5 누적 및 보상 접촉·선반 착지/Error0. A-1은 조정 한도 후 추가 선반·표시 제거/복원, 이번 최대발견5/6. [결과](Validation/S3T01-levels-final.txt), [최종 좌표·이전 후보](LEVEL_PROPOSALS.md).
+- **R05 입력 교체 PASS / R06 BLOCKED:** 총9회 R05 시도(독립 시작2+연속 생성 입력6+연속 지정 입력1), 20회 이내. 실제 연속 R01~R05 및 배포 재생 R05PASS/사망 없음. 기존 R06은 시작 위치16.4~16.5u 차이로 잘못된 A04 출구, 새 배치 원인 아닌 입력 수정은 승인 밖이므로 보존. 다른16개 구간은 불변. G-D 연속 통과·전체 RouteAllPASS 미확인. [기록](Validation/S3T01-route-summary.txt).
+- **검증:** 기본 기존13/13PASS; 최종 묶음은13/15(구 R05FAIL/Pogo P03FAIL). 교체 후 배포exe는 새R05PASS→R06FAIL 및 PogoPASS로, 기본13과 합친 최신 상태14/15이다. Pogo 일회 실패와 미확인 원인은 지우지 않았다. 선택5경로·Pogo·경로 실제 런타임 Error/Exception/Assert0, 빌드18씬 errors0/warnings0, Editor Build Settings 불변. [요약](Validation/S3T01-final-summary.txt). 새 선택 경로·Pogo의 Editor Play 재생·실물 패드·사람 완주·가독성은 미실시/직접 QA.
+- **산출물·주요 파일:** `Builds/S5-levels/Afterglow-S5-levels.exe`와 `PogoTest 실행.bat` 보관, **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음. Scene5개/DiscoveryReward 프리팹·스크립트/GameHUD/기존 RouteRunner·N5Build·N9Build·회귀 스크립트/설계·좌표·지표 문서. 입력 Asset·필수 블록/출구·G-D/G-J·PogoTest·공통 튜닝·저장 형식·Packages/ProjectSettings 불변.
+- **결정·정리:** PT-002/DIFF-002 DONE, H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후/이번 미구현). 기존 빌드69개 삭제, 새 진단 빌드는 `_tmp`에 만들고 종료 시 정리. [삭제 목록](Validation/S3T01-builds-cleanup.txt). 새 검증 도구 생성 없음, 기존 RouteSegment/RouteTickDriver에 선택 목표 재생만 연결하고 선택 녹화의 연속 시작 재배치 문제를 보정했다. 일회성 배치 스크립트는 Scene 저장 후 제거했다. push 없음.
+- **사용자 QA 요약1쪽:** [바뀐 것 / 방별 위치 / 의심3곳](Validation/S3T01-user-qa.md). 수정은 Scene Optional/Discovery와 DiscoveryReward 프리팹 Inspector에서, Play 종료 후 배치 재입력·저장. 구현 판단: 새 선반은 아래 통과 가능한 단방향, 발견 상태는 방 이동·사망 유지/타이틀 초기화로 정의했다. 다음은 직접 QA와 R06 입력 수정 범위 판단이며, 별도 승인 전 BOSS-2를 시작하지 않는다. 기존 N9 인계는 아래에 보존했다.
 
 2026-10-06 **PROC-001 DONE** — 문서만 변경: [3단계 운영 규칙](AGENTS.md)·[실행 지표/1회 회고](PROCESS_METRICS.md)·[사용자 QA 요약 1쪽](Validation/S3SW-user-qa.md). Unity 미실행, 기존 N9 인계 그대로 유지, 새 플레이 기능0, push 없음.
 

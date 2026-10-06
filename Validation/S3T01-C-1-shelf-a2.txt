@@ -1,0 +1,5 @@
+PASS RouteRunner actual=exe
+PASS level segment start C-1
+PASS C-1 reward + shelf landing
+MEASURE C-1 position=(21.60, 9.81) pogos=1 discoveries=1
+Error/Exception/Assert=0

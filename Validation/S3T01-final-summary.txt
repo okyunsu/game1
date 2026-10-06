@@ -1,0 +1,23 @@
+S3T-01 PARTIAL; final source 18-scene delivered build Succeeded/errors0/warnings0.
+Final build: Builds/S5-levels/Afterglow-S5-levels.exe; PogoTest 실행.bat provided. Marked 플레이 전 확인 필요, not a complete-route accepted build.
+
+Selected optional routes: five PASS in delivered exe, Validation/S3T01-levels-final.txt. Reward collected + grounded shelf landing; discovery count1..5 across scene changes; runtime Error/Exception/Assert0.
+A2 two pogos; B1 one pogo; B2 one pogo + extra jump/dash; C1 one pogo + extra jump/dash; C2 E3 pogo. C2 E1 shelf full traversal not separately checked.
+A1 initial input failure, one-way shelf adjustment, two changed approach inputs failed; remove only new A1 shelf/reward. A04 has no diff from baseline. A1 actual accessibility not determined, excluded per approved bounded-adjustment fallback. Maximum current discoveries5/6.
+
+Existing regression initial run REG-S3T01-a1: base13PASS, RouteR04FAIL, PogoPASS. New A1 geometry was later removed; original R04 prefix passes again. R04 trial recording not applied.
+Existing final run REG-S3T01-final: base13PASS, old-library RouteR05FAIL, PogoP03FAIL/Error0; raw13/15 preserved.
+After R05 update, actual delivered exe S3T01-route-delivery: R01..R05PASS without placement, R06FAIL wrong A04 exit/start deviation16.418u; Error0. Earlier connected authored candidate R05PASS, R06 same failure/deviation16.500u.
+Delivered exe Pogo rerun S3T01-pogo-delivery: P01/P02/P03PASS, section death/checkpoint recoveryPASS, spent owned-air abilities restoredPASS, Error0. The suite P03 failure was not reproduced in this one rerun; cause unknown, no game/Pogo changes or stable-repeat acceptance claimed.
+Latest aggregate: base13 + delivered PogoPASS =14PASS; RouteAllFAIL =1. This is a cross-evidence aggregate, not rewriting the final suite13/15 file into15/15.
+
+R05 total input trials9, under20. Only R05 data replaced; original full library preserved as S3T01-route-before.json. Other sixteen segments unchanged. Existing selected recorder respects connected prefix on first attempt at offset0; retry setups remain explicitly recorded. Levels reuse RouteSegment fields/RouteTickDriver in existing RouteRunner; no separate verifier/class/tool created.
+R06 is a preexisting assumed checkpoint-start input exposed by the repaired normal return; new placements do not touch A03/B01. Its correction is outside the authorization for other segments, which permits only breaks due to level placement. BLOCKED recorded; no G-D continuous passage or world completion claim.
+
+Editor source compilation/build succeeded. Authored prefabs/scenes saved by Unity, one-time authoring script removed. Scene optional platforms use existing Landing + PlatformEffector2D; repeated targets existing PogoTarget with inherited KillZone; reward reuses Landing variant with trigger and glow component.
+Unchanged by git diff: A04 restored, A03/B01 gates, Test/PogoTest, all preexisting Prefabs and tuning assets, input, save format, Packages, ProjectSettings including EditorBuildSettings.
+No new optional-route/Pogo Unity Editor Play replay, physical gamepad, human completion, visual-readability or feel acceptance in this run. Discovery retention on death/title reset is implemented and remains in human QA; cross-room retention verified by final count1..5.
+H1 source tuning unchanged; H2/H3 existing valid copied builds preserved, no rebuild/reselection. PT002/DIFF002 recorded, BOSS2 TODO.
+Build cleanup:69 existing unlisted folders deleted after inventory and scope validation. Initial automatic review rejection resolved by providing the explicit attached section4 authorization plus checked direct-child folder inventory. Temporary builds removed at end, final eight requested folders remain.
+Unity initial restricted attempt exited198/license access; normal-environment rerun succeeded. No license setup/install or new dependency added.
+Repository check: trimmed trailing whitespace only in 40 newly generated text evidence files; observed results and JSON recordings unchanged. Existing camera regression render evidence retained under Validation/Camera/Run-20261006-143134 and Run-20261006-144602.

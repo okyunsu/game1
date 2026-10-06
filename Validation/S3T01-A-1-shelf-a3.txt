@@ -1,0 +1,7 @@
+FAIL RouteRunner actual=exe
+PASS level segment start A-1
+FAIL System.Exception: A-1 reward + shelf landing input exhausted A-1 pos=(24.26, 3.82)
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <5858b87f3c714899827916f837364145>:0
+  at RouteRunner+<LevelSegments>d__23.MoveNext () [0x0030e] in <5858b87f3c714899827916f837364145>:0
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <5858b87f3c714899827916f837364145>:0
+Error/Exception/Assert=0

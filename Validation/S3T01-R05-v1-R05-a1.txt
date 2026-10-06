@@ -1,0 +1,853 @@
+KNOWN-LIMIT actual death room=A04 pos=(22.23, 4.30)
+{
+    "id": "R05",
+    "startScene": "A05",
+    "goal": "A03",
+    "startPosition": {
+        "x": 9.826394081115723,
+        "y": 1.8149898052215577
+    },
+    "dash": true,
+    "doubleJump": false,
+    "startHP": 1,
+    "limitSeconds": 45.0,
+    "inputs": [
+        {
+            "tick": 0,
+            "axis": -1.0,
+            "held": 10,
+            "pressed": 10,
+            "released": 0
+        },
+        {
+            "tick": 1,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 2,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 3,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 4,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 5,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 6,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 7,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 8,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 9,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 10,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 11,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 12,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 13,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 14,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 15,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 16,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 17,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 18,
+            "axis": -1.0,
+            "held": 6,
+            "pressed": 4,
+            "released": 0
+        },
+        {
+            "tick": 19,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 4
+        },
+        {
+            "tick": 20,
+            "axis": -1.0,
+            "held": 10,
+            "pressed": 8,
+            "released": 0
+        },
+        {
+            "tick": 21,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 22,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 23,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 24,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 2
+        },
+        {
+            "tick": 25,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 26,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 27,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 28,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 29,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 30,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 31,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 32,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 33,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 34,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 35,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 36,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 37,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 38,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 39,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 40,
+            "axis": -1.0,
+            "held": 8,
+            "pressed": 8,
+            "released": 0
+        },
+        {
+            "tick": 41,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 42,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 43,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 44,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 45,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 46,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 47,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 48,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 2,
+            "released": 0
+        },
+        {
+            "tick": 49,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 50,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 51,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 52,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 53,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 54,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 55,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 56,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 57,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 58,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 59,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 60,
+            "axis": -1.0,
+            "held": 10,
+            "pressed": 8,
+            "released": 0
+        },
+        {
+            "tick": 61,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 62,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 63,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 64,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 65,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 66,
+            "axis": -1.0,
+            "held": 6,
+            "pressed": 4,
+            "released": 0
+        },
+        {
+            "tick": 67,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 4
+        },
+        {
+            "tick": 68,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 69,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 70,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 71,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 72,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 2
+        },
+        {
+            "tick": 73,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 74,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 75,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 76,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 77,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 78,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 79,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 80,
+            "axis": -1.0,
+            "held": 8,
+            "pressed": 8,
+            "released": 0
+        },
+        {
+            "tick": 81,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 82,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 83,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 84,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 85,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 86,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 87,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 88,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 89,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 90,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 91,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 92,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 93,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 94,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 95,
+            "axis": -1.0,
+            "held": 0,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 96,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 2,
+            "released": 0
+        },
+        {
+            "tick": 97,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 98,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 99,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 100,
+            "axis": -1.0,
+            "held": 10,
+            "pressed": 8,
+            "released": 0
+        },
+        {
+            "tick": 101,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 8
+        },
+        {
+            "tick": 102,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 103,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 104,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 105,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 106,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 107,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 108,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 109,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 110,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 111,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 112,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 113,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 114,
+            "axis": -1.0,
+            "held": 6,
+            "pressed": 4,
+            "released": 0
+        },
+        {
+            "tick": 115,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 4
+        },
+        {
+            "tick": 116,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 117,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        },
+        {
+            "tick": 118,
+            "axis": -1.0,
+            "held": 2,
+            "pressed": 0,
+            "released": 0
+        }
+    ],
+    "passed": false,
+    "attempts": 1,
+    "result": "KNOWN-LIMIT actual death room=A04 pos=(22.23, 4.30)"
+}
+Actual Unity fixed-tick virtual Keyboard; teleports only at segment start.

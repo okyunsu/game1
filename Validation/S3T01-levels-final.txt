@@ -1,0 +1,17 @@
+PASS RouteRunner actual=exe
+PASS level segment start A-2
+PASS A-2 reward + shelf landing
+MEASURE A-2 position=(34.53, 6.21) pogos=2 discoveries=1
+PASS level segment start B-1
+PASS B-1 reward + shelf landing
+MEASURE B-1 position=(20.40, 4.76) pogos=1 discoveries=2
+PASS level segment start B-2
+PASS B-2 reward + shelf landing
+MEASURE B-2 position=(32.47, 9.31) pogos=1 discoveries=3
+PASS level segment start C-1
+PASS C-1 reward + shelf landing
+MEASURE C-1 position=(21.60, 9.81) pogos=1 discoveries=4
+PASS level segment start C-2
+PASS C-2 reward + shelf landing
+MEASURE C-2 position=(27.44, 6.86) pogos=1 discoveries=5
+Error/Exception/Assert=0

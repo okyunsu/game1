@@ -1,0 +1,9 @@
+PASS RouteRunner actual=exe
+PASS recording prefix R01
+PASS recording prefix R02
+PASS recording prefix R03
+PASS recording prefix R04
+PASS segment-start Entry
+R05 attempt=2 ticks=235 startTeleport=True PASS
+Training complete; per-segment outcomes are in library. Training success does not mean all-route acceptance.
+Error/Exception/Assert=0

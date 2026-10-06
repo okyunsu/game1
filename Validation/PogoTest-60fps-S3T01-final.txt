@@ -1,0 +1,9 @@
+FAIL N9PogoRoute actual=exe
+PASS course owns both abilities
+PASS P01 input goal pogos=3
+PASS P02 input goal pogos=2
+FAIL System.Exception: P03 input goal pogos=1
+  at N5Runner.Check (System.Boolean ok, System.String message) [0x00003] in <a9c218d7e8d648d79b87b0d0c66a3e15>:0
+  at N9PogoRoute+<Tests>d__16.MoveNext () [0x00576] in <a9c218d7e8d648d79b87b0d0c66a3e15>:0
+  at N5Runner+<Start>d__18.MoveNext () [0x000ae] in <a9c218d7e8d648d79b87b0d0c66a3e15>:0
+Error/Exception/Assert=0

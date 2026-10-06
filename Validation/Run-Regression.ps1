@@ -40,15 +40,16 @@ if(Test-Path -LiteralPath $taskRouteLibrary){
  $taskRouteEvidence=Join-Path $PSScriptRoot "RouteAll-60fps-$Tag.txt"
  if(Test-Path -LiteralPath $taskRouteEvidence){throw 'Preserve route evidence: use a new tag'}
  $taskRouteBuildTag="REG-route-$Tag"
- $taskRouteExe=Join-Path $taskRoot "Builds/$taskRouteBuildTag/Afterglow-$taskRouteBuildTag.exe"
+ $taskRouteExe=Join-Path $taskRoot "Builds/_tmp/$taskRouteBuildTag/Afterglow-$taskRouteBuildTag.exe"
  $taskRouteBuildArgs=@('-batchmode','-projectPath',('"'+$taskRoot+'"'),'-executeMethod','N5Build.Run','-n5-build',$taskRouteBuildTag,'-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-RouteBuild.log")+'"'))
  if($taskPogoEnabled){$taskRouteBuildArgs=@('-batchmode','-projectPath',('"'+$taskRoot+'"'),'-executeMethod','N9Build.Run','-n9-build',$taskRouteBuildTag,'-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-RouteBuild.log")+'"'))}
+ $taskRouteBuildArgs+=@('-build-root','Builds/_tmp')
  $taskRouteBuildProcess=Start-Process $taskUnity -ArgumentList $taskRouteBuildArgs -WindowStyle Hidden -PassThru
  if(!$taskRouteBuildProcess.WaitForExit(300000)){Stop-Process -Id $taskRouteBuildProcess.Id;$taskRouteResult='FAIL build timeout'}
  elseif($taskRouteBuildProcess.ExitCode -ne 0 -or !(Test-Path -LiteralPath $taskRouteExe)){$taskRouteResult='FAIL build exit='+$taskRouteBuildProcess.ExitCode}
  else{
   $taskRouteArgs=@('-verify-route','all','-verify-fps','60','-route-library',('"'+$taskRouteLibrary+'"'),'-verify-output',('"'+$taskRouteEvidence+'"'),'-save-path',"Logs/REG-$Tag-RouteAll-save.json",'-screen-width','1280','-screen-height','720','-screen-fullscreen','0','-force-d3d11','-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-RouteAll.log")+'"'))
-  $taskRouteProcess=Start-Process $taskRouteExe -ArgumentList $taskRouteArgs -WorkingDirectory $taskRoot -WindowStyle Normal -PassThru
+  $taskRouteProcess=Start-Process $taskRouteExe -ArgumentList $taskRouteArgs -WorkingDirectory $taskRoot -WindowStyle Hidden -PassThru
   if(!$taskRouteProcess.WaitForExit(300000)){Stop-Process -Id $taskRouteProcess.Id;$taskRouteResult='FAIL timeout'}
   elseif($taskRouteProcess.ExitCode -eq 0 -and (Test-Path -LiteralPath $taskRouteEvidence) -and (Get-Content -LiteralPath $taskRouteEvidence -First 1).StartsWith('PASS')){$taskRouteResult='PASS'}
   else{$taskRouteResult='FAIL exit='+$taskRouteProcess.ExitCode}
@@ -64,7 +65,7 @@ if($taskPogoEnabled){
  if(!(Test-Path -LiteralPath $taskRouteExe)){$taskPogoResult='FAIL current build unavailable'}
  else{
   $taskPogoArgs=@('-pogotest','-verify-pogotest','all','-verify-fps','60','-pogo-library',('"'+$taskPogoLibrary+'"'),'-verify-output',('"'+$taskPogoEvidence+'"'),'-save-path',"Logs/REG-$Tag-PogoTest-save.json",'-screen-width','1280','-screen-height','720','-screen-fullscreen','0','-force-d3d11','-logFile',('"'+(Join-Path $taskRoot "Logs/REG-$Tag-PogoTest.log")+'"'))
-  $taskPogoProcess=Start-Process $taskRouteExe -ArgumentList $taskPogoArgs -WorkingDirectory $taskRoot -WindowStyle Normal -PassThru
+  $taskPogoProcess=Start-Process $taskRouteExe -ArgumentList $taskPogoArgs -WorkingDirectory $taskRoot -WindowStyle Hidden -PassThru
   if(!$taskPogoProcess.WaitForExit(180000)){Stop-Process -Id $taskPogoProcess.Id;$taskPogoResult='FAIL timeout'}
   elseif($taskPogoProcess.ExitCode -eq 0 -and (Test-Path -LiteralPath $taskPogoEvidence) -and (Get-Content -LiteralPath $taskPogoEvidence -First 1).StartsWith('PASS')){$taskPogoResult='PASS'}
   else{$taskPogoResult='FAIL exit='+$taskPogoProcess.ExitCode}
