@@ -2,11 +2,10 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입2026-10-03. 수락된 Target15방 + Batch02 선택 A06/C05 후보PARTIAL(실행17방). B06은 필수 귀환 간섭으로 복원/BLOCKED. PRD/GAME_DESIGN Target18 확정 문구는 조건 미충족으로 미변경.
-S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지; Sprint3 Gate는 사용자 자연 완주·체감 판단 대기.
-최신 B02-delivery: 기본13/13 및 R01~R17 전체exe PASS/Error0, 신규2방 Editor 발견·귀환/실제exe 사망·초기화PASS. 사람1~3분 목표는 미확인.
-F1-R REVIEW: 명중0.05s 기존검사+동시Pause/치명피격 복귀/0초 PASS, 체감수락 대기. 기존 포고 방향공격 기술REVIEW, P03 반복은4/5로 간헐실패 유지.
-H1 기본값·기존2패턴 유지, H2/H3 보존. BOSS-2는 후보 설계값 결정 대기/BLOCKED. 다음 Sprint 대규모 콘텐츠 미착수.
+**Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
+S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Sprint3 Gate는 사용자 자연 완주·체감 판단 대기, 다음 Sprint 확장 미착수.
+F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P03 간헐 실패 추가 진단은 Batch03 Backlog에서 진행.
+H1 기본값·기존2패턴·H2/H3 보존. B2 후보 실제exe 확장 적용·처치/Ending/타이틀PASS, 패턴별 전체 검증 미완료/PARTIAL.
 ## Current Tasks
 
 2026-10-08 **Batch03 진행**. START_COMMIT `c60d938dc7772e7c54b67ae1fe39c365e43f1288`, 시작 clean/Unity 닫힘. 예상4~6시간/최대8시간. B03-0 → BOSS-2 → B06 → 통합 → Approved Backlog 순서. 후보 수치만 에이전트 결정, 기본 채택·Sprint Gate 사용자 권한 유지.
@@ -16,22 +15,9 @@ H1 기본값·기존2패턴 유지, H2/H3 보존. BOSS-2는 후보 설계값 결
 | B03-0 | DONE | 후보 규칙 지정 문단 및 Backlog 등록 |
 | BOSS-2/B03-A | PARTIAL | 후보 exe 처치/엔딩/타이틀 PASS; 패턴 검증 자동승인 거부/미실시 항목 [요약](Validation/B03-A-summary.md) |
 | B03-B06 | REVIEW | 실제exe 진입/왕복10.217s·CP/적초기화·RouteAll R01~R17 PASS [요약](Validation/B03-B06-summary.md) |
-| B03-FINAL | TODO | 기본/B2 exe Error0, 기본13+RouteAll |
+| B03-FINAL | DONE | 기본/B2 실제exe Error0, 기본13/13+RouteAll R01~R17 PASS [통합](Validation/B03-final-summary.md) |
 
-2026-10-07 **Batch02 종료 — PARTIAL**. START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`, 시작clean/Unity닫힘. 예상5~8시간, 예산10Task/8시간. 시작 때 정한 묶음10Task(Backlog 비교·방 요약은 QA1Task) 처리, Approved Backlog 소진. push없음.
-
-| ID | 상태 | 실제 결과 / 근거 |
-|---|---|---|
-| B02-0 | DONE | AGENTS 지정2줄·Approved Backlog 등록, 2f6432d / [요약](Validation/B02-0-summary.md) |
-| BOSS-2/B02-A | BLOCKED | 걷기/위치/도약높이 결정대기, 원본보스불변, fcaf7cb / [검토](Validation/B02-A-summary.md) |
-| B02-A06 | PARTIAL | 발견·귀환10.648s, CP사망·E3초기화PASS, 사람시간/체감미확인, 76df7ed→115b2ae / [결과](Validation/B02-A06-summary.md) |
-| B02-B06 | BLOCKED | 내부왕복10.216s 이력이나 R10간섭으로 방·분기복원, 원본raw보존, 246d7fc→115b2ae / [결과](Validation/B02-B06-summary.md) |
-| B02-C05 | PARTIAL | 발견·귀환9.733s, CP사망·E3초기화PASS, 사람시간/체감미확인, befc7e6→115b2ae / [결과](Validation/B02-C05-summary.md) |
-| F1-R/B02-C | REVIEW | Pause·사망·0초PASS/Error0, 복귀0.616894s, e8b5b7b / [결과](Validation/B02-C-summary.md) |
-| B02-FINAL | PARTIAL | 기본17방빌드/20씬/Error0/Warning0, 기본13/13·전체R01~R17PASS; B2빌드만의존BLOCKED, 115b2ae / [통합](Validation/B02-final-summary.md) |
-| B02-QA(Backlog2항목) | PARTIAL | 방요약DONE/기본보스Editor22.433s·피격0, 후보비교BLOCKED, 0196041→115b2ae / [QA](Validation/B02-QA-summary.md) |
-| B02-P03 | DONE | 배포PogoTest5회4PASS/1P03FAIL·수정없음, 86fa1f2 / [반복](Validation/B02-pogo5-summary.md) |
-| B02-ARCHIVE | DONE | 이전PARTIAL 해소근거 확정0개, 애매한N5유지/이동0, e547fba / [검토](Validation/B02-archive-summary.md) |
+Batch02 종료 이력은 [Archive](Archive/B02-tasks-20261008.md)에 보존한다.
 
 아래 Batch01 및 이전 기록은 당시 상태의 이력이다. 현재 F1-R은 위 REVIEW를 따른다.
 2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
@@ -93,7 +79,7 @@ START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·�
 
 ### 후속 후보와 기록 위치
 
-- **BOSS-2 BLOCKED** — Batch02 후보 설계값 결정 대기. 기본2패턴·H1값 유지, 후보채택은 구현·플레이 후 별도 사용자 판단.
+- **BOSS-2 PARTIAL** — B2 후보 실제exe 처치 PASS, 추가 패턴 검증 자동승인 거부. 기본2패턴·H1값 유지, 후보 채택은 사용자 판단.
 - U1 / F2R / LOGR: REVIEW, 기존 사용자 체감 수락 대기. [기술 결과](Validation/TM-U1-final-handoff.md).
 - CAM-002 / K2: DEFERRED, 아트 적용 후 재확인. 기존 0.15s 유지.
 - 완료 Task 의존성 및 관찰·결정·리소스 원문: [Archive](Archive/TASKS_ARCHIVE.md). DONE 의존성은 Archive의 완료 행을 함께 확인한다.
@@ -144,11 +130,7 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
-### B02-B06-ENTRY — 선택 문 공간 / BLOCKED
-기존오브젝트를 움직이지 않는 세 출입구 위치 모두 필수 경로입력에 간섭, R10→B06 재현으로 방·분기만 복원. 선택: **B06보류 / 기존B03에 선택입구용 착지공간 추가허용 / 진입방식 재설계허용**. 추천보류: A06/C05와 정상필수경로를 유지하며 승인범위를 확장하지 않는다. 답이 B06 재개를 푼다. [실패·복원](Validation/B02-B06-summary.md).
-
-### B02-BOSS-VALUES — BOSS-2 BLOCKED
-후보 걷기 속도·좌우 중심 위치·도약 높이/탐색 범위 미지정. 선택: **2.5u/s, x5/17.5u, 높이4u 초기값 사용 / 이동 없는 대체+높이4u / 직접 지정**. 추천은 첫 안으로 후보에서만 검증, 기본값 유지. 답이 트랙A와 후보B2 빌드·비교 측정을 푼다. AGENTS Batch Approval 미정 설계 경로 중단 적용, 독립 B/C 계속. [검토](Validation/B02-A-summary.md).
+B02의 보스 수치·B06 진입 범위 결정은 BATCH-03 사용자 승인으로 해소. [원문 이력](Archive/B03-resolved-decisions.md).
 
 ### B01-HITSTOP — 기술 미검증 해소 / 체감 REVIEW
 B02-C에서 히트스톱 중 Pause·치명피격 사망·0초를 기존 진입점으로 실행PASS/Error0, 0.6초 복귀실측0.616894s. 0.05s 유지/조정/끄기 사용자 체감만 대기. [결과](Validation/B02-C-summary.md), [해소 전 이력](Archive/B01-latest-handoff-20261007.md).
