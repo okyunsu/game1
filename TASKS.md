@@ -8,7 +8,7 @@ F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P
 H1 기본값·기존2패턴·H2/H3 보존. B2 후보 실제exe 확장 적용·처치/Ending/타이틀PASS, 패턴별 전체 검증 미완료/PARTIAL.
 ## Current Tasks
 
-2026-10-08 **Batch04 진행 중**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, clean/Unity 닫힘. 07:38 KST 시작, 예상2~4시간/최대8시간. B04-A 사운드 REVIEW·B04-B 형태/애니메이션 DOING, B04-C 돌진 검증 REVIEW(첫 접근+slow 첫 보정 모두 PASS), B04-FINAL 기본/AV1 빌드·회귀 TODO. 후보만 적용/기본값·보호 파일 불변.
+2026-10-08 **Batch04 진행 중**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, clean/Unity 닫힘. 07:38 KST 시작, 예상2~4시간/최대8시간. B04-A 사운드 REVIEW·B04-B 형태/애니메이션 REVIEW, B04-C 돌진 검증 REVIEW(첫 접근+slow 첫 보정 모두 PASS), B04-FINAL 기본/AV1 빌드·회귀 TODO. 후보만 적용/기본값·보호 파일 불변.
 
 2026-10-08 **Batch03 종료 — PARTIAL**. START_COMMIT `c60d938dc7772e7c54b67ae1fe39c365e43f1288`, 시작 clean/Unity 닫힘. 예상4~6시간/예산최대8시간, 실제 약40분. 승인 트랙·Backlog4항목 처리; 패턴 검사 추가 승인 경로만 남음. 후보 수치만 에이전트 결정, 기본 채택·Sprint Gate 사용자 권한 유지.
 
