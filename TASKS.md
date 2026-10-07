@@ -17,7 +17,9 @@ H1 기본값·기존2패턴·H2/H3 보존. B2 후보 실제exe 확장 적용·�
 | B03-B06 | REVIEW | 실제exe 진입/왕복10.217s·CP/적초기화·RouteAll R01~R17 PASS [요약](Validation/B03-B06-summary.md) |
 | B03-FINAL | DONE | 기본/B2 실제exe Error0, 기본13/13+RouteAll R01~R17 PASS [통합](Validation/B03-final-summary.md) |
 | B03-COMPARE | PARTIAL | 각3회 처치·피격·관찰패턴 표 완료; 돌진 예고 중 처치로 회피율N/A [측정](Validation/B03-compare-summary.md) |
-| B03-P03 | DONE | 原본10/10·중립5틱候보9/10, 입력위상/목표판정 가설·해시 동일, 이슈 미해결 [진단](Validation/B03-P03-summary.md) |
+| B03-P03 | DONE | 원본10/10·중립5틱 후보9/10, 입력위상/목표판정 가설·해시 동일, 이슈 미해결 [진단](Validation/B03-P03-summary.md) |
+| B03-VARIANTS | REVIEW | fast/slow 실제 수치·처치/Ending/타이틀 PASS/Error0 [후보](Validation/B03-variants-summary.md) |
+| B03-ROOMTIME | DONE | 실패2회 포함 A06 16.401s/C05 16.351s, Scene 불변 [측정](Validation/B03-roomtime-summary.md) |
 
 Batch02 종료 이력은 [Archive](Archive/B02-tasks-20261008.md)에 보존한다.
 
@@ -174,8 +176,6 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-2. **B03-VARIANTS** — B2-fast 예고−20%·이동+20%, B2-slow 예고+20%·이동−20%; 후보 Asset/빌드, 각 exe 처치→엔딩 PASS/Error0, 적용 수치 표.
-4. **B03-ROOMTIME** — A06/C05 첫2회 의도적 실패 후 지정 입력 왕복 시간; 사람1~3분과 비교, Scene 불변.
 
 ## Latest Handoff
 
