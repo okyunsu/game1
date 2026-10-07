@@ -44,3 +44,5 @@ MEASURE fps=60 candidate=B2-slow charge dodge=False hitEvents=1 DJ=0 peak=1.935
 ```
 
 원본: Validation/_raw/B04/charge*.txt/.log, B03 원본도 보존. 미실시: B04에서 도약 회피 30/60/120 재검증·동시 HP0 우선순위는 요구 범위가 아니어서 미실시, 기존 BOSS-2 전체 PARTIAL은 이 잔여 항목과 사람 수락을 남김.
+
+Batch04 종료 시 최종 분류: **B04-C DONE**. 이 Task는 지정 기술 검증이고 별도 감각 수락 조건이 없으므로 DONE이며, 위 초기 REVIEW 표기를 대체한다. BOSS-2 전체 감각/잔여 검증 상태 PARTIAL과 구분한다. 현재 상태 원본은 TASKS.md.

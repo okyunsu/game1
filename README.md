@@ -1,5 +1,12 @@
 # 잔광의 길
 
+## Batch 04 확인 빌드 (2026-10-08)
+
+기본: `Builds/B04-main-final/Afterglow-B04-main-final.exe`. AV1 후보: `Builds/B04-AV1-final-r4/Afterglow-B04-AV1-final-r4.exe`. 같은 폴더 Data/DLL 유지. 두 빌드 모두18플레이방·기존2패턴 보스/기본 튜닝 유지. 기본13/13 및 각 최종exe R01~R17 연속 RouteAll→타이틀 PASS/Error0. 기본 AV1 소리/시각추가0, 후보는 직접 생성 효과음10종·5종 기하형/시각 애니메이션/명도 개선. 감각·기본 채택은 REVIEW. [최종 검증](Validation/B04-final-summary.md), [55분 QA](Validation/B04-QA-summary.md), [9방 사진](Validation/B04-shots-summary.md).
+
+각 최종 폴더의 `QA-A01.cmd`/`QA-C06.cmd`/`QA-A06.cmd`/`QA-B06.cmd`/`QA-C05.cmd`를 더블클릭하면 그 폴더의 QA 전용 슬롯만 초기화한다. Menu Z 이어하기. AV1 공유 조정은 `Assets/Candidates/AV1/PresentationProfile.asset` Inspector의 clip/volume/pitch, bodyColors/hazardOpacity, formRatios와 animation 값 한 곳에서 한다. Play 중 값을 기록하고 종료 후 원하는 값인지 확인/반영·저장·AV1 재빌드. 기본 Scene에 후보 활성화를 추가하지 않는다.
+
+B2/fast/slow는 아래 B03 후보 exe를 유지한다. B04 추가 승인 검증은 B2 돌진30/60/120fps·fast/slow60fps 지정DJ 회피0/실패1 및 도약/돌진 Pause·재개·CP-C04/HP/패턴 초기화 PASS. 기존 BOSS-2 전체는 최종 도약회피 전체fps·동시HP0 등 잔여 미검증으로 PARTIAL이며 자연 전투·난이도 수락은 별도다. [돌진 증거](Validation/B04-C-summary.md). 아래 Batch03 이후 설명은 당시 이력이다.
 ## Batch 03 확인 빌드 (2026-10-08)
 
 기본: `Builds/B03-main-final/Afterglow-B03-main-final.exe`. 후보 B2: `Builds/B03-B2-final/Afterglow-B03-B2-final.exe`. 같은 폴더의 Data/DLL을 함께 유지한다. 18플레이방+Menu/Ending/옵트인PogoTest=21씬. 기본13/13·실제exe RouteAll R01~R17 PASS/Error0; B2 실제 확장 적용·처치→Ending→타이틀 PASS/Error0. B2 패턴별30/60/120fps·Pause/사망 검증은 중단/미완료로 PARTIAL이다. [최신 인계](TASKS.md#latest-handoff).
