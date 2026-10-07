@@ -8,7 +8,7 @@ public sealed class B02RoomVerifier:N5Runner
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()=>N5Args.Start<B02RoomVerifier>("-verify-b02-room");
-    N9PogoInput driver;int tick,nextJump,nextAttack,jumpEnd;bool returning,wasGrounded;float goal;int direction=1;
+    N9PogoInput driver;int tick,nextJump,nextAttack,jumpEnd;bool wasGrounded;float goal;int direction=1;
     protected override void Cleanup(){if(driver!=null)driver.produce=null;}
     protected override IEnumerator Tests()
     {
@@ -22,7 +22,7 @@ public sealed class B02RoomVerifier:N5Runner
         yield return Until(()=>DiscoveryReward.Found(id)||RoomSession.Instance.Respawning,"discovery traversal",30);
         lines.Add($"MEASURE discovery stop x={Body.position.x:F3} y={Body.position.y:F3} hp={Health.HP} tick={tick}");
         Check(!RoomSession.Instance.Respawning&&DiscoveryReward.Found(id),"entrance to discovery via designated movement inputs");
-        returning=true;direction=-1;
+        direction=-1;
         yield return Until(()=>RoomSession.Instance.CurrentRoomId!=id||RoomSession.Instance.Respawning,"return traversal",30);
         driver.produce=null;yield return Keys();
         lines.Add($"MEASURE return stop x={Body.position.x:F3} y={Body.position.y:F3} hp={Health.HP} tick={tick}");

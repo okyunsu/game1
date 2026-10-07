@@ -1,5 +1,13 @@
 # 잔광의 길
 
+## Batch 02 확인용 기본 빌드 (2026-10-07)
+
+실행: `Builds/B02-delivery/Afterglow-B02-delivery.exe`. 같은 폴더의 Data/DLL을 함께 유지한다. 17플레이방+Menu/Ending/옵트인PogoTest(20씬), 기존 보스2패턴·기본 튜닝 유지. 새 선택 방 A06/C05는 시간·체감 조건이 남은 PARTIAL 후보이며 Sprint Gate 수락은 아니다. 이전 `B02-main`/`B02-main-final`/`B02-main-r3`은 B06 분기 회귀가 있어 확인용으로 쓰지 않는다.
+
+A04/C03 왼쪽 기본 출구 위 선택 문(x2,y5.6)에 높은 점프 후 왼쪽 이동으로 닿으면 A06/C05로 간다. B06은 필수 귀환 경로 간섭으로 방과 추가 문을 되돌렸고 실행 범위에서 제외했다. 발견에 접촉하고 같은 입구로 돌아온다. [방별 시험·시간/사용자 QA](Validation/B02-QA-summary.md), [현재 결과](TASKS.md#latest-handoff). 배치는 각 새 Scene에서 수정한다. Play 중 Scene 변경은 Stop 후 Scene에 다시 반영·저장한다. 발견은 저장되지 않고 기존 A-1·이번 B06 제외로 실제 최대7/9다.
+
+후보 보스 B2는 걷기 속도·두 위치·도약 높이 결정 대기이므로 아직 실행 파일이 없다. 히트스톱 Pause·사망·0초 기술검사는 PASS이며 0.05s 체감 수락 대기. 조정 원본 FeedbackTuning.asset은 Play 종료 후 저장하고 다시 빌드한다.
+
 ## Batch 01 확인용 빌드 (2026-10-07)
 
 `Builds/B01-hitstop/Afterglow-B01-hitstop.exe`를 실행한다. 같은 폴더의 Data/DLL을 함께 보존한다. A04 전투·C06 보스에서 명중 히트스톱과 기존 베기·번쩍임·HP 칸을 약5분 확인한다. 히트스톱과 Pause/사망이 겹치는 상황은 미검증이므로 [현재 인계](TASKS.md#latest-handoff)의 상태·경로 결과를 먼저 확인한다. 저장은 아래 기존 단일 슬롯 안내를 따른다. 조정 위치는 `Assets/ScriptableObjects/FeedbackTuning.asset`의 Hit stop / hitStopSeconds(실시간 초, 기본0.05, 0이면 없음). Play 종료 후 원하는 값을 명시 저장하고 재빌드해야 exe에 반영된다.

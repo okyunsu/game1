@@ -7,6 +7,30 @@ using UnityEngine.SceneManagement;
 
 public static class B02Rooms
 {
+    public static void RemoveB06Branch()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/B03.unity");
+        var branch=GameObject.Find("Exit Optional B06");
+        if(branch!=null)UnityEngine.Object.DestroyImmediate(branch);
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
+    }
+    public static void MoveB06Branch()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/B03.unity");
+        GameObject.Find("Exit Optional B06").transform.position=new Vector2(8,5.9f);
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
+    }
+    public static void MoveBranchesOffRoute()
+    {
+        foreach(string source in new[]{"A04","B03","C03"})
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/"+source+".unity");
+            string id=source=="A04"?"A06":source=="B03"?"B06":"C05";
+            GameObject.Find("Exit Optional "+id).transform.position=new Vector2(2,5.6f);
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        }
+        EditorApplication.Exit(0);
+    }
     public static void WidenReturnLanding()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/A06.unity");
