@@ -184,3 +184,26 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 - 무엇이 바뀌었나: Batch 승인·위험도별 최소 검증으로 전환하고 완료 이력을 Archive로 분리했다. 게임 변경0.
 - 어디서 확인하나: AGENTS의 Batch Approval/Validation, TASKS 현재 상태와 Archive 원문, BATCH_TEMPLATE의 예산·사전 결정 표.
 - 의심 지점3개: (1) 미해결 PARTIAL·BLOCKED 보존 (2) DONE 의존성과 옮긴 증거 링크 유지 (3) REVIEW·미검증 구분을 사용자 수락으로 오해하지 않는지.
+
+### 검증 도구 목록 — 이번 한 번만, 다음 Batch 인계에서는 제외
+
+파일·진입점 정적 검토이며 실행 결과가 아니다. 분류는 사용 시점 제안이고 삭제 승인이 아니다. 화면·손맛·난이도 수락은 직접 QA로 한다.
+
+| 이름 | 위치 | 무엇을 확인하나 | 새 기준에서 쓸 시점 |
+| --- | --- | --- | --- |
+| 기본 입력·이동·카메라·방·체크포인트 | Assets/Editor/N1Verification.cs, Nightly.cs, N2Verification.cs, N2BVerification.cs | S1 입력·보정·이동·카메라 투영·전환·CP | Milestone 회귀용; 해당 핵심 변경 시 관련 항목만 |
+| 대시·피격·공격·E1 | Assets/Editor/NightTests.cs, C4Verification.cs, T2LockCheck.cs | T1~T4 및 넉백 잠금 직접 측정 | Milestone 회귀용; T2Legacy는 안 써도 됨 후보 |
+| 통합·키·적·보스 | Assets/Editor/S2Tests.cs, S3Verification.cs, S3FinalVerification.cs, KVerification.cs, BossVerification.cs, BossRecoveryCheck.cs | 키·게이트·능력·적·보스 재시도 및 회복 공격 | Milestone 회귀용; 개별 기능 변경 시 필요할 때만 |
+| 피드백·CSV·UI·저장 | Assets/Editor/F2RVerification.cs, F2RIntegration.cs, LOGRCheck.cs, UICheck.cs, SaveEditorCheck.cs; Assets/Scripts/UIVerification.cs, PlaytestLogger.cs | 표시 상태·CSV·저장 불변·직접 Play 저장 분리. Logger는 게임 관찰 기능도 포함 | 필요할 때만; 가독성·손맛은 직접 QA |
+| 과거 Slice·완성 빌드 런타임 검사 | Assets/Scripts/SliceVerification.cs, SliceBuildVerification.cs, S2BuildVerification.cs, S3BuildVerification.cs, PreBuildVerification.cs, CompletionBuildVerification.cs | CLI 지정 전환·사망·저장·보스·엔딩 흐름 | 필요할 때만; 폐기 레이아웃 검사는 안 써도 됨 후보 |
+| N5 공통·녹화·재생 | Assets/Scripts/Verification/N5Runner.cs, InputRecorder.cs, InputReplayer.cs, N5ManualRecorder.cs; Assets/Scripts/Verification/Editor/N5Editor.cs | opt-in 검사 기반·입력 기록/재생·Editor 종료 | 필요할 때만; 자체 제품 목표로 확장하지 않음 |
+| 저장 실패·보스 재시도 | Assets/Scripts/Verification/SaveFailureVerifier.cs, BossRetryVerifier.cs | 격리 저장 실패·Ending Continue·사망/처치 | 필요할 때만; 저장/진행 핵심 변경 시 관련 회귀 |
+| 자동 경로·공격·포고 | Assets/Scripts/Verification/RouteRunner.cs, FullRouteVerifier.cs, N8AttackVerifier.cs, N9CombatVerifier.cs, N9PogoVerifier.cs, N9PogoRoute.cs | 입력 구간·연속 경로·방향 공격·포고·능력 회복 | Milestone 회귀용; 기존 RouteAll/Editor 재생 차단은 유지 |
+| FPS 행렬·장시간 안정성 | Assets/Scripts/Verification/FpsMatrixVerifier.cs, SoakRunner.cs | FPS별 구간·시간/메모리/오브젝트·반복 행동 | Milestone 회귀용; 유효 fixture 확인 시만 사용 |
+| 화면 캡처 계열 | Assets/Scripts/Verification/DisplayVerifier.cs, Assets/Scripts/Q7ExeCapture.cs, Assets/Editor/N2BRender.cs | 화면 기록·렌더 투영. 캡처 성공은 사람의 화면 수락이 아님 | 필요할 때만; Q7 검정 화면 경로는 안 써도 됨 후보 |
+| 테스트 Scene·과정 | Assets/Scenes/MovementTest.unity, CameraTest.unity, Test/DashTest.unity, Test/CombatTest.unity, Test/DoubleJumpTest.unity, Test/PogoTest.unity; Assets/Scripts/PogoTestCourse.cs | 이동·카메라·대시·전투·추가 점프·포고 직접 확인 | 필요할 때만; 관련 핵심 회귀·직접 QA |
+| 열기 메뉴 | Assets/Editor/N1Build.cs (Afterglow/Open Movement Test), N2BBuild.cs (Afterglow/Open Slice), N9PogoAuthoring.cs (Afterglow/Open Pogo Test) | 검사 공간을 여는 메뉴. 자동 합격 판정 메뉴는 별도로 없음 | 필요할 때만 |
+| 빌드 계열 | Assets/Editor/AuthorizedBuild.cs, N1Build.cs, N2BBuild.cs, S2Build.cs, S3Build.cs, S3FullBuild.cs, S3CompleteBuild.cs, S4PreBuild.cs, S4Pre2Build.cs, Q6NightBuild.cs, Q7NightBuild.cs, N9Build.cs; Assets/Scripts/Verification/Editor/N5Build.cs | 씬 목록·Windows 빌드·후보 참조 및 빌드 결과 기록 | 필요할 때만; 오래된 고정 출력·후보 빌드는 안 써도 됨 후보 |
+| 인접 작성 도구(검증 도구 아님) | Assets/Editor/BossSetup.cs, EndingSetup.cs, S3Authoring.cs, S3FinalAuthoring.cs, N9PogoAuthoring.cs | 씬·프리팹 작성/저장 경로. 이번에는 실행하지 않음 | 안 써도 됨 후보; 이력 생성 도구 재실행 금지 유지 |
+
+Validation 목록·용도: 기존 .ps1은 회귀/단계·보존 검사, N5~N9/과거 Q 실행 및 재생 준비용이다. .txt/.log/.csv/.json/.patch는 승인 원문·실행 증거·입력/실패 자료, .md는 인계/QA, .png는 화면 증거다. 모든 기존 파일은 그대로 보존했다. [기존 회귀 묶음](Validation/Run-Regression.ps1)은 기본13+RouteAll+PogoTest이며 이번에는 실행하지 않았다.
