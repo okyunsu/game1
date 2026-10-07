@@ -17,6 +17,7 @@ H1 기본값·기존2패턴·H2/H3 보존. B2 후보 실제exe 확장 적용·�
 | B03-B06 | REVIEW | 실제exe 진입/왕복10.217s·CP/적초기화·RouteAll R01~R17 PASS [요약](Validation/B03-B06-summary.md) |
 | B03-FINAL | DONE | 기본/B2 실제exe Error0, 기본13/13+RouteAll R01~R17 PASS [통합](Validation/B03-final-summary.md) |
 | B03-COMPARE | PARTIAL | 각3회 처치·피격·관찰패턴 표 완료; 돌진 예고 중 처치로 회피율N/A [측정](Validation/B03-compare-summary.md) |
+| B03-P03 | DONE | 原본10/10·중립5틱候보9/10, 입력위상/목표판정 가설·해시 동일, 이슈 미해결 [진단](Validation/B03-P03-summary.md) |
 
 Batch02 종료 이력은 [Archive](Archive/B02-tasks-20261008.md)에 보존한다.
 
@@ -85,6 +86,12 @@ START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·�
 - CAM-002 / K2: DEFERRED, 아트 적용 후 재확인. 기존 0.15s 유지.
 - 완료 Task 의존성 및 관찰·결정·리소스 원문: [Archive](Archive/TASKS_ARCHIVE.md). DONE 의존성은 Archive의 완료 행을 함께 확인한다.
 ## Bugs
+
+### B03-P03-BOUNDARY — 기록 소진/목표 판정 경계 / OPEN
+원본 독립P03 10/10, 중립5틱 후보9/10. 실패는 점프 소비1틱 차이·대시 높이 차이 이후 착지 직전 입력 종료; 종료 뒤 goal 로그. 입력 보정1회 사용/추가 수정 없음. 보호된 게임 변경0. [진단](Validation/B03-P03-summary.md).
+
+### B03-BOSS-VALIDATION — 패턴별 검증 / PARTIAL
+자동 승인 검토가 패턴 fixture 4번째 실행을 접근3개 소진으로 거부. 30/60/120fps 지정 회피/실패1회·Pause/사망/동시프레임 최종 버전 미검증. 실제 후보 처치와 기본 회귀는 독립 PASS; 추가 검증 승인 필요. [상세](Validation/B03-A-summary.md).
 
 ### N9-ROUTE-001 — R05 사망 및 이전 완주 판정 무효 / BLOCKED
 기존 FixedUpdate 관찰이 TimeScale0 사망을 놓치고 CP-A03 복귀를 R05 목표로 인정했다. N8 6회 및 N9 초기60fps 3회 CSV의 실제 A04 사망 확인으로 의도한 R05 출구·G-D 통과를 포함한 연속 완주 판정을 철회한다. 새 프레임 관찰과 입력 후보3개도 R05에서 사망; 도구 보정3회 한도 도달로 경로 수정 중단. 게임·보호 파일 추가 수정 없이 후보 비교는 독립 진행. Editor P01 고정 입력 재생도 목표 소진으로 BLOCKED(실제 exe Pogo3연속PASS와 구분). [상세](Validation/N9-route-recheck.txt).
@@ -168,7 +175,6 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 ## Approved Backlog
 
 2. **B03-VARIANTS** — B2-fast 예고−20%·이동+20%, B2-slow 예고+20%·이동−20%; 후보 Asset/빌드, 각 exe 처치→엔딩 PASS/Error0, 적용 수치 표.
-3. **B03-P03** — 게임 코드 불변, P03 10회 입력·위치·속도 기록, 가설1개·근거, 입력 보정1회까지, 10회 결과·전후 통과율.
 4. **B03-ROOMTIME** — A06/C05 첫2회 의도적 실패 후 지정 입력 왕복 시간; 사람1~3분과 비교, Scene 불변.
 
 ## Latest Handoff
