@@ -2,22 +2,29 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입 2026-10-03 / Target 15방(A06/B06/C05 보류), Sprint 2 Gate 통과·Sprint 3 Gate 사용자 판단 대기.
-S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete 후보이며 사람 완주·체감 수락 대기.
-2026-10-06 N9 PARTIAL: 방향 공격·포고·PogoTest 기술 REVIEW, 기본13+Pogo PASS/RouteAll 차단; 이전 N8 완주 판정 철회.
-최신 S3T-01 PARTIAL: 선택 경로5곳·세션 발견 표시 REVIEW, A-1 제외/복원·최대5/6. R05 연속 귀환 PASS, R06 시작 가정 불일치 BLOCKED.
-H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 S3T-01 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
+**Sprint 3**, 진입2026-10-03. 수락된 Target15방 + Batch02 선택 A06/C05 후보PARTIAL(실행17방). B06은 필수 귀환 간섭으로 복원/BLOCKED. PRD/GAME_DESIGN Target18 확정 문구는 조건 미충족으로 미변경.
+S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지; Sprint3 Gate는 사용자 자연 완주·체감 판단 대기.
+최신 B02-delivery: 기본13/13 및 R01~R17 전체exe PASS/Error0, 신규2방 Editor 발견·귀환/실제exe 사망·초기화PASS. 사람1~3분 목표는 미확인.
+F1-R REVIEW: 명중0.05s 기존검사+동시Pause/치명피격 복귀/0초 PASS, 체감수락 대기. 기존 포고 방향공격 기술REVIEW, P03 반복은4/5로 간헐실패 유지.
+H1 기본값·기존2패턴 유지, H2/H3 보존. BOSS-2는 후보 설계값 결정 대기/BLOCKED. 다음 Sprint 대규모 콘텐츠 미착수.
 ## Current Tasks
 
-B02-C05 PARTIAL: 더블점프/포고/대시 발견→C03 왕복 PASS/Error0, 9.733초. 사망/재입장·통합회귀·사람1~3분 미검증. [요약](Validation/B02-C05-summary.md).
+2026-10-07 **Batch02 종료 — PARTIAL**. START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`, 시작clean/Unity닫힘. 예상5~8시간, 예산10Task/8시간. 시작 때 정한 묶음10Task(Backlog 비교·방 요약은 QA1Task) 처리, Approved Backlog 소진. push없음.
 
-B02-B06 PARTIAL: Dash/포고, DJ 없이 발견→B03 왕복 PASS/Error0, 10.216초. 사망/재입장·통합회귀·사람1~3분 미검증. [요약](Validation/B02-B06-summary.md).
+| ID | 상태 | 실제 결과 / 근거 |
+|---|---|---|
+| B02-0 | DONE | AGENTS 지정2줄·Approved Backlog 등록, 2f6432d / [요약](Validation/B02-0-summary.md) |
+| BOSS-2/B02-A | BLOCKED | 걷기/위치/도약높이 결정대기, 원본보스불변, fcaf7cb / [검토](Validation/B02-A-summary.md) |
+| B02-A06 | PARTIAL | 발견·귀환10.648s, CP사망·E3초기화PASS, 사람시간/체감미확인, 76df7ed→115b2ae / [결과](Validation/B02-A06-summary.md) |
+| B02-B06 | BLOCKED | 내부왕복10.216s 이력이나 R10간섭으로 방·분기복원, 원본raw보존, 246d7fc→115b2ae / [결과](Validation/B02-B06-summary.md) |
+| B02-C05 | PARTIAL | 발견·귀환9.733s, CP사망·E3초기화PASS, 사람시간/체감미확인, befc7e6→115b2ae / [결과](Validation/B02-C05-summary.md) |
+| F1-R/B02-C | REVIEW | Pause·사망·0초PASS/Error0, 복귀0.616894s, e8b5b7b / [결과](Validation/B02-C-summary.md) |
+| B02-FINAL | PARTIAL | 기본17방빌드/20씬/Error0/Warning0, 기본13/13·전체R01~R17PASS; B2빌드만의존BLOCKED, 115b2ae / [통합](Validation/B02-final-summary.md) |
+| B02-QA(Backlog2항목) | PARTIAL | 방요약DONE/기본보스Editor22.433s·피격0, 후보비교BLOCKED, 0196041→115b2ae / [QA](Validation/B02-QA-summary.md) |
+| B02-P03 | DONE | 배포PogoTest5회4PASS/1P03FAIL·수정없음, 86fa1f2 / [반복](Validation/B02-pogo5-summary.md) |
+| B02-ARCHIVE | DONE | 이전PARTIAL 해소근거 확정0개, 애매한N5유지/이동0, e547fba / [검토](Validation/B02-archive-summary.md) |
 
-B02-A06 PARTIAL: Dash/DJ 없이 지정 입력 발견→A04 왕복 PASS/Error0, 10.648초. 사망/재입장·최종회귀·사람1~3분 목표 미검증. [요약](Validation/B02-A06-summary.md).
-
-2026-10-07 **Batch 02 진행** — START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`. 작업 트리 clean, Unity 프로세스 없음. 예상 5~8시간; 예산 10 Task/8시간. Task 집계: 트랙0, A, A06, B06, C05, C, 마무리 빌드·회귀, 비교/방 요약, P03 5회, 이력 정리(총10). 후보 기본값 불변. 첨부 BATCH-02를 승인 명세로 적용.
-B02-C / F1-R REVIEW: Editor 기존 Begin/TakeDamage/SetPaused 진입점 Pause·사망·0초 PASS/Error0, 복귀0.616894s. [요약](Validation/B02-C-summary.md). 체감 수락 대기.
-
+아래 Batch01 및 이전 기록은 당시 상태의 이력이다. 현재 F1-R은 위 REVIEW를 따른다.
 2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
 START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·배치·보호 코드 불변. 과거 F1 및 N8/N9/S3T-01 실패 기록은 당시 이력이며 이번 검증과 구분한다.
 
@@ -77,7 +84,7 @@ START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·�
 
 ### 후속 후보와 기록 위치
 
-- **BOSS-2 TODO** — 보스 이동·패턴 확장(사용자 설계 후). DIFF-002에 따른 후속 작업, 이번 운영 정리 범위 밖.
+- **BOSS-2 BLOCKED** — Batch02 후보 설계값 결정 대기. 기본2패턴·H1값 유지, 후보채택은 구현·플레이 후 별도 사용자 판단.
 - U1 / F2R / LOGR: REVIEW, 기존 사용자 체감 수락 대기. [기술 결과](Validation/TM-U1-final-handoff.md).
 - CAM-002 / K2: DEFERRED, 아트 적용 후 재확인. 기존 0.15s 유지.
 - 완료 Task 의존성 및 관찰·결정·리소스 원문: [Archive](Archive/TASKS_ARCHIVE.md). DONE 의존성은 Archive의 완료 행을 함께 확인한다.
@@ -128,13 +135,16 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B02-B06-ENTRY — 선택 문 공간 / BLOCKED
+기존오브젝트를 움직이지 않는 세 출입구 위치 모두 필수 경로입력에 간섭, R10→B06 재현으로 방·분기만 복원. 선택: **B06보류 / 기존B03에 선택입구용 착지공간 추가허용 / 진입방식 재설계허용**. 추천보류: A06/C05와 정상필수경로를 유지하며 승인범위를 확장하지 않는다. 답이 B06 재개를 푼다. [실패·복원](Validation/B02-B06-summary.md).
+
 ### B02-BOSS-VALUES — BOSS-2 BLOCKED
 후보 걷기 속도·좌우 중심 위치·도약 높이/탐색 범위 미지정. 선택: **2.5u/s, x5/17.5u, 높이4u 초기값 사용 / 이동 없는 대체+높이4u / 직접 지정**. 추천은 첫 안으로 후보에서만 검증, 기본값 유지. 답이 트랙A와 후보B2 빌드·비교 측정을 푼다. AGENTS Batch Approval 미정 설계 경로 중단 적용, 독립 B/C 계속. [검토](Validation/B02-A-summary.md).
 
-### B01-HITSTOP — 동시 상황 확인·0.05s 체감 / PARTIAL
-명중·빗나감·중첩과 30/60/120fps 정지 시간, T2v2, 보스 명중은 기존 도구로 확인했다. 히트스톱 중 Pause→재개, 정지 중 사망→0.6초 복귀를 겹치는 기존 검사 진입점은 확인하지 못해 실행 PASS로 기록하지 않는다. 보호 파일·새 검증 도구 없이 구현한 상태 소유권 처리의 직접 QA와 0.05s 유지/조정 판단이 남는다. C 빌드는 PARTIAL 의존을 명시 허용한 Batch 범위에서 생성했다. [실제 결과·미실시](Validation/B01-A-summary.md).
-
-### S3T01-POGO — P03 고정 입력 일회 실패 / REVIEW
+### B01-HITSTOP — 기술 미검증 해소 / 체감 REVIEW
+B02-C에서 히트스톱 중 Pause·치명피격 사망·0초를 기존 진입점으로 실행PASS/Error0, 0.6초 복귀실측0.616894s. 0.05s 유지/조정/끄기 사용자 체감만 대기. [결과](Validation/B02-C-summary.md), [해소 전 이력](Archive/B01-latest-handoff-20261007.md).
+### S3T01-POGO — P03 고정 입력 간헐 실패 / REVIEW
+B02 승인반복5회 중 P03 4PASS/1FAIL(Error0), 안정적반복통과 미확정, 입력/게임 수정없음. [최신](Validation/B02-pogo5-summary.md).
 기존 묶음 첫 실행 PogoPASS, 최종 묶음 P03FAIL/Error0, 같은 배포exe의 기존 검사 재실행은 P01/P02/P03·사망복귀·능력 회복 PASS/Error0이다. PogoTest 씬·공격/포고 수치는 불변. 원인 미확정이며 안정적 반복 통과로 확정하지 않았다. 새 도구·게임 복원·Pogo 입력 수정 없이 증거를 보존한다. [최종 묶음 실패](Validation/PogoTest-60fps-S3T01-final.txt), [배포 재실행](Validation/S3T01-pogo-delivery.txt).
 
 ### S3T01-LEVEL — 승인으로 해결된 범위 충돌 / A-1 제외
@@ -165,41 +175,49 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-완료: P03 5회 중4회 PASS, 3회차 FAIL/Error0. [결과](Validation/B02-pogo5-summary.md). 승인 목록에서 제거; 추가 수정 미승인.
-대기 항목 없음. 이력 검토도 완료: 해소가 확실한 대상0개로 이동0건, 애매한 N5 유지. [결과](Validation/B02-archive-summary.md).
+대기 항목 없음. 이번 완료 결과는 Latest Handoff를 따른다.
 
 ## Latest Handoff
 
 ### 결정 질문지
 
-- F1-R 히트스톱 0.05s: **유지 / 조정 / 끄기(0)**. 추천은 직접 플레이 후 유지 여부 판단. 명중·빗나감·중첩과 프레임별 시간은 확인했지만 손맛은 자동 검사로 수락할 수 없다. 답은 F1-R 체감 수락을 풀며 동시 Pause/사망 기술 미검증을 대신하지 않는다.
-- 다음 Batch: **동시 Pause/사망 확인 우선 / 다른 승인 Task 우선**. 추천은 미검증 두 상황을 기존 수단 또는 직접 QA로 먼저 확인하는 것. 새 도구와 보호 파일 변경은 이번 범위에 포함하지 않았다. Sprint 3 Gate는 별도 사용자 완주 판단 대기다.
+- **보스B2 후보값**: 걷기2.5u/s·두 중심x5/17.5u·도약높이4u 사용 / 이동없는 대체+높이4u / 직접지정. 추천첫안: 현재20u아레나 안의 후보로만 검증하고 기본값 보존. 문서에 미정인 설계값은 임의 확정하지 않는 Batch규칙에 따라 중단했다. 답이 BOSS-2·B2빌드·비교측정을 푼다. 후보가 없어 채택/조정/폐기는 구현 후 질문한다.
+- **B06**: 보류 / 선택입구용 기존B03 착지공간 추가허용 / 진입방식 재설계허용. 추천보류: 문3위치 모두 필수귀환을 가로채어 방·분기복원. 새허용 없이 반복하지 않는다. 답이 B06 재개를 푼다.
+- **A06/C05**: 유지 / 수정 / 제거. 추천후보유지 후 직접왕복판단: 기능은 통과, 자동9~11초는 사람1~3분 목표의 증거가 아니다. 답이 두 방의 체감수락/남은조건 판단을 푼다.
+- **히트스톱0.05s**: 유지 / 조정 / 끄기(0). 추천현재값으로 직접확인: 기술Pause·사망·0초는통과, 손맛은미수락. 답이 F1-R REVIEW수락을 푼다.
 
-### 직접 플레이 확인 — 사용자 QA 요약
+### 직접 플레이 확인
 
-확인용 Windows 빌드: [Afterglow-B01-hitstop.exe](Builds/B01-hitstop/Afterglow-B01-hitstop.exe). 같은 폴더의 Data/DLL을 함께 유지한다. 이전 S3T-01 빌드와 구분하며 이번 exe의 RouteAll은 통과했다.
+확인용: [Afterglow-B02-delivery.exe](Builds/B02-delivery/Afterglow-B02-delivery.exe). 같은Data/DLL 폴더유지. 실행17방(A06/C05후보), 기존보스2패턴. 기본13/13·전체R01~R17PASS/Error0, 새게임자연완주·체감/Gate수락 대체 아님. 이전 B02-main/main-final/main-r3는 회귀조사용으로 쓰지 않는다.
 
-1. 기존 수락 대기: Menu 저장/이어하기(S2-04), A04·C06 공격/포고·표시(F2R), C05 보스→엔딩·전체 완주(U1/Gate). 약 10~20분. 이전 상세 항목은 [S3T-01 QA](Validation/S3T01-user-qa.md)와 Archive의 이전 인계를 참고한다. 이번 자동 검사는 감각 수락을 대신하지 않는다.
-2. 신규 F1-R: A04 또는 C06에서 명중·빗나감·연속 명중, 정지 중 Pause→재개와 피격 사망→복귀. 약 5분. **바뀐 점:** 명중 때만 0.05초 정지. **의심 지점 3개:** 재개 뒤 멈춤 잔류, 사망 복귀 뒤 배율 이상, 연속 명중의 과도한 끊김. 앞의 두 상황은 실행 미검증이다.
+1. 기존수락대기: Menu 저장/이어하기(S2-04), 방향공격·포고·표시(F2R/U1), C06보스→Ending·자연완주/Gate. 약10~20분. [기존QA](Validation/S3T01-user-qa.md), [이관된B01인계](Archive/B01-latest-handoff-20261007.md).
+2. F1-R: A04/C06 명중·빗나감·연속명중 손맛, 약5분. Pause/치명피격 중지 잔류는 이번 기술PASS. 조정은 FeedbackTuning.asset hitStopSeconds, Stop 후 Asset저장·재빌드.
+3. 새 A06/C05: 각각A04/C03 왼쪽출구 위 문(x2,y5.6), 입구에서 먼저점프한 뒤왼쪽이동. 발견 접촉·귀환·CP사망·적초기화·도전감, 두방약10분. B06은 제외되어 플레이불가. 배치원본 두Scene, Play변경은Stop 후 Scene반영·저장. [방요약·시간표](Validation/B02-QA-summary.md).
+4. 후보B2 C06 약10분 QA는 미구현/빌드없음으로 대기한다. 기본보스는 자동Editor1회 처치22.433s/피격0으로 측정했으며 체감비교 아님.
 
-조정 위치: `Assets/ScriptableObjects/FeedbackTuning.asset`의 `hitStopSeconds`(실시간 초, 0~0.2, 0은 끄기). Play를 종료하고 Asset 값을 저장한 뒤 다시 빌드해야 exe에 반영된다. 현재 0.05는 Batch 지정 임시값이며 체감 수락 대기다.
+발견은세션한정/저장안함, HUD분모9(승인값). 기존A-1·이번B06 제외로 실제최대7/9, 완료표시로해석하지 않는다.
 
 ### Task별 결과
 
-| Task | 상태 / 로컬 커밋 | 변경·실제 검증·남은 문제 |
-| --- | --- | --- |
-| A / F1-R | PARTIAL / c37b0fa | HitFeedback 명중 진입점, FeedbackTuning 필드·Asset, HitStop.cs/.meta. F2R 30/60/120fps 명중·빗나감·중첩, T2v2, 보스 PASS/Error0. 동시 Pause/사망·0 값·물리 패드·체감 미실시. [요약](Validation/B01-A-summary.md) |
-| B / 문서 | DONE / dfbcfe2 | TASKS Current Sprint 5줄, GAME_DESIGN §18 키보드 5행, 해결한 UI 문서 불일치 Archive 이관. 게임 규칙 변경 없음. [요약](Validation/B01-B-summary.md) |
-| C / 빌드 | DONE / 4944d98 | Windows x64 18 Scene 빌드/Error0/Warning0. 실제 exe 보스 접촉 사망·복귀3회→처치→엔딩 저장 PASS/Error0. A PARTIAL을 명시 허용한 확인용 빌드. README 실행 안내. [요약](Validation/B01-C-summary.md) |
-| R06 | DONE / b50b8fd | 기존 경로 라이브러리의 R06 입력만 정상 연속 귀환에서 교체, 첫 접근1회 성공. 전체 exe R01~R17 PASS/사망0/Error0/엔딩→타이틀. 실제 R06 시작 편차0.082u. 다른16개 입력 불변. [요약](Validation/B01-R06-summary.md) |
-| 기본13 | DONE / edcfdca | 기존 Run-Regression 기본 부분1회, 13/13 PASS. 새 도구·검사 파일 수정 없음. Pogo 별도 재실행 없음. [요약](Validation/REG-B01-final-summary.txt) |
+| Task | 상태 / 로컬커밋 | 주요변경·실제검증·문제 |
+|---|---|---|
+| 상설대기 | DONE / 2f6432d | AGENTS지정2줄·TASKS섹션, 문서diff확인 |
+| BOSS-2 | BLOCKED / fcaf7cb | 원본보스코드/Asset변경0, 설계값질문만기록 |
+| A06 | PARTIAL / 76df7ed→115b2ae | 새Scene·A04문, 지정입력왕복10.648s/능력제한·CP-A03/E3초기화PASS, 사람시간미확인 |
+| B06 | BLOCKED / 246d7fc→115b2ae | 당시왕복PASS이나R10간섭, Scene/문되돌림·raw원본보존, B03시작상태동일 |
+| C05 | PARTIAL / befc7e6→115b2ae | 새Scene·C03문, 지정입력왕복9.733s·CP-C04/E3초기화PASS, 사람시간미확인 |
+| F1-R | REVIEW / e8b5b7b | 기존진입점 동시Pause/사망/0초PASS, 복귀0.616894s/Error0, 체감대기 |
+| 빌드·회귀 | PARTIAL / 115b2ae | B02Build/검사·README, Windows17방/20씬/Error0/Warning0, 기본13+최종전체R01~R17PASS, B2빌드의존BLOCKED |
+| 비교·QA | PARTIAL / 0196041→115b2ae | 입력보스관찰22.433s/피격0·방시간표DONE, 후보비교BLOCKED |
+| P03반복 | DONE / 86fa1f2 | 배포exe5회4PASS/1P03FAIL·Error0, 수정없음 |
+| 이력검토 | DONE / e547fba | 오래된PARTIAL의확정해소0개, N5유지/이동0. 이전Handoff는별도Archive이관 |
 
-START_COMMIT: `50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a`. 게임 파일 diff는 FeedbackTuning.asset, FeedbackTuning.cs, HitFeedback.cs, 새 HitStop.cs/.meta의 5개뿐. Scene/Prefab 배치·Player core·입력·다른 튜닝·Packages/ProjectSettings·PRD/AGENTS 불변. 새 플레이 범위는 명중 히트스톱이며 R06 시작 위치 가정 문제를 해소해 현재 exe 전체 경로 리스크를 줄였다. 기존 Editor Pogo 재생 한계와 사용자 수락 대기는 유지한다.
+상세증거: [통합실패·실제PASS](Validation/B02-final-summary.md), [A06](Validation/B02-A06-summary.md), [B06](Validation/B02-B06-summary.md), [C05](Validation/B02-C05-summary.md), [히트스톱](Validation/B02-C-summary.md), [P03](Validation/B02-pogo5-summary.md). 실패를PASS로고치지 않았다.
 
-원본 로그·CSV·입력·Camera 출력은 `Validation/_raw/B01/`에 보존(미커밋). Task별 요약1개씩만 커밋. 진단 빌드는 추가하지 않았고 최종 빌드1개 생성. Task5개로 승인 예산8개 이내, Backlog 소진으로 종료. push 없음.
+START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603` 대비 게임파일: A04/C03 Scene(추가문만), 새 A06/C05 Scene/.meta, GameHUD.cs(6→9분모), 새 Verification의 B02HitStopVerifier/B02RoomVerifier/B02RoomLifecycle/B02BossStats 및 Editor B02Editor/B02Rooms/B02Build(.meta포함). B03·기존Prefab·기본전체튜닝·Boss코드·Player core·Packages/ProjectSettings·PRD/GAME_DESIGN은변경0.
 
-구현 판단: GameState는 관찰만 하며 Pause/전환/사망/Completing이 시간 배율 소유권을 가져가면 히트스톱이 복구하지 않는다. 기존 게임 상태의 복구 처리를 따른다.
+원본로그/CSV/실패Scene은 Validation/_raw/B02/에보존/미커밋. Task요약1개씩만커밋. 10Task묶음처리/Approved Backlog소진, 로컬커밋만/push없음. 새플레이범위는 A06/C05 두후보, 기본필수경로는 B06제외후전체PASS로복원했다.
 
 ### 다음 Batch 후보
 
-F1-R 동시 Pause/사망·0 값 직접 확인 → 체감 수락, 기존 Pogo 재생 한계의 승인 범위 결정, 사용자 완주 후 Sprint 3 Gate 판단. 새 Batch 승인 전 기능·콘텐츠를 확장하지 않는다.
+보스B2설계값답변 후 후보패턴·검증·빌드 → B06재개범위결정 → A06/C05 사람시간·체감수락, 히트스톱수락. P03간헐실패는 별도승인 전수정하지 않는다. 자연완주 후Sprint3 Gate 사용자판단, 다음Sprint확장미착수.
