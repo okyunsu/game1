@@ -50,7 +50,7 @@
 - 사전 결정 표에 있는 항목은 표대로 진행한다. "막히면 대체" 칸은 사용자가 적은 대체안만 유효하다. 칸이 비어 있거나 표에 없는 설계 결정이 필요하면 해당 경로만 멈추고 Decisions Needed에 기록한다.
 - Batch의 Task가 모두 끝나거나 BLOCKED이면, 예산이 남아 있는 한 Batch에 적힌 Backlog를 위에서부터 진행한다.
 - Backlog 항목도 적힌 합격 기준을 따른다.
-- Backlog까지 소진되면 종료한다. Batch 밖 작업은 하지 않는다.
+- Batch의 Backlog까지 소진되면 TASKS의 Approved Backlog를 위에서부터 진행한다. 그것도 소진되면 종료한다. Batch 밖 작업은 하지 않는다.
 
 예산: Batch에 적힌 Task 수 또는 시간 중 먼저 도달하는 쪽에서 현재 Task를 마무리하고 종료한다.
 
@@ -182,7 +182,7 @@ REVIEW는 기술 구현과 관련 Unity 검증이 완료되어 사용자 판단�
 - 원본 로그에 FAIL·MEASURE 줄이 있으면 실패 줄과 핵심 수치를 원문 그대로 넣고, 미실시 항목을 적는다.
 - 원본 로그·CSV·json·PNG는 `Validation/_raw/`에 남기고 커밋하지 않는다(.gitignore 대상).
 - 원본 자료는 삭제하지 않는다.
-- TASKS.md에는 Current Sprint, Current Tasks, Bugs, Decisions Needed, Latest Handoff를 둔다.
+- TASKS.md에는 Current Sprint, Current Tasks, Bugs, Decisions Needed, Approved Backlog, Latest Handoff를 둔다.
 - 끝난 Task 이력과 해결된 Bugs·Decisions는 Archive/로 옮긴다.
 
 ## Handoff

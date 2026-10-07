@@ -9,6 +9,8 @@ S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete �
 H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 S3T-01 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
 ## Current Tasks
 
+2026-10-07 **Batch 02 진행** — START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`. 작업 트리 clean, Unity 프로세스 없음. 예상 5~8시간; 예산 10 Task/8시간. Task 집계: 트랙0, A, A06, B06, C05, C, 마무리 빌드·회귀, 비교/방 요약, P03 5회, 이력 정리(총10). 후보 기본값 불변. 첨부 BATCH-02를 승인 명세로 적용.
+
 2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
 START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·배치·보호 코드 불변. 과거 F1 및 N8/N9/S3T-01 실패 기록은 당시 이력이며 이번 검증과 구분한다.
 
@@ -150,6 +152,11 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 이전 K2 / CAM-002 기술 실패 기록(현재 DEFERRED): 두 번째 검증에서 평상시·반전 비교 FAIL로 승인된 실패 규칙에 따라 전체 복원. 카메라 기본0.15s 유지. 시간 기반 입력의 물리 틱 차이 가능성은 미확정이며 추가 수정/재시도는 별도 승인 필요. 대시 밀림 체감은 미해결.
 
+
+## Approved Backlog
+
+1. **S3T01-POGO P03 재현 확인** — 배포 exe PogoTest를 같은 조건으로 5회 실행해 통과 횟수만 기록. 수정은 하지 않는다. 합격 기준: 5회 결과와 실패 시 로그 위치.
+2. **TASKS 이력 정리** — Current Tasks의 2026-10-05 이전 PARTIAL 문단 중 후속 Batch에서 해소된 것을 Archive로 이동. 합격 기준: 해소 근거 링크가 있는 문단만 이동, 애매하면 유지.
 
 ## Latest Handoff
 
