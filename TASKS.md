@@ -124,6 +124,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B02-BOSS-VALUES — BOSS-2 BLOCKED
+후보 걷기 속도·좌우 중심 위치·도약 높이/탐색 범위 미지정. 선택: **2.5u/s, x5/17.5u, 높이4u 초기값 사용 / 이동 없는 대체+높이4u / 직접 지정**. 추천은 첫 안으로 후보에서만 검증, 기본값 유지. 답이 트랙A와 후보B2 빌드·비교 측정을 푼다. AGENTS Batch Approval 미정 설계 경로 중단 적용, 독립 B/C 계속. [검토](Validation/B02-A-summary.md).
+
 ### B01-HITSTOP — 동시 상황 확인·0.05s 체감 / PARTIAL
 명중·빗나감·중첩과 30/60/120fps 정지 시간, T2v2, 보스 명중은 기존 도구로 확인했다. 히트스톱 중 Pause→재개, 정지 중 사망→0.6초 복귀를 겹치는 기존 검사 진입점은 확인하지 못해 실행 PASS로 기록하지 않는다. 보호 파일·새 검증 도구 없이 구현한 상태 소유권 처리의 직접 QA와 0.05s 유지/조정 판단이 남는다. C 빌드는 PARTIAL 의존을 명시 허용한 Batch 범위에서 생성했다. [실제 결과·미실시](Validation/B01-A-summary.md).
 
