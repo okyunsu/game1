@@ -1,5 +1,9 @@
 # 잔광의 길
 
+## Batch 01 확인용 빌드 (2026-10-07)
+
+`Builds/B01-hitstop/Afterglow-B01-hitstop.exe`를 실행한다. 같은 폴더의 Data/DLL을 함께 보존한다. A04 전투·C06 보스에서 명중 히트스톱과 기존 베기·번쩍임·HP 칸을 약5분 확인한다. 히트스톱과 Pause/사망이 겹치는 상황은 미검증이므로 [현재 인계](TASKS.md#latest-handoff)의 상태·경로 결과를 먼저 확인한다. 저장은 아래 기존 단일 슬롯 안내를 따른다. 조정 위치는 `Assets/ScriptableObjects/FeedbackTuning.asset`의 Hit stop / hitStopSeconds(실시간 초, 기본0.05, 0이면 없음). Play 종료 후 원하는 값을 명시 저장하고 재빌드해야 exe에 반영된다.
+
 막힌 길을 기억하고 새 이동 능력으로 돌아와 정상에 도달하는 작은 탐색 게임.
 
 - 장르: 2D 액션 플랫폼 / Metroidvania-lite
