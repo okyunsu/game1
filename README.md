@@ -135,10 +135,14 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 
 ## 문서
 
+- [AGENTS](AGENTS.md): Batch 승인·작업·Git·검증·인계 절차
 - [PRD](PRD.md): 제품 범위·Target / Minimum·완료 조건
 - [GAME_DESIGN](GAME_DESIGN.md): 게임 규칙·레벨·튜닝 가설
-- [TASKS](TASKS.md): 현재 작업·검토·검증 증거
-- [AGENTS](AGENTS.md): 에이전트 작업 규칙
+- [TASKS](TASKS.md): Current Sprint / Current Tasks / Bugs / Decisions Needed / Latest Handoff
+- [README](README.md): 실행 방법·조작·수정 위치
+- [BATCH_TEMPLATE](BATCH_TEMPLATE.md): 예산·트랙·사전 결정·허용 범위·Backlog·종료 조건
+- [Archive](Archive/TASKS_ARCHIVE.md): 완료 Task·해결 기록·과거 인계·관찰 및 설계 결정 원문
+- [LEVEL_PROPOSALS](LEVEL_PROPOSALS.md), [PROCESS_METRICS](PROCESS_METRICS.md): 현재 링크된 배치·운영 자료로 위치 유지
 
 ## S3-complete v2 (2026-10-03)
 
