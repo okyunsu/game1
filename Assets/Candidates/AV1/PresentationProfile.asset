@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168f0b59404876245b10f30f12f6c398, type: 3}
+  m_Name: PresentationProfile
+  m_EditorClassIdentifier: Assembly-CSharp::PresentationProfile
+  sounds:
+  - eventName: jump
+    clip: {fileID: 8300000, guid: 14edc014d18de1b44a546f8b59ee7d98, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: dash
+    clip: {fileID: 8300000, guid: 2d3c282e1022d7548be21fe4866c276e, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: swing
+    clip: {fileID: 8300000, guid: 6afc5c8f904ae004ba3005d4d5049603, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: hit
+    clip: {fileID: 8300000, guid: c904e3b9499901d4785fc636a3523fed, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: hurt
+    clip: {fileID: 8300000, guid: e4ec4398ed5d1ae4b950f8d1f8b655d0, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: death
+    clip: {fileID: 8300000, guid: 40568115e04ab6d43863368ca781f865, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: checkpoint
+    clip: {fileID: 8300000, guid: 768a80e30edc2d744b7757bf62ebefdf, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: ability
+    clip: {fileID: 8300000, guid: a977d6e6db200904c897792fa7188f06, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  - eventName: bossTell
+    clip: {fileID: 8300000, guid: fa1db22c76711d3438e5a360207516f6, type: 3}
+    volume: 0.34
+    pitchVariation: 0.04
+  - eventName: victory
+    clip: {fileID: 8300000, guid: 70dd5d7dca90de744a0b0835f6321b8d, type: 3}
+    volume: 0.3
+    pitchVariation: 0.04
+  soundThrottle: 0.05
+  bodyColors:
+  - {r: 0.9, g: 0.98, b: 1, a: 1}
+  - {r: 1, g: 0.72, b: 0.24, a: 1}
+  - {r: 1, g: 0.43, b: 0.4, a: 1}
+  - {r: 0.75, g: 0.65, b: 1, a: 1}
+  - {r: 1, g: 0.45, b: 0.75, a: 1}
+  markColor: {r: 0.035, g: 0.045, b: 0.07, a: 1}
+  leanDegrees: 8
+  jumpStretch: 0.14
+  landingSquash: 0.2
+  landingSeconds: 0.12
+  afterimages: 3
+  trailSeconds: 0.12
+  fragmentSeconds: 0.3
+  fragmentSpeed: 3
+  formRatios:
+  - {x: 1, y: 1}
+  - {x: 1.18, y: 0.72}
+  - {x: 0.85, y: 0.95}
+  - {x: 0.85, y: 0.9}
+  - {x: 1, y: 1}
