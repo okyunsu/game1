@@ -2,11 +2,11 @@
 
 ## Current Sprint
 
-**Sprint 3**, 진입일 **2026-10-03**. 최신 TM/U0 DONE/U1 REVIEW/S4-pre2 빌드·실제exe·회귀13/13PASS, 촬영6장 미실시/사용자 UI 검토 대기(2026-10-04). Sprint3 Gate 판단 유지. 사용자 S2-day exe 플레이로 Sprint 2 Gate 통과, S1-10·T1~T4·점프 일관성·K1·S2-01~03·05~06 DONE, S2-04 REVIEW(N5 Part1 재검증 PASS). 현재 Target 15방(A06/B06/C05 보류), 설계 v0.2 유지.
-2026-10-04 최신 추가 승인 D0/F2R/LOGR 종료: 기준T2 실패 재현·T2v2 PASS, F2R/LOGR REVIEW, S4-pre 빌드·실제exe·최종회귀PASS. 아래 S3 후보/사용자 Gate 상태 유지.
-G3로 S3-01~05 DONE/B04 보정 수락, S3-06~08 REVIEW 유지. 승인 F1→S3-09→S3-10→최종 빌드 v2 종료. F1 효과 이벤트 재검사PASS 뒤 T2 회귀FAIL로 복원/BLOCKED, 실험빌드 보존. S3-09/10 기술PASS/REVIEW, 최종15방+Ending 빌드/실제exe/회귀PASS. Content Complete 후보, Sprint 3 Gate는 사용자 완주 후 판단. 선택방/아트/사운드/흔들림/K2/기존배치 변경 없음(C04 Right 활성화만), push 없음.
-
-
+**Sprint 3**, 진입 2026-10-03 / Target 15방(A06/B06/C05 보류), Sprint 2 Gate 통과·Sprint 3 Gate 사용자 판단 대기.
+S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete 후보이며 사람 완주·체감 수락 대기.
+2026-10-06 N9 PARTIAL: 방향 공격·포고·PogoTest 기술 REVIEW, 기본13+Pogo PASS/RouteAll 차단; 이전 N8 완주 판정 철회.
+최신 S3T-01 PARTIAL: 선택 경로5곳·세션 발견 표시 REVIEW, A-1 제외/복원·최대5/6. R05 연속 귀환 PASS, R06 시작 가정 불일치 BLOCKED.
+H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
 ## Current Tasks
 
 2026-10-06 **S3T-01 종료 — PARTIAL**: 선택 경로5곳·세션 발견 표시 기술 확인/REVIEW, A-1은 조정 후 제외/복원. R05 연속 귀환 입력 교체 및 재생PASS, R06 기존 시작 위치 가정 불일치BLOCKED(새 배치 원인 아님/수정 승인 밖). 기본13/13PASS, 배포exe PogoTestPASS(최종 묶음의 P03 일회 실패는 보존), 전체 RouteAllFAIL. DIFF-002/PT-002/BOSS-2 기록, 보존 목록 밖 기존 빌드69개 정리. [사용자 QA](Validation/S3T01-user-qa.md), [최종 요약](Validation/S3T01-final-summary.txt). **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음.
@@ -126,7 +126,6 @@ DEC-LEVEL-001의 사용자 승인으로 GAME_DESIGN의 PogoTarget 전용 씬 제
 - Q2 전체 디스플레이/포커스·Q3 144fps 및 전체 구간·Q4 연속 입력 경로·Q5 실제45분 반복/내부 수집은 기존 도구로 미완료. 검증 도구 확장이 필요하면 별도 범위를 정하고 승인할 것. 출구 직접 배치 시간/유휴 메모리를 요청 측정의 대체 PASS로 쓰지 않음.
 - Q7은 한 번의 보정에서도 검정 화면으로 실패해 추가 촬영 시도를 중단. 유효 스크린샷 없음. U1 가독성/완주·Sprint3 Gate는 사용자 판단 대기 유지.
 
-- 2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
 
 ### LOG-001 — 정확한 사망 원인 기록과 구독 전용 제한
 LOG BLOCKED/미구현. RoomSession 진행 이벤트 없음, PlayerHealth.Hit은 원인·source 없는 Action이며 KillZone도 직접 Die만 호출함. 근처 적/접촉체 추정은 동시 피격·무적 상황에서 실제 사망 원인을 보장하지 못함. 기존 로직은 그대로 유지함. 필요 판단: 관찰 전용 이벤트 추가를 허용할지, 또는 사망 원인 unknown 및 일부 기록 보장 축소를 허용할지. [인터페이스 확인 및 미실시 내역](Validation/LOG-playtest.txt).

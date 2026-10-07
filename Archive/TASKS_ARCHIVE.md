@@ -847,3 +847,9 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 | S3-03 | B01 G-J 턱·B02 | DONE | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
 | S3-04 | E3 사격형·B03 | DONE | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 | S3-05 | B04 획득·연습·B05 자리 | DONE | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
+
+## B01-B UI 문서 불일치 해결 — 2026-10-07 / DONE
+
+- 2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
+
+Batch 01 승인 범위에서 GAME_DESIGN §18의 키 표기만 실제 바인딩과 맞췄다. K1-keys 및 PlayerControls.inputactions 대조. 패드·게임 규칙·수치 불변.
