@@ -50,7 +50,7 @@ public sealed class B03BossFight:N5Runner
  string id=N5Args.Value("-b03-candidate","basic");if(id!="basic")boss.tuning=UnityEditor.AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/"+id+"/BossTuning.asset");
  #endif
  Check(boss.tuning.extendedPatterns==(N5Args.Value("-b03-candidate","basic")!="basic"),"runtime candidate flag matches requested build");
- Health.Hit+=Hit;yield return WalkTo(()=>boss.Fighting,Key.RightArrow,"combat input start");double start=Time.timeAsDouble,realStart=Time.realtimeSinceStartupAsDouble,attackAt=0,jumpAt=-100;int tick=0;var counts=new Dictionary<string,int>();string previous="";
+ Health.Hit+=Hit;yield return WalkTo(()=>boss.Fighting,Key.RightArrow,"combat input start");double start=Time.timeAsDouble,realStart=Time.realtimeSinceStartupAsDouble,attackAt=0,jumpAt=-100;int tick=0;bool airDouble=false;var counts=new Dictionary<string,int>();string previous="";
  while(boss!=null&&boss.HP>0){if(Time.realtimeSinceStartupAsDouble-realStart>240)throw new Exception("input fight deadline HP="+boss.HP);if(RoomSession.Instance.Respawning)throw new Exception("input fight death HP="+boss.HP+" hits="+hits);tick++;var keys=new List<Key>();float dx=boss.transform.position.x-Body.position.x;string state=boss.State.ToString();if(previous!=state){previous=state;if(state.EndsWith("Tell")){FinishPattern();activePattern=state.Replace("Tell","");patternHits=hits;patternResolved=false;}else if(state=="Walk")FinishPattern();else if(state.EndsWith("Recovery"))patternResolved=true;counts.TryGetValue(state,out int count);counts[state]=count+1;lines.Add($"PHASE {state} x={Body.position.x:F2} y={Body.position.y:F2} bossX={boss.transform.position.x:F2} hp={Health.HP} bossHP={boss.HP}");}
  if(!boss.tuning.extendedPatterns){
   if(Body.position.x<15.65f)keys.Add(Key.RightArrow);else if(Body.position.x>15.85f)keys.Add(Key.LeftArrow);
@@ -59,9 +59,9 @@ public sealed class B03BossFight:N5Runner
  }else{
   // Stay above the boss, track horizontally, and pogo with actual Down+X.
   if(Mathf.Abs(dx)>.25f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
-  if(Motor.Grounded){keys.Add(Key.Z);jumpAt=Time.timeAsDouble;}
-  else if(Time.timeAsDouble-jumpAt<.25)keys.Add(Key.Z);
-  else if(Body.linearVelocity.y<0&&Motor.DoubleJumpAvailable&&Body.position.y<5.3f){keys.Add(Key.Z);jumpAt=Time.timeAsDouble;}
+  if(Motor.Grounded){airDouble=false;if(Mathf.Abs(dx)<6){keys.Add(Key.Z);jumpAt=Time.timeAsDouble;}}
+  else if(Time.timeAsDouble-jumpAt<(airDouble?.35:.16))keys.Add(Key.Z);
+  else if(!airDouble&&Motor.DoubleJumpAvailable&&Time.timeAsDouble-jumpAt>.23){keys.Add(Key.Z);jumpAt=Time.timeAsDouble;airDouble=true;}
   var pb=Player.GetComponent<BoxCollider2D>().bounds;var bb=boss.GetComponent<BoxCollider2D>().bounds;
   if(Time.timeAsDouble>=attackAt&&Mathf.Abs(dx)<1.2f&&pb.min.y-bb.max.y<1.7f&&pb.min.y>bb.center.y){keys.Remove(Key.Z);keys.Add(Key.DownArrow);keys.Add(Key.X);attackAt=Time.timeAsDouble+.37;}
  }
