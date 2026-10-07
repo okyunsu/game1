@@ -13,6 +13,20 @@ public static class B02Rooms
         GameObject.Find("Raised precision").transform.localScale=new Vector3(6,.5f,1);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
     }
+    public static void LowerFinalOutlook()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/C05.unity");
+        GameObject.Find("Final outlook").transform.position=new Vector2(31,4.25f);
+        GameObject.Find("Discovery C05").transform.position=new Vector2(32,5.5f);
+        GameObject.Find("E3 Reset").transform.position=new Vector2(30,5.01f);
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
+    }
+    public static void WidenC05Entry()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/C05.unity");
+        var landing=GameObject.Find("Entry landing");landing.transform.position=new Vector2(5,.5f);landing.transform.localScale=new Vector3(10,1,1);
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
+    }
     public static void Create()
     {
         string id=N5Args.Value("-b02-room", "A06");

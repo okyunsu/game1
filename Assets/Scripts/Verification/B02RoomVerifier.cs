@@ -20,6 +20,7 @@ public sealed class B02RoomVerifier:N5Runner
         driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;driver.produce=Generate;
         double started=Time.realtimeSinceStartupAsDouble;
         yield return Until(()=>DiscoveryReward.Found(id)||RoomSession.Instance.Respawning,"discovery traversal",30);
+        lines.Add($"MEASURE discovery stop x={Body.position.x:F3} y={Body.position.y:F3} hp={Health.HP} tick={tick}");
         Check(!RoomSession.Instance.Respawning&&DiscoveryReward.Found(id),"entrance to discovery via designated movement inputs");
         returning=true;direction=-1;
         yield return Until(()=>RoomSession.Instance.CurrentRoomId!=id||RoomSession.Instance.Respawning,"return traversal",30);
@@ -38,6 +39,7 @@ public sealed class B02RoomVerifier:N5Runner
         keys.Add(direction>0?Key.RightArrow:Key.LeftArrow);
         // Ordinary landing jumps are pulsed; downward attacks timed by distance to authored targets.
         if(Motor.Grounded&&!wasGrounded){jumpEnd=tick;nextJump=tick+2;}
+        if(Motor.hasDoubleJump&&direction>0&&Body.position.x<6)nextJump=tick+1;
         if(Motor.Grounded&&tick>=nextJump){jumpEnd=tick+20;nextJump=tick+28;}
         wasGrounded=Motor.Grounded;
         if(tick<jumpEnd)keys.Add(Key.Z);

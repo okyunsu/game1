@@ -9,6 +9,8 @@ S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete �
 H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 S3T-01 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
 ## Current Tasks
 
+B02-C05 PARTIAL: 더블점프/포고/대시 발견→C03 왕복 PASS/Error0, 9.733초. 사망/재입장·통합회귀·사람1~3분 미검증. [요약](Validation/B02-C05-summary.md).
+
 B02-B06 PARTIAL: Dash/포고, DJ 없이 발견→B03 왕복 PASS/Error0, 10.216초. 사망/재입장·통합회귀·사람1~3분 미검증. [요약](Validation/B02-B06-summary.md).
 
 B02-A06 PARTIAL: Dash/DJ 없이 지정 입력 발견→A04 왕복 PASS/Error0, 10.648초. 사망/재입장·최종회귀·사람1~3분 목표 미검증. [요약](Validation/B02-A06-summary.md).
