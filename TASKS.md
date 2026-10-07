@@ -5,97 +5,38 @@
 **Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
 S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Sprint3 Gate는 사용자 자연 완주·체감 판단 대기, 다음 Sprint 확장 미착수.
 F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P03 진단 산출물 DONE, 게임 변경0·원본10/10/보정후9/10, 간헐 실패 이슈 OPEN.
-H1 기본값·기존2패턴·H2/H3 보존. B2 후보 실제exe 확장 적용·처치/Ending/타이틀PASS, 패턴별 전체 검증 미완료/PARTIAL.
+H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
 
-2026-10-08 **Batch04 진행 중**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, clean/Unity 닫힘. 07:38 KST 시작, 예상2~4시간/최대8시간. B04-A 사운드 REVIEW·B04-B 형태/애니메이션 REVIEW, B04-C 돌진 검증 REVIEW(첫 접근+slow 첫 보정 모두 PASS), B04-FINAL 기본/AV1 빌드·회귀 TODO. 후보만 적용/기본값·보호 파일 불변.
+2026-10-08 **Batch04 종료 — 기술 완료 / 후보 REVIEW**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, 시작clean/Unity 닫힘. 07:38~08:16 KST 약40분(예상2~4시간/예산8시간). 승인 트랙·Backlog 소진, 기본/보호 파일 보존, 후보 기본 채택·Sprint Gate 미수락.
 
-2026-10-08 **Batch03 종료 — PARTIAL**. START_COMMIT `c60d938dc7772e7c54b67ae1fe39c365e43f1288`, 시작 clean/Unity 닫힘. 예상4~6시간/예산최대8시간, 실제 약40분. 승인 트랙·Backlog4항목 처리; 패턴 검사 추가 승인 경로만 남음. 후보 수치만 에이전트 결정, 기본 채택·Sprint Gate 사용자 권한 유지.
-
-| ID | 상태 | 완료 조건 |
+| ID | 상태 | 결과 |
 |---|---|---|
-| B03-0 | DONE | 후보 규칙 지정 문단 및 Backlog 등록 |
-| BOSS-2/B03-A | PARTIAL | 후보 exe 처치/엔딩/타이틀 PASS; 패턴 검증 자동승인 거부/미실시 항목 [요약](Validation/B03-A-summary.md) |
-| B03-B06 | REVIEW | 실제exe 진입/왕복10.217s·CP/적초기화·RouteAll R01~R17 PASS [요약](Validation/B03-B06-summary.md) |
-| B03-FINAL | DONE | 기본/B2 실제exe Error0, 기본13/13+RouteAll R01~R17 PASS [통합](Validation/B03-final-summary.md) |
-| B03-COMPARE | PARTIAL | 각3회 처치·피격·관찰패턴 표 완료; 돌진 예고 중 처치로 회피율N/A [측정](Validation/B03-compare-summary.md) |
-| B03-P03 | DONE | 원본10/10·중립5틱 후보9/10, 입력위상/목표판정 가설·해시 동일, 이슈 미해결 [진단](Validation/B03-P03-summary.md) |
-| B03-VARIANTS | REVIEW | fast/slow 실제 수치·처치/Ending/타이틀 PASS/Error0 [후보](Validation/B03-variants-summary.md) |
-| B03-ROOMTIME | DONE | 실패2회 포함 A06 16.401s/C05 16.351s, Scene 불변 [측정](Validation/B03-roomtime-summary.md) |
+| B04-A | REVIEW | AV1 실제 효과음10종/Pause새소리0/중복억제, 기본재생0 [증거](Validation/B04-A-summary.md) |
+| B04-B | REVIEW | 5종 형태/필수애니메이션, Collider diff0, 최종3fps 이동기록 기본과 동일 [증거](Validation/B04-B-summary.md) |
+| B04-C | DONE | B2 돌진30/60/120·fast/slow60 회피0/실패1, 도약/돌진 Pause·사망/CP-C04/HP·패턴초기화 PASS [증거](Validation/B04-C-summary.md) |
+| B04-B-R | DONE | 사망복귀 후보표현만 유지 [증거](Validation/B04-B-recovery-summary.md) |
+| B04-FINAL | DONE | 기본/AV1 최종exe Error0·R01~R17 PASS, 기본13/13 [통합](Validation/B04-final-summary.md) |
+| B04-VOLUME | DONE | peak 편차1.38dB/6dB outlier0 [표](Validation/B04-volume-summary.md) |
+| B04-CONTRAST | REVIEW | 후보 명도·위험물opacity 개선/기본색 불변 [표](Validation/B04-contrast-summary.md) |
+| B04-SHOTS | DONE | 지정9방1920×1080 유효PNG·육안검토/시각방향 보정 [사진](Validation/B04-shots-summary.md) |
+| B04-QA | DONE | 퇴근 후55분, 수락 대기 순서 [1페이지](Validation/B04-QA-summary.md) |
 
-Batch02 종료 이력은 [Archive](Archive/B02-tasks-20261008.md)에 보존한다.
+이전 수락 대기 유지: F1-R .05s REVIEW, A06/C05 PARTIAL·B06 REVIEW, B2/fast/slow 감각 REVIEW(기존 BOSS-2 전체 기술 잔여로 PARTIAL), S3-06~10/S2-04/F2R/LOGR/U1 REVIEW. 자연 전체 완주와 Sprint3 Gate 사용자 판단 대기. P03 간헐 기록 이슈 OPEN/게임 수정0.
 
-아래 Batch01 및 이전 기록은 당시 상태의 이력이다. 현재 F1-R은 위 REVIEW를 따른다.
-2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
-START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·배치·보호 코드 불변. 과거 F1 및 N8/N9/S3T-01 실패 기록은 당시 이력이며 이번 검증과 구분한다.
+B03 작업/인계는 [Task Archive](Archive/B03-tasks-20261008.md)·[Handoff Archive](Archive/B03-latest-handoff-20261008.md), 그 이전 Task/의존성 상세는 [이전 기록](Archive/B04-prior-tasks-20261008.md)·[완료 Archive](Archive/TASKS_ARCHIVE.md).
 
-| ID | Task | Status | Dependency / 실제 결과 |
-| --- | --- | --- | --- |
-| F1-R / B01-A | 명중 히트스톱만 재개 | PARTIAL | 30/60/120fps 명중·빗나감·중첩, T2v2·보스 PASS. 동시 Pause/사망 미실시 |
-| B01-B | Current Sprint·§18 키 표기 최신화 | DONE | 기록된 상태·실제 바인딩만 반영 |
-| B01-C | Windows x64 확인 빌드 | DONE | A PARTIAL 기반 허용, 실제 exe 명중·보스3회 재시도→엔딩/Error0 |
-| S3T01-R06 / B01-R06 | 정상 귀환 시작 입력 교체 | DONE | 텔레포트 없는 기록, 별도 RouteAll R01~R17/Error0/사망0 |
-| B01-REG | 기본13 회귀1회 | DONE | 기존 Run-Regression 기본 부분 재사용, 13/13 PASS |
-
-
-2026-10-06 **S3T-01 종료 — PARTIAL**: 선택 경로5곳·세션 발견 표시 기술 확인/REVIEW, A-1은 조정 후 제외/복원. R05 연속 귀환 입력 교체 및 재생PASS, R06 기존 시작 위치 가정 불일치BLOCKED(새 배치 원인 아님/수정 승인 밖). 기본13/13PASS, 배포exe PogoTestPASS(최종 묶음의 P03 일회 실패는 보존), 전체 RouteAllFAIL. DIFF-002/PT-002/BOSS-2 기록, 보존 목록 밖 기존 빌드69개 정리. [사용자 QA](Validation/S3T01-user-qa.md), [최종 요약](Validation/S3T01-final-summary.txt). **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음.
-
-2026-10-06 **N9 종료 — PARTIAL**: ATK2/3/4·PogoTest 기술 확인/REVIEW, S5-hard 최종 exe 지정 동작·후보3개 보스 재시도PASS. 최종 회귀14/15(기본13+PogoPASS, RouteR05FAIL). 이전 N8 경로 목표 오판을 발견해 완주 판단 철회/경로BLOCKED, Editor Pogo 재생BLOCKED. 사용자 감각·후보 선택 대기. [최종 인계](Validation/N9-final-handoff.md).
-
-2026-10-06 **N8 종료 — PARTIAL / 경로 후속 BLOCKED**: N9 CSV 감사로 R05 사망을 놓친 이전 연속 완주 판단은 무효이며, 경로 Task를 BLOCKED로 되돌림. 아래 PASS 표기는 당시 검사 출력의 이력이다. 상향 공격 REVIEW, 포고·PogoTest·S5-hard BLOCKED(보호된 사망 처리 연결부 변경 필요). 동일 기록의 실제 exe 전체 완주 60fps 3회·30/120fps·패드 PASS, 기본 회귀13개와 추가 RouteAll-60fps PASS, 사망 화면8장 검증. N7 soak 기존 증거 검토 완료. [최종 인계](Validation/N8-final-handoff.md).
-
-2026-10-05 **N7 PARTIAL / 공격 입력 범위 답변 대기**: ATK1 회귀13/13·실검사FAIL(input Asset keyboard y absent), 공격 실험 원복; Hard 후보 회귀13/13·보스 처치PASS, V2/V3 PASS, V4 촬영KNOWN-LIMIT, V5 원문/공격 의존BLOCKED, V1 실제120분 진행 중. [현재 인계](Validation/N7-current-handoff.txt).
-
-2026-10-05 **N6 중단 — 사용자 결정**: 초기 작업 트리는 깨끗하지만 HEAD가 N5 인계 커밋 baaaae0와 동일하여 첨부 §0의 이후 조건을 엄격히 충족하지 못함. 사용자가 시작 조건 유지·중단을 선택함. 구현·Unity 검사·120분 soak 미실시. [검토 기록](Validation/N6-preflight-review.txt).
-
-2026-10-04 **N5 최신: 1부 PASS/S2-04 REVIEW, T-B/T-C PASS, T-F 57유효PNG, T-A/T-D/T-E/T-G 일부 KNOWN-LIMIT. S4-pre3 빌드 PASS, 단계별회귀104/104. 자연 전체 완주/60분 안정성 미검증. Latest Handoff 우선.**
-
-상태: TODO(미착수), DOING(구현 또는 기술 검증 진행), PARTIAL(일부 완료 조건이 남았지만 후속 개발에 사용 가능), REVIEW(기술 구현·관련 검증 완료, 사용자 감각·설계 판단 대기), DONE(완료 조건·필요한 사용자 수락 충족), BLOCKED(외부 의존성·사용자 결정·범위 변경 필요), DEFERRED(의도적으로 미룸).
-의존성 `:REVIEW`는 유효한 기술 검증을 갖춘 REVIEW 또는 DONE에서 충족한다. `:DONE`은 DONE만 허용하며 생략 시에도 DONE으로 해석한다. DEFERRED는 의존성을 자동 충족하지 않는다. 실행에는 별도 범위 승인이 필요하다.
-
-| ID | Task | Status | Dependency | User Review | Done Criteria |
-| --- | --- | --- | --- | --- | --- |
-| S1-07-T | Tilemap 도입 | DEFERRED | 별도 사용자 결정 | Editor GUI 확인 | DEC-ROOM-B: 이번 Sprint 제외, 사용자 GUI 확인 후 별도 Task 결정 |
-
-### 야간 시스템 작업 — DEC-S2-PRE
-
-| ID | Task | Status | Dependency | User Review | Done Criteria |
-| --- | --- | --- | --- | --- | --- |
-### Sprint 2 승인 작업 — 2026-10-02
-
-| ID | Task | Status | Dependency | User Review / Done Criteria |
-| --- | --- | --- | --- | --- |
-| S2-04 | 단일 슬롯 저장·Menu 이어하기 | REVIEW | S2-02:REVIEW | N5 Part1: 예외 필터 수정, 손상 4종 실제 exe/기존 저장 검사/회귀13/13 PASS. 사용자 수락 대기 |
-
-### Sprint 3 승인 작업 — 2026-10-03 (P3 및 G3 후속)
-
-
-| ID | Task | Status | Dependency | User Review / Done Criteria |
-| --- | --- | --- | --- | --- |
-| S3-06 | B02 E2 소개 위치 수정 | REVIEW | G3:DONE | E2 x17/왼쪽/바닥, 발판 위 감지4.787u·반복 돌진 벽앞0.140u 정지·피해 없음·바닥 피해·B01/B02/B03 왕복 및 변경 위험에 비례한 최소 검증(AGENTS.md Validation) |
-| S3-07 | B05 연결·C01 휴식·C02 조합 | REVIEW | G3:DONE | 지정 배치·CP-C01 저장/사망·왕복·바닥 더블 최대발5.905<6.8·Start 일반5.535<6.8/더블 착지·5u 간격 일반실패/대시성공·스폰 비겹침·변경 위험에 비례한 최소 검증(AGENTS.md Validation) |
-| S3-08 | C03 종합 이동·C04 휴식 | REVIEW | S3-07:REVIEW | 지정 E1/E3/엄폐·CP-C04 저장/사망·C02/C03/C04 왕복·CP→C06 입구1.280s·변경 위험에 비례한 최소 검증(AGENTS.md Validation), Right는 C06 생성까지 비활성 |
-| F1 | 최소 공격 타격 피드백(FX-001) | BLOCKED | 사용자 승인 | v2 첫120fps 명중FAIL→검사1회보정→효과PASS, 필수T2 .12s 넉백잠금FAIL. 전체복원, 실험빌드 사용자 판단 대기 |
-| S3-09 | C06 최종 보스 | REVIEW | S3-08:REVIEW | v2 작성 실패 1회 보정 후 시야/회피/회복 X명중/20타/사망/동시프레임/Pause/문 왕복과 변경 위험에 비례한 최소 검증(AGENTS.md Validation). 사용자 체감 대기. F1 미적용 |
-| S3-10 | 엔딩·저장·타이틀 흐름 | REVIEW | S3-09:REVIEW | v2 실제 exe 처치즉시저장/2초빛/엔딩/타이틀/즉시종료후Continue/새게임초기화/가상패드 UI와 변경 위험에 비례한 최소 검증(AGENTS.md Validation). 엔딩 표현 사용자 판단 대기 |
-| S3-G | Sprint 3 Gate | TODO | 사용자 판단 | Content Complete 미충족, 다음 Sprint 미착수 |
-
-새 방 공통 셸 36×14u/바닥윗면y1/좌우벽/경계/카메라5.5·0·0.15/방이름/Door 표시/트리거1×2/바닥스폰y1.81. B02~B04 왼쪽출구(1.75,2), 양쪽 있는 방 오른쪽(34.25,2), FromLeft(3.5,1.81)/FromRight(32.5,1.81). G-J 높이는 일반최대+0.8以上/더블최대−0.5以下 측정 후 조건 불충족 시 범위 안 가장 가까운 값만 적용·결정 기록. S3-05의 B03 연결은 S3-04 실패 시 활성화하지 않고 독립 구현 가능한 부분만 보수적으로 처리한다.
-
-
-### 후속 후보와 기록 위치
-
-- **BOSS-2 PARTIAL** — B2 후보 실제exe 처치 PASS, 추가 패턴 검증 자동승인 거부. 기본2패턴·H1값 유지, 후보 채택은 사용자 판단.
-- U1 / F2R / LOGR: REVIEW, 기존 사용자 체감 수락 대기. [기술 결과](Validation/TM-U1-final-handoff.md).
-- CAM-002 / K2: DEFERRED, 아트 적용 후 재확인. 기존 0.15s 유지.
-- 완료 Task 의존성 및 관찰·결정·리소스 원문: [Archive](Archive/TASKS_ARCHIVE.md). DONE 의존성은 Archive의 완료 행을 함께 확인한다.
 ## Bugs
+
+### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
+초기 AV1에서 시작편차 .110u로 R11 기록을 소진. 기본/수정r2/명도delivery/최종r4 연속 R01~R17은 PASS, 실제회귀 확정 아님. 기존 입력 라이브러리/게임 변경0. 원문은 [최종 요약](Validation/B04-final-summary.md), 재현성 탐색은 다음 승인 범위.
+
 
 ### B03-P03-BOUNDARY — 기록 소진/목표 판정 경계 / OPEN
 원본 독립P03 10/10, 중립5틱 후보9/10. 실패는 점프 소비1틱 차이·대시 높이 차이 이후 착지 직전 입력 종료; 종료 뒤 goal 로그. 입력 보정1회 사용/추가 수정 없음. 보호된 게임 변경0. [진단](Validation/B03-P03-summary.md).
 
 ### B03-BOSS-VALIDATION — 패턴별 검증 / PARTIAL
-자동 승인 검토가 패턴 fixture 4번째 실행을 접근3개 소진으로 거부. 30/60/120fps 지정 회피/실패1회·Pause/사망/동시프레임 최종 버전 미검증. 실제 후보 처치와 기본 회귀는 독립 PASS; 추가 검증 승인 필요. [상세](Validation/B03-A-summary.md).
+B03 당시 자동 승인 검토가 4번째 fixture를 거부한 이력은 보존. BATCH-04 추가3접근 승인 후 새 접근1개+slow 첫보정으로 돌진30/60/120·fast/slow60 회피0/실패1, 도약/돌진 Pause·재개·CP-C04/플레이어HP·보스HP/첫패턴초기화 PASS. B04-C DONE. 남은 전체 BOSS-2 범위는 최종 도약 회피 전체fps·동시HP0 미검증과 감각 수락. [이전](Validation/B03-A-summary.md)·[추가 검증](Validation/B04-C-summary.md).
 
 ### N9-ROUTE-001 — R05 사망 및 이전 완주 판정 무효 / BLOCKED
 기존 FixedUpdate 관찰이 TimeScale0 사망을 놓치고 CP-A03 복귀를 R05 목표로 인정했다. N8 6회 및 N9 초기60fps 3회 CSV의 실제 A04 사망 확인으로 의도한 R05 출구·G-D 통과를 포함한 연속 완주 판정을 철회한다. 새 프레임 관찰과 입력 후보3개도 R05에서 사망; 도구 보정3회 한도 도달로 경로 수정 중단. 게임·보호 파일 추가 수정 없이 후보 비교는 독립 진행. Editor P01 고정 입력 재생도 목표 소진으로 BLOCKED(실제 exe Pogo3연속PASS와 구분). [상세](Validation/N9-route-recheck.txt).
@@ -142,6 +83,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B04-AV1 — 후보 수락 / REVIEW
+사운드/형태/명도 각각 채택·조정·폐기, B2/fast/slow 선택, 기존 히트스톱/선택방 수락 및 Sprint Gate 판단 시점은 Latest Handoff 질문지를 따른다. 기본 채택·규칙 변경0.
+
 B02의 보스 수치·B06 진입 범위 결정은 BATCH-03 사용자 승인으로 해소. [원문 이력](Archive/B03-resolved-decisions.md).
 
 ### B01-HITSTOP — 기술 미검증 해소 / 체감 REVIEW
@@ -178,53 +122,53 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-B04 승인 Backlog: 1. AV1 음량 표/6dB 편차 조정 2. 명도 대비 표/후보색 조정 3. 1920×1080 지정9방 촬영(검정 보정1회) 4. 1페이지 QA 순서. 트랙/최종 뒤 순서대로 진행.
+대기 없음. B04 승인4항목 모두 처리: 음량표 DONE, 명도 후보 REVIEW(기술완료/사람가독성 대기), 지정9방 사진 DONE, 55분 1페이지 QA DONE. 남은 후보수락은 Latest Handoff, 승인 밖 Backlog 추가 없음.
 
 ## Latest Handoff
 
-2026-10-08 **Batch03 PARTIAL 종료**. 예상4~6시간/예산8시간, 실제 약40분. START_COMMIT `c60d938dc7772e7c54b67ae1fe39c365e43f1288`; 시작clean/Unity닫힘, Task별 로컬커밋/push없음. 새 플레이 범위: B06 선택 진입 복원, B2·fast·slow 보스 후보. 기본 소스 Unity회귀13/13·18방 exe R01~R17 전부PASS/Error0. 후보3종 실제exe 처치→Ending→타이틀PASS/Error0. **B2 전체 패턴 기술 검증은 미완료**, 사람 수락/Sprint Gate 아님.
+2026-10-08 **Batch04 기술 완료 / AV1 후보 REVIEW**, 인계 포함 약40분/예산8시간. 새 플레이 범위: 후보10종 효과음, 역할별 기하형·최소 애니메이션·잔상/사망조각, 명도 개선. 기본18방·튜닝·보호 로직은 보존. 기본13/13·기본/AV1 최종exe 전체R01~R17 PASS/Error0. B2 돌진 주요 검증 위험 해소, 감각/기본채택/Sprint Gate 미수락. [최종 증거](Validation/B04-final-summary.md).
 
 ### 결정 질문지
 
-1. **B2 남은 검증**: 새 Batch에서 재시도 한도를 새로 정해 패턴 검사 보정·재검증 / 현재 PARTIAL 유지·직접 플레이만 / 후보 폐기. 추천 첫안: 빌드·처치는 통과했지만 최종30/60/120fps 지정회피/실패1회·Pause/사망/동시프레임 확인이 남았다. [AGENTS Batch Approval](AGENTS.md#batch-approval)의 `Task당 서로 다른 접근은 최대 3개까지 허용한다`를 근거로 자동 승인 검토가 4번째 pattern fixture 실행을 거부했으며 우회하지 않았다. 답이 BOSS-2 기술 검증·돌진 비교 수치 경로를 푼다.
-2. **보스 후보 선택**: 검증 후 B2 / B2-fast / B2-slow 채택, 수치 조정, 폐기. 추천 B2를 기준으로 먼저 직접 비교: 자동포고 전략에서는 B2가 더 빨리 처치됐고 fast/slow의 사람 난이도는 미확인. 기본 채택은 이번에 하지 않았다. 답이 후보 수락/후속 조정 Task를 푼다.
-3. **B06·A06·C05**: 방별 유지 / 의미 있는 도전을 더해 수정. 추천 B06의 의도적 Up 입구는 유지(필수경로 간섭 해소), 방 분량·난이도는 직접 플레이 후 판단. A06/C05는 의도적 실패2회를 섞어도 자동16.4s 수준이므로 사람1~3분을 충족하는지 확인해야 한다. 시간 채우기 반복 배치는 하지 않았다. 답이 선택방 시간·체감 수락 또는 새 배치 Task를 푼다.
-4. **히트스톱 .05s**: 유지 / 조정 / 끄기. 추천 우선 유지: 이전 기술검증은 PASS, 손맛은 직접 판단. 답이 F1-R REVIEW 수락/조정 Task를 푼다.
+| 질문/선택지 | AI 추천과 이유 | 답으로 진행할 Task |
+|---|---|---|
+| AV1 사운드·형태 각각 **채택 / 조정 / 폐기** | 후보 유지 후 청감/가독성 조정. 기술적으로 격리·움직임중립이나 선호는 직접 판단 | AV1 REVIEW 수락 또는 다음 후보 조정 |
+| 보스 **기본 / B2 / fast / slow / 수치조정** | B2를 기준으로 fast/slow 각5분 비교. 자동 회피와 사람 난이도는 다름 | 보스 후보 수락/기본채택 범위, 잔여 BOSS-2 검증 |
+| 히트스톱 **.05s 유지 / 조정 / 끄기**, A06/B06/C05 **수락 / 조정** | .05s·의도적 선택입구는 우선 유지, 방 시간/재미는 플레이 후 결정 | F1-R·선택방 수락/후속배치 |
+| Sprint3 Gate **오늘 자연완주 후 / 다음 완주 후 / 대기 유지** | 자연 전체완주·체감 확인 후 판단. 이번 기술PASS를 Gate로 대체하지 않음 | Sprint3 Gate 사용자 판단 |
 
-### 직접 플레이 확인 (수락 대기 순서)
+### 직접 플레이 확인 — 수락 대기 순서, 총55분
 
-QA `.cmd`를 Explorer에서 더블클릭하면 매회 **QA 전용 저장 슬롯을 초기화**한다. Menu에서 Z 이어하기. 같은 폴더 Data/DLL 유지. 표준 exe 실행도 가능하다.
+[1페이지 QA와 실행 링크](Validation/B04-QA-summary.md). 각 `.cmd`는 해당 폴더 QA 전용 저장만 초기화, Menu Z 이어하기.
 
-1. **히트스톱 5분** — 기본 [QA-C06](Builds/B03-main-final/QA-C06.cmd) 또는 A04. 공격 명중 .05s 정지가 손맛에 맞는지. 원본 FeedbackTuning.asset의 hitStopSeconds(s); Play 종료 후 값을 다시 반영·저장·재빌드.
-2. **A06·C05 합10분** — 기본 [QA-A06](Builds/B03-main-final/QA-A06.cmd): CP-A03→오른쪽 A04, 왼쪽 출구 위 문(x2,y5.6)에 점프 후 왼쪽 이동. [QA-C05](Builds/B03-main-final/QA-C05.cmd): CP-C04→왼쪽 C03, 동일 위 문. 발견 접촉·귀환·도전성·사람1~3분 확인. A06은 Dash/DJ 없음, C05 둘 다 소유. [시간 보조](Validation/B03-roomtime-summary.md).
-3. **B06 5분** — 기본 [QA-B06](Builds/B03-main-final/QA-B06.cmd): CP-B01→오른쪽 B02→B03, x7 청록색 `↑ 선택 대시 도전` 앞에서 ↑/스틱 위. Dash·포고로 발견→같은 입구 귀환, 선택 진입이 명확한지/필수 이동을 가로채지 않는지. DJ 없음. 자동왕복10.217s/CP·E3초기화PASS, 사람 시간·체감 대기.
-4. **B2 C06 10분** — [QA-C06 B2](Builds/B03-B2-final/QA-C06.cmd): CP-C04에서 오른쪽 보스. 고정 근접→도약→파동→돌진, 먼 위치 걷기, 예고 가독성/대시·점프 회피/접촉 피해/정상 재시도 확인. 최종 패턴별 기술검증은 아직 PARTIAL이므로 직접 확인과 구분. [상세](Validation/B03-A-summary.md).
-5. **fast/slow 비교 10분** — [fast](Builds/B03-B2-fast-final/QA-C06.cmd), [slow](Builds/B03-B2-slow/QA-C06.cmd). 빠름/느림 예고·이동 조합 중 원하는 압박/학습감을 비교. [실제 수치](Validation/B03-variants-summary.md).
-
-발견은 세션한정/저장안함, HUD분모9·현재최대8/9(A-1 제외). 기본은 기존 보스2패턴·기본튜닝 유지. 배치 원본은 Scene(B03 새 OptionalRoomEntry/B06 내부), 후보 수치 원본은 Assets/BossCandidates/B2 또는 B2-fast/slow/BossTuning.asset. Inspector Tooltip 단위를 따른다. Play에서 바꾼 값은 Stop 후 해당 Scene/Asset에 원하는 값을 다시 반영·저장하고 재빌드한다.
+1. 기본 C06/A04 **5분** — .05s 명중 히트스톱.
+2. 기본 A06/C05 **10분** — A04/C03 왼쪽 출구 위 문(x2,y5.6), 발견/귀환·사람 도전시간.
+3. 기본 B06 **5분** — CP-B01→B02→B03 x7 청록 `↑ 선택 대시 도전`, Dash/포고 진입/귀환.
+4. B2 C06 **10분** — 예고·4패턴·돌진DJ 회피·사망 재시도. 지정 검증은 PASS, 기존 최종 도약회피 전체fps·동시HP0은 미검증.
+5. fast/slow C06 **10분** — 각5분 압박·학습감 비교.
+6. AV1 A01/A04/B02/B03/C06 **10분** — 사운드·실루엣·눈/전면/포신·점프/착지/잔상/피격/사망, 무음 예고 확인.
+7. 결정 기록 **5분** — 위 선택지. 자연 전체 완주가 남으면 별도로 진행하고 Gate 대기 유지.
 
 ### Task별 결과
 
 | Task | 상태 / 커밋 | 주요 파일·실제 검증·문제 |
 |---|---|---|
-| B03-0 | DONE / 53ae9d1 | AGENTS 지정 문단만·TASKS Backlog4항목 등록; 문서diff확인 [증거](Validation/B03-0-summary.md) |
-| BOSS-2 | PARTIAL / e426445 | BossTuning/Encounter/Wave, B2 Asset, build/verifier. 실제 후보exe20.468s/피격0·엔딩/타이틀PASS. 패턴 fixture 실패/자동승인 거부, 최종30/60/120·Pause/사망/동시프레임 미실시 [증거](Validation/B03-A-summary.md) |
-| B06 | REVIEW / 3a32d07 | 새 OptionalRoomEntry·B03 추가문·B06 Scene, 실제입력왕복10.217s·CP-B01/E3초기화·전체R01~R17PASS. 초기 disabled RoomExit 간섭 수정, 사람수락대기 [증거](Validation/B03-B06-summary.md) |
-| 마무리 | DONE / 9e9dc21 | 기본/B2 최종빌드21씬·errors/warnings0, 기본13/13·RouteAllPASS; README/이력Archive. 캐시 탓에 첫 후보에 기본보스가 들어간 이력 제외, CleanBuildCache+실제flag확인 [증거](Validation/B03-final-summary.md) |
-| 비교3회 | PARTIAL / 7860a2d | verifier 지정입력 각각3처치; 평균기본21.661s/B2 20.417s(게임시간), 유효피격0. 돌진 예고 중 처치로 회피율N/A, 최초 B2 입력사망 로그 보존 [표](Validation/B03-compare-summary.md) |
-| 변형2개 | REVIEW / f49613e | 새 fast/slow Asset, 실제exe수치·처치/Ending/타이틀PASS/Error0. fast22.301s/피격1, slow20.417s/피격1; slow 첫 사망 후 첫재시도PASS [표](Validation/B03-variants-summary.md) |
-| P03 진단 | DONE / 89a8e9f | 새 diagnostic/입력후보. 원본10/10·중립5틱 후보9/10, 실패입력·좌표·속도 기록/가설1개, 게임해시동일. 안정성 해소 아님 [증거](Validation/B03-P03-summary.md) |
-| 방 시간보조 | DONE / d66f866 | 새 verifier, 각 첫실패2회 포함 A06 16.401s/C05 16.351s, 실제exe/Error0. Scene 변경0·사람시간 미확인 [표](Validation/B03-roomtime-summary.md) |
+| A 사운드 | REVIEW / `6bdd27b` | PresentationProfile/Bootstrap, Audio/AV1 WAV10, HitFeedback 관찰; 실제exe10클립·Pause0/중복억제/기본0. 청감 대기 [증거](Validation/B04-A-summary.md) |
+| B 형태/애니메이션 | REVIEW / `6bdd27b`·`de29a76` | PresentationVisual, 실제효과/Collider diff0. 기본·최종AV1 30/60/120 각150틱 위치·속도해시 동일 [증거](Validation/B04-B-summary.md) |
+| 복귀·방향 보정 | DONE / `52dedf5`·`5d901ba` | 원본renderer 재노출 방지, HP0/Respawn child 숨김, Player/E2/E3 시각방향. 실제exe 복귀/사진 PASS [복귀](Validation/B04-B-recovery-summary.md) |
+| C B2 검증 | DONE / `087c303` | 새 fixed-tick/지속DJ 접근1개, slow 첫 허용보정. B2 3fps·fast/slow60 회피0/실패1/Pause·재개/CP-C04·HP·패턴초기화 PASS. 기존 BOSS-2 전체 PARTIAL 유지 [증거](Validation/B04-C-summary.md) |
+| 마무리 | DONE / `accfde6` | 기본 `B04-main-final`, 후보 `B04-AV1-final-r4`, 기본13/13·각exe R01~R17→타이틀/Error0. 초기AV1 R11 기록소진 원문 보존 [통합](Validation/B04-final-summary.md) |
+| 음량·명도 | DONE / `aa343b4`, REVIEW / `5527868` | peak편차1.38dB/6dB outlier0, 후보body 명도·hazardOpacity 개선/기본색0. 청감·가독성 대기 [음량](Validation/B04-volume-summary.md)·[명도](Validation/B04-contrast-summary.md) |
+| 사진9장 | DONE / `5d901ba` | 1920×1080 비검정·육안PASS. 실제exe 방카메라 render/HUD·overlay 제외, raw PNG 미커밋 [사진](Validation/B04-shots-summary.md) |
+| QA 안내 | DONE / `b89019c` | 실행 링크·비교 항목·55분 순서 [1페이지](Validation/B04-QA-summary.md) |
 
-**에이전트가 정한 후보값/이유**: 벽여유 .1u와 표적 clamp(벽 관통 방지), 표적/방향은 예고 시작 시 snapshot(예고 후 추적 없음). 이동 보스는 후보에서 trigger+접촉 겹침 판정(정적 collider 이동의 바닥 밀림 방지), 도약 비행 접촉 제외/착지 피해. B06 입구(7,2)·청록색·Up 선택(기존 물체 이동/필수 입력 간섭 없이 의도적 진입). fast/slow에서 파동·걷기·돌진·도약 이동까지 ±20%; 도약비행 .5/.75s(같은 높이·속도 배율), 모든 예고 ∓20%. 기본 수치 채택0.
+**후보값/이유**: gain .30/보스.34, pitch ±.04, 중복간격.05s, PCM .13/.26/.32s(짧은 식별신호·예고 우선). 걷기8°, 점프14%/착지20%·.12s, 잔상2~3개/.12s, 사망4조각/.3s·3u/s(작고 짧은 상태 표현). E1 넓이1.18/높이.72, E2 .85/.95, E3 .85/.9(역할별 형태), body RGB 및 위험물opacity1은 [표](Validation/B04-contrast-summary.md)의 player 구별/영역 대비 목적. Source는 **Assets/Candidates/AV1/PresentationProfile.asset** 한 곳. Play 값을 기록하고 종료 후 확인/반영·저장·후보 재빌드. 기본 채택0.
 
-START_COMMIT 대비 게임 변경: BossEncounter.cs/BossTuning.cs/BossWave.cs, 새 BossCandidates B2/fast/slow Asset/.meta, B03 Scene(새 문/표시만), 새 B06 Scene/.meta, 새 OptionalRoomEntry.cs/.meta. 새 Verification은 B03BossVerifier/RoomVerifier/P03Diagnostic/RoomTime, Data 입력 후보, Editor B03Build/B03Room(.meta 포함). **기본 튜닝·기존Prefab·모든 금지 Scene/Player core/GameState/KillZone·Input·Packages/ProjectSettings·PRD/GAME_DESIGN diff0**. B03 기존 오브젝트 삭제/이동0, B06 내부는 B02 raw 원본과 동일. 18방 전부수락 조건 미충족이라 Target15 문구 미변경.
-
-원본 로그/실패/각틱trace/CSV/해시/빌드증거는 Validation/_raw/B03/에 보존(미커밋), Task당 요약1개 커밋. 기존 raw 삭제/덮어쓰기0. 표준 저장 대신 검사별save-path 사용, QA는별도슬롯. 이전 인계는 [Archive](Archive/B02-latest-handoff-20261008.md).
+**보호 파일 관찰 추가 라인: 없음(0)**. 비보호 HitFeedback의 `Presented` 이벤트 선언/호출만 추가, 기본 구독자0. 기존 Scene/Prefab/기본Tuning/BossCandidates/Player core/GameState/RoomSession/KillZone/Packages/ProjectSettings/PRD/GAME_DESIGN diff0. 새 후보는 build scene copy만 활성화. 원본/실패/CSV/사진은 Validation/_raw/B04/ 보존, Task별 요약만 커밋, push0.
 
 ### 다음 Batch 후보
 
-1. 별도 승인으로 B2 남은 패턴검증·Pause/사망/동시프레임과 돌진 비교 보정, 후보3종 체감 선택.
-2. B06/A06/C05 자연 플레이 후 유지/의미 있는 도전 추가 범위 결정, 히트스톱 수락.
-3. P03 기록 종료/착지 판정 경계의 검사 방식 또는 더 긴 중립 대기 승인 검토(이번 보정1회 한도 소진, 게임 변경은 별도 승인).
-4. 자연 전체 완주 후 Sprint3 Gate 사용자 판단. 다음 Sprint 대규모 콘텐츠 확장 미착수.
+1. 사용자 AV1 청감·형태·명도 수락/조정 선택 후 승인된 후보만 보정 또는 기본 채택.
+2. B2/fast/slow 자연 비교 선택, BOSS-2 잔여 도약회피·동시HP0 검증은 별도 승인 범위 지정.
+3. 히트스톱·선택방 수락, 자연 전체 완주 후 Sprint3 Gate 사용자 판단. 다음 Sprint 대규모 콘텐츠는 미착수.
+4. 필요 시 P03/R11 기록 경계 민감성 조사 범위 지정. 이번 게임/입력 기록 변경0.
