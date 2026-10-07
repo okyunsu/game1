@@ -9,6 +9,8 @@ S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete �
 H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 S3T-01 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
 ## Current Tasks
 
+B02-A06 PARTIAL: Dash/DJ 없이 지정 입력 발견→A04 왕복 PASS/Error0, 10.648초. 사망/재입장·최종회귀·사람1~3분 목표 미검증. [요약](Validation/B02-A06-summary.md).
+
 2026-10-07 **Batch 02 진행** — START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`. 작업 트리 clean, Unity 프로세스 없음. 예상 5~8시간; 예산 10 Task/8시간. Task 집계: 트랙0, A, A06, B06, C05, C, 마무리 빌드·회귀, 비교/방 요약, P03 5회, 이력 정리(총10). 후보 기본값 불변. 첨부 BATCH-02를 승인 명세로 적용.
 B02-C / F1-R REVIEW: Editor 기존 Begin/TakeDamage/SetPaused 진입점 Pause·사망·0초 PASS/Error0, 복귀0.616894s. [요약](Validation/B02-C-summary.md). 체감 수락 대기.
 

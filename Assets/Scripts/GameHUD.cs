@@ -107,7 +107,7 @@ public sealed class GameHUD : MonoBehaviour
         {
             float x=tuning.hudPosition.x,y=tuning.hudPosition.y;Fill(new Rect(x,y,tuning.hudSize.x,tuning.hudSize.y),new Color(.04f,.05f,.07f,.84f));
             GUI.Label(new Rect(x+12,y+4,tuning.hudSize.x-24,24),observedSession.CurrentRoomId,text);
-            if(observedSession.CurrentRoomId!="PogoTest")GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),"발견 "+DiscoveryReward.Count+"/6",text);
+            if(observedSession.CurrentRoomId!="PogoTest")GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),"발견 "+DiscoveryReward.Count+"/9",text);
             GUI.Label(new Rect(x+12,y+31,30,24),"HP",text);
             for(int i=0;i<health.tuning.playerMaxHP;i++)Fill(new Rect(x+48+i*(tuning.hpPipSize+tuning.hpPipGap),y+34,tuning.hpPipSize,tuning.hpPipSize),i<VisibleHP?Color.white:new Color(.32f,.32f,.35f));
             Ability(new Rect(x+12,y+65,160,24),DashOwned,false,input.UsingGamepad?"B":"C");
