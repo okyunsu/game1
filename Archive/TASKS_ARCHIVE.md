@@ -568,64 +568,44 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 2026-10-01 야간 승인 DEC-S2-PRE: T0 재설정 후 T1 Dash, T2 Health, T3 Attack(T2 성공), T4 E1(T2·T3 성공)를 순차 검증·로컬 커밋. push 없음. Sprint 1 Gate 전 시스템 선행은 전용 테스트 씬에만 허용하며 T0 이외 A01~A04 통합 금지.
 
 
-| S1-01 | Unity Project Setup | DONE | 없음 | — | 정확한 Editor·패키지 고정, 기본 폴더·Boot/Menu 구성, 빈 씬 Play·Windows 빌드 성공, 실행 안내 |
 
 
-| S1-02 | Input System | DONE | S1-01:DONE | — | 키보드·패드, Gameplay/UI 분리, 전환·해제 Pause·재개 시 입력 유출 없음 |
 
 
-| S1-03 | 좌우 이동·기본 점프·낙하 | DONE | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
 
 
-| S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
 
 
-| S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
 
 
-| S1-06 | Camera | DONE | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
 
 
-| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 기준 양방향·안전 도착·단일 플레이어·입력 초기화 PASS 이력. C3 자동 입력 한계는 사용자 직접 왕복 성공 보고로 레이아웃 결함으로 보지 않음. Tilemap DEFERRED |
 
 
-| S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
 
 
-| S1-09 | 첫 Vertical Slice 통합 | DONE | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1·A02~A04 사용자 설계 좌표 v1: 테스트용 이동 경로로 사용자 수락(2026-10-02). 임시 그레이박스이며 실제 진행 때 수정 예정 |
 
 
-| S1-10 | Slice 검증·실행 안내 | DONE | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·exe 전환/복귀 PASS. 사용자 exe 실행 5분 확인 대기 |
 
 
-| S1-G | Sprint 1 Gate | DONE | 2026-10-02 사용자 조건부 결정 | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
 
 
-| T1 | Dash / DashTest | DONE | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
 
 
-| T2 | Health / CombatTest | DONE | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
 
 
-| T3 | 기본 공격 / CombatTest | DONE | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
 
 
-| T4 | E1 순찰형 / CombatTest | DONE | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
 
 
-| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | DONE | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
 
 
-| S2-02 | A05 대시 획득·안전 연습 | DONE | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
 
 
-| S2-03 | A03 G-D·B01 자리 | DONE | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
 
 
-| S2-05 | Core Loop 통합 관찰·재방문 검증 | DONE | 사용자 결정 G2 | S2-day 사용자 플레이로 대체, 이월 T1~T4·점프 일관성 수락 |
 
 
-| S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
 
 
 이번 구현은 표의 S2-01~04와 성공 단계 최종 빌드만 승인. 향후 Sprint 2 로드맵 범위는 제안 TODO이며 콘텐츠 추가를 승인하지 않음. 기존 블록·스폰·CP·문 위치 보존, 새 방/출구/스폰만 지정 범위 추가. 실패 1회 수정 후 재실패 시 단계 복원·의존 단계 건너뜀. 회귀는 S1-02/04/07/08, 자동 이동 휴리스틱 사용 금지.
@@ -634,19 +614,14 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 승인 원문: [이전 P3 실행 명세](../Validation/S3-approved-request.txt), [현재 G3/S3-full 실행 명세](../Validation/S3-full-approved-request.txt). 이전 P3는 S3-01~05, 현재 G3 후속은 S3-06~10와 성공 단계 Windows x64 빌드만. 선택 방·아트·사운드·K2·무관 기존 배치 변경 금지. 단계별 구현→Unity 검증→S1-02/04/07/08 회귀→로컬 커밋. 실패 1회 수정 후 재실패는 해당 단계 복원·실패 기록 커밋, 의존 단계 건너뜀. Validation 기존 파일 덮어쓰기 금지.
 
 
-| S3-01 | 더블 점프 시스템 | DONE | G2:DONE | Player 기본 보유 false, DoubleJumpTest true/3.6u 턱; 추가 속도12·재입력·접지회복·Coyote 후1회·대시/전환 회복 없음·저장. 30/60/120fps 일반/더블 최대 발 높이 및 G-J 기준 MEASURE, 3번째/홀드/미보유 차단 |
 
 
-| S3-02 | E2 돌진형 적 | DONE | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
 
 
-| S3-03 | B01 G-J 턱·B02 | DONE | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
 
 
-| S3-04 | E3 사격형·B03 | DONE | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
 
 
-| S3-05 | B04 획득·연습·B05 자리 | DONE | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |
 
 
 ### N9-UI-001 — PogoTest 안내와 HUD 겹침 / DONE
@@ -839,3 +814,36 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - Cinemachine 3.1.7: 공식 registry의 최소 Editor 2022.3, 설치된 package.json 3.1.7, manifest/lock 고정. 6000.3.24f1에서 resolve·컴파일·Play 성공.
 - 기술 검증: [S1-06 결과](../Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
+
+## 완료 Task 원문 행
+
+| ID | Task | Status | Dependency | User Review | Done Criteria |
+| --- | --- | --- | --- | --- | --- |
+| S1-01 | Unity Project Setup | DONE | 없음 | — | 정확한 Editor·패키지 고정, 기본 폴더·Boot/Menu 구성, 빈 씬 Play·Windows 빌드 성공, 실행 안내 |
+| S1-02 | Input System | DONE | S1-01:DONE | — | 키보드·패드, Gameplay/UI 분리, 전환·해제 Pause·재개 시 입력 유출 없음 |
+| S1-03 | 좌우 이동·기본 점프·낙하 | DONE | S1-02:DONE | 가감속·급반전·공중 제어 | Rigidbody2D·PlayerTuning·Prefab·단순 검증 공간, 벽 접지 없음, Inspector 반영, 기본 조작 수락 |
+| S1-04 | Coyote Time / Jump Buffer | DONE | S1-03:REVIEW | 발판 끝·착지 직전 입력 | 경계 안팎 허용·만료, 단일 소비·전환 초기화, 입력 보정 수락 |
+| S1-05 | Variable Jump Height | DONE | S1-04:REVIEW | 높이 차이·낙하감 | Jump Cut·하강 배율·최대 속도 조정 가능, 짧은/긴 점프 구분, 30/60/120fps 확인·사용자 수락 |
+| S1-06 | Camera | DONE | S1-03:DONE, S1-04:DONE, S1-05:DONE | 급반전·낙하 시야 | Cinemachine 추적·방 경계, 떨림·시야 밖 필수 착지 없음, 설정 안내 |
+| S1-07 | Block Greybox / Room Structure | DONE | S1-01:DONE, S1-03:DONE, S1-04:DONE, S1-05:DONE | — | DEC-SLICE-USER 빈 방 기준 양방향·안전 도착·단일 플레이어·입력 초기화 PASS 이력. C3 자동 입력 한계는 사용자 직접 왕복 성공 보고로 레이아웃 결함으로 보지 않음. Tilemap DEFERRED |
+| S1-08 | Checkpoint / 최소 사망 복귀 | DONE | S1-05:REVIEW, S1-07:DONE | — | CP-A01/A03·Kill Zone·0.6초 안전 복귀·사망 중 입력/전환 차단·3초 내 조작, 능력 없는 초기 상태 검증; HP/디스크 저장은 Sprint 2 |
+| S1-09 | 첫 Vertical Slice 통합 | DONE | S1-06:REVIEW, S1-08:DONE | 사용자 직접 배치 | A01 사용자 배치 v1·A02~A04 사용자 설계 좌표 v1: 테스트용 이동 경로로 사용자 수락(2026-10-02). 임시 그레이박스이며 실제 진행 때 수정 예정 |
+| S1-10 | Slice 검증·실행 안내 | DONE | S1-09:REVIEW | — | 그레이박스 v1 Windows x64 4방 빌드·exe 전환/복귀 PASS. 사용자 exe 실행 5분 확인 대기 |
+| S1-G | Sprint 1 Gate | DONE | 2026-10-02 사용자 조건부 결정 | 이동·Slice 수락과 다음 범위 판단 | 활성 검토 항목 수락, 문제·잔여 일정 확인, 사용자 통과 결정 기록; 통과 전 Sprint 2 착수 금지 |
+| T1 | Dash / DashTest | DONE | DEC-S2-PRE | 거리·방향·공중 대시 감각 | 18u/s·0.16s·0.45s, 권한·벽·입력 차단·취소·30/60/120fps |
+| T2 | Health / CombatTest | DONE | DEC-S2-PRE | HP·무적·넉백·복귀 체감 | HP5·피해1·무적1s·넉백4/3·lock0.12s, 사망 복귀·KillZone 즉사 |
+| T3 | 기본 공격 / CombatTest | DONE | T2:REVIEW | 판정·타이밍·이동 유지 | J/X, 피해1·range1.1·height1.2·startup0.08·active0.10·cooldown0.35·타겟당1회·방향 고정·취소 |
+| T4 | E1 순찰형 / CombatTest | DONE | T2:REVIEW, T3:REVIEW | 순찰·접촉·피격 감각 | C4 재시도 PASS, HP2·이동1.8·접촉1·넉백3, 벽/낭떠러지·2타 제거·사망/재입장 초기화 |
+
+| ID | Task | Status | Dependency | User Review / Done Criteria |
+| --- | --- | --- | --- | --- |
+| S2-01 | 실제 방 Dash·HP·Attack·E1 통합 | DONE | S1-G:DONE | Player 기본 Dash false, A04 Arena E1 1개, 공격·HP·사망·방 전환·T1~T4·필수 회귀 PASS 후 REVIEW |
+| S2-02 | A05 대시 획득·안전 연습 | DONE | S2-01:REVIEW | 지정 36×14 셸·A04 연결·획득 x10·5u 간격 연습(2026-10-03 사용자 Dash 필요/간격 확인 완료), 획득/재입장/사망 유지·지정 점프 측정 PASS 후 REVIEW |
+| S2-03 | A03 G-D·B01 자리 | DONE | S2-02:REVIEW | 보유+대시 중만 격자 양방향 통과, 일반 벽 유지·선반 출구·B01 CP와 안내만, 회귀 PASS 후 REVIEW |
+| S2-05 | Core Loop 통합 관찰·재방문 검증 | DONE | 사용자 결정 G2 | S2-day 사용자 플레이로 대체, 이월 T1~T4·점프 일관성 수락 |
+| S2-06 | Sprint 2 빌드·Gate 판단 | DONE | 사용자 결정 G2 | S2-day exe 플레이로 대체; Sprint 2 Gate 통과(2026-10-03) |
+| S3-01 | 더블 점프 시스템 | DONE | G2:DONE | Player 기본 보유 false, DoubleJumpTest true/3.6u 턱; 추가 속도12·재입력·접지회복·Coyote 후1회·대시/전환 회복 없음·저장. 30/60/120fps 일반/더블 최대 발 높이 및 G-J 기준 MEASURE, 3번째/홀드/미보유 차단 |
+| S3-02 | E2 돌진형 적 | DONE | G2:DONE | CombatTest 1개, E2Tuning HP3/감지5u/예고0.6s/돌진0.4s·6u/s/회복1s/피해1/넉백3u/s. 방향고정·벽정지·3타·무적·대시 거리회피·사망/재입장 초기화 |
+| S3-03 | B01 G-J 턱·B02 | DONE | S3-01:REVIEW, S3-02:REVIEW | B01 기존 보존, 턱(30.5,4.1)/(9,1), 위출구(34.25,5.6) B05/FromLeft, 아래(34.25,2) B02/FromLeft, FromUpper(28,5.41)/FromRight(32.5,1.81). B02 36×14 셸·SafeStep(11,2)/(4,2)·E2 x24 왼쪽. 일반/대시 우회불가·더블 도달·왕복·CP-B01 복귀 |
+| S3-04 | E3 사격형·B03 | DONE | S3-03:REVIEW | E3Tuning HP2/이동0/감지7u/예고0.7s/주기2s/탄속5u/s/피해1. 고정 방향·벽뒤/화면밖 발사금지·탄 벽/전환 제거. CombatTest 1개. B03 Cover(14,2)/(1,2), TurretBase(26,2)/(4,2), 위 E3 왼쪽. 타이밍·엄폐·2타·피해/무적·B02 왕복 |
+| S3-05 | B04 획득·연습·B05 자리 | DONE | S3-01:REVIEW, S3-03:REVIEW | B04 x10 접촉 획득·3초 안내·CP 보존·이미 보유 미등장·저장. Low(18,2)/(3,2), High 초기(25,3.3)→측정 보정(25,5.335)/(4,1) 일반 불가/더블 가능 MEASURE. B05 Left(1.75,6) B01/FromUpper, 바닥 FromLeft(3.5,1.81), 이름/다음 Sprint 안내만. B01↔B05·사망/종료/Continue 보유 유지 |

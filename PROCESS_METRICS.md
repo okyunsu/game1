@@ -39,6 +39,8 @@ BLOCKED와 복원이 겹친 Task는1개만 센다. 종속 산출물은 부모 Ta
 
 | S3T-01 | 선택 경로·세션 발견 표시, R05 입력 교체, 난이도 판단·빌드 정리 | 실측36.6분(일부: 10-06 23:22:20~23:58:56 KST; 초기 검토 기록 없음) | 1: 선택 경로5곳·발견 표시 통합; 검사 입력·문서·정리 제외 | 2: A-1 제외/복원, R06 경로BLOCKED | 기존 자동 회귀 | `[도구]` A-1 지정 입력 실패/실제 접근성 미확정; `[규칙]` R06 기존 시작 가정 수정은 승인 밖. 새R05PASS, 기본13+배포PogoPASS/RouteFAIL; Pogo 일회 실패 원인 미확정·재실행PASS 보존. `[대기]` 경로 재미·가독성. [진행](Validation/S3T01-progress.txt), [결과](Validation/S3T01-final-summary.txt), [QA](Validation/S3T01-user-qa.md) |
 
+| OPS-20261007 | 운영 문서·Batch 절차·Archive·도구 목록 | 기록 없음: 전체 시작/종료 실측 없음 | 0 | 0 | 기록 없음 | 문서만 변경, Unity 미실행·게임 변경0·push 없음. [결과](Archive/OPERATIONS_REVIEW.md) |
+
 ## 2단계 회고 — N5~N8 (이번 한 번만)
 
 명시적 BLOCKED/복원 Task를 원인당 한 번만 집계했다. 후속 N9 감사로 철회된 N8 경로도 현재 정정 상태로 포함한다.
