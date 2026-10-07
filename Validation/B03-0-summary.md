@@ -1,0 +1,2 @@
+# B03-0 — DONE
+START_COMMIT: c60d938dc7772e7c54b67ae1fe39c365e43f1288. Git clean, Unity process 없음. AGENTS Design Change 끝에 지정 문단만 추가, TASKS에 Batch와 Approved Backlog4개 등록. 문서 diff 확인; 게임 실행 해당 없음. 예상4~6시간/예산8시간.

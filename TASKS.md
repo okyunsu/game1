@@ -9,6 +9,15 @@ F1-R REVIEW: 명중0.05s 기존검사+동시Pause/치명피격 복귀/0초 PASS,
 H1 기본값·기존2패턴 유지, H2/H3 보존. BOSS-2는 후보 설계값 결정 대기/BLOCKED. 다음 Sprint 대규모 콘텐츠 미착수.
 ## Current Tasks
 
+2026-10-08 **Batch03 진행**. START_COMMIT `c60d938dc7772e7c54b67ae1fe39c365e43f1288`, 시작 clean/Unity 닫힘. 예상4~6시간/최대8시간. B03-0 → BOSS-2 → B06 → 통합 → Approved Backlog 순서. 후보 수치만 에이전트 결정, 기본 채택·Sprint Gate 사용자 권한 유지.
+
+| ID | 상태 | 완료 조건 |
+|---|---|---|
+| B03-0 | DONE | 후보 규칙 지정 문단 및 Backlog 등록 |
+| BOSS-2/B03-A | DOING | 기본 불변, 새 패턴30/60/120fps·Pause·사망·동시프레임, 후보exe 엔딩/타이틀 |
+| B03-B06 | TODO | 새 진입·발견·귀환/CP·초기화/RouteAll 불변 |
+| B03-FINAL | TODO | 기본/B2 exe Error0, 기본13+RouteAll |
+
 2026-10-07 **Batch02 종료 — PARTIAL**. START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`, 시작clean/Unity닫힘. 예상5~8시간, 예산10Task/8시간. 시작 때 정한 묶음10Task(Backlog 비교·방 요약은 QA1Task) 처리, Approved Backlog 소진. push없음.
 
 | ID | 상태 | 실제 결과 / 근거 |
@@ -175,7 +184,10 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-대기 항목 없음. 이번 완료 결과는 Latest Handoff를 따른다.
+1. **B03-COMPARE** — 기본/B2 Editor 지정 입력 각3회 처치; 시간·피격·패턴별 회피율 표 및 실패 로그 위치.
+2. **B03-VARIANTS** — B2-fast 예고−20%·이동+20%, B2-slow 예고+20%·이동−20%; 후보 Asset/빌드, 각 exe 처치→엔딩 PASS/Error0, 적용 수치 표.
+3. **B03-P03** — 게임 코드 불변, P03 10회 입력·위치·속도 기록, 가설1개·근거, 입력 보정1회까지, 10회 결과·전후 통과율.
+4. **B03-ROOMTIME** — A06/C05 첫2회 의도적 실패 후 지정 입력 왕복 시간; 사람1~3분과 비교, Scene 불변.
 
 ## Latest Handoff
 
