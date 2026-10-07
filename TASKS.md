@@ -165,8 +165,8 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-1. **S3T01-POGO P03 재현 확인** — 배포 exe PogoTest를 같은 조건으로 5회 실행해 통과 횟수만 기록. 수정은 하지 않는다. 합격 기준: 5회 결과와 실패 시 로그 위치.
-2. **TASKS 이력 정리** — Current Tasks의 2026-10-05 이전 PARTIAL 문단 중 후속 Batch에서 해소된 것을 Archive로 이동. 합격 기준: 해소 근거 링크가 있는 문단만 이동, 애매하면 유지.
+완료: P03 5회 중4회 PASS, 3회차 FAIL/Error0. [결과](Validation/B02-pogo5-summary.md). 승인 목록에서 제거; 추가 수정 미승인.
+대기 항목 없음. 이력 검토도 완료: 해소가 확실한 대상0개로 이동0건, 애매한 N5 유지. [결과](Validation/B02-archive-summary.md).
 
 ## Latest Handoff
 
