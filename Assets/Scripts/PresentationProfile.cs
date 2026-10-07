@@ -8,6 +8,7 @@ public sealed class PresentationProfile:ScriptableObject
  [Min(0),Tooltip("Same event minimum interval (s).")]public float soundThrottle=.05f;
  [Tooltip("Candidate body colors: player, E1, E2, E3, boss.")]public Color[] bodyColors={new Color(.9f,.98f,1),new Color(1,.72f,.24f),new Color(1,.43f,.4f),new Color(.75f,.65f,1),new Color(1,.45f,.75f)};
  [Tooltip("Eye and identity mark color.")]public Color markColor=new Color(.035f,.045f,.07f);
+ [Range(0,1),Tooltip("AV1 hazard sprite opacity (0–1); collider and basic colors unchanged.")]public float hazardOpacity=1;
  [Range(0,20),Tooltip("Walk lean (degrees).")]public float leanDegrees=8;
  [Range(0,.4f),Tooltip("Jump stretch fraction.")]public float jumpStretch=.14f;
  [Range(0,.4f),Tooltip("Landing squash fraction.")]public float landingSquash=.2f;
