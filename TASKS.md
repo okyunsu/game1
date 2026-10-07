@@ -10,6 +10,7 @@ H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 
 ## Current Tasks
 
 2026-10-07 **Batch 02 진행** — START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`. 작업 트리 clean, Unity 프로세스 없음. 예상 5~8시간; 예산 10 Task/8시간. Task 집계: 트랙0, A, A06, B06, C05, C, 마무리 빌드·회귀, 비교/방 요약, P03 5회, 이력 정리(총10). 후보 기본값 불변. 첨부 BATCH-02를 승인 명세로 적용.
+B02-C / F1-R REVIEW: Editor 기존 Begin/TakeDamage/SetPaused 진입점 Pause·사망·0초 PASS/Error0, 복귀0.616894s. [요약](Validation/B02-C-summary.md). 체감 수락 대기.
 
 2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
 START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·배치·보호 코드 불변. 과거 F1 및 N8/N9/S3T-01 실패 기록은 당시 이력이며 이번 검증과 구분한다.
