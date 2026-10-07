@@ -6,8 +6,20 @@
 S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Content Complete 후보이며 사람 완주·체감 수락 대기.
 2026-10-06 N9 PARTIAL: 방향 공격·포고·PogoTest 기술 REVIEW, 기본13+Pogo PASS/RouteAll 차단; 이전 N8 완주 판정 철회.
 최신 S3T-01 PARTIAL: 선택 경로5곳·세션 발견 표시 REVIEW, A-1 제외/복원·최대5/6. R05 연속 귀환 PASS, R06 시작 가정 불일치 BLOCKED.
-H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
+H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후). 최신 S3T-01 빌드는 플레이 전 확인 필요, 전체 완주 검증 빌드로 안내하지 않음.
 ## Current Tasks
+
+2026-10-07 **Batch 01** — F1-R 히트스톱 PARTIAL(동시 Pause/사망 실행 검증 미실시), 문서 최신화 DONE, 확인용 빌드 DONE, R06 입력 교체 DONE/전체 RouteAll PASS·사망0. 기본13 회귀1회 13/13 PASS.
+START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 기존 게임 규칙·배치·보호 코드 불변. 과거 F1 및 N8/N9/S3T-01 실패 기록은 당시 이력이며 이번 검증과 구분한다.
+
+| ID | Task | Status | Dependency / 실제 결과 |
+| --- | --- | --- | --- |
+| F1-R / B01-A | 명중 히트스톱만 재개 | PARTIAL | 30/60/120fps 명중·빗나감·중첩, T2v2·보스 PASS. 동시 Pause/사망 미실시 |
+| B01-B | Current Sprint·§18 키 표기 최신화 | DONE | 기록된 상태·실제 바인딩만 반영 |
+| B01-C | Windows x64 확인 빌드 | DONE | A PARTIAL 기반 허용, 실제 exe 명중·보스3회 재시도→엔딩/Error0 |
+| S3T01-R06 / B01-R06 | 정상 귀환 시작 입력 교체 | DONE | 텔레포트 없는 기록, 별도 RouteAll R01~R17/Error0/사망0 |
+| B01-REG | 기본13 회귀1회 | DONE | 기존 Run-Regression 기본 부분 재사용, 13/13 PASS |
+
 
 2026-10-06 **S3T-01 종료 — PARTIAL**: 선택 경로5곳·세션 발견 표시 기술 확인/REVIEW, A-1은 조정 후 제외/복원. R05 연속 귀환 입력 교체 및 재생PASS, R06 기존 시작 위치 가정 불일치BLOCKED(새 배치 원인 아님/수정 승인 밖). 기본13/13PASS, 배포exe PogoTestPASS(최종 묶음의 P03 일회 실패는 보존), 전체 RouteAllFAIL. DIFF-002/PT-002/BOSS-2 기록, 보존 목록 밖 기존 빌드69개 정리. [사용자 QA](Validation/S3T01-user-qa.md), [최종 요약](Validation/S3T01-final-summary.txt). **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음.
 
@@ -107,8 +119,8 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
-### S3T01-R06 — 기존 자동 경로 시작 가정 수정 범위 / BLOCKED
-새 R05는 사망 없이 A05→A04→A03으로 귀환했으나, R06 기존 기록은 A03의 이전 체크포인트 근처 (15.9712,1.8148)에서 시작한 입력이다. 실제 정상 귀환은 FromRight (32.5,1.81)이고 재생 시작 편차16.418~16.500u에서 A04로 다시 나간다. A03/B01 및 게이트는 이번에 수정하지 않아 새 선택 배치 때문인 회귀로 확인되지 않았다. 다른 구간은 새 배치 때문에 깨진 경우만 수정하라는 승인 범위에 따라 R06 입력은 보존하고 중단했다. 필요 판단: 정상 귀환 시작점에 맞춘 R06 입력 교체 허용 여부. G-D 연속 통과·전체 완주 PASS는 미확인. [실제 배포 재생](Validation/S3T01-route-delivery.txt), [범위·9회 시도 요약](Validation/S3T01-route-summary.txt).
+### B01-HITSTOP — 동시 상황 확인·0.05s 체감 / PARTIAL
+명중·빗나감·중첩과 30/60/120fps 정지 시간, T2v2, 보스 명중은 기존 도구로 확인했다. 히트스톱 중 Pause→재개, 정지 중 사망→0.6초 복귀를 겹치는 기존 검사 진입점은 확인하지 못해 실행 PASS로 기록하지 않는다. 보호 파일·새 검증 도구 없이 구현한 상태 소유권 처리의 직접 QA와 0.05s 유지/조정 판단이 남는다. C 빌드는 PARTIAL 의존을 명시 허용한 Batch 범위에서 생성했다. [실제 결과·미실시](Validation/B01-A-summary.md).
 
 ### S3T01-POGO — P03 고정 입력 일회 실패 / REVIEW
 기존 묶음 첫 실행 PogoPASS, 최종 묶음 P03FAIL/Error0, 같은 배포exe의 기존 검사 재실행은 P01/P02/P03·사망복귀·능력 회복 PASS/Error0이다. PogoTest 씬·공격/포고 수치는 불변. 원인 미확정이며 안정적 반복 통과로 확정하지 않았다. 새 도구·게임 복원·Pogo 입력 수정 없이 증거를 보존한다. [최종 묶음 실패](Validation/PogoTest-60fps-S3T01-final.txt), [배포 재실행](Validation/S3T01-pogo-delivery.txt).
@@ -143,66 +155,34 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ### 결정 질문지
 
-| 질문 / 풀리는 Task | 선택지 | AI 추천과 이유 |
-| --- | --- | --- |
-| R06 시작점 입력 교체를 다음 Batch에 포함할까? / S3T01-R06 | 입력 교체 허용 / 보류 | 입력 교체 허용. 정상 귀환과 기존 녹화 시작점의 차이를 해결하며 게임 배치는 유지할 수 있다. 이번에는 실행하지 않았다. |
-| BOSS-2의 행동 설계를 언제 확정할까? / BOSS-2 | 사용자 설계 후 승인 / 보류 | 사용자 설계 후 승인. 수치 상향 보류라는 DIFF-002 결정을 따른다. |
+- F1-R 히트스톱 0.05s: **유지 / 조정 / 끄기(0)**. 추천은 직접 플레이 후 유지 여부 판단. 명중·빗나감·중첩과 프레임별 시간은 확인했지만 손맛은 자동 검사로 수락할 수 없다. 답은 F1-R 체감 수락을 풀며 동시 Pause/사망 기술 미검증을 대신하지 않는다.
+- 다음 Batch: **동시 Pause/사망 확인 우선 / 다른 승인 Task 우선**. 추천은 미검증 두 상황을 기존 수단 또는 직접 QA로 먼저 확인하는 것. 새 도구와 보호 파일 변경은 이번 범위에 포함하지 않았다. Sprint 3 Gate는 별도 사용자 완주 판단 대기다.
 
-### 직접 플레이 확인
+### 직접 플레이 확인 — 사용자 QA 요약
 
-이번 실행은 문서만 변경했다. 아래는 기존 수락 대기이며 새 검증 결과가 아니다. S5-levels는 **플레이 전 확인 필요**(RouteAll R06 BLOCKED)다.
+확인용 Windows 빌드: [Afterglow-B01-hitstop.exe](Builds/B01-hitstop/Afterglow-B01-hitstop.exe). 같은 폴더의 Data/DLL을 함께 유지한다. 이전 S3T-01 빌드와 구분하며 이번 exe의 RouteAll은 통과했다.
 
-| 순서 | Scene / 대상 | 볼 항목 | 예상 시간 |
-| --- | --- | --- | --- |
-| 1 | Menu / 저장, A04 전투 | S2-04 저장·이어하기, F2R 표시, LOGR 기록 활용 | 10분 |
-| 2 | A01 / HUD | U1 HUD·첫 안내·사망 표시 | 5분 |
-| 3 | B02, C02~C04, C06, Ending | S3-06~10 난이도·보스 예고·엔딩, 사람 완주 후 Sprint 3 Gate | 완주 시간 별도 |
-| 4 | Test/PogoTest, 본편 | 위·아래 공격과 포고 높이·판정·능력 회복 | 10분 |
-| 5 | A05, B02, B04, C02, C03 | 선택 경로5곳 재미·발견5/6, A-1 제외 | 15분 |
+1. 기존 수락 대기: Menu 저장/이어하기(S2-04), A04·C06 공격/포고·표시(F2R), C05 보스→엔딩·전체 완주(U1/Gate). 약 10~20분. 이전 상세 항목은 [S3T-01 QA](Validation/S3T01-user-qa.md)와 Archive의 이전 인계를 참고한다. 이번 자동 검사는 감각 수락을 대신하지 않는다.
+2. 신규 F1-R: A04 또는 C06에서 명중·빗나감·연속 명중, 정지 중 Pause→재개와 피격 사망→복귀. 약 5분. **바뀐 점:** 명중 때만 0.05초 정지. **의심 지점 3개:** 재개 뒤 멈춤 잔류, 사망 복귀 뒤 배율 이상, 연속 명중의 과도한 끊김. 앞의 두 상황은 실행 미검증이다.
 
-상세 기존 QA: [S3T-01](Validation/S3T01-user-qa.md), [N9](Validation/N9-final-handoff.md). H1 유지/H2·H3 보존만이라는 최신 DIFF-002 결정을 따른다.
+조정 위치: `Assets/ScriptableObjects/FeedbackTuning.asset`의 `hitStopSeconds`(실시간 초, 0~0.2, 0은 끄기). Play를 종료하고 Asset 값을 저장한 뒤 다시 빌드해야 exe에 반영된다. 현재 0.05는 Batch 지정 임시값이며 체감 수락 대기다.
 
 ### Task별 결과
 
-운영 정리(2026-10-07): **DONE**, START_COMMIT `c62565948a0dc49c39850ba4668eb510b434f90d`.
+| Task | 상태 / 로컬 커밋 | 변경·실제 검증·남은 문제 |
+| --- | --- | --- |
+| A / F1-R | PARTIAL / c37b0fa | HitFeedback 명중 진입점, FeedbackTuning 필드·Asset, HitStop.cs/.meta. F2R 30/60/120fps 명중·빗나감·중첩, T2v2, 보스 PASS/Error0. 동시 Pause/사망·0 값·물리 패드·체감 미실시. [요약](Validation/B01-A-summary.md) |
+| B / 문서 | DONE / dfbcfe2 | TASKS Current Sprint 5줄, GAME_DESIGN §18 키보드 5행, 해결한 UI 문서 불일치 Archive 이관. 게임 규칙 변경 없음. [요약](Validation/B01-B-summary.md) |
+| C / 빌드 | DONE / 4944d98 | Windows x64 18 Scene 빌드/Error0/Warning0. 실제 exe 보스 접촉 사망·복귀3회→처치→엔딩 저장 PASS/Error0. A PARTIAL을 명시 허용한 확인용 빌드. README 실행 안내. [요약](Validation/B01-C-summary.md) |
+| R06 | DONE / b50b8fd | 기존 경로 라이브러리의 R06 입력만 정상 연속 귀환에서 교체, 첫 접근1회 성공. 전체 exe R01~R17 PASS/사망0/Error0/엔딩→타이틀. 실제 R06 시작 편차0.082u. 다른16개 입력 불변. [요약](Validation/B01-R06-summary.md) |
+| 기본13 | DONE / edcfdca | 기존 Run-Regression 기본 부분1회, 13/13 PASS. 새 도구·검사 파일 수정 없음. Pogo 별도 재실행 없음. [요약](Validation/REG-B01-final-summary.txt) |
 
-- AGENTS 첨부 원문 교체, _raw ignore, TASKS 5섹션·Archive 보존, README 문서 구성, 검증 도구 목록, Batch 템플릿.
-- 검증·커밋·변경 전후와 보존 항목: [운영 정리 보고](Archive/OPERATIONS_REVIEW.md).
-- Unity·게임 회귀·빌드 미실시(사용자 지시). 이번 게임 기능·수치 변경0.
-- 주요 파일: AGENTS.md, .gitignore, TASKS.md, Archive/TASKS_ARCHIVE.md, README.md, BATCH_TEMPLATE.md.
-- 구현 세부 판단: 완료 의존성은 Archive의 원문 행을 확인하고, 불명확한 상태는 현재 문서에 유지했다.
+START_COMMIT: `50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a`. 게임 파일 diff는 FeedbackTuning.asset, FeedbackTuning.cs, HitFeedback.cs, 새 HitStop.cs/.meta의 5개뿐. Scene/Prefab 배치·Player core·입력·다른 튜닝·Packages/ProjectSettings·PRD/AGENTS 불변. 새 플레이 범위는 명중 히트스톱이며 R06 시작 위치 가정 문제를 해소해 현재 exe 전체 경로 리스크를 줄였다. 기존 Editor Pogo 재생 한계와 사용자 수락 대기는 유지한다.
+
+원본 로그·CSV·입력·Camera 출력은 `Validation/_raw/B01/`에 보존(미커밋). Task별 요약1개씩만 커밋. 진단 빌드는 추가하지 않았고 최종 빌드1개 생성. Task5개로 승인 예산8개 이내, Backlog 소진으로 종료. push 없음.
+
+구현 판단: GameState는 관찰만 하며 Pause/전환/사망/Completing이 시간 배율 소유권을 가져가면 히트스톱이 복구하지 않는다. 기존 게임 상태의 복구 처리를 따른다.
 
 ### 다음 Batch 후보
 
-1. S3T01-R06 입력 교체 범위 결정 후 진행.
-2. REVIEW 직접 QA와 Sprint 3 Gate 판단.
-3. BOSS-2는 사용자 설계·별도 Batch 승인 후 진행.
-
-### 사용자 QA 요약 1쪽
-
-- 무엇이 바뀌었나: Batch 승인·위험도별 최소 검증으로 전환하고 완료 이력을 Archive로 분리했다. 게임 변경0.
-- 어디서 확인하나: AGENTS의 Batch Approval/Validation, TASKS 현재 상태와 Archive 원문, BATCH_TEMPLATE의 예산·사전 결정 표.
-- 의심 지점3개: (1) 미해결 PARTIAL·BLOCKED 보존 (2) DONE 의존성과 옮긴 증거 링크 유지 (3) REVIEW·미검증 구분을 사용자 수락으로 오해하지 않는지.
-
-### 검증 도구 목록 — 이번 한 번만, 다음 Batch 인계에서는 제외
-
-파일·진입점 정적 검토이며 실행 결과가 아니다. 분류는 사용 시점 제안이고 삭제 승인이 아니다. 화면·손맛·난이도 수락은 직접 QA로 한다.
-
-| 이름 | 위치 | 무엇을 확인하나 | 새 기준에서 쓸 시점 |
-| --- | --- | --- | --- |
-| 기본 입력·이동·카메라·방·체크포인트 | Assets/Editor/N1Verification.cs, Nightly.cs, N2Verification.cs, N2BVerification.cs | S1 입력·보정·이동·카메라 투영·전환·CP | Milestone 회귀용; 해당 핵심 변경 시 관련 항목만 |
-| 대시·피격·공격·E1 | Assets/Editor/NightTests.cs, C4Verification.cs, T2LockCheck.cs | T1~T4 및 넉백 잠금 직접 측정 | Milestone 회귀용; T2Legacy는 안 써도 됨 후보 |
-| 통합·키·적·보스 | Assets/Editor/S2Tests.cs, S3Verification.cs, S3FinalVerification.cs, KVerification.cs, BossVerification.cs, BossRecoveryCheck.cs | 키·게이트·능력·적·보스 재시도 및 회복 공격 | Milestone 회귀용; 개별 기능 변경 시 필요할 때만 |
-| 피드백·CSV·UI·저장 | Assets/Editor/F2RVerification.cs, F2RIntegration.cs, LOGRCheck.cs, UICheck.cs, SaveEditorCheck.cs; Assets/Scripts/UIVerification.cs, PlaytestLogger.cs | 표시 상태·CSV·저장 불변·직접 Play 저장 분리. Logger는 게임 관찰 기능도 포함 | 필요할 때만; 가독성·손맛은 직접 QA |
-| 과거 Slice·완성 빌드 런타임 검사 | Assets/Scripts/SliceVerification.cs, SliceBuildVerification.cs, S2BuildVerification.cs, S3BuildVerification.cs, PreBuildVerification.cs, CompletionBuildVerification.cs | CLI 지정 전환·사망·저장·보스·엔딩 흐름 | 필요할 때만; 폐기 레이아웃 검사는 안 써도 됨 후보 |
-| N5 공통·녹화·재생 | Assets/Scripts/Verification/N5Runner.cs, InputRecorder.cs, InputReplayer.cs, N5ManualRecorder.cs; Assets/Scripts/Verification/Editor/N5Editor.cs | opt-in 검사 기반·입력 기록/재생·Editor 종료 | 필요할 때만; 자체 제품 목표로 확장하지 않음 |
-| 저장 실패·보스 재시도 | Assets/Scripts/Verification/SaveFailureVerifier.cs, BossRetryVerifier.cs | 격리 저장 실패·Ending Continue·사망/처치 | 필요할 때만; 저장/진행 핵심 변경 시 관련 회귀 |
-| 자동 경로·공격·포고 | Assets/Scripts/Verification/RouteRunner.cs, FullRouteVerifier.cs, N8AttackVerifier.cs, N9CombatVerifier.cs, N9PogoVerifier.cs, N9PogoRoute.cs | 입력 구간·연속 경로·방향 공격·포고·능력 회복 | Milestone 회귀용; 기존 RouteAll/Editor 재생 차단은 유지 |
-| FPS 행렬·장시간 안정성 | Assets/Scripts/Verification/FpsMatrixVerifier.cs, SoakRunner.cs | FPS별 구간·시간/메모리/오브젝트·반복 행동 | Milestone 회귀용; 유효 fixture 확인 시만 사용 |
-| 화면 캡처 계열 | Assets/Scripts/Verification/DisplayVerifier.cs, Assets/Scripts/Q7ExeCapture.cs, Assets/Editor/N2BRender.cs | 화면 기록·렌더 투영. 캡처 성공은 사람의 화면 수락이 아님 | 필요할 때만; Q7 검정 화면 경로는 안 써도 됨 후보 |
-| 테스트 Scene·과정 | Assets/Scenes/MovementTest.unity, CameraTest.unity, Test/DashTest.unity, Test/CombatTest.unity, Test/DoubleJumpTest.unity, Test/PogoTest.unity; Assets/Scripts/PogoTestCourse.cs | 이동·카메라·대시·전투·추가 점프·포고 직접 확인 | 필요할 때만; 관련 핵심 회귀·직접 QA |
-| 열기 메뉴 | Assets/Editor/N1Build.cs (Afterglow/Open Movement Test), N2BBuild.cs (Afterglow/Open Slice), N9PogoAuthoring.cs (Afterglow/Open Pogo Test) | 검사 공간을 여는 메뉴. 자동 합격 판정 메뉴는 별도로 없음 | 필요할 때만 |
-| 빌드 계열 | Assets/Editor/AuthorizedBuild.cs, N1Build.cs, N2BBuild.cs, S2Build.cs, S3Build.cs, S3FullBuild.cs, S3CompleteBuild.cs, S4PreBuild.cs, S4Pre2Build.cs, Q6NightBuild.cs, Q7NightBuild.cs, N9Build.cs; Assets/Scripts/Verification/Editor/N5Build.cs | 씬 목록·Windows 빌드·후보 참조 및 빌드 결과 기록 | 필요할 때만; 오래된 고정 출력·후보 빌드는 안 써도 됨 후보 |
-| 인접 작성 도구(검증 도구 아님) | Assets/Editor/BossSetup.cs, EndingSetup.cs, S3Authoring.cs, S3FinalAuthoring.cs, N9PogoAuthoring.cs | 씬·프리팹 작성/저장 경로. 이번에는 실행하지 않음 | 안 써도 됨 후보; 이력 생성 도구 재실행 금지 유지 |
-
-Validation 목록·용도: 기존 .ps1은 회귀/단계·보존 검사, N5~N9/과거 Q 실행 및 재생 준비용이다. .txt/.log/.csv/.json/.patch는 승인 원문·실행 증거·입력/실패 자료, .md는 인계/QA, .png는 화면 증거다. 모든 기존 파일은 그대로 보존했다. [기존 회귀 묶음](Validation/Run-Regression.ps1)은 기본13+RouteAll+PogoTest이며 이번에는 실행하지 않았다.
+F1-R 동시 Pause/사망·0 값 직접 확인 → 체감 수락, 기존 Pogo 재생 한계의 승인 범위 결정, 사용자 완주 후 Sprint 3 Gate 판단. 새 Batch 승인 전 기능·콘텐츠를 확장하지 않는다.

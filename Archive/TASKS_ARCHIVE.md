@@ -853,3 +853,81 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 - 2026-10-04 UI 문서 불일치: GAME_DESIGN §18의 구키(Space/J/K)와 최신 K1/TM-U1 명세 충돌. 최신 사용자 명시 키(방향키/Z/X/C)를 표시 원본으로 적용. GAME_DESIGN 원문 변경은 이번 범위에 포함하지 않음.
 
 Batch 01 승인 범위에서 GAME_DESIGN §18의 키 표기만 실제 바인딩과 맞췄다. K1-keys 및 PlayerControls.inputactions 대조. 패드·게임 규칙·수치 불변.
+
+## OPS-20261007 이전 인계 보존
+
+## Latest Handoff
+
+### 결정 질문지
+
+| 질문 / 풀리는 Task | 선택지 | AI 추천과 이유 |
+| --- | --- | --- |
+| R06 시작점 입력 교체를 다음 Batch에 포함할까? / S3T01-R06 | 입력 교체 허용 / 보류 | 입력 교체 허용. 정상 귀환과 기존 녹화 시작점의 차이를 해결하며 게임 배치는 유지할 수 있다. 이번에는 실행하지 않았다. |
+| BOSS-2의 행동 설계를 언제 확정할까? / BOSS-2 | 사용자 설계 후 승인 / 보류 | 사용자 설계 후 승인. 수치 상향 보류라는 DIFF-002 결정을 따른다. |
+
+### 직접 플레이 확인
+
+이번 실행은 문서만 변경했다. 아래는 기존 수락 대기이며 새 검증 결과가 아니다. S5-levels는 **플레이 전 확인 필요**(RouteAll R06 BLOCKED)다.
+
+| 순서 | Scene / 대상 | 볼 항목 | 예상 시간 |
+| --- | --- | --- | --- |
+| 1 | Menu / 저장, A04 전투 | S2-04 저장·이어하기, F2R 표시, LOGR 기록 활용 | 10분 |
+| 2 | A01 / HUD | U1 HUD·첫 안내·사망 표시 | 5분 |
+| 3 | B02, C02~C04, C06, Ending | S3-06~10 난이도·보스 예고·엔딩, 사람 완주 후 Sprint 3 Gate | 완주 시간 별도 |
+| 4 | Test/PogoTest, 본편 | 위·아래 공격과 포고 높이·판정·능력 회복 | 10분 |
+| 5 | A05, B02, B04, C02, C03 | 선택 경로5곳 재미·발견5/6, A-1 제외 | 15분 |
+
+상세 기존 QA: [S3T-01](../Validation/S3T01-user-qa.md), [N9](../Validation/N9-final-handoff.md). H1 유지/H2·H3 보존만이라는 최신 DIFF-002 결정을 따른다.
+
+### Task별 결과
+
+운영 정리(2026-10-07): **DONE**, START_COMMIT `c62565948a0dc49c39850ba4668eb510b434f90d`.
+
+- AGENTS 첨부 원문 교체, _raw ignore, TASKS 5섹션·Archive 보존, README 문서 구성, 검증 도구 목록, Batch 템플릿.
+- 검증·커밋·변경 전후와 보존 항목: [운영 정리 보고](../Archive/OPERATIONS_REVIEW.md).
+- Unity·게임 회귀·빌드 미실시(사용자 지시). 이번 게임 기능·수치 변경0.
+- 주요 파일: AGENTS.md, .gitignore, TASKS.md, Archive/TASKS_ARCHIVE.md, README.md, BATCH_TEMPLATE.md.
+- 구현 세부 판단: 완료 의존성은 Archive의 원문 행을 확인하고, 불명확한 상태는 현재 문서에 유지했다.
+
+### 다음 Batch 후보
+
+1. S3T01-R06 입력 교체 범위 결정 후 진행.
+2. REVIEW 직접 QA와 Sprint 3 Gate 판단.
+3. BOSS-2는 사용자 설계·별도 Batch 승인 후 진행.
+
+### 사용자 QA 요약 1쪽
+
+- 무엇이 바뀌었나: Batch 승인·위험도별 최소 검증으로 전환하고 완료 이력을 Archive로 분리했다. 게임 변경0.
+- 어디서 확인하나: AGENTS의 Batch Approval/Validation, TASKS 현재 상태와 Archive 원문, BATCH_TEMPLATE의 예산·사전 결정 표.
+- 의심 지점3개: (1) 미해결 PARTIAL·BLOCKED 보존 (2) DONE 의존성과 옮긴 증거 링크 유지 (3) REVIEW·미검증 구분을 사용자 수락으로 오해하지 않는지.
+
+### 검증 도구 목록 — 이번 한 번만, 다음 Batch 인계에서는 제외
+
+파일·진입점 정적 검토이며 실행 결과가 아니다. 분류는 사용 시점 제안이고 삭제 승인이 아니다. 화면·손맛·난이도 수락은 직접 QA로 한다.
+
+| 이름 | 위치 | 무엇을 확인하나 | 새 기준에서 쓸 시점 |
+| --- | --- | --- | --- |
+| 기본 입력·이동·카메라·방·체크포인트 | Assets/Editor/N1Verification.cs, Nightly.cs, N2Verification.cs, N2BVerification.cs | S1 입력·보정·이동·카메라 투영·전환·CP | Milestone 회귀용; 해당 핵심 변경 시 관련 항목만 |
+| 대시·피격·공격·E1 | Assets/Editor/NightTests.cs, C4Verification.cs, T2LockCheck.cs | T1~T4 및 넉백 잠금 직접 측정 | Milestone 회귀용; T2Legacy는 안 써도 됨 후보 |
+| 통합·키·적·보스 | Assets/Editor/S2Tests.cs, S3Verification.cs, S3FinalVerification.cs, KVerification.cs, BossVerification.cs, BossRecoveryCheck.cs | 키·게이트·능력·적·보스 재시도 및 회복 공격 | Milestone 회귀용; 개별 기능 변경 시 필요할 때만 |
+| 피드백·CSV·UI·저장 | Assets/Editor/F2RVerification.cs, F2RIntegration.cs, LOGRCheck.cs, UICheck.cs, SaveEditorCheck.cs; Assets/Scripts/UIVerification.cs, PlaytestLogger.cs | 표시 상태·CSV·저장 불변·직접 Play 저장 분리. Logger는 게임 관찰 기능도 포함 | 필요할 때만; 가독성·손맛은 직접 QA |
+| 과거 Slice·완성 빌드 런타임 검사 | Assets/Scripts/SliceVerification.cs, SliceBuildVerification.cs, S2BuildVerification.cs, S3BuildVerification.cs, PreBuildVerification.cs, CompletionBuildVerification.cs | CLI 지정 전환·사망·저장·보스·엔딩 흐름 | 필요할 때만; 폐기 레이아웃 검사는 안 써도 됨 후보 |
+| N5 공통·녹화·재생 | Assets/Scripts/Verification/N5Runner.cs, InputRecorder.cs, InputReplayer.cs, N5ManualRecorder.cs; Assets/Scripts/Verification/Editor/N5Editor.cs | opt-in 검사 기반·입력 기록/재생·Editor 종료 | 필요할 때만; 자체 제품 목표로 확장하지 않음 |
+| 저장 실패·보스 재시도 | Assets/Scripts/Verification/SaveFailureVerifier.cs, BossRetryVerifier.cs | 격리 저장 실패·Ending Continue·사망/처치 | 필요할 때만; 저장/진행 핵심 변경 시 관련 회귀 |
+| 자동 경로·공격·포고 | Assets/Scripts/Verification/RouteRunner.cs, FullRouteVerifier.cs, N8AttackVerifier.cs, N9CombatVerifier.cs, N9PogoVerifier.cs, N9PogoRoute.cs | 입력 구간·연속 경로·방향 공격·포고·능력 회복 | Milestone 회귀용; 기존 RouteAll/Editor 재생 차단은 유지 |
+| FPS 행렬·장시간 안정성 | Assets/Scripts/Verification/FpsMatrixVerifier.cs, SoakRunner.cs | FPS별 구간·시간/메모리/오브젝트·반복 행동 | Milestone 회귀용; 유효 fixture 확인 시만 사용 |
+| 화면 캡처 계열 | Assets/Scripts/Verification/DisplayVerifier.cs, Assets/Scripts/Q7ExeCapture.cs, Assets/Editor/N2BRender.cs | 화면 기록·렌더 투영. 캡처 성공은 사람의 화면 수락이 아님 | 필요할 때만; Q7 검정 화면 경로는 안 써도 됨 후보 |
+| 테스트 Scene·과정 | Assets/Scenes/MovementTest.unity, CameraTest.unity, Test/DashTest.unity, Test/CombatTest.unity, Test/DoubleJumpTest.unity, Test/PogoTest.unity; Assets/Scripts/PogoTestCourse.cs | 이동·카메라·대시·전투·추가 점프·포고 직접 확인 | 필요할 때만; 관련 핵심 회귀·직접 QA |
+| 열기 메뉴 | Assets/Editor/N1Build.cs (Afterglow/Open Movement Test), N2BBuild.cs (Afterglow/Open Slice), N9PogoAuthoring.cs (Afterglow/Open Pogo Test) | 검사 공간을 여는 메뉴. 자동 합격 판정 메뉴는 별도로 없음 | 필요할 때만 |
+| 빌드 계열 | Assets/Editor/AuthorizedBuild.cs, N1Build.cs, N2BBuild.cs, S2Build.cs, S3Build.cs, S3FullBuild.cs, S3CompleteBuild.cs, S4PreBuild.cs, S4Pre2Build.cs, Q6NightBuild.cs, Q7NightBuild.cs, N9Build.cs; Assets/Scripts/Verification/Editor/N5Build.cs | 씬 목록·Windows 빌드·후보 참조 및 빌드 결과 기록 | 필요할 때만; 오래된 고정 출력·후보 빌드는 안 써도 됨 후보 |
+| 인접 작성 도구(검증 도구 아님) | Assets/Editor/BossSetup.cs, EndingSetup.cs, S3Authoring.cs, S3FinalAuthoring.cs, N9PogoAuthoring.cs | 씬·프리팹 작성/저장 경로. 이번에는 실행하지 않음 | 안 써도 됨 후보; 이력 생성 도구 재실행 금지 유지 |
+
+Validation 목록·용도: 기존 .ps1은 회귀/단계·보존 검사, N5~N9/과거 Q 실행 및 재생 준비용이다. .txt/.log/.csv/.json/.patch는 승인 원문·실행 증거·입력/실패 자료, .md는 인계/QA, .png는 화면 증거다. 모든 기존 파일은 그대로 보존했다. [기존 회귀 묶음](../Validation/Run-Regression.ps1)은 기본13+RouteAll+PogoTest이며 이번에는 실행하지 않았다.
+
+## S3T01-R06 승인·검증 해결 — Batch 01 / DONE
+
+### S3T01-R06 — 기존 자동 경로 시작 가정 수정 범위 / BLOCKED
+새 R05는 사망 없이 A05→A04→A03으로 귀환했으나, R06 기존 기록은 A03의 이전 체크포인트 근처 (15.9712,1.8148)에서 시작한 입력이다. 실제 정상 귀환은 FromRight (32.5,1.81)이고 재생 시작 편차16.418~16.500u에서 A04로 다시 나간다. A03/B01 및 게이트는 이번에 수정하지 않아 새 선택 배치 때문인 회귀로 확인되지 않았다. 다른 구간은 새 배치 때문에 깨진 경우만 수정하라는 승인 범위에 따라 R06 입력은 보존하고 중단했다. 필요 판단: 정상 귀환 시작점에 맞춘 R06 입력 교체 허용 여부. G-D 연속 통과·전체 완주 PASS는 미확인. [실제 배포 재생](../Validation/S3T01-route-delivery.txt), [범위·9회 시도 요약](../Validation/S3T01-route-summary.txt).
+
+
+2026-10-07 Batch 01 사전 결정으로 입력 교체 승인. 기존 생성기 접근1개/시도1회, 정상 귀환 시작 R06 기록 및 실제 RouteAll R01~R17/사망0/엔딩→타이틀 PASS. [결과](../Validation/B01-R06-summary.md).

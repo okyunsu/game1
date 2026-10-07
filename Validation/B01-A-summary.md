@@ -41,6 +41,6 @@ MEASURE HitStop elapsed=0.063670s reason=elapsed scale=1.0 fps=60
 
 ## 미실시 및 상태
 
-히트스톱 진행 중 Pause 입력→재개, 정지 중 사망→기존0.6초 복귀를 겹쳐 실행하는 기존 검사 진입점은 확인하지 못했다. 코드상 상태 소유권 처리만 검토했고 동시 상황의 실행 PASS로 기록하지 않는다. 0 값의 실제 플레이, 실제 패드·사용자 손맛도 미실시다. 기술적으로 일부 조건이 남았으나 후속 개발에 사용 가능하므로 PARTIAL. 기본 회귀는 Batch 종료의 독립 Backlog에서 1회 실행한다.
+히트스톱 진행 중 Pause 입력→재개, 정지 중 사망→기존0.6초 복귀를 겹쳐 실행하는 기존 검사 진입점은 확인하지 못했다. 코드상 상태 소유권 처리만 검토했고 동시 상황의 실행 PASS로 기록하지 않는다. 0 값의 실제 플레이, 실제 패드·사용자 손맛도 미실시다. 기술적으로 일부 조건이 남았으나 후속 개발에 사용 가능하므로 PARTIAL. Batch 종료의 독립 Backlog 기본 회귀1회는 13/13 PASS였다. [결과](REG-B01-final-summary.txt).
 
 원본 자료: Validation/_raw/B01/A-F2R.log(라이선스 미진입), A-F2R-authorized.log, A-T2v2.log, A-boss.log 및 해당 결과 .txt. 원본은 ignore 대상이며 이 요약1개만 커밋한다.

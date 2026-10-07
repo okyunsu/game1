@@ -1,4 +1,4 @@
-# B01-B — 文書 최신화 / DONE
+# B01-B — 문서 최신화 / DONE
 
 - START_COMMIT: 50bb3324f88a6c5b2dc2657e8fe4bcadbf3c5f2a. 초기 작업 트리 clean, 실행 중 Unity Editor 없음 확인 후 시작.
 - TASKS Current Sprint를 기존 Current Tasks의 S3T-01까지 기록된 상태만으로 5줄에 맞췄다. Sprint Gate·감각 수락·설계 판단 추가 없음.

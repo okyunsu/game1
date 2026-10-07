@@ -17,7 +17,7 @@ Error/Exception/Assert=0
 
 ```text
 PASS R05 fixed-tick replay
-MEASURE continuous start deviation R06=0.000u; no placement performed
+MEASURE continuous start deviation R06=0.082u; no placement performed
 PASS R06 fixed-tick replay
 PASS R07 fixed-tick replay
 PASS all ends at title
