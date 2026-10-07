@@ -14,8 +14,8 @@ H1 기본값·기존2패턴 유지, H2/H3 보존. BOSS-2는 후보 설계값 결
 | ID | 상태 | 완료 조건 |
 |---|---|---|
 | B03-0 | DONE | 후보 규칙 지정 문단 및 Backlog 등록 |
-| BOSS-2/B03-A | DOING | 기본 불변, 새 패턴30/60/120fps·Pause·사망·동시프레임, 후보exe 엔딩/타이틀 |
-| B03-B06 | TODO | 새 진입·발견·귀환/CP·초기화/RouteAll 불변 |
+| BOSS-2/B03-A | PARTIAL | 후보 exe 처치/엔딩/타이틀 PASS; 패턴 검증 자동승인 거부/미실시 항목 [요약](Validation/B03-A-summary.md) |
+| B03-B06 | REVIEW | 실제exe 진입/왕복10.217s·CP/적초기화·RouteAll R01~R17 PASS [요약](Validation/B03-B06-summary.md) |
 | B03-FINAL | TODO | 기본/B2 exe Error0, 기본13+RouteAll |
 
 2026-10-07 **Batch02 종료 — PARTIAL**. START_COMMIT `643b7072e52fef4bc5bfa1672a4fcdee2aa81603`, 시작clean/Unity닫힘. 예상5~8시간, 예산10Task/8시간. 시작 때 정한 묶음10Task(Backlog 비교·방 요약은 QA1Task) 처리, Approved Backlog 소진. push없음.
