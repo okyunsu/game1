@@ -6,7 +6,9 @@
 
 B03 왼쪽에서 x7의 청록색 `↑ 선택 대시 도전` 입구 앞에서 ↑/스틱 위를 누르면 B06으로 간다. Dash·포고만으로 끝의 발견에 접촉한 뒤 같은 입구로 B03에 돌아온다. 일반 필수 이동 입력은 선택 입구를 활성화하지 않는다. A06/C05 입구는 이전과 같고 사람 시간·체감 PARTIAL 유지. 발견은 세션 한정/저장 안 함, 분모9·실제 최대8/9(A-1 제외). 기본값 채택·Sprint Gate는 사용자 판단이다.
 
-후보 수치 원본은 `Assets/BossCandidates/B2/BossTuning.asset`, 문 배치는 B03 Scene의 새 OptionalRoomEntry, B06 내부는 B06 Scene이다. Inspector Tooltip에 단위를 표시했다. Play에서 조정한 값은 Stop 후 해당 Asset/Scene에 원하는 값을 다시 반영·저장하고 재빌드해야 exe에 적용된다. 기본 보스 Asset은 그대로 보존한다. 아래 Batch02 설명은 당시 이력이다.
+B2-fast: `Builds/B03-B2-fast-final/Afterglow-B03-B2-fast-final.exe`, B2-slow: `Builds/B03-B2-slow/Afterglow-B03-B2-slow.exe`. 두 후보 실제 수치 assertion·처치/Ending/타이틀 PASS/Error0. 각 후보 폴더의 `QA-C06.cmd`를 더블클릭하면 전용 QA 슬롯을 초기화해 CP-C04부터 비교할 수 있다. 기본 폴더에는 `QA-A06.cmd`/`QA-B06.cmd`/`QA-C05.cmd`도 있다.
+
+후보 수치 원본은 `Assets/BossCandidates/B2/BossTuning.asset` 및 B2-fast/slow의 같은 Asset, 문 배치는 B03 Scene의 새 OptionalRoomEntry, B06 내부는 B06 Scene이다. Inspector Tooltip에 단위를 표시했다. Play에서 조정한 값은 Stop 후 해당 Asset/Scene에 원하는 값을 다시 반영·저장하고 재빌드해야 exe에 적용된다. 기본 보스 Asset은 그대로 보존한다. 아래 Batch02 설명은 당시 이력이다.
 ## Batch 02 확인용 기본 빌드 (2026-10-07)
 
 실행: `Builds/B02-delivery/Afterglow-B02-delivery.exe`. 같은 폴더의 Data/DLL을 함께 유지한다. 17플레이방+Menu/Ending/옵트인PogoTest(20씬), 기존 보스2패턴·기본 튜닝 유지. 기본13/13·최종exe RouteAll R01~R17 PASS, 런타임Error0. 새 선택 방 A06/C05는 시간·체감 조건이 남은 PARTIAL 후보이며 Sprint Gate 수락은 아니다. 이전 `B02-main`/`B02-main-final`/`B02-main-r3`은 B06 분기 회귀가 있어 확인용으로 쓰지 않는다.
