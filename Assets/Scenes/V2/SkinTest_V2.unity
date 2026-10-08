@@ -151,6 +151,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 799591268}
+  - {fileID: 806614492}
   m_Father: {fileID: 879108773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2657298
@@ -557,9 +558,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2657297}
     m_Modifications:
+    - target: {fileID: 1418225982284460226, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651254625569044315, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6387635206076655368, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095178286604343125, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8346313632982253858, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -610,6 +623,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8346313632982253858, guid: 5f38f70575b097c459f0c81617fddf6f, type: 3}
   m_PrefabInstance: {fileID: 799591267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &806614491
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2657297}
+    m_Modifications:
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240081006978026381, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+      propertyPath: m_Name
+      value: V2 door variant visual
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+--- !u!4 &806614492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 542249333676338599, guid: d5a8f9909e629cf43b87832c59520c85, type: 3}
+  m_PrefabInstance: {fileID: 806614491}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &808980645
 GameObject:
