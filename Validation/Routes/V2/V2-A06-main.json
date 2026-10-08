@@ -1,0 +1,85 @@
+{
+    "segments": [
+        {
+            "id": "V2-MAIN-A06",
+            "startScene": "A06_V2",
+            "goal": "A04",
+            "startPosition": {
+                "x": 3.5,
+                "y": 1.8149988651275635
+            },
+            "dash": false,
+            "doubleJump": false,
+            "startHP": 4,
+            "limitSeconds": 35.0,
+            "inputs": [
+                {
+                    "tick": 0,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 2,
+                    "released": 0
+                },
+                {
+                    "tick": 1,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 2,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 3,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 4,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 5,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 6,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 7,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                },
+                {
+                    "tick": 8,
+                    "axis": -1.0,
+                    "held": 2,
+                    "pressed": 0,
+                    "released": 0
+                }
+            ],
+            "passed": true,
+            "attempts": 0,
+            "result": "PASS"
+        }
+    ]
+}
