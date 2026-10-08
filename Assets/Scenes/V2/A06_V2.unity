@@ -2571,6 +2571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1899416558}
     m_Modifications:
+    - target: {fileID: 1547144045801470161, guid: a2fbcadb37ebd694ca1bd35124967ab9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2491587035593152947, guid: b0ca8d388aec1b2498e0559511fdd059, type: 3}
     - target: {fileID: 4610127326341138142, guid: a2fbcadb37ebd694ca1bd35124967ab9, type: 3}
       propertyPath: m_Name
       value: DiscoveryReward
@@ -2803,7 +2807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de0f80b45ed52b4f9a1c996186f8a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomLabel
-  notice: "V2 A06 / \u4E0A \uC120\uD0DD \uBC1C\uACAC / \uCD9C\uAD6C \u2192"
+  notice: "V2 A06 / \u2191 \uC120\uD0DD \uBC1C\uACAC / \uCD9C\uAD6C \u2192"
 --- !u!114 &1899416557
 MonoBehaviour:
   m_ObjectHideFlags: 0
