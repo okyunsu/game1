@@ -13,10 +13,11 @@
 - 각 최종 검사 Error/Exception/Assert=0.
 
 핵심 측정 원문:
-`
+```
 
 MEASURE optional C06 stage=0 pos=(13.05, 20.01) ticks=308 found=True room=C06 pogos=0
-Error/Exception/Assert=0 ```
+Error/Exception/Assert=0
+```
 
 ## 실패·미실시
 

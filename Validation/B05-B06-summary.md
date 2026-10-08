@@ -13,11 +13,12 @@
 - 각 최종 검사 Error/Exception/Assert=0.
 
 핵심 측정 원문:
-`
+```
 
 MEASURE optional B06 stage=0 pos=(31.18, 7.61) ticks=237 found=True room=B06 pogos=2
 PASS B06 actual pogo chain; no Double Jump
-Error/Exception/Assert=0 ```
+Error/Exception/Assert=0
+```
 
 ## 실패·미실시
 

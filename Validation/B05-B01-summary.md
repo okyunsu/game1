@@ -13,10 +13,11 @@
 - 각 최종 검사 Error/Exception/Assert=0.
 
 핵심 측정 원문:
-`
+```
 
 MEASURE optional B01 stage=0 pos=(41.62, 7.61) ticks=345
-Error/Exception/Assert=0 ```
+Error/Exception/Assert=0
+```
 
 ## 실패·미실시
 
@@ -24,3 +25,4 @@ Error/Exception/Assert=0 ```
 
 사람 난이도·자연 이동 시간·CP→주요 도전 30~90초·지역 감각·비승 난이도는 미실측/사용자 REVIEW. 예상 시간은 계획치이며 자동 입력 시간을 사람 시간으로 사용하지 않았다. Sprint Gate·기본값 채택0.
 
+통합 경로에서 Upper 문의 기존 좌표가 새 G-J 선반과 어긋난 문제를 발견해 (82.25,5.5)로 정렬했다. B02 귀환 Spawn은 선반 아래이므로 x69.5 출발점으로 먼저 돌아간 뒤 추가 점프한다. 통합 a5의 B01→B05 실제 입력 PASS. 미보유 점프+Dash가 높은 선반에 올라가지 못함은 `special-a5.txt`로 확인했다. 문/Spawn ID·게이트 순서·수치는 바꾸지 않았다.

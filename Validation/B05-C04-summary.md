@@ -13,10 +13,11 @@
 - 각 최종 검사 Error/Exception/Assert=0.
 
 핵심 측정 원문:
-`
+```
 
 MEASURE optional C04 stage=0 pos=(28.52, 7.61) ticks=232 found=True room=C04
-Error/Exception/Assert=0 ```
+Error/Exception/Assert=0
+```
 
 ## 실패·미실시
 

@@ -1,6 +1,6 @@
 # B05 V2 전체 빌드 — DONE / 콘텐츠 수락 REVIEW
 
-최종 전달물은 `Builds/V2-delivery/Afterglow-V2-delivery.exe`, 별도 저장 실행기는 같은 폴더 `Play-V2.cmd`. `_raw/B05/V2-delivery-build.txt`: Success errors=0. 기본 Scene 목록/ProjectSettings는 변경하지 않고 B05Build의 V2 프로필에서만 18방 Scene·출구·메뉴 매핑을 추가한다.
+최종 전달물은 `Builds/V2-delivery/Afterglow-V2-delivery.exe`, 별도 저장 실행기는 같은 폴더 `Play-V2.cmd`. `_raw/B05/V2-delivery-build.txt`: Succeeded errors=0. 기본 Scene 목록/ProjectSettings는 변경하지 않고 B05Build의 V2 프로필에서만 18방 Scene·출구·메뉴 매핑을 추가한다.
 
 실제 exe `world-final.txt`: 새 게임→A05 Dash→A03 G-D→B04 추가 점프→B01 G-J→C06 기존 보스 처치→Ending→Menu **23구간 고정 입력 연속 PASS/Error0**. 시작 이후 위치 배치·능력 지급 없음. 실제 사망은 프레임 관찰로 검사했다. 선택 A06/B06/C05는 별도 필수·발견·왕복 검사로 확인했다. 전체 연속 경로가 18방의 모든 선택 분기를 방문했다고 해석하지 않는다.
 
@@ -36,3 +36,7 @@ FAIL System.Exception: V2-W22 recorded continuous Ending
 최초 보호 검사 `protected-final-diff.txt`의 기존 입력688개 판정은 빈 pathspec으로 전체 저장소를 센 도구 오류다. 원문을 보존하고 v2 증거에 정정했다. 제품 보호 파일 변경으로 해석하지 않는다.
 
 미실시: 사람 자연 완주·방 시간·CP→주요 도전30~90초·필수 쉬움/선택 어려움 체감·그래픽 선호·물리 게임패드. 자동 입력 시간을 사람 시간으로 대체하지 않았다. 콘텐츠 REVIEW, 기본 교체·Sprint Gate 미수락. 원본 AV1/B2 후보는 유지했다.
+
+
+최종 인계 보호 확인: `_raw/B05/protected-handoff-final.txt`에서 기존 보호 Asset/설정0, core+RoomSession0, 기존 Validation0. CSV146개를 새 final snapshot 폴더에 보존했고 원본은 삭제하지 않았다. 최종 exe SHA256 `E1A9D9E062BBCDB91F76983FAE8BB1E4FB8036D55289318EF91033F130D38ECC`. 종료 시 실행 중 Unity/검증 exe 없음.
+

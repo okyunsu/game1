@@ -11,17 +11,17 @@ F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P
 H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
 
-2026-10-08 **Batch05 진행 중** — START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`, 시작 clean / Unity 닫힘. 최대8시간, 보수적 예산 종료 시각 17:00 KST. Sprint3 콘텐츠 연장, 기본 교체·Gate는 사용자 판단 대기.
+2026-10-08 **Batch05 기술 작업 종료 / 콘텐츠 REVIEW**. START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`, 시작 clean / Unity 닫힘. 최대8시간 안에 A→B→C→전체 V2→QA 승인 Backlog를 소진했다. 기본 교체·Sprint3 Gate는 대기한다.
 
-| Task | 상태 | 현재 결과 |
+| Task | 상태 | 결과 |
 |---|---|---|
-| B05-0 문서 | DONE / `ab16417` | 승인한 PRD/GAME_DESIGN 추가·Resource Register·LEVEL_V2 기준 |
-| B05-A 아트 | REVIEW / `214f2d3` | CC0 팩·스킨 Variant·Collider diff0·S1-02/04·스킨 전투 PASS, 스타일 수락 대기 |
-| B05-I 매핑/빌드 | DONE / `19c93f3` | V2 전용 Scene 매핑·기본13/13+RouteAll PASS·CP-A03 Continue PASS |
-| A01~A06 V2 | REVIEW | 필수·선택 각6/6 지정 입력 재생/사망/왕복 PASS/Error0, 사람 수락 대기 |
-| A지역 혼합 연속 | DONE | 전달 B05-V2-A: A01→A05 Dash→A03 G-D→기존 B01 연속8구간 재생 PASS/Error0 |
+| B05-A CC0 스킨 | REVIEW | Kenney Pixel Platformer, Tilemap 1회 저장·재개방 PASS, Variant collider diff0, S1-02/04·실제 공격/피격 PASS |
+| A01~A06 V2 | REVIEW | 폭60/60/72/90/72/60u, 필수·선택 각6/6 재생 PASS, Dash 게이트 유지 |
+| B01~B06 V2 | REVIEW | 폭84/72/90/72/60/60u, 각6/6 PASS, G-J·B06 Dash/포고 검증 PASS |
+| C01~C06 V2 | REVIEW | 폭72/84/90/54/72u+20×36u 아레나, 각6/6 PASS, 기존 보스→엔딩 PASS |
 
-이전 Batch04 Task·인계와 수락 대기는 [Archive](Archive/B04-tasks-and-handoff-20261008.md). 기본·AV1·B2 후보 수락을 이번 V2 수락과 합치지 않는다.
+끝난 문서·지원·혼합/전체 빌드·QA Task와 방별 커밋은 [Batch05 Task 인덱스](Archive/B05-completed-task-index.md). 이전 Batch04 Task·인계·수락 대기는 [이전 Archive](Archive/B04-tasks-and-handoff-20261008.md). 기본·AV1·B2 수락과 V2 수락을 합치지 않는다.
+
 ## Bugs
 
 ### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
@@ -79,6 +79,11 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B05-V2 — 그래픽·방 방향·기본 교체 / REVIEW
+
+CC0 픽셀 스타일 유지/교체, A지역 밀도·필수/선택 난이도 방향, V2 기본 교체 시점은 Latest Handoff 질문지로 판단한다. 후보 좌표는 LEVEL_V2에 기록했고 기본 Scene·수치 채택은 하지 않았다. 사람 방 시간·CP→주요 도전30~90초는 미실측이며 기술 PASS와 구분한다. 새 규칙 변경·외부 차단 없음.
+
+
 ### B04-AV1 — 후보 수락 / REVIEW
 사운드/형태/명도 각각 채택·조정·폐기, B2/fast/slow 선택, 기존 히트스톱/선택방 수락 및 Sprint Gate 판단 시점은 Latest Handoff 질문지를 따른다. 기본 채택·규칙 변경0.
 
@@ -118,59 +123,50 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-Batch05 A지역 종료 후 순서대로, 예산 남으면 계속:
-1. B01~B06 V2 — Dash 보유, B04 Double Jump, B01→B05 G-J, B06 Dash·포고만.
-2. C01~C06 V2 — 두 능력, C06 기존 BossEncounter 기준·패턴·수치 유지.
-3. V2 18방 전체 빌드 — 새 게임→엔딩→타이틀 연속 입력, 저장/이어하기 1회, Error0.
-4. V2 QA 안내 1쪽 — 지역별 확인·시간 가설·기존 비교.
+Batch05 승인 큐 소진: B지역6방 → C지역6방 → 전체 V2 연속 완주·저장 → QA 안내 완료. 남은 것은 사용자 콘텐츠 수락이다. Batch 밖 작업·다음 Sprint·기본 교체는 착수하지 않았다.
+
 ## Latest Handoff
 
-2026-10-08 **Batch04 기술 완료 / AV1 후보 REVIEW**, 인계 포함 약40분/예산8시간. 새 플레이 범위: 후보10종 효과음, 역할별 기하형·최소 애니메이션·잔상/사망조각, 명도 개선. 기본18방·튜닝·보호 로직은 보존. 기본13/13·기본/AV1 최종exe 전체R01~R17 PASS/Error0. B2 돌진 주요 검증 위험 해소, 감각/기본채택/Sprint Gate 미수락. [최종 증거](Validation/B04-final-summary.md).
+2026-10-08 **Batch05 종료 / 18방 V2 콘텐츠 REVIEW**. 새 플레이 범위는 넓어진 A/B/C 18방, 방별 선택 발견18개, CC0 픽셀 스킨·지역 배경과 별도 V2 빌드다. A지역 혼합 빌드와 전체 V2를 모두 보존했다. 최종 exe에서 새 게임→능력2종→보스→엔딩→타이틀 연속23구간 및 CP-C04 저장/이어하기 PASS/Error0, 기본13/13+기존 RouteAll 1회 PASS. 최대8시간 안에 승인 Backlog까지 소진하여 종료. 로컬 Task 커밋만 수행, push0.
 
 ### 결정 질문지
 
-| 질문/선택지 | AI 추천과 이유 | 답으로 진행할 Task |
+| 질문 / 선택지 | AI 추천과 이유 | 풀리는 Task |
 |---|---|---|
-| AV1 사운드·형태 각각 **채택 / 조정 / 폐기** | 후보 유지 후 청감/가독성 조정. 기술적으로 격리·움직임중립이나 선호는 직접 판단 | AV1 REVIEW 수락 또는 다음 후보 조정 |
-| 보스 **기본 / B2 / fast / slow / 수치조정** | B2를 기준으로 fast/slow 각5분 비교. 자동 회피와 사람 난이도는 다름 | 보스 후보 수락/기본채택 범위, 잔여 BOSS-2 검증 |
-| 히트스톱 **.05s 유지 / 조정 / 끄기**, A06/B06/C05 **수락 / 조정** | .05s·의도적 선택입구는 우선 유지, 방 시간/재미는 플레이 후 결정 | F1-R·선택방 수락/후속배치 |
-| Sprint3 Gate **오늘 자연완주 후 / 다음 완주 후 / 대기 유지** | 자연 전체완주·체감 확인 후 판단. 이번 기술PASS를 Gate로 대체하지 않음 | Sprint3 Gate 사용자 판단 |
+| 에셋 팩 스타일 **유지 / 다른 CC0 팩으로 교체** | 유지 후 직접 A를 확인. 지형·인물·적·배경이 한 팩으로 통일되고 물리 변경 없이 적용됨 | B05-A 스타일 수락 또는 후속 아트 Batch |
+| V2 A지역 방향 **유지 / 밀도·필수·선택 배치 수정** | 후보 유지 후 밀도와 동선에 집중. 안전 바닥과 높은 선택 경로는 기술적으로 통과했으나 재미·시간은 미실측 | A01~A06 REVIEW 수락 또는 배치 수정 |
+| V2 기본 교체 **지금 / 전체 자연 완주 수락 후 / 후보 유지** | 전체 자연 완주와 Sprint3 Gate 판단 후. B/C·보스·저장 체감도 함께 확인 필요 | 기본 Scene 채택·Sprint3 Gate 사용자 판단 |
 
-### 직접 플레이 확인 — 수락 대기 순서, 총55분
+이전 AV1/B2/히트스톱 질문과 수락 대기는 [Batch04 인계](Archive/B04-tasks-and-handoff-20261008.md#latest-handoff)에 보존했다.
 
-[1페이지 QA와 실행 링크](Validation/B04-QA-summary.md). 각 `.cmd`는 해당 폴더 QA 전용 저장만 초기화, Menu Z 이어하기.
+### 직접 플레이 확인 — 수락 대기 순서
 
-1. 기본 C06/A04 **5분** — .05s 명중 히트스톱.
-2. 기본 A06/C05 **10분** — A04/C03 왼쪽 출구 위 문(x2,y5.6), 발견/귀환·사람 도전시간.
-3. 기본 B06 **5분** — CP-B01→B02→B03 x7 청록 `↑ 선택 대시 도전`, Dash/포고 진입/귀환.
-4. B2 C06 **10분** — 예고·4패턴·돌진DJ 회피·사망 재시도. 지정 검증은 PASS, 기존 최종 도약회피 전체fps·동시HP0은 미검증.
-5. fast/slow C06 **10분** — 각5분 압박·학습감 비교.
-6. AV1 A01/A04/B02/B03/C06 **10분** — 사운드·실루엣·눈/전면/포신·점프/착지/잔상/피격/사망, 무음 예고 확인.
-7. 결정 기록 **5분** — 위 선택지. 자연 전체 완주가 남으면 별도로 진행하고 Gate 대기 유지.
+1. 이전 Batch04 대기: 히트스톱→기본 선택방→B2→fast/slow→AV1, 계획55분. [기존 실행/QA](Validation/B04-QA-summary.md), 기존 후보 그대로.
+2. **V2 A지역 약15~20분**: [Play-V2.cmd](Builds/V2-delivery/Play-V2.cmd) 실행, A01 시작→A05 Dash→A03 G-D, A06 선택 분기. 방의 밀도·휴식/전망·필수 쉬움/선택 어려움·문/적 가독성을 본다. [A01 1920×1080](Validation/_raw/B05/A01-shot-delivery.png), [스킨 테스트](Validation/_raw/B05/SkinTest-shot-delivery.png).
+3. V2 B지역15~20분: B04 추가 점프→B01 높은 문→B05, B03 ↑ 입구→B06 Dash/포고. 발견 후 귀환·CP 복귀를 확인한다.
+4. V2 C지역15~20분: 밝은 관측탑·C03 선택 분기·C04 CP→C06 기존 전투·높은 선택 전망. [C06 1920×1080](Validation/_raw/B05/C06-shot-delivery-v2.png).
+
+시간은 사람 계획치이며 미실측이다. [1쪽 QA](V2_QA.md)에 조작·비교점·수정 위치를 적었다. 실행기는 별도 `progress-v2-qa.json`을 쓰며 exe 직접 실행은 기존 기본 슬롯을 공유한다. 사진은 실제 Camera 렌더로 HUD 제외.
 
 ### Task별 결과
 
-| Task | 상태 / 커밋 | 주요 파일·실제 검증·문제 |
+| Task | 상태 / 로컬 커밋 | 주요 파일·실제 검증·문제 |
 |---|---|---|
-| A 사운드 | REVIEW / `6bdd27b` | PresentationProfile/Bootstrap, Audio/AV1 WAV10, HitFeedback 관찰; 실제exe10클립·Pause0/중복억제/기본0. 청감 대기 [증거](Validation/B04-A-summary.md) |
-| B 형태/애니메이션 | REVIEW / `6bdd27b`·`de29a76` | PresentationVisual, 실제효과/Collider diff0. 기본·최종AV1 30/60/120 각150틱 위치·속도해시 동일 [증거](Validation/B04-B-summary.md) |
-| 복귀·방향 보정 | DONE / `52dedf5`·`5d901ba` | 원본renderer 재노출 방지, HP0/Respawn child 숨김, Player/E2/E3 시각방향. 실제exe 복귀/사진 PASS [복귀](Validation/B04-B-recovery-summary.md) |
-| C B2 검증 | DONE / `087c303` | 새 fixed-tick/지속DJ 접근1개, slow 첫 허용보정. B2 3fps·fast/slow60 회피0/실패1/Pause·재개/CP-C04·HP·패턴초기화 PASS. 기존 BOSS-2 전체 PARTIAL 유지 [증거](Validation/B04-C-summary.md) |
-| 마무리 | DONE / `accfde6` | 기본 `B04-main-final`, 후보 `B04-AV1-final-r4`, 기본13/13·각exe R01~R17→타이틀/Error0. 초기AV1 R11 기록소진 원문 보존 [통합](Validation/B04-final-summary.md) |
-| 음량·명도 | DONE / `aa343b4`, REVIEW / `5527868` | peak편차1.38dB/6dB outlier0, 후보body 명도·hazardOpacity 개선/기본색0. 청감·가독성 대기 [음량](Validation/B04-volume-summary.md)·[명도](Validation/B04-contrast-summary.md) |
-| 사진9장 | DONE / `5d901ba` | 1920×1080 비검정·육안PASS. 실제exe 방카메라 render/HUD·overlay 제외, raw PNG 미커밋 [사진](Validation/B04-shots-summary.md) |
-| QA 안내 | DONE / `b89019c` | 실행 링크·비교 항목·55분 순서 [1페이지](Validation/B04-QA-summary.md) |
+| 문서·에셋·지원 | DONE / `ab16417`, `214f2d3`, `19c93f3`, `09811a4` (스타일 REVIEW) | PRD/GAME_DESIGN 승인 줄, RESOURCES, LEVEL_V2, B05Build/V2SceneMap. Tilemap 저장·재개방1회 PASS, 기본 회귀 PASS. [에셋 증거](Validation/B05-A-summary.md) |
+| A01~A06 | REVIEW / 방별6커밋 | 신규 Scene·V2 입력, 필수/발견6/6·사망CP·물리문 왕복 PASS. A03 Dash 미보유 차단 PASS. [방별 커밋·증거](Archive/B05-completed-task-index.md) |
+| B01~B06 | REVIEW / 방별6커밋 | 신규 Scene·입력, 각6/6 PASS. B01 G-J 미보유 차단, B06 포고2회/추가 점프 없이 PASS. 문 좌표 정렬 문제 해결, 수치 변경0 |
+| C01~C06 | REVIEW / 방별6커밋 | 신규 Scene·입력, 각6/6 PASS. C06 기존 floor/wall/startX·보스 값 유지, 선택 세로7단. 보스 실제 처치 PASS |
+| 스킨 최종 적용 | REVIEW / `942f199`, `af7ef0c` | V2 문 시각 자식·C06 잔여 경고 정리. 19 Scene collider diff0, 실제 스킨 공격·피격·적 처치 PASS/Error0. [증거](Validation/B05-door-skin-summary.md) |
+| A 혼합 마무리 | DONE / `c53893e` | A01→A05 Dash→A03→기존 B01 8구간 연속 PASS/Error0. [증거](Validation/B05-A-mixed-summary.md) |
+| 전체 V2 | DONE / `1e3627c` | 최종 V2-delivery build errors0·연속23구간·저장/Continue PASS/Error0. [실패 포함 증거](Validation/B05-V2-full-summary.md) |
+| 1쪽 QA | DONE / `afb8fde` | V2_QA/README/LEVEL_V2, 링크·별도 저장 실행기 확인. [문서 증거](Validation/B05-QA-summary.md) |
 
-**후보값/이유**: gain .30/보스.34, pitch ±.04, 중복간격.05s, PCM .13/.26/.32s(짧은 식별신호·예고 우선). 걷기8°, 점프14%/착지20%·.12s, 잔상2~3개/.12s, 사망4조각/.3s·3u/s(작고 짧은 상태 표현). E1 넓이1.18/높이.72, E2 .85/.95, E3 .85/.9(역할별 형태), body RGB 및 위험물opacity1은 [표](Validation/B04-contrast-summary.md)의 player 구별/영역 대비 목적. Source는 **Assets/Candidates/AV1/PresentationProfile.asset** 한 곳. Play 값을 기록하고 종료 후 확인/반영·저장·후보 재빌드. 기본 채택0.
+방별 설계표와 Codex가 정한 좌표·높이·이유는 [LEVEL_V2](LEVEL_V2.md). 일반 필수 바닥은 안전하게 연결하고 넓은 낮은 턱, 선택은 높은 정밀 탑으로 분리했다. C06은 기존 전투 폭20u를 유지하며 높이36u로 확장했다. 사람 시간·밀도·반복감·손맛은 REVIEW다. 문 왕복은 출구 앞 배치 fixture, 피격 사망은 원본 Health API를 사용했으며 자연 전체 역방향 이동/사람 도전시간의 대체 검사가 아니다. 비차단 이전 Bugs는 유지했다.
 
-**보호 파일 관찰 추가 라인: 없음(0)**. 비보호 HitFeedback의 `Presented` 이벤트 선언/호출만 추가, 기본 구독자0. 기존 Scene/Prefab/기본Tuning/BossCandidates/Player core/GameState/RoomSession/KillZone/Packages/ProjectSettings/PRD/GAME_DESIGN diff0. 새 후보는 build scene copy만 활성화. 원본/실패/CSV/사진은 Validation/_raw/B04/ 보존, Task별 요약만 커밋, push0.
+**매핑 추가:** RoomSession 변경0. `V2SceneMap`에 A01~C06→같은 ID `_V2` Scene 등록, B05Build가 V2 빌드 사본의 RoomExit/OptionalRoomEntry만 재연결. `ProgressSave.PendingScene`에 Resolve wrapper 추가: CP-A01→A01_V2, CP-A03→A03_V2, CP-B01→B01_V2, CP-C01→C01_V2, CP-C04→C04_V2. Ending 경로·저장 형식·Spawn/문/CP ID 유지. 기본 프로필에서는 기존 경로로 동작한다.
+
+**보호/인계:** 기존 Scene·원본 Prefab·기본 Tuning·core·Packages·ProjectSettings·기존 Validation 입력 diff0. [정정된 보호 검사](Validation/_raw/B05/protected-final-diff-v2.txt). 에셋 출처·CC0·확인일은 [RESOURCES](RESOURCES.md). 조정은 V2 Scene의 배치/카메라/CP/적 Reset, 반복 시각은 V2 Prefab, 이동·전투 값은 기존 Tuning Asset. Play 중 값을 메모하고 Stop 후 다시 반영·저장·V2 재빌드한다. 원본 raw 로그·CSV·PNG 보존, 미실시를 PASS로 기록하지 않았다.
 
 ### 다음 Batch 후보
 
-1. 사용자 AV1 청감·형태·명도 수락/조정 선택 후 승인된 후보만 보정 또는 기본 채택.
-2. B2/fast/slow 자연 비교 선택, BOSS-2 잔여 도약회피·동시HP0 검증은 별도 승인 범위 지정.
-3. 히트스톱·선택방 수락, 자연 전체 완주 후 Sprint3 Gate 사용자 판단. 다음 Sprint 대규모 콘텐츠는 미착수.
-4. 필요 시 P03/R11 기록 경계 민감성 조사 범위 지정. 이번 게임/입력 기록 변경0.
-
-
-
+사용자 A/B/C 자연 플레이 의견에 따른 V2 밀도·선택 경로 조정, 그래픽 선호 수정, 전체 수락 후 기본 교체 및 Sprint3 Gate 판단. 모두 다음 승인 범위이며 이번에는 수행하지 않았다.

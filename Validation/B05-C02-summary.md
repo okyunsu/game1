@@ -13,10 +13,11 @@
 - 각 최종 검사 Error/Exception/Assert=0.
 
 핵심 측정 원문:
-`
+```
 
 MEASURE optional C02 stage=0 pos=(41.73, 7.61) ticks=334
-Error/Exception/Assert=0 ```
+Error/Exception/Assert=0
+```
 
 ## 실패·미실시
 
