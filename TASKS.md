@@ -2,33 +2,26 @@
 
 ## Current Sprint
 
+Batch05: Sprint3 콘텐츠 작업 연장. 승인된 V2는 18방 별도 후보이며 기존 게임의 수락 상태는 유지한다. V2 완성 후 사용자 자연 완주로 Gate를 판단한다.
+
+
 **Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
 S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Sprint3 Gate는 사용자 자연 완주·체감 판단 대기, 다음 Sprint 확장 미착수.
 F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P03 진단 산출물 DONE, 게임 변경0·원본10/10/보정후9/10, 간헐 실패 이슈 OPEN.
 H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
 
-2026-10-08 **Batch05 진행 중**. START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`. 시작 clean / Unity 닫힘. 예산 최대8시간. B05-0 문서 DONE, 트랙 A DOING, A지역 방 제작 TODO. 이전 Batch04 인계는 [Archive](Archive/B04-tasks-and-handoff-20261008.md).
+2026-10-08 **Batch05 진행 중** — START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`, 시작 clean / Unity 닫힘. 최대8시간, 보수적 예산 종료 시각 17:00 KST. Sprint3 콘텐츠 연장, 기본 교체·Gate는 사용자 판단 대기.
 
-
-2026-10-08 **Batch04 종료 — 기술 완료 / 후보 REVIEW**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, 시작clean/Unity 닫힘. 07:38~08:16 KST 약40분(예상2~4시간/예산8시간). 승인 트랙·Backlog 소진, 기본/보호 파일 보존, 후보 기본 채택·Sprint Gate 미수락.
-
-| ID | 상태 | 결과 |
+| Task | 상태 | 현재 결과 |
 |---|---|---|
-| B04-A | REVIEW | AV1 실제 효과음10종/Pause새소리0/중복억제, 기본재생0 [증거](Validation/B04-A-summary.md) |
-| B04-B | REVIEW | 5종 형태/필수애니메이션, Collider diff0, 최종3fps 이동기록 기본과 동일 [증거](Validation/B04-B-summary.md) |
-| B04-C | DONE | B2 돌진30/60/120·fast/slow60 회피0/실패1, 도약/돌진 Pause·사망/CP-C04/HP·패턴초기화 PASS [증거](Validation/B04-C-summary.md) |
-| B04-B-R | DONE | 사망복귀 후보표현만 유지 [증거](Validation/B04-B-recovery-summary.md) |
-| B04-FINAL | DONE | 기본/AV1 최종exe Error0·R01~R17 PASS, 기본13/13 [통합](Validation/B04-final-summary.md) |
-| B04-VOLUME | DONE | peak 편차1.38dB/6dB outlier0 [표](Validation/B04-volume-summary.md) |
-| B04-CONTRAST | REVIEW | 후보 명도·위험물opacity 개선/기본색 불변 [표](Validation/B04-contrast-summary.md) |
-| B04-SHOTS | DONE | 지정9방1920×1080 유효PNG·육안검토/시각방향 보정 [사진](Validation/B04-shots-summary.md) |
-| B04-QA | DONE | 퇴근 후55분, 수락 대기 순서 [1페이지](Validation/B04-QA-summary.md) |
+| B05-0 문서 | DONE / `ab16417` | 승인한 PRD/GAME_DESIGN 추가·Resource Register·LEVEL_V2 기준 |
+| B05-A 아트 | REVIEW / `214f2d3` | CC0 팩·스킨 Variant·Collider diff0·S1-02/04·스킨 전투 PASS, 스타일 수락 대기 |
+| B05-I 매핑/빌드 | DONE / `19c93f3` | V2 전용 Scene 매핑·기본13/13+RouteAll PASS·CP-A03 Continue PASS |
+| A01~A06 V2 | REVIEW | 필수·선택 각6/6 지정 입력 재생/사망/왕복 PASS/Error0, 사람 수락 대기 |
+| A지역 혼합 연속 | DONE | 전달 B05-V2-A: A01→A05 Dash→A03 G-D→기존 B01 연속8구간 재생 PASS/Error0 |
 
-이전 수락 대기 유지: F1-R .05s REVIEW, A06/C05 PARTIAL·B06 REVIEW, B2/fast/slow 감각 REVIEW(기존 BOSS-2 전체 기술 잔여로 PARTIAL), S3-06~10/S2-04/F2R/LOGR/U1 REVIEW. 자연 전체 완주와 Sprint3 Gate 사용자 판단 대기. P03 간헐 기록 이슈 OPEN/게임 수정0.
-
-B03 작업/인계는 [Task Archive](Archive/B03-tasks-20261008.md)·[Handoff Archive](Archive/B03-latest-handoff-20261008.md), 그 이전 Task/의존성 상세는 [이전 기록](Archive/B04-prior-tasks-20261008.md)·[완료 Archive](Archive/TASKS_ARCHIVE.md).
-
+이전 Batch04 Task·인계와 수락 대기는 [Archive](Archive/B04-tasks-and-handoff-20261008.md). 기본·AV1·B2 후보 수락을 이번 V2 수락과 합치지 않는다.
 ## Bugs
 
 ### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
@@ -125,8 +118,11 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-대기 없음. B04 승인4항목 모두 처리: 음량표 DONE, 명도 후보 REVIEW(기술완료/사람가독성 대기), 지정9방 사진 DONE, 55분 1페이지 QA DONE. 남은 후보수락은 Latest Handoff, 승인 밖 Backlog 추가 없음.
-
+Batch05 A지역 종료 후 순서대로, 예산 남으면 계속:
+1. B01~B06 V2 — Dash 보유, B04 Double Jump, B01→B05 G-J, B06 Dash·포고만.
+2. C01~C06 V2 — 두 능력, C06 기존 BossEncounter 기준·패턴·수치 유지.
+3. V2 18방 전체 빌드 — 새 게임→엔딩→타이틀 연속 입력, 저장/이어하기 1회, Error0.
+4. V2 QA 안내 1쪽 — 지역별 확인·시간 가설·기존 비교.
 ## Latest Handoff
 
 2026-10-08 **Batch04 기술 완료 / AV1 후보 REVIEW**, 인계 포함 약40분/예산8시간. 새 플레이 범위: 후보10종 효과음, 역할별 기하형·최소 애니메이션·잔상/사망조각, 명도 개선. 기본18방·튜닝·보호 로직은 보존. 기본13/13·기본/AV1 최종exe 전체R01~R17 PASS/Error0. B2 돌진 주요 검증 위험 해소, 감각/기본채택/Sprint Gate 미수락. [최종 증거](Validation/B04-final-summary.md).
@@ -175,4 +171,6 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 2. B2/fast/slow 자연 비교 선택, BOSS-2 잔여 도약회피·동시HP0 검증은 별도 승인 범위 지정.
 3. 히트스톱·선택방 수락, 자연 전체 완주 후 Sprint3 Gate 사용자 판단. 다음 Sprint 대규모 콘텐츠는 미착수.
 4. 필요 시 P03/R11 기록 경계 민감성 조사 범위 지정. 이번 게임/입력 기록 변경0.
+
+
 
