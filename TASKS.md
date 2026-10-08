@@ -8,6 +8,9 @@ F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P
 H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
 
+2026-10-08 **Batch05 진행 중**. START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`. 시작 clean / Unity 닫힘. 예산 최대8시간. B05-0 문서 DONE, 트랙 A DOING, A지역 방 제작 TODO. 이전 Batch04 인계는 [Archive](Archive/B04-tasks-and-handoff-20261008.md).
+
+
 2026-10-08 **Batch04 종료 — 기술 완료 / 후보 REVIEW**. START_COMMIT `3ae8cc368377f9f8815bfd7ddac083565b813a42`, 시작clean/Unity 닫힘. 07:38~08:16 KST 약40분(예상2~4시간/예산8시간). 승인 트랙·Backlog 소진, 기본/보호 파일 보존, 후보 기본 채택·Sprint Gate 미수락.
 
 | ID | 상태 | 결과 |
@@ -172,3 +175,4 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 2. B2/fast/slow 자연 비교 선택, BOSS-2 잔여 도약회피·동시HP0 검증은 별도 승인 범위 지정.
 3. 히트스톱·선택방 수락, 자연 전체 완주 후 Sprint3 Gate 사용자 판단. 다음 Sprint 대규모 콘텐츠는 미착수.
 4. 필요 시 P03/R11 기록 경계 민감성 조사 범위 지정. 이번 게임/입력 기록 변경0.
+

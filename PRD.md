@@ -82,7 +82,9 @@ Unity 6 / C# / Windows PC. 2D Physics·Scene·Prefab·Animator·Input System·Ci
 
 ## In Scope
 
-F01~F07, 현재 Target 3지역 15방 적용안(Minimum 전환 시 위 표 적용), 이동 능력 2개, 기본 공격 1개, 적 Target 3종 / Minimum 2종, 보스 1종, 단일 엔딩, 최소 시청각 피드백, Windows 빌드, 테스트·개선 증거. 그래픽은 단순 2D 형태와 재사용 리소스로 처리하며 직접 에셋 제작량을 최소화한다.
+F01~F07, 현재 Target 3지역 15방 적용안(Minimum 전환 시 위 표 적용), 이동 능력 2개, 기본 공격 1개, 적 Target 3종 / Minimum 2종, 보스 1종, 단일 엔딩, 최소 시청각 피드백, Windows 빌드, 테스트·개선 증거. 그래픽은 단순 2D 형태와 CC0 외부 에셋 팩(출처·라이선스 기록)으로 처리하며 직접 에셋 제작량을 최소화한다.
+
+V2 기준 DEC-ROOM-002(2026-10-08): 기존 18방 구조·연결·능력 게이트 순서를 유지하며 방 크기·밀도와 필수 경로를 재설계한다. 별도 V2 후보이며 기본 교체·Sprint 3 Gate는 사용자 수락 후 판단한다.
 
 ## Out of Scope
 
