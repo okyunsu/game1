@@ -1,5 +1,13 @@
 # 잔광의 길
 
+## Batch 05 V2 확인 빌드 (2026-10-08)
+
+전체 후보: `Builds/V2-delivery/Play-V2.cmd` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `Builds/B05-V2-A/Play-V2-A.cmd`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
+
+CC0 Kenney Pixel Platformer 1.2를 새 V2 Scene·Variant에 적용했다. 18개 방의 지정 필수/발견 입력, 새 게임→두 능력→보스 처치→엔딩→타이틀 23구간 연속 재생, 저장/이어하기 PASS/Error0. 사람 시간·밀도·난이도·스타일은 REVIEW이며 기본 교체·Sprint Gate는 사용자 판단이다.
+
+V2 빌드는 Editor `B05Build.Run`에 `-b05-v2 -b05-build <새이름>`을 전달한다. Scene 목록은 이 별도 빌드 스크립트에서만 구성하며 기존 BuildSettings/ProjectSettings는 바꾸지 않는다. 새 빌드 폴더의 exe에 `-save-path <별도 QA 파일>`을 주어 실행한다. 조정 위치·Play 종료 후 반영 방법은 QA 안내를 따른다.
+
 ## Batch 04 확인 빌드 (2026-10-08)
 
 기본: `Builds/B04-main-final/Afterglow-B04-main-final.exe`. AV1 후보: `Builds/B04-AV1-final-r4/Afterglow-B04-AV1-final-r4.exe`. 같은 폴더 Data/DLL 유지. 두 빌드 모두18플레이방·기존2패턴 보스/기본 튜닝 유지. 기본13/13 및 각 최종exe R01~R17 연속 RouteAll→타이틀 PASS/Error0. 기본 AV1 소리/시각추가0, 후보는 직접 생성 효과음10종·5종 기하형/시각 애니메이션/명도 개선. 감각·기본 채택은 REVIEW. [최종 검증](Validation/B04-final-summary.md), [55분 QA](Validation/B04-QA-summary.md), [9방 사진](Validation/B04-shots-summary.md).
@@ -202,3 +210,5 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 포고 값은 `Assets/ScriptableObjects/CombatTuning.asset`의 `pogoVelocity`, `pogoRefreshesAir`, `downAttackWidth`, `downAttackHeight`, 보스 HP는 `BossTuning.asset`의 `maxHP`입니다. PogoTest 배치·안내 위치는 `Assets/Scenes/Test/PogoTest.unity`, 반복 가시 표적은 `Assets/Prefabs/PogoTarget.prefab`입니다. Scene은 Play 종료 후 다시 입력·저장하고, Asset은 원하는 최종 값을 명시적으로 입력·저장합니다. 후보 값을 기본값으로 적용하려면 사용자 선택이 필요합니다.
 
 `Validation/Run-Regression.ps1 -Tag <새이름>`은 기본13 + RouteAll60 + PogoTest60, 총15개를 검사합니다. `-SkipPogo`는 이전14개, `-OnlyRoute`는 경로2개만 실행합니다. 실패를 PASS로 바꾸지 않습니다. 기존 FixedUpdate 관찰의 사망 누락을 바로잡은 뒤 R05 실제 사망이 확인되어 연속 완주 경로는 BLOCKED입니다. Editor 고정 Pogo 입력 재생도 별도 BLOCKED이며, 실제 exe Pogo3구간·체크포인트 복귀·능력 회복 PASS와 구분합니다. 상세 결과와 무효화된 과거 결과는 `Validation/N9-route-recheck.txt`, 최종 상태는 TASKS Latest Handoff를 확인합니다.
+
+
