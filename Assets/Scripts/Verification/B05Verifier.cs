@@ -1,0 +1,14 @@
+using System;
+using System.Collections;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+public sealed class B05Verifier:N5Runner
+{
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<B05Verifier>("-verify-b05");
+ protected override IEnumerator Tests(){yield return NewGame();Check(SceneManager.GetActiveScene().name=="A01_V2","V2 New Game mapping");var ids=new[]{"A01","A02","A03","A04","A05","A06"};foreach(var id in ids){if(N5Args.Value("-b05-room",id)!=id)continue;if(RoomSession.Instance.CurrentRoomId!=id){Check(RoomSession.Instance.RequestTransition(id,"Assets/Scenes/V2/"+id+"_V2.unity","Entry"),"independent fixture "+id);yield return Ready();}yield return Keys();yield return new WaitForSeconds(.3f);var colliders=FindObjectsByType<Collider2D>(FindObjectsSortMode.None);foreach(var c in colliders.Where(c=>!c.isTrigger))lines.Add("MEASURE "+id+" collision "+c.name+" center="+c.bounds.center+" size="+c.bounds.size);Check(FindObjectsByType<DiscoveryReward>(FindObjectsSortMode.None).Length==1,id+" exactly one discovery");var exits=FindObjectsByType<RoomExit>(FindObjectsSortMode.None);var exit=exits.FirstOrDefault(e=>e.destinationRoomId=="A"+(int.Parse(id.Substring(1))+1).ToString("D2"))??exits.First();float goal=exit.transform.position.x;var input=gameObject.AddComponent<N9PogoInput>();input.keyboard=keyboard;var route=new RouteSegment{id="V2-MAIN-"+id,startScene=id+"_V2",goal=exit.destinationRoomId,startPosition=Body.position,dash=Player.GetComponent<PlayerDash>().hasDash,startHP=Health.HP,limitSeconds=35};int tick=0,prior=0;input.produce=()=>{tick++;var keys=new System.Collections.Generic.List<Key>();keys.Add(goal>Body.position.x?Key.RightArrow:Key.LeftArrow);if(tick%50<26&&(id!="A03"||Body.position.x<27))keys.Add(Key.Z);if(id=="A04"&&tick%22==0)keys.Add(Key.X);int held=(keys.Contains(Key.Z)?2:0)|(keys.Contains(Key.X)?8:0);route.inputs.Add(new N5InputTick{tick=tick-1,axis=goal>Body.position.x?1:-1,held=held,pressed=held&~prior,released=prior&~held});prior=held;return keys.ToArray();};double end=Time.realtimeSinceStartupAsDouble+35;while(RoomSession.Instance.CurrentRoomId==id&&!RoomSession.Instance.Respawning&&Time.realtimeSinceStartupAsDouble<end)yield return null;input.produce=null;Destroy(input);yield return Keys();route.passed=!RoomSession.Instance.Respawning&&RoomSession.Instance.CurrentRoomId==exit.destinationRoomId;route.result=route.passed?"PASS":"FAIL";var library=new RouteLibrary();library.segments.Add(route);File.WriteAllText(Path.ChangeExtension(Evidence,id+"-main.inputs.json"),JsonUtility.ToJson(library,true));Check(!RoomSession.Instance.Respawning&&RoomSession.Instance.CurrentRoomId==exit.destinationRoomId,id+" entry to exit via virtual input pos="+Body.position);yield return Ready();}
+ }
+}
+

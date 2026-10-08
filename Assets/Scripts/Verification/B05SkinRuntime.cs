@@ -1,0 +1,8 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+public sealed class B05SkinRuntime:N5Runner
+{
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<B05SkinRuntime>("-verify-b05-skin");
+ protected override IEnumerator Tests(){yield return NewGame();Check(RoomSession.Instance.RequestTransition("A01","Assets/Scenes/V2/SkinTest_V2.unity","Entry"),"V2 skin test Scene");yield return Ready();yield return new WaitForSeconds(.3f);var skin=Player.GetComponent<V2Skin>();Check(skin!=null&&skin.image.enabled,"player visual skin enabled");var e=FindFirstObjectByType<EnemyPatrol>();Check(e!=null&&e.HP==e.tuning.maxHP,"E1 unchanged max HP="+e.HP);e.enabled=false;e.GetComponent<Rigidbody2D>().constraints=RigidbodyConstraints2D.FreezeAll;PlaceForAuthorizedSetup(new Vector2(e.transform.position.x-1.3f,1.81f));int hp=e.HP;for(int n=0;n<hp;n++){yield return Tap(Key.X);yield return new WaitForSeconds(.45f);}Check(e==null,"real virtual attacks kill E1 in original HP number of hits");int before=Health.HP;Check(Health.TakeDamage(1,Body.position+Vector2.left),"unchanged hurt API accepted");Check(Health.HP==before-1,"hurt exactly 1 HP");yield return null;yield return null;Check(skin.image.enabled,"skin remains visible after hurt");var charger=FindFirstObjectByType<EnemyCharger>();var turret=FindFirstObjectByType<EnemyTurret>();Check(charger.HP==charger.tuning.maxHP&&turret.HP==turret.tuning.maxHP,"E2/E3 original tuning HP");charger.ReceiveHit(charger.HP,Body.position);turret.ReceiveHit(turret.HP,Body.position);yield return null;Check(charger==null&&turret==null,"E2/E3 unchanged ReceiveHit removes defeated skins");}
+}

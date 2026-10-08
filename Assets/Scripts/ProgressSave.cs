@@ -34,6 +34,7 @@ public static class ProgressSave
  public static bool Continue(){if(!TryLoad(out var data))return false;Pending=data;BossDefeated=data.bossDefeated;EndingReached=data.endingReached;Enabled=true;return true;}
  public static void MarkBossDefeated(RoomSession session){BossDefeated=true;SaveCurrent(session);}
  public static void MarkEndingReached(){EndingReached=true;if(Enabled&&TryLoad(out var data)){data.bossDefeated=BossDefeated||data.bossDefeated;data.endingReached=true;Write(data);}}
- public static string PendingScene=>Pending?.bossDefeated==true?"Assets/Scenes/Ending.unity":Pending?.checkpointId=="CP-C04"?"Assets/Scenes/C04.unity":Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity";
+ public static string PendingScene=>V2SceneMap.Resolve(Pending?.bossDefeated==true?"Assets/Scenes/Ending.unity":Pending?.checkpointId=="CP-C04"?"Assets/Scenes/C04.unity":Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity");
 }
+
 
