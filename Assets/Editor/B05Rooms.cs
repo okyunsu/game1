@@ -48,9 +48,9 @@ public static class B05Rooms
   // Each room has a distinct main-route profile; optional tower never lies on an exit approach.
   int number=int.Parse(id.Substring(1));float mesaX=width*.28f;
   Block(room.transform,"Landing","V2 low broad dais",new Vector2(mesaX,1.4f),new Vector2(number==2?8:5,.8f));
-  if(number==3){Block(room.transform,"Landing","V2 gate approach",new Vector2(48,1.5f),new Vector2(4,1));Block(room.transform,"Landing","V2 gate second step",new Vector2(52,3),new Vector2(2,.5f));Block(room.transform,"Landing","V2 gate shelf",new Vector2(64,4.5f),new Vector2(16,1));}
-  if(number==4){var e=new GameObject("V2 E1 reset");e.transform.SetParent(room.transform);e.transform.position=new Vector2(width*.52f,1.6f);e.AddComponent<EnemyReset>().prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/V2/E1_V2.prefab");Block(room.transform,"Landing","V2 combat bypass",new Vector2(width*.5f,2.5f),new Vector2(10,.6f));}
-  if(number==5)Block(room.transform,"Landing","V2 Dash practice",new Vector2(width*.78f,1.6f),new Vector2(8,1.2f));
+  if(id=="A03"){Block(room.transform,"Landing","V2 gate approach",new Vector2(48,1.5f),new Vector2(4,1));Block(room.transform,"Landing","V2 gate second step",new Vector2(52,3),new Vector2(2,.5f));Block(room.transform,"Landing","V2 gate shelf",new Vector2(64,4.5f),new Vector2(16,1));}
+  if(id=="A04"){var e=new GameObject("V2 E1 reset");e.transform.SetParent(room.transform);e.transform.position=new Vector2(width*.52f,1.6f);e.AddComponent<EnemyReset>().prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/V2/E1_V2.prefab");Block(room.transform,"Landing","V2 combat bypass",new Vector2(width*.5f,2.5f),new Vector2(10,.6f));}
+  if(id=="A05")Block(room.transform,"Landing","V2 Dash practice",new Vector2(width*.78f,1.6f),new Vector2(8,1.2f));
   float ox=width*.43f;for(int k=0;k<3;k++)Block(room.transform,"Landing","V2 optional precision "+k,new Vector2(ox+k*2.8f,2.3f+k*1.8f),new Vector2(k==0?2:1.3f,.5f));
   var reward=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DiscoveryReward.prefab"));reward.transform.SetParent(room.transform);reward.transform.position=new Vector2(ox+5.6f,7);reward.GetComponent<DiscoveryReward>().candidateId="V2-"+id;
   var kill=Block(room.transform,"KillZone","V2 fall reset",new Vector2(width/2,-7),new Vector2(width,1));
