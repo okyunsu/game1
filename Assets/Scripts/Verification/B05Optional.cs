@@ -7,7 +7,7 @@ public sealed class B05Optional:N5Runner
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<B05Optional>("-verify-b05-optional");
  RouteTickDriver driver;bool failed;protected override void Cleanup(){if(driver!=null)driver.active=false;}
  protected override IEnumerator Tests(){yield return NewGame();string id=N5Args.Value("-b05-room","A01");if(id!="A01"){Check(RoomSession.Instance.RequestTransition(id,"Assets/Scenes/V2/"+id+"_V2.unity","Entry"),"independent optional fixture "+id);yield return Ready();}yield return new WaitForSeconds(.3f);
-  float x=(id=="A03"||id=="A05"?72:id=="A04"?90:60)*.43f;float middle=new[]{4.5f,5.2f,4.9f,4.7f,5.0f,4.8f}[int.Parse(id.Substring(1))-1];Vector2[] points={new(x,4.0f),new(x+2.8f,middle+.8f),new(x+5.6f,7.6f)};int stage=0,jumpUntil=0;bool jumping=false;var segment=new RouteSegment{id="V2-"+id+"-optional",startScene=id+"_V2",startPosition=Body.position,goal="V2-"+id,startHP=Health.HP,limitSeconds=45};int previous=0;
+  float x=(id=="A03"||id=="A05"?72:id=="A04"?90:60)*.43f;float middle=new[]{4.5f,5.2f,4.9f,4.7f,5.1f,4.8f}[int.Parse(id.Substring(1))-1];Vector2[] points={new(x,4.0f),new(x+2.8f,middle+.8f),new(x+5.6f,7.6f)};int stage=0,jumpUntil=0;bool jumping=false;var segment=new RouteSegment{id="V2-"+id+"-optional",startScene=id+"_V2",startPosition=Body.position,goal="V2-"+id,startHP=Health.HP,limitSeconds=45};int previous=0;
   driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;driver.tick=0;
   string replay=N5Args.Value("-b05-inputs","");if(replay!="")segment=JsonUtility.FromJson<RouteLibrary>(File.ReadAllText(replay)).segments[0];
   driver.observe=()=>{if(RoomSession.Instance.Respawning){failed=true;driver.active=false;}else if(DiscoveryReward.Found("V2-"+id)&&Motor.Grounded)driver.active=false;};
@@ -20,3 +20,4 @@ public sealed class B05Optional:N5Runner
   }
  static N5InputTick Record(N5InputTick input,RouteSegment segment,ref int previous){input.pressed=input.held&~previous;input.released=previous&~input.held;previous=input.held;segment.inputs.Add(input);return input;}
 }
+

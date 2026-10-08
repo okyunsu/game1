@@ -10,6 +10,7 @@ public static class B05Rooms
 {
  public static GameObject Block(Transform parent,string type,string name,Vector2 pos,Vector2 size){var go=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/V2/"+type+"_V2.prefab"));go.name=name;go.transform.SetParent(parent);go.transform.position=pos;go.transform.localScale=new Vector3(size.x,size.y,1);return go;}
  public static void Run(){for(int n=1;n<=6;n++)Create("A"+n.ToString("D2"),n==3?72:n==4?90:n==5?72:60);AssetDatabase.SaveAssets();EditorApplication.Exit(0);}
+ public static void A05Variety(){EditorSceneManager.OpenScene("Assets/Scenes/V2/A05_V2.unity");var t=GameObject.Find("V2 optional precision 1").transform;t.position=new Vector2(t.position.x,4.85f);EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);}
  public static void Revise(){for(int n=1;n<=6;n++){
   string id="A"+n.ToString("D2");EditorSceneManager.OpenScene("Assets/Scenes/V2/"+id+"_V2.unity");
   foreach(var c in UnityEngine.Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None).ToArray())if(c!=null&&!c.isTrigger&&c.GetComponent<DashGate>()==null&&!c.name.StartsWith("V2 "))UnityEngine.Object.DestroyImmediate(c.gameObject);
