@@ -42,12 +42,13 @@ public static class ProgressSave
   ResetBrokenWalls();ResetVisitedRooms();BossDefeated=EndingReached=false;Pending=new ProgressData{dash=false,checkpointId="CP-A01"};Enabled=true;Write(Pending);return true;
  }
  public static bool Continue(){if(!TryLoad(out var data))return false;Pending=data;RestoreBrokenWalls(data);RestoreVisitedRooms(data);BossDefeated=data.bossDefeated;EndingReached=data.endingReached;Enabled=true;return true;}
- public static void MarkBossDefeated(RoomSession session){BossDefeated=true;SaveCurrent(session);}
+ public static void MarkBossDefeated(RoomSession session){BossDefeated=true;SaveCurrent(session);if(V3SceneMap.Enabled&&Enabled&&TryLoad(out var data)){data.checkpointId="CP-C04";Write(data);}}
  public static void MarkEndingReached(){bool first=!EndingReached;EndingReached=true;if(Enabled&&TryLoad(out var data)){data.bossDefeated=BossDefeated||data.bossDefeated;data.endingReached=true;if(first&&(V2SceneMap.Enabled||V3SceneMap.Enabled))data.checkpointId="CP-C01";Write(data);}}
  public static string PendingScene
  {
   get
   {
+   if(V3SceneMap.Enabled&&Pending?.bossDefeated==true&&!Pending.endingReached){Pending.checkpointId="CP-C04";return V3SceneMap.Path("C04");}
    return V3SceneMap.Resolve(Pending?.bossDefeated==true&&!((V2SceneMap.Enabled||V3SceneMap.Enabled)&&Pending.endingReached)?"Assets/Scenes/Ending.unity":Pending?.checkpointId=="CP-C04"?"Assets/Scenes/C04.unity":Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity");
   }
  }
