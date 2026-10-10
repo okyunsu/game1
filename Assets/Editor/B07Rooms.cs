@@ -94,13 +94,13 @@ public static class B07Rooms
   var prefix=plan.routes[0].points.Where(p=>p.position.x<x-2&&p.action!=A.Boss&&p.action!=A.Wall).ToArray();
   plan.routes=plan.routes.Concat(new[]{Route("optional","Discovery:V3-"+room.roomId+"-optional",dash,wall,jump,prefix.Concat(new[]{Point(x,1.81f),Point(x,3.41f,A.Jump),Point(x+3.5f,5.11f,mode),Point(x+7,6.81f,jump?A.DoubleJump:A.Jump)}).ToArray())}).ToArray();
  }
- static void Secret(float x)
+ static void Secret(float x,float runup=7)
  {
   // Raised side alcove leaves the mandatory ground route open below it.
   Platform("Secret low approach",x-6,3.5f,3);Platform("Secret wall approach",x-2,5,3);Platform("Secret alcove floor",x+4,5,8);
   Block("Secret roof",x+4,8.5f,8,1);Block("Secret back",x+8.25f,6.5f,.5f,3);Wall("V3-secret-"+room.roomId,x,6.5f,3,BreakableWall.Side.Any,true);Reward("secret",x+5,5.8f);
   var prefix=plan.routes[0].points.Take(plan.routes[0].points.Length-1).TakeWhile(p=>p.position.x<x-8).ToArray();
-  var approach=new[]{Point(x-7,1.81f),Point(x-6,4.31f,A.DoubleJump),Point(x-2,5.81f,A.Jump),Point(x-1.3f,5.81f,A.Wall,"V3-secret-"+room.roomId),Point(x+5,5.81f)};
+  var approach=new[]{Point(x-runup,1.81f),Point(x-6,4.31f,A.DoubleJump),Point(x-2,5.81f,A.Jump),Point(x-1.3f,5.81f,A.Wall,"V3-secret-"+room.roomId),Point(x+5,5.81f)};
   plan.routes=plan.routes.Concat(new[]{Route("secret","Discovery:V3-"+room.roomId+"-secret",true,true,true,prefix.Concat(approach).ToArray())}).ToArray();
  }
  public static void Run()
@@ -152,8 +152,9 @@ public static class B07Rooms
     plan.beats="중층 CP / 닫힌 관문·사람 / 낙오자 구덩이 / B02 / B04 숏컷";var pitRoute=Route("return","A03",true,true,false,Point(70,1.81f),Point(36,1.81f));pitRoute.startSpawn="FromB04";
     plan.routes=new[]{Route("main","B02",true,false,false,Point(33,1.81f),Point(40,1.81f,A.DashAir),Point(82,1.81f)),pitRoute};break;
    case "B02":
-    Shell(id,84,18);Pits(new Vector2(52,55));Exit("B01",2,2);Exit("B03",82,2);Enemy("E2",30,1.51f);Enemy("E2",42,1.51f);Platform("Charger bypass",36,3,20);
-    plan.beats="돌진 예고 / 회피 공간 / 3u 낙사 / 비밀 / 출구";plan.routes=new[]{Route("main","B03",true,false,false,Point(24,1.81f),Point(28,3.81f,A.Jump),Point(44,3.81f),Point(51,1.81f),Point(57,1.81f,A.Dash),Point(82,1.81f))};Optional("대시로 돌진 틈",60,true,false,false,A.Dash);Secret(70);break;
+    Shell(id,84,18);Pits(new Vector2(52,55));Exit("B01",2,2);Exit("B03",82,2);Enemy("E2",30,1.51f);Enemy("E2",42,1.51f);Platform("Bypass approach",22,2.5f,5);Platform("Bypass middle",23,4,3);Platform("Charger bypass",36,5.5f,20);Reward("optional",34,1.8f);
+    plan.beats="돌진 예고 / 회피 공간 / 3u 낙사 / 비밀 / 출구";plan.optionalType="대시로 돌진 틈";
+    plan.routes=new[]{Route("main","B03",true,false,false,Point(24,1.81f),Point(28,6.31f,A.Jump),Point(44,6.31f),Point(51,1.81f),Point(57,1.81f,A.DashAir),Point(82,1.81f)),Route("optional","Discovery:V3-B02-optional",true,false,false,Point(18,1.81f),Point(22,3.31f,A.Jump),Point(26,1.81f,A.WalkUnder),Point(34,1.81f,A.DashAir))};Secret(70,11);break;
    case "B03":
     Shell(id,30,40);Floor(0,30);Exit("B02",2,2);Spawn("FromB02",4,1.81f);Spawn("FromB04",14,37.81f);Spawn("FromB06",12,19.81f);Exit("B04",16,38);Exit("B06",27,20,"Entry",false);
     var ascent=new List<P>();for(int i=0;i<18;i++){float x=i%2==0?8:12,top=3+i*2;Platform("Cover ascent "+i,x,top,5);ascent.Add(Point(x,top+.81f,A.Jump));}Platform("Branch landing",23,19,14);Platform("Exit landing",17,37,12);
