@@ -31,4 +31,10 @@ public static class B06Checks
         System.IO.File.WriteAllText("Validation/_raw/B06/E2-title.txt",(ok?"PASS":"FAIL")+" compiled title label=메트로 1; Product="+PlayerSettings.productName+" Company="+PlayerSettings.companyName+"; save path logic unchanged. GUI visual acceptance pending delivery.\n");
         EditorApplication.Exit(ok?0:1);
     }
+    public static void Break()
+    {
+        SessionState.SetBool("B06.Check",true);SessionState.SetInt("N5.Exit",1);
+        EditorSceneManager.OpenScene("Assets/Scenes/Menu.unity");
+        EditorApplication.delayCall+=()=>EditorApplication.isPlaying=true;
+    }
 }

@@ -20,6 +20,7 @@ public sealed class RoomSession : MonoBehaviour
     public static RoomSession GetOrCreate(GameObject playerPrefab)
     {
         if (Instance != null) return Instance;
+        if (ProgressSave.Pending == null && !ProgressSave.Enabled) ProgressSave.ResetBrokenWalls();
         var session = new GameObject("Room Session").AddComponent<RoomSession>();
         var player = Instantiate(playerPrefab, session.transform);
         session.Player = player.GetComponent<PlayerInputReader>();

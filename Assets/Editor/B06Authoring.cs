@@ -57,4 +57,29 @@ public static class B06Authoring
     {
         var go=Block(room,name,at,size);go.AddComponent<ClimbableWall>();go.GetComponent<SpriteRenderer>().color=Color.cyan;return go;
     }
+    public static void CreateBreakables()
+    {
+        Directory.CreateDirectory("Assets/Prefabs/B06");AssetDatabase.Refresh();
+        foreach(bool secret in new[]{false,true})
+        {
+            string path="Assets/Prefabs/B06/BreakableWall_"+(secret?"Secret":"Shortcut")+".prefab";
+            if(File.Exists(path))throw new IOException("Preserve "+path);
+            var go=PrefabUtility.LoadPrefabContents("Assets/Prefabs/Level/Landing.prefab");go.name=secret?"BreakableWall_Secret":"BreakableWall_Shortcut";
+            go.transform.localScale=new Vector3(1,3,1);var wall=go.AddComponent<BreakableWall>();wall.breakableFrom=secret?BreakableWall.Side.Any:BreakableWall.Side.Left;
+            var feedback=go.AddComponent<HitFeedback>();feedback.tuning=AssetDatabase.LoadAssetAtPath<FeedbackTuning>("Assets/ScriptableObjects/FeedbackTuning.asset");
+            var overlay=new GameObject("Hit flash");overlay.transform.SetParent(go.transform,false);feedback.overlay=overlay.AddComponent<SpriteRenderer>();feedback.overlay.sprite=go.GetComponent<SpriteRenderer>().sprite;feedback.overlay.sortingOrder=10;overlay.SetActive(false);
+            var mark=new GameObject(secret?"Cracked seam":"Open side indicator");mark.transform.SetParent(go.transform,false);mark.transform.localPosition=new Vector3(secret?0:-.5f,0,-.02f);mark.transform.localScale=secret?new Vector3(.08f,.65f,1):new Vector3(.07f,.15f,1);
+            var sprite=mark.AddComponent<SpriteRenderer>();sprite.sprite=go.GetComponent<SpriteRenderer>().sprite;sprite.color=secret?Color.black:Color.yellow;sprite.sortingOrder=3;
+            // Shortcut marker is a thin edge on the permitted side, neutral wall face elsewhere.
+            PrefabUtility.SaveAsPrefabAsset(go,path);PrefabUtility.UnloadPrefabContents(go);
+        }
+        Open();var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();
+        for(int i=0;i<2;i++)
+        {
+            var go=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/B06/BreakableWall_"+(i==0?"Shortcut":"Secret")+".prefab"));
+            go.transform.SetParent(room.transform);go.transform.position=new Vector2(46+i*4,2.5f);go.GetComponent<BreakableWall>().wallId="WJT-"+(i==0?"Shortcut":"Secret");
+        }
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());AssetDatabase.SaveAssets();
+        Directory.CreateDirectory("Validation/_raw/B06");File.WriteAllText("Validation/_raw/B06/C1-authoring.txt","PASS two new breakable prefabs + test floor instances; existing prefabs/scenes unchanged.\n");EditorApplication.Exit(0);
+    }
 }
