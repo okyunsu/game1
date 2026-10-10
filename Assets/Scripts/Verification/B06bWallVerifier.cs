@@ -52,4 +52,3 @@ public sealed class B06bWallVerifier : N5Runner
         lines.Add("MEASURE single12 fps="+Application.targetFrameRate+" rising="+Motor.Tuning.wallAttachWhileRising+" jumps="+(Motor.WallJumpsPerformed-initial)+" distance="+furthest+" summit="+Body.position.y);yield return Keys();
     }
 }
-

@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d2b703492bf0ba4aadaac80a7c708e8, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::DefeatedBossSuppression
 --- !u!1001 &1094132308
 PrefabInstance:

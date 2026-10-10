@@ -33,5 +33,3 @@ public static class B06bAuthoring
         room.gameObject.AddComponent<DefeatedBossSuppression>();EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
     }
 }
-
-

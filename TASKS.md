@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Batch06b 진행: 짧은 킥·현장 조절·엔딩 후 이어하기. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
+Batch06b 종료: 본5+Backlog2 기술 완료, Short/rising 손맛 REVIEW. 짧은 킥·현장 조절·측정 HUD·엔딩 후 CP-C01·메트릭·장치 안내 전달. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
 
 
 **Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
@@ -11,27 +11,22 @@ F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P
 H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
 
-2026-10-10 **Batch06b 승인 실행 중** — 사용자 BATCH-06B.md, Task12 또는6시간. 시작 c413b05; 기존 tracked 변경 없음, 사용자 Batch 파일 보존. 프리셋1 채택/기존2·3 폐기, 가이드 유지/Pause 토글 취소.
+2026-10-10 **Batch06b 종료 — 본5+Backlog2 기술 완료**. 사용자 BATCH-06B.md, 최대12Task/6시간 안에 승인 큐 소진. 시작 c413b05; review/batch05-v2 유지. 기존 tracked 변경 없음, 사용자 Batch 파일 보존. 프리셋1 채택/구2·3 폐기, 가이드 유지/Pause 토글 취소.
 
 | Task | 상태 | 결과 |
 |---|---|---|
 | B06b-T1 짧은 킥·부착 옵션 | REVIEW | 기본/짧은 킥30/60/120 PASS; 기본13 PASS, 기존 R11/P03 재생 실패 기록 |
 | B06b-T2 후보·현장 조절 | REVIEW | 후보3종 굴뚝·2/3 한쪽 벽·키5종 표시/로그 PASS |
-| B06b-T3 측정 HUD | DONE | 자동 등반·HUD/로그 시간차0.04s·횟수 일치 PASS |
-| B06b-T4 엔딩 후 Continue | DONE | 실제 exe 저장·C01·C06 보스/출구·신규/기존 저장 PASS |
-| B06b-T5 전달 | DONE | Development errors0/warnings0·실행기4종 PASS/Error0·보호 변경0 |
-| B06b-BL1 메트릭 | DONE | 원본 MEASURE 링크·폭3/4/5/6 같은벽5회·대시8.05u 실측 |
-| B06b-BL2 패드 안내 | DONE | Editor/최종exe 장치전환2회 PASS·최종실행기4/4 Error0 |
+
+T3/T4/T5/BL1/BL2 DONE 상세는 [Batch06b 완료 인덱스](Archive/B06b-completed-task-index.md).
 
 2026-10-10 **Batch06 기술 작업 종료 / 8 Task 완료**. 사용자 답변으로 BATCH-06 및 D1 RoomExit 최소 수정 승인. 시작 `266b7ea`, 브랜치 `review/batch05-v2`, 기존 tracked 변경 없음·사용자 문서2개 그대로 보존. Task8개 예산 도달, Backlog 미착수. 기본 교체·Sprint Gate 대기.
 
 | Task | 상태 | 결과 |
 |---|---|---|
-| B06-B1 벽 점프 | REVIEW | 최종 exe30/60/120fps 핵심 PASS, 기본13+RouteAll+Pogo PASS, 사용자 손맛 대기 |
-| B06-B2 프리셋 | REVIEW | 숫자키1/2/3 및 4u 굴뚝3/3 PASS, 원본 Asset 변경0, 선택 대기 |
 | B06-D1 유도 가이드 | REVIEW | Release/Development/no-guide PASS, V2 필수 연결 등불28, 사람 길찾기/문구 톤 대기 |
 
-A1/C1/E1/E2/F1 DONE 이력은 [Batch06 인덱스](Archive/B06-completed-task-index.md). 이전 V2 콘텐츠 REVIEW는 아래에 유지하며, 기존 인계는 [Batch05 인계](Archive/B05-handoff-20261010.md)에 보존했다.
+B06-B1 기준/B06-B2 선택은 Batch06b의 사용자 프리셋1 채택으로 해소했다. [결정 보존](Archive/B06b-prior-decisions-20261010.md). A1/C1/E1/E2/F1 DONE 이력은 [Batch06 인덱스](Archive/B06-completed-task-index.md). 이전 V2 콘텐츠 REVIEW는 아래에 유지하며, 기존 인계는 [Batch05 인계](Archive/B05-handoff-20261010.md)에 보존했다.
 
 2026-10-08 **Batch05 기술 작업 종료 / 콘텐츠 REVIEW**. START_COMMIT `fe4b664b4f495f0cfdee9e1a1231287d3ff8d318`, 시작 clean / Unity 닫힘. 최대8시간 안에 A→B→C→전체 V2→QA 승인 Backlog를 소진했다. 기본 교체·Sprint3 Gate는 대기한다.
 
@@ -47,10 +42,14 @@ A1/C1/E1/E2/F1 DONE 이력은 [Batch06 인덱스](Archive/B06-completed-task-ind
 ## Bugs
 
 ### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
+2026-10-10 Batch06b 지정 회귀에서 R01~R10 PASS 후 같은 R11 시작편차0.110u/입력소진 재현, Error0. 전체 경로 PASS/새 제품 회귀로 확정하지 않음. [실제 결과](Validation/B06b-T1-summary.md).
+
 초기 AV1에서 시작편차 .110u로 R11 기록을 소진. 기본/수정r2/명도delivery/최종r4 연속 R01~R17은 PASS, 실제회귀 확정 아님. 기존 입력 라이브러리/게임 변경0. 원문은 [최종 요약](Validation/B04-final-summary.md), 재현성 탐색은 다음 승인 범위.
 
 
 ### B03-P03-BOUNDARY — 기록 소진/목표 판정 경계 / OPEN
+2026-10-10 Batch06b 지정 회귀 P01/P02 PASS 후 P03 input goal pogos=1 FAIL/Error0. 사전 결정대로 기준 간헐 실패와 비교만 기록, 해결 주장 없음. [실제 결과](Validation/B06b-T1-summary.md).
+
 원본 독립P03 10/10, 중립5틱 후보9/10. 실패는 점프 소비1틱 차이·대시 높이 차이 이후 착지 직전 입력 종료; 종료 뒤 goal 로그. 입력 보정1회 사용/추가 수정 없음. 보호된 게임 변경0. [진단](Validation/B03-P03-summary.md).
 
 ### B03-BOSS-VALIDATION — 패턴별 검증 / PARTIAL
@@ -150,46 +149,43 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정으로 Pause 목표 토글 취소, 가이드 현 상태 유지. 현재 승인 Backlog는 벽 점프 메트릭→WallJumpTest 패드 안내 순서. Batch05 큐 소진. Batch07/08·기본 후보 채택·다음 Sprint 확대 미착수.
+Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정으로 Pause 목표 토글 취소, 가이드 현 상태 유지. Batch06b 메트릭/패드 안내까지 완료해 승인 Backlog 소진. Batch05 큐 소진. Batch07/08·기본 후보 채택·다음 Sprint 확대 미착수.
 
 ## Latest Handoff
 
-2026-10-10 **Batch06 종료 — V3 시스템 준비 8 Task 기술 완료**. 새 플레이 범위: 안전한 WallJumpTest(벽 점프·프리셋3종·대시/포고 연결·부서지는 벽2종), V2 목표/등불/F1과 허브 표지판6개. 타이틀은 메트로 1. V2/기본 월드 연결과 기존 수치는 유지했다. [실행 안내](README.md#batch-06-시스템-확인-빌드-2026-10-10).
+2026-10-10 **Batch06b 종료 — 본5+Backlog2 기술 완료**. 짧은 킥·현장 조절·한쪽12u 벽·등반 기록, 엔딩 후 CP-C01 재개/보스 재등장 억제, 레벨 메트릭과 장치별 안내. 최종 Development errors0/warnings0, 실행기4/4 PASS/Error0. 현재 review/batch05-v2 유지, push0. V3 레벨·재배선·Sprint Gate는 미착수.
 
 ### 결정 질문지
 
 | 질문 / 선택지 | AI 추천과 이유 | 풀리는 Task |
 |---|---|---|
-| 벽 점프 **1 기본 / 2 끈적 / 3 빠름 / 직접 조정** | 우선1. 현재12u 굴뚝과 핵심fps 기준이 통과한 중간 속도 기준. 2/3도 통과했지만 손맛은 미판단 | B1/B2 수락, Batch07 V3 치수 확정 |
-| 목표 문구 톤 **유지 / 수정** | V2 표는 우선 유지 후 실제 길찾기 확인. V3 표는 승인된 WORLD_V3 9-1로 Batch07에서 교체 | D1 수락/후속 문구 작업 |
+| Short **3.5u/s·0.06s 채택 / 기준8·0.15 유지 / 직접 조절값** | 우선3.5/.06 후보를 직접 비교. 같은벽 킥 이격약0.31u, 기본약1.56u보다 작고 단벽 완등 가능 | T1/T2 손맛 수락, Batch07 치수 |
+| 상승 중 부착 **끔 / 켬** | 기본감각과 가까운 끔부터 비교. 켬은 한쪽벽 자동 등반1.58s로 끔2.74s보다 빠름. 사람 손맛 미판단 | T1/T2 부착 방식 수락 |
+| 선택값 **기본 Asset 반영 / 테스트 후보 유지** | 손맛 확정 뒤 기본 반영. 현재 기본은 기준1이고 Short8/.15·rising=false | 기본값 채택 작업 / Batch07 |
 
 ### 직접 플레이 확인
 
-이전 수락 대기는 Batch04→Batch05 순서로 [보존된 인계](Archive/B05-handoff-20261010.md#직접-플레이-확인--수락-대기-순서)에 남아 있다. 기본·V2 수락과 이번 벽 점프/가이드 수락을 합치지 않는다.
+이전 Batch04→05의 수락 대기는 [보존된 인계](Archive/B05-handoff-20261010.md#직접-플레이-확인--수락-대기-순서), 이전 B06 가이드/벽 표시 등은 [B06 인계](Archive/B06-handoff-20261010.md). 이전 기본·V2 수락/Sprint Gate는 이번 기술 완료와 구분한다.
 
-이번 Batch 확인 순서:
-
-1. [Play-WallJumpTest.cmd](Builds/B06-delivery/Play-WallJumpTest.cmd) **10분**. 청록색 표시 벽 쪽 입력→Z/패드A. 굴뚝 왼쪽 하단 입구로 들어가고 숫자1/2/3으로 비교. 미끄러짐·같은 벽 재부착·짧은/긴 점프·대시/포고 연결과 일반 벽 대조를 본다. 프리셋 선택은 기본값 채택 전 사용자 판단이다.
-2. [Play-V2-Guide.cmd](Builds/B06-delivery/Play-V2-Guide.cmd) **10분**. 위쪽 목표·문 위 작은 등불·F1 출구 화살표가 도움이 되는지, A03/B01/C01 표지판이 읽히는지. [NoGuide 실행](Builds/B06-delivery/Play-V2-NoGuide.cmd)은 세 가이드만 끄고 표지판은 유지. 두 실행기는 서로 다른 QA 슬롯.
-3. 같은 WallJumpTest의 **부서지는 벽2종 2~3분**. x46 숏컷은 왼쪽 공격3회, 오른쪽 표시/피해 없음; x50 비밀은 금 간 표시·양쪽 공격3회. 모습 구분 확인. 테스트는 저장하지 않으며 영구 저장 유지의 기술 검사는 별도 QA 파일로 완료했다.
+1. [Play-WallJumpTest.cmd](Builds/B06b-delivery/Play-WallJumpTest.cmd) **10분**. Scene WallJumpTest. 1기준 / 2Short / 3Short+상승 부착 비교 → 7/8 속도·9/0 lock·6 부착으로 조절. x114 한쪽12u 벽과 기존 굴뚝, 중립/반대 입력의 긴 킥, 버튼을 떼는 낮은 점프, 대시/포고 연결을 본다. 원하는 값이면 [현재 값 파일](Logs/walljump-tuning-last.txt)을 그대로 남긴다. 오른쪽 아래 최근3회 기록.
+2. [QA-AfterEnding.cmd](Builds/B06b-delivery/QA-AfterEnding.cmd) **3분**. 별도 엔딩 도달 QA 슬롯을 매 실행 재생성한다. 이어하기가 C01_V2/CP-C01에서 능력을 유지하는지, C06 재방문에 보스가 없고 출구를 사용할 수 있는지 본다. [Guide](Builds/B06b-delivery/Play-V2-Guide.cmd)/[NoGuide](Builds/B06b-delivery/Play-V2-NoGuide.cmd)는 기존 독립 슬롯.
 
 ### Task별 결과
 
-| Task | 상태 / 로컬 커밋 | 변경·실제 검증·문제 |
+| Task | 상태 / 로컬 커밋 | 주요 파일·실제 검증·문제 |
 |---|---|---|
-| A1 문서 | DONE / `73ccff5` | WORLD/BATCH 원본 그대로, 결정6개·범위 예외·표시 제목. [증거](Validation/B06-A1-summary.md) |
-| B1 벽 점프 | REVIEW / `2a37432` | Motor/Tuning/저장/HUD/Pickup/테스트 Scene. 30/60/120fps PASS, 기본13+RouteAll+Pogo PASS. 입력 도구1회 보정, 손맛 대기. [증거](Validation/B06-B1-summary.md) |
-| B2 프리셋 | REVIEW / `11a6d39` | 런타임 튜닝 복사본, 세 프리셋4u 등반 PASS, 원본 Asset 변경0. [증거](Validation/B06-B2-summary.md) |
-| C1 부서지는 벽 | DONE / `35494ee` | 실제3회/방향/포고 제외, 사망·재입장·Continue·새 게임·기존 version1 PASS/Error0. wallJump=true 디스크 복원도 PASS. [증거](Validation/B06-C1-summary.md) |
-| D1 가이드 | REVIEW / `2ce5127` | GuideObjectives/Graph/표시·RoomExit 최소 필드·등불28. Release/Dev/no-guide PASS. C06 검사 Spawn1회 보정, 사람 가독성 대기. [증거](Validation/B06-D1-summary.md) |
-| E1 표지판 | DONE / `ea6497c` | SignPost/허브6개, 표시·숨김6/6·콜라이더/공격 상태 영향0 PASS. [증거](Validation/B06-E1-summary.md) |
-| E2 이름 | DONE / `36f6dde` | SaveMenu 제목만 변경·컴파일·Product/Company 보존 PASS. 시각 검수 미실시. [증거](Validation/B06-E2-summary.md) |
-| F1 전달 | DONE / `fdcf731` | 최종Dev 빌드 errors0/warnings0·실행기3/3 Error0. 굴뚝 입구2u 추가 후 최종exe 벽30/60/120fps·프리셋3/3 PASS. [증거](Validation/B06-F1-summary.md) |
+| T1 짧은 킥·부착 | REVIEW / 7cf0689 | PlayerMotor/PlayerTuning/Asset 신규3필드. 기존B06+Short30/60/120 PASS, 단벽 이격0.299u, Long 차이<=.05u, rising 정책/중복0. 기본13PASS, R11/P03 기존 재생 경계 FAIL 보존. [요약](Validation/B06b-T1-summary.md) |
+| T2 후보·현장 조절 | REVIEW / 78a3612 | Course/Test Scene x114. 후보3종4u 완등,2/3단벽 완등,키5종 표시/로그일치 PASS. Asset 기존값0변경. [요약](Validation/B06b-T2-summary.md) |
+| T3 등반 HUD | DONE / b30856a | Metrics/Scene Zones. Editor 및 최종exe 자동등반 표시/로그 차이<=.05s·점프횟수일치 PASS. [요약](Validation/B06b-T3-summary.md) |
+| T4 엔딩 후 Continue | DONE / 5fca259 | PendingScene 경로·C06_V2 새컴포넌트만. 실제exe 엔딩→타이틀→C01/능력·벽유지/C06 보스0·물리출구/반복엔딩0/신규·기존저장 PASS. Editor는 V2 BuildSettings 부재로 실패 후 실제exe 접근. [요약](Validation/B06b-T4-summary.md) |
+| T5 문서·전달 | DONE / 69eb76f | B06Build/README/GAME_DESIGN. 결정·가이드유지/토글취소. Development40Scene errors0/warnings0, 실행기4/4 Error0. [요약](Validation/B06b-T5-summary.md) |
+| BL1 메트릭 | DONE / d0e3b4e | [LEVEL_METRICS_WALLJUMP.md](LEVEL_METRICS_WALLJUMP.md). 두기준3/4/5/6u 같은벽5회 완등, 긴킥4.891u/높이2.47u, Short 후보0.314u/재부착+2.428u, 대시틈8.05u 실제착지. 표본/입력조건·원본줄 링크. [요약](Validation/B06b-BL1-summary.md) |
+| BL2 장치 안내 | DONE / 08d7165 | Course/가상장치 검사. Editor+최종exe 키보드→패드→키보드 PASS. Backlog후 최종재빌드·실행기4개·HUD PASS/Error0. [요약](Validation/B06b-BL2-summary.md) |
 
-**보호·한계:** 기존 기본 Scene/Prefab·Tuning 기존 값·Packages/ProjectSettings·기존 Validation 변경0. V2는 등불/표지판/표시 필드 추가만(기존 줄 삭제0). raw 증거 보존. 실제 패드·사람 손맛/가독성·자연 전체 완주 미실시. 이전 P03 간헐 입력 이슈와 Sprint Gate는 유지. 로컬 Task 커밋만, push0.
+**보호·한계:** 기본Scene/기존Tuning값/BossEncounter/BossTuning/Packages/ProjectSettings/기존Validation 변경0. C06_V2 13줄추가/삭제0. raw원본·실패 보존. R11은 기존0.110u 시작편차에서 입력 소진, P03은 간헐 목표 실패; 해결/전체회귀PASS로 기록하지 않았다. 실제패드·사람손맛/가독성·자연전체완주 미실시. 메트릭은60fps 표본/조건의 검증거리이며 안정 성공거리나 연속 타이밍 상한은 아니다.
 
-**조정 인계:** 영구 값은 PlayerTuning.asset/Wall jump, 후보3종은 WallJumpTest Scene/WallJumpTestCourse/Presets. 벽 횟수·방향·ID는 B06 Prefab 및 Scene 인스턴스, 표지판 문구/거리·등불 위치는 V2 Scene, 목표는 Resources/GuideObjectives. Play 중 값을 메모하고 Stop 후 원하는 원본에 반영·저장·재빌드. 게임 기본값 채택은 사용자 판단이다. 재배선 후 Afterglow/Rebuild V2 Guide Graph.
+**조절 인계:** 테스트 값은 Runtime 복사본/숫자키, 자동 파일 저장. 영구값은 PlayerTuning.asset Wall jump, Presets/Zones/배치는 WallJumpTest Scene. Play 종료 후 선택값 파일을 전달하고, 승인된 기본값만 Stop 상태에서 Asset 편집·저장·재빌드한다. 기존 Guide는 유지한다.
 
 ### 다음 Batch 후보
 
-벽 점프 프리셋 수락 후 **Batch07**: G-W/G-J 이동·구덩이·숏컷 연결, A지역 그레이박스, Double Jump C05 이동, V3 목표표 적용. 아직 착수하지 않았다. 별도 예산 후보: Batch06 Backlog의 CP-C01 엔딩 후 Continue·Pause 목표 토글·테스트 측정 HUD. 이번은 Task8개 예산 도달로 종료한다.
+사용자 Short/rising 선택 뒤 **Batch07**: V3 연결 재배선·A지역 그레이박스·Double Jump C05 이동·V3 목표표. 이번 [메트릭](LEVEL_METRICS_WALLJUMP.md)을 치수 참고로 사용하되 같은 벽 반복이 가능한 규칙에 맞춰 표식/배치를 확인한다. Batch06b/Approved Backlog는 소진했다. 기본 후보 채택·Sprint Gate는 사용자 판단이다.

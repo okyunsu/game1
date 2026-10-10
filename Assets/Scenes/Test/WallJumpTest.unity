@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e6db5512445b124d9ae632d774092e4, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::WallJumpTestMetrics
   zones:
   - label: 3u chimney
@@ -2692,7 +2692,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65b9c2a51563ec84ba9fa7996a48eaf0, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::ClimbableWall
 --- !u!1001 &2077363275
 PrefabInstance:
