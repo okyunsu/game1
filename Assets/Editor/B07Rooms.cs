@@ -156,10 +156,15 @@ public static class B07Rooms
     plan.beats="돌진 예고 / 회피 공간 / 3u 낙사 / 비밀 / 출구";plan.optionalType="대시로 돌진 틈";
     plan.routes=new[]{Route("main","B03",true,false,false,Point(24,1.81f),Point(28,6.31f,A.Jump),Point(44,6.31f),Point(51,1.81f),Point(57,1.81f,A.DashAir),Point(82,1.81f)),Route("optional","Discovery:V3-B02-optional",true,false,false,Point(18,1.81f),Point(22,3.31f,A.Jump),Point(26,1.81f,A.WalkUnder),Point(34,1.81f,A.DashAir))};Secret(70,11);break;
    case "B03":
-    Shell(id,30,40);Floor(0,30);Exit("B02",2,2);Spawn("FromB02",4,1.81f);Spawn("FromB04",14,37.81f);Spawn("FromB06",12,19.81f);Exit("B04",16,38);Exit("B06",27,20,"Entry",false);
-    var ascent=new List<P>();for(int i=0;i<18;i++){float x=i%2==0?8:12,top=3+i*2;Platform("Cover ascent "+i,x,top,5);ascent.Add(Point(x,top+.81f,A.Jump));}Platform("Branch landing",23,19,14);Platform("Exit landing",17,37,12);
-    for(int i=0;i<3;i++){Enemy("E3",25,9+i*12);Block("Shot cover "+i,20,9+i*12,1,3);Platform("Turret base "+i,25,8.5f+i*12,4);}
-    plan.beats="낮은 등반 / E3 엄폐 / B06 분기 / 두 번째 사격 / 위 출구";ascent.Add(Point(16,37.81f));plan.routes=new[]{Route("main","B04",true,false,false,ascent.ToArray())};Optional("사격 피하며 오르기",18,true,false,false);break;
+    Shell(id,30,40);Floor(0,30);Exit("B02",2,2);Spawn("FromB02",4,1.81f);Spawn("FromB04",22,37.81f);Spawn("FromB06",22,19.81f);Exit("B04",22,38);Exit("B06",27,20,"Entry",false);
+    var ascent=new List<P>();P[] shootingBranch=null;
+    for(int i=0;i<20;i++){float x=i%2==0?8:16,top=3+1.5f*((i+1)/2)+2*(i/2);Platform("Cover ascent "+i,x,top,5);if(i>0){float prior=3+1.5f*(i/2)+2*((i-1)/2);ascent.Add(Point(i%2==0?17:7,prior+.81f));ascent.Add(Point(i%2==0?13.5f:10.5f,prior+.81f));}ascent.Add(Point(x,top+.81f,A.Jump));if(i==11)shootingBranch=ascent.ToArray();}
+    Platform("Branch landing",21,19,6);Platform("Exit landing",22,37,6);
+    for(int i=0;i<3;i++){Enemy("E3",25,9+i*12);Block("Shot cover "+i,20,i==1?20:9+i*12,1,i==1?2:3);Platform("Turret base "+i,25,8.5f+i*12,4);}
+    Platform("Shot challenge approach",22,23.5f,4);Platform("Shot challenge reward",27,25,6);Reward("optional",27,25.8f);
+    plan.beats="낮은 등반 / E3 엄폐 / B06 분기 / 두 번째 사격 / 위 출구";plan.optionalType="사격 피하며 오르기";
+    ascent.Add(Point(18.5f,36.81f));ascent.Add(Point(22,37.81f,A.Jump));
+    plan.routes=new[]{Route("main","B04",true,false,false,ascent.ToArray()),Route("optional","Discovery:V3-B03-optional",true,false,false,shootingBranch.Concat(new[]{Point(18.5f,22.81f),Point(22,24.31f,A.Jump),Point(27,25.81f,A.Jump)}).ToArray())};break;
    case "B04":
     Shell(id,40,30);Floor(0,40);Exit("B03",2,2,"FromB04");Pickup<WallJumpPickup>(10,1.8f);Block("Practice left",17.75f,10,.5f,14,true);Block("Practice right",22.25f,9,.5f,16,true);Platform("Chimney summit",28,17,12);Spawn("FromShortcut",36,17.81f);Exit("B01",38,18,"FromB04",false);Block("Shortcut roof",35,20.5f,10,1);Wall("V3-shortcut-B04",34,18.5f,3,BreakableWall.Side.Left);
     plan.beats="벽 점프 획득 / 4u 연습 / 상단 착지 / 방향 벽 / 시장 귀환";plan.routes=new[]{Route("main","B01",true,false,false,Point(10,1.81f),Point(21.6f,1.81f),Point(21.6f,18.6f,A.Climb),Point(28,17.81f),Point(32.7f,17.81f),Point(32.7f,17.81f,A.Wall,"V3-shortcut-B04"),Point(38,17.81f))};Optional("한쪽 벽 점프 연속",4,true,true,false,A.Climb);break;
