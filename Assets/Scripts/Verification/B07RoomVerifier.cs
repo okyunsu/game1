@@ -6,13 +6,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public sealed class B07RoomVerifier:N5Runner
+public class B07RoomVerifier:N5Runner
 {
  [Serializable]public sealed class Recording{public string room,route,goal;public List<N5InputTick> inputs=new();}
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<B07RoomVerifier>("-verify-b07-room");
- RouteTickDriver driver;PlayerTuning original,candidate;V3RoomRoutes.Route route;Recording recording;
- int stage,jumpAt=-1000,climbRelease=-1000,previousJumps,pogos,nextAttack;bool climbHeld=true,climbWaiting,dead;
- double bossPhase=-1;string roomId;
+ protected RouteTickDriver driver;PlayerTuning original,candidate;protected V3RoomRoutes.Route route;Recording recording;
+ protected int stage,jumpAt=-1000,climbRelease=-1000,previousJumps,pogos,nextAttack;protected bool climbHeld=true,climbWaiting,dead;
+ protected double bossPhase=-1;protected string roomId;
  protected override void Cleanup(){if(driver!=null)driver.active=false;if(Player!=null&&original!=null)Motor.SetWallJumpTestTuning(original);if(candidate!=null)Destroy(candidate);}
  protected override IEnumerator Tests()
  {
@@ -30,24 +30,24 @@ public sealed class B07RoomVerifier:N5Runner
   string replay=N5Args.Value("-b07-replay","");recording=replay==""?new Recording{room=roomId,route=routeName,goal=route.goal}:JsonUtility.FromJson<Recording>(File.ReadAllText(replay));
   driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;driver.produce=()=>
   {
-   if(replay!=""){if(driver.tick>=recording.inputs.Count){dead=true;return new N5InputTick();}return recording.inputs[driver.tick];}
+   if(replay!=""){if(driver.tick>=recording.inputs.Count){if(driver.tick>=recording.inputs.Count+20)dead=true;return new N5InputTick();}return recording.inputs[driver.tick];}
    var input=Generate();input.tick=driver.tick;recording.inputs.Add(input);return input;
   };
   driver.observe=()=>{if(Complete())driver.active=false;};driver.active=true;double began=Time.realtimeSinceStartupAsDouble,limit=began+N5Args.Int("-b07-limit",150);
   while(driver.active&&!dead&&Time.realtimeSinceStartupAsDouble<limit){if(RoomSession.Instance?.Respawning==true||!Complete()&&RoomSession.Instance!=null&&RoomSession.Instance.CurrentRoomId!=roomId&&RoomSession.Instance.CurrentRoomId!=route.goal){dead=true;}yield return null;}
   driver.active=false;yield return Keys();if(replay=="")File.WriteAllText(Path.ChangeExtension(Evidence,"inputs.json"),JsonUtility.ToJson(recording,true));
-  lines.Add("MEASURE route seconds="+(Time.realtimeSinceStartupAsDouble-began)+" ticks="+driver.tick+" stage="+stage+" pos="+(Player==null?Vector2.zero:Body.position)+" pogos="+(Player==null?0:Player.GetComponent<PlayerAttack>().PogosPerformed)+" wallJumps="+(Player==null?0:Motor.WallJumpsPerformed)+" hp="+(Player==null?0:Health.HP));
+  lines.Add("MEASURE route seconds="+(Time.realtimeSinceStartupAsDouble-began)+" ticks="+driver.tick+" stage="+stage+" pos="+(Player==null?Vector2.zero:Body.position)+" pogos="+(Player==null?0:Player.GetComponent<PlayerAttack>().PogosPerformed)+" wallJumps="+(Player==null?0:Motor.WallJumpsPerformed)+" hp="+(Player==null?0:Health.HP)+" doubleJump="+(Player!=null&&Motor.hasDoubleJump));
   if(N5Args.Has("-b07-negative")){Check(!Complete(),"ability gate denies optional route");yield break;}
   Check(!dead&&Complete(),roomId+" "+routeName+" actual input "+(replay==""?"record":"replay"));
  }
- bool Complete()
+ protected bool Complete()
  {
   if(route==null)return false;if(route.goal.StartsWith("Discovery:"))return DiscoveryReward.Found(route.goal.Substring(10));
   if(route.goal=="Ending")return FindFirstObjectByType<EndingMenu>()!=null;
   return RoomSession.Instance!=null&&RoomSession.Instance.CurrentRoomId==route.goal&&!RoomSession.Instance.Transitioning;
  }
  void Advance(){stage++;jumpAt=-1000;climbWaiting=false;climbHeld=true;previousJumps=Motor.WallJumpsPerformed;pogos=Player.GetComponent<PlayerAttack>().PogosPerformed;}
- N5InputTick Generate()
+ protected N5InputTick Generate()
  {
   var result=new N5InputTick();if(Player==null||Player.InputLocked)return result;
   if(stage>=route.points.Length)return result;var point=route.points[stage];Vector2 p=Body.position;float dx=point.position.x-p.x;result.axis=Mathf.Abs(dx)<.12f?0:Mathf.Sign(dx);
@@ -88,7 +88,7 @@ public sealed class B07RoomVerifier:N5Runner
   }
   bool at=Mathf.Abs(dx)<.55f&&p.y>=point.position.y-.3f;
   
-  if(at&&(action==V3RoomRoutes.Action.Walk||Motor.Grounded||action==V3RoomRoutes.Action.DashAir&&Mathf.Abs(dx)<.55f)){Advance();return result;}
+  if(at&&(action==V3RoomRoutes.Action.Walk||Motor.Grounded||action==V3RoomRoutes.Action.DashAir&&Mathf.Abs(dx)<.55f||point.id=="air-height")){Advance();return result;}
   if(action is V3RoomRoutes.Action.Jump or V3RoomRoutes.Action.DoubleJump or V3RoomRoutes.Action.Dash or V3RoomRoutes.Action.DashAir)
   {
    if(Motor.Grounded&&tick-jumpAt>38)jumpAt=tick;
@@ -118,7 +118,7 @@ public sealed class B07RoomVerifier:N5Runner
   }
   return result;
  }
- void Capture(V3RoomRoutes plan)
+ protected void Capture(V3RoomRoutes plan)
  {
   string path="Validation/_raw/B07/"+roomId+"-overview.png";if(File.Exists(path))return;
   var rig=FindFirstObjectByType<RoomCameraRig>();Bounds bounds=rig.boundary.bounds;float aspect=bounds.size.x/bounds.size.y;int w=aspect>=1?2048:Mathf.RoundToInt(2048*aspect),h=aspect>=1?Mathf.RoundToInt(2048/aspect):2048;

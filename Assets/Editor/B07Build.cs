@@ -19,7 +19,7 @@ public sealed class B07Build:IProcessSceneWithReport
  {
   string tag=N5Args.Value("-b07-build","B07-delivery");if(!System.Text.RegularExpressions.Regex.IsMatch(tag,"^B07-[a-zA-Z0-9-]+$"))throw new System.ArgumentException("B07 tag required");
   Directory.CreateDirectory("Builds/"+tag);Directory.CreateDirectory("Validation/_raw/B07");
-  var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=Scenes(),locationPathName="Builds/"+tag+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.Development});
+  var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=Scenes(),locationPathName="Builds/"+tag+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=tag=="B07-delivery"?BuildOptions.Development:BuildOptions.None});
   File.WriteAllText("Validation/_raw/B07/"+tag+"-build.txt",report.summary.result+" errors="+report.summary.totalErrors+" warnings="+report.summary.totalWarnings+"\n"+string.Join("\n",Scenes()));
   EditorApplication.Exit(report.summary.result==BuildResult.Succeeded?0:1);
  }

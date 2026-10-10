@@ -201,7 +201,9 @@ public static class B07Rooms
     plan.routes=new[]{Route("main","C05",true,true,false,Point(5.1f,1.81f),Point(5.1f,10.6f,A.Climb),Point(3.5f,8.81f)),dj,Route("optional","Discovery:V3-C03-optional",true,true,false,Point(5.1f,1.81f),Point(5.1f,10.6f,A.Climb),Point(13,1.81f),Point(20,1.81f),Point(24,3.5f,A.Pogo),Point(28,3.5f,A.Pogo),Point(32,4.51f))};break;
    case "C05":
     Shell(id,48,30);Pits(new Vector2(29,32));Exit("C03",2,2,"FromC05");Pickup<DoubleJumpPickup>(12,1.8f);Platform("Double jump practice",22,4.6f,8);Platform("Far summit silhouette",40,20,6);Block("Distant summit",40,23,5,5).GetComponent<BoxCollider2D>().enabled=false;
-    plan.beats="더블 점프 획득 / 높은 턱 / 틈 연습 / 정상 전망 / C03 귀환";plan.routes=new[]{Route("main","C03",true,true,false,Point(12,1.81f),Point(22,5.41f,A.DoubleJump),Point(16,1.81f),Point(2,1.81f))};Optional("전 능력 조합",34,true,true,true,A.DoubleJump);break;
+    Block("Optional tower wall",16.25f,10,.5f,6,true);Platform("Optional wall rest",20,13,3);Platform("Optional dash launch",24,13,3);Pogo(31,13.7f);Platform("Optional all ability reward",38,17.6f,4);Reward("optional",38,18.4f);
+    plan.beats="더블 점프 획득 / 높은 턱 / 틈 연습 / 정상 전망 / C03 귀환";plan.optionalType="전 능력 조합";
+    plan.routes=new[]{Route("main","C03",true,true,false,Point(12,1.81f),Point(17,1.81f,A.WalkUnder),Point(22,5.41f,A.DoubleJump),Point(16,1.81f,A.WalkUnder),Point(2,1.81f)),Route("optional","Discovery:V3-C05-optional",true,true,true,Point(17,1.81f),Point(22,5.41f,A.DoubleJump),Point(18.4f,5.41f,A.WalkUnder),Point(16.9f,14.6f,A.Climb),Point(20,13.81f,A.WalkUnder),Point(24,13.81f,A.Jump),Point(25,13.81f),Point(29,14.8f,A.DashAir),Point(31,15,A.Pogo),Point(38,18.41f,A.DoubleJump))};break;
    case "C04":
     Shell(id,54,18);Floor(0,54);Exit("C03",2,2,"FromC04");Exit("C06",52,2,"FromLeft");Checkpoint("CP-C04",48,1.81f);Platform("Last broad stair",23,2,12);Platform("Last rest",36,1.5f,8);
     plan.beats="마지막 계단 / 넓은 휴식 / CP-C04 / 보스 문";plan.routes=new[]{Route("main","C06",true,true,true,Point(23,2.81f,A.Jump),Point(36,2.31f),Point(48,1.81f),Point(52,1.81f))};break;
