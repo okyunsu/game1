@@ -29,6 +29,10 @@ public sealed class PlayerMotor : MonoBehaviour
     public bool Grounded { get; private set; }
     public PlayerTuning Tuning => tuning;
     public int Facing { get; private set; } = 1;
+    public void SetWallJumpTestTuning(PlayerTuning candidate)
+    {
+        if (RoomSession.Instance?.CurrentRoomId == "WallJumpTest" && candidate != null) tuning = candidate;
+    }
 
     public void ApplyPogo(float upwardVelocity, bool refreshOwnedAir)
     {

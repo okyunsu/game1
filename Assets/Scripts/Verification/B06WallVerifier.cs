@@ -13,6 +13,17 @@ public sealed class B06WallVerifier : N5Runner
         yield return Ready();yield return new WaitForSeconds(.2f);
         Check(!ProgressSave.Enabled,"test never saves");
         Check(Motor.hasWallJump&&Player.GetComponent<PlayerDash>().hasDash&&!Motor.hasDoubleJump,"test starts wall+dash, no double jump");
+        if(N5Args.Has("-verify-b06-presets"))
+        {
+            var course=FindFirstObjectByType<WallJumpTestCourse>();
+            for(int i=0;i<3;i++)
+            {
+                yield return Tap(i==0?Key.Digit1:i==1?Key.Digit2:Key.Digit3);
+                Check(course.PresetIndex==i,"numeric key selects preset "+course.CurrentPresetName);
+                yield return Climb(4);lines.Add("MEASURE preset="+course.CurrentPresetName+" values="+Motor.Tuning.wallSlideMaxFallSpeed+"/"+Motor.Tuning.wallJumpHorizontalSpeed+"/"+Motor.Tuning.wallJumpVelocity+"/"+Motor.Tuning.wallJumpInputLock);
+            }
+            yield break;
+        }
         yield return Slide(new Vector2(25.63f,8),Key.RightArrow,true);
         yield return Slide(new Vector2(91.38f,5),Key.RightArrow,false);
         yield return Slide(new Vector2(96.14f,5),Key.RightArrow,false);
