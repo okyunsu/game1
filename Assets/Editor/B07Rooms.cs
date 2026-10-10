@@ -121,14 +121,14 @@ public static class B07Rooms
     var a2=new List<P>{Point(8,3.81f,A.Jump)};for(int i=1;i<6;i++){a2.Add(Point(i%2==0?13.5f:6.5f,1.81f+i*2));a2.Add(Point(i%2==0?11.7f:8.3f,1.81f+i*2));a2.Add(Point(i%2==0?8:12,3.81f+i*2,A.Jump));}a2.Add(Point(28,13.81f));
     var revisit=Route("revisit","B05",true,true,false,Point(17.6f,13.81f),Point(17.6f,46,A.Climb),Point(22,45.81f),Point(25,45.81f));revisit.startSpawn="FromA03";plan.routes=new[]{Route("main","A03",false,false,false,a2.ToArray()),revisit};break;
    case "A03":
-    Shell(id,60,18);Floor(0,12);Floor(18,60);Floor(0,60,-3);Checkpoint("CP-A03",26,1.81f);Platform("Tunnel return step",15,-1,3);Platform("Tunnel return lip",20,1,4);
+    Shell(id,60,18);Floor(0,12);Floor(18,60);Floor(0,60,-3);Platform("Hub checkpoint deck",29.25f,2.5f,10.5f);Checkpoint("CP-A03",26,3.31f);Platform("Tunnel return step",15,-1,3);Platform("Tunnel return lip",20,1,4);
     Exit("A02",2,2,"FromA03");Spawn("FromA02",4,1.81f);Exit("A04",58,2);Spawn("FromA05",7,-2.19f);Spawn("FromPit",30,12);Exit("A05",6,-2,"FromShortcut",false);Wall("V3-shortcut-A05",10,-1.5f,3,BreakableWall.Side.Left);
-    Platform("G-D approach low",38,3,4);Platform("G-D approach middle",41,5,3);Platform("G-D approach high",42,7,3);Platform("G-D destination deck",49,7,8);Block("G-D room separator",44,14,1,8);var gd=Block("G-D lattice",44,8.5f,1,3);gd.AddComponent<DashGate>();Exit("B01",48,8.5f,"FromDash");
+    Platform("G-D approach low",38,4.5f,4);Platform("G-D approach middle",41,6,3);Platform("G-D approach high",42,7.5f,3);Platform("G-D destination deck",49,7.5f,8);Block("G-D room separator",44,14.25f,1,8.5f);var gd=Block("G-D lattice",44,9,1,3);gd.AddComponent<DashGate>();Exit("B01",48,9);
     Sign(29,1.8f,"여기선 칼을 뽑지 않는다. 오래된 약속이지.");Sign(36,1.8f,"위로 간 사람들은 편지를 보내지 않아.");
     plan.beats="CP·바닥촌 / 표지판 / 격자 관찰 / 동쪽 A04 / 아래 숏컷";
-    var gdRoute=Route("dash","B01",true,false,false,Point(38,3.81f,A.Jump),Point(41,5.81f,A.Jump),Point(42,7.81f,A.Jump),Point(48,7.81f,A.GroundDash));gdRoute.startSpawn="CP-A03";
+    var gdRoute=Route("dash","B01",true,false,false,Point(34,3.31f),Point(38,5.31f,A.Jump),Point(41,6.81f,A.Jump),Point(42,8.31f,A.Jump),Point(48,8.31f,A.GroundDash));gdRoute.startSpawn="CP-A03";
     var back=Route("return","A02",true,true,false,Point(20,1.81f),Point(15,-.19f),Point(11,1.81f,A.Jump),Point(2,1.81f));back.startSpawn="FromPit";
-    plan.routes=new[]{Route("main","A04",false,false,false,Point(11,1.81f),Point(15,-.19f),Point(20,1.81f,A.Jump),Point(58,1.81f)),gdRoute,back};break;
+    plan.routes=new[]{Route("main","A04",false,false,false,Point(11,1.81f),Point(15,-.19f),Point(20,1.81f,A.Jump),Point(22,1.81f),Point(30,3.31f,A.Jump),Point(58,1.81f,A.WalkUnder)),gdRoute,back};break;
    case "A04":
     Shell(id,90,18);Floor(0,90);Exit("A03",2,2);Exit("A05",88,2);Enemy("E1",34,1.51f);Enemy("E1",38,1.51f);Platform("Pogo reward landing",43,4.5f,3);Reward("optional",43,6);
     plan.beats="첫 E1 소개 / 넓은 회피 / 포고 분기 / 금 간 벽 / 출구";plan.optionalType="적 위 포고 연속";

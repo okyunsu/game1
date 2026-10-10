@@ -3,7 +3,7 @@ using UnityEngine;
 // Scene-authored verification itinerary, never controls normal gameplay.
 public sealed class V3RoomRoutes:MonoBehaviour
 {
- public enum Action { Walk,Jump,DoubleJump,Climb,Dash,DashAir,GroundDash,Pogo,Wall,Boss }
+ public enum Action { Walk,Jump,DoubleJump,Climb,Dash,DashAir,GroundDash,Pogo,Wall,Boss,WalkUnder }
  [System.Serializable]public struct Point {public Vector2 position;public Action action;public string id;}
  [System.Serializable]public sealed class Route
  {
