@@ -204,6 +204,8 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약173분, 10시간·50T
 
 | R-C03 | PARTIAL / 이번 Task 커밋 | 10-11 08:06–08:38 | 필수 기본/Short·DJ 귀환 기록·재생 PASS, 선택 포고 발견 미완료. [요약](Validation/B07-R-C03-summary.md) |
 
+| T21 S01 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:38 | 전 능력→빈 광장→엔딩 기본/Short 기록·재생 PASS. S01 표적 피해 제거. [요약](Validation/B07-T21-S01-summary.md) |
+
 ### 다음 작업
 
 T1→T2→방19개→T22~T27→Batch Backlog 순서. 보호 Scene·기존Tuning·BossEncounter·ProjectSettings 변경0. BATCH-07.md는 사용자 파일로 미추적 상태 보존.

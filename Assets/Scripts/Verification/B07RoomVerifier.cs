@@ -70,7 +70,7 @@ public class B07RoomVerifier:N5Runner
   if(action==V3RoomRoutes.Action.Climb)
   {
    if(Mathf.Abs(dx)<.8f){var wall=FindObjectsByType<ClimbableWall>(FindObjectsSortMode.None).Where(w=>w.GetComponent<Collider2D>().bounds.min.y<p.y+1&&w.GetComponent<Collider2D>().bounds.max.y>p.y-1).OrderBy(w=>Mathf.Abs(w.transform.position.x-p.x)).FirstOrDefault();if(wall!=null)result.axis=Mathf.Sign(wall.transform.position.x-p.x);}
-   if(p.y>=point.position.y&&Mathf.Abs(dx)<.8f){Advance();return result;}
+   if((p.y>=point.position.y||point.id=="wall-top"&&Motor.Grounded&&p.y>=point.position.y-1.1f)&&Mathf.Abs(dx)<.8f){Advance();return result;}
    if(Motor.Grounded){climbHeld=true;climbWaiting=false;}
    if(Motor.WallJumpsPerformed>previousJumps){previousJumps=Motor.WallJumpsPerformed;climbWaiting=false;}
    if(Motor.WallSliding&&!climbWaiting){if(climbHeld){climbHeld=false;climbRelease=tick;}else if(tick-climbRelease>=2){climbHeld=true;climbWaiting=true;}}
