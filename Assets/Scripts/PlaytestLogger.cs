@@ -15,7 +15,7 @@ public sealed class PlaytestLogger:MonoBehaviour
  public double PauseSeconds=>pauseSeconds;
  readonly Dictionary<string,double> regional=new();readonly Dictionary<string,int> deaths=new();
  GameState state;BossEncounter boss;string room="",nextRoom="",checkpoint="";bool dash,jump,wasRespawning,wasPaused,wasFighting,menuSeen,warningSent;
- double lastSample,activeSeconds,pauseSeconds;int bossAttempts;DateTime menuSaveTime;
+ double lastSample,activeSeconds,pauseSeconds,roomBegan;int bossAttempts;DateTime menuSaveTime;
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
  static void Initialize(){if(Instance!=null)return;var go=new GameObject("Playtest Logger");DontDestroyOnLoad(go);go.AddComponent<PlaytestLogger>();}
  void Awake(){if(Instance!=null&&Instance!=this){Destroy(gameObject);return;}Instance=this;SceneManager.sceneLoaded+=Loaded;}
@@ -23,7 +23,7 @@ public sealed class PlaytestLogger:MonoBehaviour
  void Loaded(Scene scene,LoadSceneMode mode)
  {
   if(scene.name=="Menu"){Finish();menuSeen=true;menuSaveTime=SaveTime();nextRoom="";return;}
-  if(scene.name=="Ending"){if(Recording){Sample();Write("ending","",null,"","Ending");Finish();}return;}
+  if(scene.name=="Ending"){if(Recording){if(V3SceneMap.Enabled)ObserveExit("SummitEnding","Ending");Sample();Write("ending","",null,"","Ending");Finish();}return;}
   foreach(var root in scene.GetRootGameObjects()){var definition=root.GetComponent<RoomDefinition>();if(definition!=null){nextRoom=definition.roomId;break;}}
   var pending=ProgressSave.Pending;
   // NewGame writes the reset slot before loading A01. Continue only reads it.
@@ -32,7 +32,7 @@ public sealed class PlaytestLogger:MonoBehaviour
  void Begin()
  {
   Unbind();regional.Clear();deaths.Clear();room=checkpoint="";dash=jump=wasRespawning=wasPaused=wasFighting=false;activeSeconds=pauseSeconds=0;bossAttempts=0;lastSample=Time.realtimeSinceStartupAsDouble;warningSent=false;
-  try{string folder=Path.Combine(Application.persistentDataPath,"Playtest");Directory.CreateDirectory(folder);string stamp=DateTime.Now.ToString("yyyyMMdd-HHmmss");string path=Path.Combine(folder,stamp+".csv");for(int i=1;File.Exists(path);i++)path=Path.Combine(folder,stamp+"-"+i+".csv");CsvPath=path;File.WriteAllText(path,"utc,event,room,x,y,cause,elapsed_active,pause_total,details\n");Recording=true;Write("new_game","A01",null,"","polling; fatal cause intentionally unrecorded");}
+  try{string folder=V3SceneMap.Enabled?Path.GetFullPath("Playtest"):Path.Combine(Application.persistentDataPath,"Playtest");Directory.CreateDirectory(folder);string stamp=DateTime.Now.ToString("yyyyMMdd-HHmmss");string path=Path.Combine(folder,stamp+".csv");for(int i=1;File.Exists(path);i++)path=Path.Combine(folder,stamp+"-"+i+".csv");CsvPath=path;File.WriteAllText(path,"utc,event,room,x,y,cause,elapsed_active,pause_total,details\n");Recording=true;Write("new_game","A01",null,"","polling; fatal cause intentionally unrecorded");}
   catch(Exception e){Fail(e);}
  }
  void Sample(){double now=Time.realtimeSinceStartupAsDouble,dt=Math.Max(0,now-lastSample);lastSample=now;if(!Recording)return;if(wasPaused)pauseSeconds+=dt;else{activeSeconds+=dt;if(!string.IsNullOrEmpty(room)){string region=room=="C06"&&wasFighting?"Boss":room.Substring(0,1);regional.TryGetValue(region,out double total);regional[region]=total+dt;}}}
@@ -42,7 +42,7 @@ public sealed class PlaytestLogger:MonoBehaviour
  void Update()
  {
   if(!Recording)return;Sample();Bind();var session=RoomSession.Instance;if(session?.Player==null)return;
-  if(session.CurrentRoomId!=room&&!string.IsNullOrEmpty(session.CurrentRoomId)&&session.CurrentRoomId==nextRoom){room=session.CurrentRoomId;Write("room_enter",room,session.Player.transform.position,"","");}
+  if(session.CurrentRoomId!=room&&!string.IsNullOrEmpty(session.CurrentRoomId)&&session.CurrentRoomId==nextRoom){room=session.CurrentRoomId;roomBegan=activeSeconds;Write("room_enter",room,session.Player.transform.position,"","");}
   DeathEdge();if(state!=null&&state.Paused!=wasPaused)StateChanged();
   if(session.CheckpointId!=checkpoint){checkpoint=session.CheckpointId;if(checkpoint!=null)Write("checkpoint",room,session.Player.transform.position,"",checkpoint);}
   bool newDash=session.Player.GetComponent<PlayerDash>().hasDash,newJump=session.Player.GetComponent<PlayerMotor>().hasDoubleJump;if(newDash&&!dash)Write("ability",room,session.Player.transform.position,"","Dash");if(newJump&&!jump)Write("ability",room,session.Player.transform.position,"","DoubleJump");dash=newDash;jump=newJump;
@@ -50,6 +50,11 @@ public sealed class PlaytestLogger:MonoBehaviour
   bool fighting=boss!=null&&boss.Fighting;if(fighting&&!wasFighting){bossAttempts++;Write("boss_start",room,null,"","attempt="+bossAttempts);}wasFighting=fighting;
  }
  void BossDefeated(){Sample();Write("boss_defeated","C06",null,"","");wasFighting=false;}
+ public void ObserveExit(string exitId,string destination)
+ {
+  if(!Recording||!V3SceneMap.Enabled)return;Sample();var player=RoomSession.Instance?.Player;
+  Write("room_exit",room,player!=null?(Vector2?)player.transform.position:null,"","exit="+exitId+";to="+destination+";room_active_seconds="+Number(activeSeconds-roomBegan));
+ }
  static string Cell(string s)=>"\""+(s??"").Replace("\"","\"\"")+"\"";
  static string Number(double value)=>value.ToString("F6",CultureInfo.InvariantCulture);
  void Write(string kind,string id,Vector2? at,string cause,string details){if(!Recording)return;try{File.AppendAllText(CsvPath,string.Join(",",Cell(DateTime.UtcNow.ToString("O")),Cell(kind),Cell(id),at.HasValue?Number(at.Value.x):"",at.HasValue?Number(at.Value.y):"",Cell(cause),Number(activeSeconds),Number(pauseSeconds),Cell(details))+"\n");}catch(Exception e){Fail(e);}}

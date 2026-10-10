@@ -15,7 +15,8 @@ public sealed class RoomExit : MonoBehaviour
         var player = other.GetComponent<PlayerInputReader>();
         var session = RoomSession.Instance;
         if (player != null && session != null && session.Player == player)
-            session.RequestTransition(destinationRoomId, destinationScenePath, destinationSpawnId);
+            if(session.RequestTransition(destinationRoomId, destinationScenePath, destinationSpawnId)&&V3SceneMap.Enabled)
+                PlaytestLogger.Instance?.ObserveExit(exitId,destinationRoomId);
     }
     void OnValidate() => GetComponent<BoxCollider2D>().isTrigger = true;
 }
