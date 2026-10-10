@@ -21,7 +21,7 @@ H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 �
 | B06b-T4 엔딩 후 Continue | DONE | 실제 exe 저장·C01·C06 보스/출구·신규/기존 저장 PASS |
 | B06b-T5 전달 | DONE | Development errors0/warnings0·실행기4종 PASS/Error0·보호 변경0 |
 | B06b-BL1 메트릭 | DONE | 원본 MEASURE 링크·폭3/4/5/6 같은벽5회·대시8.05u 실측 |
-| B06b-BL2 패드 안내 | TODO | 마지막 입력 장치 |
+| B06b-BL2 패드 안내 | DONE | Editor/최종exe 장치전환2회 PASS·최종실행기4/4 Error0 |
 
 2026-10-10 **Batch06 기술 작업 종료 / 8 Task 완료**. 사용자 답변으로 BATCH-06 및 D1 RoomExit 최소 수정 승인. 시작 `266b7ea`, 브랜치 `review/batch05-v2`, 기존 tracked 변경 없음·사용자 문서2개 그대로 보존. Task8개 예산 도달, Backlog 미착수. 기본 교체·Sprint Gate 대기.
 

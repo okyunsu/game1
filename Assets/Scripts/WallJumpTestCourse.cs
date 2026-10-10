@@ -27,7 +27,7 @@ public sealed class WallJumpTestCourse : MonoBehaviour
         "{0}\nslide {1:0.00}u/s · vertical {2:0.00}u/s · coyote {3:0.00}s\nLong {4:0.00}u/s · lock {5:0.00}s\nShort {6:0.00}u/s · lock {7:0.00}s · rising {8}",
         CurrentPresetName,runtimeTuning.wallSlideMaxFallSpeed,runtimeTuning.wallJumpVelocity,runtimeTuning.wallCoyoteTime,
         runtimeTuning.wallJumpHorizontalSpeed,runtimeTuning.wallJumpInputLock,runtimeTuning.wallJumpShortHorizontalSpeed,runtimeTuning.wallJumpShortInputLock,runtimeTuning.wallAttachWhileRising);
-    public string DeviceGuide=>"벽 쪽 방향키: 짧은 킥 / 중립·반대: 긴 킥 · Z 점프 · C 대시 · ↓+X 포고";
+    public string DeviceGuide=>RoomSession.Instance?.Player?.UsingGamepad==true?"스틱 벽 쪽: 짧은 킥 / 중립·반대: 긴 킥 · A 점프 · B 대시 · ↓+X 포고":"벽 쪽 방향키: 짧은 킥 / 중립·반대: 긴 킥 · Z 점프 · C 대시 · ↓+X 포고";
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Boot()
     {if(!N5Args.Has("-walljumptest"))return;var go=new GameObject("WallJumpTest launch");DontDestroyOnLoad(go);go.AddComponent<WallJumpTestLaunch>();}
     IEnumerator Start()
@@ -72,4 +72,3 @@ public sealed class WallJumpTestCourse : MonoBehaviour
 }
 public sealed class WallJumpTestLaunch : MonoBehaviour
 {IEnumerator Start(){yield return null;ProgressSave.Enabled=false;ProgressSave.Pending=null;SceneManager.LoadScene("Assets/Scenes/Test/WallJumpTest.unity");Destroy(gameObject);}}
-
