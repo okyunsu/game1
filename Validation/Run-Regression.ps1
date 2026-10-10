@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')][string]$Tag,[switch]$OnlyRoute,[switch]$SkipPogo)
+param([Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')][string]$Tag,[switch]$OnlyRoute,[switch]$SkipPogo,[switch]$BasicOnly)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
 $taskUnity='C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe'
@@ -32,6 +32,7 @@ foreach($taskCheck in $taskChecks){
  Add-Content -LiteralPath $taskSummary -Value $taskLine
  Write-Output $taskLine
 }
+if($BasicOnly){if((Get-Content -LiteralPath $taskSummary) -match ' FAIL'){exit 1};return}
 # Build the current source before replay; an old exe cannot validate new tuning.
 $taskRouteLibrary=Join-Path $PSScriptRoot 'N8-route-final-library.json'
 $taskPogoLibrary=Join-Path $PSScriptRoot 'N9-pogo-library.json'
