@@ -139,7 +139,7 @@ public static class B07Rooms
    case "A05":
     Shell(id,72,16);Floor(0,72);Exit("A04",2,2);Pickup<DashPickup>(24,1.8f);Spawn("FromShortcut",68,1.81f);Exit("A03",70,2,"FromA05",false);Block("Shortcut tunnel roof",64,4.5f,16,1);Wall("V3-shortcut-A05",65,2.5f,3,BreakableWall.Side.Left);
     var practice=Block("Practice lattice",42,2.5f,1,3);practice.AddComponent<DashGate>();Block("Practice roof",42,10,1,12);
-    plan.beats="사당 도착 / Dash 획득 / 격자 연습 / 방향 벽 / A03 숏컷";plan.routes=new[]{Route("main","A03",false,false,false,Point(24,1.81f),Point(39,1.81f),Point(46,1.81f,A.GroundDash),Point(63.7f,1.81f),Point(63.7f,1.81f,A.Wall,"V3-shortcut-A05"),Point(70,1.81f))};Optional("대시 타이밍",51,true,false,false,A.Dash);break;
+    plan.beats="사당 도착 / Dash 획득 / 격자 연습 / 방향 벽 / A03 숏컷";plan.routes=new[]{Route("main","A03",false,false,false,Point(24,1.81f),Point(39,1.81f),Point(46,1.81f,A.GroundDash),Point(63.7f,1.81f),Point(63.7f,1.81f,A.Wall,"V3-shortcut-A05"),Point(70,1.81f))};Optional("대시 타이밍",8,true,false,false,A.Dash);break;
    case "A06":
     Shell(id,60,20);Floor(0,60);Exit("A01",2,2,"FromOptional",false);Sign(10,1.8f,"도시 아래에 첫 층이 있다.");Enemy("E1",27,1.51f);Platform("Double jump terrace",20,4.6f,6);Platform("Pogo high reward",34,6,4);Reward("optional",34,6.8f);
     plan.beats="무덤 입구 / 비문 / 더블 점프 턱 / 포고 / 귀환";plan.optionalType="더블 점프 + 포고";plan.routes=new[]{Route("main","A01",true,true,true,Point(10,1.81f),Point(2,1.81f)),Route("optional","Discovery:V3-A06-optional",true,true,true,Point(16,1.81f),Point(20,5.41f,A.DoubleJump),Point(27,3.5f,A.Pogo),Point(34,6.81f,A.DoubleJump))};break;

@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1/T2 DONE, T3 REVIEW, T4 PARTIAL, T5 REVIEW, T6 PARTIAL, T7 DOING, T8~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
+Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1/T2 DONE, T3 REVIEW, T4 PARTIAL, T5 REVIEW, T6 PARTIAL, T7 REVIEW, T8 DOING, T9~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
 
 
 Batch06b 종료: 본5+Backlog2 기술 완료, Short/rising 손맛 REVIEW. 짧은 킥·현장 조절·측정 HUD·엔딩 후 CP-C01·메트릭·장치 안내 전달. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
@@ -164,7 +164,7 @@ Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정�
 
 ## Latest Handoff
 
-Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약87분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
+Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약92분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
 
 ### Task별 결과
 
@@ -176,8 +176,9 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약87분, 10시간·50Ta
 | T3 A01 | REVIEW / f800ce4 | 10-10 22:20–22:46 | A01_V3·방 제작/입력 도구·LEVEL_V3. 필수/선택 재생·DJ 없는 진입 차단 PASS/Error0. 폭72u·5비트·낙사0·적0·전체샷. [요약](Validation/B07-T3-A01-summary.md) |
 | T4 A02 | PARTIAL / 41853d2 | 10-10 22:46–23:03 | 30×48u·4u 굴뚝·전체샷·빌드0. 필수3회 및 굴뚝1회 입력 미완주/Error0, 추가 실행 auto-review 거절. [요약](Validation/B07-T4-A02-summary.md) |
 | T5 A03 | REVIEW / 3f2f22a | 10-10 23:03–23:13 | 허브·G-D·구덩이 착지·터널, 필수/대시/귀환 기록·재생3/3 PASS/Error0. [요약](Validation/B07-T5-A03-summary.md) |
-| T6 A04 | PARTIAL / 이번 Task 커밋 | 10-10 23:13–23:21 | 필수·포고2회 발견 기록/재생 PASS/Error0. 높은 비밀 접근 미완료·추가 빌드 auto-review 거절. [요약](Validation/B07-T6-A04-summary.md) |
-| T7 A05 | DOING | 10-10 23:21– | 대시 획득·연습·A03 숏컷 |
+| T6 A04 | PARTIAL / 8cc9b84 | 10-10 23:13–23:21 | 필수·포고2회 발견 기록/재생 PASS/Error0. 높은 비밀 접근 미완료·추가 빌드 auto-review 거절. [요약](Validation/B07-T6-A04-summary.md) |
+| T7 A05 | REVIEW / 이번 Task 커밋 | 10-10 23:21–23:26 | 대시 실제 획득·격자·벽 공격·A03 도착 및 선택 발견 기록/재생 PASS/Error0. [요약](Validation/B07-T7-A05-summary.md) |
+| T8 A06 | DOING | 10-10 23:26– | 비문·더블 점프와 포고 선택 도전 |
 
 ### 다음 작업
 
