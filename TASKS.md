@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1/T2 DONE, T3 REVIEW, T4 DOING, T5~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
+Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1/T2 DONE, T3 REVIEW, T4 PARTIAL, T5 DOING, T6~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
 
 
 Batch06b 종료: 본5+Backlog2 기술 완료, Short/rising 손맛 REVIEW. 짧은 킥·현장 조절·측정 HUD·엔딩 후 CP-C01·메트릭·장치 안내 전달. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
@@ -43,6 +43,10 @@ B06-B1 기준/B06-B2 선택은 Batch06b의 사용자 프리셋1 채택으로 해
 끝난 문서·지원·혼합/전체 빌드·QA Task와 방별 커밋은 [Batch05 Task 인덱스](Archive/B05-completed-task-index.md). 이전 Batch04 Task·인계·수락 대기는 [이전 Archive](Archive/B04-tasks-and-handoff-20261008.md). 기본·AV1·B2 수락과 V2 수락을 합치지 않는다.
 
 ## Bugs
+
+### B07-A02-TRAVERSE / OPEN
+A02 필수 계단 및 재방문 굴뚝 입력 미완주. T4 PARTIAL, T24 연속 완주는 이 경로에 의존. 독립 방 제작은 계속. 추가 A02 실행은 자동 승인 검토가 재시도 한도 초과로 거절했으며 우회하지 않았다. [증거](Validation/B07-T4-A02-summary.md).
+
 
 ### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
 2026-10-10 Batch06b 지정 회귀에서 R01~R10 PASS 후 같은 R11 시작편차0.110u/입력소진 재현, Error0. 전체 경로 PASS/새 제품 회귀로 확정하지 않음. [실제 결과](Validation/B06b-T1-summary.md).
@@ -156,7 +160,7 @@ Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정�
 
 ## Latest Handoff
 
-Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약52분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
+Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약69분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
 
 ### Task별 결과
 
@@ -165,8 +169,9 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약52분, 10시간·50Ta
 | T0 B06 코드 리뷰 | DONE / efd6406 | 10-10 21:54–22:11 | ProgressSave/PlayerMotor/PlayerDash/세이브 검증기. 핵심 동작·벽 검사·메트릭 PASS/Error0, 기본13/13·Pogo PASS. R09 첫실패→재생R11 기존실패, 이전빌드R11 동일. 기본세이브 해시동일. [요약](Validation/B07-T0-summary.md) |
 | T1 V3 기반 | DONE / dbb63b7 | 10-10 22:10–22:15 | V3SceneMap/ProgressSave/RoomSession/새Scene19/빌드. 59Scene errors0/warnings0, 실제exe 새게임·4CP·방문·legacy·V2 PASS/Error0. [요약](Validation/B07-T1-summary.md) |
 | T2 연결 부품 | DONE / 749cea6 | 10-10 22:15–22:20 | 새Prefab3/RoomExit/EndingFlow/Menu/ProgressSave/C06·S01 후보. 실제부품/V2 PASS/Error0, fade2.0446s, CP-C04→S01→Ending→CP-C01. [요약](Validation/B07-T2-summary.md) |
-| T3 A01 | REVIEW / 이번 Task 커밋 | 10-10 22:20–22:46 | A01_V3·방 제작/입력 도구·LEVEL_V3. 필수/선택 재생·DJ 없는 진입 차단 PASS/Error0. 폭72u·5비트·낙사0·적0·전체샷. [요약](Validation/B07-T3-A01-summary.md) |
-| T4 A02 | DOING | 10-10 22:46– | 일반 등반·4u G-W 굴뚝 |
+| T3 A01 | REVIEW / f800ce4 | 10-10 22:20–22:46 | A01_V3·방 제작/입력 도구·LEVEL_V3. 필수/선택 재생·DJ 없는 진입 차단 PASS/Error0. 폭72u·5비트·낙사0·적0·전체샷. [요약](Validation/B07-T3-A01-summary.md) |
+| T4 A02 | PARTIAL / 이번 Task 커밋 | 10-10 22:46–23:03 | 30×48u·4u 굴뚝·전체샷·빌드0. 필수3회 및 굴뚝1회 입력 미완주/Error0, 추가 실행 auto-review 거절. [요약](Validation/B07-T4-A02-summary.md) |
+| T5 A03 | DOING | 10-10 23:03– | 허브·G-D·구덩이 착지·숏컷 터널 |
 
 ### 다음 작업
 

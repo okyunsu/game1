@@ -116,9 +116,9 @@ public static class B07Rooms
    case "A02":
     Shell(id,30,48);Floor(0,30);for(int i=0;i<6;i++)Platform("First ascent "+i,i%2==0?8:12,3+i*2,4);Platform("Mid-level safe deck",21,13,18);
     Block("G-W left",13.75f,30,.5f,30,true);Block("G-W right",18.25f,30,.5f,30,true);Platform("Summit landing",22,45,8);Block("Visible shaft light",16,46.5f,1,1).GetComponent<BoxCollider2D>().enabled=false;
-    Exit("A01",2,2);Exit("A03",28,14,"FromA02");Spawn("FromA03",26,13.81f);Spawn("FromB05",22,45.81f);Exit("B05",25,46,"Entry");
+    Exit("A01",2,2);Exit("A03",28,14);Spawn("FromA03",26,13.81f);Spawn("FromB05",22,45.81f);Exit("B05",25,46,"Entry");
     plan.beats="일반 점프 소개 / 12u 발판 / A03 분기 / 4u·30u 굴뚝 / 빛·B05";
-    var a2=new List<P>{Point(8,3.81f,A.Jump)};for(int i=1;i<6;i++)a2.Add(Point(i%2==0?8:12,3.81f+i*2,A.Jump));a2.Add(Point(28,13.81f));
+    var a2=new List<P>{Point(8,3.81f,A.Jump)};for(int i=1;i<6;i++){a2.Add(Point(i%2==0?13.5f:6.5f,1.81f+i*2));a2.Add(Point(i%2==0?11.7f:8.3f,1.81f+i*2));a2.Add(Point(i%2==0?8:12,3.81f+i*2,A.Jump));}a2.Add(Point(28,13.81f));
     var revisit=Route("revisit","B05",true,true,false,Point(17.6f,13.81f),Point(17.6f,46,A.Climb),Point(22,45.81f),Point(25,45.81f));revisit.startSpawn="FromA03";plan.routes=new[]{Route("main","A03",false,false,false,a2.ToArray()),revisit};break;
    case "A03":
     Shell(id,60,18);Floor(0,12);Floor(18,60);Floor(0,60,-3);Checkpoint("CP-A03",26,1.81f);Platform("Tunnel return step",15,-1,3);Platform("Tunnel return lip",20,1,4);
