@@ -117,12 +117,12 @@ public static class B07Rooms
     plan.beats="봉인문·출발 / 낮은 단 / 넓은 착지 / 높은 재방문 턱 / 첫 갱도";plan.optionalType="더블 점프 높은 턱";
     plan.routes=new[]{Route("main","A02",false,false,false,Point(10,1.81f),Point(14,2.51f,A.Jump),Point(16.3f,2.51f),Point(23,3.41f,A.Jump),Point(30,1.81f),Point(70,1.81f)),Route("optional","Discovery:V3-A01-optional",false,false,true,Point(36,1.81f),Point(39,5.41f,A.DoubleJump))};break;
    case "A02":
-    Shell(id,30,48);Floor(0,30);for(int i=0;i<6;i++)Platform("First ascent "+i,i%2==0?8:12,3+i*2,4);Platform("Mid-level safe deck",21,13,18);
-    Block("G-W left",13.75f,30,.5f,30,true);Block("G-W right",18.25f,30,.5f,30,true);Platform("Summit landing",22,45,8);Block("Visible shaft light",16,46.5f,1,1).GetComponent<BoxCollider2D>().enabled=false;
-    Exit("A01",2,2);Exit("A03",28,14);Spawn("FromA03",26,13.81f);Spawn("FromB05",22,45.81f);Exit("B05",25,46,"Entry");
+    Shell(id,30,48);Floor(0,30);for(int i=0;i<6;i++)Platform("First ascent "+i,i%2==0?6:12,3+i*2,3);Platform("Mid-level safe deck",11,13,4);
+    Block("G-W left",13.75f,29,.5f,32,true);Block("G-W right",18.25f,29,.5f,32,true);Platform("Summit landing",22,45,8);Block("Visible shaft light",16,46.5f,1,1).GetComponent<BoxCollider2D>().enabled=false;
+    Exit("A01",2,2);Exit("A03",9.4f,14);Spawn("FromA03",12.6f,13.81f);Spawn("FromB05",22,45.81f);Exit("B05",25,46,"Entry");
     plan.beats="일반 점프 소개 / 12u 발판 / A03 분기 / 4u·30u 굴뚝 / 빛·B05";
-    var a2=new List<P>{Point(8,3.81f,A.Jump)};for(int i=1;i<6;i++){a2.Add(Point(i%2==0?13.5f:6.5f,1.81f+i*2));a2.Add(Point(i%2==0?11.7f:8.3f,1.81f+i*2));a2.Add(Point(i%2==0?8:12,3.81f+i*2,A.Jump));}a2.Add(Point(28,13.81f));
-    var revisit=Route("revisit","B05",true,true,false,Point(17.6f,13.81f),Point(17.6f,46,A.Climb),Point(22,45.81f),Point(25,45.81f));revisit.startSpawn="FromA03";plan.routes=new[]{Route("main","A03",false,false,false,a2.ToArray()),revisit};break;
+    var a2=new List<P>{Point(6,3.81f,A.Jump)};for(int i=1;i<6;i++){a2.Add(Point(i%2==0?10.3f:7.7f,1.81f+i*2,A.WalkUnder));a2.Add(Point(i%2==0?6:12,3.81f+i*2,A.Jump));}a2.Add(Point(9.4f,13.81f));
+    var revisit=Route("revisit","B05",true,true,false,Point(13.1f,13.81f,A.WalkUnder),Point(13.1f,45.6f,A.Climb),Point(19,45.81f,A.DashAir),Point(25,45.81f));revisit.startSpawn="FromA03";plan.routes=new[]{Route("main","A03",false,false,false,a2.ToArray()),revisit};break;
    case "A03":
     Shell(id,60,18);Floor(0,12);Floor(18,60);Floor(0,60,-3);Platform("Hub checkpoint deck",29.25f,2.5f,10.5f);Checkpoint("CP-A03",26,3.31f);Platform("Tunnel return step",15,-1,3);Platform("Tunnel return lip",20,1,4);
     Exit("A02",2,2,"FromA03");Spawn("FromA02",4,1.81f);Exit("A04",58,2);Spawn("FromA05",7,-2.19f);Spawn("FromPit",30,12);Exit("A05",6,-2,"FromShortcut",false);Wall("V3-shortcut-A05",10,-1.5f,3,BreakableWall.Side.Left);

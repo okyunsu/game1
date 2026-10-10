@@ -49,7 +49,7 @@ B06-B1 기준/B06-B2 선택은 Batch06b의 사용자 프리셋1 채택으로 해
 
 
 ### B07-A02-TRAVERSE / OPEN
-A02 필수 계단 및 재방문 굴뚝 입력 미완주. T4 PARTIAL, T24 연속 완주는 이 경로에 의존. 독립 방 제작은 계속. 추가 A02 실행은 자동 승인 검토가 재시도 한도 초과로 거절했으며 우회하지 않았다. [증거](Validation/B07-T4-A02-summary.md).
+A02 필수 계단 및 재방문 굴뚝 입력 미완주. T4 PARTIAL, T24 연속 완주는 이 경로에 의존. 독립 방 제작은 계속. 이전 자동 승인 거절 이력 보존. 2026-10-11 재개에서 구체 접근 추가 승인 및 보정2회 실행 후 필수/굴뚝 미완주, PARTIAL 유지. [재개 증거](Validation/B07-R-A02-summary.md). 추가 실행 중단. [증거](Validation/B07-T4-A02-summary.md).
 
 
 ### B04-REPLAY-EDGE — R11 초기 기록 소진 / OPEN(제품 회귀 미확정)
@@ -197,6 +197,8 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약173분, 10시간·50T
 | T19 C04 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:16 | 필수 기록·재생 PASS, CP→보스 문4u. [요약](Validation/B07-T19-C04-summary.md) |
 
 | T20 C06 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:18 | 실제 보스 처치→계단→S01 기록·재생 PASS. [요약](Validation/B07-T20-C06-summary.md) |
+
+| R-A02 | PARTIAL / 이번 Task 커밋 | 10-11 08:06–08:26 | 승인 접근+보정2회 소진, 필수·굴뚝 미완주. T24 QA 우회 허용. [요약](Validation/B07-R-A02-summary.md) |
 
 ### 다음 작업
 
