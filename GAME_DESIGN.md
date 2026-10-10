@@ -24,6 +24,8 @@ V3 콘셉트(DEC-WORLD-003): 정상으로 가는 진짜 길은 맨 아래층에 
 
 ## 4. Player Movement
 
+DEC-WJ-001(2026-10-10 사용자 Batch06b): 프리셋1 채택 — slide2.5u/s / horizontal8u/s / velocity12u/s / lock0.15s / coyote0.08s. 이전 프리셋2·3 폐기. 벽 쪽 입력0.5 이상은 Short 값을 쓰고 중립·반대는 기존 Long 값을 쓴다. Short 기본8u/s·0.15s, 상승 부착false로 기존 기본 동작을 유지한다. Short3.5u/s·0.06s와 상승 부착은 테스트 후보이며 기본 Asset 채택은 사용자 결정이다. 표시된 한쪽 벽 반복 점프는 허용한다.
+
 DEC-ABIL-002(2026-10-10): 표시된 ClimbableWall에 한정한 벽 미끄러짐·벽 점프를 추가한다. V3에서는 B04 벽 점프, C05 더블 점프. 입력 소비는 접지/코요테 → 벽 점프 → 더블 점프 → 착지 버퍼이며 벽 부착 시 보유 공중 능력 회복. 수치는 PlayerTuning 후보값. V3 적용 예정, 현재 V2/기본은 기존 규칙; Batch06은 별도 WallJumpTest에서 먼저 검증한다.
 
 **설계·이유:** Rigidbody2D 기반 단일 이동 제어기로 즉각적인 좌우 반응과 관대한 점프를 제공한다. 입력 읽기와 물리 적용을 분리하고 Transform 직접 이동을 섞지 않는다. 1 Unity unit ≈ 타일 1칸, 플레이어 충돌체는 폭 0.7u·높이 1.6u를 시작점으로 한다.

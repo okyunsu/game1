@@ -32,4 +32,7 @@ MonoBehaviour:
   wallJumpVelocity: 12
   wallJumpInputLock: 0.15
   wallCoyoteTime: 0.08
+  wallJumpShortHorizontalSpeed: 8
+  wallJumpShortInputLock: 0.15
+  wallAttachWhileRising: 0
   respawnDelay: 0.6

@@ -28,6 +28,9 @@ public sealed class PlayerTuning : ScriptableObject
     [Range(10,13), Tooltip("Wall jump upward velocity, units/second.")] public float wallJumpVelocity = 12;
     [Range(.08f,.25f), Tooltip("Horizontal input and wall reattachment lock after a wall jump, seconds.")] public float wallJumpInputLock = .15f;
     [Range(.04f,.12f), Tooltip("Wall jump grace after leaving a slide, seconds.")] public float wallCoyoteTime = .08f;
+    [Range(0,11), Tooltip("Wall jump away speed while holding toward the wall, units/second.")] public float wallJumpShortHorizontalSpeed = 8;
+    [Range(0,.25f), Tooltip("Short kick horizontal input and reattachment lock, seconds.")] public float wallJumpShortInputLock = .15f;
+    [Tooltip("Allow marked wall attachment while rising; upward velocity is retained.")] public bool wallAttachWhileRising;
     [Header("Death / respawn (seconds)")]
     [Min(0), Tooltip("Real-time death delay before checkpoint return. Prototype value: 0.6 seconds.")] public float respawnDelay = .6f;
 

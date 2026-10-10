@@ -98,7 +98,7 @@ public sealed class PlayerMotor : MonoBehaviour
         if(dash!=null && dash.Tick(Grounded,now)) { ClearWallState();consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return; }
         bool wasSliding = WallSliding;
         WallSliding = false;
-        if (hasWallJump && !Grounded && !input.InputLocked && now >= wallLockUntil && body.linearVelocity.y <= 0)
+        if (hasWallJump && !Grounded && !input.InputLocked && now >= wallLockUntil && (tuning.wallAttachWhileRising || body.linearVelocity.y <= 0))
             for (int i = 0; i < count; i++)
             {
                 var contact = contacts[i];
@@ -117,7 +117,7 @@ public sealed class PlayerMotor : MonoBehaviour
         if (now >= wallLockUntil) velocity.x = Mathf.MoveTowards(velocity.x, target, rate * (Grounded ? 1 : tuning.airControl) * Time.fixedDeltaTime);
         float gravity = tuning.gravity * (velocity.y <= 0 ? tuning.fallGravityMultiplier : 1);
         velocity.y = Mathf.Max(velocity.y - gravity * Time.fixedDeltaTime, -tuning.maxFallSpeed);
-        if (WallSliding) velocity.y = Mathf.Max(velocity.y, -tuning.wallSlideMaxFallSpeed);
+        if (WallSliding && velocity.y <= 0) velocity.y = Mathf.Max(velocity.y, -tuning.wallSlideMaxFallSpeed);
         if (consumedJump != input.JumpSequence && input.JumpPressedAt <= now)
         {
             bool expired = now - input.JumpPressedAt > tuning.jumpBuffer;
@@ -137,9 +137,10 @@ public sealed class PlayerMotor : MonoBehaviour
             else if (hasWallJump && wallDirection != 0 && now >= wallLockUntil && now - lastWall <= tuning.wallCoyoteTime)
             {
                 consumedJump = input.JumpSequence;
-                velocity = new Vector2(-wallDirection * tuning.wallJumpHorizontalSpeed, tuning.wallJumpVelocity);
+                bool shortKick = input.Move.x * wallDirection >= .5f;
+                velocity = new Vector2(-wallDirection * (shortKick ? tuning.wallJumpShortHorizontalSpeed : tuning.wallJumpHorizontalSpeed), tuning.wallJumpVelocity);
                 Facing = -wallDirection;
-                wallLockUntil = now + tuning.wallJumpInputLock;
+                wallLockUntil = now + (shortKick ? tuning.wallJumpShortInputLock : tuning.wallJumpInputLock);
                 lastWall = double.NegativeInfinity; WallSliding = false;
                 groundJumpAvailable = false; lastGrounded = double.NegativeInfinity;
                 jumpCutAvailable = true; jumpPressTime = input.JumpPressedAt; jumpStartedAt = now;

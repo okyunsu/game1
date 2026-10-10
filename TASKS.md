@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
+Batch06b 진행: 짧은 킥·현장 조절·엔딩 후 이어하기. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
 
 
 **Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
@@ -10,6 +10,18 @@ S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Sprint3 Gate는 사
 F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P03 진단 산출물 DONE, 게임 변경0·원본10/10/보정후9/10, 간헐 실패 이슈 OPEN.
 H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
 ## Current Tasks
+
+2026-10-10 **Batch06b 승인 실행 중** — 사용자 BATCH-06B.md, Task12 또는6시간. 시작 c413b05; 기존 tracked 변경 없음, 사용자 Batch 파일 보존. 프리셋1 채택/기존2·3 폐기, 가이드 유지/Pause 토글 취소.
+
+| Task | 상태 | 결과 |
+|---|---|---|
+| B06b-T1 짧은 킥·부착 옵션 | REVIEW | 기본/짧은 킥30/60/120 PASS; 기본13 PASS, 기존 R11/P03 재생 실패 기록 |
+| B06b-T2 후보·현장 조절 | TODO | T1 이후 |
+| B06b-T3 측정 HUD | TODO | 후보 코스 측정 |
+| B06b-T4 엔딩 후 Continue | TODO | CP-C01·보스 재등장 억제 |
+| B06b-T5 전달 | TODO | Development·실행기4종 |
+| B06b-BL1 메트릭 | TODO | 3/4/5/6u·대시 |
+| B06b-BL2 패드 안내 | TODO | 마지막 입력 장치 |
 
 2026-10-10 **Batch06 기술 작업 종료 / 8 Task 완료**. 사용자 답변으로 BATCH-06 및 D1 RoomExit 최소 수정 승인. 시작 `266b7ea`, 브랜치 `review/batch05-v2`, 기존 tracked 변경 없음·사용자 문서2개 그대로 보존. Task8개 예산 도달, Backlog 미착수. 기본 교체·Sprint Gate 대기.
 
