@@ -164,7 +164,7 @@ Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정�
 
 ## Latest Handoff
 
-Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약162분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
+Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약165분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
 
 ### Task별 결과
 
@@ -185,10 +185,12 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약162분, 10시간·50T
 | T12 B04 | REVIEW / f2fe606 | 10-10 23:58–10-11 00:07 | 실제 획득·기본/Short 벽점프7회·벽파괴·B01, 선택3회 벽점프 및 무능력 차단 PASS/Error0. [요약](Validation/B07-T12-B04-summary.md) |
 | T13 B05 | REVIEW / 3b204b6 | 10-11 00:07–00:23 | 이단점프 없이 기본26/Short23 벽점프·Dash·Pogo1회 완등, 선택/무벽점프 차단 PASS/Error0. [요약](Validation/B07-T13-B05-summary.md) |
 | T14 B06 | REVIEW / 08fb7b9 | 10-11 00:23–00:34 | 귀환/벽점프3회→Dash 선택 기본·Short 기록/재생, 무벽점프·무대시 차단 PASS/Error0. [요약](Validation/B07-T14-B06-summary.md) |
-| T15 C01 | REVIEW / 이번 Task 커밋 | 10-11 00:34–00:36 | 안전 허브·CP·표지판2·전망. 필수 기록/재생 PASS/Error0. [요약](Validation/B07-T15-C01-summary.md) |
-| T16 C02 | DOING | 10-11 00:36– | 외벽·낙사2·비밀 |
+| T15 C01 | REVIEW / a6860b7 | 10-11 00:34–00:36 | 안전 허브·CP·표지판2·전망. 필수 기록/재생 PASS/Error0. [요약](Validation/B07-T15-C01-summary.md) |
+| T16 C02 | REVIEW / 이번 Task 커밋 | 10-11 00:36–00:39 | 낙사2·E3·전망/비밀. 필수·선택·비밀 기록/재생3/3 PASS/Error0. [요약](Validation/B07-T16-C02-summary.md) |
+| T17 C03 | DOING | 10-11 00:39– | 혼합 전투·C05·G-J |
 
 ### 다음 작업
 
 T1→T2→방19개→T22~T27→Batch Backlog 순서. 보호 Scene·기존Tuning·BossEncounter·ProjectSettings 변경0. BATCH-07.md는 사용자 파일로 미추적 상태 보존.
+
 

@@ -188,7 +188,11 @@ public static class B07Rooms
    case "C02":
     Shell(id,96,20);Pits(new Vector2(28,33.6f),new Vector2(52,57.6f));Exit("C01",2,2);Exit("C03",94,2);Enemy("E3",72,1.51f);Block("Shot cover",68,2,1,2);
     for(int i=0;i<7;i++){var city=Block("Distant city "+i,8+i*13,8,5,3+i%3);city.GetComponent<BoxCollider2D>().enabled=false;city.GetComponent<SpriteRenderer>().sortingOrder=-10;city.GetComponent<SpriteRenderer>().color=tone*.35f;}
-    plan.beats="도시 전망 / 첫 5.6u 틈 / 휴식 / 두 번째 틈 / 엄폐·비밀";plan.routes=new[]{Route("main","C03",true,true,false,Point(27,1.81f),Point(35,1.81f,A.Dash),Point(51,1.81f),Point(59,1.81f,A.Dash),Point(65,1.81f),Point(72,3.81f,A.Jump),Point(94,1.81f))};Platform("Turret bypass",72,3,12);Optional("대시 + 낙사",77,true,true,false,A.Dash);Secret(84);break;
+    Platform("Turret bypass",72,3,12);Platform("Optional access step",42,2.5f,3);Block("Optional access wall",45.75f,5,.5f,4,true);
+    Platform("Optional wall rest",47,7,3);Platform("Optional dash launch",51,7,3);Platform("Optional dash landing",60,7,4);Reward("optional",60,7.8f);
+    plan.beats="도시 전망 / 첫 5.6u 틈 / 휴식 / 두 번째 틈 / 엄폐·비밀";plan.optionalType="대시 + 낙사";
+    var c2Approach=new[]{Point(27,1.81f),Point(35,1.81f,A.DashAir)};
+    plan.routes=new[]{Route("main","C03",true,true,false,c2Approach.Concat(new[]{Point(51,1.81f),Point(59,1.81f,A.DashAir),Point(65,1.81f),Point(72,3.81f,A.Jump),Point(94,1.81f)}).ToArray()),Route("optional","Discovery:V3-C02-optional",true,true,false,c2Approach.Concat(new[]{Point(40,1.81f),Point(42,3.31f,A.Jump),Point(45.1f,1.81f),Point(45.1f,8.6f,A.Climb),Point(47,7.81f,A.WalkUnder),Point(51,7.81f,A.Jump),Point(52,7.81f),Point(60,7.81f,A.DashAir)}).ToArray())};Secret(84,11);break;
    case "C03":
     Shell(id,72,20);Pits(new Vector2(34,37));Exit("C02",2,2);Spawn("FromC05",8,8.81f);Spawn("FromC04",68,5.41f);Block("C05 marked shaft",5.75f,5,.5f,8,true);Platform("C05 landing",9,8,6);Exit("C05",9,9,"Entry");Platform("G-J ledge",67,4.6f,10);Exit("C04",70,5.8f);
     Enemy("E1",24,1.51f);Enemy("E2",43,1.51f);Enemy("E3",52,1.51f);Platform("Combined combat bypass",48,3,16);Block("E3 cover",56,2,1,2);Platform("Pogo reward",30,4.5f,3);Reward("optional",30,6);

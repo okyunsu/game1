@@ -32,6 +32,8 @@ Batch07 / 시작2026-10-10 21:54 KST. 기본·V2·튜닝을 보존하는 그레�
 
 | C01 | 60×18u. 상층 도착→CP→표지판2→전망→외벽(5비트) | 없음(허브) | 0 / 0 | 1~2분 예상 / 필수9.65s | CP12/y1.81, 표지판21/32 기존 문구, 전망42/top2/폭10. 안전 바닥·청백색. |
 
+| C02 | 96×20u. 전망→틈→휴식→틈→엄폐/비밀(5비트) | 대시 + 낙사 | 2 / E3×1 | 2~3분 예상 / 필수15.08s·선택11.23s·비밀15.56s | 낙사28~33.6/52~57.6 각5.6u. 선택51/top7/폭3→60/top7/폭4 틈5.5u. 도시7블록 충돌0, E3x72·엄폐68. 비밀84/top5/roof8·11u 준비 거리. |
+
 ## 현재 검증
 
 A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프 없는 선택 시도15s 차단 PASS. [상세](Validation/B07-T3-A01-summary.md). 스크린샷 [A01](Validation/_raw/B07/A01-overview.png). 기술 수락이며 사람 손맛·자연 동선은 REVIEW.
@@ -39,5 +41,6 @@ A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프
 ## 조정 위치
 
 배치·영역: 해당 V3 Scene의 Transform·RoomCameraRig boundary. 반복 블록은 기존 Assets/Prefabs/Level, 새 연결은 Assets/Prefabs/V3. 이동 수치는 기존 PlayerTuning.asset 단일 원본. Play에서 바꾼 Scene 값은 Stop 뒤 같은 값을 다시 입력하고 저장·재빌드한다. 테스트 Short는 Runtime 복사본만 사용하며 기본값 채택은 사용자 결정이다.
+
 
 
