@@ -12,6 +12,17 @@ public static class B07Extras
  static P Point(float x,float y,A action=A.Walk)=>new P{position=new Vector2(x,y),action=action};
  static void Shelf(float x,float top,float width)
  {var go=S3Authoring.Block(room,"Landing","Second optional landing",new Vector2(x,top-.25f),new Vector2(width,.5f));go.GetComponent<SpriteRenderer>().color=room.roomId[0]=='A'?new Color(.4f,.53f,.6f):room.roomId[0]=='B'?new Color(.6f,.3f,.12f):new Color(.65f,.8f,.88f);}
+ public static void SecretRetry()
+ {
+  var scene=EditorSceneManager.OpenScene(V3SceneMap.Path("A04"));
+  var routes=Object.FindFirstObjectByType<V3RoomRoutes>();
+  var secret=routes.routes.First(r=>r.name=="secret");
+  int index=System.Array.FindIndex(secret.points,p=>Mathf.Approximately(p.position.x,60)||Mathf.Approximately(p.position.x,56));
+  var point=secret.points[index];point.position.x=56;point.action=A.WalkUnder;secret.points[index]=point;
+  EditorSceneManager.SaveScene(scene);AssetDatabase.SaveAssets();
+  File.WriteAllText("Validation/_raw/B07/R-A04-author.txt","MEASURE A04 secret runup 7u -> 11u; approach x60 ->56. B02/C02 accepted candidate pattern reused; geometry unchanged.\n");
+  EditorApplication.Exit(0);
+ }
  public static void Optional()
  {
   foreach(string id in new[]{"A04","B02","C02","C03"})
