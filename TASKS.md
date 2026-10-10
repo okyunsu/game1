@@ -19,7 +19,7 @@ H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 �
 | B06b-T2 후보·현장 조절 | REVIEW | 후보3종 굴뚝·2/3 한쪽 벽·키5종 표시/로그 PASS |
 | B06b-T3 측정 HUD | DONE | 자동 등반·HUD/로그 시간차0.04s·횟수 일치 PASS |
 | B06b-T4 엔딩 후 Continue | DONE | 실제 exe 저장·C01·C06 보스/출구·신규/기존 저장 PASS |
-| B06b-T5 전달 | TODO | Development·실행기4종 |
+| B06b-T5 전달 | DONE | Development errors0/warnings0·실행기4종 PASS/Error0·보호 변경0 |
 | B06b-BL1 메트릭 | TODO | 3/4/5/6u·대시 |
 | B06b-BL2 패드 안내 | TODO | 마지막 입력 장치 |
 
@@ -150,7 +150,7 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-Batch06 본 Task8개 완료로 Task 예산 도달. BATCH-06 Backlog(엔딩 후 CP-C01 / Pause 목표 토글 / 테스트 측정 HUD)는 승인 목록에 있으나 이번 예산에서는 미착수. 다음 Batch에서 예산을 받아 진행한다. Batch05 승인 큐는 소진 상태 유지. Batch07/08·기본 교체·다음 Sprint 확대 미착수.
+Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정으로 Pause 목표 토글 취소, 가이드 현 상태 유지. 현재 승인 Backlog는 벽 점프 메트릭→WallJumpTest 패드 안내 순서. Batch05 큐 소진. Batch07/08·기본 후보 채택·다음 Sprint 확대 미착수.
 
 ## Latest Handoff
 

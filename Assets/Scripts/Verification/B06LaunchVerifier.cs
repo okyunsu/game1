@@ -14,6 +14,12 @@ public sealed class B06LaunchVerifier : N5Runner
             Check(FindObjectsByType<BreakableWall>(FindObjectsSortMode.None).Length==2,"two playable breakable fixtures");
             Check(FindObjectsByType<EnemyPatrol>(FindObjectsSortMode.None).Length==0&&FindObjectsByType<KillZone>(FindObjectsSortMode.None).Length==0,"safe test, no enemy/death hazards");
         }
+        else if(N5Args.Has("-verify-b06-afterending"))
+        {
+            yield return ContinueGame();
+            Check(RoomSession.Instance.CurrentRoomId=="C01"&&UnityEngine.SceneManagement.SceneManager.GetActiveScene().name=="C01_V2"&&RoomSession.Instance.CheckpointId=="CP-C01","QA launcher ending Continue C01_V2/CP-C01");
+            Check(Motor.hasWallJump&&Motor.hasDoubleJump&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.BossDefeated&&ProgressSave.EndingReached,"QA seeded ending abilities preserved");
+        }
         else
         {
             yield return NewGame();yield return new WaitForSeconds(.25f);

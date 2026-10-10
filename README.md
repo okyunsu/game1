@@ -226,3 +226,13 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 `Validation/Run-Regression.ps1 -Tag <새이름>`은 기본13 + RouteAll60 + PogoTest60, 총15개를 검사합니다. `-SkipPogo`는 이전14개, `-OnlyRoute`는 경로2개만 실행합니다. 실패를 PASS로 바꾸지 않습니다. 기존 FixedUpdate 관찰의 사망 누락을 바로잡은 뒤 R05 실제 사망이 확인되어 연속 완주 경로는 BLOCKED입니다. Editor 고정 Pogo 입력 재생도 별도 BLOCKED이며, 실제 exe Pogo3구간·체크포인트 복귀·능력 회복 PASS와 구분합니다. 상세 결과와 무효화된 과거 결과는 `Validation/N9-route-recheck.txt`, 최종 상태는 TASKS Latest Handoff를 확인합니다.
 
 
+## Batch06b 벽 점프 조절·엔딩 후 이어하기 (2026-10-10)
+
+Development 실행기:
+- `Builds/B06b-delivery/Play-WallJumpTest.cmd`: 저장 없는 안전 테스트. 1 기준, 2 짧은 킥, 3 짧은 킥+상승 부착. 벽 쪽 입력으로 점프하면 짧은 킥, 중립·반대 입력은 긴 킥. x114 한쪽12u 벽 추가.
+- 테스트 전용 `7/8` Short speed ±0.5u/s, `9/0` Short lock ±0.01s, `6` 상승 부착 토글. 화면 전체값과 `Logs/walljump-tuning-last.txt` 일치. 원하는 값을 그대로 남겨 전달한다. Play 복사본이며 원본 Asset에는 자동 반영되지 않는다.
+- 오른쪽 아래 각 굴뚝/한쪽 벽의 최근3회 시간·벽 점프 횟수, `Logs/walljump-runs.txt` 기록.
+- `Play-V2-Guide.cmd` / `Play-V2-NoGuide.cmd`: 기존 독립 QA 슬롯. 현재 가이드 유지, Pause 목표 토글 취소.
+- `QA-AfterEnding.cmd`: 실행할 때마다 별도 `qa-afterending.json` 슬롯을 엔딩 도달/능력3종으로 다시 만든다. 이어하기→C01_V2/CP-C01, C06 보스 재등장 없음. 일반 QA 슬롯과 분리된다.
+
+영구 튜닝은 `Assets/ScriptableObjects/PlayerTuning.asset` Wall jump. 기존 프리셋1 값은 채택했다. Short3.5/.06과 상승 부착은 후보로만 제공하며, 기본 Asset 반영은 사용자 결정 이후 Stop 상태에서 편집·저장·재빌드한다. Scene 배치가 원본이며 V3 레벨은 이번에 바꾸지 않았다.
