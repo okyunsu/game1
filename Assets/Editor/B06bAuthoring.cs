@@ -26,5 +26,12 @@ public static class B06bAuthoring
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
     }
     static WallJumpTestMetrics.Zone Zone(string label,float left,float right)=>new WallJumpTestMetrics.Zone{label=label,xRange=new Vector2(left,right)};
+    public static void Ending()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/V2/C06_V2.unity");var room=Object.FindFirstObjectByType<RoomDefinition>();
+        if(room.GetComponent<DefeatedBossSuppression>()!=null)throw new IOException("Preserve suppression");
+        room.gameObject.AddComponent<DefeatedBossSuppression>();EditorSceneManager.SaveScene(SceneManager.GetActiveScene());EditorApplication.Exit(0);
+    }
 }
+
 
