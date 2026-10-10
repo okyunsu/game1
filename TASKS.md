@@ -111,6 +111,11 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B07-RETRY — 추가 후보 시도 승인 필요
+
+A02 필수/굴뚝, A04 비밀, C03 기본 등반·재방문은 재시도 한도 관련 자동 승인 검토 거절로 추가 수정/실행 경로 중단. 기존 후보는 PARTIAL 보존, 독립 Batch 작업 계속. 선택지: 다음 Batch에서 구체 수정안 추가 시도 승인(추천: 완주 차단 해소) / 현 후보 직접 플레이 후 판단. 풀리는 Task: 각 방·T24/Backlog 전체 완주. 상세는 방별 Validation 요약.
+
+
 ### B06 — 벽 점프·가이드 수락 / REVIEW
 
 B1/B2 기술 PASS, 기본 프리셋1/끈적2/빠름3 손맛 선택과 V2 가이드 문구 톤/길찾기 수락 대기. 원본 튜닝 기본값 채택 없음. 직접 조정하려면 WallJumpTestCourse 프리셋 또는 PlayerTuning 신규5필드 위치를 따른다. RoomExit 허용 목록 누락은 사용자 ‘Batch06 실행 + RoomExit 최소 수정 승인’ 답변으로 해소했다. Task8 예산과 Backlog 추가 실행은 구분한다. V3 레벨 치수 확정은 벽 점프 감각 수락 후.
@@ -164,7 +169,7 @@ Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정�
 
 ## Latest Handoff
 
-Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약165분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
+Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약173분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
 
 ### Task별 결과
 
@@ -186,11 +191,13 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약165분, 10시간·50T
 | T13 B05 | REVIEW / 3b204b6 | 10-11 00:07–00:23 | 이단점프 없이 기본26/Short23 벽점프·Dash·Pogo1회 완등, 선택/무벽점프 차단 PASS/Error0. [요약](Validation/B07-T13-B05-summary.md) |
 | T14 B06 | REVIEW / 08fb7b9 | 10-11 00:23–00:34 | 귀환/벽점프3회→Dash 선택 기본·Short 기록/재생, 무벽점프·무대시 차단 PASS/Error0. [요약](Validation/B07-T14-B06-summary.md) |
 | T15 C01 | REVIEW / a6860b7 | 10-11 00:34–00:36 | 안전 허브·CP·표지판2·전망. 필수 기록/재생 PASS/Error0. [요약](Validation/B07-T15-C01-summary.md) |
-| T16 C02 | REVIEW / 이번 Task 커밋 | 10-11 00:36–00:39 | 낙사2·E3·전망/비밀. 필수·선택·비밀 기록/재생3/3 PASS/Error0. [요약](Validation/B07-T16-C02-summary.md) |
-| T17 C03 | DOING | 10-11 00:39– | 혼합 전투·C05·G-J |
+| T16 C02 | REVIEW / cab84e0 | 10-11 00:36–00:39 | 낙사2·E3·전망/비밀. 필수·선택·비밀 기록/재생3/3 PASS/Error0. [요약](Validation/B07-T16-C02-summary.md) |
+| T17 C03 | PARTIAL / 이번 Task 커밋 | 10-11 00:39–00:47 | Short 등반 기록 PASS, 기본 킥 간섭/재방문 사망/선택 미완료. a1~a3 후 추가 a4 실행 auto-review 거절. [요약](Validation/B07-T17-C03-summary.md) |
+| T18 C05 | DOING | 10-11 00:47– | DJ 획득·전 능력 조합 |
 
 ### 다음 작업
 
 T1→T2→방19개→T22~T27→Batch Backlog 순서. 보호 Scene·기존Tuning·BossEncounter·ProjectSettings 변경0. BATCH-07.md는 사용자 파일로 미추적 상태 보존.
+
 
 

@@ -34,6 +34,8 @@ Batch07 / 시작2026-10-10 21:54 KST. 기본·V2·튜닝을 보존하는 그레�
 
 | C02 | 96×20u. 전망→틈→휴식→틈→엄폐/비밀(5비트) | 대시 + 낙사 | 2 / E3×1 | 2~3분 예상 / 필수15.08s·선택11.23s·비밀15.56s | 낙사28~33.6/52~57.6 각5.6u. 선택51/top7/폭3→60/top7/폭4 틈5.5u. 도시7블록 충돌0, E3x72·엄폐68. 비밀84/top5/roof8·11u 준비 거리. |
 
+| C03 | 72×20u. 混합 전투→C05 벽→포고→틈→G-J(5비트) | 적 위 포고 연속(미완료) | 1 / E1×2·E2×1·E3×1 | 2~3분 예상 / Short 등반2.13s·필수 미완료 | 표시벽5.75/top9, 입구3.5/top8/폭2·귀환9/top8/폭4. 기본 킥 밑면 간섭·재방문 틈 사망으로 PARTIAL. G-J67/top4.6/폭10, 우회끝48과14u 분리. |
+
 ## 현재 검증
 
 A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프 없는 선택 시도15s 차단 PASS. [상세](Validation/B07-T3-A01-summary.md). 스크린샷 [A01](Validation/_raw/B07/A01-overview.png). 기술 수락이며 사람 손맛·자연 동선은 REVIEW.
@@ -41,6 +43,7 @@ A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프
 ## 조정 위치
 
 배치·영역: 해당 V3 Scene의 Transform·RoomCameraRig boundary. 반복 블록은 기존 Assets/Prefabs/Level, 새 연결은 Assets/Prefabs/V3. 이동 수치는 기존 PlayerTuning.asset 단일 원본. Play에서 바꾼 Scene 값은 Stop 뒤 같은 값을 다시 입력하고 저장·재빌드한다. 테스트 Short는 Runtime 복사본만 사용하며 기본값 채택은 사용자 결정이다.
+
 
 
 
