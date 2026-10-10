@@ -4,6 +4,7 @@ using UnityEngine;
 public sealed class RoomExit : MonoBehaviour
 {
     [Tooltip("Unique exit ID in this room.")] public string exitId;
+    [Tooltip("V2 required route exit; displays its authored guide lantern.")] public bool mainPath;
     [Tooltip("Expected room ID in the destination Scene.")] public string destinationRoomId;
     [Tooltip("Scene asset path included in Build Settings.")] public string destinationScenePath;
     [Tooltip("Unique Spawn ID within the destination room.")] public string destinationSpawnId;

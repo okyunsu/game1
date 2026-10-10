@@ -3560,6 +3560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomExit
   exitId: Return
+  mainPath: 0
   destinationRoomId: B03
   destinationScenePath: Assets/Scenes/V2/B03_V2.unity
   destinationSpawnId: FromLeft

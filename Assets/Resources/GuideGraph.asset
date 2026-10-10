@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bfac543362bad41b7ecda38dda061a, type: 3}
+  m_Name: GuideGraph
+  m_EditorClassIdentifier: Assembly-CSharp::GuideGraph
+  edges:
+  - from: A01
+    to: A02
+    exitId: Right
+    position: {x: 58.25, y: 2}
+  - from: A02
+    to: A03
+    exitId: Right
+    position: {x: 58.25, y: 2}
+  - from: A02
+    to: A01
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: A03
+    to: B01
+    exitId: Shelf
+    position: {x: 60, y: 6}
+  - from: A03
+    to: A04
+    exitId: Right
+    position: {x: 70.25, y: 2}
+  - from: A03
+    to: A02
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: A04
+    to: A06
+    exitId: Optional A06
+    position: {x: 2, y: 8.8}
+  - from: A04
+    to: A03
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: A04
+    to: A05
+    exitId: Right
+    position: {x: 88.25, y: 2}
+  - from: A05
+    to: A04
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: A06
+    to: A04
+    exitId: Return
+    position: {x: 1.75, y: 2}
+  - from: B01
+    to: A03
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: B01
+    to: B02
+    exitId: Right
+    position: {x: 82.25, y: 2}
+  - from: B01
+    to: B05
+    exitId: Upper
+    position: {x: 82.25, y: 5.5}
+  - from: B02
+    to: B01
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: B02
+    to: B03
+    exitId: Right
+    position: {x: 70.25, y: 2}
+  - from: B03
+    to: B04
+    exitId: Right
+    position: {x: 88.25, y: 2}
+  - from: B03
+    to: B02
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: B03
+    to: B06
+    exitId: Exit Optional B06
+    position: {x: 7, y: 2}
+  - from: B04
+    to: B03
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: B05
+    to: B01
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: B05
+    to: C01
+    exitId: Right
+    position: {x: 58.25, y: 10.5}
+  - from: B06
+    to: B03
+    exitId: Return
+    position: {x: 1.75, y: 2}
+  - from: C01
+    to: C02
+    exitId: Right
+    position: {x: 70.25, y: 2}
+  - from: C01
+    to: B05
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: C02
+    to: C01
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: C02
+    to: C03
+    exitId: Right
+    position: {x: 82.25, y: 7.8}
+  - from: C03
+    to: C04
+    exitId: Right
+    position: {x: 88.25, y: 2}
+  - from: C03
+    to: C05
+    exitId: Optional C05
+    position: {x: 2, y: 8.8}
+  - from: C03
+    to: C02
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: C04
+    to: C06
+    exitId: Right
+    position: {x: 52.25, y: 2}
+  - from: C04
+    to: C03
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: C05
+    to: C03
+    exitId: Return
+    position: {x: 1.75, y: 2}
+  - from: C06
+    to: C04
+    exitId: Left
+    position: {x: 1.75, y: 2}
