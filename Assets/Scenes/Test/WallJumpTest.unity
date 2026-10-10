@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 97602866}
   - component: {fileID: 97602865}
   - component: {fileID: 97602864}
+  - component: {fileID: 97602867}
   m_Layer: 0
   m_Name: WallJumpTest
   m_TagString: Untagged
@@ -221,6 +222,35 @@ Transform:
   - {fileID: 820943744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97602867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97602863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6db5512445b124d9ae632d774092e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallJumpTestMetrics
+  zones:
+  - label: 3u chimney
+    xRange: {x: 7, y: 14}
+    floorY: 1.82
+    summitY: 13.8
+  - label: 4u chimney
+    xRange: {x: 21, y: 29}
+    floorY: 1.82
+    summitY: 13.8
+  - label: 5u chimney
+    xRange: {x: 35, y: 44}
+    floorY: 1.82
+    summitY: 13.8
+  - label: Single 12u
+    xRange: {x: 108, y: 118}
+    floorY: 1.82
+    summitY: 13.8
 --- !u!1001 &218168836
 PrefabInstance:
   m_ObjectHideFlags: 0

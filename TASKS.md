@@ -17,7 +17,7 @@ H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 �
 |---|---|---|
 | B06b-T1 짧은 킥·부착 옵션 | REVIEW | 기본/짧은 킥30/60/120 PASS; 기본13 PASS, 기존 R11/P03 재생 실패 기록 |
 | B06b-T2 후보·현장 조절 | REVIEW | 후보3종 굴뚝·2/3 한쪽 벽·키5종 표시/로그 PASS |
-| B06b-T3 측정 HUD | TODO | 후보 코스 측정 |
+| B06b-T3 측정 HUD | DONE | 자동 등반·HUD/로그 시간차0.04s·횟수 일치 PASS |
 | B06b-T4 엔딩 후 Continue | TODO | CP-C01·보스 재등장 억제 |
 | B06b-T5 전달 | TODO | Development·실행기4종 |
 | B06b-BL1 메트릭 | TODO | 3/4/5/6u·대시 |
