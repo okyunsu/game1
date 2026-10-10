@@ -49,6 +49,7 @@ public sealed class RoomSession : MonoBehaviour
         {
             Player.GetComponent<PlayerDash>().hasDash = pending.dash;
             Player.GetComponent<PlayerMotor>().hasDoubleJump = pending.doubleJump;
+            Player.GetComponent<PlayerMotor>().hasWallJump = pending.wallJump;
             CheckpointId = pending.checkpointId;
             checkpointRoom = room.roomId;
             checkpointScene = room.gameObject.scene.path;
@@ -107,6 +108,7 @@ public sealed class RoomSession : MonoBehaviour
     }
     public void GrantDash() { Player.GetComponent<PlayerDash>().hasDash = true; ProgressSave.SaveCurrent(this); }
     public void GrantDoubleJump() { Player.GetComponent<PlayerMotor>().hasDoubleJump = true; ProgressSave.SaveCurrent(this); }
+    public void GrantWallJump() { Player.GetComponent<PlayerMotor>().hasWallJump = true; ProgressSave.SaveCurrent(this); }
     public bool Die()
     {
         var boss=FindFirstObjectByType<BossEncounter>();

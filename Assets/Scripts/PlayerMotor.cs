@@ -8,6 +8,12 @@ public sealed class PlayerMotor : MonoBehaviour
     [Header("Double jump ownership")]
     [Tooltip("Permanent ability ownership. Default false in production rooms.")] public bool hasDoubleJump;
     bool doubleJumpUsed;
+    [Tooltip("Permanent wall jump ownership. Production default false.")] public bool hasWallJump;
+    public bool WallSliding { get; private set; }
+    public int WallJumpsPerformed { get; private set; }
+    public int WallAttachments { get; private set; }
+    int wallDirection;
+    double lastWall = double.NegativeInfinity, wallLockUntil = double.NegativeInfinity;
     public bool DoubleJumpAvailable => hasDoubleJump && !doubleJumpUsed;
     public int DoubleJumpsPerformed { get; private set; }
     readonly ContactPoint2D[] contacts = new ContactPoint2D[16];
@@ -46,10 +52,18 @@ public sealed class PlayerMotor : MonoBehaviour
     void OnDisable() { input.Cleared -= ClearTransientState; }
     public void ClearTransientState()
     {
+        ClearWallState();
         consumedJump = input.JumpSequence;
         lastGrounded = double.NegativeInfinity;
         groundJumpAvailable = false;
         jumpCutAvailable = false;
+    }
+
+    public void ClearWallState()
+    {
+        WallSliding = false;
+        wallDirection = 0;
+        lastWall = wallLockUntil = double.NegativeInfinity;
     }
 
     void FixedUpdate()
@@ -74,16 +88,32 @@ public sealed class PlayerMotor : MonoBehaviour
         }
 
         var health=GetComponent<PlayerHealth>();
-        if(health!=null&&health.KnockbackLocked){var knocked=body.linearVelocity;knocked.y=Mathf.Max(knocked.y-tuning.gravity*(knocked.y<=0?tuning.fallGravityMultiplier:1)*Time.fixedDeltaTime,-tuning.maxFallSpeed);body.linearVelocity=knocked;return;}
+        if(health!=null&&health.KnockbackLocked){ClearWallState();var knocked=body.linearVelocity;knocked.y=Mathf.Max(knocked.y-tuning.gravity*(knocked.y<=0?tuning.fallGravityMultiplier:1)*Time.fixedDeltaTime,-tuning.maxFallSpeed);body.linearVelocity=knocked;return;}
         if(Mathf.Abs(input.Move.x)>.01f) Facing=input.Move.x>0?1:-1;
         var dash=GetComponent<PlayerDash>();
-        if(dash!=null && dash.Tick(Grounded,now)) { consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return; }
+        if(dash!=null && dash.Tick(Grounded,now)) { ClearWallState();consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return; }
+        bool wasSliding = WallSliding;
+        WallSliding = false;
+        if (hasWallJump && !Grounded && !input.InputLocked && now >= wallLockUntil && body.linearVelocity.y <= 0)
+            for (int i = 0; i < count; i++)
+            {
+                var contact = contacts[i];
+                var other = contact.collider == shape ? contact.otherCollider : contact.collider;
+                if (other == null || other.GetComponent<ClimbableWall>() == null || other.GetComponent<DashGate>() != null || Mathf.Abs(contact.normal.x) <= .7f) continue;
+                int side = contact.normal.x < 0 ? 1 : -1;
+                if (input.Move.x * side <= .01f) continue;
+                wallDirection = side; lastWall = now; WallSliding = true; Facing = -side;
+                if (!wasSliding) { doubleJumpUsed = false; dash?.RefreshAirFromPogo(); WallAttachments++; }
+                break;
+            }
+        if (Grounded || !hasWallJump) { WallSliding = false; lastWall = double.NegativeInfinity; }
         Vector2 velocity = body.linearVelocity;
         float target = Mathf.Clamp(input.Move.x, -1, 1) * tuning.moveSpeed;
         float rate = Mathf.Abs(target) < .001f || target * velocity.x < 0 ? tuning.deceleration : tuning.acceleration;
-        velocity.x = Mathf.MoveTowards(velocity.x, target, rate * (Grounded ? 1 : tuning.airControl) * Time.fixedDeltaTime);
+        if (now >= wallLockUntil) velocity.x = Mathf.MoveTowards(velocity.x, target, rate * (Grounded ? 1 : tuning.airControl) * Time.fixedDeltaTime);
         float gravity = tuning.gravity * (velocity.y <= 0 ? tuning.fallGravityMultiplier : 1);
         velocity.y = Mathf.Max(velocity.y - gravity * Time.fixedDeltaTime, -tuning.maxFallSpeed);
+        if (WallSliding) velocity.y = Mathf.Max(velocity.y, -tuning.wallSlideMaxFallSpeed);
         if (consumedJump != input.JumpSequence && input.JumpPressedAt <= now)
         {
             bool expired = now - input.JumpPressedAt > tuning.jumpBuffer;
@@ -99,6 +129,17 @@ public sealed class PlayerMotor : MonoBehaviour
                 jumpCutAvailable = true;
                 jumpPressTime = input.JumpPressedAt;
                 jumpStartedAt = now;
+            }
+            else if (hasWallJump && wallDirection != 0 && now >= wallLockUntil && now - lastWall <= tuning.wallCoyoteTime)
+            {
+                consumedJump = input.JumpSequence;
+                velocity = new Vector2(-wallDirection * tuning.wallJumpHorizontalSpeed, tuning.wallJumpVelocity);
+                Facing = -wallDirection;
+                wallLockUntil = now + tuning.wallJumpInputLock;
+                lastWall = double.NegativeInfinity; WallSliding = false;
+                groundJumpAvailable = false; lastGrounded = double.NegativeInfinity;
+                jumpCutAvailable = true; jumpPressTime = input.JumpPressedAt; jumpStartedAt = now;
+                WallJumpsPerformed++;
             }
             else if (DoubleJumpAvailable)
             {

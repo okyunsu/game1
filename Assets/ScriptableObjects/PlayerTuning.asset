@@ -27,4 +27,9 @@ MonoBehaviour:
   dashSpeed: 18
   dashDuration: 0.16
   dashCooldown: 0.45
+  wallSlideMaxFallSpeed: 2.5
+  wallJumpHorizontalSpeed: 8
+  wallJumpVelocity: 12
+  wallJumpInputLock: 0.15
+  wallCoyoteTime: 0.08
   respawnDelay: 0.6

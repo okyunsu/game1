@@ -12,11 +12,13 @@ public sealed class GameHUD : MonoBehaviour
     public int VisibleHP => health!=null?health.HP:0;
     public bool DashOwned => dash!=null&&dash.hasDash;
     public bool DoubleJumpOwned => motor!=null&&motor.hasDoubleJump;
+    public bool WallJumpOwned => motor!=null&&motor.hasWallJump;
     public string AcquisitionText => input!=null&&input.UsingGamepad
-        ? (acquiredDash?"대시 획득 — B":"더블 점프 획득 — 공중에서 A 한 번 더")
-        : (acquiredDash?"대시 획득 — C":"더블 점프 획득 — 공중에서 Z 한 번 더");
+        ? (acquiredWall?"벽 점프 획득 — 표시된 벽에 붙어 A":acquiredDash?"대시 획득 — B":"더블 점프 획득 — 공중에서 A 한 번 더")
+        : (acquiredWall?"벽 점프 획득 — 표시된 벽에 붙어 Z":acquiredDash?"대시 획득 — C":"더블 점프 획득 — 공중에서 Z 한 번 더");
     PlayerInputReader input; PlayerHealth health; PlayerDash dash; PlayerMotor motor;
     RoomSession observedSession; RoomLabel label;
+    bool previousWall,acquiredWall;
     bool pendingNewGame,firstNotice,previousDash,previousJump,acquiredDash,wasDead;
     double firstUntil,acquisitionUntil,deathStarted;
     GUIStyle text,centered; int styleSize;
@@ -58,16 +60,16 @@ public sealed class GameHUD : MonoBehaviour
         {
             observedSession=session;input=session.Player;health=input.GetComponent<PlayerHealth>();
             dash=input.GetComponent<PlayerDash>();motor=input.GetComponent<PlayerMotor>();
-            previousDash=DashOwned;previousJump=DoubleJumpOwned;firstNotice=false;acquisitionUntil=0;
+            previousWall=WallJumpOwned;previousDash=DashOwned;previousJump=DoubleJumpOwned;firstNotice=false;acquisitionUntil=0;
         }
         if(pendingNewGame&&!session.Transitioning&&session.CurrentRoomId=="A01")
         {
             pendingNewGame=false;firstNotice=true;firstUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;
         }
         if(firstNotice&&(Time.unscaledTimeAsDouble>=firstUntil||input.Move.sqrMagnitude>.001f||session.CurrentRoomId!="A01"))firstNotice=false;
-        if(DashOwned&&!previousDash){acquiredDash=true;acquisitionUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;}
-        if(DoubleJumpOwned&&!previousJump){acquiredDash=false;acquisitionUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;}
-        previousDash=DashOwned;previousJump=DoubleJumpOwned;
+        if(DashOwned&&!previousDash){acquiredWall=false;acquiredDash=true;acquisitionUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;}
+        if(DoubleJumpOwned&&!previousJump){acquiredWall=false;acquiredDash=false;acquisitionUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;}
+        if(WallJumpOwned&&!previousWall){acquiredWall=true;acquisitionUntil=Time.unscaledTimeAsDouble+tuning.noticeSeconds;}previousWall=WallJumpOwned;previousDash=DashOwned;previousJump=DoubleJumpOwned;
         if(DeathOverlayVisible&&!wasDead)deathStarted=Time.unscaledTimeAsDouble;
         wasDead=DeathOverlayVisible;
         if(label==null||label.gameObject.scene.name!=session.CurrentRoomId)label=FindFirstObjectByType<RoomLabel>();
@@ -112,6 +114,7 @@ public sealed class GameHUD : MonoBehaviour
             for(int i=0;i<health.tuning.playerMaxHP;i++)Fill(new Rect(x+48+i*(tuning.hpPipSize+tuning.hpPipGap),y+34,tuning.hpPipSize,tuning.hpPipSize),i<VisibleHP?Color.white:new Color(.32f,.32f,.35f));
             Ability(new Rect(x+12,y+65,160,24),DashOwned,false,input.UsingGamepad?"B":"C");
             Ability(new Rect(x+176,y+65,160,24),DoubleJumpOwned,true,input.UsingGamepad?"A":"Z");
+            if(WallJumpOwned) { Fill(new Rect(x+12,y+tuning.hudSize.y+70,22,22),Color.cyan); GUI.Label(new Rect(x+42,y+tuning.hudSize.y+68,250,26),"벽 점프  "+(input.UsingGamepad?"A":"Z"),text); }
             GUI.Label(new Rect(x+12,y+93,tuning.hudSize.x-24,24),input.UsingGamepad?"공격 X  /  일시정지 Menu":"공격 X  /  일시정지 Esc",text);
             if(label!=null&&!string.IsNullOrEmpty(label.notice))GUI.Label(new Rect(x,y+tuning.hudSize.y+4,width-x*2,28),label.notice,text);
             if(!string.IsNullOrEmpty(ProgressSave.Message))GUI.Label(new Rect(x,y+tuning.hudSize.y+34,width-x*2,36),ProgressSave.Message,text);

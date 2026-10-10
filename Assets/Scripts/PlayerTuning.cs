@@ -22,6 +22,12 @@ public sealed class PlayerTuning : ScriptableObject
     [Range(16,20), Tooltip("Dash horizontal speed, units/second.")] public float dashSpeed = 18;
     [Range(.14f,.20f), Tooltip("Dash duration, seconds.")] public float dashDuration = .16f;
     [Range(.35f,.60f), Tooltip("Cooldown measured from dash start, seconds.")] public float dashCooldown = .45f;
+    [Header("Wall jump (Prototype Values)")]
+    [Range(1,5), Tooltip("Maximum downward wall slide speed, units/second.")] public float wallSlideMaxFallSpeed = 2.5f;
+    [Range(6,11), Tooltip("Wall jump speed away from the wall, units/second.")] public float wallJumpHorizontalSpeed = 8;
+    [Range(10,13), Tooltip("Wall jump upward velocity, units/second.")] public float wallJumpVelocity = 12;
+    [Range(.08f,.25f), Tooltip("Horizontal input and wall reattachment lock after a wall jump, seconds.")] public float wallJumpInputLock = .15f;
+    [Range(.04f,.12f), Tooltip("Wall jump grace after leaving a slide, seconds.")] public float wallCoyoteTime = .08f;
     [Header("Death / respawn (seconds)")]
     [Min(0), Tooltip("Real-time death delay before checkpoint return. Prototype value: 0.6 seconds.")] public float respawnDelay = .6f;
 
