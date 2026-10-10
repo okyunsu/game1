@@ -145,11 +145,12 @@ public static class B07Rooms
     plan.beats="무덤 입구 / 비문 / 더블 점프 턱 / 포고 / 귀환";plan.optionalType="더블 점프 + 포고";plan.routes=new[]{Route("main","A01",true,true,true,Point(10,1.81f),Point(2,1.81f)),Route("optional","Discovery:V3-A06-optional",true,true,true,Point(16,1.81f),Point(20,5.41f,A.DoubleJump),Point(27,3.5f,A.Pogo),Point(34,6.81f,A.DoubleJump))};break;
    case "B01":
     Shell(id,84,20);Floor(0,34);Floor(38,84);Floor(34,38,-3);Checkpoint("CP-B01",20,1.81f);Spawn("FromDash",4,1.81f);Spawn("FromB04",69,8.81f);Exit("B02",82,2);var pit=Exit("A03",36,-1,"FromPit",true,"Pit");pit.gameObject.AddComponent<V3ExitRule>().downwardOnly=true;
-    Gate("닫힌 상층 관문",42,11,6,7);for(int i=0;i<3;i++)Block("Waiting person "+i,38+i*3,6,.7f,1.5f).GetComponent<BoxCollider2D>().enabled=false;Platform("Gate forecourt",42,5,18);
-    Platform("Shortcut landing",72,8,12);Wall("V3-shortcut-B04",74,9.5f,3,BreakableWall.Side.Left);Exit("B04",68,9,"FromShortcut",false);Sign(32,1.8f,"낙오자의 구덩이");
+    Gate("닫힌 상층 관문",42,8.5f,6,7);for(int i=0;i<3;i++)Block("Waiting person "+i,38+i*3,6,.7f,1.5f).GetComponent<BoxCollider2D>().enabled=false;Platform("Gate forecourt",42,5,18);
+    Block("Shortcut access marked wall",55.75f,5.5f,.5f,5,true);Platform("Shortcut first stair",60,3.5f,4);Platform("Shortcut middle stair",63,5,4);Platform("Shortcut upper stair",66,6.5f,4);
+    Platform("Shortcut landing",72,8,12);Wall("V3-shortcut-B04",74,9.5f,3,BreakableWall.Side.Right);Exit("B04",80,10.5f,"FromShortcut",false);Sign(32,1.8f,"낙오자의 구덩이");
     Sign(23,1.8f,"관문은 곧 열린다. 다들 그렇게 말한 지 몇 해째야.");Sign(28,1.8f,"아래로 내려가는 놈들? 낙오자지.");Sign(49,1.8f,"위로 가는 길? 아래에서 빛을 봤다던 노인이 있었지.");
     plan.beats="중층 CP / 닫힌 관문·사람 / 낙오자 구덩이 / B02 / B04 숏컷";var pitRoute=Route("return","A03",true,true,false,Point(70,1.81f),Point(36,1.81f));pitRoute.startSpawn="FromB04";
-    plan.routes=new[]{Route("main","B02",true,false,false,Point(30,1.81f),Point(42,1.81f,A.Jump),Point(82,1.81f)),pitRoute};break;
+    plan.routes=new[]{Route("main","B02",true,false,false,Point(33,1.81f),Point(40,1.81f,A.DashAir),Point(82,1.81f)),pitRoute};break;
    case "B02":
     Shell(id,84,18);Pits(new Vector2(52,55));Exit("B01",2,2);Exit("B03",82,2);Enemy("E2",30,1.51f);Enemy("E2",42,1.51f);Platform("Charger bypass",36,3,20);
     plan.beats="돌진 예고 / 회피 공간 / 3u 낙사 / 비밀 / 출구";plan.routes=new[]{Route("main","B03",true,false,false,Point(24,1.81f),Point(28,3.81f,A.Jump),Point(44,3.81f),Point(51,1.81f),Point(57,1.81f,A.Dash),Point(82,1.81f))};Optional("대시로 돌진 틈",60,true,false,false,A.Dash);Secret(70);break;
