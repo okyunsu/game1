@@ -92,6 +92,8 @@ public sealed class B07RoomVerifier:N5Runner
   if(action is V3RoomRoutes.Action.Jump or V3RoomRoutes.Action.DoubleJump or V3RoomRoutes.Action.Dash or V3RoomRoutes.Action.DashAir)
   {
    if(Motor.Grounded&&tick-jumpAt>38)jumpAt=tick;
+   // A pogo-to-double-jump route spends its remaining airborne jump near the bounce apex.
+   if(action==V3RoomRoutes.Action.DoubleJump&&jumpAt<0&&!Motor.Grounded&&Body.linearVelocity.y<=1)jumpAt=tick-16;
    int elapsed=tick-jumpAt;
    if(action==V3RoomRoutes.Action.DoubleJump){if(elapsed<14||elapsed>=16&&elapsed<42)result.held|=2;}
    else if(elapsed<28)result.held|=2;
