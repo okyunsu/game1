@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bfac543362bad41b7ecda38dda061a, type: 3}
+  m_Name: GuideGraph_V3
+  m_EditorClassIdentifier: Assembly-CSharp::GuideGraph
+  edges:
+  - from: A01
+    to: A06
+    exitId: A06
+    position: {x: 42, y: 5.8}
+  - from: A01
+    to: A02
+    exitId: A02
+    position: {x: 70, y: 2}
+  - from: A02
+    to: A03
+    exitId: A03
+    position: {x: 9.4, y: 14}
+  - from: A02
+    to: A01
+    exitId: A01
+    position: {x: 2, y: 2}
+  - from: A02
+    to: B05
+    exitId: B05
+    position: {x: 25, y: 46}
+  - from: A03
+    to: A04
+    exitId: A04
+    position: {x: 58, y: 2}
+  - from: A03
+    to: A05
+    exitId: A05
+    position: {x: 6, y: -2}
+  - from: A03
+    to: B01
+    exitId: B01
+    position: {x: 48, y: 9}
+  - from: A03
+    to: A02
+    exitId: A02
+    position: {x: 2, y: 2}
+  - from: A04
+    to: A05
+    exitId: A05
+    position: {x: 88, y: 2}
+  - from: A04
+    to: A03
+    exitId: A03
+    position: {x: 2, y: 2}
+  - from: A05
+    to: A04
+    exitId: A04
+    position: {x: 2, y: 2}
+  - from: A05
+    to: A03
+    exitId: A03
+    position: {x: 70, y: 2}
+  - from: A06
+    to: A01
+    exitId: A01
+    position: {x: 2, y: 2}
+  - from: B01
+    to: B02
+    exitId: B02
+    position: {x: 82, y: 2}
+  - from: B01
+    to: B04
+    exitId: B04
+    position: {x: 80, y: 10.5}
+  - from: B01
+    to: A03
+    exitId: Pit
+    position: {x: 36, y: -1}
+  - from: B02
+    to: B01
+    exitId: B01
+    position: {x: 2, y: 2}
+  - from: B02
+    to: B03
+    exitId: B03
+    position: {x: 82, y: 2}
+  - from: B03
+    to: B06
+    exitId: B06
+    position: {x: 27, y: 20}
+  - from: B03
+    to: B04
+    exitId: B04
+    position: {x: 22, y: 38}
+  - from: B03
+    to: B02
+    exitId: B02
+    position: {x: 2, y: 2}
+  - from: B04
+    to: B03
+    exitId: B03
+    position: {x: 2, y: 2}
+  - from: B04
+    to: B01
+    exitId: B01
+    position: {x: 38, y: 18}
+  - from: B05
+    to: C01
+    exitId: C01
+    position: {x: 22, y: 62}
+  - from: B05
+    to: A02
+    exitId: A02
+    position: {x: 2, y: 2}
+  - from: B06
+    to: B03
+    exitId: B03
+    position: {x: 2, y: 2}
+  - from: C01
+    to: B05
+    exitId: B05
+    position: {x: 2, y: 2}
+  - from: C01
+    to: C02
+    exitId: C02
+    position: {x: 58, y: 2}
+  - from: C02
+    to: C03
+    exitId: C03
+    position: {x: 94, y: 2}
+  - from: C02
+    to: C01
+    exitId: C01
+    position: {x: 2, y: 2}
+  - from: C03
+    to: C04
+    exitId: C04
+    position: {x: 70, y: 5.8}
+  - from: C03
+    to: C02
+    exitId: C02
+    position: {x: 2, y: 2}
+  - from: C03
+    to: C05
+    exitId: C05
+    position: {x: 2, y: 9}
+  - from: C04
+    to: C06
+    exitId: C06
+    position: {x: 52, y: 2}
+  - from: C04
+    to: C03
+    exitId: C03
+    position: {x: 2, y: 2}
+  - from: C05
+    to: C03
+    exitId: C03
+    position: {x: 2, y: 2}
+  - from: C06
+    to: S01
+    exitId: Summit
+    position: {x: 10, y: 9.5}
+  - from: C06
+    to: C04
+    exitId: Left
+    position: {x: 1.75, y: 2}
+  - from: S01
+    to: C06
+    exitId: C06
+    position: {x: 2, y: 2}
