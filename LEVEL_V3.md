@@ -30,6 +30,8 @@ Batch07 / 시작2026-10-10 21:54 KST. 기본·V2·튜닝을 보존하는 그레�
 
 | B06 | 60×20u. 분기→낮은 증기 단→벽/대시→E1→귀환(5비트) | 벽 점프 + 대시 | 0 / E1×1 | 1~2분 예상 / 귀환4.40s·선택7.56s·Short7.03s | 표시벽27/bottom1/top9. 출발28.75/top9/폭3→착지38/top9/폭3, 틈6.25u≤6.4. 발견38/y9.8, 무벽점프·무대시15s 차단. |
 
+| C01 | 60×18u. 상층 도착→CP→표지판2→전망→외벽(5비트) | 없음(허브) | 0 / 0 | 1~2분 예상 / 필수9.65s | CP12/y1.81, 표지판21/32 기존 문구, 전망42/top2/폭10. 안전 바닥·청백색. |
+
 ## 현재 검증
 
 A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프 없는 선택 시도15s 차단 PASS. [상세](Validation/B07-T3-A01-summary.md). 스크린샷 [A01](Validation/_raw/B07/A01-overview.png). 기술 수락이며 사람 손맛·자연 동선은 REVIEW.
@@ -37,4 +39,5 @@ A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프
 ## 조정 위치
 
 배치·영역: 해당 V3 Scene의 Transform·RoomCameraRig boundary. 반복 블록은 기존 Assets/Prefabs/Level, 새 연결은 Assets/Prefabs/V3. 이동 수치는 기존 PlayerTuning.asset 단일 원본. Play에서 바꾼 Scene 값은 Stop 뒤 같은 값을 다시 입력하고 저장·재빌드한다. 테스트 Short는 Runtime 복사본만 사용하며 기본값 채택은 사용자 결정이다.
+
 
