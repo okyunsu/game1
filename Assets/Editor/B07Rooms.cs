@@ -171,12 +171,12 @@ public static class B07Rooms
     plan.beats="벽 점프 획득 / 4u 연습 / 상단 착지 / 방향 벽 / 시장 귀환";plan.optionalType="한쪽 벽 점프 연속";
     plan.routes=new[]{Route("main","B01",true,false,false,Point(10,1.81f),Point(21.6f,1.81f),Point(21.6f,18.6f,A.Climb),Point(28,17.81f),Point(32.7f,17.81f),Point(32.7f,17.81f,A.Wall,"V3-shortcut-B04"),Point(38,17.81f)),Route("optional","Discovery:V3-B04-optional",true,true,false,Point(5.1f,1.81f),Point(5.1f,10.6f,A.Climb),Point(8,9.81f))};break;
    case "B05":
-    Shell(id,24,64);Floor(0,24);Exit("A02",2,2,"FromB05");Spawn("FromC01",20,61.81f);Exit("C01",22,62);Block("Lower left",7.75f,17.5f,.5f,29,true);Block("Lower right",12.25f,16.5f,.5f,31,true);Platform("16u rest",9,17,2);Platform("32u rest",9,33,2);
-    Pogo(16,34.7f);Platform("Pogo onward landing",20,36.5f,4);Block("Upper left",17.75f,51.5f,.5f,25,true);Block("Upper right",22.25f,50,.5f,27,true);Platform("48u rest",19,49,2);Platform("Summit rest",19,61,2);Pogo(4,34.7f);Platform("Optional pogo return",3,36.5f,4);Reward("optional",3,37.3f);
+    Shell(id,24,64);Floor(0,24);Exit("A02",2,2,"FromB05");Spawn("FromC01",20,61.81f);Exit("C01",22,62);Block("Lower left",7.75f,18.5f,.5f,31,true);Block("Lower right",12.25f,17.5f,.5f,33,true);Platform("16u rest",9,17,2);Platform("32u rest",9,33,2);
+    Pogo(16,34.7f);Platform("Pogo onward landing",20,36,4);Block("Upper left",17.75f,51.5f,.5f,25,true);Block("Upper right",22.25f,50,.5f,27,true);Platform("48u rest",19,49,2);Platform("Summit rest",19,61,2);Pogo(4,34.7f);Platform("Optional pogo return",3,36.5f,4);Reward("optional",3,37.3f);
     Block("Closed gate reverse window",4,25,4,6).GetComponent<BoxCollider2D>().enabled=false;Sign(5,24,"관문 너머의 사람들은 여전히 위를 보고 있다.");
     plan.beats="4u 벽 등반 / 16u 쉼 / 창·32u 쉼 / 대시·포고 연결 / 상층 도착";plan.optionalType="벽 점프 + 포고";
-    var first=new[]{Point(11.6f,1.81f),Point(11.6f,18.6f,A.Climb),Point(9,17.81f),Point(11.6f,34.2f,A.Climb),Point(9,33.81f)};
-    plan.routes=new[]{Route("main","C01",true,true,false,first.Concat(new[]{Point(14,36,A.DashAir),Point(16,36,A.Pogo),Point(20,37.31f,A.Jump),Point(21.6f,50.6f,A.Climb),Point(19,49.81f),Point(21.6f,62.6f,A.Climb),Point(20,61.81f),Point(22,61.81f)}).ToArray()),Route("optional","Discovery:V3-B05-optional",true,true,false,first.Concat(new[]{Point(6,36,A.DashAir),Point(4,36,A.Pogo),Point(3,37.31f,A.Jump)}).ToArray())};break;
+    var first=new[]{Point(11.6f,1.81f),Point(11.6f,19.2f,A.Climb),Point(9,17.81f,A.WalkUnder),Point(11.6f,35.2f,A.Climb),Point(9,33.81f,A.WalkUnder)};
+    plan.routes=new[]{Route("main","C01",true,true,false,first.Concat(new[]{Point(14,36,A.DashAir),Point(16,36,A.Pogo),Point(20,36.81f,A.Jump),Point(21.6f,50.6f,A.Climb),Point(19,49.81f,A.WalkUnder),Point(21.6f,62.6f,A.Climb),Point(20,61.81f,A.WalkUnder),Point(22,61.81f)}).ToArray()),Route("optional","Discovery:V3-B05-optional",true,true,false,first.Concat(new[]{Point(6,36,A.DashAir),Point(4,36,A.Pogo),Point(3,37.31f,A.Jump)}).ToArray())};break;
    case "B06":
     Shell(id,60,20);Floor(0,60);Exit("B03",2,2,"FromB06",false);Enemy("E1",38,1.51f);Platform("Steam low step",18,2.4f,6);Block("Marked steam stack",27,5,.5f,8,true);
     plan.beats="분기 / 낮은 증기 단 / 벽·대시 / E1 / 귀환";plan.routes=new[]{Route("main","B03",true,true,false,Point(16,1.81f),Point(2,1.81f))};Optional("벽 점프 + 대시",12,true,true,false,A.Dash);break;
