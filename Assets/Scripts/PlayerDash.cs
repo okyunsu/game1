@@ -18,7 +18,7 @@ public sealed class PlayerDash:MonoBehaviour
     {
         if(grounded&&!IsDashing)AirUsed=false;
         if(input.InputLocked){if(IsDashing)Cancel();return false;}
-        if(pending){pending=false;if(hasDash&&!IsDashing&&now-started>=motor.Tuning.dashCooldown&&(grounded||!AirUsed)){IsDashing=true;AirUsed=true;started=now;direction=Mathf.Abs(input.Move.x)>.01f?(input.Move.x>0?1:-1):motor.Facing;}}
+        if(pending){pending=false;if(hasDash&&!IsDashing&&now-started>=motor.Tuning.dashCooldown&&(grounded||!AirUsed)){IsDashing=true;AirUsed=true;started=now;direction=motor.WallSliding?motor.Facing:Mathf.Abs(input.Move.x)>.01f?(input.Move.x>0?1:-1):motor.Facing;}}
         DashGate.Apply(this);if(!IsDashing)return false;
         if(!hasDash||now-started>=motor.Tuning.dashDuration-.000001){Cancel();return false;}
         var filter=new ContactFilter2D{useLayerMask=true,layerMask=1<<6,useTriggers=false};

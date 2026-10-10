@@ -9,12 +9,13 @@ public sealed class B06bEndingVerifier:N5Runner
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()
     {
         if(!N5Args.Has("-verify-b06b-ending"))return;
+        if(!N5Args.Has("-save-path")){N5Args.Start<B06bEndingVerifier>("-verify-b06b-ending");return;}
         ProgressSave.Write(new ProgressData{dash=true,doubleJump=true,wallJump=true,bossDefeated=true,endingReached=false,checkpointId="CP-C04",brokenWalls=new[]{"QA-B06b-wall"}});
         N5Args.Start<B06bEndingVerifier>("-verify-b06b-ending");
     }
     protected override IEnumerator Tests()
     {
-        yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"title");yield return new WaitForSeconds(.2f);
+        Check(N5Args.Has("-save-path"),"isolated explicit save path");yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"title");yield return new WaitForSeconds(.2f);
         if(!V2SceneMap.Enabled){var map=new GameObject("QA V2 mapping");map.SetActive(false);map.AddComponent<V2SceneMap>().rooms=new[]{"A01","C01","C04","C05","C06"};map.SetActive(true);}
         Check(ProgressSave.Continue()&&ProgressSave.PendingScene=="Assets/Scenes/Ending.unity","boss defeated before ending retains Ending");ProgressSave.Pending=null;
         yield return Tap(Key.Z);yield return Until(()=>SceneManager.GetActiveScene().name=="Ending","ending reached");yield return new WaitForSeconds(.2f);
