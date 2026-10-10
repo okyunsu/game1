@@ -20,7 +20,7 @@ public sealed class B07RoomVerifier:N5Runner
   DiscoveryReward.ResetSession();yield return NewGame();ProgressSave.Enabled=false;
   if(roomId!="A01"){Check(RoomSession.Instance.RequestTransition(roomId,V3SceneMap.Path(roomId),roomId=="C06"?"FromLeft":"Entry"),"room start fixture "+roomId);yield return Ready();}
   var plan=FindFirstObjectByType<V3RoomRoutes>();Check(plan!=null,"authored room itinerary");route=Array.Find(plan.routes,r=>r.name==routeName);Check(route!=null,"route "+routeName);
-  Player.GetComponent<PlayerDash>().hasDash=route.dash;Motor.hasWallJump=route.wallJump;Motor.hasDoubleJump=route.doubleJump&&!N5Args.Has("-b07-no-jump");
+  Player.GetComponent<PlayerDash>().hasDash=route.dash;Motor.hasWallJump=route.wallJump&&!N5Args.Has("-b07-no-wall");Motor.hasDoubleJump=route.doubleJump&&!N5Args.Has("-b07-no-jump");
   if(route.startSpawn!="Entry"||roomId=="C06"){var definition=FindFirstObjectByType<RoomDefinition>();Check(definition.TryGetSpawn(roomId=="C06"?"FromLeft":route.startSpawn,out var spawn),"start spawn");PlaceForAuthorizedSetup(spawn.transform.position);}
   original=Motor.Tuning;if(N5Args.Has("-b07-short")){candidate=Instantiate(original);candidate.wallJumpShortHorizontalSpeed=3.5f;candidate.wallJumpShortInputLock=.06f;Motor.SetWallJumpTestTuning(candidate);}
   yield return Keys();yield return new WaitForSeconds(.3f);
@@ -36,7 +36,7 @@ public sealed class B07RoomVerifier:N5Runner
   driver.observe=()=>{if(Complete())driver.active=false;};driver.active=true;double began=Time.realtimeSinceStartupAsDouble,limit=began+N5Args.Int("-b07-limit",150);
   while(driver.active&&!dead&&Time.realtimeSinceStartupAsDouble<limit){if(RoomSession.Instance?.Respawning==true||!Complete()&&RoomSession.Instance!=null&&RoomSession.Instance.CurrentRoomId!=roomId&&RoomSession.Instance.CurrentRoomId!=route.goal){dead=true;}yield return null;}
   driver.active=false;yield return Keys();if(replay=="")File.WriteAllText(Path.ChangeExtension(Evidence,"inputs.json"),JsonUtility.ToJson(recording,true));
-  lines.Add("MEASURE route seconds="+(Time.realtimeSinceStartupAsDouble-began)+" ticks="+driver.tick+" stage="+stage+" pos="+(Player==null?Vector2.zero:Body.position)+" pogos="+(Player==null?0:Player.GetComponent<PlayerAttack>().PogosPerformed));
+  lines.Add("MEASURE route seconds="+(Time.realtimeSinceStartupAsDouble-began)+" ticks="+driver.tick+" stage="+stage+" pos="+(Player==null?Vector2.zero:Body.position)+" pogos="+(Player==null?0:Player.GetComponent<PlayerAttack>().PogosPerformed)+" wallJumps="+(Player==null?0:Motor.WallJumpsPerformed)+" hp="+(Player==null?0:Health.HP));
   if(N5Args.Has("-b07-negative")){Check(!Complete(),"ability gate denies optional route");yield break;}
   Check(!dead&&Complete(),roomId+" "+routeName+" actual input "+(replay==""?"record":"replay"));
  }
