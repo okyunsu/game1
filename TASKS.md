@@ -2,17 +2,13 @@
 
 ## Current Sprint
 
-Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1/T2 DONE, T3 REVIEW, T4 PARTIAL, T5 REVIEW, T6 PARTIAL, T7~T13 REVIEW, T14 DOING, T15~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
+Sprint3 / Batch07 후보 구현·검증 종료(2026-10-11). 재개08:00–08:57 KST 약57분, 8시간 승인 범위 안. 브랜치 review/batch05-v2 유지, push0. 기본·V2 Scene/기존 Tuning/BossEncounter/Input Actions/Packages/ProjectSettings 변경0. V3 기본 채택·Short 손맛·Sprint Gate는 사용자 판단 대기.
 
-
-Batch06b 종료: 본5+Backlog2 기술 완료, Short/rising 손맛 REVIEW. 짧은 킥·현장 조절·측정 HUD·엔딩 후 CP-C01·메트릭·장치 안내 전달. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
-
-
-**Sprint 3**, 진입2026-10-03. 수락된 Target15방 + 선택 A06/B06/C05 후보로 실행18방. A06/C05 사람시간·체감 PARTIAL, B06 새 진입/왕복/CP/적초기화·전체R01~R17 기술PASS/REVIEW. PRD/GAME_DESIGN Target18 확정 조건은 아직 미충족.
-S3-01~05 DONE, S3-06~10·S2-04·F2R·LOGR·U1 REVIEW 유지. Sprint3 Gate는 사용자 자연 완주·체감 판단 대기, 다음 Sprint 확장 미착수.
-F1-R REVIEW: 명중0.05s/Pause·사망·0초 기술PASS 유지, 체감 대기. P03 진단 산출물 DONE, 게임 변경0·원본10/10/보정후9/10, 간헐 실패 이슈 OPEN.
-H1 기본값·기존2패턴·H2/H3 보존. AV1 사운드/형태·명도 후보 기술PASS/REVIEW. B2 돌진3fps·변형60/Pause·사망복귀 검증PASS, 잔여 도약회피 전체fps·동시HP0 및 감각으로 전체 PARTIAL.
+Batch07 본27개와 승인 재시도·Backlog7을 처리했다. A02 계단/굴뚝, C03 첫 선택, A02 때문에 전체 완주/19방 연속 CSV/장식 전체 유지 조건, V2 보스 회귀 의심은 PARTIAL이다. 그 외 기술 완료 또는 감각 REVIEW. 다음 Sprint 콘텐츠 확장 없음. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md)와 아래 기존 Current Tasks에 유지한다.
 ## Current Tasks
+
+**Batch07 현재 상태:** T0~2/T22~23/T26~27 DONE. 방 콘텐츠는 REVIEW, 예외 T4(A02)/T17(C03 첫 선택)는 PARTIAL; T6(A04 비밀)는 재개 PASS로 REVIEW. T24/T25 PARTIAL. Backlog BL1/4/5 PARTIAL, BL2 REVIEW, BL3/6/7 DONE. 상세 커밋·검증은 Latest Handoff. 완료 이력은 [이전 Task 결과](Archive/B07-handoff-before-final-20261011.md)에 보존한다.
+
 
 2026-10-10 **Batch06b 종료 — 본5+Backlog2 기술 완료**. 사용자 BATCH-06B.md, 최대12Task/6시간 안에 승인 큐 소진. 시작 c413b05; review/batch05-v2 유지. 기존 tracked 변경 없음, 사용자 Batch 파일 보존. 프리셋1 채택/구2·3 폐기, 가이드 유지/Pause 토글 취소.
 
@@ -44,8 +40,11 @@ B06-B1 기준/B06-B2 선택은 Batch06b의 사용자 프리셋1 채택으로 해
 
 ## Bugs
 
-### B07-A04-SECRET / OPEN
-필수·포고 도전은 PASS이나 높은 비밀 골방 접근 입력 미완료. T6 PARTIAL, 필수 길 영향0. 추가 비밀 재빌드는 자동 승인 검토가 재시도 한도로 거절. [증거](Validation/B07-T6-A04-summary.md).
+### B07-C03-OPTIONAL / OPEN
+필수 기본/Short·DJ 귀환은 PASS. 첫 선택 도전은 포고2회 후 높은 착지 미완주(stage6), 재개 승인 접근+보정2회 소진. 두 번째 선택 후보는 발견 기록/재생 PASS로 별도 유지. [증거](Validation/B07-R-C03-summary.md).
+
+### B07-V2-BOSS-REPLAY / OPEN — 회귀 의심
+새 빌드 V2 고정 입력이 W22 보스에서 두 번 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 전체 PASS. 원인 미확정. 기본13·V3 보스 실제 입력은 PASS. 추가 핵심 변경 없이 PARTIAL로 보존한다. [비교 결과](Validation/B07-T25-summary.md).
 
 
 ### B07-A02-TRAVERSE / OPEN
@@ -111,11 +110,9 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
-### B07-RETRY — 추가 후보 시도 승인 필요
+### B07-FINAL — 다음 후보 수정·채택 결정
 
-A02 필수/굴뚝, A04 비밀, C03 기본 등반·재방문은 재시도 한도 관련 자동 승인 검토 거절로 추가 수정/실행 경로 중단. 기존 후보는 PARTIAL 보존, 독립 Batch 작업 계속. 선택지: 다음 Batch에서 구체 수정안 추가 시도 승인(추천: 완주 차단 해소) / 현 후보 직접 플레이 후 판단. 풀리는 Task: 각 방·T24/Backlog 전체 완주. 상세는 방별 Validation 요약.
-
-
+A02 계단/굴뚝, C03 첫 포고 도전과 V2 보스 고정 입력 회귀 의심은 현재 PARTIAL이다. 추가 시도는 다음 Batch의 구체 범위 승인이 필요하다. 후보 유지·수정 후 검토 / 우선 직접 플레이 중 선택, AI 추천은 필수 A02와 V2 원인 진단 우선. V3 기본 채택과 Short/아트 방향은 사용자 수락까지 대기. Latest Handoff 질문지를 따른다. 이전 재시도 승인 대기는 [해소 이력](Archive/B07-resolved-decisions-20261011.md)으로 옮겼다.
 ### B06 — 벽 점프·가이드 수락 / REVIEW
 
 B1/B2 기술 PASS, 기본 프리셋1/끈적2/빠름3 손맛 선택과 V2 가이드 문구 톤/길찾기 수락 대기. 원본 튜닝 기본값 채택 없음. 직접 조정하려면 WallJumpTestCourse 프리셋 또는 PlayerTuning 신규5필드 위치를 따른다. RoomExit 허용 목록 누락은 사용자 ‘Batch06 실행 + RoomExit 최소 수정 승인’ 답변으로 해소했다. Task8 예산과 Backlog 추가 실행은 구분한다. V3 레벨 치수 확정은 벽 점프 감각 수락 후.
@@ -165,52 +162,65 @@ CAM-002 / K2 **DEFERRED** — 사용자 2026-10-03: 아트 적용 후 재확인,
 
 ## Approved Backlog
 
-Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정으로 Pause 목표 토글 취소, 가이드 현 상태 유지. Batch06b 메트릭/패드 안내까지 완료해 승인 Backlog 소진. Batch05 큐 소진. Batch07/08·기본 후보 채택·다음 Sprint 확대 미착수.
+Batch06b: CP-C01 엔딩 후 Continue/측정 HUD 구현 완료. 사용자 결정으로 Pause 목표 토글 취소, 가이드 현 상태 유지. Batch06b 메트릭/패드 안내까지 완료해 승인 Backlog 소진. Batch05 큐 소진. Batch07 승인 큐까지 소진. Batch08·기본 후보 채택·다음 Sprint 확대 미착수.
+
 
 ## Latest Handoff
 
-Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약173분, 10시간·50Task 예산. review/batch05-v2, push0. 이전 수락 대기는 [B06b 인계](Archive/B06b-handoff-20261010.md) 및 그 안의 B04/B05/B06 링크를 유지한다. V3 수락·Sprint Gate 미판단.
+Batch07 재개 종료. 전달: `Builds/B07-delivery/` Development 1개, 오류·경고0. 실행기7개 기동 PASS. review/batch05-v2 유지, 로컬 Task 커밋, push0. 기본/V2 Scene·기존 Tuning·BossEncounter·Input Actions·Packages·ProjectSettings 변경0. 사용자 Batch 문서와 N9-S5-hard-scene-map.txt 보존. 이전 결과는 [T0~T17 이력](Archive/B07-handoff-before-final-20261011.md), 이전 수락 대기는 [B06b](Archive/B06b-handoff-20261010.md).
 
-### Task별 결과
+### 1. 결정 질문지
 
-| Task | 상태 / 로컬 커밋 | 시작–종료(KST) | 주요 변경·실제 검증·문제 |
-|---|---|---|---|
-| T0 B06 코드 리뷰 | DONE / efd6406 | 10-10 21:54–22:11 | ProgressSave/PlayerMotor/PlayerDash/세이브 검증기. 핵심 동작·벽 검사·메트릭 PASS/Error0, 기본13/13·Pogo PASS. R09 첫실패→재생R11 기존실패, 이전빌드R11 동일. 기본세이브 해시동일. [요약](Validation/B07-T0-summary.md) |
-| T1 V3 기반 | DONE / dbb63b7 | 10-10 22:10–22:15 | V3SceneMap/ProgressSave/RoomSession/새Scene19/빌드. 59Scene errors0/warnings0, 실제exe 새게임·4CP·방문·legacy·V2 PASS/Error0. [요약](Validation/B07-T1-summary.md) |
-| T2 연결 부품 | DONE / 749cea6 | 10-10 22:15–22:20 | 새Prefab3/RoomExit/EndingFlow/Menu/ProgressSave/C06·S01 후보. 실제부품/V2 PASS/Error0, fade2.0446s, CP-C04→S01→Ending→CP-C01. [요약](Validation/B07-T2-summary.md) |
-| T3 A01 | REVIEW / f800ce4 | 10-10 22:20–22:46 | A01_V3·방 제작/입력 도구·LEVEL_V3. 필수/선택 재생·DJ 없는 진입 차단 PASS/Error0. 폭72u·5비트·낙사0·적0·전체샷. [요약](Validation/B07-T3-A01-summary.md) |
-| T4 A02 | PARTIAL / 41853d2 | 10-10 22:46–23:03 | 30×48u·4u 굴뚝·전체샷·빌드0. 필수3회 및 굴뚝1회 입력 미완주/Error0, 추가 실행 auto-review 거절. [요약](Validation/B07-T4-A02-summary.md) |
-| T5 A03 | REVIEW / 3f2f22a | 10-10 23:03–23:13 | 허브·G-D·구덩이 착지·터널, 필수/대시/귀환 기록·재생3/3 PASS/Error0. [요약](Validation/B07-T5-A03-summary.md) |
-| T6 A04 | PARTIAL / 8cc9b84 | 10-10 23:13–23:21 | 필수·포고2회 발견 기록/재생 PASS/Error0. 높은 비밀 접근 미완료·추가 빌드 auto-review 거절. [요약](Validation/B07-T6-A04-summary.md) |
-| T7 A05 | REVIEW / 492e15a | 10-10 23:21–23:26 | 대시 실제 획득·격자·벽 공격·A03 도착 및 선택 발견 기록/재생 PASS/Error0. [요약](Validation/B07-T7-A05-summary.md) |
-| T8 A06 | REVIEW / ee61440 | 10-10 23:26–23:33 | 귀환·DJ→E1 포고1회→공중 점프 발견 기록/재생 PASS/Error0. [요약](Validation/B07-T8-A06-summary.md) |
-| T9 B01 | REVIEW / 348f8ff | 10-10 23:33–23:42 | 중층 관문/표지판3/CP/숏컷/구덩이. 동쪽·실제 낙하 기록/재생 PASS/Error0. [요약](Validation/B07-T9-B01-summary.md) |
-| T10 B02 | REVIEW / 69d8f93 | 10-10 23:42–23:49 | E2×2·낙사1. 필수/돌진 대시/비밀 기록·재생3/3 PASS/Error0. [요약](Validation/B07-T10-B02-summary.md) |
-| T11 B03 | REVIEW / 18c98a6 | 10-10 23:49–23:58 | E3×3·엄폐·B06 분기. 필수/선택 기록·재생 PASS/Error0. [요약](Validation/B07-T11-B03-summary.md) |
-| T12 B04 | REVIEW / f2fe606 | 10-10 23:58–10-11 00:07 | 실제 획득·기본/Short 벽점프7회·벽파괴·B01, 선택3회 벽점프 및 무능력 차단 PASS/Error0. [요약](Validation/B07-T12-B04-summary.md) |
-| T13 B05 | REVIEW / 3b204b6 | 10-11 00:07–00:23 | 이단점프 없이 기본26/Short23 벽점프·Dash·Pogo1회 완등, 선택/무벽점프 차단 PASS/Error0. [요약](Validation/B07-T13-B05-summary.md) |
-| T14 B06 | REVIEW / 08fb7b9 | 10-11 00:23–00:34 | 귀환/벽점프3회→Dash 선택 기본·Short 기록/재생, 무벽점프·무대시 차단 PASS/Error0. [요약](Validation/B07-T14-B06-summary.md) |
-| T15 C01 | REVIEW / a6860b7 | 10-11 00:34–00:36 | 안전 허브·CP·표지판2·전망. 필수 기록/재생 PASS/Error0. [요약](Validation/B07-T15-C01-summary.md) |
-| T16 C02 | REVIEW / cab84e0 | 10-11 00:36–00:39 | 낙사2·E3·전망/비밀. 필수·선택·비밀 기록/재생3/3 PASS/Error0. [요약](Validation/B07-T16-C02-summary.md) |
-| T17 C03 | PARTIAL / 0b67817 | 10-11 00:39–00:47 | Short 등반 기록 PASS, 기본 킥 간섭/재방문 사망/선택 미완료. a1~a3 후 추가 a4 실행 auto-review 거절. [요약](Validation/B07-T17-C03-summary.md) |
-| T18 C05 | REVIEW / 이번 Task 커밋 | 10-11 00:47–00:51 / 재개08:00–08:27 | 실제 DJ 획득·필수/선택 기본/Short 기록·재생 PASS. [요약](Validation/B07-T18-C05-summary.md) |
-| T19 C04 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:16 | 필수 기록·재생 PASS, CP→보스 문4u. [요약](Validation/B07-T19-C04-summary.md) |
+| 질문·선택지 | AI 추천과 이유 | 풀리는 작업 |
+|---|---|---|
+| A02 추가 후보 수정 승인 / 현 후보 먼저 직접 플레이 | 필수 계단을 폭4·중심6.5/12(틈1.5) 후보로 다시 검토하고 굴뚝 출구 착지 진단. 현재 필수·굴뚝 입력 모두 미완주라 우선 해결 | A02/T24/BL1·4·5 전체 합격 |
+| C03 첫 포고 발견 수정 승인 / 현 후보 유지 | 포고 이후32/top3.7 착지 접근을 별도 후보로 검토. 두 번째 포고 발견은 이미 PASS | C03 첫 선택 합격 |
+| V2 보스 고정 입력 사망 원인 진단 승인 / 직접 플레이 우선 | 이전 빌드 PASS·새 빌드2회 FAIL이므로 위치·보스 시작 틱 비교 우선. 원인은 미확정 | T25 회귀 의심 해소 |
+| V3 기본 후보 채택 / 수정 후 재검토 / 보류 | A02와 회귀 의심 해소 후 재검토. 현재 기본 변경0 | 기본 후보 결정 |
+| 짧은 킥 채택 / 기준 유지 / 더 비교 | WallJumpTest에서 기준·Short 비교 후 판단. 기본/Short 방 검증과 손맛은 별개 | Short 감각 REVIEW |
+| 다음 아트: 현재 지역 블록 발전 / 픽셀 아트 방향 변경 / 보류 | 우선 필수 길·허브 흐름 수락 후 지역 블록 발전 | 다음 Batch 아트 범위 |
 
-| T20 C06 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:18 | 실제 보스 처치→계단→S01 기록·재생 PASS. [요약](Validation/B07-T20-C06-summary.md) |
+### 2. 직접 플레이 확인 (수락 대기 순서)
 
-| R-A02 | PARTIAL / 이번 Task 커밋 | 10-11 08:06–08:26 | 승인 접근+보정2회 소진, 필수·굴뚝 미완주. T24 QA 우회 허용. [요약](Validation/B07-R-A02-summary.md) |
+1. 이전 B04/B05/B06/B06b 체감 대기는 위 이전 인계 링크의 순서를 유지한다.
+2. `Play-V3-Guide.cmd`: A01부터 방 차이·허브·숏컷·구덩이 연결감 확인, 30~40분 목표. **A02는 미완주 문제여서 현재 자연 완주를 보장하지 않는다.** 막히면 아래 QA 실행기로 후반을 이어 확인한다. 자동 QA 우회는 일반 실행기에 적용되지 않는다.
+3. `Play-V3-NoGuide.cmd`: 가능하면 다른 날, 벽 점프 후 구덩이를 스스로 찾는지/소요 시간, 30~40분 목표.
+4. `QA-V3-A03.cmd`(대시), `QA-V3-B01.cmd`(대시·벽점프), `QA-V3-C01.cmd`(전 능력), `QA-V3-C04.cmd`(보스 직전): 타이틀에서 Continue. C05 획득/왕복·C06 전투/문·S01 조용한 전 능력 등반과 빈 광장의 허무함, 각5~10분. 네 QA 슬롯 독립.
+5. A04 비밀과 A04/B02/C02/C03 두 번째 발견 후보, 각2~5분. 기술 PASS이며 난이도·발견감 수락 대기.
+6. `Play-WallJumpTest.cmd`: Short3.5u/s/.06s와 상승 부착 후보, 5~10분. Asset 기본 채택 없음.
 
-| T22 게이트 | DONE / 이번 Task 커밋 | 10-11 08:08–08:30 | G-D/G-W/G-J 8조합·숏컷 역공격·구덩이 역진입 차단 PASS/Error0. [요약](Validation/B07-T22-summary.md) |
+조정 위치: V3 Scene Transform/RoomCameraRig, 반복 Prefab, 기존 PlayerTuning Asset. Scene은 Play 종료 후 같은 값을 다시 입력·저장·재빌드한다. Pickup 안내 시간은 컴포넌트 Inspector 한 곳. Short는 런타임 복사본. 방 시간·출구·사망 위치는 Playtest/ CSV. 사람 시간은 아직 실측하지 않았다.
 
-| R-C03 | PARTIAL / 이번 Task 커밋 | 10-11 08:06–08:38 | 필수 기본/Short·DJ 귀환 기록·재생 PASS, 선택 포고 발견 미완료. [요약](Validation/B07-R-C03-summary.md) |
+### 3. Task별 결과
 
-| T21 S01 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:38 | 전 능력→빈 광장→엔딩 기본/Short 기록·재생 PASS. S01 표적 피해 제거. [요약](Validation/B07-T21-S01-summary.md) |
+재개08:00~08:57 KST. Task별 상세 시간·원문 MEASURE/FAIL·미실시는 링크된 요약에 있다. 아래는 이번 재개 결과이며 T0~T17 원본 시간/커밋은 위 Archive 표에 보존했다.
 
-| T23 가이드 | DONE / 이번 Task 커밋 | 10-11 08:08–08:36 | 9단계·19방 실제그래프·등불31·no-guide0 PASS/Error0. [요약](Validation/B07-T23-summary.md) |
+| Task | 상태 / 커밋 | 주요 파일·실제 검증·문제 |
+|---|---|---|
+| T18 C05 | REVIEW / d8777fb | C05_V3·B07Rooms·빌드. 실제 DJ획득/필수·전능력 선택 기본/Short 기록·재생 PASS. [요약](Validation/B07-T18-C05-summary.md) |
+| T19 C04 | REVIEW / cd774c0 | C04_V3. CP→보스4u/필수 기록·재생 PASS. [요약](Validation/B07-T19-C04-summary.md) |
+| T20 C06 | REVIEW / 4eec97f | C06_V3·B07Parts. 기존 보스 실제 처치→계단→S01 기록·재생 PASS. [요약](Validation/B07-T20-C06-summary.md) |
+| T21 S01 | REVIEW / d884f01 | S01_V3·입력 검증기. 기본/Short 기록·재생 PASS, Scene 표적 KillZone 제거/실제0. [요약](Validation/B07-T21-S01-summary.md) |
+| R-A02 | PARTIAL / b3807f3 | A02_V3. 승인 접근+보정2회 후 계단/굴뚝 미완주. 더 수정 안 함. [요약](Validation/B07-R-A02-summary.md) |
+| R-C03 | PARTIAL / 73b23bb | C03_V3. 필수 기본/Short·DJ 귀환 기록·재생 PASS, 첫 포고 발견 stage6 미완료. [요약](Validation/B07-R-C03-summary.md) |
+| T22 게이트 | DONE / 70ba067 | GateVerifier. G-D/G-W/G-J8조합·숏컷 역공격·구덩이 역진입 모두 차단 PASS. [요약](Validation/B07-T22-summary.md) |
+| T23 가이드 | DONE / 1bbb811 | V3 Objectives/Graph/Scene 등불31. 9단계·19방·no-guide0 PASS, 최종 Dev에서도 PASS. [요약](Validation/B07-T23-summary.md) |
+| T24 연속 경로 | PARTIAL / 9a7732c | WorldVerifier. **A02 두 구간 QA 건너뜀**, 나머지 실제 획득·보스→엔딩→타이틀60fps PASS/Error0. CP4/legacy PASS. 전체 무중단 합격 아님. [요약](Validation/B07-T24-summary.md) |
+| T25 회귀 | PARTIAL / 2a47dc1 | 기본13/13 PASS. 기존 R09/P03 FAIL. V2 새 빌드 보스 사망2회/이전 빌드 완주PASS, 원인 미확정. [요약](Validation/B07-T25-summary.md) |
+| T26 전달 | DONE / db48714 | Launchers/B07·LaunchVerifier. Dev1개 errors0/warnings0, 기동7/7 PASS·별도 슬롯. Dev 가이드/부품도 PASS. [요약](Validation/B07-T26-summary.md) |
+| R-A04 마지막 | REVIEW / 3064b1c | A04_V3·author. 실제11u 도움닫기 적용 후 비밀 기록/재생 PASS, 필수·기존 포고도 PASS. [요약](Validation/B07-R-A04-summary.md) |
+| BL1 기록기 | PARTIAL / 561a2e0 | PlaytestLogger·RoomExit. 실제19방 fixture CSV PASS, 연속19방 합격은 A02로 미충족. [요약](Validation/B07-BL1-summary.md) |
+| BL2 두 번째 선택 | REVIEW / fbe98c5 | Extras·4Scene. 발견4/4 기록·재생 PASS, 유형 최대3회. [요약](Validation/B07-BL2-summary.md) |
+| BL3 리듬 | DONE / 2dd77dc | LEVEL_V3. 실제 PASS18방 시간·A02미완주, 30초미만 표시/이유, 배치 수정0. [요약](Validation/B07-BL3-summary.md) |
+| BL4 장식 | PARTIAL / 822d233 | V3 Scene18. 블록54/Collider0/S01비움. A02제외 경로+선택방2 PASS, 전체 합격은 A02 대기. [요약](Validation/B07-BL4-summary.md) |
+| BL5 fps | PARTIAL / f4c99c8 | 실제30/120fps에서도 A02 두 구간 제외 나머지→엔딩→타이틀 PASS/Error0. [요약](Validation/B07-BL5-summary.md) |
+| BL6 보스 연결 | DONE / 06c138d | InventoryVerifier. runtime B2/fast/slow 모두 기본BossTuning, 연결 없음 기록만/보스 수정0. [요약](Validation/B07-BL6-summary.md) |
+| BL7 품질 | DONE / 907df94 | GUI 캐시·Pickup fallback·Metrics 교차. 기본13/13, 진짜30fps5킥3.34s/HUD차.0421s PASS. [요약](Validation/B07-BL7-summary.md) |
+| T27 인계 | DONE / 최종 HEAD | LEVEL_V3/README/TASKS/Archive. 실제19방 샷·그래프·한계·질문/수락 목록 정리. [요약](Validation/B07-T27-summary.md) |
 
-### 다음 작업
+[실제 연결도](Archive/B07-world-graph-20261011.md) · [19방 스크린샷 목록](Archive/B07-room-screenshots-20261011.md) · [전체 보기](Validation/_raw/B07/contact-decor.png). 원본 로그·입력·CSV·PNG는 raw/Playtest에 미커밋 보존, 삭제·덮어쓰기 없음.
 
-T1→T2→방19개→T22~T27→Batch Backlog 순서. 보호 Scene·기존Tuning·BossEncounter·ProjectSettings 변경0. BATCH-07.md는 사용자 파일로 미추적 상태 보존.
+### 4. 다음 Batch 후보
 
-
+A02 계단/굴뚝 수정 후보 → C03 첫 선택 착지 → V2 보스 고정 입력 회귀 원인 → A02 포함 전체 연속/19방 CSV 재확인 → 사용자 V3·Short 수락과 아트 방향. 구체 승인 전 추가 시도·기본 채택·다음 Sprint 대규모 확장은 하지 않는다.
 

@@ -1,0 +1,22 @@
+# V3 최종 방 스크린샷 19장
+
+원본은 Validation/_raw/B07/에 보존한다. 이전 원본도 덮어쓰지 않고 별도 이름으로 유지한다.
+- [A01](../Validation/_raw/B07/A01-overview.png)
+- [A02](../Validation/_raw/B07/A02-overview.png)
+- [A03](../Validation/_raw/B07/A03-overview.png)
+- [A04](../Validation/_raw/B07/A04-overview.png)
+- [A05](../Validation/_raw/B07/A05-overview.png)
+- [A06](../Validation/_raw/B07/A06-overview.png)
+- [B01](../Validation/_raw/B07/B01-overview.png)
+- [B02](../Validation/_raw/B07/B02-overview.png)
+- [B03](../Validation/_raw/B07/B03-overview.png)
+- [B04](../Validation/_raw/B07/B04-overview.png)
+- [B05](../Validation/_raw/B07/B05-overview.png)
+- [B06](../Validation/_raw/B07/B06-overview.png)
+- [C01](../Validation/_raw/B07/C01-overview.png)
+- [C02](../Validation/_raw/B07/C02-overview.png)
+- [C03](../Validation/_raw/B07/C03-overview.png)
+- [C04](../Validation/_raw/B07/C04-overview.png)
+- [C05](../Validation/_raw/B07/C05-overview.png)
+- [C06](../Validation/_raw/B07/C06-overview.png)
+- [S01](../Validation/_raw/B07/S01-overview.png)

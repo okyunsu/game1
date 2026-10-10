@@ -236,3 +236,11 @@ Development 실행기:
 - `QA-AfterEnding.cmd`: 실행할 때마다 별도 `qa-afterending.json` 슬롯을 엔딩 도달/능력3종으로 다시 만든다. 이어하기→C01_V2/CP-C01, C06 보스 재등장 없음. 일반 QA 슬롯과 분리된다.
 
 영구 튜닝은 `Assets/ScriptableObjects/PlayerTuning.asset` Wall jump. 기존 프리셋1 값은 채택했다. Short3.5/.06과 상승 부착은 후보로만 제공하며, 기본 Asset 반영은 사용자 결정 이후 Stop 상태에서 편집·저장·재빌드한다. Scene 배치가 원본이며 V3 레벨은 이번에 바꾸지 않았다.
+
+## Batch07 V3 후보 실행 (2026-10-11)
+
+`Builds/B07-delivery/Play-V3-Guide.cmd`와 `Play-V3-NoGuide.cmd`로 시작합니다. QA-V3-A03/B01/C01/C04.cmd는 각각 대시 / 대시·벽점프 / 전 능력 / 보스 직전 CP를 별도 슬롯에 준비하며 타이틀에서 Continue를 선택합니다. 슬롯은 `Builds/B07-delivery/slots/<Mode>.json`입니다. 기본 저장과 분리됩니다. `Play-WallJumpTest.cmd`도 함께 있습니다. 실행기 원본은 `Launchers/B07/`입니다.
+
+A02 계단·굴뚝과 C03 첫 선택 도전은 PARTIAL입니다. QA 우회 검증은 실행기 기본 플레이에 적용되지 않습니다. 30/60/120fps는 A02 두 구간을 건너뛴 나머지 경로만 엔딩까지 확인했습니다. V2 고정 입력 보스 사망은 회귀 의심으로 남았습니다. 자세한 상태·결정·직접 플레이 순서는 TASKS Latest Handoff에 있습니다.
+
+조정할 배치·영역은 V3 Scene, 반복 오브젝트는 기존 Prefab이 원본입니다. 이동 수치는 기존 PlayerTuning Asset 한 곳에서 조절합니다. Scene 값을 Play에서 바꾸면 Stop 후 같은 값을 다시 입력·저장하고 재빌드합니다. Short 후보는 런타임 복사본이며 기본값으로 채택하지 않았습니다. WallJumpPickup 획득 안내 길이는 해당 컴포넌트 Inspector의 announcementSeconds(초)입니다. V3 방 시간·출구·사망 위치는 `Playtest/` CSV에 기록됩니다.
