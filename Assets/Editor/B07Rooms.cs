@@ -179,7 +179,9 @@ public static class B07Rooms
     plan.routes=new[]{Route("main","C01",true,true,false,first.Concat(new[]{Point(14,36,A.DashAir),Point(16,36,A.Pogo),Point(20,36.81f,A.Jump),Point(21.6f,50.6f,A.Climb),Point(19,49.81f,A.WalkUnder),Point(21.6f,62.6f,A.Climb),Point(20,61.81f,A.WalkUnder),Point(22,61.81f)}).ToArray()),Route("optional","Discovery:V3-B05-optional",true,true,false,first.Concat(new[]{Point(6,36,A.DashAir),Point(4,36,A.Pogo),Point(3,37.31f,A.Jump)}).ToArray())};break;
    case "B06":
     Shell(id,60,20);Floor(0,60);Exit("B03",2,2,"FromB06",false);Enemy("E1",38,1.51f);Platform("Steam low step",18,2.4f,6);Block("Marked steam stack",27,5,.5f,8,true);
-    plan.beats="분기 / 낮은 증기 단 / 벽·대시 / E1 / 귀환";plan.routes=new[]{Route("main","B03",true,true,false,Point(16,1.81f),Point(2,1.81f))};Optional("벽 점프 + 대시",12,true,true,false,A.Dash);break;
+    Platform("Wall dash launch",28.75f,9,3);Platform("Wall dash landing",38,9,3);Reward("optional",38,9.8f);
+    plan.beats="분기 / 낮은 증기 단 / 벽·대시 / E1 / 귀환";plan.optionalType="벽 점프 + 대시";
+    plan.routes=new[]{Route("main","B03",true,false,false,Point(16,1.81f),Point(2,1.81f)),Route("optional","Discovery:V3-B06-optional",true,true,false,Point(14,1.81f),Point(18,3.21f,A.Jump),Point(26.35f,1.81f),Point(26.35f,10.6f,A.Climb),Point(28.8f,9.81f,A.WalkUnder),Point(30.2f,9.81f),Point(38,9.81f,A.DashAir))};break;
    case "C01":
     Shell(id,60,18);Floor(0,60);Checkpoint("CP-C01",12,1.81f);Exit("B05",2,2,"FromC01");Exit("C02",58,2);Sign(21,1.8f,"여기까지 와서 멈춘 이유? 위를 본 적이 있거든.");Sign(32,1.8f,"정상에 가면 뭘 할 거냐고? …글쎄.");Platform("Quiet waiting terrace",42,2,10);
     plan.beats="상층 도착 / CP / 두 표지판 / 전망 / 외벽 출구";plan.routes=new[]{Route("main","C02",true,true,false,Point(32,1.81f),Point(42,2.81f,A.Jump),Point(58,1.81f))};break;

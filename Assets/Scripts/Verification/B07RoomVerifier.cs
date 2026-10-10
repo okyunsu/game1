@@ -20,7 +20,7 @@ public sealed class B07RoomVerifier:N5Runner
   DiscoveryReward.ResetSession();yield return NewGame();ProgressSave.Enabled=false;
   if(roomId!="A01"){Check(RoomSession.Instance.RequestTransition(roomId,V3SceneMap.Path(roomId),roomId=="C06"?"FromLeft":"Entry"),"room start fixture "+roomId);yield return Ready();}
   var plan=FindFirstObjectByType<V3RoomRoutes>();Check(plan!=null,"authored room itinerary");route=Array.Find(plan.routes,r=>r.name==routeName);Check(route!=null,"route "+routeName);
-  Player.GetComponent<PlayerDash>().hasDash=route.dash;Motor.hasWallJump=route.wallJump&&!N5Args.Has("-b07-no-wall");Motor.hasDoubleJump=route.doubleJump&&!N5Args.Has("-b07-no-jump");
+  Player.GetComponent<PlayerDash>().hasDash=route.dash&&!N5Args.Has("-b07-no-dash");Motor.hasWallJump=route.wallJump&&!N5Args.Has("-b07-no-wall");Motor.hasDoubleJump=route.doubleJump&&!N5Args.Has("-b07-no-jump");
   if(route.startSpawn!="Entry"||roomId=="C06"){var definition=FindFirstObjectByType<RoomDefinition>();Check(definition.TryGetSpawn(roomId=="C06"?"FromLeft":route.startSpawn,out var spawn),"start spawn");PlaceForAuthorizedSetup(spawn.transform.position);}
   original=Motor.Tuning;if(N5Args.Has("-b07-short")){candidate=Instantiate(original);candidate.wallJumpShortHorizontalSpeed=3.5f;candidate.wallJumpShortInputLock=.06f;Motor.SetWallJumpTestTuning(candidate);}
   yield return Keys();yield return new WaitForSeconds(.3f);
