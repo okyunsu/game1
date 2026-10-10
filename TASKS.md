@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0 DONE, T1 DOING, T2~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
+Batch07 진행 중(2026-10-10 21:54 KST 시작). 승인: BATCH-07.md, 최대10시간/50Task. 시작 e3b2352, review/batch05-v2. 사용자 미추적 Batch 문서 보존. T0/T1 DONE, T2 DOING, T3~T27 및 Backlog TODO. 기본/V2 Scene·Tuning·BossEncounter·ProjectSettings 보호.
 
 
 Batch06b 종료: 본5+Backlog2 기술 완료, Short/rising 손맛 REVIEW. 짧은 킥·현장 조절·측정 HUD·엔딩 후 CP-C01·메트릭·장치 안내 전달. 현재 review/batch05-v2 유지, V3 레벨 작업 미착수. Batch06: Sprint3의 V3 시스템 준비 기술 작업 종료. 벽 점프 테스트·부서지는 벽·V2 가이드·표지판·표시 제목 추가. V3 월드 재배선/레벨/S01/엔딩은 미착수. 기존 기본·V2 수락 상태와 Sprint3 Gate는 유지한다.
@@ -162,8 +162,9 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약17분, 10시간·50Ta
 
 | Task | 상태 / 로컬 커밋 | 시작–종료(KST) | 주요 변경·실제 검증·문제 |
 |---|---|---|---|
-| T0 B06 코드 리뷰 | DONE / 이번 Task 커밋 | 10-10 21:54–22:11 | ProgressSave/PlayerMotor/PlayerDash/세이브 검증기. 핵심 동작·벽 검사·메트릭 PASS/Error0, 기본13/13·Pogo PASS. R09 첫실패→재생R11 기존실패, 이전빌드R11 동일. 기본세이브 해시동일. [요약](Validation/B07-T0-summary.md) |
-| T1 V3 기반 | DOING | 10-10 22:10– | 새매핑·Scene·빌드 목록 준비 |
+| T0 B06 코드 리뷰 | DONE / efd6406 | 10-10 21:54–22:11 | ProgressSave/PlayerMotor/PlayerDash/세이브 검증기. 핵심 동작·벽 검사·메트릭 PASS/Error0, 기본13/13·Pogo PASS. R09 첫실패→재생R11 기존실패, 이전빌드R11 동일. 기본세이브 해시동일. [요약](Validation/B07-T0-summary.md) |
+| T1 V3 기반 | DONE / 이번 Task 커밋 | 10-10 22:10–22:15 | V3SceneMap/ProgressSave/RoomSession/새Scene19/빌드. 59Scene errors0/warnings0, 실제exe 새게임·4CP·방문·legacy·V2 PASS/Error0. [요약](Validation/B07-T1-summary.md) |
+| T2 연결 부품 | DOING | 10-10 22:15– | 한방향낙하·보스후문·S01엔딩 |
 
 ### 다음 작업
 

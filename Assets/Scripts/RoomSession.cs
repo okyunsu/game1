@@ -58,6 +58,7 @@ public sealed class RoomSession : MonoBehaviour
             ProgressSave.Pending = null;
         }
         Place(spawn, room);
+        ProgressSave.VisitRoom(room.roomId,this);
     }
     void Place(RoomSpawn spawn, RoomDefinition room)
     {
@@ -128,7 +129,7 @@ public sealed class RoomSession : MonoBehaviour
         sprite.enabled = false;
         yield return new WaitForSecondsRealtime(respawnDelay);
         string roomId = CheckpointId == null ? "A01" : checkpointRoom;
-        string scenePath = CheckpointId == null ? "Assets/Scenes/A01.unity" : checkpointScene;
+        string scenePath = CheckpointId == null ? V3SceneMap.Resolve("Assets/Scenes/A01.unity") : checkpointScene;
         string spawnId = CheckpointId == null ? "Entry" : checkpointSpawn;
         if (CurrentRoomId != roomId)
             yield return Transition(roomId, scenePath, spawnId);
@@ -171,6 +172,7 @@ public sealed class RoomSession : MonoBehaviour
         var previous = currentScene;
         currentScene = next;
         CurrentRoomId = room.roomId;
+        ProgressSave.VisitRoom(room.roomId,this);
         SceneManager.SetActiveScene(next);
         // Disable old output before the snap; never leave two rendering cameras active.
         foreach (var root in previous.GetRootGameObjects())
