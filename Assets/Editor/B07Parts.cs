@@ -31,7 +31,7 @@ public static class B07Parts
   var exit=S3Authoring.Exit(room,"Summit",new Vector2(10,9.5f),"S01","Entry");exit.destinationScenePath=V3SceneMap.Path("S01");exit.gameObject.AddComponent<V3ExitRule>().bossOnly=true;door.upperExit=exit;
   door.blocker=S3Authoring.Block(room,"Wall","V3 summit sealed panel",new Vector2(10,9.5f),new Vector2(1,2));
   var stairs=new System.Collections.Generic.List<GameObject>();
-  for(int i=0;i<4;i++)stairs.Add(S3Authoring.Block(room,"Landing","V3 post-victory step "+i,new Vector2(i%2==0?6:10,2.75f+i*2),new Vector2(3,.5f)));
+  for(int i=0;i<4;i++)stairs.Add(S3Authoring.Block(room,"Landing","V3 post-victory step "+i,new Vector2(i%2==0?5:11,2.75f+i*2),new Vector2(3,.5f)));
   door.stairs=stairs.ToArray();foreach(var step in door.stairs)step.SetActive(false);exit.enabled=false;return door;
  }
 }

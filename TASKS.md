@@ -196,6 +196,8 @@ Batch07 진행 중. 시작2026-10-10 21:54 KST / 누적 약173분, 10시간·50T
 | T18 C05 | DOING | 10-11 00:47– / 재개08:00– | 필수·선택 기본/Short 기록PASS, 기본 고정재생 종료 경계 보정 중 |
 | T19 C04 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:16 | 필수 기록·재생 PASS, CP→보스 문4u. [요약](Validation/B07-T19-C04-summary.md) |
 
+| T20 C06 | REVIEW / 이번 Task 커밋 | 10-11 08:06–08:18 | 실제 보스 처치→계단→S01 기록·재생 PASS. [요약](Validation/B07-T20-C06-summary.md) |
+
 ### 다음 작업
 
 T1→T2→방19개→T22~T27→Batch Backlog 순서. 보호 Scene·기존Tuning·BossEncounter·ProjectSettings 변경0. BATCH-07.md는 사용자 파일로 미추적 상태 보존.

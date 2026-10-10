@@ -207,7 +207,7 @@ public static class B07Rooms
     plan.beats="마지막 계단 / 넓은 휴식 / CP-C04 / 보스 문";plan.routes=new[]{Route("main","C06",true,true,true,Point(23,2.81f,A.Jump),Point(36,2.31f),Point(48,1.81f),Point(52,1.81f))};break;
    case "C06":
     EditorSceneManager.OpenScene("Assets/Scenes/C06.unity");room=Object.FindFirstObjectByType<RoomDefinition>();foreach(var exit in room.GetComponentsInChildren<RoomExit>())exit.destinationScenePath=V3SceneMap.Path(exit.destinationRoomId);B07Parts.AttachBoss(room);
-    plan=room.gameObject.AddComponent<V3RoomRoutes>();plan.dimensions=new Vector2(20,16);plan.beats="기존 진입 잠금 / 기존 보스 / 위 문 개방 / 정상 출구";plan.routes=new[]{Route("main","S01",true,true,true,Point(15.7f,1.81f,A.Boss),Point(6,3.81f,A.Jump),Point(10,5.81f,A.Jump),Point(6,7.81f,A.Jump),Point(10,9.81f,A.Jump))};plan.enemyCount=1;break;
+    plan=room.gameObject.AddComponent<V3RoomRoutes>();plan.dimensions=new Vector2(20,16);plan.beats="기존 진입 잠금 / 기존 보스 / 위 문 개방 / 정상 출구";plan.routes=new[]{Route("main","S01",true,true,true,Point(15.7f,1.81f,A.Boss),Point(5,3.81f,A.Jump),Point(6.2f,3.81f,A.WalkUnder),Point(11,5.81f,A.Jump),Point(9.8f,5.81f,A.WalkUnder),Point(5,7.81f,A.Jump),Point(6.2f,7.81f,A.WalkUnder),Point(11,9.81f,A.Jump),Point(10,9.81f))};plan.enemyCount=1;break;
    case "S01":
     Shell(id,40,42);Floor(0,40);Exit("C06",2,2,"FromLeft",false);Platform("Quiet first landing",9,3,6);Platform("Double jump ledge",16,6.6f,4);Block("Quiet marked wall",20.25f,14,.5f,12,true);Platform("Wall summit rest",25,20,6);Pogo(31,20.5f);Platform("Pogo onward",34,23,4);
     var quiet=new List<P>{Point(9,3.81f,A.Jump),Point(16,7.41f,A.DoubleJump),Point(19.6f,21.6f,A.Climb),Point(25,20.81f),Point(29,23,A.DashAir),Point(31,22,A.Pogo),Point(34,23.81f,A.DoubleJump)};
