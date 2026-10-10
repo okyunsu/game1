@@ -96,9 +96,12 @@ public static class B07Rooms
  }
  static void Secret(float x)
  {
-  // A low side alcove under a roof: entry is sealed entirely by the cracked wall.
-  Block("Secret roof",x+4,4.5f,8,1);Wall("V3-secret-"+room.roomId,x,2.5f,3,BreakableWall.Side.Any,true);Reward("secret",x+5,1.8f);
-  plan.routes=plan.routes.Concat(new[]{Route("secret","Discovery:V3-"+room.roomId+"-secret",true,true,true,Point(x-1.3f,1.81f),Point(x-1.3f,1.81f,A.Wall,"V3-secret-"+room.roomId),Point(x+5,1.81f))}).ToArray();
+  // Raised side alcove leaves the mandatory ground route open below it.
+  Platform("Secret low approach",x-6,3.5f,3);Platform("Secret wall approach",x-2,5,3);Platform("Secret alcove floor",x+4,5,8);
+  Block("Secret roof",x+4,8.5f,8,1);Block("Secret back",x+8.25f,6.5f,.5f,3);Wall("V3-secret-"+room.roomId,x,6.5f,3,BreakableWall.Side.Any,true);Reward("secret",x+5,5.8f);
+  var prefix=plan.routes[0].points.Take(plan.routes[0].points.Length-1).TakeWhile(p=>p.position.x<x-8).ToArray();
+  var approach=new[]{Point(x-7,1.81f),Point(x-6,4.31f,A.DoubleJump),Point(x-2,5.81f,A.Jump),Point(x-1.3f,5.81f,A.Wall,"V3-secret-"+room.roomId),Point(x+5,5.81f)};
+  plan.routes=plan.routes.Concat(new[]{Route("secret","Discovery:V3-"+room.roomId+"-secret",true,true,true,prefix.Concat(approach).ToArray())}).ToArray();
  }
  public static void Run()
  {
@@ -130,9 +133,9 @@ public static class B07Rooms
     var back=Route("return","A02",true,true,false,Point(20,1.81f),Point(15,-.19f),Point(11,1.81f,A.Jump),Point(2,1.81f));back.startSpawn="FromPit";
     plan.routes=new[]{Route("main","A04",false,false,false,Point(11,1.81f),Point(15,-.19f),Point(20,1.81f,A.Jump),Point(22,1.81f),Point(30,3.31f,A.Jump),Point(58,1.81f,A.WalkUnder)),gdRoute,back};break;
    case "A04":
-    Shell(id,90,18);Floor(0,90);Exit("A03",2,2);Exit("A05",88,2);Enemy("E1",34,1.51f);Enemy("E1",38,1.51f);Platform("Pogo reward landing",43,4.5f,3);Reward("optional",43,6);
+    Shell(id,90,18);Floor(0,90);Exit("A03",2,2);Exit("A05",88,2);Enemy("E1",34,1.51f);Enemy("E1",38,1.51f);Platform("Pogo reward landing",42,3.7f,4);Reward("optional",42,4.5f);
     plan.beats="첫 E1 소개 / 넓은 회피 / 포고 분기 / 금 간 벽 / 출구";plan.optionalType="적 위 포고 연속";
-    plan.routes=new[]{Route("main","A05",false,false,false,Point(30,1.81f),Point(36,1.81f,A.Jump),Point(42,1.81f,A.Jump),Point(52,1.81f),Point(88,1.81f)),Route("optional","Discovery:V3-A04-optional",false,false,false,Point(30,1.81f),Point(34,3.5f,A.Pogo),Point(38,3.5f,A.Pogo),Point(43,5.31f,A.Jump))};Secret(67);break;
+    plan.routes=new[]{Route("main","A05",false,false,false,Point(30,1.81f),Point(36,1.81f,A.Jump),Point(42,1.81f,A.Jump),Point(52,1.81f),Point(88,1.81f)),Route("optional","Discovery:V3-A04-optional",false,false,false,Point(30,1.81f),Point(34,3.5f,A.Pogo),Point(38,3.5f,A.Pogo),Point(42,4.51f))};Secret(67);break;
    case "A05":
     Shell(id,72,16);Floor(0,72);Exit("A04",2,2);Pickup<DashPickup>(24,1.8f);Spawn("FromShortcut",68,1.81f);Exit("A03",70,2,"FromA05",false);Block("Shortcut tunnel roof",64,4.5f,16,1);Wall("V3-shortcut-A05",65,2.5f,3,BreakableWall.Side.Left);
     var practice=Block("Practice lattice",42,2.5f,1,3);practice.AddComponent<DashGate>();Block("Practice roof",42,10,1,12);
