@@ -13,6 +13,15 @@ public static class B06Build
         Directory.CreateDirectory("Builds/"+tag);Directory.CreateDirectory("Validation/_raw/B06");
         var result=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName="Builds/"+tag+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=N5Args.Has("-b06-release")?BuildOptions.None:BuildOptions.Development});
         File.WriteAllText("Validation/_raw/B06/"+tag+"-build.txt",result.summary.result+" errors="+result.summary.totalErrors+" warnings="+result.summary.totalWarnings+" development="+!N5Args.Has("-b06-release")+"\n"+string.Join("\n",scenes));
+        if(result.summary.result==BuildResult.Succeeded)WriteLaunchers(tag);
         EditorApplication.Exit(result.summary.result==BuildResult.Succeeded?0:1);
     }
+    static void WriteLaunchers(string tag)
+    {
+        string folder="Builds/"+tag;
+        string[] names={"Play-V2-Guide.cmd","Play-V2-NoGuide.cmd","Play-WallJumpTest.cmd"};
+        string[] args={"-save-path \"%~dp0progress-v2-guide.json\"","-no-guide -save-path \"%~dp0progress-v2-noguide.json\"","-walljumptest -save-path \"%~dp0wall-test-unused.json\""};
+        for(int i=0;i<names.Length;i++)File.WriteAllText(folder+"/"+names[i],"@echo off\r\ncd /d \"%~dp0..\\..\"\r\n\"%~dp0Afterglow.exe\" "+args[i]+" %*\r\n",new System.Text.UTF8Encoding(false));
+    }
+    public static void Launchers(){WriteLaunchers("B06-delivery");EditorApplication.Exit(0);}
 }

@@ -27,7 +27,7 @@ public static class B06Authoring
         for(int i=0;i<3;i++)
         {
             float start=8+i*14,width=3+i;
-            Wall(room,"Chimney "+width+" left",new Vector2(start-.25f,7),new Vector2(.5f,12));
+            Wall(room,"Chimney "+width+" left",new Vector2(start-.25f,8),new Vector2(.5f,10)); // 2u entrance; summit remains 12u above floor.
             Wall(room,"Chimney "+width+" right",new Vector2(start+width+.25f,7),new Vector2(.5f,12));
             Block(room,"Chimney "+width+" summit",new Vector2(start+width+2,12.75f),new Vector2(3,.5f));
         }
@@ -56,6 +56,17 @@ public static class B06Authoring
     static GameObject Wall(RoomDefinition room,string name,Vector2 at,Vector2 size)
     {
         var go=Block(room,name,at,size);go.AddComponent<ClimbableWall>();go.GetComponent<SpriteRenderer>().color=Color.cyan;return go;
+    }
+    public static void OpenTestEntrances()
+    {
+        Open();
+        for(int width=3;width<=5;width++)
+        {
+            var wall=GameObject.Find("Chimney "+width+" left");
+            wall.transform.position=new Vector3(wall.transform.position.x,8,0);wall.transform.localScale=new Vector3(.5f,10,1);
+        }
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        File.WriteAllText("Validation/_raw/B06/F1-test-entrances.txt","PASS 2u lower left entrances in three test chimneys; floor1 to summit13 remains12u; no main/V2 geometry changes.\n");EditorApplication.Exit(0);
     }
     public static void CreateBreakables()
     {

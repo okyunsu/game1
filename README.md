@@ -1,5 +1,19 @@
 # 메트로 1
 
+## Batch 06 시스템 확인 빌드 (2026-10-10)
+
+`Builds/B06-delivery/Afterglow.exe`는 V2 전체 Development 후보다. 아래 실행기를 사용한다(기본 저장 슬롯과 분리).
+
+- [벽 점프 테스트](Builds/B06-delivery/Play-WallJumpTest.cmd): 저장 없음. 표시된 청록색 벽 쪽 입력으로 미끄러짐, Z/패드 A로 벽 점프. 숫자 1/2/3으로 기본·끈적·빠름 프리셋 비교. 세 굴뚝은 왼쪽 하단 입구에서 진입한다. 포고 표적·대시 연계·일반벽 대조와 부서지는 벽2종도 있다.
+- [V2 가이드 켬](Builds/B06-delivery/Play-V2-Guide.cmd): 목표 한 줄·필수 연결 등불, F1 개발 길잡이. `progress-v2-guide.json` 사용.
+- [V2 가이드 끔](Builds/B06-delivery/Play-V2-NoGuide.cmd): `-no-guide`로 세 가이드 모두 끔, `progress-v2-noguide.json` 사용. 표지판은 가이드와 별도다.
+
+현재 V2 능력 위치와 연결은 그대로다. V3 재배선·C05 더블 점프·S01·엔딩 변경은 아직 적용하지 않았다. 타이틀 표시만 메트로 1이며 Product/Company·exe·저장 위치는 Afterglow 유지.
+
+조정 위치: 영구 벽 점프 값은 `Assets/ScriptableObjects/PlayerTuning.asset`의 Wall jump 그룹, 비교 후보3개는 `Assets/Scenes/Test/WallJumpTest.unity`의 WallJumpTestCourse/Presets(런타임 복사본만 변경). 벽의 횟수/방향/ID는 `Assets/Prefabs/B06/BreakableWall_*.prefab` 및 Scene 인스턴스. 표지판 문구/거리·등불 위치는 V2 Scene, 목표는 `Assets/Resources/GuideObjectives.asset`. 출구 연결 변경 후 `Afterglow > Rebuild V2 Guide Graph`로 그래프를 갱신한다. Play 중 값을 기록하고 Stop 후 원본 Asset/Scene에 반영·저장한 뒤 다시 빌드한다. 기본값 채택은 사용자 판단이다.
+
+재빌드: Unity 배치 `-executeMethod B06Build.Run -b05-v2 -b06-build B06-delivery -n9-build B06-delivery`. BuildSettings 변경 없음. 세 실행기와 같은 폴더의 Data/DLL을 함께 보존한다. 전체 맵은 없고 현재 V2 단계표만 사용한다.
+
 ## Batch 05 V2 확인 빌드 (2026-10-08)
 
 전체 후보: `Builds/V2-delivery/Play-V2.cmd` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `Builds/B05-V2-A/Play-V2-A.cmd`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
