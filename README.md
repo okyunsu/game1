@@ -1,5 +1,13 @@
 # 메트로 1
 
+## Batch09 V4 확인 빌드 (2026-10-12)
+
+`Builds/B09-delivery/` Development 한 개. 같은 폴더 또는 `Launchers/B09/`의 `Play-V4.cmd`는 새 게임, `Play-V4-Mechanics.cmd`는 장치 시험 코스, `Play-V4-AfterBoss.cmd`는 전체 능력+Slam 상태의 A01 QA로 시작한다. 각 모드는 전달 폴더 `slots/`의 독립 저장을 사용한다. 새 게임/AfterBoss 실행은 해당 슬롯을 초기화한다. 기존 실행기는 유지했다.
+
+공중 아래+C=내려찍기, 아래+X=기존 아래 공격. 개발 F8=Slam 부여, M=21방 지도, 시험 코스 F=장치 후보1/2/기본 순환. 조정 값은 `MechanicsTuning.asset`, 위치는 설계 데이터→생성기. [V4 생성·장치 안내](LEVEL_V4.md).
+
+21방 기동·장치 단위·4저장·3실행기는 PASS. 경로29/70 PASS, 전체 왕복77/108 판정 PASS이며 자연 완주는 A03에서 미완주다. 거리2.5u 기준16개 위반과 최소 능력 고립 미증명이 남아 V4 전체 수락은 대기한다. 기본 회귀13개 PASS, RouteAll/Pogo·현재 V2 W22 입력은 FAIL. [현재 결과·사용자 확인](TASKS.md).
+
 ## Batch 06 시스템 확인 빌드 (2026-10-10)
 
 `Builds/B06-delivery/Afterglow.exe`는 V2 전체 Development 후보다. 아래 실행기를 사용한다(기본 저장 슬롯과 분리).
