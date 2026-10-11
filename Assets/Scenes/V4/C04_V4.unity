@@ -1973,6 +1973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
   prefab: {fileID: 2277857336905539814, guid: ad9b897ccc6641643b38b6735b42016a, type: 3}
+  overrideTurretDirection: 0
+  turretDirection: -1
 --- !u!1 &10060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,7 +1986,7 @@ GameObject:
   - component: {fileID: 10061}
   - component: {fileID: 10062}
   m_Layer: 0
-  m_Name: "E3\u2192 Reset"
+  m_Name: E3 Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2017,7 +2019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c4fd5154903444b84871df07a74768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
-  prefab: {fileID: 0}
+  prefab: {fileID: 8641344972849784437, guid: 70503c0869ce1574e95a43ac72a668b3, type: 3}
+  overrideTurretDirection: 1
+  turretDirection: 1
 --- !u!1 &10063
 GameObject:
   m_ObjectHideFlags: 0

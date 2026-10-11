@@ -2530,6 +2530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
   prefab: {fileID: 3810908825025172049, guid: 47e95a2becf76d74ab6466fd8ba9ef2c, type: 3}
+  overrideTurretDirection: 0
+  turretDirection: -1
 --- !u!1 &10076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2577,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
   prefab: {fileID: 2277857336905539814, guid: ad9b897ccc6641643b38b6735b42016a, type: 3}
+  overrideTurretDirection: 0
+  turretDirection: -1
 --- !u!1 &10079
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,3 +8,5 @@ spawn 좌표는 변경0. 검사기가 y를 발 높이로 사용하는 것을 확
 일방향 역표시는 destination에 같은 ID arrival이 없으면 비활성. Z01 elevator→S02는 Seal 해제 후 트리거, S02 역표시는 비활성.
 미매핑 표지는 삭제 없이 SignPost로 보존하고 원문 목록에 sign-only로 기록. CP 포함 문자열도 Checkpoint로 매핑. S01 엔딩, C06 기존 Boss를 복사 연결.
 데이터/room_check.py/기본·V2·V3 Scene 변경0. 승인된 1u 데이터 수정은 사용하지 않았다.
+
+최종: r6 생성 결과를 다시 생성해 21 Scene SHA256 차이0 (`_raw/B09/T5-final-before.json`, `T5-final-diff.json`). Release r5 21방 적 Prefab/실제 생성 참조 PASS/Error0 (`T-scenes-r5.txt`). E3←/→는 기존 E3와 방향으로, BOSS는 데이터 위치의 기존 보스로 연결했다. CP는 표지 아래 가장 가까운 Ground 표면을 재개 지점으로 사용한다(연결 spawn 데이터는 그대로). 표지·획득물 높이는 발 원점 플레이어와 겹치도록 collider 중심만 파생한다. 비활성 일방향 역표시는 안내 그래프에서도 제외한다.

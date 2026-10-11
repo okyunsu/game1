@@ -2082,6 +2082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
   prefab: {fileID: 3810908825025172049, guid: 47e95a2becf76d74ab6466fd8ba9ef2c, type: 3}
+  overrideTurretDirection: 0
+  turretDirection: -1
 --- !u!1 &10062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2799,7 @@ Transform:
   m_GameObject: {fileID: 10091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28, y: 20.4, z: 0}
+  m_LocalPosition: {x: 28, y: 20, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

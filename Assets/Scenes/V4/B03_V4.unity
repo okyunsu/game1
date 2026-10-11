@@ -4075,7 +4075,7 @@ GameObject:
   - component: {fileID: 10121}
   - component: {fileID: 10122}
   m_Layer: 0
-  m_Name: "E3\u2190 Reset"
+  m_Name: E3 Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4108,7 +4108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c4fd5154903444b84871df07a74768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
-  prefab: {fileID: 0}
+  prefab: {fileID: 8641344972849784437, guid: 70503c0869ce1574e95a43ac72a668b3, type: 3}
+  overrideTurretDirection: 1
+  turretDirection: -1
 --- !u!1 &10123
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,7 +4122,7 @@ GameObject:
   - component: {fileID: 10124}
   - component: {fileID: 10125}
   m_Layer: 0
-  m_Name: "E3\u2192 Reset"
+  m_Name: E3 Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4153,7 +4155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c4fd5154903444b84871df07a74768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
-  prefab: {fileID: 0}
+  prefab: {fileID: 8641344972849784437, guid: 70503c0869ce1574e95a43ac72a668b3, type: 3}
+  overrideTurretDirection: 1
+  turretDirection: 1
 --- !u!1 &10126
 GameObject:
   m_ObjectHideFlags: 0
@@ -4165,7 +4169,7 @@ GameObject:
   - component: {fileID: 10127}
   - component: {fileID: 10128}
   m_Layer: 0
-  m_Name: "E3\u2190 Reset"
+  m_Name: E3 Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4198,7 +4202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c4fd5154903444b84871df07a74768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyReset
-  prefab: {fileID: 0}
+  prefab: {fileID: 8641344972849784437, guid: 70503c0869ce1574e95a43ac72a668b3, type: 3}
+  overrideTurretDirection: 1
+  turretDirection: -1
 --- !u!1 &10129
 GameObject:
   m_ObjectHideFlags: 0

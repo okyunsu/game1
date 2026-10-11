@@ -61,10 +61,6 @@ MonoBehaviour:
     to: B01
     exitId: A03-B01
     position: {x: 6, y: 30.5}
-  - from: A03
-    to: B01
-    exitId: B01-A03pit
-    position: {x: 46, y: 30.5}
   - from: A04
     to: A03
     exitId: A03-A04
@@ -73,18 +69,10 @@ MonoBehaviour:
     to: A05
     exitId: A04-A05
     position: {x: 68, y: 0.5}
-  - from: A04
-    to: B02
-    exitId: B02-A04
-    position: {x: 60, y: 16.5}
   - from: A05
     to: A03
     exitId: A05-A03
     position: {x: 0.5, y: 2.5}
-  - from: A05
-    to: A04
-    exitId: A04-A05
-    position: {x: 68, y: 13.5}
   - from: A05
     to: Z01
     exitId: A05-Z01
@@ -97,10 +85,6 @@ MonoBehaviour:
     to: A02
     exitId: A02-A06
     position: {x: 61.5, y: 14.5}
-  - from: A06
-    to: B06
-    exitId: A06-B06pit
-    position: {x: 12, y: 19.5}
   - from: B01
     to: A03
     exitId: A03-B01
@@ -125,10 +109,6 @@ MonoBehaviour:
     to: B03
     exitId: B02-B03
     position: {x: 83.5, y: 2.5}
-  - from: B02
-    to: B04
-    exitId: B04-B02
-    position: {x: 30, y: 17.5}
   - from: B03
     to: B02
     exitId: B02-B03
@@ -253,10 +233,6 @@ MonoBehaviour:
     to: C06
     exitId: C06-S01
     position: {x: 188, y: 0.5}
-  - from: S02
-    to: Z01
-    exitId: Z01-S02
-    position: {x: 36, y: 3}
   - from: Z01
     to: A01
     exitId: A01-Z01
