@@ -96,6 +96,8 @@ public sealed class PlayerMotor : MonoBehaviour
         if(health!=null&&health.KnockbackLocked){ClearWallState();var knocked=body.linearVelocity;knocked.y=Mathf.Max(knocked.y-tuning.gravity*(knocked.y<=0?tuning.fallGravityMultiplier:1)*Time.fixedDeltaTime,-tuning.maxFallSpeed);body.linearVelocity=knocked;return;}
         if(!WallSliding&&Mathf.Abs(input.Move.x)>.01f) Facing=input.Move.x>0?1:-1;
         var dash=GetComponent<PlayerDash>();
+        var slam=GetComponent<PlayerSlam>();
+        if(slam!=null && slam.Tick(Grounded,now)){ClearWallState();consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return;}
         if(dash!=null && dash.Tick(Grounded,now)) { ClearWallState();consumedJump=input.JumpSequence;jumpCutAvailable=false;groundJumpAvailable=false;lastGrounded=double.NegativeInfinity;return; }
         bool wasSliding = WallSliding;
         WallSliding = false;
