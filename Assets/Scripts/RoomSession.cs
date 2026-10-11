@@ -70,6 +70,7 @@ public sealed class RoomSession : MonoBehaviour
         body.position = spawn.transform.position;
         body.linearVelocity = Vector2.zero;
         body.angularVelocity = 0;
+        room.GetComponent<V4Room>()?.Arrive(Player);
         Physics2D.SyncTransforms();
         foreach (var root in room.gameObject.scene.GetRootGameObjects())
         {

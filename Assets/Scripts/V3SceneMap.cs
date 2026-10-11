@@ -9,6 +9,7 @@ public static class V3SceneMap
  public static string Path(string id)=>"Assets/Scenes/V3/"+id+"_V3.unity";
  public static string Resolve(string path)
  {
+  if(V4SceneMap.Enabled)return V4SceneMap.Resolve(path);
   if(!Enabled)return V2SceneMap.Resolve(path);
   foreach(var id in Rooms)if(path=="Assets/Scenes/"+id+".unity")return Path(id);
   return path;

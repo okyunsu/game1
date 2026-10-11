@@ -11,6 +11,7 @@ public sealed class RoomExit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (TryGetComponent<V4ExitRule>(out var v4) && !v4.Allows(other)) return;
         if (TryGetComponent<V3ExitRule>(out var rule) && !rule.Allows(other)) return;
         var player = other.GetComponent<PlayerInputReader>();
         var session = RoomSession.Instance;
