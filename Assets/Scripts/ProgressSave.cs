@@ -2,21 +2,23 @@ using System;
 using System.IO;
 using UnityEngine;
 [Serializable]
-public sealed class ProgressData { public int version=1; public bool dash; public bool doubleJump; public bool wallJump; public string[] brokenWalls; public string[] visitedRooms; public bool bossDefeated; public bool endingReached; public string checkpointId; }
+public sealed class ProgressData { public int version=1; public bool dash; public bool doubleJump; public bool wallJump; public bool hasSlam; public bool reachedS02; public string[] brokenWalls; public string[] visitedRooms; public bool bossDefeated; public bool endingReached; public string checkpointId; }
 public static class ProgressSave
 {
  static readonly System.Collections.Generic.HashSet<string> brokenWalls=new();
  static readonly System.Collections.Generic.HashSet<string> visitedRooms=new();
  public static bool HasVisited(string id)=>visitedRooms.Contains(id);
  public static void ResetVisitedRooms()=>visitedRooms.Clear();
- public static void VisitRoom(string id,RoomSession session){if(V3SceneMap.Enabled&&visitedRooms.Add(id))SaveCurrent(session);}
+ public static void VisitRoom(string id,RoomSession session){if((V3SceneMap.Enabled||V4SceneMap.Enabled)&&visitedRooms.Add(id))SaveCurrent(session);}
  static void RestoreVisitedRooms(ProgressData data){visitedRooms.Clear();foreach(var id in data.visitedRooms??Array.Empty<string>())if(!string.IsNullOrWhiteSpace(id))visitedRooms.Add(id);}
  public static bool IsWallBroken(string id)=>brokenWalls.Contains(id);
  public static void MarkWallBroken(string id,RoomSession session){if(string.IsNullOrWhiteSpace(id))return;brokenWalls.Add(id);if(session!=null)SaveCurrent(session);}
+ public static void SetWallFlag(string id,bool value,RoomSession session){if(value)brokenWalls.Add(id);else brokenWalls.Remove(id);if(session!=null)SaveCurrent(session);}
  public static void ResetBrokenWalls()=>brokenWalls.Clear();
  static void RestoreBrokenWalls(ProgressData data){brokenWalls.Clear();foreach(string id in data.brokenWalls??Array.Empty<string>())if(!string.IsNullOrWhiteSpace(id))brokenWalls.Add(id);}
  public static bool Enabled;
  public static bool BossDefeated, EndingReached;
+ public static bool HasSlam, ReachedS02;
  public static ProgressData Pending;
  public static string Message { get; private set; }
  public static string FilePath { get {var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"-save-path");return i>=0&&i+1<args.Length?Path.GetFullPath(args[i+1]):Path.Combine(Application.persistentDataPath,"progress.json");} }
@@ -31,7 +33,7 @@ public static class ProgressSave
   try{Directory.CreateDirectory(Path.GetDirectoryName(FilePath));string temporary=FilePath+".tmp";File.WriteAllText(temporary,JsonUtility.ToJson(data,true));if(File.Exists(FilePath))File.Replace(temporary,FilePath,null);else File.Move(temporary,FilePath);Message="";return true;}
   catch(Exception e) when(e is IOException or UnauthorizedAccessException){Message="저장 실패. 다음 체크포인트/능력 획득에서 다시 저장합니다.";return false;}
  }
- public static void SaveCurrent(RoomSession session){if(Enabled)Write(new ProgressData{dash=session.Player.GetComponent<PlayerDash>().hasDash,doubleJump=session.Player.GetComponent<PlayerMotor>().hasDoubleJump,wallJump=session.Player.GetComponent<PlayerMotor>().hasWallJump,checkpointId=session.CheckpointId??"CP-A01",bossDefeated=BossDefeated,endingReached=EndingReached,brokenWalls=new System.Collections.Generic.List<string>(brokenWalls).ToArray(),visitedRooms=new System.Collections.Generic.List<string>(visitedRooms).ToArray()});}
+ public static void SaveCurrent(RoomSession session){if(Enabled)Write(new ProgressData{dash=session.Player.GetComponent<PlayerDash>().hasDash,doubleJump=session.Player.GetComponent<PlayerMotor>().hasDoubleJump,wallJump=session.Player.GetComponent<PlayerMotor>().hasWallJump,hasSlam=V4SceneMap.Enabled&&HasSlam,reachedS02=V4SceneMap.Enabled&&ReachedS02,checkpointId=session.CheckpointId??"CP-A01",bossDefeated=BossDefeated,endingReached=EndingReached,brokenWalls=new System.Collections.Generic.List<string>(brokenWalls).ToArray(),visitedRooms=new System.Collections.Generic.List<string>(visitedRooms).ToArray()});}
  public static bool NewGame()
  {
   if(File.Exists(FilePath)&&!TryLoad(out _))
@@ -39,17 +41,19 @@ public static class ProgressSave
    try{File.Move(FilePath,FilePath+".invalid-"+DateTime.UtcNow.ToString("yyyyMMddHHmmssfffffff"));}
    catch(Exception e) when(e is IOException or UnauthorizedAccessException){Message="손상 저장 보존 실패. 기존 파일을 유지합니다.";return false;}
   }
-  ResetBrokenWalls();ResetVisitedRooms();BossDefeated=EndingReached=false;Pending=new ProgressData{dash=false,checkpointId="CP-A01"};Enabled=true;Write(Pending);return true;
+  ResetBrokenWalls();ResetVisitedRooms();BossDefeated=EndingReached=HasSlam=ReachedS02=false;Pending=new ProgressData{dash=false,checkpointId="CP-A01"};Enabled=true;Write(Pending);return true;
  }
- public static bool Continue(){if(!TryLoad(out var data))return false;Pending=data;RestoreBrokenWalls(data);RestoreVisitedRooms(data);BossDefeated=data.bossDefeated;EndingReached=data.endingReached;Enabled=true;return true;}
+ public static bool Continue(){if(!TryLoad(out var data))return false;Pending=data;RestoreBrokenWalls(data);RestoreVisitedRooms(data);BossDefeated=data.bossDefeated;EndingReached=data.endingReached;HasSlam=data.hasSlam;ReachedS02=data.reachedS02;Enabled=true;return true;}
  public static void MarkBossDefeated(RoomSession session){BossDefeated=true;SaveCurrent(session);if(V3SceneMap.Enabled&&Enabled&&TryLoad(out var data)){data.checkpointId="CP-C04";Write(data);}}
- public static void MarkEndingReached(){bool first=!EndingReached;EndingReached=true;if(Enabled&&TryLoad(out var data)){data.bossDefeated=BossDefeated||data.bossDefeated;data.endingReached=true;if(first&&(V2SceneMap.Enabled||V3SceneMap.Enabled))data.checkpointId="CP-C01";Write(data);}}
+ public static void MarkEndingReached(){bool first=!EndingReached;EndingReached=true;if(Enabled&&TryLoad(out var data)){data.bossDefeated=BossDefeated||data.bossDefeated;data.endingReached=true;if(V4SceneMap.Enabled){data.checkpointId="CP-A01";data.hasSlam=HasSlam;}if(first&&(V2SceneMap.Enabled||V3SceneMap.Enabled))data.checkpointId="CP-C01";Write(data);}}
  public static string PendingScene
  {
   get
   {
+   if(V4SceneMap.Enabled)return V4SceneMap.Path(Pending?.endingReached==true?"A01":Pending?.checkpointId=="CP-C04"?"C04":Pending?.checkpointId=="CP-C01"?"C01":Pending?.checkpointId=="CP-B01"?"B01":Pending?.checkpointId=="CP-A03"?"A03":"A01");
    if(V3SceneMap.Enabled&&Pending?.bossDefeated==true&&!Pending.endingReached){Pending.checkpointId="CP-C04";return V3SceneMap.Path("C04");}
    return V3SceneMap.Resolve(Pending?.bossDefeated==true&&!((V2SceneMap.Enabled||V3SceneMap.Enabled)&&Pending.endingReached)?"Assets/Scenes/Ending.unity":Pending?.checkpointId=="CP-C04"?"Assets/Scenes/C04.unity":Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity");
   }
  }
 }
+
