@@ -15,7 +15,7 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 | B10-T5 | DOING | 진행/gate 기반 최소 능력·입구별 다른 출구 탐색 구현 |
 | B10-T6 | DOING | 자연 전체 연결 입력 확보 중; fixture 금지 |
 | B10-T7 | DONE | 보스전→Slam→천장→S01 저장 입력2회 연속 PASS |
-| B10-T8 | DOING | 별도 worktree bisect와 동일 HEAD 빌드 구성 비교 |
+| B10-T8 | DONE | 동일 HEAD 과거 빌드 고정 입력2회 PASS; 빌드 구성으로 범위 축소, 원인 커밋 미확정/수정0 |
 | B10-T9 | DONE | 작성된 시작→끝 16구간, 전체 저장 입력2회 PASS; 장치 작동은 T1 별도 |
 | B10-T10 | TODO | 최종 PASS 입력을 30/120fps로 재생 |
 | B10-T11 | DONE | 27 실제 입력 조합 unexpected=0, Error0 |
@@ -163,7 +163,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T1/T7/T9/T11 / 다음 T2~T6·T8·T10·T12/T13 및 Backlog 계속
+B10 진행: 완료 T1/T7/T8/T9/T11 / 다음 T2~T6·T10·T12/T13 및 Backlog 계속
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
