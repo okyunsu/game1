@@ -8,7 +8,7 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 
 | Task | 상태 | 현재 결과 |
 |---|---|---|
-| B10-T1 | DOING | Release 탐색·저장·2회 재생 구현, 이전 PASS 경로와 장치 검증 진행 |
+| B10-T1 | DONE | 장치9개·기존 경로10개 저장 입력/전체 경로2회 PASS |
 | B10-T2 | DOING | A/B/C 병렬 실행, 미소진 후보는 예산 이월로 보존 |
 | B10-T3 | TODO | 실제 막힘 확정 후 승인된 1.5u/폭1u 수정만 |
 | B10-T4 | DOING | 연결 반환 탐색·물리 왕복 재생 도구 구현 |
@@ -163,7 +163,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T11(27조합 unexpected0) / 다음 T1·T2·T4·T5·T7·T8·T9. 실제 보스 승리·Slam·천장 열림 저장입력2회 PASS, S01 연결 대기. 정상 로컬 Release 오류·경고0; 초기 제한 실행 라이선스 실패 로그 보존. 이전 인계 Archive/B10-start-tasks-20261012.md.
+B10 진행: 완료 T1/T11 / 다음 T2~T10·T12/T13 및 Backlog 계속
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
