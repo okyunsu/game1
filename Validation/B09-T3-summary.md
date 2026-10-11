@@ -16,3 +16,10 @@ Crumble delay 관찰은 Setup에서 .08초 기다린 뒤 시작하므로 전체 
 장치 감각은 사용자 판단 대기. 저장 후 Scene 재입장 복원은 Start의 flag 읽기 코드 확인, 별도 재시작 시나리오는 미실시.
 
 최종 r6: 레버 공격을 별도 처리해 아래 공격의 불필요한 포고를 제거하고, 해금 후 양쪽 레버가 방향을 전환하도록 정리했다. 실제 키 입력 extra 검사 PASS/Error0 (`_raw/B09/T-extra-r6b.txt`). 기본 적의 방향 처리에는 기본 false인 선택 필드만 추가해 V4 E3 화살표를 연결했다.
+
+원문 실패·수치 보존:
+```
+FAIL B09MechanicsVerifier actual=exe
+MEASURE pad-rise=7.080976
+FAIL System.Exception: pad apex 7.5u +/- .3u
+```

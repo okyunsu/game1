@@ -7,3 +7,9 @@
 Seal은 IDamageable/BreakableWall/PogoTarget을 구현하지 않아 일반 공격·포고·대시 파괴 경로가 없다. 별도 Seal 대시 충돌·포고 충돌 시나리오는 미실시.
 수치: Assets/ScriptableObjects/MechanicsTuning.asset. PlayerTuning 값 변경 없음.
 개발 F8 능력 부여. hasSlam 저장/보스 보상은 V4 통합 Task에서 연결·검증한다.
+
+원문 실패·수치 보존:
+```
+FAIL B09MechanicsVerifier actual=exe
+FAIL System.Exception: dash fixture
+```
