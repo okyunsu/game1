@@ -2,28 +2,25 @@
 
 ## Current Sprint
 
-Sprint3 / Batch09 실행 종료(2026-10-12). Batch08 대체, Batch09 범위만 수행. V4 21방·Slam·장치·시험 코스·생성기·전달 완료. 전체 합격은 미충족: T6 BLOCKED, T4/T7/T9/T10 PARTIAL, T2/T3 감각 REVIEW. 실패/미검증을 유지한 채 승인 재시도와 독립 작업을 마쳤다. 브랜치 review/batch05-v2, push0, Sprint Gate/기본 채택 미실시.
+Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Task. 이전 결과: Batch09 실행 종료(2026-10-12). Batch08 대체, Batch09 범위만 수행. V4 21방·Slam·장치·시험 코스·생성기·전달 완료. 전체 합격은 미충족: T6 BLOCKED, T4/T7/T9/T10 PARTIAL, T2/T3 감각 REVIEW. 실패/미검증을 유지한 채 승인 재시도와 독립 작업을 마쳤다. 브랜치 review/batch05-v2, push0, Sprint Gate/기본 채택 미실시.
 
 ## Current Tasks
 
 | Task | 상태 | 현재 결과 |
 |---|---|---|
-| B09-T0/T1 | DONE | 데이터 보존21 PASS / 실제 물리 측정·상수 변경0 |
-| B09-T2/T3 | REVIEW | Slam·6장치+E4 단위 PASS, 감각 대기 |
-| B09-T4 | PARTIAL | 코스 기동·단위 PASS, 연속 통과 미검증 |
-| B09-T5 | DONE | 21 Scene·16종 실제 요소 일치·재생성 차이0 |
-| B09-T6 | BLOCKED | 연결 도착 거리16개 결정 대기, V4 억제/비활성 출구 수정 |
-| B09-T7 | PARTIAL | 실제 hold/return77/108 PASS, 추가 전환0 |
-| B09-T8 | DONE | 70경로29 PASS/41 수동 확인 필요, 분류·비율 기록 |
-| B09-T9 | PARTIAL | 보조 첫 경로 검사, 입구별 최소 상태 탈출 미증명 |
-| B09-T10 | PARTIAL | 자연 A03 미완주, 저장4 fixture PASS, 보스 입력2회 실패 |
-| B09-T11 | DONE | T0 전후W22/R09 모두PASS, 원인 미확정·조건부 수정0 |
-| B09-T12 | DONE | 회귀/V2 실행·최종 전달·문서, 실패는 아래 기록 |
-| B09-BL1/BL2 | DONE | 사람CSV A02↔A03 루프 검출 / 지도21방 갱신 |
-| B09-BL3 | REVIEW | F 후보 실제 전환 PASS, 기본값 불변·감각 대기 |
-
-이전 감각 수락과 미해결 항목은 [이전 TASKS 전체](Archive/B09-prior-tasks-20261012.md), [B06b 인계](Archive/B06b-handoff-20261010.md)에 보존한다. Batch09 PARTIAL의 추가 입력 반복·새 자동 계획 구축은 이번 실행에서 더 진행하지 않는다. 독립 Task와 승인 Backlog는 모두 처리했다.
-
+| B10-T1 | DOING | Release 탐색·저장·2회 재생 구현, 이전 PASS 경로와 장치 검증 진행 |
+| B10-T2 | DOING | A/B/C 병렬 실행, 미소진 후보는 예산 이월로 보존 |
+| B10-T3 | TODO | 실제 막힘 확정 후 승인된 1.5u/폭1u 수정만 |
+| B10-T4 | DOING | 연결 반환 탐색·물리 왕복 재생 도구 구현 |
+| B10-T5 | DOING | 진행/gate 기반 최소 능력·입구별 다른 출구 탐색 구현 |
+| B10-T6 | DOING | 자연 전체 연결 입력 확보 중; fixture 금지 |
+| B10-T7 | DOING | 실제 보스 승리·Slam·천장 열림 저장 입력2회 PASS; S01 연결 대기 |
+| B10-T8 | DOING | 별도 worktree bisect와 동일 HEAD 빌드 구성 비교 |
+| B10-T9 | DOING | 연속 코스 입력 첫 실행, 무너짐 접근 보강 |
+| B10-T10 | TODO | 최종 PASS 입력을 30/120fps로 재생 |
+| B10-T11 | DONE | 27 실제 입력 조합 unexpected=0, Error0 |
+| B10-T12 | TODO | 최종 막힘 좌표·요소·로그 보고 |
+| B10-T13 | TODO | 마지막 회귀·V2·Development 전달·인계 |
 ## Bugs
 
 ### B09-DISTANCE / OPEN — T6 BLOCKED
@@ -166,6 +163,8 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
+B10 진행: 완료 T11(27조합 unexpected0) / 다음 T1·T2·T4·T5·T7·T8·T9. 실제 보스 승리·Slam·천장 열림 저장입력2회 PASS, S01 연결 대기. 정상 로컬 Release 오류·경고0; 초기 제한 실행 라이선스 실패 로그 보존. 이전 인계 Archive/B10-start-tasks-20261012.md.
+
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
 ### 1. 결정 질문지
@@ -214,3 +213,5 @@ Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 
 ### 4. 다음 Batch 후보
 
 거리/세로 문 기준 결정 → 수동 최소 진입·A03 필수 길·보스·Z01 검증 → 입증된 막힘만 승인 범위 수정 → V4 자연 완주 재검토. 별도 V2 W22/기록 입력 원인 진단. 기본 채택·장치 후보 채택·Sprint Gate는 그 뒤 사용자 판단이며 이번 실행에서 진행하지 않는다.
+
+
