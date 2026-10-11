@@ -94,6 +94,7 @@ public sealed class B10JumpSearch:N5Runner
   Player.GetComponent<PlayerDash>().hasDash=(ability&1)!=0;Motor.hasWallJump=(ability&2)!=0;Motor.hasDoubleJump=(ability&4)!=0;Player.GetComponent<PlayerSlam>().hasSlam=(ability&8)!=0;
   // Only the path's initial setup is placed; every later waypoint uses recorded input.
   if(roomId=="MechanicsTest"&&routeName=="steam"){var vent=FindFirstObjectByType<SteamVent>();yield return Until(()=>!vent.On,"steam preparation off",5);yield return Until(()=>vent.On,"steam preparation fresh on",5);}
+  if(roomId=="MechanicsTest"&&routeName=="continuous"){var vent=FindFirstObjectByType<SteamVent>();yield return Until(()=>!vent.On,"course initial phase off",5);yield return Until(()=>vent.On,"course initial phase on",5);}
   // Align setup to the same existing physics/render phase; input is still Dynamic Update.
   while(Time.timeAsDouble-Time.fixedTimeAsDouble>.004)yield return null;
   if(place)PlaceForAuthorizedSetup(start);liftLowSeen=false;Player.ClearTransientInput();yield return Keys();yield return new WaitForSeconds(roomId=="MechanicsTest"&&routeName=="lift"?.02f:.12f);
@@ -104,12 +105,12 @@ public sealed class B10JumpSearch:N5Runner
   InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys.ToArray()));double before=Time.realtimeSinceStartupAsDouble;yield return null;
   if(worldCapture)worldFrames.Add(new Frame{seconds=Time.unscaledDeltaTime,keys=mask});
   if(roomId=="MechanicsTest"){var lift=FindFirstObjectByType<LeverLift>();if(lift!=null&&lift.Unlocked&&Mathf.Abs(lift.GetComponent<Collider2D>().bounds.max.y-lift.low)<.1f)liftLowSeen=true;}
-  if(record)recording.frames.Add(new Frame{seconds=(float)(Time.realtimeSinceStartupAsDouble-before),keys=mask});
+  if(record)recording.frames.Add(new Frame{seconds=Time.unscaledDeltaTime,keys=mask});
  }
  IEnumerator Play(Recording r,bool check=true)
  {
   int pogo=Alive?Player.GetComponent<PlayerAttack>().PogosPerformed:0;double elapsed=0;int index=0;
-  while(index<r.frames.Count&&Alive){double begin=Time.realtimeSinceStartupAsDouble;int mask=r.frames[index].keys;yield return Emit(mask,false);if(r.fps==Application.targetFrameRate){index++;continue;}elapsed+=Time.realtimeSinceStartupAsDouble-begin;while(index<r.frames.Count&&elapsed>=r.frames[index].seconds){elapsed-=r.frames[index].seconds;index++;}}
+  while(index<r.frames.Count&&Alive){double begin=Time.realtimeSinceStartupAsDouble;int mask=r.frames[index].keys;yield return Emit(mask,false);if(r.fps==Application.targetFrameRate){index++;continue;}elapsed+=Time.unscaledDeltaTime;while(index<r.frames.Count&&elapsed>=r.frames[index].seconds){elapsed-=r.frames[index].seconds;index++;}}
   if(check){var node=roomId=="MechanicsTest"?MechanicsNode(r.target):Resolve(r.target);success=Goal(node,pogo)||r.target=="END"&&FindFirstObjectByType<EndingMenu>()!=null;}
  }
  IEnumerator Prepare(Node first)
@@ -121,6 +122,10 @@ public sealed class B10JumpSearch:N5Runner
  {
   float direction=target.point.x>=source.point.x?1:-1,near=Mathf.Clamp(source.point.x,source.left+.35f,Mathf.Max(source.left+.35f,source.right-.35f));
   if(target.point.y<source.point.y-.15f)yield return new Candidate{launch=source.point.x,run=0,hold=0,dj=-1,dash=-1,wall=-1,attack=-1,slam=-1,air=1,method=1};
+  // First cover the useful center/edge launches, then enumerate the full grid below.
+  foreach(float launch in new[]{near,Mathf.Max(source.left+.35f,source.right-.35f),source.left+.35f}.Distinct())
+  foreach(float dj in target.token.Contains("@dj")?new[]{.3f,.25f,.35f,.2f,.4f}:new[]{-1f})
+   yield return new Candidate{launch=launch,run=0,hold=.4f,dj=dj,dash=target.token.Contains("@dash")?.1f:-1,wall=target.token.Contains("@wj")?.02f:-1,attack=target.token.StartsWith("pogo:")||target.token.StartsWith("enemy:")||target.token.StartsWith("POGO:")||target.token.StartsWith("ENEMY:")?.1f:-1,slam=target.token.Contains("@slam")||source.token.StartsWith("seal")?.3f:-1,air=1,method=0};
   // Try useful full holds first, then the complete documented grid. No geometry claims on truncation.
   float[] holds=N5Args.Has("-b10-expanded")?Steps(.1f,.4f,.02f).ToArray():new[]{.4f,.3f,.2f,.1f,.15f,.25f,.35f};
   IEnumerable<float> positions=Positions(source,near,N5Args.Has("-b10-expanded")?.1f:.25f);
@@ -148,13 +153,14 @@ public sealed class B10JumpSearch:N5Runner
   float runX=Mathf.Clamp(c.launch+(direction==2?-c.run:c.run),source.left+.35f,Mathf.Max(source.left+.35f,source.right-.35f));
   if(source.surface)while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Mathf.Abs(Body.position.x-runX)>.13f&&Time.timeAsDouble-started<6){yield return Emit(Body.position.x<runX?2:1);Measure(source,target);}
   yield return Emit(0);double wait=Time.timeAsDouble+c.wait;while(Alive&&Time.timeAsDouble<wait)yield return Emit(0);
-  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1;double launchTime=0;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.realtimeSinceStartupAsDouble+(target.token.StartsWith("LIFT:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
-  while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Time.realtimeSinceStartupAsDouble<until)
+  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1;double launchTime=0;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.timeAsDouble+(target.token.StartsWith("LIFT:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
+  while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Time.timeAsDouble<until)
   {
    if(Goal(target,pogo)){success=true;break;}
    int mask=direction;float dx=target.point.x-Body.position.x;
    if(!launched&&(!source.surface||(direction==2?Body.position.x>=c.launch-.12f:Body.position.x<=c.launch+.12f))){launched=true;launchTime=Time.timeAsDouble;}
    float t=launched?(float)(Time.timeAsDouble-launchTime):-1;
+   if(launched&&t>1.5f&&Motor.Grounded&&target.surface&&target.point.y>Feet+.15f&&!target.token.Contains("@wj")&&!target.token.Contains("@steam")&&!target.token.Contains("@lift")&&!target.token.StartsWith("LIFT:")&&!target.token.StartsWith("CRUMBLE:"))break;
    if(launched&&Motor.Grounded&&c.hold>0&&t>c.hold+.2f){var bounds=Player.GetComponent<Collider2D>().bounds;var obstacle=Physics2D.BoxCast(bounds.center,new Vector2(bounds.size.x*.8f,bounds.size.y*.85f),0,direction==2?Vector2.right:Vector2.left,.8f,1<<6);if(obstacle.collider!=null&&obstacle.collider.bounds.max.y>Feet+.1f&&obstacle.collider.bounds.min.y<bounds.max.y-.1f){launchTime=Time.timeAsDouble;t=0;dashSent=false;airReleased=false;}}
    if(launched){float firstHold=c.dj>=0?Mathf.Min(c.hold,Mathf.Max(0,c.dj-.04f)):c.hold;if(t<firstHold)mask|=4;if(c.dj>=0&&t>=c.dj&&t<c.dj+c.hold)mask|=4;if(!dashSent&&c.dash>=0&&t>=c.dash){mask|=8;dashSent=true;}
     if(c.air==1&&(airReleased||Mathf.Abs(dx)<.25f||dx*(direction==2?1:-1)<0)){mask&=~3;airReleased=true;}else if(c.air==2&&dx*(direction==2?1:-1)<.2f){if(reverseAt<0)reverseAt=Time.timeAsDouble;mask=(mask&~3)|(Time.timeAsDouble-reverseAt<.1?(direction==2?1:2):0);}
@@ -184,7 +190,9 @@ public sealed class B10JumpSearch:N5Runner
    if(target.token.StartsWith("CRUMBLE:")&&Motor.Grounded&&Feet>=target.point.y-.15f)mask=0;
    if(target.token.StartsWith("cover")||target.token.StartsWith("breakable")){if((int)(Time.time*10)%3==0)mask|=16;}
    var enemy=FindObjectsByType<EnemyReset>(FindObjectsSortMode.None).FirstOrDefault(e=>e.Live!=null&&Mathf.Abs(e.Live.transform.position.x-Body.position.x)<2&&Mathf.Abs(e.Live.transform.position.y-Body.position.y)<2);
-   if(enemy!=null&&(int)(Time.time*10)%4==0)mask|=16;
+   if(enemy!=null&&!target.token.StartsWith("enemy:")&&!target.token.StartsWith("pogo:")){
+    float enemyDx=enemy.Live.transform.position.x-Body.position.x;if(Mathf.Abs(enemyDx)<1.7f){mask&=~3;if(Mathf.Abs(enemyDx)<1.1f)mask|=enemyDx>0?1:2;if((int)(Time.time*10)%4==0)mask=(mask&~3)|(enemyDx>0?2:1)|16;}
+   }
    Measure(source,target);yield return Emit(mask);
   }
   if(Alive&&RoomSession.Instance.CurrentRoomId!=roomId)success=target.destination==RoomSession.Instance.CurrentRoomId;
@@ -245,11 +253,11 @@ public sealed class B10JumpSearch:N5Runner
  IEnumerator Course()
  {
   roomId="MechanicsTest";routeName="continuous";ability=15;prefix.Clear();
-  string[] nodes={"4|1|2|6","10|1|9|11","13|1.3|12|14","20|1|19|21","23|1.3|21|24","28|1|27|29","35|1|34|36","41|1|40|42","49|1|48|50","58|1|57|59","70|1|69|71","CRUMBLE:77|2.5|75|80","84|1|83|85","WALL:86.5|15.4|86|87@wj@dj","86.5|15|86|87","91.5|15|91|92","97|1|96|98"};
+  string[] nodes={"4|1|2|6","10|1|9|11","13|1.3|12|14","20|1|19|21","23|1.3|21|24","28|1|27|29","35|1|34|36","41|1|40|42","49|1|48|50","58|1|57|59","70|1|69|71","CRUMBLE:77|2.5|75|80","84|1|83|85","WALL:86.5|15|86|87@wj@dj","86.5|15|86|87","91.5|15|91|92","97|1|96|98"};
   yield return Reset(Vector2.zero,false);
   for(int i=1;i<nodes.Length;i++){var source=MechanicsNode(nodes[i-1]);var target=MechanicsNode(nodes[i]);source.point=new Vector2(Body.position.x,Feet);source.left=Body.position.x-.1f;source.right=Body.position.x+.1f;source.surface=Motor.Grounded;var c=new Candidate{launch=i==11?74:Body.position.x,hold=.4f,dj=i==13?.35f:-1,dash=-1,wall=.02f,attack=-1,slam=-1,air=1};yield return Attempt(source,target,c);if(!success){Row("FAIL continuous course segment="+i+" pos="+Body.position+" peak="+bestHeight);deferred++;yield break;}prefix.Add(recording);Row("MEASURE continuous course segment="+i+" pos="+Body.position);}
-  string file=Path.Combine(root,"MechanicsTest_continuous.json");if(!File.Exists(file))File.WriteAllText(file,JsonUtility.ToJson(new CourseRecording{segments=prefix},true));bool both=true;
-  for(int rep=0;rep<2;rep++){yield return Reset(Vector2.zero,false);foreach(var r in prefix){yield return Play(r);if(!success){both=false;break;}}Row((success?"PASS":"FAIL")+" continuous course saved replay repetition="+(rep+1));}
+  string file=Path.Combine(root,"MechanicsTest_continuous-"+DateTime.UtcNow.ToString("HHmmssffff")+".json");File.WriteAllText(file,JsonUtility.ToJson(new CourseRecording{segments=prefix},true));var saved=JsonUtility.FromJson<CourseRecording>(File.ReadAllText(file));bool both=true;
+  for(int rep=0;rep<2;rep++){yield return Reset(Vector2.zero,false);int segment=0;foreach(var r in saved.segments){segment++;yield return Play(r);if(!success){Row("FAIL continuous saved segment="+segment+" target="+r.target+" pos="+Body.position+" feet="+Feet);both=false;break;}}Row((success?"PASS":"FAIL")+" continuous course saved replay repetition="+(rep+1)+" input="+file);}
   if(both)pass++;else deferred++;
  }
  [Serializable] public sealed class CourseRecording{public List<Recording> segments=new();}
@@ -332,8 +340,9 @@ public sealed class B10JumpSearch:N5Runner
    yield return Reset(new Vector2(3.5f,1.01f));yield return Fight(lead,gap);if(!success)continue;
    string file=Path.Combine(root,"C06_boss-"+DateTime.UtcNow.ToString("HHmmssffff")+".json");File.WriteAllText(file,JsonUtility.ToJson(recording,true));var r=JsonUtility.FromJson<Recording>(File.ReadAllText(file));bool both=true;
    for(int rep=0;rep<2;rep++){yield return Reset(new Vector2(3.5f,1.01f));yield return PlayBoss(r);bool won=success;both&=won;Row((won?"PASS":"FAIL")+" boss saved replay repetition="+(rep+1)+" input="+file);if(!won)break;
+    double settled=Time.timeAsDouble+.5;while(Alive&&(Time.timeAsDouble<settled||!Motor.Grounded))yield return Emit(0);
     routeName="exit";tokens=((List<object>)J.D(J.D(rooms[roomId])["routes"])["exit"]).Select(x=>x.ToString()).ToList();bool exited=true;
-    for(int i=1;i<tokens.Count;i++){string p=FileFor(i);if(!File.Exists(p)){exited=false;break;}yield return Play(JsonUtility.FromJson<Recording>(File.ReadAllText(p)));if(!success){exited=false;break;}}
+    for(int i=1;i<tokens.Count;i++){string p=FileFor(i);if(!File.Exists(p)){exited=false;break;}yield return Play(JsonUtility.FromJson<Recording>(File.ReadAllText(p)));if(!success){Row("FAIL boss exit segment="+i+" pos="+(Player==null?Vector2.zero:Body.position));exited=false;break;}}
     exited&=RoomSession.Instance.CurrentRoomId=="S01";both&=exited;Row((exited?"PASS":"FAIL")+" boss -> Slam -> opened roof -> S01 saved replay repetition="+(rep+1));routeName="boss";
    }
    if(!both)continue;Row("PASS boss victory -> Slam -> roof opened replay=2");pass++;
@@ -372,9 +381,10 @@ public sealed class B10JumpSearch:N5Runner
   var target=Resolve(token);if(Goal(target,Player.GetComponent<PlayerAttack>().PogosPerformed)){success=true;yield break;}
   var source=Resolve("point:"+Body.position.x.ToString(System.Globalization.CultureInfo.InvariantCulture)+","+Feet.ToString(System.Globalization.CultureInfo.InvariantCulture));source.surface=Motor.Grounded;
   var c=new Candidate{launch=Body.position.x,hold=.4f,dj=target.token.Contains("@dj")?.3f:-1,dash=target.token.Contains("@dash")?.1f:-1,wall=target.token.Contains("@wj")?.02f:-1,attack=target.token.StartsWith("pogo:")||target.token.StartsWith("enemy:")?.1f:-1,slam=target.token.Contains("@slam")?.3f:-1,air=1};
+  if(source.surface&&target.point.y>source.point.y+.15f&&(target.point.x>source.right||target.point.x<source.left))c.launch=target.point.x>source.right?source.right-.35f:source.left+.35f;
   if(target.token.StartsWith("door:")&&target.point.y<2&&Player.GetComponent<PlayerSlam>().hasSlam)c.slam=.3f;
   yield return Attempt(source,target,c);
-  Row((success?"MEASURE":"FAIL")+" natural move "+roomId+" source="+source.token+" target="+token+" end="+recording.end+" frames="+recording.frames.Count);
+  Row((success?"MEASURE":"FAIL")+" natural move "+roomId+" source="+source.token+" target="+token+" end="+recording.end+" HP="+(Player==null?0:Health.HP)+" frames="+recording.frames.Count);
  }
  void SaveNatural(string tag){ProgressSave.SaveCurrent(RoomSession.Instance);if(File.Exists(ProgressSave.FilePath)){string p=Path.Combine(Path.GetDirectoryName(Evidence),"natural-"+tag+"-"+DateTime.UtcNow.ToString("HHmmssffff")+"-save.json");File.Copy(ProgressSave.FilePath,p);Row("MEASURE natural save "+tag+" file="+p+" room="+RoomSession.Instance.CurrentRoomId);}}
 }
