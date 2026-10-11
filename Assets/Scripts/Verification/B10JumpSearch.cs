@@ -153,7 +153,7 @@ public sealed class B10JumpSearch:N5Runner
   float runX=Mathf.Clamp(c.launch+(direction==2?-c.run:c.run),source.left+.35f,Mathf.Max(source.left+.35f,source.right-.35f));
   if(source.surface)while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Mathf.Abs(Body.position.x-runX)>.13f&&Time.timeAsDouble-started<6){yield return Emit(Body.position.x<runX?2:1);Measure(source,target);}
   yield return Emit(0);double wait=Time.timeAsDouble+c.wait;while(Alive&&Time.timeAsDouble<wait)yield return Emit(0);
-  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1;double launchTime=0;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.timeAsDouble+(target.token.StartsWith("LIFT:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
+  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1;double launchTime=0,nextEnemyAttack=0,enemyLockUntil=-1;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.timeAsDouble+(target.token.StartsWith("LIFT:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
   while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Time.timeAsDouble<until)
   {
    if(Goal(target,pogo)){success=true;break;}
@@ -191,7 +191,7 @@ public sealed class B10JumpSearch:N5Runner
    if(target.token.StartsWith("cover")||target.token.StartsWith("breakable")){if((int)(Time.time*10)%3==0)mask|=16;}
    var enemy=FindObjectsByType<EnemyReset>(FindObjectsSortMode.None).FirstOrDefault(e=>e.Live!=null&&Mathf.Abs(e.Live.transform.position.x-Body.position.x)<2&&Mathf.Abs(e.Live.transform.position.y-Body.position.y)<2);
    if(enemy!=null&&!target.token.StartsWith("enemy:")&&!target.token.StartsWith("pogo:")){
-    float enemyDx=enemy.Live.transform.position.x-Body.position.x;if(Mathf.Abs(enemyDx)<1.7f){mask&=~3;if(Mathf.Abs(enemyDx)<1.1f)mask|=enemyDx>0?1:2;if((int)(Time.time*10)%4==0)mask=(mask&~3)|(enemyDx>0?2:1)|16;}
+    float enemyDx=enemy.Live.transform.position.x-Body.position.x;if(Mathf.Abs(enemyDx)<1.9f){mask&=~3;if(Time.timeAsDouble>=enemyLockUntil&&Mathf.Abs(enemyDx)<1.55f)mask|=enemyDx>0?1:2;if(Time.timeAsDouble>=nextEnemyAttack){mask=(mask&~3)|(enemyDx>0?2:1)|16;var tuning=Player.GetComponent<PlayerAttack>().tuning;nextEnemyAttack=Time.timeAsDouble+tuning.attackCooldown+.04;enemyLockUntil=Time.timeAsDouble+tuning.attackStartup+tuning.attackActive;}}
    }
    Measure(source,target);yield return Emit(mask);
   }
@@ -364,9 +364,11 @@ public sealed class B10JumpSearch:N5Runner
    }else{
     bool reverse=routeName.EndsWith("-reverse");string key=routeName.Replace("-reverse","");tokens=((List<object>)J.D(J.D(rooms[roomId])["routes"])[key]).Select(x=>x.ToString()).ToList();if(reverse)tokens.Reverse();
     yield return NaturalMove(tokens[0]);if(!success){Row("FAIL natural approach "+roomId+"/"+routeName+" pos="+(Player==null?Vector2.zero:Body.position));deferred++;break;}
-    for(int i=1;i<tokens.Count;i++){string f=FileFor(i);if(!reverse&&File.Exists(f)){yield return Play(JsonUtility.FromJson<Recording>(File.ReadAllText(f)));if(!success&&Alive&&RoomSession.Instance.CurrentRoomId==roomId){Row("MEASURE natural saved segment correction "+roomId+"/"+routeName+"/"+i+" pos="+Body.position);yield return NaturalMove(tokens[i]);}}else yield return NaturalMove(tokens[i]);if(!success)break;}
+    if(roomId=="C05"&&!Motor.hasDoubleJump){yield return NaturalAcquire("platform0~28",4);if(!success)break;}
+    for(int i=1;i<tokens.Count;i++){if(roomId=="A05"&&tokens[i].Contains("@dash")&&!Player.GetComponent<PlayerDash>().hasDash){yield return NaturalAcquire("solid1~22",1);if(!success)break;}string f=FileFor(i);if(!reverse&&File.Exists(f)){yield return Play(JsonUtility.FromJson<Recording>(File.ReadAllText(f)));if(!success&&Alive&&RoomSession.Instance.CurrentRoomId==roomId){Row("MEASURE natural saved segment correction "+roomId+"/"+routeName+"/"+i+" pos="+Body.position);yield return NaturalMove(tokens[i]);}}else yield return NaturalMove(tokens[i]);if(!success)break;}
     if(!success){Row("FAIL natural route "+roomId+"/"+routeName+" pos="+(Player==null?Vector2.zero:Body.position));deferred++;break;}
    }
+   if(roomId=="B04"&&!Motor.hasWallJump){yield return NaturalAcquire("solid1~14",2);if(!success)break;}
    if(roomId=="A05"&&Player.GetComponent<PlayerDash>().hasDash)SaveNatural("after-dash");if(roomId=="B04"&&Motor.hasWallJump)SaveNatural("after-wall");
    if(step[2]=="ENDING"){
     yield return NaturalMove("point:136,1");if(FindFirstObjectByType<EndingMenu>()==null){Row("FAIL natural ending trigger");deferred++;break;}yield return Emit(0);yield return Emit(4);yield return Emit(0);yield return Ready();SaveNatural("after-ending");
@@ -387,4 +389,9 @@ public sealed class B10JumpSearch:N5Runner
   Row((success?"MEASURE":"FAIL")+" natural move "+roomId+" source="+source.token+" target="+token+" end="+recording.end+" HP="+(Player==null?0:Health.HP)+" frames="+recording.frames.Count);
  }
  void SaveNatural(string tag){ProgressSave.SaveCurrent(RoomSession.Instance);if(File.Exists(ProgressSave.FilePath)){string p=Path.Combine(Path.GetDirectoryName(Evidence),"natural-"+tag+"-"+DateTime.UtcNow.ToString("HHmmssffff")+"-save.json");File.Copy(ProgressSave.FilePath,p);Row("MEASURE natural save "+tag+" file="+p+" room="+RoomSession.Instance.CurrentRoomId);}}
+ IEnumerator NaturalAcquire(string ground,int wanted)
+ {
+  yield return NaturalMove(ground);if(!success)yield break;yield return Emit(0,false);double hold=Time.timeAsDouble+.4;while(Alive&&Time.timeAsDouble<hold)yield return Emit(4,false);double end=Time.timeAsDouble+2;while(Alive&&!Motor.Grounded&&Time.timeAsDouble<end)yield return Emit(0,false);
+  success=Alive&&(wanted==1?Player.GetComponent<PlayerDash>().hasDash:wanted==2?Motor.hasWallJump:Motor.hasDoubleJump);Row((success?"MEASURE":"FAIL")+" natural pickup contact ability="+wanted+" room="+roomId+" pos="+(Player==null?Vector2.zero:Body.position));
+ }
 }
