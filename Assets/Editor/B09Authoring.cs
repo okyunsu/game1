@@ -16,6 +16,13 @@ public static class B09Authoring
  static void PlayerVariant(){const string path="Assets/Prefabs/V4/Player.prefab";if(File.Exists(path))return;var root=PrefabUtility.LoadPrefabContents("Assets/Prefabs/Player.prefab");root.GetComponent<BoxCollider2D>().offset=Vector2.up*.8f;var renderer=root.GetComponent<SpriteRenderer>();var source=renderer.sprite;var foot=Sprite.Create(source.texture,source.rect,new Vector2(.5f,0),source.pixelsPerUnit,0,SpriteMeshType.FullRect);foot.name="V4 foot origin";AssetDatabase.CreateAsset(foot,"Assets/Prefabs/V4/PlayerFootSprite.asset");renderer.sprite=foot;PrefabUtility.SaveAsPrefabAsset(root,path);PrefabUtility.UnloadPrefabContents(root);}
  static GameObject Rect(string name,float x,float y,float w,float h,Color color,bool trigger=false){var go=new GameObject(name);go.transform.SetParent(room.transform);go.transform.position=new Vector2(x+w/2,y+h/2);go.transform.localScale=new Vector3(w,h,1);go.layer=trigger?0:6;go.AddComponent<SpriteRenderer>().sprite=sprite;go.GetComponent<SpriteRenderer>().color=color;go.AddComponent<BoxCollider2D>().isTrigger=trigger;return go;}
  static GameObject Rect(string name,List<object> rect,Color color,bool trigger=false)=>Rect(name,J.F(rect[0]),J.F(rect[1]),J.F(rect[2]),J.F(rect[3]),color,trigger);
+ // V4 covered floor exits must be below the intact surface, outside contact margin.
+ static void CoveredFloorTrigger(GameObject go,List<object> rect,Dictionary<string,object> design)
+ {
+  float top=J.F(rect[1])+J.F(rect[3]);if(J.F(rect[1])!=0||J.F(rect[3])!=1)return;
+  bool covered=new[]{"cover","seal"}.Any(kind=>J.A(design,kind).Any(obj=>{var r=(List<object>)obj;return Mathf.Abs(J.F(r[1])+J.F(r[3])-top)<.001f&&J.F(r[0])<J.F(rect[0])+J.F(rect[2])&&J.F(r[0])+J.F(r[2])>J.F(rect[0]);}));
+  if(!covered)return;var collider=go.GetComponent<BoxCollider2D>();collider.size=new Vector2(1,.9f);collider.offset=new Vector2(0,-.05f);rows.Add("GENERATOR covered floor trigger inset "+room.roomId+" "+go.name+" top="+top+" -> "+(top-.1f)+"; visual/source rect preserved");
+ }
  static void Shell(string id,float w,float h)
  {
   EditorSceneManager.OpenScene("Assets/Scenes/A01.unity");room=Object.FindFirstObjectByType<RoomDefinition>();var rig=Object.FindFirstObjectByType<RoomCameraRig>();var boundary=rig.boundary;
@@ -63,6 +70,7 @@ public static class B09Authoring
    foreach(var node in J.A(d,"doors"))
    {
     var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=V4SceneMap.Path(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
+    CoveredFloorTrigger(go,r,d);
     bool hasArrival=J.A(J.D(data[target]),"spawns").Select(J.D).Any(s=>J.S(s,"id")==id);if(!hasArrival){exit.enabled=false;edges.RemoveAt(edges.Count-1);rows.Add("ONEWAY inactive reverse marker "+pair.Key+" "+id);}
     if(exit.mainPath&&hasArrival&&pair.Key!="S02"){var lamp=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/B06/GuideLantern.prefab"));lamp.transform.SetParent(go.transform,false);lamp.transform.localPosition=Vector3.up*.8f;lamp.transform.localScale=new Vector3(.28f/J.F(r[2]),.36f/J.F(r[3]),1);}
    }
