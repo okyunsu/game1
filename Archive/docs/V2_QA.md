@@ -12,7 +12,7 @@
 
 시간은 사람 플레이 계획치이며 실측하지 않았다. 먼저 A지역만 보고 중단해도 된다. 비교할 것은 **방의 밀도·기억할 단서·필수/선택 난이도 차이·픽셀 스타일**이다. 기존 기본/AV1/B2 빌드는 그대로 남아 있다.
 
-수정 위치: [LEVEL_V2.md](LEVEL_V2.md)의 설계표, `Assets/Scenes/V2/`의 지형 Transform·카메라 Boundary·문·CP·적 Reset 위치. 반복 시각은 `Assets/Prefabs/V2/`, 이동·전투 수치는 기존 Tuning Asset 한 곳 그대로다. Play 중 바꾼 Scene 값을 메모한 뒤 **Stop 후 Scene에 다시 반영·저장하고 V2 재빌드**한다.
+수정 위치: [LEVEL_V2.md](../../LEVEL_V2.md)의 설계표, `Assets/Scenes/V2/`의 지형 Transform·카메라 Boundary·문·CP·적 Reset 위치. 반복 시각은 `Assets/Prefabs/V2/`, 이동·전투 수치는 기존 Tuning Asset 한 곳 그대로다. Play 중 바꾼 Scene 값을 메모한 뒤 **Stop 후 Scene에 다시 반영·저장하고 V2 재빌드**한다.
 
-[전체 검증·인계](TASKS.md#latest-handoff). 기술 PASS는 사람 난이도·스타일 수락을 대신하지 않으며, 기본 교체·Sprint Gate는 아직 대기한다.
+[전체 검증·인계](../../TASKS.md#latest-handoff). 기술 PASS는 사람 난이도·스타일 수락을 대신하지 않으며, 기본 교체·Sprint Gate는 아직 대기한다.
 

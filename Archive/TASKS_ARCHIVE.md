@@ -405,7 +405,7 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ### S3T-01 최종 인계 — PARTIAL / 사용자 직접 QA 대기
 
-- **선택 배치·표시 REVIEW:** A-2/B-1/B-2/C-1/C-2 실제 배포exe 지정 입력5/5 PASS, 발견1→5 누적 및 보상 접촉·선반 착지/Error0. A-1은 조정 한도 후 추가 선반·표시 제거/복원, 이번 최대발견5/6. [결과](validation-2026-10/S3T01-levels-final.txt), [최종 좌표·이전 후보](../LEVEL_PROPOSALS.md).
+- **선택 배치·표시 REVIEW:** A-2/B-1/B-2/C-1/C-2 실제 배포exe 지정 입력5/5 PASS, 발견1→5 누적 및 보상 접촉·선반 착지/Error0. A-1은 조정 한도 후 추가 선반·표시 제거/복원, 이번 최대발견5/6. [결과](validation-2026-10/S3T01-levels-final.txt), [최종 좌표·이전 후보](docs/LEVEL_PROPOSALS.md).
 - **R05 입력 교체 PASS / R06 BLOCKED:** 총9회 R05 시도(독립 시작2+연속 생성 입력6+연속 지정 입력1), 20회 이내. 실제 연속 R01~R05 및 배포 재생 R05PASS/사망 없음. 기존 R06은 시작 위치16.4~16.5u 차이로 잘못된 A04 출구, 새 배치 원인 아닌 입력 수정은 승인 밖이므로 보존. 다른16개 구간은 불변. G-D 연속 통과·전체 RouteAllPASS 미확인. [기록](validation-2026-10/S3T01-route-summary.txt).
 - **검증:** 기본 기존13/13PASS; 최종 묶음은13/15(구 R05FAIL/Pogo P03FAIL). 교체 후 배포exe는 새R05PASS→R06FAIL 및 PogoPASS로, 기본13과 합친 최신 상태14/15이다. Pogo 일회 실패와 미확인 원인은 지우지 않았다. 선택5경로·Pogo·경로 실제 런타임 Error/Exception/Assert0, 빌드18씬 errors0/warnings0, Editor Build Settings 불변. [요약](validation-2026-10/S3T01-final-summary.txt). 새 선택 경로·Pogo의 Editor Play 재생·실물 패드·사람 완주·가독성은 미실시/직접 QA.
 - **산출물·주요 파일:** `Builds/S5-levels/Afterglow-S5-levels.exe`와 `PogoTest 실행.bat` 보관, **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음. Scene5개/DiscoveryReward 프리팹·스크립트/GameHUD/기존 RouteRunner·N5Build·N9Build·회귀 스크립트/설계·좌표·지표 문서. 입력 Asset·필수 블록/출구·G-D/G-J·PogoTest·공통 튜닝·저장 형식·Packages/ProjectSettings 불변.

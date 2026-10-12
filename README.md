@@ -24,7 +24,7 @@
 
 ## Batch 05 V2 확인 빌드 (2026-10-08)
 
-전체 후보: `Builds/V2-delivery/Play-V2.cmd` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `Builds/B05-V2-A/Play-V2-A.cmd`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
+전체 후보: `Builds/V2-delivery/Play-V2.cmd` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `Builds/B05-V2-A/Play-V2-A.cmd`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](Archive/docs/V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
 
 CC0 Kenney Pixel Platformer 1.2를 새 V2 Scene·Variant에 적용했다. 18개 방의 지정 필수/발견 입력, 새 게임→두 능력→보스 처치→엔딩→타이틀 23구간 연속 재생, 저장/이어하기 PASS/Error0. 사람 시간·밀도·난이도·스타일은 REVIEW이며 기본 교체·Sprint Gate는 사용자 판단이다.
 
@@ -198,9 +198,9 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 - [GAME_DESIGN](GAME_DESIGN.md): 게임 규칙·레벨·튜닝 가설
 - [TASKS](TASKS.md): Current Sprint / Current Tasks / Bugs / Decisions Needed / Latest Handoff
 - [README](README.md): 실행 방법·조작·수정 위치
-- [BATCH_TEMPLATE](BATCH_TEMPLATE.md): 예산·트랙·사전 결정·허용 범위·Backlog·종료 조건
+- [BATCH_TEMPLATE](Batches/BATCH_TEMPLATE.md): 예산·트랙·사전 결정·허용 범위·Backlog·종료 조건
 - [Archive](Archive/TASKS_ARCHIVE.md): 완료 Task·해결 기록·과거 인계·관찰 및 설계 결정 원문
-- [LEVEL_PROPOSALS](LEVEL_PROPOSALS.md), [PROCESS_METRICS](PROCESS_METRICS.md): 현재 링크된 배치·운영 자료로 위치 유지
+- [LEVEL_PROPOSALS](Archive/docs/LEVEL_PROPOSALS.md), [PROCESS_METRICS](PROCESS_METRICS.md): 현재 링크된 배치·운영 자료로 위치 유지
 
 ## S3-complete v2 (2026-10-03)
 

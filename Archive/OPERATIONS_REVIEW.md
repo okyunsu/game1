@@ -29,9 +29,9 @@
 - [TASKS](../TASKS.md): 지정된 5개 최상위 섹션만 유지, 7개 상태·현재 인계 및 한 번의 도구 목록 반영.
 - [TASKS Archive](TASKS_ARCHIVE.md): 완료/해결/과거 기록 원문 보존, 루트 상대 링크만 ../로 보정.
 - [README](../README.md): 문서 구성 목록만 변경. 실행 안내는 그대로 유지.
-- [BATCH_TEMPLATE](../BATCH_TEMPLATE.md): 첨부 지정 템플릿 그대로 생성.
+- [BATCH_TEMPLATE](../Batches/BATCH_TEMPLATE.md): 첨부 지정 템플릿 그대로 생성.
 - [PROCESS_METRICS](../PROCESS_METRICS.md): 이번 문서 실행 한 줄 추가. 이전 집계는 재계산하지 않음.
-- [PRD](../PRD.md), [GAME_DESIGN](../GAME_DESIGN.md), [LEVEL_PROPOSALS](../LEVEL_PROPOSALS.md): 변경 없음. PRD/GAME_DESIGN에서 삭제한 문단 없음.
+- [PRD](../PRD.md), [GAME_DESIGN](../GAME_DESIGN.md), [LEVEL_PROPOSALS](docs/LEVEL_PROPOSALS.md): 변경 없음. PRD/GAME_DESIGN에서 삭제한 문단 없음.
 
 ## Archive로 옮긴 섹션·내용
 
