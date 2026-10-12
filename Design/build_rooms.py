@@ -1,7 +1,8 @@
 """Build room interiors (local coords) for world_v7. Doors/arrivals come from the world map."""
-import json
+import json, os
+HERE = os.path.dirname(os.path.abspath(__file__))
 
-W = json.load(open("world_v7.json", encoding="utf-8"))
+W = json.load(open(os.path.join(HERE, "world_v7.json"), encoding="utf-8"))
 ROOMS = W["rooms"]
 
 

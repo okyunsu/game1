@@ -19,6 +19,8 @@ for f in font_manager.findSystemFonts():
 
 SPEED, JUMP_V, G, FALL_MUL = 6.0, 12.0, 30.0, 1.5
 POGO_V = 11.0   # CombatTuning.pogoVelocity (repo value)
+RUN_JUMP_MEASURED = 4.56   # B09-T1: running jump, same height
+DASH_JUMP_MEASURED = 5.81  # B09-T1: dash jump distance
 PW, PH = 0.7, 1.6
 PEAK = JUMP_V ** 2 / (2 * G)            # 2.4u
 SAFE = 0.8                              # project rule: required <= 80% of max
@@ -90,13 +92,15 @@ def check(room):
                  errs.append(f"[{rname}] GATE-LEAK slam step {a}->{b} rise {rise:.2f} is reachable with double jump")
              continue
          if ab:
-             cap = {"dash": (PEAK * SAFE, (reach(max(rise, 0)) or 0) * SAFE + 18 * .16 * .9),
+             cap = {"dash": (PEAK * SAFE, min((reach(max(rise, 0)) or 0) * SAFE + 18 * .16 * .9, DASH_JUMP_MEASURED * .95 if rise <= .5 else 99)),
                     "dj": (2 * PEAK * SAFE, (reach(max(rise - PEAK, 0)) or 0) * 1.6 * SAFE),
                     "wj": (99, 99)}[ab]
              if rise > cap[0] + 1e-6 or gap > cap[1] + 1e-6:
                  errs.append(f"[{rname}] {ab.upper()} {a}->{b} rise {rise:.2f} gap {gap:.2f} exceeds {cap[0]:.2f}/{cap[1]:.2f}")
              # gate leak: an ability step must be impossible without the ability (real physics + body width + 0.2 margin)
              real = SPEED * (math.sqrt(2 * PEAK / G) + math.sqrt(2 * max(PEAK - rise, 0) / (G * FALL_MUL))) + PW + .2
+             if rise <= 0:
+                 real = min(real, RUN_JUMP_MEASURED + PW)   # B09-T1 measured flat running jump
              if ab == "dash" and gap <= real and rise <= PEAK:
                  errs.append(f"[{rname}] GATE-LEAK dash step {a}->{b} gap {gap:.2f} is jumpable without dash (needs > {real:.2f})")
              if ab == "dj" and room.get("gate_check", {}).get(rname) and rise <= PEAK + .2 and gap <= real:
