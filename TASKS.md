@@ -206,11 +206,11 @@ V2 원인은 빌드 구성으로 좁혔으나 커밋/변경 줄 미확정이므�
 
 이전 B04/B05/B06/B06b/V3 수락 순서는 [이전 인계](Archive/B09-prior-tasks-20261012.md)를 유지한다. B09 결과는 [이관 인계](Archive/B10-prior-handoff-20261012.md)에 보존했다.
 
-1. [장치 시험 코스](Launchers/B10/Play-V4-Mechanics.cmd),10분:6장치·E4·Slam 손맛. 시작→끝 입력2회/장치 단위 PASS, F 후보는 Play 종료하면 사라짐.
-2. [새 게임](Launchers/B10/Play-V4.cmd),25~30분:A01부터 V4 경로/되돌아가기. 자동 자연 진행은 C02까지이며 S02 완주 보장은 없음.
-3. 기존 [B09 AfterBoss](Launchers/B09/Play-V4-AfterBoss.cmd),5~10분:기존 전체 능력 fixture 실행기. 자연 저장과 구분해 Slam/숨은 길 감각 확인.
-4. [대시 후 실제 저장](Launchers/B10/Play-V4-AfterDash.cmd),5분:타이틀 이어하기→CP-A03, 대시 복원.
-5. [벽 점프 후 실제 저장](Launchers/B10/Play-V4-AfterWall.cmd),5분:타이틀 이어하기→CP-B01, 대시+벽 점프 복원.
+1. [장치 시험 코스](Launchers/current/Play-V4-Mechanics.cmd),10분:6장치·E4·Slam 손맛. 시작→끝 입력2회/장치 단위 PASS, F 후보는 Play 종료하면 사라짐.
+2. [새 게임](Launchers/current/Play-V4.cmd),25~30분:A01부터 V4 경로/되돌아가기. 자동 자연 진행은 C02까지이며 S02 완주 보장은 없음.
+3. 기존 [B09 AfterBoss](Archive/launchers/B09/Play-V4-AfterBoss.cmd),5~10분:기존 전체 능력 fixture 실행기. 자연 저장과 구분해 Slam/숨은 길 감각 확인.
+4. [대시 후 실제 저장](Launchers/current/Play-V4-AfterDash.cmd),5분:타이틀 이어하기→CP-A03, 대시 복원.
+5. [벽 점프 후 실제 저장](Launchers/current/Play-V4-AfterWall.cmd),5분:타이틀 이어하기→CP-B01, 대시+벽 점프 복원.
 
 보스 전/엔딩 후 실행기 파일은 있지만 자연 저장이 없으므로 실행 불가 안내. 네 단계 모두 준비됐다고 보지 않는다. 위 실행기를 재실행하면 원본 단계 저장을 전용 slot에 다시 복사한다. 조정 값 위치/Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md).
 
@@ -230,7 +230,7 @@ V2 원인은 빌드 구성으로 좁혔으나 커밋/변경 줄 미확정이므�
 | T10 PARTIAL | 58a1489 | [70경로fps](Validation/B10-T10-summary.md),30fps43/70·120fps59/70, 자연 미실시 |
 | T11 DONE | 9bc23d1 | [입력27조합](Validation/B10-T11-summary.md),의도치 발동0 |
 | T12 PARTIAL | 6605b98 | [Claude 보고서](Validation/B10-geometry-report.md),좌표/원문/4방8스크린샷, 물리 원인 일부 미확정 |
-| T13 PARTIAL | 이 인계의 커밋 | B10StageVerifier/Launchers/B10/[전달](Validation/B10-T13-summary.md),기본15PASS·V2 W22FAIL·4기동PASS·자연저장2개 없음 |
+| T13 PARTIAL | 이 인계의 커밋 | B10StageVerifier/Launchers/current/[전달](Validation/B10-T13-summary.md),기본15PASS·V2 W22FAIL·4기동PASS·자연저장2개 없음 |
 | BL1 DONE | 949beb3 | [V4회귀 등록](Validation/B10-BL1-summary.md),1회63/69 PASS |
 | BL2 DONE | 850c890 | [19경로후보비교](Validation/B10-BL2-summary.md),기본값 유지 |
 | BL3 PARTIAL | 67f35a1 | [자동 체류시간](Validation/B10-BL3-summary.md),완료 구간만/PRD60~120분 달성 주장 없음 |

@@ -2,7 +2,7 @@
 
 ## Batch09 V4 확인 빌드 (2026-10-12)
 
-`Builds/B09-delivery/` Development 한 개. 같은 폴더 또는 `Launchers/B09/`의 `Play-V4.cmd`는 새 게임, `Play-V4-Mechanics.cmd`는 장치 시험 코스, `Play-V4-AfterBoss.cmd`는 전체 능력+Slam 상태의 A01 QA로 시작한다. 각 모드는 전달 폴더 `slots/`의 독립 저장을 사용한다. 새 게임/AfterBoss 실행은 해당 슬롯을 초기화한다. 기존 실행기는 유지했다.
+`Builds/B09-delivery/` Development 한 개. 같은 폴더 또는 `Archive/launchers/B09/`의 `Play-V4.cmd`는 새 게임, `Play-V4-Mechanics.cmd`는 장치 시험 코스, `Play-V4-AfterBoss.cmd`는 전체 능력+Slam 상태의 A01 QA로 시작한다. 각 모드는 전달 폴더 `slots/`의 독립 저장을 사용한다. 새 게임/AfterBoss 실행은 해당 슬롯을 초기화한다. 기존 실행기는 유지했다.
 
 공중 아래+C=내려찍기, 아래+X=기존 아래 공격. 개발 F8=Slam 부여, M=21방 지도, 시험 코스 F=장치 후보1/2/기본 순환. 조정 값은 `MechanicsTuning.asset`, 위치는 설계 데이터→생성기. [V4 생성·장치 안내](LEVEL_V4.md).
 
@@ -247,7 +247,7 @@ Development 실행기:
 
 ## Batch07 V3 후보 실행 (2026-10-11)
 
-`Builds/B07-delivery/Play-V3-Guide.cmd`와 `Play-V3-NoGuide.cmd`로 시작합니다. QA-V3-A03/B01/C01/C04.cmd는 각각 대시 / 대시·벽점프 / 전 능력 / 보스 직전 CP를 별도 슬롯에 준비하며 타이틀에서 Continue를 선택합니다. 슬롯은 `Builds/B07-delivery/slots/<Mode>.json`입니다. 기본 저장과 분리됩니다. `Play-WallJumpTest.cmd`도 함께 있습니다. 실행기 원본은 `Launchers/B07/`입니다.
+`Builds/B07-delivery/Play-V3-Guide.cmd`와 `Play-V3-NoGuide.cmd`로 시작합니다. QA-V3-A03/B01/C01/C04.cmd는 각각 대시 / 대시·벽점프 / 전 능력 / 보스 직전 CP를 별도 슬롯에 준비하며 타이틀에서 Continue를 선택합니다. 슬롯은 `Builds/B07-delivery/slots/<Mode>.json`입니다. 기본 저장과 분리됩니다. `Play-WallJumpTest.cmd`도 함께 있습니다. 실행기 원본은 `Archive/launchers/B07/`입니다.
 
 A02 계단·굴뚝과 C03 첫 선택 도전은 PARTIAL입니다. QA 우회 검증은 실행기 기본 플레이에 적용되지 않습니다. 30/60/120fps는 A02 두 구간을 건너뛴 나머지 경로만 엔딩까지 확인했습니다. V2 고정 입력 보스 사망은 회귀 의심으로 남았습니다. 자세한 상태·결정·직접 플레이 순서는 TASKS Latest Handoff에 있습니다.
 

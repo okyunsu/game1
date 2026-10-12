@@ -1,6 +1,6 @@
 param([ValidateSet('Guide','NoGuide','A03','B01','C01','C04','Wall')][string]$Mode='Guide',[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
-$taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
+$taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../..'))
 $taskBuild=Join-Path $taskRoot 'Builds/B07-delivery'
 $taskSlot=$Mode
 if($Smoke){$taskSlot+='-smoke-'+[IO.Path]::GetFileNameWithoutExtension($Evidence)}

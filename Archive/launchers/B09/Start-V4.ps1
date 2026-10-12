@@ -1,6 +1,6 @@
 param([ValidateSet('NewGame','Mechanics','AfterBoss')][string]$Mode='NewGame',[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
-$taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
+$taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../..'))
 $taskBuild=Join-Path $taskRoot 'Builds/B09-delivery'
 $taskSlot=$Mode
 if($Smoke){$taskSlot+='-smoke-'+[IO.Path]::GetFileNameWithoutExtension($Evidence)}
