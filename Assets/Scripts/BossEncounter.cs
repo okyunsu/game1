@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [RequireComponent(typeof(BoxCollider2D),typeof(SpriteRenderer))]
-public sealed class BossEncounter:MonoBehaviour,IDamageable
+public sealed partial class BossEncounter:MonoBehaviour,IDamageable
 {
- public enum Phase{Idle,MeleeTell,MeleeRecovery,WaveTell,WaveRecovery,Defeated,Walk,LeapTell,LeapFlight,LeapRecovery,ChargeTell,Charge,ChargeRecovery}
+ public enum Phase{Idle,MeleeTell,MeleeRecovery,WaveTell,WaveRecovery,Defeated,Walk,LeapTell,LeapFlight,LeapRecovery,ChargeTell,Charge,ChargeRecovery,ChaseTell,Chase,ChaseRecovery,ComboLeapTell,ComboLeapFlight,ComboLeapGap,ComboLeapRecovery,BackshotTell,Backstep,BackshotFire,BackshotRecovery,FallingTell,FallingZones,FallingDrop,FallingRecovery,PhaseTwoTell,Dormant}
  [Tooltip("Shared boss prototype values.")]public BossTuning tuning;
  [Header("Scene references")]
  public RoomExit leftExit;
@@ -33,7 +33,7 @@ public sealed class BossEncounter:MonoBehaviour,IDamageable
  public int AttackToken=>attackToken;
  public float Facing=>facing;
  public Bounds MeleeBounds=>new Bounds(new Vector3(tuning.extendedPatterns?transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+tuning.meleeRange*.5f):GetComponent<BoxCollider2D>().bounds.min.x-tuning.meleeRange*.5f,floorY+.5f,0),new Vector3(tuning.meleeRange,1,1));
- void Awake(){HP=tuning.maxHP;doorSprites=leftExit.GetComponentsInChildren<SpriteRenderer>();doorColors=new Color[doorSprites.Length];for(int i=0;i<doorSprites.Length;i++)doorColors[i]=doorSprites[i].color;warning.enabled=false;}
+ void Awake(){HP=tuning.b3Patterns&&Debug.isDebugBuild?Mathf.Clamp(N5Args.Int("-boss-start-hp",tuning.maxHP),1,tuning.maxHP):tuning.maxHP;Debug.Log($"BOSS initial HP={HP} maxHP={tuning.maxHP} phase=1");doorSprites=leftExit.GetComponentsInChildren<SpriteRenderer>();doorColors=new Color[doorSprites.Length];for(int i=0;i<doorSprites.Length;i++)doorColors[i]=doorSprites[i].color;warning.enabled=false;}
  void SetLock(bool locked){leftExit.enabled=!locked;for(int i=0;i<doorSprites.Length;i++)doorSprites[i].color=locked?new Color(.9f,.2f,.2f):doorColors[i];}
  void SetPhase(Phase phase){LastPhaseDuration=Time.timeAsDouble-PhaseStarted;State=phase;PhaseStarted=Time.timeAsDouble;warning.enabled=phase==Phase.MeleeTell||phase==Phase.WaveTell;warning.color=phase==Phase.MeleeTell?new Color(1,.25f,.15f,.6f):new Color(1,.8f,.1f,.6f);}
  void Update(){
@@ -51,8 +51,8 @@ public sealed class BossEncounter:MonoBehaviour,IDamageable
  float StandingY=>floorY+GetComponent<BoxCollider2D>().bounds.extents.y;
  float ClampX(float x)=>Mathf.Clamp(x,leftWallX+GetComponent<BoxCollider2D>().bounds.extents.x+tuning.wallClearance,rightWallX-GetComponent<BoxCollider2D>().bounds.extents.x-tuning.wallClearance);
  void Warn(float x,float width,Color color){warning.enabled=true;warning.transform.position=new Vector3(x,floorY+.15f,0);warning.transform.localScale=new Vector3(width,.3f,1);warning.color=color;}
- void BeginPattern(int index){pattern=index;attackToken++;facing=RoomSession.Instance.Player.transform.position.x<transform.position.x?-1:1;
-  if(index==0){SetPhase(Phase.MeleeTell);Warn(MeleeBounds.center.x,tuning.meleeRange,new Color(1,.25f,.15f,.6f));}
+ void BeginPattern(int index){if(index<0){SetPhase(Phase.Dormant);return;}if(tuning.b3Patterns&&!PatternEnabled(index)){pattern=index;index=NextPattern();if(index<0){SetPhase(Phase.Dormant);return;}}pattern=index;PatternStarts++;attackToken++;facing=RoomSession.Instance.Player.transform.position.x<transform.position.x?-1:1;
+  if(tuning.b3Patterns&&index>=4){BeginB3Pattern(index);return;}if(index==0){SetPhase(Phase.MeleeTell);Warn(MeleeBounds.center.x,tuning.meleeRange,new Color(1,.25f,.15f,.6f));}
   else if(index==1){leapTarget=ClampX(RoomSession.Instance.Player.transform.position.x);SetPhase(Phase.LeapTell);Warn(leapTarget,tuning.slamWidth,new Color(1,.25f,.15f,.6f));}
   else if(index==2){SetPhase(Phase.WaveTell);Warn(transform.position.x+facing*3,6,new Color(1,.8f,.1f,.6f));}
   else {SetPhase(Phase.ChargeTell);Warn((transform.position.x+(facing<0?leftWallX:rightWallX))*.5f,Mathf.Abs(transform.position.x-(facing<0?leftWallX:rightWallX)),new Color(1,.25f,.15f,.6f));}
@@ -62,23 +62,29 @@ public sealed class BossEncounter:MonoBehaviour,IDamageable
  void DamageArea(Bounds bounds){int n=Physics2D.OverlapBox(bounds.center,bounds.size,0,new ContactFilter2D{useTriggers=true},contacts);for(int i=0;i<n;i++){var health=contacts[i].GetComponent<PlayerHealth>();if(health!=null)TryPatternDamage(health,attackToken,transform.position);}}
  public bool TryPatternDamage(PlayerHealth health,int token,Vector2 source){if(!Fighting||deathQueued||damagedPatterns.Contains(token))return false;if(!health.TakeDamage(tuning.damage,source))return false;damagedPatterns.Add(token);return true;}
  void SpawnCandidateWave(float direction,float x){var go=Instantiate(wavePrefab,new Vector3(x,floorY+tuning.waveHeight*.5f,0),Quaternion.identity);SceneManager.MoveGameObjectToScene(go,gameObject.scene);go.transform.localScale=new Vector3(.6f,tuning.waveHeight,1);wave=go.GetComponent<BossWave>();wave.speed=tuning.waveSpeed;wave.damage=tuning.damage;wave.leftWallX=leftWallX;wave.rightWallX=rightWallX;wave.direction=direction;wave.candidateOwner=this;wave.attackToken=attackToken;candidateWaves.Add(wave);WavesSpawned++;}
- void UpdateExtended(float elapsed){
-  if(State==Phase.Walk){MoveBoss(new Vector3(Mathf.MoveTowards(transform.position.x,walkTarget,tuning.walkSpeed*Time.deltaTime),StandingY,0));int n=Physics2D.OverlapBox(GetComponent<BoxCollider2D>().bounds.center,GetComponent<BoxCollider2D>().bounds.size,0,new ContactFilter2D{useTriggers=true},contacts);for(int i=0;i<n;i++)contacts[i].GetComponent<PlayerHealth>()?.TakeDamage(tuning.damage,transform.position);if(Mathf.Abs(transform.position.x-walkTarget)<.001f)BeginPattern((pattern+1)%4);}
+ void UpdateExtended(float elapsed){if(tuning.b3Patterns&&UpdateB3(elapsed))return;
+  if(State==Phase.Walk){MoveBoss(new Vector3(Mathf.MoveTowards(transform.position.x,walkTarget,tuning.walkSpeed*Time.deltaTime),StandingY,0));int n=Physics2D.OverlapBox(GetComponent<BoxCollider2D>().bounds.center,GetComponent<BoxCollider2D>().bounds.size,0,new ContactFilter2D{useTriggers=true},contacts);for(int i=0;i<n;i++)contacts[i].GetComponent<PlayerHealth>()?.TakeDamage(tuning.damage,transform.position);if(Mathf.Abs(transform.position.x-walkTarget)<.001f)BeginPattern(NextPattern());}
   else if(State==Phase.MeleeTell&&elapsed>=tuning.meleeTell){DamageArea(MeleeBounds);SetPhase(Phase.MeleeRecovery);}
   else if(State==Phase.LeapTell&&elapsed>=tuning.leapTell){leapStart=transform.position;SetPhase(Phase.LeapFlight);Warn(leapTarget,tuning.slamWidth,new Color(1,.25f,.15f,.6f));}
   else if(State==Phase.LeapFlight){float t=Mathf.Clamp01(elapsed/tuning.leapFlight);MoveBoss(new Vector3(Mathf.Lerp(leapStart.x,leapTarget,t),StandingY+4*t*(1-t)*tuning.leapHeight,0));if(t>=1){DamageArea(new Bounds(new Vector3(leapTarget,floorY+.5f,0),new Vector3(tuning.slamWidth,1,1)));SpawnCandidateWave(-1,leapTarget-1.3f);SpawnCandidateWave(1,leapTarget+1.3f);SetPhase(Phase.LeapRecovery);}}
   else if(State==Phase.WaveTell&&elapsed>=tuning.waveTell){SpawnCandidateWave(facing,transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+.3f));SetPhase(Phase.WaveRecovery);}
   else if(State==Phase.ChargeTell&&elapsed>=tuning.chargeTell)SetPhase(Phase.Charge);
   else if(State==Phase.Charge){float x=ClampX(transform.position.x+facing*tuning.chargeSpeed*Time.deltaTime);MoveBoss(new Vector3(x,StandingY,0));DamageArea(GetComponent<BoxCollider2D>().bounds);if(Mathf.Abs(x-ClampX(facing<0?leftWallX:rightWallX))<.001f)SetPhase(Phase.ChargeRecovery);}
-  else if((State==Phase.MeleeRecovery||State==Phase.LeapRecovery||State==Phase.WaveRecovery||State==Phase.ChargeRecovery)&&elapsed>=tuning.recovery)BeginWalk();
+  else if((State==Phase.MeleeRecovery||State==Phase.LeapRecovery||State==Phase.WaveRecovery||State==Phase.ChargeRecovery)&&elapsed>=RecoveryTime(tuning.recovery))BeginWalk();
  }
- public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;GetComponent<HitFeedback>()?.Hit(HP);if(HP==0){SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);foreach(var live in candidateWaves)if(live!=null)Destroy(live.gameObject);wave=null;warning.enabled=false;Defeated?.Invoke();}}
+ public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;CheckPhaseTwoHit();GetComponent<HitFeedback>()?.Hit(HP);if(HP==0){ClearFallingWarnings();ClearB3Hazards();SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);foreach(var live in candidateWaves)if(live!=null)Destroy(live.gameObject);wave=null;warning.enabled=false;Defeated?.Invoke();}}
  public bool DeferDeath(){if(resolvingDeath)return false;if(State==Phase.Defeated)return true;if(!Fighting)return false;if(!deathQueued){deathQueued=true;}return true;}
  void LateUpdate(){if(!deathQueued)return;if(State==Phase.Defeated){deathQueued=false;return;}resolvingDeath=true;deathQueued=false;RoomSession.Instance.Die();}
  void Contact(Collision2D c){if(Fighting&&!deathQueued){var health=c.collider.GetComponent<PlayerHealth>();if(health==null)return;if(tuning.extendedPatterns&&State!=Phase.Walk)TryPatternDamage(health,attackToken,transform.position);else health.TakeDamage(tuning.damage,transform.position);}}
  void OnCollisionEnter2D(Collision2D c)=>Contact(c);
  void OnCollisionStay2D(Collision2D c)=>Contact(c);
- void OnTriggerStay2D(Collider2D c){if(!tuning.extendedPatterns||!Fighting||State==Phase.LeapFlight||State==Phase.Walk||deathQueued)return;var health=c.GetComponent<PlayerHealth>();if(health!=null)TryPatternDamage(health,attackToken,transform.position);}
+ void OnTriggerStay2D(Collider2D c){if(!tuning.extendedPatterns||!Fighting||State==Phase.LeapFlight||State==Phase.Walk||deathQueued||(tuning.b3Patterns&&(pattern>=4||IsNewRecovery||State==Phase.PhaseTwoTell)))return;var health=c.GetComponent<PlayerHealth>();if(health!=null)TryPatternDamage(health,attackToken,transform.position);}
  void OnGUI(){if(State==Phase.Idle)return;float x=Screen.width*.5f-200;GUI.Box(new Rect(x,30,400,28),$"정상 수문장  {HP}/{tuning.maxHP}");GUI.Box(new Rect(x,60,400f*HP/tuning.maxHP,8),"");}
 }
+
+
+
+
+
+
 

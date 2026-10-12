@@ -12,11 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53afd4ba201ae340ae809e165580a14, type: 3}
   m_Name: BossTuning
   m_EditorClassIdentifier: Assembly-CSharp::BossTuning
+  extendedPatterns: 1
+  walkSpeed: 3
+  leftAnchor: 5
+  rightAnchor: 17.5
+  leapTell: 0.56
+  leapFlight: 0.5
+  leapHeight: 4
+  slamWidth: 3
+  chargeTell: 0.48000002
+  chargeSpeed: 10.8
+  wallClearance: 0.1
   maxHP: 28
   damage: 2
-  meleeTell: 0.6
-  waveTell: 0.75
+  meleeTell: 0.48000002
+  waveTell: 0.6
   recovery: 0.8
   meleeRange: 3
-  waveSpeed: 6.5
+  waveSpeed: 7.8
   waveHeight: 1

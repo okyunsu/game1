@@ -15,6 +15,7 @@ public sealed class BossCandidateSelection:MonoBehaviour
   BossTuning chosen=id switch{"b2"=>b2,"b2fast"=>b2fast,"b2slow"=>b2slow,"b3"=>b3,_=>boss.tuning};
   if(chosen==null){Debug.LogWarning("BOSS requested candidate unavailable: "+id+"; using base");chosen=boss.tuning;id="base";}
   boss.tuning=chosen;
-  Debug.Log($"BOSS candidate={id} BossTuning={chosen.name} extendedPatterns={chosen.extendedPatterns}");
+  Debug.Log($"BOSS candidate={id} BossTuning={chosen.name} extendedPatterns={chosen.extendedPatterns} b3Patterns={chosen.b3Patterns} patterns={(chosen.b3Patterns?boss.EnabledPatterns:"B2-fast cycle")}");
  }
 }
+
