@@ -1,4 +1,4 @@
-param([string]$Build='B10-harness-r2',[string]$Mode='routes',[string]$Room='',[string]$Route='',[string]$Tag='run',[int]$Fps=60,[int]$Timeout=2460,[switch]$Expanded,[switch]$Fast,[int]$Part=0,[int]$Parts=1)
+param([string]$Build='B10-harness-r2',[string]$Mode='routes',[string]$Room='',[string]$Route='',[string]$Tag='run',[int]$Fps=60,[int]$Timeout=2460,[switch]$Expanded,[switch]$Fast,[int]$Part=0,[int]$Parts=1,[switch]$Split,[string]$Manifest='')
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
 if($Tag -notmatch '^[a-zA-Z0-9-]+$'){throw 'Safe tag required'}
@@ -8,6 +8,8 @@ $taskArgs=@('-v4','-verify-b10-search',$Mode,'-verify-fps',"$Fps",'-verify-outpu
 if($Room){$taskArgs+=@('-b10-room',$Room)}
 if($Route){$taskArgs+=@('-b10-route',$Route)}
 if($Expanded){$taskArgs+='-b10-expanded'}
+if($Split){$taskArgs+='-b10-split'}
+if($Manifest){$taskArgs+=@('-b10-manifest',('"'+(Join-Path $taskRoot $Manifest)+'"'))}
 if($Fast){$taskArgs+='-b10-fast';$taskArgs[$taskArgs.IndexOf('-screen-width')+1]='320';$taskArgs[$taskArgs.IndexOf('-screen-height')+1]='180'}
 if($Parts -lt 1 -or $Part -lt 0 -or $Part -ge $Parts){throw 'Invalid candidate partition'}
 $taskArgs+=@('-b10-part',"$Part",'-b10-parts',"$Parts")

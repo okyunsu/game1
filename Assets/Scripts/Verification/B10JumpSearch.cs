@@ -69,7 +69,7 @@ public sealed class B10JumpSearch:N5Runner
   if(bare.StartsWith("lift:")){var p=J.A(d,"lifts").Select(J.D).First(v=>J.S(v,"id")==bare.Split(':')[1]);node.left=J.F(p,"x0");node.right=J.F(p,"x1");node.point=new Vector2((node.left+node.right)/2,J.F(p,bare.EndsWith(":lo")?"lo":"hi"));node.surface=true;return node;}
   if(bare.StartsWith("lever:")){var p=J.A(d,"lifts").Select(J.D).First(v=>J.S(v,"id")==bare.Split(':')[1]);var lever=J.A(p,"lever");node.point=new Vector2(J.F(lever[0])-1,J.F(p,"hi"));node.left=node.right=node.point.x;return node;}
   var m=Regex.Match(bare,@"^([a-z]+)(\d+)$");if(!m.Success)throw new Exception("Unknown node "+token);
-  var rect=(List<object>)J.A(d,m.Groups[1].Value)[int.Parse(m.Groups[2].Value)];node.left=J.F(rect[0]);node.right=node.left+J.F(rect[2]);node.point=new Vector2(split.Length>1?float.Parse(split[1],System.Globalization.CultureInfo.InvariantCulture):(node.left+node.right)/2,J.F(rect[1])+J.F(rect[3]));node.surface=true;return node;
+  var rect=(List<object>)J.A(d,m.Groups[1].Value)[int.Parse(m.Groups[2].Value)];node.left=J.F(rect[0]);node.right=node.left+J.F(rect[2]);node.point=new Vector2(split.Length>1?float.Parse(split[1],System.Globalization.CultureInfo.InvariantCulture):(node.left+node.right)/2,J.F(rect[1])+J.F(rect[3]));if(split.Length>1){node.left=Mathf.Max(node.left,node.point.x-3);node.right=Mathf.Min(node.right,node.point.x+3);}node.surface=true;return node;
  }
  float Feet=>Player.GetComponent<BoxCollider2D>().bounds.min.y;
  bool Alive=>RoomSession.Instance!=null&&Player!=null&&!RoomSession.Instance.Respawning&&Health.HP>0;
@@ -91,7 +91,7 @@ public sealed class B10JumpSearch:N5Runner
   if(node.token.StartsWith("lift:")){var lift=FindObjectsByType<LeverLift>(FindObjectsSortMode.None).First(v=>v.name=="lift:"+node.token.Split(':')[1]);if((node.token.Contains("@lift")&&!lift.Unlocked)||Mathf.Abs(lift.GetComponent<Collider2D>().bounds.max.y-node.point.y)>.12f)return false;}
   if(!node.surface)return Vector2.Distance(new Vector2(Body.position.x,Feet),node.point)<.55f;
   // Require actual floor contact on the named surface; proximity in the air is not success.
-  return Motor.Grounded&&Body.position.x>=node.left+.08f&&Body.position.x<=node.right-.08f&&Mathf.Abs(Feet-node.point.y)<.12f&&(!(node.token.Contains('~')||node.token.StartsWith("point:"))||Mathf.Abs(Body.position.x-node.point.x)<.5f);
+  return Motor.Grounded&&Body.position.x>=node.left+.08f&&Body.position.x<=node.right-.08f&&Mathf.Abs(Feet-node.point.y)<.12f&&(!node.token.StartsWith("point:")||Mathf.Abs(Body.position.x-node.point.x)<.5f);
  }
  IEnumerator Reset(Vector2 start,bool place=true)
  {
@@ -131,7 +131,9 @@ public sealed class B10JumpSearch:N5Runner
  IEnumerable<Candidate> Candidates(Node source,Node target)
  {
   bool downAttack=CoveredFloorDoor(target,"cover"),downSlam=CoveredFloorDoor(target,"seal");
-  if(UpcomingWall(source,target)!=null)foreach(float wall in Steps(0,.1f,.02f))foreach(float offset in new[]{0f,.05f,-.05f})yield return new Candidate{launch=source.left-Player.GetComponent<Collider2D>().bounds.extents.x+.05f+offset,hold=.4f,dj=-1,dash=-1,attack=-1,slam=-1,wall=wall,air=1,method=2};
+  if(target.token.Contains("@wj")&&source.surface)foreach(float launch in new[]{target.point.x,target.point.x-1,target.point.x+1})foreach(float wall in Steps(0,.1f,.02f))yield return new Candidate{launch=Mathf.Clamp(launch,source.left+.35f,source.right-.35f),hold=.4f,dj=-1,dash=-1,attack=-1,slam=-1,wall=wall,air=1};
+  var ending=FindFirstObjectByType<V3SummitEnding>();if(ending!=null&&source.surface){var b=ending.GetComponent<Collider2D>().bounds;float side=target.point.x<source.point.x?1:-1;if((side>0?source.right>b.max.x:source.left<b.min.x)&&(target.point.x-b.center.x)*side<0)foreach(float distance in Steps(1.5f,3.5f,.25f))foreach(int air in new[]{0,1})foreach(float dj in (ability&4)!=0?new[]{.35f,.45f,-1f}:new[]{-1f})yield return new Candidate{launch=b.center.x+side*(b.extents.x+distance),hold=.4f,dj=dj,dash=-1,wall=-1,attack=-1,slam=-1,air=air};}
+  if(UpcomingWall(source,target)!=null)foreach(float wall in Steps(0,.1f,.02f))foreach(float offset in new[]{0f,.05f,-.05f})yield return new Candidate{launch=UpcomingAnchor(source,UpcomingWall(source,target))+(UpcomingWall(source,target).GetComponent<Collider2D>().bounds.center.x<source.point.x?.07f:-.07f)+offset,hold=.4f,dj=-1,dash=-1,attack=-1,slam=-1,wall=wall,air=1,method=2};
   float direction=target.point.x>=source.point.x?1:-1,near=Mathf.Clamp(source.point.x,source.left+.35f,Mathf.Max(source.left+.35f,source.right-.35f));
   if(target.point.y<source.point.y-.15f)yield return new Candidate{launch=source.point.x,run=0,hold=0,dj=-1,dash=-1,wall=-1,attack=-1,slam=-1,air=1,method=1};
   // First cover the useful center/edge launches, then enumerate the full grid below.
@@ -161,23 +163,24 @@ public sealed class B10JumpSearch:N5Runner
  IEnumerator Attempt(Node source,Node target,Candidate c)
  {
   recording=new Recording{room=roomId,route=routeName,source=source.token,target=target.token,start=Body.position,abilities=ability,fps=verificationFps};success=false;dead=false;int pogo=Player.GetComponent<PlayerAttack>().PogosPerformed;
+  if(RoomSession.Instance.CurrentRoomId!=roomId){success=Goal(target,pogo);recording.end=Body.position;yield break;}
   if(source.surface&&target.point.y>source.point.y+.2f)yield return ClearTurretAbove(source);
   int direction=target.point.x>=source.point.x?2:1;double started=Time.timeAsDouble,nextEnemyAttack=0,enemyLockUntil=-1;
   // Walk to run-up position using ordinary movement; do not teleport to the takeoff grid.
   float support=c.method==2?-Player.GetComponent<Collider2D>().bounds.extents.x+.05f:.35f;float runX=Mathf.Clamp(c.launch+(direction==2?-c.run:c.run),source.left+support,Mathf.Max(source.left+support,source.right-support));
   double runLimit=Mathf.Abs(Body.position.x-runX)/Motor.Tuning.moveSpeed+4,runJumpUntil=-1;
   if(source.surface)while(Alive&&RoomSession.Instance.CurrentRoomId==roomId&&Mathf.Abs(Body.position.x-runX)>.13f&&Time.timeAsDouble-started<runLimit){int runMask=Body.position.x<runX?2:1;var bounds=Player.GetComponent<Collider2D>().bounds;var obstacle=Physics2D.BoxCast(bounds.center,new Vector2(bounds.size.x*.8f,bounds.size.y*.85f),0,runMask==2?Vector2.right:Vector2.left,.65f,1<<6);if(Motor.Grounded&&obstacle.collider!=null&&obstacle.collider.bounds.max.y>Feet+.1f&&obstacle.collider.bounds.min.y<bounds.max.y-.1f&&Time.timeAsDouble>runJumpUntil+.1)runJumpUntil=Time.timeAsDouble+.4;if(Time.timeAsDouble<runJumpUntil)runMask|=4;runMask=CombatMask(runMask,target,ref nextEnemyAttack,ref enemyLockUntil);runMask=SteamCrossingMask(runMask,target);yield return Emit(runMask);Measure(source,target);}
-  if(!Alive||Time.timeScale<=0||RoomSession.Instance.CurrentRoomId!=roomId){dead=!Alive;recording.end=Player==null?Vector2.zero:Body.position;yield break;}
-  yield return Emit(0);double wait=Time.timeAsDouble+c.wait;while(Alive&&Time.timeScale>0&&Time.timeAsDouble<wait)yield return Emit(0);
-  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1;double launchTime=0;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.timeAsDouble+(target.token.StartsWith("LIFT:")||target.token.StartsWith("lift:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
-  while(Alive&&Time.timeScale>0&&RoomSession.Instance.CurrentRoomId==roomId&&Time.timeAsDouble<until)
+  if(!Alive||GameState.GetOrCreate().Completing||RoomSession.Instance.CurrentRoomId!=roomId){dead=!Alive;recording.end=Player==null?Vector2.zero:Body.position;yield break;}
+  yield return Emit(0);double wait=Time.timeAsDouble+c.wait;while(Alive&&!GameState.GetOrCreate().Completing&&Time.timeAsDouble<wait)yield return Emit(0);
+  bool launched=false,slamSent=false,dashSent=false,airReleased=false;double reverseAt=-1,hatchJumpUntil=-1,hatchAttackAt=-1;double launchTime=0;int wallCount=Motor.WallJumpsPerformed;double wallAt=-1,wallHoldUntil=-1;int wallPulse=0,wallSide=0;int attackCount=0;int bounces=FindObjectsByType<SlamPad>(FindObjectsSortMode.None).Sum(p=>p.Bounces);double until=Time.timeAsDouble+(target.token.StartsWith("LIFT:")||target.token.StartsWith("lift:")?22:target.token.Contains("@wj")?30:Mathf.Max(7,Mathf.Abs(target.point.x-source.point.x)/Motor.Tuning.moveSpeed+6));
+  while(Alive&&!GameState.GetOrCreate().Completing&&RoomSession.Instance.CurrentRoomId==roomId&&Time.timeAsDouble<until)
   {
    if(Goal(target,pogo)){success=true;break;}
    int mask=direction;float aim=AimFor(target);float dx=aim-Body.position.x;
    if(!launched&&(!source.surface||(direction==2?Body.position.x>=c.launch-.12f:Body.position.x<=c.launch+.12f))){launched=true;launchTime=Time.timeAsDouble;}
    float t=launched?(float)(Time.timeAsDouble-launchTime):-1;
    if(launched&&t>1.5f&&Motor.Grounded&&target.surface&&target.point.y>Feet+.15f&&!target.token.Contains("@wj")&&!target.token.Contains("@steam")&&!target.token.Contains("@lift")&&!target.token.StartsWith("LIFT:")&&!target.token.StartsWith("CRUMBLE:"))break;
-   bool onTarget=target.surface&&Mathf.Abs(Feet-target.point.y)<.12f&&Body.position.x>=target.left&&Body.position.x<=target.right;
+   bool onTarget=target.surface&&Mathf.Abs(Feet-target.point.y)<.12f&&Body.position.x>=target.left-Player.GetComponent<Collider2D>().bounds.extents.x&&Body.position.x<=target.right+Player.GetComponent<Collider2D>().bounds.extents.x;
    if(launched&&Motor.Grounded&&c.hold>0&&t>c.hold+.2f&&!(airReleased&&onTarget)){var bounds=Player.GetComponent<Collider2D>().bounds;var obstacle=Physics2D.BoxCast(bounds.center,new Vector2(bounds.size.x*.8f,bounds.size.y*.85f),0,direction==2?Vector2.right:Vector2.left,.8f,1<<6);if(obstacle.collider!=null&&obstacle.collider.bounds.max.y>Feet+.1f&&obstacle.collider.bounds.min.y<bounds.max.y-.1f){launchTime=Time.timeAsDouble;t=0;dashSent=false;airReleased=false;}}
    if(launched){float firstHold=c.dj>=0?Mathf.Min(c.hold,Mathf.Max(0,c.dj-.04f)):c.hold;if(t<firstHold)mask|=4;if(c.dj>=0&&t>=c.dj&&t<c.dj+c.hold)mask|=4;if(!dashSent&&c.dash>=0&&t>=c.dash){mask|=8;dashSent=true;}
     float vx=Mathf.Abs(Body.linearVelocity.x),brake=Mathf.Max(.25f,vx*vx/(2*Motor.Tuning.deceleration*(Motor.Grounded?1:Motor.Tuning.airControl))+vx*(Time.fixedDeltaTime+1f/verificationFps));
@@ -190,13 +193,14 @@ public sealed class B10JumpSearch:N5Runner
    if(c.air==1&&airReleased&&Motor.Grounded&&onTarget)mask=(mask&~3)|(Mathf.Abs(dx)<.035f?0:dx>0?2:1);
    if(target.token.Contains("@wj"))
    {
-    var upcoming=c.method==2?UpcomingWall(source,target):null;if(upcoming!=null&&t>=0&&Feet<source.point.y+Motor.Tuning.jumpVelocity*Motor.Tuning.jumpVelocity/(2*Motor.Tuning.gravity)+.3f&&Player.GetComponent<Collider2D>().bounds.max.y<upcoming.GetComponent<Collider2D>().bounds.min.y+.02f){float anchor=upcoming.GetComponent<Collider2D>().bounds.min.x-Player.GetComponent<Collider2D>().bounds.extents.x-.02f;mask=(mask&~3)|(Mathf.Abs(Body.position.x-anchor)<.08f?0:Body.position.x<anchor?2:1);}
-    var walls=FindObjectsByType<ClimbableWall>(FindObjectsSortMode.None);float head=Player.GetComponent<Collider2D>().bounds.max.y;var available=walls.Where(w=>w.GetComponent<Collider2D>().bounds.max.y>Feet+.1f&&w.GetComponent<Collider2D>().bounds.min.y<head+.1f).ToArray();var wall=available.OrderBy(w=>Mathf.Abs(w.transform.position.x-Body.position.x)).FirstOrDefault();
+    var upcoming=c.method==2?UpcomingWall(source,target):null;if(upcoming!=null&&t>=0&&Feet<source.point.y+Motor.Tuning.jumpVelocity*Motor.Tuning.jumpVelocity/(2*Motor.Tuning.gravity)+.3f&&Player.GetComponent<Collider2D>().bounds.max.y<upcoming.GetComponent<Collider2D>().bounds.min.y+.02f){float anchor=UpcomingAnchor(source,upcoming);mask=(mask&~3)|(Mathf.Abs(Body.position.x-anchor)<.08f?0:Body.position.x<anchor?2:1);}
+    var walls=FindObjectsByType<ClimbableWall>(FindObjectsSortMode.None).Where(w=>Mathf.Abs(w.transform.position.x-target.point.x)<12).ToArray();float head=Player.GetComponent<Collider2D>().bounds.max.y;var available=walls.Where(w=>w.GetComponent<Collider2D>().bounds.max.y>Feet+.1f&&w.GetComponent<Collider2D>().bounds.min.y<head+.1f).ToArray();var wall=available.OrderBy(w=>Mathf.Abs(w.transform.position.x-Body.position.x)).FirstOrDefault();
     if(Motor.WallJumpsPerformed>wallCount){wallCount=Motor.WallJumpsPerformed;wallSide=wallSide==2?1:2;wallHoldUntil=Time.timeAsDouble+c.hold;wallPulse=0;wallAt=-1;if(target.token.Contains("@dj"))launchTime=Time.timeAsDouble;}
-    if(wall!=null&&!Motor.Grounded&&target.point.y>Feet+.2f){bool outside=Body.position.x<walls.Min(w=>w.GetComponent<Collider2D>().bounds.min.x)||Body.position.x>walls.Max(w=>w.GetComponent<Collider2D>().bounds.max.x);if(wallSide==0||outside||available.Length==1)wallSide=wall.transform.position.x>Body.position.x?2:1;mask=(mask&~3)|wallSide;}
+    if(wall!=null&&!Motor.Grounded&&Feet<(target.destination==null?target.point.y+.6f:target.point.y-Player.GetComponent<Collider2D>().bounds.size.y+.1f)){bool outside=Body.position.x<walls.Min(w=>w.GetComponent<Collider2D>().bounds.min.x)||Body.position.x>walls.Max(w=>w.GetComponent<Collider2D>().bounds.max.x);if(wallSide==0||outside||available.Length==1)wallSide=wall.transform.position.x>Body.position.x?2:1;mask=(mask&~3)|wallSide;}
     if(Time.timeAsDouble<wallHoldUntil&&!target.token.Contains("@dj"))mask|=4;
-    if(Motor.WallSliding){if(wallAt<0)wallAt=Time.timeAsDouble;if(Time.timeAsDouble-wallAt>=c.wall){if(wallPulse==0){mask&=~4;wallPulse=1;}else{mask|=4;wallPulse=2;}}}
+    if(Motor.WallSliding&&Feet<(target.destination==null?target.point.y+.6f:target.point.y-Player.GetComponent<Collider2D>().bounds.size.y+.1f)){if(wallAt<0)wallAt=Time.timeAsDouble;if(Time.timeAsDouble-wallAt>=c.wall){if(wallPulse==0){mask&=~4;wallPulse=1;}else{mask|=4;wallPulse=2;}}}
     else wallAt=-1;
+    if(Feet>=(target.destination==null?target.point.y+.6f:target.point.y-Player.GetComponent<Collider2D>().bounds.size.y+.1f))mask=(mask&~3)|(Mathf.Abs(dx)<.08f?0:dx>0?2:1);
    }
    if(target.token.Contains("@steam")){var vent=FindObjectsByType<SteamVent>(FindObjectsSortMode.None).OrderBy(v=>Vector2.Distance(v.transform.position,source.point)).FirstOrDefault();if(vent!=null&&Feet<target.point.y-.2f){float center=vent.GetComponent<Collider2D>().bounds.center.x;mask=(mask&~3)|(Mathf.Abs(Body.position.x-center)<.15f?0:Body.position.x<center?2:1);}}
    if(target.token.StartsWith("lever:")){var lever=FindObjectsByType<LiftLever>(FindObjectsSortMode.None).First(v=>v.upper);float anchor=lever.transform.position.x-Player.GetComponent<PlayerAttack>().tuning.attackRange*.7f;mask=Mathf.Abs(Body.position.x-anchor)<.15f?0:Body.position.x<anchor?2:1;if(Mathf.Abs(Body.position.x-anchor)<.2f&&(int)(Time.time*10)%3==0)mask=2|16;}
@@ -214,6 +218,7 @@ public sealed class B10JumpSearch:N5Runner
    }
    if(target.token.StartsWith("CRUMBLE:")&&Motor.Grounded&&Feet>=target.point.y-.15f)mask=0;
    if(!target.token.StartsWith("cover")){var wall=FindObjectsByType<BreakableWall>(FindObjectsSortMode.None).FirstOrDefault(w=>!w.Broken&&Mathf.Abs(w.transform.position.x-Body.position.x)<w.GetComponent<Collider2D>().bounds.extents.x+Player.GetComponent<PlayerAttack>().tuning.attackRange+.4f&&w.GetComponent<Collider2D>().bounds.max.y>Feet&&w.GetComponent<Collider2D>().bounds.min.y<Feet+1.6f);if(wall!=null&&(int)(Time.time*10)%4==0)mask=(mask&~3)|(wall.transform.position.x>Body.position.x?2:1)|16;}
+   if(CoveredFloorDoor(target,"cover")&&Mathf.Abs(dx)<.6f){if(Motor.Grounded&&Time.timeAsDouble>hatchJumpUntil+.1){hatchJumpUntil=Time.timeAsDouble+.4;hatchAttackAt=Time.timeAsDouble+Mathf.Max(.1f,c.attack);}if(Time.timeAsDouble<hatchJumpUntil)mask|=4;if(Time.timeAsDouble>=hatchAttackAt&&Time.timeAsDouble<hatchAttackAt+.06)mask|=32|16;}
    mask=CombatMask(mask,target,ref nextEnemyAttack,ref enemyLockUntil);mask=SteamCrossingMask(mask,target);
    Measure(source,target);yield return Emit(mask);
   }
@@ -225,14 +230,15 @@ public sealed class B10JumpSearch:N5Runner
  float AimFor(Node target)
  {
   if(!target.surface)return target.point.x;float half=Player.GetComponent<Collider2D>().bounds.extents.x,aim=Mathf.Clamp(target.point.x,target.left+half+.07f,Mathf.Max(target.left+half+.07f,target.right-half-.07f));
-  foreach(var obj in J.A(J.D(rooms[roomId]),"solid")){var r=(List<object>)obj;float left=J.F(r[0]),right=left+J.F(r[2]);if(J.F(r[1])+J.F(r[3])<=target.point.y+.12f||J.F(r[1])>=target.point.y+Player.GetComponent<Collider2D>().bounds.size.y||aim+half<left||aim-half>right)continue;float a=left-half-.07f,b=right+half+.07f;float free=Mathf.Abs(a-target.point.x)<Mathf.Abs(b-target.point.x)?a:b;if(Mathf.Abs(free-target.point.x)<.48f&&free>=target.left+half&&free<=target.right-half)aim=free;}
+  foreach(var obj in J.A(J.D(rooms[roomId]),"solid")){var r=(List<object>)obj;float left=J.F(r[0]),right=left+J.F(r[2]);if(J.F(r[1])+J.F(r[3])<=target.point.y+.12f||J.F(r[1])>=target.point.y+Player.GetComponent<Collider2D>().bounds.size.y||aim+half<left||aim-half>right)continue;float a=left-half-.07f,b=right+half+.07f;float free=Mathf.Abs(a-target.point.x)<Mathf.Abs(b-target.point.x)?a:b;if(free>=target.left+half&&free<=target.right-half)aim=free;}
   return aim;
  }
  ClimbableWall UpcomingWall(Node source,Node target)
  {
   if(!target.token.Contains("@wj")||target.point.y<=source.point.y+2)return null;float height=Player.GetComponent<Collider2D>().bounds.size.y,reach=Motor.Tuning.jumpVelocity*Motor.Tuning.jumpVelocity/(2*Motor.Tuning.gravity)+height+.2f;
-  return FindObjectsByType<ClimbableWall>(FindObjectsSortMode.None).Where(w=>{var b=w.GetComponent<Collider2D>().bounds;return b.min.y>source.point.y+height&&b.min.y<source.point.y+reach&&Mathf.Abs(b.min.x-source.left)<.2f;}).OrderBy(w=>w.GetComponent<Collider2D>().bounds.min.y).FirstOrDefault();
+  return FindObjectsByType<ClimbableWall>(FindObjectsSortMode.None).Where(w=>{var b=w.GetComponent<Collider2D>().bounds;return b.min.y>source.point.y+height&&b.min.y<source.point.y+reach&&(Mathf.Abs(b.min.x-source.left)<.2f||Mathf.Abs(b.max.x-source.right)<.2f);}).OrderBy(w=>w.GetComponent<Collider2D>().bounds.min.y).FirstOrDefault();
  }
+ float UpcomingAnchor(Node source,ClimbableWall wall){var b=wall.GetComponent<Collider2D>().bounds;float half=Player.GetComponent<Collider2D>().bounds.extents.x;return Mathf.Abs(b.min.x-source.left)<.2f?b.min.x-half-.02f:b.max.x+half+.02f;}
  IEnumerator ClearTurretAbove(Node source)
  {
   if(FindObjectsByType<CrumblePlatform>(FindObjectsSortMode.None).Any(p=>Mathf.Abs(p.GetComponent<Collider2D>().bounds.max.y-Feet)<.15f&&p.GetComponent<Collider2D>().bounds.min.x<=Body.position.x&&p.GetComponent<Collider2D>().bounds.max.x>=Body.position.x))yield break;
@@ -305,7 +311,7 @@ public sealed class B10JumpSearch:N5Runner
  }
  string CursorFile(int index,int part,int parts)
  {
-  string scope="B10-search-r39|"+Resources.Load<TextAsset>("V4Design").text+"|"+roomId+"|"+routeName+"|"+string.Join("/",tokens)+"|"+ability+"|"+verificationFps+"|"+N5Args.Value("-b10-preset","0");
+  string scope="B10-search-r56|"+Resources.Load<TextAsset>("V4Design").text+"|"+roomId+"|"+routeName+"|"+string.Join("/",tokens)+"|"+ability+"|"+verificationFps+"|"+N5Args.Value("-b10-preset","0");
   using(var hash=System.Security.Cryptography.SHA256.Create()){string key=System.BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(scope))).Replace("-","").Substring(0,24);return Path.Combine(root,"cursor-"+key+"-s"+index+"-p"+part+"of"+parts+".txt");}
  }
  IEnumerator ReplayAll()
@@ -358,7 +364,7 @@ public sealed class B10JumpSearch:N5Runner
    var route=((List<object>)pair.Value).Select(x=>x.ToString()).ToList();if(route.Count==0)continue;
    for(int reverse=0;reverse<2;reverse++){var path=reverse==0?route:route.AsEnumerable().Reverse().ToList();int first=0,last=path.Count-1;float nearest=float.PositiveInfinity;for(int i=0;i<path.Count;i++){var node=Resolve(path[i]);if(node.point.y>start.point.y+.2f)continue;float distance=Vector2.Distance(start.point,node.point);if(distance<nearest){nearest=distance;first=i;}}if(float.IsPositiveInfinity(nearest))continue;nearest=float.PositiveInfinity;for(int i=first;i<path.Count;i++){float distance=Vector2.Distance(end.point,Resolve(path[i]).point);if(distance<nearest){nearest=distance;last=i;}}
     if(last<first)continue;float cost=Vector2.Distance(start.point,Resolve(path[first]).point)+nearest;for(int i=first+1;i<=last;i++)cost+=Vector2.Distance(Resolve(path[i-1]).point,Resolve(path[i]).point)*.12f;if(path.Any(x=>x.EndsWith(exit)||x.Contains(exit+"@")))cost-=50;
-    if(cost>=score)continue;score=cost;chosen=new List<string>{startToken};chosen.AddRange(path.Skip(first).Take(last-first+1));if(!chosen.Last().StartsWith("floor:")&&!chosen.Last().StartsWith("ceil:"))chosen.Add("door:"+exit);
+    if(cost>=score)continue;score=cost;chosen=new List<string>{startToken};chosen.AddRange(path.Skip(first).Take(last-first+1));if(Resolve(chosen.Last()).destination==null)chosen.Add("door:"+exit);
    }
   }
   return chosen;
@@ -438,14 +444,17 @@ public sealed class B10JumpSearch:N5Runner
  {
   // Only menu NewGame has run. No Reset, Prepare, placement, grant or QA transition.
   ProgressSave.Enabled=true;worldCapture=true;worldTimes.Add("room,route,seconds,frames");
-  string[][] plan={new[]{"A01","main","A01-A02"},new[]{"A02","floor","A02-A03"},new[]{"A03","roofs","A03-A04"},new[]{"A04","high","A04-A05"},new[]{"A05","main","A05-A03"},new[]{"A03","high","A03-B01"},new[]{"B01","balcony","B01-B02"},new[]{"B02","low","B02-B03"},new[]{"B03","climb","B03-B04low"},new[]{"B04","low",""},new[]{"B04","wj","B04-B02"},new[]{"B02","high-reverse",""},new[]{"B02","low-reverse","B01-B02"},new[]{"B01","balcony-reverse","B01-A03pit"},new[]{"A03","roofs-reverse",""},new[]{"A03","street-reverse","A02-A03"},new[]{"A02","wall","A02-B05"},new[]{"B05","climb","B05-C01"},new[]{"C01","high","C01-C02high"},new[]{"C02","up","C02-C03high"},new[]{"C03","c05","C03-C05"},new[]{"C05","down",""},new[]{"C05","up_dj","C03-C05"},new[]{"C03","gj","C03-C04"},new[]{"C04","dj","C04-C06"},new[]{"C06","boss",""},new[]{"C06","exit","C06-S01"},new[]{"S01","walk","ENDING"},new[]{"A01","slam","A01-Z01"},new[]{"Z01","in",""},new[]{"Z01","dj",""},new[]{"Z01","gallery",""},new[]{"Z01","lower",""},new[]{"Z01","elevator","Z01-S02"}};
+  string[][] plan={new[]{"A01","main","A01-A02"},new[]{"A02","floor","A02-A03"},new[]{"A03","roofs","A03-A04"},new[]{"A04","high","A04-A05"},new[]{"A05","main","A05-A03"},new[]{"A03","high","A03-B01"},new[]{"B01","balcony","B01-B02"},new[]{"B02","low","B02-B03"},new[]{"B03","climb","B03-B04low"},new[]{"B04","low",""},new[]{"B04","wj","B04-B02"},new[]{"B02","high-reverse","B01-B02"},new[]{"B01","balcony-reverse","B01-A03pit"},new[]{"A03","roofs-reverse",""},new[]{"A03","street-reverse","A02-A03"},new[]{"A02","wall","A02-B05"},new[]{"B05","climb","B05-C01"},new[]{"C01","high","C01-C02high"},new[]{"C02","up","C02-C03high"},new[]{"C03","c05","C03-C05"},new[]{"C05","down",""},new[]{"C05","up_dj","C03-C05"},new[]{"C03","gj","C03-C04"},new[]{"C04","dj","C04-C06"},new[]{"C06","boss",""},new[]{"C06","exit","C06-S01"},new[]{"S01","walk","ENDING"},new[]{"A01","slam","A01-Z01"},new[]{"Z01","in",""},new[]{"Z01","dj",""},new[]{"Z01","gallery",""},new[]{"Z01","lower",""},new[]{"Z01","elevator","Z01-S02"}};
   foreach(var step in plan){roomId=step[0];routeName=step[1];yield return Ready();if(RoomSession.Instance.CurrentRoomId!=roomId){Row("FAIL natural unexpected room="+RoomSession.Instance.CurrentRoomId+" expected="+roomId);deferred++;break;}
+   double landedUntil=Time.realtimeSinceStartupAsDouble+6;while(Alive&&!Motor.Grounded&&Time.realtimeSinceStartupAsDouble<landedUntil)yield return Emit(0,false);
    double began=Time.realtimeSinceStartupAsDouble;int frameStart=worldFrames.Count;ability=(Player.GetComponent<PlayerDash>().hasDash?1:0)|(Motor.hasWallJump?2:0)|(Motor.hasDoubleJump?4:0)|(Player.GetComponent<PlayerSlam>().hasSlam?8:0);
    Row("BEGIN natural "+roomId+"/"+routeName+" abilities="+ability+" pos="+Body.position);
    if(routeName=="boss"){
     SaveNatural("before-boss");yield return NaturalMove("solid0~3.5");if(!success)break;string bossFile=Directory.GetFiles(root,"C06_boss-*.json").FirstOrDefault(p=>p.Contains("2319447698"));if(bossFile==null){Row("DEPENDENCY natural validated boss input absent");deferred++;break;}yield return PlayBoss(JsonUtility.FromJson<Recording>(File.ReadAllText(bossFile)));if(!success){Row("FAIL natural boss actual HP="+(Alive?Health.HP:0));deferred++;break;}double settleBoss=Time.timeAsDouble+.5;while(Alive&&(!Motor.Grounded||Time.timeAsDouble<settleBoss))yield return Emit(0,false);
    }else{
     bool reverse=routeName.EndsWith("-reverse");string key=routeName.Replace("-reverse","");tokens=((List<object>)J.D(J.D(rooms[roomId])["routes"])[key]).Select(x=>x.ToString()).ToList();if(reverse)tokens.Reverse();
+    if(roomId=="B02"&&reverse){int join=tokens.Select((t,i)=>new{node=Resolve(t),index=i}).Where(v=>v.node.surface&&v.node.point.y<=Feet+.2f).OrderBy(v=>Vector2.Distance(v.node.point,new Vector2(Body.position.x,Feet))).First().index;tokens=tokens.Skip(join).ToList();Row("MEASURE natural reverse join at actual arrival node="+tokens[0]+"; skipped distant branch, no placement");}
+    if(step[2]=="ENDING")tokens=tokens.Take(2).ToList();
     if(roomId=="A03"&&routeName=="high"&&Feet<Resolve("platform6").point.y-.2f){var approach=((List<object>)J.D(J.D(rooms[roomId])["routes"])["roofs"]).Select(x=>x.ToString()).ToList();foreach(var node in approach){yield return NaturalMove(node);if(!success)break;}if(!success)break;}
     if(roomId=="A02"&&routeName=="wall")tokens.Insert(1,"platform2~16.5@wj");
     yield return NaturalMove(tokens[0]);if(!success){Row("FAIL natural approach "+roomId+"/"+routeName+" pos="+(Player==null?Vector2.zero:Body.position));deferred++;break;}
@@ -456,7 +465,7 @@ public sealed class B10JumpSearch:N5Runner
    if(roomId=="B04"&&!Motor.hasWallJump){yield return NaturalAcquire("solid1~14",2);if(!success)break;}
    if(roomId=="A05"&&Player.GetComponent<PlayerDash>().hasDash)SaveNatural("after-dash");if(roomId=="B04"&&Motor.hasWallJump)SaveNatural("after-wall");
    if(step[2]=="ENDING"){
-    yield return NaturalMove("point:136,1");if(FindFirstObjectByType<EndingMenu>()==null){Row("FAIL natural ending trigger");deferred++;break;}yield return Emit(0);yield return Emit(4);yield return Emit(0);yield return Ready();SaveNatural("after-ending");
+    yield return NaturalMove("point:136,1");double endingUntil=Time.realtimeSinceStartupAsDouble+5;while(FindFirstObjectByType<EndingMenu>()==null&&Time.realtimeSinceStartupAsDouble<endingUntil)yield return Emit(0,false);if(FindFirstObjectByType<EndingMenu>()==null){Row("FAIL natural ending trigger");deferred++;break;}yield return Emit(0);yield return Emit(4);yield return Emit(0);yield return Ready();SaveNatural("after-ending");
    }else if(step[2]!=""&&RoomSession.Instance.CurrentRoomId==roomId){yield return NaturalMove("door:"+step[2]);if(!success){Row("FAIL natural door "+roomId+"/"+step[2]+" pos="+(Player==null?Vector2.zero:Body.position));deferred++;break;}}
    worldTimes.Add(roomId+","+routeName+","+(Time.realtimeSinceStartupAsDouble-began).ToString(System.Globalization.CultureInfo.InvariantCulture)+","+(worldFrames.Count-frameStart));Row("MEASURE natural stage "+roomId+"/"+routeName+" next="+RoomSession.Instance?.CurrentRoomId);
   }
@@ -469,8 +478,9 @@ public sealed class B10JumpSearch:N5Runner
   var source=Resolve("point:"+Body.position.x.ToString(System.Globalization.CultureInfo.InvariantCulture)+","+Feet.ToString(System.Globalization.CultureInfo.InvariantCulture));source.surface=Motor.Grounded;
   var c=new Candidate{launch=Body.position.x,hold=.4f,dj=target.token.Contains("@dj")?.3f:-1,dash=target.token.Contains("@dash")?.1f:-1,wall=target.token.Contains("@wj")?.02f:-1,attack=target.token.StartsWith("pogo:")||target.token.StartsWith("enemy:")?.1f:-1,slam=target.token.Contains("@slam")?.3f:-1,air=1};
   if(source.surface&&(target.point.x>source.right||target.point.x<source.left))c.launch=target.point.x>source.right?source.right-.35f:source.left+.35f;
-  if(UpcomingWall(source,target)!=null){c.method=2;c.launch=source.left-Player.GetComponent<Collider2D>().bounds.extents.x+.05f;}
+  if(UpcomingWall(source,target)!=null){c.method=2;c.launch=UpcomingAnchor(source,UpcomingWall(source,target));}
   if(target.token.Contains("@dash"))c.dash=.3f;
+  if(target.token.Contains("@wj")&&source.surface&&source.point.y<3)c.launch=Mathf.Clamp(source.point.x,source.left+.35f,source.right-.35f);
   if(CoveredFloorDoor(target,"cover"))c.attack=.1f;
   if(target.token.StartsWith("door:")&&target.point.y<2&&Player.GetComponent<PlayerSlam>().hasSlam)c.slam=.3f;
   yield return Attempt(source,target,c);
