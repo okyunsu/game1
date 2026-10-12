@@ -1,0 +1,52 @@
+# Mutation check on basic 13 regression (Tools/Run-Regression.ps1), 2026-10-12, base 5bf3584
+# Checks were not modified. Values restored with git restore after each run.
+
+## What each check measures (from Assets/Editor check code)
+| Check | Entry | Measures |
+|---|---|---|
+| S1-02 | Nightly.Input -> N1Verification InputChecks | virtual keyboard/gamepad move, jump press/hold/release, pause/resume, UI map blocking, disconnect |
+| S1-04 | Nightly.Buffer -> N1Verification BasicMovement+Forgiveness | accel to 6u/s, reversal, braking, jump height >0.7u at 0.15s, air control, no air jump, landing, wall not ground; coyote/buffer at 30/60/120fps |
+| S1-07 | N2Verification.RoomsNight | A01.. room graph exits, physical exit triggers, single persistent player, previous room unloaded |
+| S1-08 | N2BVerification.CheckpointsNight | checkpoint integration (S1-08 N2-B) |
+| Camera | N2Verification.CameraLead0 | camera lead 0/lens, snap on transition, landing kept in view, reversal step <0.5u |
+| T1 | NightTests T1 | dash (incl. wall cancellation at 30/60/120fps) |
+| T2 | NightTests T2 | max HP, one damage per simultaneous hit, invincibility, knockback velocity X4/Y3 and lock duration at 30/60/120fps |
+| T3 | NightTests T3 | attack startup 0.08s, hit, cooldown, dash/damage interaction, gamepad X, pause |
+| T4 | C4Verification | E1 enemy: HP/3u/s knockback, patrol, wall/ledge turn, contact damage, KillZone |
+| S2 | S2Tests | room transitions/arrival spawn, CP-A03, dash pickup ownership and notice |
+| F2R | F2RVerification | attack hitbox timing/size per fps, HP pips, flash, E2 warning, death pop |
+| LOGR | LOGRCheck | playtest death-cause log |
+| Boss | BossRecoveryCheck | boss recovery window, X hits, display call |
+
+## Mutations (expectation written before running)
+M1: Assets/ScriptableObjects/PlayerTuning.asset jumpVelocity 12 -> 6
+  expected FAIL: S1-04 ("basic jump and air control": y at 0.15s = 6*0.15-0.5*30*0.15^2 = 0.56u < 0.7u)
+  other checks: not predicted (any extra FAIL is only recorded)
+M2: Assets/ScriptableObjects/CombatTuning.asset knockbackX 4 -> 2
+  expected FAIL: T2 ("direct hit locks X4/Y3": checks linearVelocity.x==4)
+  other checks: not predicted (any extra FAIL is only recorded)
+
+## Results
+| Mutation | 예상 FAIL | 실제 결과 | 일치 여부 |
+|---|---|---|---|
+| M1 jumpVelocity 12->6 | S1-04 | REGRESSION 13/13 (S1-04 PASS) | 불일치 |
+| M2 knockbackX 4->2 | T2 | REGRESSION 12/13 (T2 FAIL, 나머지 12 PASS) | 일치 |
+
+M1 detail (raw: Validation/_raw/regression/MUT1/):
+  S1-04 line 26 "PASS: basic jump and air control"
+  S1-04 MEASURE changed vs baseline TOOLS3:
+    baseline: MEASURE: 30fps coyote target=0.08s actual=0.0800s velocityY=12.000
+    MUT1:     MEASURE: 30fps coyote target=0.08s actual=0.0800s velocityY=11.000
+    baseline: MEASURE: 30fps coyote target=0.12s actual=0.1200s velocityY=-8.100
+    MUT1:     MEASURE: 30fps coyote target=0.12s actual=0.1200s velocityY=-9.000
+    (same 12.000 -> 11.000 at 60fps and 120fps coyote 0.08s)
+  The 0.56u prediction assumed the jump uses 6u/s; measured velocityY=11.000 shows it did not. Cause not investigated; checks not changed.
+M2 detail (raw: Validation/_raw/regression/MUT2/):
+  FAIL T2-MUT2 Unity=6000.3.24f1
+  System.Exception: direct hit locks X4/Y3 30
+    at NightTestRunner+<T2>d__10.MoveNext () ... Assets\Editor\NightTests.cs:56
+
+Restore (git restore of the asset) then regression:
+  after M1 restore: REGRESSION 13/13 (MUT1-RESTORE; S1-04 evidence identical to baseline except header)
+  after M2 restore: REGRESSION 13/13 (MUT2-RESTORE)
+Baseline before mutations: REGRESSION 13/13 (TOOLS3)
