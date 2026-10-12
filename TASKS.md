@@ -169,7 +169,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/Scene 재생성·T2 70/70 / 다음 T4/T5(실행 중) → T6 B05 재시도 → T10(30/120 실행 중) → T12 → T13 → Backlog(BL1 완료) → 반복
+B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/Scene 재생성·T2 70/70 / 다음 T4/T5(실행 중) → T6 B05 재시도 → T10(30/120 실행 중) → T12 → T13 → Backlog(BL1/BL2 완료) → 반복
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
