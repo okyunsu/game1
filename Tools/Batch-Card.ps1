@@ -49,10 +49,19 @@ function Get-Section($start,$level){
  }
  return $out
 }
-$taskBugs=@(Get-Section '## Bugs' 2 | Where-Object {$_ -match '^### ' -and $_ -match '\bOPEN\b'})
-"열린 버그(## Bugs의 ### 제목 중 OPEN): $($taskBugs.Count)"
-$taskPlay=@(Get-Section '### 2. 직접 플레이 확인' 3 | Where-Object {$_ -match '^\d+\. '})
-"직접 플레이 확인 대기(번호 항목): $($taskPlay.Count)"
+$taskDecisions=@(Get-Section '## 2. 결정 대기' 2 | Where-Object {$_ -match '^\| D-'})
+"결정 대기(## 2. 결정 대기 표의 D- 행): $($taskDecisions.Count)"
+$taskBugs=@(Get-Section '## 4. 열린 버그' 2 | Where-Object {$_ -match '^\| ' -and $_ -notmatch '^\| (ID|---)'})
+"열린 버그(## 4. 열린 버그 표 행): $($taskBugs.Count)"
+$taskPlay=@(Get-Section '## 3. 직접 플레이 확인' 2 | Where-Object {$_ -match '^- '})
+"직접 플레이 확인 대기(## 3. 목록 항목): $($taskPlay.Count)"
+$taskText=$taskTasks -join "`n"
+$taskBroken=@([regex]::Matches($taskText,'\]\(([^)]+)\)') | ForEach-Object {$_.Groups[1].Value} | Where-Object {$_ -notmatch '^(https?:|#)'} | ForEach-Object {[uri]::UnescapeDataString(($_ -split '#')[0])} | Where-Object {$_ -and !(Test-Path -LiteralPath (Join-Path $taskRoot $_))})
+"TASKS 깨진 링크 수: $($taskBroken.Count)"
+$taskBroken | ForEach-Object {"  $_"}
+$taskStale=@([regex]::Matches($taskText,'(?:Launchers|Builds)/[A-Za-z0-9_./-]+') | ForEach-Object {$_.Value.TrimEnd('.')} | Sort-Object -Unique | Where-Object {!(Test-Path -LiteralPath (Join-Path $taskRoot $_))})
+"TASKS가 가리키지만 없는 빌드·런처 수: $($taskStale.Count)"
+$taskStale | ForEach-Object {"  $_"}
 $taskReg=Get-ChildItem (Join-Path $taskRoot 'Validation') -Recurse -File -Include *.txt | Sort-Object LastWriteTime -Descending | ForEach-Object {
  $m=Select-String -LiteralPath $_.FullName -Pattern '^REGRESSION \d+/\d+' | Select-Object -Last 1
  if($m){[pscustomobject]@{Line=$m.Line;File=$_.FullName.Substring($taskRoot.Length+1) -replace '\\','/'}}
