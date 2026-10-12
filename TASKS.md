@@ -2,7 +2,7 @@
 
 ## Current Sprint
 
-Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Task. 이전 결과: Batch09 실행 종료(2026-10-12). Batch08 대체, Batch09 범위만 수행. V4 21방·Slam·장치·시험 코스·생성기·전달 완료. 전체 합격은 미충족: T6 BLOCKED, T4/T7/T9/T10 PARTIAL, T2/T3 감각 REVIEW. 실패/미검증을 유지한 채 승인 재시도와 독립 작업을 마쳤다. 브랜치 review/batch05-v2, push0, Sprint Gate/기본 채택 미실시.
+Sprint3 / Batch10 예산 종료(2026-10-12 19:06 KST 기준). 재개에서도 새 예산을 시작하지 않았다. 브랜치 review/batch05-v2, 로컬 커밋만/push0. T2 70경로 전체 저장 재생2회 PASS, 기본13+RouteAll+Pogo PASS. 자연 S02 완주·전 연결/고립 판정·V2 W22는 미완료. 기본 채택/감각 수락/Sprint Gate 미실시. 다음 Batch는 사용자 승인 후 진행.
 
 ## Current Tasks
 
@@ -21,7 +21,20 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 | B10-T11 | DONE | 27 실제 입력 조합 unexpected=0, Error0 |
 | B10-T12 | PARTIAL | Claude 보고서·실제 Scene4방 촬영; 남은 분기 물리 원인 미확정 |
 | B10-T13 | PARTIAL | 기본13+RouteAll+Pogo PASS, V2 W22사망; 전달1개·4기동PASS, 자연 저장2개 미확보 |
+## Batch10 Backlog 결과
+
+| 항목 | 상태 | 결과 |
+|---|---|---|
+| BL1 | DONE | V4 회귀 등록1회63/69 PASS,6 FAIL |
+| BL2 | DONE | 장치19경로 기본17/후보1 11/후보2 12 PASS, 기본값 유지 |
+| BL3 | PARTIAL | C01까지 완료 구간 시간, 전체 미완주 |
+| BL4 | BLOCKED | 참조된 B09 Backlog4~9가 BATCH-09에 없음(1~3만 있음), 합격 기준 결정 필요 |
+
 ## Bugs
+
+### B10 종료 — 반복 안정성/자연 연결/입구 판정
+T2 70경로는 성공 입력 전체2회 증거 확보. 같은 입력을 다시60fps/다른fps 재생하면 일부 실패하므로 안정성 전체 PASS와 구분한다. 자연 B05 양쪽 굴뚝 회복 실제 PASS 뒤 C02 도랑/상자 접근 미완료. 왕복34·최소 입구탈출36 PASS, 미완료 분기의 확대 전수 소진은 예산 종료로 미실시. Claude 보고서에 실제 좌표/원문 실패를 보존. r54~r58 잘못된 구 Scene harness 결과는 제외했고 r59+ native Unity 빌드/hash 확인을 사용했다. 원본 삭제0. 권한 승인 대기 뒤19:06 초과를 확인해 탐색/큐를 종료하고 인계만 정리했다.
+
 
 ### B10-RESUME / 현재 설계 재판정
 Claude 수정은 재개 문서의 명시 승인으로 적용했다. 21방 검사 PASS. A01/A02/A05/A06/B01/B02/B03/C01/C02/Z01의 이전 PASS는 무효, T2-resume 로그만 새 근거로 쓴다. Scene 차이: A01/A02/A05/A06/B02/B03/C02/Z01 변경, B01/C01은 경로 데이터만 변경, 나머지11방0. raw: resume-scene-differences-r40.txt. 재개 후 자연 실행은 실제 대시·벽 점프를 얻었으며 B04 해치에서 중단 후 수정 도구로 재실행 중. 이전 중단의 자동 승인 검토 오류는 이번 로컬 커밋/Unity 실행이 승인되어 해소됐다. 예산 종료19:06, 새 예산 시작 아님.
@@ -109,6 +122,10 @@ Sliced + BoxCollider2D.autoTiling에서 SpriteRenderer 크기 변경 후 콜라�
 
 ## Decisions Needed
 
+### B10 — 남은 기준/범위 결정
+T5의 “다른 문” 조건이 A01/A01-A02(능력0), A05/A05-A03(대시), A06/A02-A06(대시+벽), C06/C04-C06(보스 전), S01/C06-S01(엔딩 구간)에 기존 gate/끝방 구조와 충돌한다. 같은 문 귀환·자연 획득·엔딩 후 재개를 탈출로 허용할지 / 문 조건을 유지하고 설계 변경을 별도로 승인할지 결정 필요. AI 추천은 실제 진행 가능성을 기준으로 정의를 명확히 정하되 현재 PASS에 소급 적용하지 않는 것. B09 Backlog4~9 합격 기준도 원문 필요. B10 거리16개 예외/세로 문 수평3u는 이번 Batch 사전 결정대로 적용됨. 기본 채택·장치 수치 수락은 계속 사용자 권한.
+
+
 ### B09 — 기준 충돌·다음 검증 결정
 거리16개: 원본 spawn 유지 후 낙하 예외 허용 / .3~.5u 이내 이동을 별도 승인. 세로 방향키 유지3u: 전환0 기준으로 분리 / 이동 입력 추가. 입구별 최소 능력과 수동 검증 범위를 다음 Batch에 명시할 필요. 자세한 선택지와 추천은 Latest Handoff. 기본 채택/장치 감각/프리셋 기본 채택은 사용자 권한이다.
 
@@ -169,60 +186,58 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 예산 종료19:06 / 증거 커밋 BL3 / 다음 최종 전달 인계
+B10 진행: 예산 종료 / 완료 T1/T2/T3/T7/T8/T9/T11·BL1/BL2 / PARTIAL T4/T5/T6/T10/T12/T13·BL3 / 다음 승인 Batch에서 남은 경로만 진행
 
-Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
+현재 설계 70경로 모두 저장된 전체 입력2회 PASS. 왕복34건·최소 능력 탈출36입구, B05 자연 등반을 넘어 C02까지 진행했다. 전체 완주/고립0는 미증명이다. 기본13·RouteAll·Pogo PASS, V2 W22 실제 사망. Development1개 오류·경고0, 기존 B09 실행기는 유지. 보호 게임/튜닝 수정0, push0.
 
 ### 1. 결정 질문지
 
-| 선택지 | AI 추천과 이유 | 풀리는 Task |
+| 결정 선택지 | AI 추천·이유 | 풀리는 Task |
 |---|---|---|
-| 낙하16개 원본 유지+거리 예외 / .3~.5u spawn 이동 별도 승인 | 먼저 예외 기준 검토. 추가 전환0이고 원본좌표가 낙하 의도라 통행 불가 근거 없이 이동하지 않음 | T6 |
-| 세로 문 방향키 유지에서 전환0만 / 별도 점프·이동 입력으로3u 검사 | 가로3u/세로전환0으로 분리. 위·아래 키만으로는 지상 수평 이동이 생기지 않음 | T7 이동 기준 |
-| 수동 입구별 최소 상태 검사 / 별도 자동 계획 Batch | 먼저 A03/B03/B04/C05 및 보스·Z01 직접 확인. 현재 도구는 최소 입구 탈출 증명이 부족함 | T9/T10·경로 수동 확인 |
-| 장치 기본 유지 / F 후보1 / F 후보2 / 수정 요청 | 코스에서 비교 후 선택. 후보를 원본에 채택하지 않았음 | T2/T3/BL3 감각 |
-| V4 채택 / 수정 후 재검토 / 보류 | 수정·직접 검증 후 재검토. 현재 전체 합격 부족 | V4 수락·다음 Batch |
+| 입구 탈출에 같은 문 귀환·자연 획득/엔딩 재개 허용 / 다른 문 기준 유지 후 설계 별도 승인 | 진행 가능한 종착/획득 구간을 별도로 정의. 현재 gate를 무단 변경하지 않음 | T5 설계 의존5곳 |
+| 남은 자동 경로 재시도 Batch 승인 / 먼저 직접 플레이 | C02 자연 연결·입구 경유 계획을 이어서 검증. 70경로는 이미 통과해 새 지형 변경부터 할 근거가 없음 | T4/T5/T6/T10/T12/T13 |
+| 장치 기본 유지 / 후보1 / 후보2 / 수정 | 기본 유지 추천. 반복 재생17/19가 후보11/19·12/19보다 높고 감각 미수락 | BL2/장치 감각 |
+| Claude 수정 수락 / 수정 요청, 낙하 예외 유지 / 취소 | 실제70경로 통과 증거로 수정 유지 추천; 감각 판단은 사용자 | CHANGES_B10/낙하16개 예외 |
+| B09 Backlog4~9 원문/기준 제공 / 이번 범위에서 제외 | 참조 문서에는1~3만 있어 합격 기준 먼저 확정 | BL4 |
+
+V2 원인은 빌드 구성으로 좁혔으나 커밋/변경 줄 미확정이므로 회귀 수정 채택안은 아직 없다.
 
 ### 2. 직접 플레이 확인
 
-이전 B04/B05/B06/B06b/V3 수락 대기는 [이전 인계](Archive/B09-prior-tasks-20261012.md)의 순서를 유지한다.
+이전 B04/B05/B06/B06b/V3 수락 순서는 [이전 인계](Archive/B09-prior-tasks-20261012.md)를 유지한다. B09 결과는 [이관 인계](Archive/B10-prior-handoff-20261012.md)에 보존했다.
 
-1. `Launchers/B09/Play-V4-Mechanics.cmd` / MechanicsTest,10분:6장치·E4·Slam 손맛, 증기 타이밍·무너짐, F 후보 비교. 단위 검사는PASS이나 전체 연속 코스는 미검증.
-2. `Play-V4.cmd` / A01 시작,25~30분: 대시→벽 점프→DJ→보스→S01→A01. 자연 자동 입력은A03에서 막혔으므로 전체 완주를 보장하지 않는다. 미통과 경로는 T8 표 참고.
-3. `Play-V4-AfterBoss.cmd` / A01 전체 능력 fixture,5~10분: 아래+C로 Seal→Z01→엘리베이터→S02 표지/저장. 보스 보상 자연 획득과 구분하며 이 경로도 자동 완주 미검증.
+1. [장치 시험 코스](Launchers/B10/Play-V4-Mechanics.cmd),10분:6장치·E4·Slam 손맛. 시작→끝 입력2회/장치 단위 PASS, F 후보는 Play 종료하면 사라짐.
+2. [새 게임](Launchers/B10/Play-V4.cmd),25~30분:A01부터 V4 경로/되돌아가기. 자동 자연 진행은 C02까지이며 S02 완주 보장은 없음.
+3. 기존 [B09 AfterBoss](Launchers/B09/Play-V4-AfterBoss.cmd),5~10분:기존 전체 능력 fixture 실행기. 자연 저장과 구분해 Slam/숨은 길 감각 확인.
+4. [대시 후 실제 저장](Launchers/B10/Play-V4-AfterDash.cmd),5분:타이틀 이어하기→CP-A03, 대시 복원.
+5. [벽 점프 후 실제 저장](Launchers/B10/Play-V4-AfterWall.cmd),5분:타이틀 이어하기→CP-B01, 대시+벽 점프 복원.
 
-값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). F 후보는 런타임 복사본이므로 종료하면 사라진다.
+보스 전/엔딩 후 실행기 파일은 있지만 자연 저장이 없으므로 실행 불가 안내. 네 단계 모두 준비됐다고 보지 않는다. 위 실행기를 재실행하면 원본 단계 저장을 전용 slot에 다시 복사한다. 조정 값 위치/Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md).
 
 ### 3. Task별 결과
 
-| Task·상태 | 로컬 커밋 | 주요 파일·실제 검증·문제 |
+| Task·상태 | 커밋 | 주요 변경·실제 검증·문제 |
 |---|---|---|
-| T0 DONE |76932bf| Design/·[21 PASS](Validation/B09-T0-summary.md) |
-| T1 DONE |5f06656| B09Measure·[실측표](Validation/B09-T1-summary.md),10% 저하0 |
-| T2 REVIEW |a72778b| PlayerSlam/SealFloor·[단위 입력PASS](Validation/B09-T2-summary.md) |
-| T3 REVIEW |d28af6e/41f1f3b| 장치/E4/MechanicsTuning·[pad7.514u·저장레버PASS](Validation/B09-T3-summary.md) |
-| T4 PARTIAL |0186672/32e8ce9| MechanicsTest·[기동/단위PASS, 연속미검증](Validation/B09-T4-summary.md) |
-| T5 DONE |358e3e6/e344e0b| B09Authoring/V4Scene21·[16종실수일치/해시차이0](Validation/B09-T5-summary.md) |
-| T6 BLOCKED |934b063/2ca3fda| V4ExitRule/B09Audit·[거리16/비활성우회수정PASS](Validation/B09-T6-summary.md) |
-| T7 PARTIAL |5ef6f13| B09TraverseVerifier·[77/108,extra0](Validation/B09-T7-summary.md) |
-| T8 DONE |cf44356| [29/70·방별율·41수동](Validation/B09-T8-summary.md) |
-| T9 PARTIAL |c13aca1| [첫경로보조만,고립0미증명/C06철회](Validation/B09-T9-summary.md) |
-| T10 PARTIAL |ed9ff22| EndingMenu/B09SaveVerifier·[자연A03FAIL/4저장PASS](Validation/B09-T10-summary.md) |
-| T11 DONE |d62aa7c| raw별도worktree·[전후W22·분리R09PASS/원인미확정](Validation/B09-T11-summary.md) |
-| T12 DONE |이 문서의 로컬 커밋| B09Build/V4Launch/실행기·[기본13PASS,RouteAll/Pogo/V2W22FAIL,3기동PASS](Validation/B09-T12-summary.md) |
-| BL1 DONE |eb58da4| Tools/B09PlaytestSummary.py·[지정CSV루프검출](Validation/B09-BL1-summary.md) |
-| BL2 DONE |2a275f2| V4MiniMap·[21방/방문갱신PASS](Validation/B09-BL2-summary.md) |
-| BL3 REVIEW |181e6d5| MechanicsTestPresets·[F전환/원본불변PASS](Validation/B09-BL3-summary.md) |
+| T1 DONE | f9824fc | [봇](Validation/B10-T1-summary.md), 장치9·경로10 저장2회 |
+| T2 DONE | a340493 | [70경로](Validation/B10-T2-summary.md), 재개 변경 방 재판정70/70 |
+| T3 DONE | 5719d3e / 47b20ac / 662cc0c / 24ceeda | [생성기/승인 데이터](Validation/B10-T3-summary.md),21방 PASS |
+| T4 PARTIAL | 545efa3 | [왕복](Validation/B10-T4-summary.md), 전체 입력34건2회 PASS |
+| T5 PARTIAL | 92f9c7f | B10JumpSearch/[입구표](Validation/B10-T5-summary.md),36입구2회 PASS·나머지 미판정 |
+| T6 PARTIAL | 654ca66 | [자연 진행](Validation/B10-T6-summary.md), B05→C02, S02 미완주 |
+| T7 DONE | d17df92 | [보스](Validation/B10-T7-summary.md),승리→Slam→S01 2회 |
+| T8 DONE(범위 좁힘) | f47e265 | [진단](Validation/B10-T8-summary.md),동일 HEAD 과거빌드2회 PASS, 원인 커밋 미확정 |
+| T9 DONE | 06f8835 | [시험 코스](Validation/B10-T9-summary.md),연속 전체2회 |
+| T10 PARTIAL | 58a1489 | [70경로fps](Validation/B10-T10-summary.md),30fps43/70·120fps59/70, 자연 미실시 |
+| T11 DONE | 9bc23d1 | [입력27조합](Validation/B10-T11-summary.md),의도치 발동0 |
+| T12 PARTIAL | 6605b98 | [Claude 보고서](Validation/B10-geometry-report.md),좌표/원문/4방8스크린샷, 물리 원인 일부 미확정 |
+| T13 PARTIAL | 이 인계의 커밋 | B10StageVerifier/Launchers/B10/[전달](Validation/B10-T13-summary.md),기본15PASS·V2 W22FAIL·4기동PASS·자연저장2개 없음 |
+| BL1 DONE | 949beb3 | [V4회귀 등록](Validation/B10-BL1-summary.md),1회63/69 PASS |
+| BL2 DONE | 850c890 | [19경로후보비교](Validation/B10-BL2-summary.md),기본값 유지 |
+| BL3 PARTIAL | 67f35a1 | [자동 체류시간](Validation/B10-BL3-summary.md),완료 구간만/PRD60~120분 달성 주장 없음 |
+| BL4 BLOCKED | 이 인계의 커밋 | 참조 Backlog4~9 원문/합격 기준 없음 |
 
-기록 보강 e1cb5b6: 실패 줄·최종 실제 요소표 보존. 원본 로그/CSV/PNG/worktree는 `Validation/_raw/B09/`에 남기며 커밋하지 않는다. 이전 사용자 미추적 Batch 문서와 N9 증거는 보존했다. Development는 같은 전달 경로를 출구 수정 후 갱신했으며 별도 Development 폴더를 늘리지 않았다.
+원본은 Validation/_raw/B10/에 보존·커밋 제외. 전달 Build는 B10-delivery 한 개. 마지막 r75~r78은 opt-in 입력 계획만 바뀐 추가 Release 검사이며 보호 게임 동작 변경0. Sprint Gate/감각 REVIEW→DONE 수락을 대신하지 않았다.
 
 ### 4. 다음 Batch 후보
 
-거리/세로 문 기준 결정 → 수동 최소 진입·A03 필수 길·보스·Z01 검증 → 입증된 막힘만 승인 범위 수정 → V4 자연 완주 재검토. 별도 V2 W22/기록 입력 원인 진단. 기본 채택·장치 후보 채택·Sprint Gate는 그 뒤 사용자 판단이며 이번 실행에서 진행하지 않는다.
-
-
-
-
-
-
-
+C02 상자 경유→대시 자연 입력부터 새 게임 재시도 → C03/C05/C04→보스→엔딩→Z01→S02 → 실제 보스 전/엔딩 후 저장 확보 → 자연 입력30/120. 동시에 남은 입구/왕복의 경유 노드·넓은 도약 위치 탐색, 실제 막힘을 입증한 뒤 승인 한도 데이터 수정. V2 W22 빌드 구성 비교는 별도 기록을 바탕으로 진행. 기본 수치 채택·Sprint Gate는 사용자 수락 후.

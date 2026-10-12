@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "dash": true,
+    "doubleJump": false,
+    "wallJump": true,
+    "hasSlam": false,
+    "reachedS02": false,
+    "brokenWalls": [
+        "V4-A05-breakable0",
+        "V4-B03-cover0"
+    ],
+    "visitedRooms": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+    ],
+    "bossDefeated": false,
+    "endingReached": false,
+    "checkpointId": "CP-B01"
+}
