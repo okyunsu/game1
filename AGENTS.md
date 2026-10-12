@@ -234,3 +234,11 @@ Batch 종료 시 TASKS의 Latest Handoff를 아래 순서로 갱신한다.
 Sprint Gate를 통과하기 전 다음 Sprint의 대규모 콘텐츠 확장은 하지 않는다.
 
 단, 현재 Sprint의 완료를 위해 승인된 통합·아트·연출·콘텐츠 작업은 계속 진행할 수 있다.
+
+## Housekeeping
+
+- 빌드는 Builds/에 최신 1개와 직전 1개만 남기고, 새 빌드를 만든 뒤 그보다 오래된 빌드는 삭제한다.
+- 실행용 바로가기는 Launchers/current만 쓰고 배치별 폴더를 만들지 않는다.
+- 배치 지시문은 Batches/BATCH-<번호>.md에 둔다. 작업 시 이번 배치 파일만 읽는다.
+- 자동 실행 로그·csv·스크린샷은 Validation/_raw/에 둔다(git 제외). Validation/에는 배치당 요약 파일만 커밋한다.
+- 배치 종료 시 Tools/Run-Regression.ps1과 Tools/Batch-Card.ps1 -Base <배치 시작 커밋> -Allowed <배치 파일의 허용 범위>를 실행하고 결과를 요약 파일 맨 위에 붙인다.
