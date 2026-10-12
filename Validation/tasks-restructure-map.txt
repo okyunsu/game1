@@ -1,0 +1,62 @@
+# TASKS restructure map, 2026-10-12
+# 원문: Archive/TASKS-before-2026-10-12.md (b4907a5) -> 새 TASKS.md
+# 형식: 원문 제목 -> 새 위치
+
+## Current Sprint -> 1. 현재 상태
+## Current Tasks (B10-T1~T13 표) -> 6. 최근 배치 결과 (그대로)
+## Batch10 Backlog 결과 (BL1~BL4 표) -> 6. 최근 배치 결과 (그대로); BL2 -> 2. D-MOVE; BL4 -> 2. D-RULE-T5
+## Bugs
+### B10 종료 — 반복 안정성/자연 연결/입구 판정 -> 5. 색인 "B10 종료 노트"
+### B10-RESUME / 현재 설계 재판정 -> 5. 색인 B10-RESUME
+### B10-FAST-CLOCK / 검증 제외 -> 5. 색인 B10-FAST-CLOCK
+### B09-DISTANCE / OPEN — T6 BLOCKED -> 2. D-RULE-DIST
+### B09-INPUT-COVERAGE / PARTIAL -> 5. 색인 B09-INPUT-COVERAGE
+### B09-REGRESSION / OPEN — 원인 미확정 -> 4. 열린 버그 (B07-V2-BOSS-REPLAY와 한 줄) + 2. D-BOSS
+### B07-C03-OPTIONAL / OPEN -> 4. 열린 버그 (자동 입력 미완주, 사람 확인 필요)
+### B07-V2-BOSS-REPLAY / OPEN — 회귀 의심 -> 4. 열린 버그 + 2. D-BOSS
+### B07-A02-TRAVERSE / OPEN -> 4. 열린 버그 (자동 입력 미완주, 사람 확인 필요)
+### B04-REPLAY-EDGE — R11 초기 기록 소진 -> 5. 색인 B04-R11
+### B03-P03-BOUNDARY -> 5. 색인 B03-P03
+### B03-BOSS-VALIDATION — 패턴별 검증 / PARTIAL -> 5. 색인 B03-BOSS-VALIDATION
+### N9-ROUTE-001 -> 5. 색인 N9-ROUTE
+### D0-T2-001 / D0-T4-001 / D0-S2-001 -> 5. 색인 D0
+### F2-T2-001 -> 5. 색인 F2-T2
+### ROOM-001 -> 5. 색인 ROOM-001
+### RESET-001 -> 5. 색인 RESET-001
+### N5 검증 도구 한계 (UI-CAP-001 포함) -> 5. 색인 N5 / UI-CAP-001
+## Decisions Needed
+### B10 — 남은 기준/범위 결정 -> 2. D-RULE-T5 (BL4 포함)
+### B09 — 기준 충돌·다음 검증 결정 -> 2. D-RULE-DIST (세로 방향키 3u·입구별 범위는 원문 링크)
+### B07-FINAL — 다음 후보 수정·채택 결정 -> 2. D-NEXT (A02·C03 후보), D-BOSS (V2 보스)
+### B06 — 벽 점프·가이드 수락 / REVIEW -> 2. D-MOVE
+### B05-V2 — 그래픽·방 방향·기본 교체 / REVIEW -> 2. D-LOOK
+### B04-AV1 — 후보 수락 / REVIEW -> 2. D-COMBAT
+### B01-HITSTOP — 체감 REVIEW -> 2. D-COMBAT
+### S3T01-POGO — REVIEW -> 5. 색인 S3T01-POGO
+### S3T01-LEVEL -> 5. 색인 S3T01-LEVEL
+### N9-ROUTE-REPLAY / BLOCKED -> 5. 색인 N9-ROUTE
+### 2026-10-04 Q-night4 후속 판단 -> 5. 색인 Q-night4; Q6 후보 선택 -> 2. D-COMBAT
+### LOG-001 -> 5. 색인 LOG-001
+    "현재 v2 판단" / "2026-10-04 v2 F1" (Experimental-F1) -> 4. 닫힘 한 줄 + 5. 색인 Experimental-F1
+    CAM-002 / K2 DEFERRED (+이전 기술 실패 기록) -> 5. 색인 CAM-002 / K2
+## Approved Backlog -> 5. 색인 Approved Backlog
+## Latest Handoff
+    요약 문단 -> 1. 현재 상태
+### 1. 결정 질문지
+    입구 탈출 같은 문/다른 문 -> 2. D-RULE-T5
+    자동 경로 재시도 / 직접 플레이 -> 2. D-NEXT
+    장치 기본/후보1/후보2/수정 -> 2. D-MOVE
+    Claude 수정 수락 / 낙하 예외 -> 2. D-RULE-DIST
+    B09 Backlog4~9 원문 -> 2. D-RULE-T5
+    V2 원인 문장 -> 2. D-BOSS
+### 2. 직접 플레이 확인
+    1 장치 시험 코스 -> 3. Play-V4-Mechanics
+    2 새 게임 -> 3. Play-V4
+    3 B09 AfterBoss (Archive/launchers/B09) -> Launchers/current 아님, 3번에서 제외; 원문 보존
+    4 대시 후 저장 -> 3. Play-V4-AfterDash
+    5 벽 점프 후 저장 -> 3. Play-V4-AfterWall
+    보스 전/엔딩 후 실행 불가 -> 3. BeforeBoss/AfterEnding 줄
+### 3. Task별 결과 -> 6. 표 아래 Task별 요약 링크 (커밋 해시는 원문)
+### 4. 다음 Batch 후보 -> 7. 다음 배치 후보
+
+행방 없음: 0
