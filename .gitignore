@@ -13,3 +13,8 @@
 *.unityproj
 Validation/_raw/
 /Playtest/
+
+__pycache__/
+Validation/Camera/
+Validation/N9-REG-route-B10-*.txt
+Validation/N9-S5-hard-scene-map.txt
