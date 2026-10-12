@@ -1,0 +1,16 @@
+﻿# Tools/Batch-Card.ps1 -Base 266b7ea -Allowed Assets,Validation,Tools,Launchers,Design,Playtest,Archive,*.md,.gitignore  (generated 2026-10-12)
+BATCH CARD 266b7ea..HEAD (a49fce7)
+변경 파일: 2333 (+178565 / -250 줄, 바이너리 189)
+  Scripts: 148
+  Scenes: 104
+  Prefabs: 21
+  Editor: 12
+  Validation: 33
+  문서: 156
+  기타: 1859
+허용 범위: Assets, Validation, Tools, Launchers, Design, Playtest, Archive, *.md, .gitignore
+허용 범위 밖: 0
+TASKS 상태(표 둘째 칸): DONE 9 / REVIEW 0 / DOING 0 / BLOCKED 1 / PARTIAL 7
+열린 버그(## Bugs의 ### 제목 중 OPEN): 7
+직접 플레이 확인 대기(번호 항목): 5
+마지막 REGRESSION: REGRESSION 13/13 (Validation/_raw/regression/TOOLS3/result.txt)
