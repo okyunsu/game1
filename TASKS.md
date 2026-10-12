@@ -11,16 +11,16 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 | B10-T1 | DONE | 장치9개·기존 경로10개 저장 입력/전체 경로2회 PASS |
 | B10-T2 | DONE | 재개 설계 70/70 저장 전체 입력2회 PASS; A02/wall·C02/low·Z01/up_A05 해소. r54~r58 이전 Scene 결과 제외; r59/r61/r63 현재 Scene·설계 hash 확인 |
 | B10-T3 | DONE | covered floor trigger inset 수정 47b20ac, Claude 설계 수정 662cc0c / V4 재생성 24ceeda, 21방 검사 PASS |
-| B10-T4 | DOING | 연결 반환 탐색·물리 왕복 재생 도구 구현 |
-| B10-T5 | DOING | 진행/gate 기반 최소 능력·입구별 다른 출구 탐색 구현 |
-| B10-T6 | DOING | 자연 전체 연결 입력 확보 중; fixture 금지 |
+| B10-T4 | PARTIAL | 실제 전체 왕복 저장2회 PASS34건, 나머지 탐색/판정 미완료 |
+| B10-T5 | PARTIAL | 최소 능력 다른 출구 저장2회 PASS36입구, 고립0 미증명 |
+| B10-T6 | PARTIAL | 새 게임·대시·벽 점프·B05 자연 등반→C02; S02 미완주 |
 | B10-T7 | DONE | 보스전→Slam→천장→S01 저장 입력2회 연속 PASS |
 | B10-T8 | DONE | 동일 HEAD 과거 빌드 고정 입력2회 PASS; 빌드 구성으로 범위 축소, 원인 커밋 미확정/수정0 |
 | B10-T9 | DONE | 작성된 시작→끝 16구간, 전체 저장 입력2회 PASS; 장치 작동은 T1 별도 |
-| B10-T10 | TODO | 현재 설계69입력: 30fps42PASS/27FAIL,120fps58PASS/11FAIL; C04·자연 입력 후속 대기 |
+| B10-T10 | PARTIAL | 70경로30fps43PASS/27FAIL,120fps59PASS/11FAIL; 자연 미실시 |
 | B10-T11 | DONE | 27 실제 입력 조합 unexpected=0, Error0 |
-| B10-T12 | TODO | 최종 막힘 좌표·요소·로그 보고 |
-| B10-T13 | TODO | 기본13·RouteAll·Pogo 전체 PASS; V2 실행 중, Development/인계 대기 |
+| B10-T12 | PARTIAL | Claude 보고서·실제 Scene4방 촬영; 남은 분기 물리 원인 미확정 |
+| B10-T13 | PARTIAL | 기본13+RouteAll+Pogo PASS, V2 W22사망; 전달1개·4기동PASS, 자연 저장2개 미확보 |
 ## Bugs
 
 ### B10-RESUME / 현재 설계 재판정
@@ -169,7 +169,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/Scene 재생성·T2 70/70 / 다음 T4/T5(실행 중) → T6 B05 재시도 → T10(30/120 실행 중) → T12 → T13 → Backlog(BL1/BL2 완료) → 반복
+B10 진행: 예산 종료19:06 / 증거 커밋 T4 / 다음 최종 전달 인계
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
