@@ -1,4 +1,4 @@
-param([string]$Build='B10-harness-r2',[string]$Mode='routes',[string]$Room='',[string]$Route='',[string]$Tag='run',[int]$Fps=60,[int]$Timeout=2460,[switch]$Expanded,[switch]$Fast,[int]$Part=0,[int]$Parts=1,[switch]$Split,[string]$Manifest='')
+param([string]$Build='B10-harness-r2',[string]$Mode='routes',[string]$Room='',[string]$Route='',[string]$Tag='run',[int]$Fps=60,[int]$Timeout=2460,[switch]$Expanded,[switch]$Fast,[int]$Part=0,[int]$Parts=1,[switch]$Split,[string]$Manifest='',[ValidateRange(0,2)][int]$Preset=0,[string]$InputFile='')
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
 if($Tag -notmatch '^[a-zA-Z0-9-]+$'){throw 'Safe tag required'}
@@ -10,6 +10,8 @@ if($Route){$taskArgs+=@('-b10-route',$Route)}
 if($Expanded){$taskArgs+='-b10-expanded'}
 if($Split){$taskArgs+='-b10-split'}
 if($Manifest){$taskArgs+=@('-b10-manifest',('"'+(Join-Path $taskRoot $Manifest)+'"'))}
+if($Preset){$taskArgs+=@('-b10-preset',"$Preset")}
+if($InputFile){$taskArgs+=@('-b10-world-input',('"'+(Join-Path $taskRoot $InputFile)+'"'))}
 $taskDesignText=[IO.File]::ReadAllText((Join-Path $taskRoot 'Design/rooms_v2.json'))
 $taskDesignHash=[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($taskDesignText)))
 $taskArgs+=@('-b10-design-sha256',$taskDesignHash)
