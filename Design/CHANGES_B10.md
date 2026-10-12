@@ -1,6 +1,6 @@
 # Batch 10 생성기 수정 내역
 
-데이터 원본 이동·폭 변경은 아직 0건이다. `rooms_def.py`, `room_check.py`, 기본/V2/V3 Scene, PlayerTuning은 변경하지 않았다.
+에이전트가 실제 막힘 수정 권한으로 적용한 데이터 이동·폭 변경은 0건이다. 재개 지시에 명시된 Claude 데이터·검사기 수정은 별도 승인 변경으로 적용했다(662cc0c, [Claude 내역](CHANGES_CLAUDE_B10.md)). 기본/V2/V3 Scene과 PlayerTuning은 변경하지 않았다.
 
 | 방 | 요소 | 전 | 후 | 이유 | 근거 |
 |---|---|---|---|---|---|
