@@ -9,7 +9,7 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 | Task | 상태 | 현재 결과 |
 |---|---|---|
 | B10-T1 | DONE | 장치9개·기존 경로10개 저장 입력/전체 경로2회 PASS |
-| B10-T2 | DOING | 재개 설계 69/70 저장 전체 입력2회 PASS; A02/wall·C02/low·Z01/up_A05 해소. r54~r58 이전 Scene 결과 제외; r59/r61/r63 현재 Scene·설계 hash 확인 |
+| B10-T2 | DONE | 재개 설계 70/70 저장 전체 입력2회 PASS; A02/wall·C02/low·Z01/up_A05 해소. r54~r58 이전 Scene 결과 제외; r59/r61/r63 현재 Scene·설계 hash 확인 |
 | B10-T3 | DOING | covered floor trigger inset 수정 47b20ac, Claude 설계 수정 662cc0c / V4 재생성 24ceeda, 21방 검사 PASS |
 | B10-T4 | DOING | 연결 반환 탐색·물리 왕복 재생 도구 구현 |
 | B10-T5 | DOING | 진행/gate 기반 최소 능력·입구별 다른 출구 탐색 구현 |
@@ -169,7 +169,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/Scene 재생성·T2 69/70 / 다음 T2 C04/dj → T3 → T4/T5(실행 중) → T6 B05 재시도 → T10(30/120 실행 중) → T12 → T13 → Backlog → 반복
+B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/Scene 재생성·T2 70/70 / 다음 T3 정리 → T4/T5(실행 중) → T6 B05 재시도 → T10(30/120 실행 중) → T12 → T13 → Backlog → 반복
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
@@ -219,6 +219,7 @@ Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 
 ### 4. 다음 Batch 후보
 
 거리/세로 문 기준 결정 → 수동 최소 진입·A03 필수 길·보스·Z01 검증 → 입증된 막힘만 승인 범위 수정 → V4 자연 완주 재검토. 별도 V2 W22/기록 입력 원인 진단. 기본 채택·장치 후보 채택·Sprint Gate는 그 뒤 사용자 판단이며 이번 실행에서 진행하지 않는다.
+
 
 
 
