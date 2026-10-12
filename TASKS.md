@@ -10,7 +10,7 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 |---|---|---|
 | B10-T1 | DONE | 장치9개·기존 경로10개 저장 입력/전체 경로2회 PASS |
 | B10-T2 | DOING | A/B/C 병렬 실행, 미소진 후보는 예산 이월로 보존 |
-| B10-T3 | TODO | 실제 막힘 확정 후 승인된 1.5u/폭1u 수정만 |
+| B10-T3 | DOING | covered floor trigger inset 수정 47b20ac, Claude 설계 수정 662cc0c / V4 재생성 24ceeda, 21방 검사 PASS |
 | B10-T4 | DOING | 연결 반환 탐색·물리 왕복 재생 도구 구현 |
 | B10-T5 | DOING | 진행/gate 기반 최소 능력·입구별 다른 출구 탐색 구현 |
 | B10-T6 | DOING | 자연 전체 연결 입력 확보 중; fixture 금지 |
@@ -22,6 +22,12 @@ Sprint3 / Batch10 진행 중(2026-10-12). Batch10만 승인, 예산12시간/80Ta
 | B10-T12 | TODO | 최종 막힘 좌표·요소·로그 보고 |
 | B10-T13 | TODO | 마지막 회귀·V2·Development 전달·인계 |
 ## Bugs
+
+### B10-RESUME / 현재 설계 재판정
+Claude 수정은 재개 문서의 명시 승인으로 적용했다. 21방 검사 PASS. A01/A02/A05/A06/B01/B02/B03/C01/C02/Z01의 이전 PASS는 무효, T2-resume 로그만 새 근거로 쓴다. Scene 차이: A01/A02/A05/A06/B02/B03/C02/Z01 변경, B01/C01은 경로 데이터만 변경, 나머지11방0. raw: resume-scene-differences-r40.txt. 재개 후 자연 실행은 실제 대시·벽 점프를 얻었으며 B04 해치에서 중단 후 수정 도구로 재실행 중. 이전 중단의 자동 승인 검토 오류는 이번 로컬 커밋/Unity 실행이 승인되어 해소됐다. 예산 종료19:06, 새 예산 시작 아님.
+
+### B10-FAST-CLOCK / 검증 제외
+무제한 렌더링 r19 실험에서 scaled/unscaled 입력 시계 차이를 실측했다. 해당 실험의 PASS/BLOCKED-GEOMETRY는 최종 판정에 쓰지 않는다. 원본 보존, 정상 60fps 후보 분할로 재검증한다. r17 이전 T5는 gate 별칭/진행 누적 상태를 보완하기 전 결과이므로 최소 능력 합격 근거에서 제외한다. clock-fast/normal-r22 원본 참조.
 
 ### B09-DISTANCE / OPEN — T6 BLOCKED
 15개 낙하 도착 약2.2u, Z01→S02 2u로 승인2.5u 기준 미달. 실측 통행 불가로 확인하지 못해 데이터 이동 예외 미적용. [목록·실제 출구 검사](Validation/B09-T6-summary.md).
@@ -163,7 +169,7 @@ Batch09 세 항목 처리 완료(후보 감각 REVIEW 유지). 이전 승인 Bac
 
 ## Latest Handoff
 
-B10 진행: 완료 T1/T7/T8/T9/T11 / 다음 T2~T6·T10·T12/T13 및 Backlog 계속
+B10 진행: 완료 T1/T7/T8/T9/T11·재개 설계 검사/커밋/Scene 재생성 / 다음 T2 전체 재판정 → T3 → T4 → T5 → T6 → T10 → T12 → T13 → Backlog → 반복
 
 Batch09만 실행. 전달은 `Builds/B09-delivery/` Development 한 개, 최종 오류·경고0. V4 21방과 장치/Slam을 새로 플레이할 수 있다. 전체 완주·고립0·전체 왕복은 미합격이다. 기존 Scene/Tuning/설계 데이터/제품·저장 경로 보존, 로컬 커밋만, push0.
 
