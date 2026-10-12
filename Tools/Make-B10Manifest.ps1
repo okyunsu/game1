@@ -5,7 +5,7 @@ $taskRaw=Join-Path $taskRoot 'Validation/_raw/B10'
 $taskOutput=Join-Path $taskRaw "$Tag.tsv"
 if(Test-Path -LiteralPath $taskOutput){throw 'Preserve evidence: new tag required'}
 $taskRows=@{}
-foreach($taskFile in Get-ChildItem $taskRaw -Filter 'T2-resume*.txt' | Where-Object {$_.Name -notlike '*.live.txt'} | Sort-Object LastWriteTimeUtc){
+foreach($taskFile in Get-ChildItem $taskRaw -Filter 'T2-resume*.txt' | Where-Object {$_.Name -notlike '*.live.txt' -and $_.Name -notmatch '^T2-resume-r5[4-8]-'} | Sort-Object LastWriteTimeUtc){
  foreach($taskLine in Get-Content -LiteralPath $taskFile.FullName){
   if($taskLine -match '^PASS route ([A-Z][0-9]{2})/(\S+) replay=2 .*whole-input=(.+)$'){
    $taskRows["$($Matches[1])/$($Matches[2])"]="$($Matches[1])`t$($Matches[2])`t$($Matches[3])"

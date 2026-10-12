@@ -10,6 +10,9 @@ if($Route){$taskArgs+=@('-b10-route',$Route)}
 if($Expanded){$taskArgs+='-b10-expanded'}
 if($Split){$taskArgs+='-b10-split'}
 if($Manifest){$taskArgs+=@('-b10-manifest',('"'+(Join-Path $taskRoot $Manifest)+'"'))}
+$taskDesignText=[IO.File]::ReadAllText((Join-Path $taskRoot 'Design/rooms_v2.json'))
+$taskDesignHash=[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($taskDesignText)))
+$taskArgs+=@('-b10-design-sha256',$taskDesignHash)
 if($Fast){$taskArgs+='-b10-fast';$taskArgs[$taskArgs.IndexOf('-screen-width')+1]='320';$taskArgs[$taskArgs.IndexOf('-screen-height')+1]='180'}
 if($Parts -lt 1 -or $Part -lt 0 -or $Part -ge $Parts){throw 'Invalid candidate partition'}
 $taskArgs+=@('-b10-part',"$Part",'-b10-parts',"$Parts")

@@ -1,6 +1,14 @@
 param([Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')][string]$Tag,[switch]$OnlyRoute,[switch]$SkipPogo,[switch]$BasicOnly)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
+if($Tag -eq 'V4'){
+ $taskStamp='V4-'+[DateTime]::Now.ToString('yyyyMMdd-HHmmss')
+ $taskBuild=Get-ChildItem (Join-Path $taskRoot 'Builds') -Directory | Where-Object {$_.Name -match '^B10-release-r[0-9]+$' -and (Test-Path (Join-Path $_.FullName 'Afterglow.exe'))} | Sort-Object {[int]($_.Name -replace '^B10-release-r','')} -Descending | Select-Object -First 1
+ if(!$taskBuild){throw 'Current V4 Release build required'}
+ & (Join-Path $taskRoot 'Tools/Make-B10Manifest.ps1') -Tag $taskStamp
+ & (Join-Path $taskRoot 'Tools/Run-B10Search.ps1') -Build $taskBuild.Name -Mode replay -Manifest "Validation/_raw/B10/$taskStamp.tsv" -Tag $taskStamp -Fps 60 -Fast
+ exit $LASTEXITCODE
+}
 $taskUnity='C:\Program Files\Unity\Hub\Editor\6000.3.24f1\Editor\Unity.exe'
 $taskSummary=Join-Path $PSScriptRoot "REG-$Tag-summary.txt"
 if(Test-Path -LiteralPath $taskSummary){throw 'Preserve existing summary: use a new tag'}
