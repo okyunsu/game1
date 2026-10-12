@@ -6,4 +6,4 @@ Builds/B06b-delivery/Afterglow.exe 40 Scene Development: `Succeeded errors=0 war
 
 보호 검사: 기본 Scene/Prefab·BossEncounter/BossTuning·Packages/ProjectSettings 변경0, 기존 Validation 변경0, 기존 PlayerTuning 삭제/변경0(신규3필드만), C06_V2 13줄추가/삭제0. diff --check PASS.
 
-[빌드 원본](./_raw/B06b/B06b-delivery-build.txt), [보호 검사](./_raw/B06b/T5-protected.txt), T5-launch-{guide,noguide,wall,ending}.txt 같은 raw 폴더. 미실시: 사람 손맛/패드 실물·자연 전체 완주. T1 회귀 R11/P03 기존 재생 실패는 해결되지 않았다. 이후 승인 Backlog 반영 시 전달 exe를 다시 빌드/관련 범위 재검사한다.
+[빌드 원본](../../Validation/_raw/B06b/B06b-delivery-build.txt), [보호 검사](../../Validation/_raw/B06b/T5-protected.txt), T5-launch-{guide,noguide,wall,ending}.txt 같은 raw 폴더. 미실시: 사람 손맛/패드 실물·자연 전체 완주. T1 회귀 R11/P03 기존 재생 실패는 해결되지 않았다. 이후 승인 Backlog 반영 시 전달 exe를 다시 빌드/관련 범위 재검사한다.

@@ -36,6 +36,6 @@ Error/Exception/Assert=0
 
 START 대비 기존 Scene/Prefab/기본 Tuning/BossCandidates, PlayerInputReader/PlayerMotor/PlayerDash/PlayerHealth/GameState/RoomSession/KillZone, Packages/ProjectSettings, PRD/GAME_DESIGN diff0. 보호 관찰 이벤트 추가0. 기존 코드 변화는 관련 비보호 HitFeedback의 `Presented` 관찰 이벤트/호출뿐이며 기본 빌드에는 구독자0. AV1 bootstrap/profile은 build scene copy에만 삽입한다.
 
-Task별 요약: [A](B04-A-summary.md), [B](B04-B-summary.md), [복귀](B04-B-recovery-summary.md), [C](B04-C-summary.md), [음량](B04-volume-summary.md), [명도](B04-contrast-summary.md), [사진](B04-shots-summary.md), [QA](B04-QA-summary.md). 원본 전체 `Validation/_raw/B04/`, AppData Playtest CSV는 원본을 유지한 복사본, 기존 B02/B03 raw 삭제0. 이전 B03 Task/Handoff는 Archive에 보존한다.
+Task별 요약: [A](../Archive/validation-2026-10/B04-A-summary.md), [B](../Archive/validation-2026-10/B04-B-summary.md), [복귀](../Archive/validation-2026-10/B04-B-recovery-summary.md), [C](B04-C-summary.md), [음량](../Archive/validation-2026-10/B04-volume-summary.md), [명도](../Archive/validation-2026-10/B04-contrast-summary.md), [사진](B04-shots-summary.md), [QA](B04-QA-summary.md). 원본 전체 `Validation/_raw/B04/`, AppData Playtest CSV는 원본을 유지한 복사본, 기존 B02/B03 raw 삭제0. 이전 B03 Task/Handoff는 Archive에 보존한다.
 
 종료 인계까지 포함한 총 소요는 약40분(07:38~08:16 KST). 위 약35분은 구현·검증 완료 시점의 기록이며 이후 문서/인계 정리를 포함해 종료했다.

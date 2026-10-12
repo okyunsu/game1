@@ -42,7 +42,7 @@ Batch07 / 시작2026-10-10 21:54 KST. 기본·V2·튜닝을 보존하는 그레�
 
 ## 현재 검증
 
-A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프 없는 선택 시도15s 차단 PASS. [상세](Validation/B07-T3-A01-summary.md). 스크린샷 [A01](Validation/_raw/B07/A01-overview.png). 기술 수락이며 사람 손맛·자연 동선은 REVIEW.
+A01 필수·선택 실제 고정 입력 기록/재생 PASS/Error0. 더블 점프 없는 선택 시도15s 차단 PASS. [상세](Archive/validation-2026-10/B07-T3-A01-summary.md). 스크린샷 [A01](Validation/_raw/B07/A01-overview.png). 기술 수락이며 사람 손맛·자연 동선은 REVIEW.
 
 ## 조정 위치
 

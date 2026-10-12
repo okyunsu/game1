@@ -52,13 +52,13 @@ Play 중 설정 Asset 변경은 남을 수 있다. Stop 후 이전 값 또는 �
 ## Validation Records
 
 ### N8 사전 검토 / N7 V1 확정 (2026-10-06)
-N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working Set360886272→362958848 bytes(+0.574%), GameObject 종료29→33(+13.8%), 전체 순간샘플23~61(첨부 29~49 정정), 전환2911/사망116/Pause2911, Error0. 원본은 fb7b8b2에 보존. N8 변경 이전 진단 바이너리 결과로 구분하며 새 실행으로 기록하지 않는다. [검토](../Validation/N8-soak-review.txt).
-입력 Asset ↑/↓·W/S 추가, Digital Composite로 수직 입력 동시 좌우 속도 보존. S1-02/K1 PASS, 회귀13/13 PASS. 최초 sandbox 실행13개는 Unity 라이선스 접근 실패(exit198)로 테스트 미진입; 권한 범위 밖 실행으로 정상 확인. ATK1은 bounds기준1.2×1.3u 판정과 표시를 실제 Unity30/60/120fps에서 확인, 키보드↑/W·패드·기존좌우·T3 포함13/13 PASS. [ATK1](../Validation/N8-ATK1.txt).
-사망 화면은 기존 A02 진단 exe를 Normal창으로 실행하여 4해상도×창/전체화면8/8 유효PNG·사망후약0.12s·Error0. [결과](../Validation/N8-death-capture.txt).
+N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working Set360886272→362958848 bytes(+0.574%), GameObject 종료29→33(+13.8%), 전체 순간샘플23~61(첨부 29~49 정정), 전환2911/사망116/Pause2911, Error0. 원본은 fb7b8b2에 보존. N8 변경 이전 진단 바이너리 결과로 구분하며 새 실행으로 기록하지 않는다. [검토](validation-2026-10/N8-soak-review.txt).
+입력 Asset ↑/↓·W/S 추가, Digital Composite로 수직 입력 동시 좌우 속도 보존. S1-02/K1 PASS, 회귀13/13 PASS. 최초 sandbox 실행13개는 Unity 라이선스 접근 실패(exit198)로 테스트 미진입; 권한 범위 밖 실행으로 정상 확인. ATK1은 bounds기준1.2×1.3u 판정과 표시를 실제 Unity30/60/120fps에서 확인, 키보드↑/W·패드·기존좌우·T3 포함13/13 PASS. [ATK1](validation-2026-10/N8-ATK1.txt).
+사망 화면은 기존 A02 진단 exe를 Normal창으로 실행하여 4해상도×창/전체화면8/8 유효PNG·사망후약0.12s·Error0. [결과](validation-2026-10/N8-death-capture.txt).
 
 
 ### S3-complete v2 — 보스·엔딩 포함 기술 PASS
-[빌드](../Validation/S3-complete-v2-build.txt), [실제 exe 요약](../Validation/S3-complete-v2-runtime.txt), [보존 확인](../Validation/S3-complete-v2-preservation.txt). 15방/17씬, build errors0/warnings0, 실제 새게임/전체문왕복/5CP/두능력별도Continue/X20타보스→2.0432s엔딩→타이틀 PASS, Error/Exception/Assert0. 최종 S1-02/04/07/08/N2 회귀 PASS. 최초 검사 스크린샷 API 컴파일 실패는 호출 제거1회보정 후 성공. F1 미포함, 사용자 완주/Gate/체감 대기.
+[빌드](../Validation/S3-complete-v2-build.txt), [실제 exe 요약](../Validation/S3-complete-v2-runtime.txt), [보존 확인](validation-2026-10/S3-complete-v2-preservation.txt). 15방/17씬, build errors0/warnings0, 실제 새게임/전체문왕복/5CP/두능력별도Continue/X20타보스→2.0432s엔딩→타이틀 PASS, Error/Exception/Assert0. 최종 S1-02/04/07/08/N2 회귀 PASS. 최초 검사 스크린샷 API 컴파일 실패는 호출 제거1회보정 후 성공. F1 미포함, 사용자 완주/Gate/체감 대기.
 
 
 2026-10-03 v2 S3-10 PASS/REVIEW: EndingFlow(2초 실시간)/EndingMenu/Ending 씬, bossDefeated·endingReached 저장, Continue 엔딩 분기, Menu Quit 및 Pause 재개/타이틀. 실제 별도 Windows 프로세스 route PID24412/kill-now PID10268/continue PID25612: 처치직후 종료→Continue 엔딩·새게임 전체초기화·패드UI·Z/Enter PASS, 엔딩전환2.0552s. S1-02/04/07/08/N2 회귀 PASS, Error/Exception/Assert0. 엔딩표현/물리패드/자연완주 미수락. 증거 Validation/S3-10-ending-v2.txt 및 하위3로그.
@@ -68,7 +68,7 @@ N7 원본 CSV·종료 로그를 읽어 V1 PASS 확인: 실제7201.264s, Working 
 
 
 ### S3-complete — 기존 성공 콘텐츠 / 복원 후 검증 PASS
-[S3-complete-build.txt](../Validation/S3-complete-build.txt): Menu+14방/C04까지, errors0/warnings0. [S3-complete-runtime.txt](../Validation/S3-complete-runtime.txt): 실제 PID18732/PID5584 새게임/모든 문 왕복/두능력/5CP/프로세스 종료후 CP-C04 Continue 및 장거리복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-complete-restored.txt와 S1-06-lead0-night-S2-S3-complete-camera.txt 모두PASS. [전체복원](../Validation/S3-complete-restoration.txt) 확인. F1/C06/엔딩은 미포함·성공 주장 없음, Content Complete 아님.
+[S3-complete-build.txt](validation-2026-10/S3-complete-build.txt): Menu+14방/C04까지, errors0/warnings0. [S3-complete-runtime.txt](validation-2026-10/S3-complete-runtime.txt): 실제 PID18732/PID5584 새게임/모든 문 왕복/두능력/5CP/프로세스 종료후 CP-C04 Continue 및 장거리복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-complete-restored.txt와 S1-06-lead0-night-S2-S3-complete-camera.txt 모두PASS. [전체복원](validation-2026-10/S3-complete-restoration.txt) 확인. F1/C06/엔딩은 미포함·성공 주장 없음, Content Complete 아님.
 
 
 ### F1 / S3-09 narrow — 2회 실패 후 전체 복원
@@ -76,57 +76,57 @@ F1-preflight.txt / F1-feedback.txt / F1-feedback-rerun.txt: 표시 및30fps 측�
 
 
 ### S3-full — 성공 단계 빌드 / 실제 exe PASS
-[S3-full-build.txt](../Validation/S3-full-build.txt): Windows x64 Menu+A01~A05+B01~B05+C01~C04(15씬/14방), 오류/경고0. [S3-full-runtime.txt](../Validation/S3-full-runtime.txt): PID25716 새 게임/모든 문 양방향/5CP 복귀/두능력/조합과 PID27720 프로세스 종료후 CP-C04 Continue/능력유지/먼방사망복귀 PASS, Error/Exception/Assert0. 상세 route·continue 별도 새 파일. [보호파일 검사](../Validation/S3-full-protected-files.txt) PASS. 보스/엔딩/새 UI/물리패드/자연 완주시간/화면 잘림 수락 미검사, Content Complete 아님.
+[S3-full-build.txt](validation-2026-10/S3-full-build.txt): Windows x64 Menu+A01~A05+B01~B05+C01~C04(15씬/14방), 오류/경고0. [S3-full-runtime.txt](validation-2026-10/S3-full-runtime.txt): PID25716 새 게임/모든 문 양방향/5CP 복귀/두능력/조합과 PID27720 프로세스 종료후 CP-C04 Continue/능력유지/먼방사망복귀 PASS, Error/Exception/Assert0. 상세 route·continue 별도 새 파일. [보호파일 검사](validation-2026-10/S3-full-protected-files.txt) PASS. 보스/엔딩/새 UI/물리패드/자연 완주시간/화면 잘림 수락 미검사, Content Complete 아님.
 
 
 ### S3-09 / S3-10 — 명세 충돌 BLOCKED / 의존 SKIPPED
-[S3-09-boss.txt](../Validation/S3-09-boss.txt): 실제 Unity 카메라 투영과 가시폭 측정. 보스 동작/HP/패턴/동시사망/Pause 검사는 구현 전 중단되어 미실시. [S3-10-ending.txt](../Validation/S3-10-ending.txt): 의존 미충족, 엔딩/새 저장필드/메뉴확장 검증 미실시. 실패한 구현 변경은 없으며 임시 검사 스크립트도 제거. 실패 로그와 TASKS만 커밋.
+[S3-09-boss.txt](validation-2026-10/S3-09-boss.txt): 실제 Unity 카메라 투영과 가시폭 측정. 보스 동작/HP/패턴/동시사망/Pause 검사는 구현 전 중단되어 미실시. [S3-10-ending.txt](validation-2026-10/S3-10-ending.txt): 의존 미충족, 엔딩/새 저장필드/메뉴확장 검증 미실시. 실패한 구현 변경은 없으며 임시 검사 스크립트도 제거. 실패 로그와 TASKS만 커밋.
 
 
 ### S3-08 — 기술 PASS / REVIEW
-[S3-08-C03-C04.txt](../Validation/S3-08-C03-C04.txt), S1-02/04/07/08-night-S3-08-C03-C04.txt 모두 PASS. E1 x9~15 실제 순찰/방향전환·E3 emitted 탄 C03_Cover 충돌·엄폐 안전·CP-C04 유효저장/Continue/다른방 사망복귀. CP-C04→C06 입구1.280s(지정 오른쪽 입력, 아직 C06 전환 아님). 사용자 종합 이동 체감 미검사.
+[S3-08-C03-C04.txt](validation-2026-10/S3-08-C03-C04.txt), S1-02/04/07/08-night-S3-08-C03-C04.txt 모두 PASS. E1 x9~15 실제 순찰/방향전환·E3 emitted 탄 C03_Cover 충돌·엄폐 안전·CP-C04 유효저장/Continue/다른방 사망복귀. CP-C04→C06 입구1.280s(지정 오른쪽 입력, 아직 C06 전환 아님). 사용자 종합 이동 체감 미검사.
 
 
 ### S3-07 — 기술 PASS / REVIEW
-[S3-07-C01-C02.txt](../Validation/S3-07-C01-C02.txt), S1-02/04/07/08-night-S3-07-C01-C02.txt 모두 PASS. 실제 발판 윗면 기준 검사, 보정 없음. C02 Right는 C03 생성까지 비활성. B05는 승인된 안내제거/Step/Right/FromRight만 추가. CP-C01 저장·Continue 매핑 포함. 사용자 C02 난이도/전체 흐름 수락 대기.
+[S3-07-C01-C02.txt](validation-2026-10/S3-07-C01-C02.txt), S1-02/04/07/08-night-S3-07-C01-C02.txt 모두 PASS. 실제 발판 윗면 기준 검사, 보정 없음. C02 Right는 C03 생성까지 비활성. B05는 승인된 안내제거/Step/Right/FromRight만 추가. CP-C01 저장·Continue 매핑 포함. 사용자 C02 난이도/전체 흐름 수락 대기.
 
 
 ### S3-06 — 기술 PASS / REVIEW
-[S3-06-B02-rerun.txt](../Validation/S3-06-B02-rerun.txt), S1-02/04/07/08-night-S3-06-B02-rerun.txt 모두 PASS. 최초 S3-06-B02.txt는 첫 돌진이 벽에 닿기 전에 끝났으므로 벽 정지 assertion 근거가 불충분하여 무효. 검사만 1회 보정: 반복 돌진의 실제 벽 간격0.140u 확인. 배치/튜닝 추가 변경 없음. 물리 패드/체감 미검사.
+[S3-06-B02-rerun.txt](validation-2026-10/S3-06-B02-rerun.txt), S1-02/04/07/08-night-S3-06-B02-rerun.txt 모두 PASS. 최초 S3-06-B02.txt는 첫 돌진이 벽에 닿기 전에 끝났으므로 벽 정지 assertion 근거가 불충분하여 무효. 검사만 1회 보정: 반복 돌진의 실제 벽 간격0.140u 확인. 배치/튜닝 추가 변경 없음. 물리 패드/체감 미검사.
 
 
 ### S3-B — 최종 빌드·exe 기술 PASS
 [S3-B-build.txt](../Validation/S3-B-build.txt): Windows x64 Succeeded·errors0·warnings0, Menu/A01~A05/B01~B05 정확히11씬, 테스트 씬 제외. [S3-B-runtime.txt](../Validation/S3-B-runtime.txt)과 route/continue.txt: 실제 exe 두 프로세스(PID2920/7444) Menu Z 새 게임·모든 문 양방향·CP-A01/A03/B01 복귀·A05 Dash/B04 DoubleJump 접촉·B04 High 착지·재입장미등장·타방사망/보유·종료/Continue CP-B01/두능력 유지 PASS. 복귀→조작0.716~0.767s, High top5.835/feet5.850, Error/Exception/Assert0. 지정 배치/입력, 자동 경로 로봇 없음, 사용자 저장은 변경하지 않고 Logs/S3-B-runtime-slot.json 격리. 물리 패드 및 자연스러운 A05→B05 흐름 시간은 미실시/사용자 확인.
-[S3-extra-walkoff.txt](../Validation/S3-extra-walkoff.txt): 실제 ledge에서 LeftArrow만으로 이탈→Coyote 종료 후 추가1회, 공중 Dash 활성 후 추가점프 가능·추가연타차단·런타임오류0 PASS. 이 보완 검사는 Editor 코드만 추가하며 빌드 게임 코드 변경 없음.
+[S3-extra-walkoff.txt](validation-2026-10/S3-extra-walkoff.txt): 실제 ledge에서 LeftArrow만으로 이탈→Coyote 종료 후 추가1회, 공중 Dash 활성 후 추가점프 가능·추가연타차단·런타임오류0 PASS. 이 보완 검사는 Editor 코드만 추가하며 빌드 게임 코드 변경 없음.
 
 
 ### S3-05 — 기술 PASS / REVIEW
-[S3-05-B04-B05.txt](../Validation/S3-05-B04-B05.txt): 초기 High Y3.3은 Low에서 일반점프 발최대5.535u로 착지 확인. 명시 승인 보정으로 Y만5.335(윗면5.835, 일반 최대+0.3) 적용, 일반 실패·더블 최대7.839u/안전 착지6.65. Play 종료 후 Scene Y 저장 증거 포함. 획득 전 불가/후 가능·마지막CP보존·재입장미등장·사망보유·B01↔B05·저장/Session Continue PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-05-B04-B05.txt 모두 PASS. 실제 프로세스 종료/Continue는 최종 빌드에서 검사.
+[S3-05-B04-B05.txt](validation-2026-10/S3-05-B04-B05.txt): 초기 High Y3.3은 Low에서 일반점프 발최대5.535u로 착지 확인. 명시 승인 보정으로 Y만5.335(윗면5.835, 일반 최대+0.3) 적용, 일반 실패·더블 최대7.839u/안전 착지6.65. Play 종료 후 Scene Y 저장 증거 포함. 획득 전 불가/후 가능·마지막CP보존·재입장미등장·사망보유·B01↔B05·저장/Session Continue PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-05-B04-B05.txt 모두 PASS. 실제 프로세스 종료/Continue는 최종 빌드에서 검사.
 
 
 ### S3-04 — 기술 PASS / REVIEW (1회 검사 보정)
-[S3-04-E3-B03.txt](../Validation/S3-04-E3-B03.txt) 첫 피해 검사 FAIL: 검사 발판이 탄을 막음; 첫 로그의 엄폐 PASS는 충돌 대상 미식별로 근거 무효. 발판 간섭 보정·충돌 대상 기록을 추가한 [S3-04-E3-B03-rerun.txt](../Validation/S3-04-E3-B03-rerun.txt) PASS: 예고0.693s·탄속5.000u/s·주기2.000s, 실제 emitted 탄의 B03_Cover 충돌 확인·사거리 안 별도 벽 시야차단·화면밖 금지·2타·탄피해/무적·전환 탄 제거·B02↔B03 왕복·재입장HP2, Error/Exception/Assert0. S1-02/04/07/08-night-S3-04-E3-B03-rerun.txt 모두 PASS. E3Shot collider1.2×1.2u/발사offset1.15u는 새 프리팹/Inspector 기본 배치값(22절 기존값 변경 없음); 발사 순간 겹친 받침은 벗어날 때까지만 탄 충돌에서 제외해 즉시 소멸 방지. B03 Right는 S3-05까지 비활성.
+[S3-04-E3-B03.txt](validation-2026-10/S3-04-E3-B03.txt) 첫 피해 검사 FAIL: 검사 발판이 탄을 막음; 첫 로그의 엄폐 PASS는 충돌 대상 미식별로 근거 무효. 발판 간섭 보정·충돌 대상 기록을 추가한 [S3-04-E3-B03-rerun.txt](validation-2026-10/S3-04-E3-B03-rerun.txt) PASS: 예고0.693s·탄속5.000u/s·주기2.000s, 실제 emitted 탄의 B03_Cover 충돌 확인·사거리 안 별도 벽 시야차단·화면밖 금지·2타·탄피해/무적·전환 탄 제거·B02↔B03 왕복·재입장HP2, Error/Exception/Assert0. S1-02/04/07/08-night-S3-04-E3-B03-rerun.txt 모두 PASS. E3Shot collider1.2×1.2u/발사offset1.15u는 새 프리팹/Inspector 기본 배치값(22절 기존값 변경 없음); 발사 순간 겹친 받침은 벗어날 때까지만 탄 충돌에서 제외해 즉시 소멸 방지. B03 Right는 S3-05까지 비활성.
 
 
 ### S3-03 — 기술 PASS / REVIEW
-[S3-03-B01-B02.txt](../Validation/S3-03-B01-B02.txt): 일반/대시 미보유 발최대3.535/3.283, 보유 지정입력5.839·턱 착지5.41. 상단트리거y4.6~6.6/하단y1~3 분리 MEASURE. B01↔B02 왕복·안전도착·E2 예고/발판회피/3타/재입장·CP-B01 사망복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-03-B01-B02.txt 모두 PASS. B01 Left/CP 보존, B05 출구는 S3-05까지 비활성. B02 오른쪽은 B03 생성까지 비활성. B01 전용 턱의 셸 복사 잔여를 첫 검증 전 B02에서 제거.
+[S3-03-B01-B02.txt](validation-2026-10/S3-03-B01-B02.txt): 일반/대시 미보유 발최대3.535/3.283, 보유 지정입력5.839·턱 착지5.41. 상단트리거y4.6~6.6/하단y1~3 분리 MEASURE. B01↔B02 왕복·안전도착·E2 예고/발판회피/3타/재입장·CP-B01 사망복귀 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-03-B01-B02.txt 모두 PASS. B01 Left/CP 보존, B05 출구는 S3-05까지 비활성. B02 오른쪽은 B03 생성까지 비활성. B01 전용 턱의 셸 복사 잔여를 첫 검증 전 B02에서 제거.
 
 
 ### S3-02 — 기술 PASS / REVIEW (1회 검사 보정)
-[S3-02-E2.txt](../Validation/S3-02-E2.txt) 첫 돌진거리1.466u FAIL: 기존 E1 접촉 간섭. 게임 코드/값 변경 없이 검사 중 기존 fixture만 비활성화해 [S3-02-E2-rerun.txt](../Validation/S3-02-E2-rerun.txt) 재검증 PASS. 예고0.620s·돌진0.420s/2.400u, 방향고정·회복1s·벽정지·3타처치·넉백3·접촉/무적·대시거리회피·사망/재입장 초기화, Error/Exception/Assert0. S1-02/04/07/08-night-S3-02-E2-rerun.txt 모두 PASS. E2Tuning.asset·E2.prefab·CombatTest만 추가, 실제 방 미배치.
+[S3-02-E2.txt](validation-2026-10/S3-02-E2.txt) 첫 돌진거리1.466u FAIL: 기존 E1 접촉 간섭. 게임 코드/값 변경 없이 검사 중 기존 fixture만 비활성화해 [S3-02-E2-rerun.txt](validation-2026-10/S3-02-E2-rerun.txt) 재검증 PASS. 예고0.620s·돌진0.420s/2.400u, 방향고정·회복1s·벽정지·3타처치·넉백3·접촉/무적·대시거리회피·사망/재입장 초기화, Error/Exception/Assert0. S1-02/04/07/08-night-S3-02-E2-rerun.txt 모두 PASS. E2Tuning.asset·E2.prefab·CombatTest만 추가, 실제 방 미배치.
 
 
 ### S3-01 — 기술 PASS / REVIEW
-[S3-01-doublejump.txt](../Validation/S3-01-doublejump.txt): 실제 Unity 30/60/120fps 일반 최대2.535u, 더블4.965/5.049/5.049u(바닥 대비 발 높이). 3.6u G-J 여유조건 충족, 후보 높이 변경 없음. 홀드/3번째/대시회복/미보유 차단·Coyote 이후 낙하 추가1회·저장 CP-B01 로드 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-01-doublejump.txt 실제 모두 PASS. Player 기본 false, 전용 테스트 true. 기존 수치/배치 보존.
+[S3-01-doublejump.txt](validation-2026-10/S3-01-doublejump.txt): 실제 Unity 30/60/120fps 일반 최대2.535u, 더블4.965/5.049/5.049u(바닥 대비 발 높이). 3.6u G-J 여유조건 충족, 후보 높이 변경 없음. 홀드/3번째/대시회복/미보유 차단·Coyote 이후 낙하 추가1회·저장 CP-B01 로드 PASS, Error/Exception/Assert0. S1-02/04/07/08-night-S3-01-doublejump.txt 실제 모두 PASS. Player 기본 false, 전용 테스트 true. 기존 수치/배치 보존.
 
 
 ### S2-day 최종 빌드 — PASS
 
-[S2-day-build.txt](../Validation/S2-day-build.txt): Windows x64 Succeeded, 오류/경고0, Menu,A01~A05,B01 정확히7씬. [S2-day-runtime.txt](../Validation/S2-day-runtime.txt): exe 실제 두 프로세스, Menu Z 새 게임→기존 모든 문 및 선반 B01 양방향 직접 접촉/안전 도착, A02 구멍→CP-A01, CP-A03·CP-B01 접촉/사망·B01 다른 방 사망 복귀, A05 획득 저장, 종료→Z 이어하기 Dash+CP-B01/좌표 유지 PASS·FAIL0·Error/Exception/Assert0. 상세 S2-day-runtime-day.txt/daycontinue.txt, S2-day-Player-day.log/daycontinue.log. 사용자 슬롯은 변경하지 않고 Logs/S2-day-slot.json 격리 슬롯 사용. 자동 이동 로봇 없음. K1·K3 포함, 실패 K2는 기존0.15s. S1-02/04/07/08-night-S2-day.txt 최종 회귀 별도.
+[S2-day-build.txt](validation-2026-10/S2-day-build.txt): Windows x64 Succeeded, 오류/경고0, Menu,A01~A05,B01 정확히7씬. [S2-day-runtime.txt](validation-2026-10/S2-day-runtime.txt): exe 실제 두 프로세스, Menu Z 새 게임→기존 모든 문 및 선반 B01 양방향 직접 접촉/안전 도착, A02 구멍→CP-A01, CP-A03·CP-B01 접촉/사망·B01 다른 방 사망 복귀, A05 획득 저장, 종료→Z 이어하기 Dash+CP-B01/좌표 유지 PASS·FAIL0·Error/Exception/Assert0. 상세 S2-day-runtime-day.txt/daycontinue.txt, S2-day-Player-day.log/daycontinue.log. 사용자 슬롯은 변경하지 않고 Logs/S2-day-slot.json 격리 슬롯 사용. 자동 이동 로봇 없음. K1·K3 포함, 실패 K2는 기존0.15s. S1-02/04/07/08-night-S2-day.txt 최종 회귀 별도.
 
 ### K3 — S2-03 재시도 PASS / REVIEW
 
-[S2-03-retry.txt](../Validation/S2-03-retry.txt) PASS·FAIL 0. 보유/미보유 걷기·점프·넉백·미보유 Dash 차단, 보유 Dash 양방향 통과/종료 충돌 복원. 선반 출구 x29.5~30.5,y5~7, 바닥 출구 x33.75~34.75,y1~3, 벽 여유4.5u, FromShelf(27,5.81) 비중첩. A03↔B01 왕복·도착·CP-B01 물리 접촉/사망 안전 복귀. 바닥→오른쪽 선반 점프 발 최고2.385u<5, 격자높이6u. 일반 벽은 출구 간섭 없는 기존 DashTest T1 30/60/120fps PASS를 증거로 사용. S1-02/04/07/08-night-K3.txt 회귀 별도. 기존 A01~A05 배치·Level 원본 보존. 일회성 작성 코드 삭제.
+[S2-03-retry.txt](validation-2026-10/S2-03-retry.txt) PASS·FAIL 0. 보유/미보유 걷기·점프·넉백·미보유 Dash 차단, 보유 Dash 양방향 통과/종료 충돌 복원. 선반 출구 x29.5~30.5,y5~7, 바닥 출구 x33.75~34.75,y1~3, 벽 여유4.5u, FromShelf(27,5.81) 비중첩. A03↔B01 왕복·도착·CP-B01 물리 접촉/사망 안전 복귀. 바닥→오른쪽 선반 점프 발 최고2.385u<5, 격자높이6u. 일반 벽은 출구 간섭 없는 기존 DashTest T1 30/60/120fps PASS를 증거로 사용. S1-02/04/07/08-night-K3.txt 회귀 별도. 기존 A01~A05 배치·Level 원본 보존. 일회성 작성 코드 삭제.
 
 ### K2 — 2회 실패 / 복원
 
@@ -134,15 +134,15 @@ K2-camera.txt: 배치 모드 WaitForEndOfFrame 대기 중단, K2-camera-first-ti
 
 ### K1 — 새 키 기술 검증
 
-[K1-keys.txt](../Validation/K1-keys.txt): 새 방향키/Z/X/C·보조 키·Menu Z/X·Pause Z/X PASS, Z/Space 높이 동일. 게임패드 바인딩 유지; S1-02/04/07/08-night-K1.txt 회귀 결과 별도. [P0 push](../Validation/P0-push-20261003.txt) 16개 커밋 main push 성공.
+[K1-keys.txt](validation-2026-10/K1-keys.txt): 새 방향키/Z/X/C·보조 키·Menu Z/X·Pause Z/X PASS, Z/Space 높이 동일. 게임패드 바인딩 유지; S1-02/04/07/08-night-K1.txt 회귀 결과 별도. [P0 push](validation-2026-10/P0-push-20261003.txt) 16개 커밋 main push 성공.
 
 ### 최종 S2-night — PASS (2026-10-03)
 
-[S2-night-build.txt](../Validation/S2-night-build.txt): Succeeded, errors=0·warnings=0, Menu/A01/A02/A03/A04/A05 정확히 6개. [S2-night-runtime.txt](../Validation/S2-night-runtime.txt): 첫 줄 PASS·FAIL 0, 실제 exe Menu 시작·새 게임·8개 문 왕복·Spawn 위치·A02 물리 낙하 CP-A01/HP5 복귀·CP-A03 복귀·Error/Exception/Assert 0. [Player.log](../Validation/S2-night-Player.log)에도 오류 없음. DashTest/CombatTest/MovementTest/B01 제외. S1-02/04/07/08-night-S2-night.txt 모두 PASS. 커밋 5029ad0, 빌드 위치 Builds/S2-night/Afterglow-S2.exe. 사용자 통합 체감·실물 패드 검토는 미실시.
+[S2-night-build.txt](validation-2026-10/S2-night-build.txt): Succeeded, errors=0·warnings=0, Menu/A01/A02/A03/A04/A05 정확히 6개. [S2-night-runtime.txt](validation-2026-10/S2-night-runtime.txt): 첫 줄 PASS·FAIL 0, 실제 exe Menu 시작·새 게임·8개 문 왕복·Spawn 위치·A02 물리 낙하 CP-A01/HP5 복귀·CP-A03 복귀·Error/Exception/Assert 0. [Player.log](validation-2026-10/S2-night-Player.log)에도 오류 없음. DashTest/CombatTest/MovementTest/B01 제외. S1-02/04/07/08-night-S2-night.txt 모두 PASS. 커밋 5029ad0, 빌드 위치 Builds/S2-night/Afterglow-S2.exe. 사용자 통합 체감·실물 패드 검토는 미실시.
 
 ### S2-04 저장·이어하기 — PASS / REVIEW (2026-10-03)
 
-[S2-04-save.txt](../Validation/S2-04-save.txt) PASS·FAIL 0. 격리 슬롯으로 실제 exe 5개 프로세스 순차 실행(acquire/continue/continuecp/new/corrupt): 새 게임→A05 접촉 획득→프로세스 종료→이어하기 Dash 유지, CP-A03 접촉→종료→A03 CP 좌표 복원, 3회 사망 저장 유지, 패드 A/B 새 게임 확인/취소·초기화, 손상 안내·Continue 비활성·명시 새 게임·원본 `.invalid-*` 보존. 각 단계별 S2-04-save-*.txt·S2-04-save-build.txt(errors/warnings0) 보존. S2-04-editor-direct.txt는 Editor A01 기존 저장 무시/비기록, 저장 쓰기 실패 원본 보존·재시도 PASS. S1-02/04/07/08-night-S2-04.txt 모두 PASS. CP 접촉 HP 회복은 GAME_DESIGN14 기존 규칙에 맞춰 적용. 실제 체감 검토 전 REVIEW.
+[S2-04-save.txt](validation-2026-10/S2-04-save.txt) PASS·FAIL 0. 격리 슬롯으로 실제 exe 5개 프로세스 순차 실행(acquire/continue/continuecp/new/corrupt): 새 게임→A05 접촉 획득→프로세스 종료→이어하기 Dash 유지, CP-A03 접촉→종료→A03 CP 좌표 복원, 3회 사망 저장 유지, 패드 A/B 새 게임 확인/취소·초기화, 손상 안내·Continue 비활성·명시 새 게임·원본 `.invalid-*` 보존. 각 단계별 S2-04-save-*.txt·S2-04-save-build.txt(errors/warnings0) 보존. S2-04-editor-direct.txt는 Editor A01 기존 저장 무시/비기록, 저장 쓰기 실패 원본 보존·재시도 PASS. S1-02/04/07/08-night-S2-04.txt 모두 PASS. CP 접촉 HP 회복은 GAME_DESIGN14 기존 규칙에 맞춰 적용. 실제 체감 검토 전 REVIEW.
 
 
 ### S2-02 A05 — PASS / REVIEW (2026-10-03)
@@ -159,16 +159,16 @@ S2-01-integration.txt PASS·FAIL 0: 네 방 J/X·미보유 Dash 무시, HP 유�
 
 - [S1-10-build-v1.txt](../Validation/S1-10-build-v1.txt) 및 최종 [S1-10-build-v1-rerun.txt](../Validation/S1-10-build-v1-rerun.txt): Windows x64 Mono Succeeded, errors=0·warnings=0. BuildPlayerOptions에서 A01/A02/A03/A04 순서만 명시, EditorBuildSettings 미수정. A01 시작·테스트 씬 제외.
 - 최초 빌드 후 실행 검사 준비에서 A03에 KillZone이 없음을 확인해, CP-A03 접촉 후 기존 RoomSession.Die를 호출하도록 검사 코드를 바로잡고 재빌드. 빌드·런타임 검증 실패는 없었으며 두 빌드 결과 모두 보존.
-- [S1-10-runtime-v1.txt](../Validation/S1-10-runtime-v1.txt) 첫 줄 PASS·FAIL 0·exe exit=0. 실제 exe에서 포함 씬 4개 및 순서 일치, DashTest/CombatTest/MovementTest 로드 불가, A01 Entry (3.50,1.81) 시작 확인.
+- [S1-10-runtime-v1.txt](validation-2026-10/S1-10-runtime-v1.txt) 첫 줄 PASS·FAIL 0·exe exit=0. 실제 exe에서 포함 씬 4개 및 순서 일치, DashTest/CombatTest/MovementTest 로드 불가, A01 Entry (3.50,1.81) 시작 확인.
 - 출구 트리거에 플레이어 직접 배치: A01→A02→A03→A04→A03→A02→A01. 실제 트리거 콜백→RoomSession 전환을 사용하고 각 도착 Spawn ID·위치·단일 플레이어 확인. 순방향 FromLeft=(3.50,1.81), 역방향 FromRight=(32.50,1.81), 전환 0.020~0.040초. 휴리스틱 자동 이동·경로 재미 검사는 실행하지 않음.
 - A02 구멍의 실제 KillZone 낙하→CP-A01/A01 (3.50,1.81), 낙하 포함 0.922초. A03 CP-A03 실제 접촉 후 기존 사망 흐름 호출→CP-A03 (16.00,1.81), 0.600초. 사망 입력 차단·복귀 후 입력 상태 해제 PASS. A03에 위험 지역 추가 없음.
-- 런타임 Error/Exception/Assert 0. 별도 [Player.log 보존본](../Validation/S1-10-player-v1.log)에서 Exception/Error/Assertion 문자열 없음. 사용자 exe 5분 조작·실물 패드 확인 미실시, S1-10 REVIEW. S1-06/09 사용자 수락 DONE, S1-G TODO.
+- 런타임 Error/Exception/Assert 0. 별도 [Player.log 보존본](validation-2026-10/S1-10-player-v1.log)에서 Exception/Error/Assertion 문자열 없음. 사용자 exe 5분 조작·실물 패드 확인 미실시, S1-10 REVIEW. S1-06/09 사용자 수락 DONE, S1-G TODO.
 - 보호 확인: A01~A04·Level 원본·모든 지정 tuning·Player.prefab·MovementTest·Packages·ProjectVersion·EditorBuildSettings 변경 없음. 기존 S1-10 기록은 폐기 레이아웃 기준으로 보존.
 
 
 ### 2026-10-02 C3 — 배치 보고만 / 자동 경로 FAIL
 
-- [S1-09-greybox-check.txt](../Validation/S1-09-greybox-check.txt) 및 [해석 정정·한계](../Validation/S1-09-greybox-check-notes.txt). 씬·배치·수치 수정 없음. S1-02/04-night-C3.txt 회귀 PASS.
+- [S1-09-greybox-check.txt](validation-2026-10/S1-09-greybox-check.txt) 및 [해석 정정·한계](validation-2026-10/S1-09-greybox-check-notes.txt). 씬·배치·수치 수정 없음. S1-02/04-night-C3.txt 회귀 PASS.
 - 자동 순방향 A01은 (7.64,2.44), 역방향 A04는 (24.37,1.93)에서 각각 35초 제한까지 미도달. 뒤 방 통과 시간은 미측정. 휴리스틱 입력 검사 실패만으로 사용자 경로 불가능·지형 결함을 확정하지 않음.
 - 모든 RoomSpawn의 0.8×1.6u 플레이어 범위 Ground 겹침 없음, CP-A01·CP-A03 두 개뿐·빈/중복 ID 없음. 수집한 비트리거 지형 박스의 Ground 레이어 PASS; 수집 단계에서 트리거를 제외하므로 잘못 트리거로 지정한 지형까지 전수 통과로 해석하지 않음.
 - A02 실제 구멍 낙하→CP-A01(A01 3.50,1.81) 복귀 0.796초 PASS. A03 바닥→선반 4u·선반→격자 상단 6u, 연속 선반의 아래 통로 차단을 확인. 보수적 이산 점프 상한 2.640u(기존 실측 2.520u)보다 높아 오른쪽 선반 직행 차단을 구조로 확인. 원본의 연속 추정 2.400u를 이산 상한이라고 쓴 부분은 별도 notes에서 정정, 원본 보존.
@@ -223,22 +223,22 @@ Simple/Transform Scale 프리팹 6종과 36×14u 빈 방 저장. Validation/Veri
 
 | 검증 | 실제 결과 | 증거 |
 | --- | --- | --- |
-| S1-01 빈 씬 Play·Windows 빌드 | Play 진입→2초 실행→Edit 복귀; Succeeded, 오류/경고 0 | [Play](../Validation/S1-01-play.txt), [Build](../Validation/S1-01-build.txt) |
-| S1-02 입력·장치 표시 회귀 | 키보드·가상 패드·맵 분리·Pause·연결 해제/복구·홀드, 16개 통과 | [결과](../Validation/S1-02-results.txt) |
-| S1-03 기본 이동 | 입력 포함 27개 통과, 벽 접지·벽 점프 없음, 급반전·공중 제어·착지·Inspector 적용 | [결과](../Validation/S1-03-results.txt) |
-| S1-04 입력 보정 | Coyote 경계·착지 Buffer·중복 소비 검사 통과 | [결과](../Validation/S1-04-results.txt) |
-| S1-05 최종 이동 회귀 | 입력·이동·보정·가변 점프·하강·Inspector, 총 96개 assertion 통과 | [결과](../Validation/S1-05-results.txt) |
-| N1 Windows x64 Mono 빌드 | Succeeded, 오류/경고 0, Development Build=false | [결과](../Validation/N1-build.txt), 로컬 `Builds/N1/Afterglow.exe` |
+| S1-01 빈 씬 Play·Windows 빌드 | Play 진입→2초 실행→Edit 복귀; Succeeded, 오류/경고 0 | [Play](validation-2026-10/S1-01-play.txt), [Build](validation-2026-10/S1-01-build.txt) |
+| S1-02 입력·장치 표시 회귀 | 키보드·가상 패드·맵 분리·Pause·연결 해제/복구·홀드, 16개 통과 | [결과](validation-2026-10/S1-02-results.txt) |
+| S1-03 기본 이동 | 입력 포함 27개 통과, 벽 접지·벽 점프 없음, 급반전·공중 제어·착지·Inspector 적용 | [결과](validation-2026-10/S1-03-results.txt) |
+| S1-04 입력 보정 | Coyote 경계·착지 Buffer·중복 소비 검사 통과 | [결과](validation-2026-10/S1-04-results.txt) |
+| S1-05 최종 이동 회귀 | 입력·이동·보정·가변 점프·하강·Inspector, 총 96개 assertion 통과 | [결과](validation-2026-10/S1-05-results.txt) |
+| N1 Windows x64 Mono 빌드 | Succeeded, 오류/경고 0, Development Build=false | [결과](validation-2026-10/N1-build.txt), 로컬 `Builds/N1/Afterglow.exe` |
 | 빌드 기동·표시 | 기존 로그상 창 생성·렌더러/입력 초기화 기록. 화면 수동 확인 미실시(정적 표시를 확인했다는 파일 증거 없음) | 로컬 `Player.log`; 수동 이동·Pause 결과 확인은 미완료 |
 
 ### 2026-09-30 지정 재검증
 
 | 검증 | 실제 결과 | 증거 |
 | --- | --- | --- |
-| S1-02 | 기존 입력 + Pause 비활성화/재활성화, 19건 통과 | [새 결과](../Validation/S1-02-rerun.txt) |
-| S1-04 | 30/60/120fps Coyote 0.08 허용/0.12 거부, Buffer 0.10 허용/0.14 만료, 63건 통과 | [새 결과](../Validation/S1-04-rerun.txt) |
-| S1-05 | 동일 0.100000s 홀드, 짧은 높이 모두 1.464u·편차 0.000u, 긴 높이 2.520u, 127건 통과 | [새 결과](../Validation/S1-05-rerun.txt) |
-| N1 Windows x64 Mono | Succeeded, errors=0, warnings=0, Development Build=false | [새 결과](../Validation/N1-build-rerun.txt) |
+| S1-02 | 기존 입력 + Pause 비활성화/재활성화, 19건 통과 | [새 결과](validation-2026-10/S1-02-rerun.txt) |
+| S1-04 | 30/60/120fps Coyote 0.08 허용/0.12 거부, Buffer 0.10 허용/0.14 만료, 63건 통과 | [새 결과](validation-2026-10/S1-04-rerun.txt) |
+| S1-05 | 동일 0.100000s 홀드, 짧은 높이 모두 1.464u·편차 0.000u, 긴 높이 2.520u, 127건 통과 | [새 결과](validation-2026-10/S1-05-rerun.txt) |
+| N1 Windows x64 Mono | Succeeded, errors=0, warnings=0, Development Build=false | [새 결과](validation-2026-10/N1-build-rerun.txt) |
 
 위 검증은 Unity 가상 Keyboard/Gamepad 자동 검사이며 실제 패드·수동 입력·화면 검수나 재미 수락을 대체하지 않는다. 원시 로그는 로컬 `Logs/S1-02-rerun-authorized.log`, `S1-04-rerun.log`, `S1-05-rerun.log`, `N1-build-rerun.log`. 최초 sandbox 실행은 라이선스 접근 실패로 검사를 시작하지 못했고 권한이 있는 실행에서 성공했다. 이전 Validation 파일은 덮어쓰지 않았다.
 
@@ -266,21 +266,21 @@ Simple/Transform Scale 프리팹 6종과 36×14u 빈 방 저장. Validation/Veri
 
 - CP-A01/A03 Prefab: 접촉 활성화·고유 ID·안전 Spawn·활성 색상. KillZone Prefab: 입력/물리 차단 → 실시간 0.6초 대기 → 마지막 CP 또는 A01 Entry 복귀. 다른 방 복귀는 기존 RoomSession 전환 재사용. HP·저장 없음.
 - [체크포인트/사망](../Validation/S1-08-N2-B.txt) 64건 PASS, 5회 사망 복귀 0.633~0.662초. 기본·같은 방·다른 방·반복 사망·입력 차단·안전 도착·복귀 조작 확인.
-- 회귀: [S1-02](../Validation/S1-02-N2-B-S1-08.txt) 19건, [S1-04](../Validation/S1-04-N2-B-S1-08.txt) 63건, [S1-07](../Validation/S1-07-N2-B-S1-08.txt) 71건 PASS. 런타임 Error/Exception 없음. 가상 입력 자동 검사이며 실제 패드·수동 화면은 미실시. 기존 Validation 보존.
+- 회귀: [S1-02](validation-2026-10/S1-02-N2-B-S1-08.txt) 19건, [S1-04](validation-2026-10/S1-04-N2-B-S1-08.txt) 63건, [S1-07](validation-2026-10/S1-07-N2-B-S1-08.txt) 71건 PASS. 런타임 Error/Exception 없음. 가상 입력 자동 검사이며 실제 패드·수동 화면은 미실시. 기존 Validation 보존.
 
 ### 2026-10-01 S1-09 / N2-B
 
 - [실제 경로 검사](../Validation/S1-09-N2-B-05.txt) 1,532건 PASS. A01→A02→A03→A04를 입력으로 이동하며 모든 필수 발판 도달·비행·단일 점프 입력 확인. 최대 점프 거리 4.501u, 간격 상한 80%=3.601u, 실제 간격 1.0~3.0u·착지 폭 2u 이상. 순방향 이동 368.20초(6분 8초). 자동 조작 기준이며 첫 사용자 플레이 시간·재미는 REVIEW 대기.
 - A01 안전 연습·A02 가변 점프/낙하·A03 CP 허브/G-D 외형·A04 넓은 접근 공간. A02~A04 첫 위험 틈 및 하단 Kill Zone. 밝은 문 테두리·방 이름·공격/능력 미구현 안내 추가. 블록 Prefab과 Scene이 배치 원본이며 일회성 작성/수정 도구는 삭제.
-- [최종 카메라 렌더](../Validation/S1-09-camera-02.txt) 4방 경계 PASS. [A01 출구](../Validation/Slice/A01-static-02.png), [A03 허브](../Validation/Slice/A03-static-02.png)를 열어 테두리·게이트 분리 표시 확인. 정적 월드 렌더만이며 GUI·사용자 출구 인지 수락 증거는 아님. 최초 렌더도 보존.
+- [최종 카메라 렌더](validation-2026-10/S1-09-camera-02.txt) 4방 경계 PASS. [A01 출구](validation-2026-10/Slice/A01-static-02.png), [A03 허브](validation-2026-10/Slice/A03-static-02.png)를 열어 테두리·게이트 분리 표시 확인. 정적 월드 렌더만이며 GUI·사용자 출구 인지 수락 증거는 아님. 최초 렌더도 보존.
 - 복귀 지연 0.6s를 PlayerTuning.asset의 Death / respawn 그룹에 연결(값 변경 없음, 기존 이동 값 보존). [체크포인트 통합 회귀](../Validation/S1-08-N2-B-integration.txt) 64건 PASS.
 - 초기 실패 증거 S1-09-N2-B.txt, -02/-03/-04.txt 보존: 천장 안 최대거리 측정 → 열린 평지로 수정; 방향 전환 발판 천장/측면 간섭 → 폭 2u로 수정; 위층 위험 영역이 아래층 점프와 겹침 → 상층 영역 제거, 첫 위험·하단 영역 유지. 규칙·수치 변경 없이 실제 궤적 재검증 통과.
 
 ### 2026-10-01 S1-10 / N2-B — 폐기된 레이아웃 기준 (과거 BLOCKED)
 
 - Windows x64 Mono, A01 시작·A01~A04 포함, Development Build=false. [최초 빌드](../Validation/S1-10-build.txt)와 [진단 빌드](../Validation/S1-10-build-02.txt) 모두 Succeeded, errors=0·warnings=0.
-- [실제 실행 파일 전체 검사](../Validation/S1-10-runtime.txt): 체크포인트/사망·순방향 A01→A04·A04 복귀·A03 역방향 통과, A02 역방향 첫 걷기 실패. A02→A01 복귀는 미실시.
-- [실제 실행 파일 집중 재현](../Validation/S1-10-focused.txt): 체크포인트/사망 통과, 입력 장치 격리 후 A02 FromRight 걷기 같은 실패. 목표 x=40.00, 실제 x=42.37. 이후 점프 검사는 미실시. 동일 오류 반복으로 중단, 전체 왕복 PASS로 기록하지 않음.
+- [실제 실행 파일 전체 검사](validation-2026-10/S1-10-runtime.txt): 체크포인트/사망·순방향 A01→A04·A04 복귀·A03 역방향 통과, A02 역방향 첫 걷기 실패. A02→A01 복귀는 미실시.
+- [실제 실행 파일 집중 재현](validation-2026-10/S1-10-focused.txt): 체크포인트/사망 통과, 입력 장치 격리 후 A02 FromRight 걷기 같은 실패. 목표 x=40.00, 실제 x=42.37. 이후 점프 검사는 미실시. 동일 오류 반복으로 중단, 전체 왕복 PASS로 기록하지 않음.
 - README에 Editor A01 Play·MovementTest 회귀 용도·로컬 Slice 경로와 검증 실패 한계 추가. 기존 Validation 전부 보존. 로컬 Builds/Slice는 Git 제외이며 완성/수락 빌드가 아님.
 
 
@@ -329,16 +329,16 @@ S1-09에서 문 형태·밝은 테두리 및 방 이름 표시로 개선한 뒤,
 2026-10-06 S3T-01 사용자 승인 계획. 수치만으로 난이도를 올리는 방향은 보류한다. 기본값은 H1 유지, H2/H3 빌드는 보존만 한다. 다음 난이도 작업은 적·보스 행동 패턴 개선으로 한다. 별도 Task이며 이번에는 구현하지 않는다. 근거: PT-002.
 
 ### DEC-LEVEL-001 — 본편 선택 경로 6곳
-2026-10-06 S3T-01 사용자 승인 계획. A-1/A-2/B-1/B-2/C-1/C-2를 기존 방 안의 선택 경로로 배치하고 PogoTarget을 본편에서도 사용한다. 경로 끝의 빛나는 사각형과 세션 한정 발견 n/6 표시만 허용하며 저장·성장·필수 진행 조건은 추가하지 않는다. 필수 경로·G-D/G-J와 PogoTest는 보존한다.기존 설계의 PogoTest 전용/수집 보상 금지 문구와의 충돌은 이 승인 범위에 한해 갱신한다. [승인 문서](../Validation/S3T01-approved-request.txt).
+2026-10-06 S3T-01 사용자 승인 계획. A-1/A-2/B-1/B-2/C-1/C-2를 기존 방 안의 선택 경로로 배치하고 PogoTarget을 본편에서도 사용한다. 경로 끝의 빛나는 사각형과 세션 한정 발견 n/6 표시만 허용하며 저장·성장·필수 진행 조건은 추가하지 않는다. 필수 경로·G-D/G-J와 PogoTest는 보존한다.기존 설계의 PogoTest 전용/수집 보상 금지 문구와의 충돌은 이 승인 범위에 한해 갱신한다. [승인 문서](validation-2026-10/S3T01-approved-request.txt).
 ### PROC-001 — 3단계 운영 전환
-2026-10-06 사용자 결정. 3단계 운영으로 전환: 기존 회귀 재사용, 새 검증 도구 금지, 체감 항목은 직접 QA, 애매한 검증 결과로 게임 변경을 자동 복원하지 않음. 근거: [PROCESS_METRICS.md 2단계 회고](../PROCESS_METRICS.md). 규칙 전문은 [AGENTS](../AGENTS.md), [사용자 승인 계획](../Validation/S3SW-approved-request.txt). 구현 세부 판단: 기능은 독립 플레이 결과를 가진 승인 Task 단위로 묶고, 종속 산출물과 KNOWN-LIMIT을 BLOCKED 수에 중복 합산하지 않았다.
+2026-10-06 사용자 결정. 3단계 운영으로 전환: 기존 회귀 재사용, 새 검증 도구 금지, 체감 항목은 직접 QA, 애매한 검증 결과로 게임 변경을 자동 복원하지 않음. 근거: [PROCESS_METRICS.md 2단계 회고](../PROCESS_METRICS.md). 규칙 전문은 [AGENTS](../AGENTS.md), [사용자 승인 계획](validation-2026-10/S3SW-approved-request.txt). 구현 세부 판단: 기능은 독립 플레이 결과를 가진 승인 Task 단위로 묶고, 종속 산출물과 KNOWN-LIMIT을 BLOCKED 수에 중복 합산하지 않았다.
 
 ### DEC-POGO-001 — N9 포고 순서 규칙 확정
-사용자가 동일 프레임 포고 우선 규칙을 폐기하고 몸이 가시에 먼저 닿으면 사망하도록 결정. 아래 공격만 FixedUpdate에서 처리, 공통 Time.timeAsDouble 시계 사용. KillZone/RoomSession 불변. 실제30/60/120fps 조기 포고 생존·몸 우선 사망·최고높이2.128u 동일 확인. 능력 소모/회복은 실제 PogoTest 입력으로 검증. [근거](../Validation/N9-ATK2.txt).
+사용자가 동일 프레임 포고 우선 규칙을 폐기하고 몸이 가시에 먼저 닿으면 사망하도록 결정. 아래 공격만 FixedUpdate에서 처리, 공통 Time.timeAsDouble 시계 사용. KillZone/RoomSession 불변. 실제30/60/120fps 조기 포고 생존·몸 우선 사망·최고높이2.128u 동일 확인. 능력 소모/회복은 실제 PogoTest 입력으로 검증. [근거](validation-2026-10/N9-ATK2.txt).
 
 
 ### DIFF-001 — Hard 후보 / 사용자 플레이 대기
-Before: PT-001의 모든 영역이 쉽다는 첨부 관찰. After: 백업 후 Hard 후보 적용, 회귀·보스 처치·게이트fps 기술 검사 통과; 실제 사용자 체감 플레이 대기. 포고 의존 HP조정 미실시. [실제 값](../Validation/N7-DIFF-values.txt), [검증](../Validation/N7-DIFF.txt).
+Before: PT-001의 모든 영역이 쉽다는 첨부 관찰. After: 백업 후 Hard 후보 적용, 회귀·보스 처치·게이트fps 기술 검사 통과; 실제 사용자 체감 플레이 대기. 포고 의존 HP조정 미실시. [실제 값](validation-2026-10/N7-DIFF-values.txt), [검증](validation-2026-10/N7-DIFF.txt).
 
 
 ### DEC-ATK-001 / DEC-DIFF-001 — N7 첨부 계획
@@ -348,7 +348,7 @@ Before: PT-001의 모든 영역이 쉽다는 첨부 관찰. After: 백업 후 Ha
 
 
 ### FX-001 — 공격 피드백 후보 / 복원
-Before: 기존 공격은 판정 Gizmo 외 활성표시/타격번쩍임/히트스톱이 없어 사용자가 공격 여부를 알기 어렵다고 보고. 승인 후보: slash0.10s/alpha0.5·hitFlash0.08s·real hitStop0.05s, 공격/넉백 값 보존. 실제30fps slash0.10s, stop0.0659s/flash0.0993s(프레임 관찰 포함), 60fps slash0.10s 확인했으나 최종60fps 명중 색 확인 FAIL. After 구현은 재실패 규칙으로 전부 복원, 감각 개선 미검증/미채택. 증거 [첫검사](../Validation/F1-feedback.txt), [재검사](../Validation/F1-feedback-rerun.txt), [사전검사](../Validation/F1-preflight.txt).
+Before: 기존 공격은 판정 Gizmo 외 활성표시/타격번쩍임/히트스톱이 없어 사용자가 공격 여부를 알기 어렵다고 보고. 승인 후보: slash0.10s/alpha0.5·hitFlash0.08s·real hitStop0.05s, 공격/넉백 값 보존. 실제30fps slash0.10s, stop0.0659s/flash0.0993s(프레임 관찰 포함), 60fps slash0.10s 확인했으나 최종60fps 명중 색 확인 FAIL. After 구현은 재실패 규칙으로 전부 복원, 감각 개선 미검증/미채택. 증거 [첫검사](validation-2026-10/F1-feedback.txt), [재검사](validation-2026-10/F1-feedback-rerun.txt), [사전검사](validation-2026-10/F1-preflight.txt).
 
 
 ### KEY-001 — 사용자 키 배치 변경
@@ -366,7 +366,7 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 - 가설·수정: 공통 이벤트 시계와 실제 해제 시간 기반 Cut 보정, 테스트는 동일 0.10s 이벤트 홀드. 수치 튜닝 변경 없음.
 - 이후: Coyote 30/60/120fps 모두 0.0800s 허용/0.1200s 거부. 짧은 점프 1.464/1.464/1.464u(편차 0.000u), 긴 점프 2.520u 유지.
 - 판단·한계: 기술 합격 기준은 충족. 기존 홀드 시간이 달랐으므로 전후 높이는 동일 조건 A/B 실험이 아니며, 재미·체감 개선은 사용자 검토 전인 후보다. 기본값 채택·게임 튜닝 개선 확정이 아니다.
-- 증거: [이전 결과](../Validation/S1-05-results.txt), [새 경계 결과](../Validation/S1-04-rerun.txt), [새 높이 결과](../Validation/S1-05-rerun.txt). 다음 사용자 검토에서 세 이동 Task를 개별 수락/반려한다.
+- 증거: [이전 결과](validation-2026-10/S1-05-results.txt), [새 경계 결과](validation-2026-10/S1-04-rerun.txt), [새 높이 결과](validation-2026-10/S1-05-rerun.txt). 다음 사용자 검토에서 세 이동 Task를 개별 수락/반려한다.
 
 `Decision ID / 관련 Task·방·시스템 / 기획 의도 / 초기 값·구현 / Test ID·문제 근거 / 수정 가설 / 승인자·일시 / 변경 값·파일 / 동일 구간 재검증 / 실제 결과·한계 / 유지·되돌림 / 반영 문서 / 증거 위치`
 
@@ -374,7 +374,7 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 - Before: OBS-001, 2026-10-01 사용자 Editor 플레이에서 출구가 보이지 않아 1방으로 인식. RoomExit 트리거만 있고 표시 없음.
 - 가설·After 구현: 색과 형태를 함께 쓰는 밝은 3면 문 테두리, A01~A04 방 이름·안내, 공격/능력 미구현 표시. 출입구 ID·연결·게임 수치 변경 없음.
-- 폐기된 레이아웃 기준 기술 증거: [6분 8초 순방향 검사](../Validation/S1-09-N2-B-05.txt), [출구 렌더](../Validation/Slice/A01-static-02.png). 벽/게이트에 표시가 가려지는 초기 렌더를 수정하고 최종 정적 표시 확인.
+- 폐기된 레이아웃 기준 기술 증거: [6분 8초 순방향 검사](../Validation/S1-09-N2-B-05.txt), [출구 렌더](validation-2026-10/Slice/A01-static-02.png). 벽/게이트에 표시가 가려지는 초기 렌더를 수정하고 최종 정적 표시 확인.
 - 판단: 구현·기술 검증 완료, 출구 발견·방 전환 인지 개선 효과는 사용자에게 같은 항목으로 재확인해야 함. 재미·이해도 개선 확정은 아니며 후보 유지.
 
 ### CASE-003 — DEC-SLICE-USER / 사용자 직접 배치
@@ -405,18 +405,18 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 
 ### S3T-01 최종 인계 — PARTIAL / 사용자 직접 QA 대기
 
-- **선택 배치·표시 REVIEW:** A-2/B-1/B-2/C-1/C-2 실제 배포exe 지정 입력5/5 PASS, 발견1→5 누적 및 보상 접촉·선반 착지/Error0. A-1은 조정 한도 후 추가 선반·표시 제거/복원, 이번 최대발견5/6. [결과](../Validation/S3T01-levels-final.txt), [최종 좌표·이전 후보](../LEVEL_PROPOSALS.md).
-- **R05 입력 교체 PASS / R06 BLOCKED:** 총9회 R05 시도(독립 시작2+연속 생성 입력6+연속 지정 입력1), 20회 이내. 실제 연속 R01~R05 및 배포 재생 R05PASS/사망 없음. 기존 R06은 시작 위치16.4~16.5u 차이로 잘못된 A04 출구, 새 배치 원인 아닌 입력 수정은 승인 밖이므로 보존. 다른16개 구간은 불변. G-D 연속 통과·전체 RouteAllPASS 미확인. [기록](../Validation/S3T01-route-summary.txt).
-- **검증:** 기본 기존13/13PASS; 최종 묶음은13/15(구 R05FAIL/Pogo P03FAIL). 교체 후 배포exe는 새R05PASS→R06FAIL 및 PogoPASS로, 기본13과 합친 최신 상태14/15이다. Pogo 일회 실패와 미확인 원인은 지우지 않았다. 선택5경로·Pogo·경로 실제 런타임 Error/Exception/Assert0, 빌드18씬 errors0/warnings0, Editor Build Settings 불변. [요약](../Validation/S3T01-final-summary.txt). 새 선택 경로·Pogo의 Editor Play 재생·실물 패드·사람 완주·가독성은 미실시/직접 QA.
+- **선택 배치·표시 REVIEW:** A-2/B-1/B-2/C-1/C-2 실제 배포exe 지정 입력5/5 PASS, 발견1→5 누적 및 보상 접촉·선반 착지/Error0. A-1은 조정 한도 후 추가 선반·표시 제거/복원, 이번 최대발견5/6. [결과](validation-2026-10/S3T01-levels-final.txt), [최종 좌표·이전 후보](../LEVEL_PROPOSALS.md).
+- **R05 입력 교체 PASS / R06 BLOCKED:** 총9회 R05 시도(독립 시작2+연속 생성 입력6+연속 지정 입력1), 20회 이내. 실제 연속 R01~R05 및 배포 재생 R05PASS/사망 없음. 기존 R06은 시작 위치16.4~16.5u 차이로 잘못된 A04 출구, 새 배치 원인 아닌 입력 수정은 승인 밖이므로 보존. 다른16개 구간은 불변. G-D 연속 통과·전체 RouteAllPASS 미확인. [기록](validation-2026-10/S3T01-route-summary.txt).
+- **검증:** 기본 기존13/13PASS; 최종 묶음은13/15(구 R05FAIL/Pogo P03FAIL). 교체 후 배포exe는 새R05PASS→R06FAIL 및 PogoPASS로, 기본13과 합친 최신 상태14/15이다. Pogo 일회 실패와 미확인 원인은 지우지 않았다. 선택5경로·Pogo·경로 실제 런타임 Error/Exception/Assert0, 빌드18씬 errors0/warnings0, Editor Build Settings 불변. [요약](validation-2026-10/S3T01-final-summary.txt). 새 선택 경로·Pogo의 Editor Play 재생·실물 패드·사람 완주·가독성은 미실시/직접 QA.
 - **산출물·주요 파일:** `Builds/S5-levels/Afterglow-S5-levels.exe`와 `PogoTest 실행.bat` 보관, **플레이 전 확인 필요**, 전체 완주 검증 빌드로 안내하지 않음. Scene5개/DiscoveryReward 프리팹·스크립트/GameHUD/기존 RouteRunner·N5Build·N9Build·회귀 스크립트/설계·좌표·지표 문서. 입력 Asset·필수 블록/출구·G-D/G-J·PogoTest·공통 튜닝·저장 형식·Packages/ProjectSettings 불변.
-- **결정·정리:** PT-002/DIFF-002 DONE, H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후/이번 미구현). 기존 빌드69개 삭제, 새 진단 빌드는 `_tmp`에 만들고 종료 시 정리. [삭제 목록](../Validation/S3T01-builds-cleanup.txt). 새 검증 도구 생성 없음, 기존 RouteSegment/RouteTickDriver에 선택 목표 재생만 연결하고 선택 녹화의 연속 시작 재배치 문제를 보정했다. 일회성 배치 스크립트는 Scene 저장 후 제거했다. push 없음.
-- **사용자 QA 요약1쪽:** [바뀐 것 / 방별 위치 / 의심3곳](../Validation/S3T01-user-qa.md). 수정은 Scene Optional/Discovery와 DiscoveryReward 프리팹 Inspector에서, Play 종료 후 배치 재입력·저장. 구현 판단: 새 선반은 아래 통과 가능한 단방향, 발견 상태는 방 이동·사망 유지/타이틀 초기화로 정의했다. 다음은 직접 QA와 R06 입력 수정 범위 판단이며, 별도 승인 전 BOSS-2를 시작하지 않는다. 기존 N9 인계는 아래에 보존했다.
+- **결정·정리:** PT-002/DIFF-002 DONE, H1 기본값 유지/H2·H3 보존만, BOSS-2 TODO(사용자 설계 후/이번 미구현). 기존 빌드69개 삭제, 새 진단 빌드는 `_tmp`에 만들고 종료 시 정리. [삭제 목록](validation-2026-10/S3T01-builds-cleanup.txt). 새 검증 도구 생성 없음, 기존 RouteSegment/RouteTickDriver에 선택 목표 재생만 연결하고 선택 녹화의 연속 시작 재배치 문제를 보정했다. 일회성 배치 스크립트는 Scene 저장 후 제거했다. push 없음.
+- **사용자 QA 요약1쪽:** [바뀐 것 / 방별 위치 / 의심3곳](validation-2026-10/S3T01-user-qa.md). 수정은 Scene Optional/Discovery와 DiscoveryReward 프리팹 Inspector에서, Play 종료 후 배치 재입력·저장. 구현 판단: 새 선반은 아래 통과 가능한 단방향, 발견 상태는 방 이동·사망 유지/타이틀 초기화로 정의했다. 다음은 직접 QA와 R06 입력 수정 범위 판단이며, 별도 승인 전 BOSS-2를 시작하지 않는다. 기존 N9 인계는 아래에 보존했다.
 
-2026-10-06 **PROC-001 DONE** — 문서만 변경: [3단계 운영 규칙](../AGENTS.md)·[실행 지표/1회 회고](../PROCESS_METRICS.md)·[사용자 QA 요약 1쪽](../Validation/S3SW-user-qa.md). Unity 미실행, 기존 N9 인계 그대로 유지, 새 플레이 기능0, push 없음.
+2026-10-06 **PROC-001 DONE** — 문서만 변경: [3단계 운영 규칙](../AGENTS.md)·[실행 지표/1회 회고](../PROCESS_METRICS.md)·[사용자 QA 요약 1쪽](validation-2026-10/S3SW-user-qa.md). Unity 미실행, 기존 N9 인계 그대로 유지, 새 플레이 기능0, push 없음.
 
 ### N9 최종 인계 — PARTIAL / 사용자 감각·후보 선택 대기
 
-총 **103.1분(06:54~08:37 KST)**. **ATK-2/3/4 기술 확인·REVIEW / PogoTest REVIEW / S5-hard 빌드·지정 동작 PASS / 최종 회귀14/15 / 자동 경로·Editor 재생 BLOCKED**. [5분 인계](../Validation/N9-final-handoff.md).
+총 **103.1분(06:54~08:37 KST)**. **ATK-2/3/4 기술 확인·REVIEW / PogoTest REVIEW / S5-hard 빌드·지정 동작 PASS / 최종 회귀14/15 / 자동 경로·Editor 재생 BLOCKED**. [5분 인계](validation-2026-10/N9-final-handoff.md).
 
 최종 본편 `Builds/S5-hard/Afterglow-S5-hard.exe`, 포고는 같은 폴더 `PogoTest 실행.bat`. 18씬/errors0/warnings0. 실제 배포 exe의 위·좌우·FPS/가상패드 공격, 포고3구간·각 구간 사망복귀·소모 능력 회복, 보스3회 사망→처치→저장엔딩PASS(21.734s), Error0. 최종 안내 화면 재촬영·시각 확인PASS. 실제 대시 포고6회복구간 최대2타 → 최종 보스 HP28, 중간24 증거 보존. 원래 ATK2 마지막 fixture FAIL은 보존하고, 실제 PogoTest 소모/회복 증거로 분리했다.
 
@@ -426,16 +426,16 @@ Before: 평소 X/Y 감쇠 0.15s, 사용자 Dash 중 카메라 밀림 관찰. 승
 | H2 빠른 적·보스 | 4/0.7 | 32 | FAIL R06 다른 출구, 사망 없음 | PASS 21.784 |
 | H3 H2 전투·실수 허용 | 5/1.0 | 32 | FAIL R06 같은 입력 불일치 | PASS 21.767 |
 
-후보는 `Builds/H1`, `H2`, `H3`. 원본 설정 해시 불변, 복사 Asset/Prefab으로18씬 재변환·실행 수치 확인. 초기 캐시 누락 및 legacy모드 결과는 무효로 보존. [유효 비교표](../Validation/N9-difficulty-final.txt).
+후보는 `Builds/H1`, `H2`, `H3`. 원본 설정 해시 불변, 복사 Asset/Prefab으로18씬 재변환·실행 수치 확인. 초기 캐시 누락 및 legacy모드 결과는 무효로 보존. [유효 비교표](validation-2026-10/N9-difficulty-final.txt).
 
-최종 기본13/13+Pogo1/1 PASS, Route1FAIL([회귀](../Validation/REG-N9-final-summary.txt)). N8 원본6회 및 N9 초기60fps CSV에서 R05 사망을 확인했다. 기존 FixedUpdate 관찰이 CP-A03 복귀를 목표로 인정해 의도한 귀환 출구·G-D 통과를 검사하지 못했으므로 이전 연속 완주 판단을 철회. 새 관찰과 입력 후보도 반복실패/보정3회한도로 경로BLOCKED. H2/H3 R06 불일치도 기존 입력의 체크포인트 시작 가정에서 발생, 사람이 못 깬다는 뜻은 아니다. Editor P01은3포고 후 목표 입력 소진FAIL/Error0, 추가 보정중단. [경로 한계](../Validation/N9-route-recheck.txt), [N8 CSV 감사](../Validation/N9-N8-route-csv-audit.txt).
+최종 기본13/13+Pogo1/1 PASS, Route1FAIL([회귀](validation-2026-10/REG-N9-final-summary.txt)). N8 원본6회 및 N9 초기60fps CSV에서 R05 사망을 확인했다. 기존 FixedUpdate 관찰이 CP-A03 복귀를 목표로 인정해 의도한 귀환 출구·G-D 통과를 검사하지 못했으므로 이전 연속 완주 판단을 철회. 새 관찰과 입력 후보도 반복실패/보정3회한도로 경로BLOCKED. H2/H3 R06 불일치도 기존 입력의 체크포인트 시작 가정에서 발생, 사람이 못 깬다는 뜻은 아니다. Editor P01은3포고 후 목표 입력 소진FAIL/Error0, 추가 보정중단. [경로 한계](../Validation/N9-route-recheck.txt), [N8 CSV 감사](validation-2026-10/N9-N8-route-csv-audit.txt).
 
 사용자 확인: 각 후보10분 후 하나 선택, PogoTest10분(포고 높이·박스·능력 회복), 본편 완주(쉬움·불공정), LEVEL_PROPOSALS 후보 선택. CombatTuning.asset의 pogoVelocity/pogoRefreshesAir/downAttackHeight, BossTuning.asset maxHP, 새 PogoTest Scene/표적 Prefab에서 수정한다. Play 종료 후 Scene 재입력·저장, Asset 원하는 값 명시적 저장. 자동 후보 채택 없음.
 
 주요 파일: PlayerAttack/CombatTuning/PogoTarget/PogoTestCourse/GameHUD, 새 PogoTest Scene·PogoTarget Prefab, N9Build·Verification, GAME_DESIGN/TASKS/README. Motor/Dash는 새public메서드만. 기존 입력·사망·저장·카메라·GameState·Scene/Prefab·Packages/ProjectSettings·LEVEL_PROPOSALS 불변. 실패/실제증거 보존, 모든 검사 프로세스 종료, 단계별 로컬 커밋·push없음. 다음 작업은 사용자 확인 또는 별도 승인된 경로 추가 탐색만, Sprint3 Gate 유지.
 
 ### N8 최종 인계 — 승인 독립 작업 종료 / 포고 체인 BLOCKED
-요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](../Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](../Validation/N8-route-summary.txt).
+요청 저장 기준 약 81.3 분(초기 검토 별도). **0부 PASS / 1부 ATK1 REVIEW·포고 BLOCKED / 2부 PogoTest·S5-hard BLOCKED / 3부 경로 DONE / 4부8PNG DONE**. 새 판단은 N8-POGO-ORDER 연결부만 남겼다. [5분 인계](../Validation/N8-final-handoff.md), [경로 표·사람 시간 아님](validation-2026-10/N8-route-summary.txt).
 최종 기본13/13+추가 새빌드RouteAll60 1/1, 실제exe60x3/30/120/가상패드로 새게임→엔딩→타이틀·저장플래그·Error0. 검사 프로세스 종료·로컬커밋·push 없음.
 켤exe는 N7-hard-only 유지(N8 위 공격 없음). 위 공격은 Unity Menu Play 또는 REG-route-N8-route-gate-final 진단exe에서 확인. PogoTest/menu 및 pogoVelocity/pogoRefreshesAir 미생성. 폭/높이는 CombatTuning.asset, Play 종료 후 Asset에 값 재입력·저장. 사용자 위 공격 감각/Hard 완주 난이도·LEVEL_PROPOSALS 후보 검토 대기, Sprint3 Gate 유지.
 N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·메모리+0.574% 기준 PASS. 최초/중간 실패·Editor 재생 한계·focus 미검증은 상세 인계에 남겼다.
@@ -444,16 +444,16 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 
 
 ### N7 현재 인계 — 전체 완료 아님
-[5분 인계 및 필요 결정](../Validation/N7-current-handoff.txt). 키보드 ↑/↓ 입력 Asset 예외 허용 답변 대기. Hard 후보 유지, 포고/공격 체인 및 PogoTest 미완료. V1 백그라운드 PID23712, 최종120분 결과 미검증. push 없음.
+[5분 인계 및 필요 결정](validation-2026-10/N7-current-handoff.txt). 키보드 ↑/↓ 입력 Asset 예외 허용 답변 대기. Hard 후보 유지, 포고/공격 체인 및 PogoTest 미완료. V1 백그라운드 PID23712, 최종120분 결과 미검증. push 없음.
 
 ### 이전 인계 보존
 
 
-2026-10-05 **N6 사전 검토 / 사용자 결정으로 중단**. 첨부 계획과 기존 N5 결과 대조 완료. 초기 git clean, HEAD=N5 최종 인계 baaaae0로 첨부 §0의 이후 조건을 유지하고 중단하라는 사용자 답변 확정. 변경 파일은 TASKS.md와 Validation/N6-preflight-review.txt뿐이다. 게임·검증 도구 변경, Unity 실행, 회귀, 빌드, 120분 soak, 커밋, push는 미실시. 기존 N5의 104/104 PASS는 아래 과거 결과이며 N6 결과가 아니다. 사용자 확인 사항 없음. 다음 작업: 별도 재개 지시 전에는 N6 실행하지 않음. [검토 기록](../Validation/N6-preflight-review.txt).
+2026-10-05 **N6 사전 검토 / 사용자 결정으로 중단**. 첨부 계획과 기존 N5 결과 대조 완료. 초기 git clean, HEAD=N5 최종 인계 baaaae0로 첨부 §0의 이후 조건을 유지하고 중단하라는 사용자 답변 확정. 변경 파일은 TASKS.md와 Validation/N6-preflight-review.txt뿐이다. 게임·검증 도구 변경, Unity 실행, 회귀, 빌드, 120분 soak, 커밋, push는 미실시. 기존 N5의 104/104 PASS는 아래 과거 결과이며 N6 결과가 아니다. 사용자 확인 사항 없음. 다음 작업: 별도 재개 지시 전에는 N6 실행하지 않음. [검토 기록](validation-2026-10/N6-preflight-review.txt).
 
 ### 이전 N5 인계 (보존)
 
-2026-10-04 **N5 큐 종료(실행 기록 약69분, 15:17~16:26 KST).** **1부 PASS / S2-04 REVIEW 복귀.** 항목별 회귀8묶음 **104/104 PASS**, 보호파일·기본값 불변, main/로컬 단계 커밋/push 없음. 아래 미검증 조건을 회귀가 대신하지 않는다. [최종 인계·명령·사용자 할 일](../Validation/N5-final-handoff.md), [보호/회귀 검사](../Validation/N5-final-checks.txt), [진행 시각](../Validation/N5-progress.txt), [night4 인계](../Validation/Q-night4-final-handoff.md).
+2026-10-04 **N5 큐 종료(실행 기록 약69분, 15:17~16:26 KST).** **1부 PASS / S2-04 REVIEW 복귀.** 항목별 회귀8묶음 **104/104 PASS**, 보호파일·기본값 불변, main/로컬 단계 커밋/push 없음. 아래 미검증 조건을 회귀가 대신하지 않는다. [최종 인계·명령·사용자 할 일](../Validation/N5-final-handoff.md), [보호/회귀 검사](validation-2026-10/N5-final-checks.txt), [진행 시각](../Validation/N5-progress.txt), [night4 인계](validation-2026-10/Q-night4-final-handoff.md).
 
 | 항목 | 최종 결과 |
 |---|---|
@@ -466,7 +466,7 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 | T-F | PASS 57유효PNG/Error0. D3D11 56조합+D3D12 시작1회. 실제Screen/GUI/뷰포트 기록; 강제 focus 상실·복귀 미검증 |
 | T-G | S4-pre3 빌드·손상·최종 재생 PASS. 두 능력 자연 획득 후 B01→B05 대신 B02로 재실패; 자연 새 게임→엔딩 미검증 |
 
-주요 파일: ProgressSave.cs의 TryLoad catch, 새 Assets/Scripts/Verification/ 도구11개, README, Validation/N5-* 증거. 기존 게임 규칙·Scene·Prefab·튜닝·Packages/ProjectSettings/저장 형식은 유지했다. [화면 최종 증거](../Validation/N5-TF-display-final.txt), [최종 exe 결과](../Validation/N5-TG-final.txt). 이전 Latest Handoff 원문은 Validation/N5-prior-handoff-preserved.txt에 보존했다.
+주요 파일: ProgressSave.cs의 TryLoad catch, 새 Assets/Scripts/Verification/ 도구11개, README, Validation/N5-* 증거. 기존 게임 규칙·Scene·Prefab·튜닝·Packages/ProjectSettings/저장 형식은 유지했다. [화면 최종 증거](validation-2026-10/N5-TF-display-final.txt), [최종 exe 결과](validation-2026-10/N5-TG-final.txt). 이전 Latest Handoff 원문은 Validation/N5-prior-handoff-preserved.txt에 보존했다.
 
 새 제품 버그 확정 없음. 도구 한계는 Bugs의 N5 절과 각 결과에 기록했다. S2-04/U1/F2R/LOGR 및 기존 S3 REVIEW와 Sprint3 Gate는 사용자 수락 대기다. 승인한 큐의 보정 횟수를 소진한 경로에는 추가 수정을 하지 않았다.
 
@@ -480,27 +480,27 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 
 ### Current Tasks 이전 문단
 
-2026-10-04 최종: **TM/U0 DONE, U1 REVIEW(촬영 경로 BLOCKED/B 규칙 기능보존), S4-pre2 빌드·실제exe PASS/Error0, 회귀13/13PASS/KNOWN-FAIL 없음**. [최종요약](../Validation/S4-pre2-summary.txt). 사용자 HUD 가독성 대기·6장 미촬영, 보호파일불변/push없음. 아래 진행중 문단은 단계 이력, Latest Handoff/최상단 최신 상태 우선.
+2026-10-04 최종: **TM/U0 DONE, U1 REVIEW(촬영 경로 BLOCKED/B 규칙 기능보존), S4-pre2 빌드·실제exe PASS/Error0, 회귀13/13PASS/KNOWN-FAIL 없음**. [최종요약](validation-2026-10/S4-pre2-summary.txt). 사용자 HUD 가독성 대기·6장 미촬영, 보호파일불변/push없음. 아래 진행중 문단은 단계 이력, Latest Handoff/최상단 최신 상태 우선.
 
 
 ### Current Tasks 이전 문단
 
-2026-10-04 U1 REVIEW(촬영도구 한계/가독성 사용자 대기): Unity 상태검사 PASS/Error0, [U1](../Validation/U1-ui.txt), 회귀13/13PASS/TM동일([REG-U1](../Validation/REG-U1-summary.txt)). 화면6장 미실시/B 규칙 기능보존. S4-pre2 최종빌드 진행.
+2026-10-04 U1 REVIEW(촬영도구 한계/가독성 사용자 대기): Unity 상태검사 PASS/Error0, [U1](../Validation/U1-ui.txt), 회귀13/13PASS/TM동일([REG-U1](validation-2026-10/REG-U1-summary.txt)). 화면6장 미실시/B 규칙 기능보존. S4-pre2 최종빌드 진행.
 
 
 ### Current Tasks 이전 문단
 
-2026-10-04 U1 DOING: 새 표시/HUD의 Unity 상태검사 PASS/Error0([증거](../Validation/U1-ui-night-U1-states.txt)), 회귀/최종빌드 대기. 스크린샷 경로는 캡처모듈 컴파일 실패→검사1회보정 재실패로 중단(B 규칙); 6장 미실시, 기능 보존. [상세](../Validation/U1-tool-correction.txt).
+2026-10-04 U1 DOING: 새 표시/HUD의 Unity 상태검사 PASS/Error0([증거](validation-2026-10/U1-ui-night-U1-states.txt)), 회귀/최종빌드 대기. 스크린샷 경로는 캡처모듈 컴파일 실패→검사1회보정 재실패로 중단(B 규칙); 6장 미실시, 기능 보존. [상세](../Validation/U1-tool-correction.txt).
 
 
 ### Current Tasks 이전 문단
 
-2026-10-04 U0 DONE: [UI 표](../Validation/U0-ui-audit.txt). 타이틀·확인·Pause·엔딩·저장실패 안내 있음, HP/능력HUD·첫안내·DJ 패드표기 부분, 사망UI 없음. U1은 이 항목의 표시만 보완.
+2026-10-04 U0 DONE: [UI 표](validation-2026-10/U0-ui-audit.txt). 타이틀·확인·Pause·엔딩·저장실패 안내 있음, HP/능력HUD·첫안내·DJ 패드표기 부분, 사망UI 없음. U1은 이 항목의 표시만 보완.
 
 
 ### Current Tasks 이전 문단
 
-2026-10-04 승인 TM → U0 → U1 → S4-pre2 실행 중. TM DONE: 회귀 13/13 PASS / KNOWN-FAIL 없음([요약](../Validation/REG-TM2-summary.txt)). 검사 도구만 변경, 보호 게임 파일 무변경. U0/UI 점검 후 누락·부분 UI만 구현, push 금지.
+2026-10-04 승인 TM → U0 → U1 → S4-pre2 실행 중. TM DONE: 회귀 13/13 PASS / KNOWN-FAIL 없음([요약](validation-2026-10/REG-TM2-summary.txt)). 검사 도구만 변경, 보호 게임 파일 무변경. U0/UI 점검 후 누락·부분 UI만 구현, push 금지.
 
 
 ### Current Tasks 이전 문단
@@ -611,7 +611,7 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 이번 구현은 표의 S2-01~04와 성공 단계 최종 빌드만 승인. 향후 Sprint 2 로드맵 범위는 제안 TODO이며 콘텐츠 추가를 승인하지 않음. 기존 블록·스폰·CP·문 위치 보존, 새 방/출구/스폰만 지정 범위 추가. 실패 1회 수정 후 재실패 시 단계 복원·의존 단계 건너뜀. 회귀는 S1-02/04/07/08, 자동 이동 휴리스틱 사용 금지.
 
 
-승인 원문: [이전 P3 실행 명세](../Validation/S3-approved-request.txt), [현재 G3/S3-full 실행 명세](../Validation/S3-full-approved-request.txt). 이전 P3는 S3-01~05, 현재 G3 후속은 S3-06~10와 성공 단계 Windows x64 빌드만. 선택 방·아트·사운드·K2·무관 기존 배치 변경 금지. 단계별 구현→Unity 검증→S1-02/04/07/08 회귀→로컬 커밋. 실패 1회 수정 후 재실패는 해당 단계 복원·실패 기록 커밋, 의존 단계 건너뜀. Validation 기존 파일 덮어쓰기 금지.
+승인 원문: [이전 P3 실행 명세](validation-2026-10/S3-approved-request.txt), [현재 G3/S3-full 실행 명세](validation-2026-10/S3-full-approved-request.txt). 이전 P3는 S3-01~05, 현재 G3 후속은 S3-06~10와 성공 단계 Windows x64 빌드만. 선택 방·아트·사운드·K2·무관 기존 배치 변경 금지. 단계별 구현→Unity 검증→S1-02/04/07/08 회귀→로컬 커밋. 실패 1회 수정 후 재실패는 해당 단계 복원·실패 기록 커밋, 의존 단계 건너뜀. Validation 기존 파일 덮어쓰기 금지.
 
 
 
@@ -625,26 +625,26 @@ N7 V1 전체CSV 오브젝트23~61(첨부29~49 정정), 종료29→33(+13.8%)·�
 
 
 ### N9-UI-001 — PogoTest 안내와 HUD 겹침 / DONE
-실제1280×720 화면에서 PogoTest 안내 x260이 기존 HUD 우측366까지 겹쳐 구간 번호 일부가 가려짐. 포고/구간 검증은 PASS이나 시각 검토에서 발견. 새 PogoTest 안내를 x390/font16/reference scaling으로 보정하고 실제 exe 화면 재촬영·시각 확인 완료. [화면](../Validation/N9-course-ui-final.png), [검사](../Validation/N9-course-ui-final.txt). 기존 HUD/UITuning/메인 배치 불변.
+실제1280×720 화면에서 PogoTest 안내 x260이 기존 HUD 우측366까지 겹쳐 구간 번호 일부가 가려짐. 포고/구간 검증은 PASS이나 시각 검토에서 발견. 새 PogoTest 안내를 x390/font16/reference scaling으로 보정하고 실제 exe 화면 재촬영·시각 확인 완료. [화면](validation-2026-10/N9-course-ui-final.png), [검사](validation-2026-10/N9-course-ui-final.txt). 기존 HUD/UITuning/메인 배치 불변.
 
 
 
 
 ### N8-POGO-001 — 이전 차단 / N9 DEC-POGO-001로 해소
-보호된 KillZone→RoomSession 즉시 사망 호출과 ATK2 우선 처리 요구가 충돌한다. 기존 게임에서 포고를 실행해 관찰한 버그가 아니라, 미구현 경로의 설계/허용범위 차단이다. 판정 높이 확대·사망 상태 되돌리기·콜백 순서 추측으로 우회하지 않았다. ATK2 및 의존 PogoTest/S5-hard 중단, 독립 경로·촬영은 수행. 필요한 연결부 판단은 Decisions Needed N8-POGO-ORDER와 [근거](../Validation/N8-ATK2.txt).
+보호된 KillZone→RoomSession 즉시 사망 호출과 ATK2 우선 처리 요구가 충돌한다. 기존 게임에서 포고를 실행해 관찰한 버그가 아니라, 미구현 경로의 설계/허용범위 차단이다. 판정 높이 확대·사망 상태 되돌리기·콜백 순서 추측으로 우회하지 않았다. ATK2 및 의존 PogoTest/S5-hard 중단, 독립 경로·촬영은 수행. 필요한 연결부 판단은 Decisions Needed N8-POGO-ORDER와 [근거](validation-2026-10/N8-ATK2.txt).
 
 
 
 
 ### Q1-SAVE-001 — 빈 파일·미지원 버전의 읽기 예외 미처리 (2026-10-04) — RESOLVED N5 Part1
 
-N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 실제 exe 키보드 새 게임·원본 보존/Error0, 기존 저장 검사, 회귀13/13 PASS. S2-04 REVIEW 복귀. [증거](../Validation/N5-Part1-save-fix.txt). 아래는 최초 재현 이력.
+N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 실제 exe 키보드 새 게임·원본 보존/Error0, 기존 저장 검사, 회귀13/13 PASS. S2-04 REVIEW 복귀. [증거](validation-2026-10/N5-Part1-save-fix.txt). 아래는 최초 재현 이력.
 - 심각도: High / PRD DoD 저장 오류 0건 조건 미충족. 일반 플레이 저장 손실은 확인되지 않음.
 - 재현: S4-pre2 실제 exe에 격리 `-save-path`로 빈 파일 또는 `{"version":999,"checkpointId":"CP-A01"}`를 전달하고 `-s2-verify corrupt` 실행.
 - 실제: `ProgressSave.TryLoad`의 `InvalidDataException: Unsupported save data`가 `SaveMenu.Start` 밖으로 나감. Error/Exception=1, 손상 저장 안내 검사 FAIL. 잘린 JSON·잘못된 JSON은 안내와 명시적 새 게임/원본 보존 PASS.
 - 영향: 이 두 저장 조건에서 정상 안내·새 게임 경로가 검증되지 않았고 명백한 런타임 오류가 발생. Q1은 게임 코드 수정 금지이므로 수정하지 않음.
 - 상태 영향: S2-04를 BLOCKED로 되돌림. 정상 슬롯 Continue 증거는 유지하되 저장 오류 처리·최종 DoD 수락 경로는 수정 승인/재검증까지 보류. 독립 표시 후보/촬영은 계속함.
-- 관련: `Assets/Scripts/ProgressSave.cs` TryLoad catch 필터, `Assets/Scripts/SaveMenu.cs` Start. [빈 파일](../Validation/Q1-corrupt-empty.txt), [미지원 버전](../Validation/Q1-corrupt-version.txt), [전체](../Validation/Q1-dod-robustness.txt).
+- 관련: `Assets/Scripts/ProgressSave.cs` TryLoad catch 필터, `Assets/Scripts/SaveMenu.cs` Start. [빈 파일](validation-2026-10/Q1-corrupt-empty.txt), [미지원 버전](validation-2026-10/Q1-corrupt-version.txt), [전체](validation-2026-10/Q1-dod-robustness.txt).
 
 
 
@@ -670,7 +670,7 @@ N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 �
 - 기대·이전 실제: 동일 시계의 0.08s 허용/0.12s 거부 및 동일 0.10s 홀드의 높이 편차 ≤0.1u. 이전 Coyote 측정은 0.0800s 허용/0.1234s 거부. 이전 짧은 높이는 30/60/120fps에서 1.944/1.596/1.596u(홀드 길이 불일치), 편차 0.348u.
 - 수정: ctx.time과 fixedUnscaledTime의 동일 이벤트 시계 사용. 미래 입력은 해당 물리 시각까지 대기, JumpSequence 단일 소비 유지. 실제 press/release 간격으로 cut 물리 틱을 계산하고 늦게 전달된 해제의 초과 상승 속도·변위를 Rigidbody2D에서 보정. Dynamic Update·Pause 재개 유지. PlayerTuning·게임 규칙 변경 없음.
 - 재검증: 30/60/120fps 각각 Coyote 정확히 0.0800s 허용/0.1200s 거부, Buffer 착지 0.1000s 전 허용/0.1400s 전 만료. 실제 이벤트 홀드 0.100000s, 짧은 높이 모두 1.464u(편차 0.000u), 긴 높이 모두 2.520u. 벽 접지·중복 점프·홀드 재사용 없음. 이전의 홀드 조건이 달라 높이 절댓값 감소만으로 게임 감각 개선을 단정하지 않음.
-- 증거: [S1-04 재검증](../Validation/S1-04-rerun.txt), [S1-05 재검증](../Validation/S1-05-rerun.txt), [이전 S1-05](../Validation/S1-05-results.txt).
+- 증거: [S1-04 재검증](validation-2026-10/S1-04-rerun.txt), [S1-05 재검증](validation-2026-10/S1-05-rerun.txt), [이전 S1-05](validation-2026-10/S1-05-results.txt).
 
 
 
@@ -682,7 +682,7 @@ N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 �
 - 기대·이전 실제: 재활성화 뒤 Paused=false·GamepadDisconnected=false·timeScale=1·이동/점프 가능이어야 하나 이전 코드에서는 Pause 상태 잔존.
 - 수정: OnDisable에서 두 플래그·임시 입력 초기화, OnEnable에서 상태와 Gameplay 맵 일치·timeScale 복구.
 - 재검증: 기존 입력 검사 16건에 disable 플래그/시간 복원·이동·점프 3건 추가, 총 19건 통과. 이 버그의 수정 전 재현은 사용자 보고·기존 코드 분석이며 수정 전 자동 측정은 새로 실행하지 않음.
-- 증거: [S1-02 재검증](../Validation/S1-02-rerun.txt).
+- 증거: [S1-02 재검증](validation-2026-10/S1-02-rerun.txt).
 
 
 
@@ -708,7 +708,7 @@ N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 �
 - 조사·변경: 자동 검사에 위치/속도/입력 진단 추가, Unity 앱 내부의 실제 입력 장치를 격리(검사 종료 시 복원)한 뒤 새 빌드로 재현. 정상 플레이에는 CLI 검사를 실행하지 않는다. 입력 격리 후에도 실패하여 원인 미확정. 게임 규칙·수치 변경 없음.
 - 검증: 빌드 2회 Succeeded, errors=0·warnings=0. 첫 런타임 검사에서 순방향 A04 도착 약 367.92초, A04 복귀·A03 역방향 완료 약 593.08초. 체크포인트·반복 사망 검사는 두 실행에서 통과했지만 전체 왕복은 실패. 파일 첫 줄의 `FAIL checkpoint/death`는 검사 전체 결과이며 사망 검사 자체의 실패를 뜻하지 않음.
 - 처리·영향: 동일 오류 반복 중단 규칙에 따라 추가 조사/수정 중단. S1-10 BLOCKED, 영향받는 S1-07·09는 DOING으로 되돌림. S1-08 DONE 유지. 수정 재개 판단과 왕복 재검증이 필요하며 S1-G·Sprint 2 미착수.
-- 증거: [전체 빌드 실행 실패](../Validation/S1-10-runtime.txt), [집중 재현 실패](../Validation/S1-10-focused.txt), [첫 빌드](../Validation/S1-10-build.txt), [진단 빌드](../Validation/S1-10-build-02.txt). 원시 로그는 로컬 Logs/S1-10-runtime.log·S1-10-focused.log.
+- 증거: [전체 빌드 실행 실패](validation-2026-10/S1-10-runtime.txt), [집중 재현 실패](validation-2026-10/S1-10-focused.txt), [첫 빌드](../Validation/S1-10-build.txt), [진단 빌드](../Validation/S1-10-build-02.txt). 원시 로그는 로컬 Logs/S1-10-runtime.log·S1-10-focused.log.
 
 
 ### NIGHT-T4-001 — 야간 E1 검증 실패 / C4 재시도 해결
@@ -724,18 +724,18 @@ N5 승인 수정: TryLoad catch에 InvalidDataException만 추가. 손상 4종 �
 
 
 ### DEC-POGO-001 — N9 사용자 결정 (2026-10-06)
-동일 프레임 포고 우선 규칙 폐기. 몸이 가시에 먼저 닿으면 사망하며, 아래 공격만 FixedUpdate의 물리 전 판정을 사용한다. KillZone/RoomSession은 수정하지 않는다. N8-POGO-ORDER는 이 결정으로 해소; 구현·실제 검증은 N9에서 수행. [사용자 계획](../Validation/N9-approved-request.txt).
+동일 프레임 포고 우선 규칙 폐기. 몸이 가시에 먼저 닿으면 사망하며, 아래 공격만 FixedUpdate의 물리 전 판정을 사용한다. KillZone/RoomSession은 수정하지 않는다. N8-POGO-ORDER는 이 결정으로 해소; 구현·실제 검증은 N9에서 수행. [사용자 계획](validation-2026-10/N9-approved-request.txt).
 
 
 
 ### N8-POGO-ORDER — 해소됨: DEC-POGO-001 (2026-10-06)
-KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입력 초기화·물리 중단을 확정한다. 허용된 공격/표적 코드만으로 포고를 먼저 보장할 수 없으며 KillZone/RoomSession은 첨부 공통 보호 파일이다. ATK2·ATK3 포고 최대 타수/HP 확정·ATK4·PogoTest·S5-hard 경로 BLOCKED. 선택지: KillZone의 공격 판정 호출 연결부를 좁게 허용하거나, RoomSession의 사망 확정을 한 프레임 말미로 모으는 연결부를 허용. 규칙 자체를 바꾸거나 판정 높이를 키우는 우회는 적용하지 않았다. [근거](../Validation/N8-ATK2.txt). 다른 독립 N8 검증은 계속한다.
+KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입력 초기화·물리 중단을 확정한다. 허용된 공격/표적 코드만으로 포고를 먼저 보장할 수 없으며 KillZone/RoomSession은 첨부 공통 보호 파일이다. ATK2·ATK3 포고 최대 타수/HP 확정·ATK4·PogoTest·S5-hard 경로 BLOCKED. 선택지: KillZone의 공격 판정 호출 연결부를 좁게 허용하거나, RoomSession의 사망 확정을 한 프레임 말미로 모으는 연결부를 허용. 규칙 자체를 바꾸거나 판정 높이를 키우는 우회는 적용하지 않았다. [근거](validation-2026-10/N8-ATK2.txt). 다른 독립 N8 검증은 계속한다.
 
 
 
 
 ### 2026-10-05 N6 시작 기준
-첨부 codex_night6_ROUTE.md §0은 HEAD가 N5 인계 커밋 이후가 아니면 전체 중단하고 기록만 하도록 명시한다. 검토 시작 HEAD는 baaaae0cf3d136ddfec5752fd0459850ae3dbc34로 N5 최종 인계와 동일하며 초기 작업 트리는 깨끗했다. 후속 커밋을 인위적으로 만들어 조건을 우회하지 않았다. **사용자 결정: 문서의 시작 조건을 유지하고 중단.** 현재 인계 커밋을 시작 기준으로 인정하지 않으며 N6를 진행하지 않는다. S1~S4/R01~R17 미실시; 기존 N5 검증 상태 유지. T-F death-r2 PASS 증거가 있으므로 첨부의 최초 death FAIL 설명은 재개 시 최신 증거와 대조한다. [상세](../Validation/N6-preflight-review.txt).
+첨부 codex_night6_ROUTE.md §0은 HEAD가 N5 인계 커밋 이후가 아니면 전체 중단하고 기록만 하도록 명시한다. 검토 시작 HEAD는 baaaae0cf3d136ddfec5752fd0459850ae3dbc34로 N5 최종 인계와 동일하며 초기 작업 트리는 깨끗했다. 후속 커밋을 인위적으로 만들어 조건을 우회하지 않았다. **사용자 결정: 문서의 시작 조건을 유지하고 중단.** 현재 인계 커밋을 시작 기준으로 인정하지 않으며 N6를 진행하지 않는다. S1~S4/R01~R17 미실시; 기존 N5 검증 상태 유지. T-F death-r2 PASS 증거가 있으므로 첨부의 최초 death FAIL 설명은 재개 시 최신 증거와 대조한다. [상세](validation-2026-10/N6-preflight-review.txt).
 
 
 
@@ -746,7 +746,7 @@ KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입�
 
 ### Decisions Needed 이전 문단
 
-[이전 실행 이력 — v2 회복 직접배치 X명중 및 20타/회피/사망 검증으로 해결] S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](../Validation/S3-09-narrow-preflight.txt), [첫검사](../Validation/S3-09-boss-narrow.txt), [재검사](../Validation/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
+[이전 실행 이력 — v2 회복 직접배치 X명중 및 20타/회피/사망 검증으로 해결] S3-09-NARROW / 재실패 복원 — 사용자 지정20u 추적카메라 후보 사전PASS: 양 해상도/스폰3.5/시작전4.9/전투1~13.5에서 보스/예고/파형경로 전체 투영 확인. 그러나 첫 구현 검사에서 충격파가 바닥 접촉으로 조기소멸, 벽만 소멸하도록 1회 수정하고 검사 점프 시점을 예고0.90s로 지정. 재검사는 속도5u/s·높이1u·점프회피·Pause정지·왼쪽벽소멸·뒤공간진입불가/접촉피해까지 PASS, 회복1.2초 구간 공격 명중0타 FAIL. 원인이 실제 공격/배치/검사 진입 시점인지 미확정, 추가 재시도 없이 전체 코드/Prefab/에셋/씬/빌드설정 복원. 보스20타처치·사망초기화·동시프레임·후속회귀/카메라 회귀는 미실시. [사전](validation-2026-10/S3-09-narrow-preflight.txt), [첫검사](validation-2026-10/S3-09-boss-narrow.txt), [재검사](validation-2026-10/S3-09-boss-narrow-rerun.txt). 좁은방 시야 결정은 유효하며 다음 재승인 때 실패 지점부터 원인 확인 필요. F1/S3-09 모두 BLOCKED, S3-10 성공 의존 미충족 건너뜀.
 
 
 ### Decisions Needed 이전 문단
@@ -761,7 +761,7 @@ KillZone.OnTriggerEnter2D가 RoomSession.Die를 즉시 호출하고 사망·입�
 
 ### Decisions Needed 이전 문단
 
-S3-C06-VIEW — 2026-10-03 사전 검사 BLOCKED: 공통 RoomCameraRig size5.5u·16:9의 가시폭19.556u, 시작 직전 플레이어 왼쪽7.59~보스 오른쪽29의 필요폭21.410u. 실제 x3.5/x7.99 카메라 투영에서 보스·전방예고 모두 화면밖([S3-09-boss.txt](../Validation/S3-09-boss.txt)). 보스x28, 전투시작x>8, 시작전 안전바닥에서 보스/예고전체 표시 조건을 모두 만족할 수 없음. 시작선/보스좌표/카메라 프레이밍 중 변경 범위에 대한 사용자 결정 필요. AGENTS Stop Conditions에 따라 구현 전에 해당 경로 중단, S3-10 의존 건너뜀. 오류 재시도 대상이 아닌 명세 충돌이므로 허용되지 않은 후보 수정/반복 실행 없음. 임시 사전 검사 스크립트 제거, 씬/튜닝 변경 없음. C04 Right는 성공 C06 부재로 비활성 유지. 기존 G3 수락/S3-06~08 회귀는 유효.
+S3-C06-VIEW — 2026-10-03 사전 검사 BLOCKED: 공통 RoomCameraRig size5.5u·16:9의 가시폭19.556u, 시작 직전 플레이어 왼쪽7.59~보스 오른쪽29의 필요폭21.410u. 실제 x3.5/x7.99 카메라 투영에서 보스·전방예고 모두 화면밖([S3-09-boss.txt](validation-2026-10/S3-09-boss.txt)). 보스x28, 전투시작x>8, 시작전 안전바닥에서 보스/예고전체 표시 조건을 모두 만족할 수 없음. 시작선/보스좌표/카메라 프레이밍 중 변경 범위에 대한 사용자 결정 필요. AGENTS Stop Conditions에 따라 구현 전에 해당 경로 중단, S3-10 의존 건너뜀. 오류 재시도 대상이 아닌 명세 충돌이므로 허용되지 않은 후보 수정/반복 실행 없음. 임시 사전 검사 스크립트 제거, 씬/튜닝 변경 없음. C04 Right는 성공 C06 부재로 비활성 유지. 기존 G3 수락/S3-06~08 회귀는 유효.
 
 
 ### Decisions Needed 이전 문단
@@ -812,7 +812,7 @@ DEC-ROOM-B(2026-10-01) 사용자 승인: 블록 그레이박스로 S1-07 완료 
 ### S1-06 / N2-A (2026-09-30)
 
 - Cinemachine 3.1.7: 공식 registry의 최소 Editor 2022.3, 설치된 package.json 3.1.7, manifest/lock 고정. 6000.3.24f1에서 resolve·컴파일·Play 성공.
-- 기술 검증: [S1-06 결과](../Validation/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
+- 기술 검증: [S1-06 결과](validation-2026-10/S1-06-N2-A.txt). 1280×720·1920×1080 렌더와 실제 뷰포트 경계/낙하 시야 검사, 급반전·즉시 카메라 재배치 확인. 사용자 감각 수락은 S1-09 예정.
 - 초기 오류: CameraState API·ManualUpdate 모드 조건 수정 후 성공. 로컬 `Logs/S1-06-author.log`, `S1-06-verify.log` 실패 기록 보존; 최종 `Logs/S1-06-verify-snap.log`. 생성에 사용한 임시 작성 스크립트는 삭제해 재실행/덮어쓰기 경로를 남기지 않음.
 
 ## 완료 Task 원문 행
@@ -877,7 +877,7 @@ Batch 01 승인 범위에서 GAME_DESIGN §18의 키 표기만 실제 바인딩�
 | 4 | Test/PogoTest, 본편 | 위·아래 공격과 포고 높이·판정·능력 회복 | 10분 |
 | 5 | A05, B02, B04, C02, C03 | 선택 경로5곳 재미·발견5/6, A-1 제외 | 15분 |
 
-상세 기존 QA: [S3T-01](../Validation/S3T01-user-qa.md), [N9](../Validation/N9-final-handoff.md). H1 유지/H2·H3 보존만이라는 최신 DIFF-002 결정을 따른다.
+상세 기존 QA: [S3T-01](validation-2026-10/S3T01-user-qa.md), [N9](validation-2026-10/N9-final-handoff.md). H1 유지/H2·H3 보존만이라는 최신 DIFF-002 결정을 따른다.
 
 ### Task별 결과
 
@@ -927,7 +927,7 @@ Validation 목록·용도: 기존 .ps1은 회귀/단계·보존 검사, N5~N9/�
 ## S3T01-R06 승인·검증 해결 — Batch 01 / DONE
 
 ### S3T01-R06 — 기존 자동 경로 시작 가정 수정 범위 / BLOCKED
-새 R05는 사망 없이 A05→A04→A03으로 귀환했으나, R06 기존 기록은 A03의 이전 체크포인트 근처 (15.9712,1.8148)에서 시작한 입력이다. 실제 정상 귀환은 FromRight (32.5,1.81)이고 재생 시작 편차16.418~16.500u에서 A04로 다시 나간다. A03/B01 및 게이트는 이번에 수정하지 않아 새 선택 배치 때문인 회귀로 확인되지 않았다. 다른 구간은 새 배치 때문에 깨진 경우만 수정하라는 승인 범위에 따라 R06 입력은 보존하고 중단했다. 필요 판단: 정상 귀환 시작점에 맞춘 R06 입력 교체 허용 여부. G-D 연속 통과·전체 완주 PASS는 미확인. [실제 배포 재생](../Validation/S3T01-route-delivery.txt), [범위·9회 시도 요약](../Validation/S3T01-route-summary.txt).
+새 R05는 사망 없이 A05→A04→A03으로 귀환했으나, R06 기존 기록은 A03의 이전 체크포인트 근처 (15.9712,1.8148)에서 시작한 입력이다. 실제 정상 귀환은 FromRight (32.5,1.81)이고 재생 시작 편차16.418~16.500u에서 A04로 다시 나간다. A03/B01 및 게이트는 이번에 수정하지 않아 새 선택 배치 때문인 회귀로 확인되지 않았다. 다른 구간은 새 배치 때문에 깨진 경우만 수정하라는 승인 범위에 따라 R06 입력은 보존하고 중단했다. 필요 판단: 정상 귀환 시작점에 맞춘 R06 입력 교체 허용 여부. G-D 연속 통과·전체 완주 PASS는 미확인. [실제 배포 재생](validation-2026-10/S3T01-route-delivery.txt), [범위·9회 시도 요약](validation-2026-10/S3T01-route-summary.txt).
 
 
-2026-10-07 Batch 01 사전 결정으로 입력 교체 승인. 기존 생성기 접근1개/시도1회, 정상 귀환 시작 R06 기록 및 실제 RouteAll R01~R17/사망0/엔딩→타이틀 PASS. [결과](../Validation/B01-R06-summary.md).
+2026-10-07 Batch 01 사전 결정으로 입력 교체 승인. 기존 생성기 접근1개/시도1회, 정상 귀환 시작 R06 기록 및 실제 RouteAll R01~R17/사망0/엔딩→타이틀 PASS. [결과](validation-2026-10/B01-R06-summary.md).

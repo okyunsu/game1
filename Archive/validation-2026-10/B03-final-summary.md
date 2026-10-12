@@ -20,4 +20,4 @@ FAIL System.Exception: R09 fixed-tick replay wrong authored exit destination B06
 ```
 첫 줄 `RouteAll-main.txt`: 런처의 `all` 값 위치 오류로 다른 자연경로 검사 실행. 둘째 줄 `RouteAll-main-a2.txt`: disabled RoomExit가 자동 진입한 제품 문제, 새 입구 컴포넌트만 수정 후 최종 전 구간 PASS. 첫 후보exe `fight-B2-exe.txt`는 씬 증분 캐시가 기본2패턴을 포함했으므로 B2 합격에서 제외. 모두 원본 그대로 raw 보존.
 
-미실시: 자연 사람 완주·Sprint Gate·A06/C05/B06 사람1~3분·체감, B2 30/60/120fps 패턴별 회피/실패·Pause/사망/동시프레임. [B2 상세](B03-A-summary.md), [B06 상세](B03-B06-summary.md). A06/C05 PARTIAL로 18방 전부 PASS 조건 미충족; PRD/GAME_DESIGN Target15 줄은 변경하지 않았다.
+미실시: 자연 사람 완주·Sprint Gate·A06/C05/B06 사람1~3분·체감, B2 30/60/120fps 패턴별 회피/실패·Pause/사망/동시프레임. [B2 상세](../../Validation/B03-A-summary.md), [B06 상세](B03-B06-summary.md). A06/C05 PARTIAL로 18방 전부 PASS 조건 미충족; PRD/GAME_DESIGN Target15 줄은 변경하지 않았다.

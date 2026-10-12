@@ -11,4 +11,4 @@ MEASURE parts: downward only, boss door+suppression, CP-C04 before ending, summi
 MEASURE post-ending Continue C01_V2/CP-C01 abilities3/3 brokenWalls1/1 boss0 exits usable ending repeats0 legacy PASS
 ```
 
-[Parts actual](./_raw/B07/T2-v3-a1.txt), [V2 actual](./_raw/B07/T2-v2-ending-a1.txt), [decorative check](./_raw/B07/T2-decoration.txt), [build](./_raw/B07/B07-parts-build.txt). Protected originals hash differences0. Human ending emotion and natural boss/S01 traversal await room tasks/T24 and user REVIEW. C06/S01 currently foundation plus standalone parts, final layout not claimed.
+[Parts actual](../../Validation/_raw/B07/T2-v3-a1.txt), [V2 actual](../../Validation/_raw/B07/T2-v2-ending-a1.txt), [decorative check](../../Validation/_raw/B07/T2-decoration.txt), [build](../../Validation/_raw/B07/B07-parts-build.txt). Protected originals hash differences0. Human ending emotion and natural boss/S01 traversal await room tasks/T24 and user REVIEW. C06/S01 currently foundation plus standalone parts, final layout not claimed.

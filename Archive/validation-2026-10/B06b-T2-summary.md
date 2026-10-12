@@ -7,4 +7,4 @@ Unity60fps 실제 숫자키1/2/3 + 각4u 굴뚝 완등, 2/3 한쪽12u 완등 PAS
 `MEASURE course=chimney4 preset=1 seconds=4.29999847647392 jumps=6`
 `MEASURE course=single12 preset=1 seconds=2.73999902919501 jumps=5`
 `MEASURE course=single12 preset=2 seconds=1.57999944019274 jumps=5`
-[원본](./_raw/B06b/T2-course-a1.txt). 미실시: 사람 손맛 수락. 측정 컴포넌트/검사 지원 코드도 준비했으나 HUD 씬 적용·검증은 T3에서 한다.
+[원본](../../Validation/_raw/B06b/T2-course-a1.txt). 미실시: 사람 손맛 수락. 측정 컴포넌트/검사 지원 코드도 준비했으나 HUD 씬 적용·검증은 T3에서 한다.

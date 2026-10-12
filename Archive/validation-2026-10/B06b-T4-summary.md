@@ -9,4 +9,4 @@ DONE. PendingScene getter만 변경: endingReached 우선 CP-C01로 pending chec
 `FAIL System.Exception: Timeout room ready`
 `Scene 'Assets/Scenes/V2/C01_V2.unity' couldn't be loaded because it has not been added to the active build profile or shared scene list or the AssetBundle has not been loaded.`
 ProjectSettings를 수정하지 않고 V2 포함 실제 exe 접근으로 전환1회, PASS.
-[원본 exe](./_raw/B06b/T4-ending-exe-a1.txt), [Editor 실패](./_raw/B06b/T4-ending-a1.txt), [빌드](./_raw/B06b/B06b-T4-build.txt). 미실시: 사용자 자연 완주/재방문.
+[원본 exe](../../Validation/_raw/B06b/T4-ending-exe-a1.txt), [Editor 실패](../../Validation/_raw/B06b/T4-ending-a1.txt), [빌드](../../Validation/_raw/B06b/B06b-T4-build.txt). 미실시: 사용자 자연 완주/재방문.

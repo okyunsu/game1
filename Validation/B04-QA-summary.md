@@ -16,4 +16,4 @@
 
 AV1 조정은 [PresentationProfile.asset](../Assets/Candidates/AV1/PresentationProfile.asset) Inspector의 clip/volume/pitch/throttle, bodyColors/hazardOpacity, formRatios, lean/stretch/squash/trail/fragment 값 한 곳에서 한다. 보스 후보는 `Assets/BossCandidates/{B2,B2-fast,B2-slow}/BossTuning.asset`, 히트스톱은 기존 FeedbackTuning.asset. Play에서 바꾼 값을 기록하고 종료 후 원하는 값인지 확인/다시 반영·저장·재빌드한다. 기본 채택은 별도 사용자 결정이다.
 
-[9방 사진](B04-shots-summary.md) · [음량 표](B04-volume-summary.md) · [명도 표](B04-contrast-summary.md) · [돌진 증거](B04-C-summary.md). 사진은 방 카메라 렌더이며 HUD/화면 오버레이를 포함하지 않는다. 자연 전체 완주는 이 55분 비교와 별도로 남을 수 있다.
+[9방 사진](B04-shots-summary.md) · [음량 표](../Archive/validation-2026-10/B04-volume-summary.md) · [명도 표](../Archive/validation-2026-10/B04-contrast-summary.md) · [돌진 증거](B04-C-summary.md). 사진은 방 카메라 렌더이며 HUD/화면 오버레이를 포함하지 않는다. 자연 전체 완주는 이 55분 비교와 별도로 남을 수 있다.
