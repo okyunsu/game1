@@ -2,7 +2,7 @@
 
 ## Batch09 V4 확인 빌드 (2026-10-12)
 
-`Builds/B09-delivery/` Development 한 개. 같은 폴더 또는 `Archive/launchers/B09/`의 `Play-V4.cmd`는 새 게임, `Play-V4-Mechanics.cmd`는 장치 시험 코스, `Play-V4-AfterBoss.cmd`는 전체 능력+Slam 상태의 A01 QA로 시작한다. 각 모드는 전달 폴더 `slots/`의 독립 저장을 사용한다. 새 게임/AfterBoss 실행은 해당 슬롯을 초기화한다. 기존 실행기는 유지했다.
+`삭제됨` Development 한 개. 같은 폴더 또는 `Archive/launchers/B09/`의 `Play-V4.cmd`는 새 게임, `Play-V4-Mechanics.cmd`는 장치 시험 코스, `Play-V4-AfterBoss.cmd`는 전체 능력+Slam 상태의 A01 QA로 시작한다. 각 모드는 전달 폴더 `slots/`의 독립 저장을 사용한다. 새 게임/AfterBoss 실행은 해당 슬롯을 초기화한다. 기존 실행기는 유지했다.
 
 공중 아래+C=내려찍기, 아래+X=기존 아래 공격. 개발 F8=Slam 부여, M=21방 지도, 시험 코스 F=장치 후보1/2/기본 순환. 조정 값은 `MechanicsTuning.asset`, 위치는 설계 데이터→생성기. [V4 생성·장치 안내](LEVEL_V4.md).
 
@@ -10,11 +10,11 @@
 
 ## Batch 06 시스템 확인 빌드 (2026-10-10)
 
-`Builds/B06-delivery/Afterglow.exe`는 V2 전체 Development 후보다. 아래 실행기를 사용한다(기본 저장 슬롯과 분리).
+`삭제됨`는 V2 전체 Development 후보다. 아래 실행기를 사용한다(기본 저장 슬롯과 분리).
 
-- [벽 점프 테스트](Builds/B06-delivery/Play-WallJumpTest.cmd): 저장 없음. 표시된 청록색 벽 쪽 입력으로 미끄러짐, Z/패드 A로 벽 점프. 숫자 1/2/3으로 기본·끈적·빠름 프리셋 비교. 세 굴뚝은 왼쪽 하단 입구에서 진입한다. 포고 표적·대시 연계·일반벽 대조와 부서지는 벽2종도 있다.
-- [V2 가이드 켬](Builds/B06-delivery/Play-V2-Guide.cmd): 목표 한 줄·필수 연결 등불, F1 개발 길잡이. `progress-v2-guide.json` 사용.
-- [V2 가이드 끔](Builds/B06-delivery/Play-V2-NoGuide.cmd): `-no-guide`로 세 가이드 모두 끔, `progress-v2-noguide.json` 사용. 표지판은 가이드와 별도다.
+- 벽 점프 테스트 (삭제됨): 저장 없음. 표시된 청록색 벽 쪽 입력으로 미끄러짐, Z/패드 A로 벽 점프. 숫자 1/2/3으로 기본·끈적·빠름 프리셋 비교. 세 굴뚝은 왼쪽 하단 입구에서 진입한다. 포고 표적·대시 연계·일반벽 대조와 부서지는 벽2종도 있다.
+- V2 가이드 켬 (삭제됨): 목표 한 줄·필수 연결 등불, F1 개발 길잡이. `progress-v2-guide.json` 사용.
+- V2 가이드 끔 (삭제됨): `-no-guide`로 세 가이드 모두 끔, `progress-v2-noguide.json` 사용. 표지판은 가이드와 별도다.
 
 현재 V2 능력 위치와 연결은 그대로다. V3 재배선·C05 더블 점프·S01·엔딩 변경은 아직 적용하지 않았다. 타이틀 표시만 메트로 1이며 Product/Company·exe·저장 위치는 Afterglow 유지.
 
@@ -24,7 +24,7 @@
 
 ## Batch 05 V2 확인 빌드 (2026-10-08)
 
-전체 후보: `Builds/V2-delivery/Play-V2.cmd` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `Builds/B05-V2-A/Play-V2-A.cmd`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](Archive/docs/V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
+전체 후보: `삭제됨` (실제 exe `Afterglow-V2-delivery.exe`). A만 V2·나머지 기존 혼합: `삭제됨`. 각 실행기는 해당 폴더의 별도 QA 저장 슬롯을 사용한다. 기본·AV1·B2 빌드는 보존했다. [1쪽 QA](Archive/docs/V2_QA.md), [방별 설계](LEVEL_V2.md), [현재 인계](TASKS.md#latest-handoff).
 
 CC0 Kenney Pixel Platformer 1.2를 새 V2 Scene·Variant에 적용했다. 18개 방의 지정 필수/발견 입력, 새 게임→두 능력→보스 처치→엔딩→타이틀 23구간 연속 재생, 저장/이어하기 PASS/Error0. 사람 시간·밀도·난이도·스타일은 REVIEW이며 기본 교체·Sprint Gate는 사용자 판단이다.
 
@@ -32,23 +32,23 @@ V2 빌드는 Editor `B05Build.Run`에 `-b05-v2 -b05-build <새이름>`을 전달
 
 ## Batch 04 확인 빌드 (2026-10-08)
 
-기본: `Builds/B04-main-final/Afterglow-B04-main-final.exe`. AV1 후보: `Builds/B04-AV1-final-r4/Afterglow-B04-AV1-final-r4.exe`. 같은 폴더 Data/DLL 유지. 두 빌드 모두18플레이방·기존2패턴 보스/기본 튜닝 유지. 기본13/13 및 각 최종exe R01~R17 연속 RouteAll→타이틀 PASS/Error0. 기본 AV1 소리/시각추가0, 후보는 직접 생성 효과음10종·5종 기하형/시각 애니메이션/명도 개선. 감각·기본 채택은 REVIEW. [최종 검증](Validation/B04-final-summary.md), [55분 QA](Validation/B04-QA-summary.md), [9방 사진](Validation/B04-shots-summary.md).
+기본: `삭제됨`. AV1 후보: `삭제됨`. 같은 폴더 Data/DLL 유지. 두 빌드 모두18플레이방·기존2패턴 보스/기본 튜닝 유지. 기본13/13 및 각 최종exe R01~R17 연속 RouteAll→타이틀 PASS/Error0. 기본 AV1 소리/시각추가0, 후보는 직접 생성 효과음10종·5종 기하형/시각 애니메이션/명도 개선. 감각·기본 채택은 REVIEW. [최종 검증](Validation/B04-final-summary.md), [55분 QA](Validation/B04-QA-summary.md), [9방 사진](Validation/B04-shots-summary.md).
 
 각 최종 폴더의 `QA-A01.cmd`/`QA-C06.cmd`/`QA-A06.cmd`/`QA-B06.cmd`/`QA-C05.cmd`를 더블클릭하면 그 폴더의 QA 전용 슬롯만 초기화한다. Menu Z 이어하기. AV1 공유 조정은 `Assets/Candidates/AV1/PresentationProfile.asset` Inspector의 clip/volume/pitch, bodyColors/hazardOpacity, formRatios와 animation 값 한 곳에서 한다. Play 중 값을 기록하고 종료 후 원하는 값인지 확인/반영·저장·AV1 재빌드. 기본 Scene에 후보 활성화를 추가하지 않는다.
 
 B2/fast/slow는 아래 B03 후보 exe를 유지한다. B04 추가 승인 검증은 B2 돌진30/60/120fps·fast/slow60fps 지정DJ 회피0/실패1 및 도약/돌진 Pause·재개·CP-C04/HP/패턴 초기화 PASS. 기존 BOSS-2 전체는 최종 도약회피 전체fps·동시HP0 등 잔여 미검증으로 PARTIAL이며 자연 전투·난이도 수락은 별도다. [돌진 증거](Validation/B04-C-summary.md). 아래 Batch03 이후 설명은 당시 이력이다.
 ## Batch 03 확인 빌드 (2026-10-08)
 
-기본: `Builds/B03-main-final/Afterglow-B03-main-final.exe`. 후보 B2: `Builds/B03-B2-final/Afterglow-B03-B2-final.exe`. 같은 폴더의 Data/DLL을 함께 유지한다. 18플레이방+Menu/Ending/옵트인PogoTest=21씬. 기본13/13·실제exe RouteAll R01~R17 PASS/Error0; B2 실제 확장 적용·처치→Ending→타이틀 PASS/Error0. B2 패턴별30/60/120fps·Pause/사망 검증은 중단/미완료로 PARTIAL이다. [최신 인계](TASKS.md#latest-handoff).
+기본: `삭제됨`. 후보 B2: `삭제됨`. 같은 폴더의 Data/DLL을 함께 유지한다. 18플레이방+Menu/Ending/옵트인PogoTest=21씬. 기본13/13·실제exe RouteAll R01~R17 PASS/Error0; B2 실제 확장 적용·처치→Ending→타이틀 PASS/Error0. B2 패턴별30/60/120fps·Pause/사망 검증은 중단/미완료로 PARTIAL이다. [최신 인계](TASKS.md#latest-handoff).
 
 B03 왼쪽에서 x7의 청록색 `↑ 선택 대시 도전` 입구 앞에서 ↑/스틱 위를 누르면 B06으로 간다. Dash·포고만으로 끝의 발견에 접촉한 뒤 같은 입구로 B03에 돌아온다. 일반 필수 이동 입력은 선택 입구를 활성화하지 않는다. A06/C05 입구는 이전과 같고 사람 시간·체감 PARTIAL 유지. 발견은 세션 한정/저장 안 함, 분모9·실제 최대8/9(A-1 제외). 기본값 채택·Sprint Gate는 사용자 판단이다.
 
-B2-fast: `Builds/B03-B2-fast-final/Afterglow-B03-B2-fast-final.exe`, B2-slow: `Builds/B03-B2-slow/Afterglow-B03-B2-slow.exe`. 두 후보 실제 수치 assertion·처치/Ending/타이틀 PASS/Error0. 각 후보 폴더의 `QA-C06.cmd`를 더블클릭하면 전용 QA 슬롯을 초기화해 CP-C04부터 비교할 수 있다. 기본 폴더에는 `QA-A06.cmd`/`QA-B06.cmd`/`QA-C05.cmd`도 있다.
+B2-fast: `삭제됨`, B2-slow: `삭제됨`. 두 후보 실제 수치 assertion·처치/Ending/타이틀 PASS/Error0. 각 후보 폴더의 `QA-C06.cmd`를 더블클릭하면 전용 QA 슬롯을 초기화해 CP-C04부터 비교할 수 있다. 기본 폴더에는 `QA-A06.cmd`/`QA-B06.cmd`/`QA-C05.cmd`도 있다.
 
 후보 수치 원본은 `Assets/BossCandidates/B2/BossTuning.asset` 및 B2-fast/slow의 같은 Asset, 문 배치는 B03 Scene의 새 OptionalRoomEntry, B06 내부는 B06 Scene이다. Inspector Tooltip에 단위를 표시했다. Play에서 조정한 값은 Stop 후 해당 Asset/Scene에 원하는 값을 다시 반영·저장하고 재빌드해야 exe에 적용된다. 기본 보스 Asset은 그대로 보존한다. 아래 Batch02 설명은 당시 이력이다.
 ## Batch 02 확인용 기본 빌드 (2026-10-07)
 
-실행: `Builds/B02-delivery/Afterglow-B02-delivery.exe`. 같은 폴더의 Data/DLL을 함께 유지한다. 17플레이방+Menu/Ending/옵트인PogoTest(20씬), 기존 보스2패턴·기본 튜닝 유지. 기본13/13·최종exe RouteAll R01~R17 PASS, 런타임Error0. 새 선택 방 A06/C05는 시간·체감 조건이 남은 PARTIAL 후보이며 Sprint Gate 수락은 아니다. 이전 `B02-main`/`B02-main-final`/`B02-main-r3`은 B06 분기 회귀가 있어 확인용으로 쓰지 않는다.
+실행: `삭제됨`. 같은 폴더의 Data/DLL을 함께 유지한다. 17플레이방+Menu/Ending/옵트인PogoTest(20씬), 기존 보스2패턴·기본 튜닝 유지. 기본13/13·최종exe RouteAll R01~R17 PASS, 런타임Error0. 새 선택 방 A06/C05는 시간·체감 조건이 남은 PARTIAL 후보이며 Sprint Gate 수락은 아니다. 이전 `B02-main`/`B02-main-final`/`B02-main-r3`은 B06 분기 회귀가 있어 확인용으로 쓰지 않는다.
 
 A04/C03 왼쪽 기본 출구 위 선택 문(x2,y5.6)에 높은 점프 후 왼쪽 이동으로 닿으면 A06/C05로 간다. B06은 필수 귀환 경로 간섭으로 방과 추가 문을 되돌렸고 실행 범위에서 제외했다. 발견에 접촉하고 같은 입구로 돌아온다. [방별 시험·시간/사용자 QA](Validation/B02-QA-summary.md), [현재 결과](TASKS.md#latest-handoff). 배치는 각 새 Scene에서 수정한다. Play 중 Scene 변경은 Stop 후 Scene에 다시 반영·저장한다. 발견은 저장되지 않고 기존 A-1·이번 B06 제외로 실제 최대7/9다.
 
@@ -56,7 +56,7 @@ A04/C03 왼쪽 기본 출구 위 선택 문(x2,y5.6)에 높은 점프 후 왼쪽
 
 ## Batch 01 확인용 빌드 (2026-10-07)
 
-`Builds/B01-hitstop/Afterglow-B01-hitstop.exe`를 실행한다. 같은 폴더의 Data/DLL을 함께 보존한다. A04 전투·C06 보스에서 명중 히트스톱과 기존 베기·번쩍임·HP 칸을 약5분 확인한다. 히트스톱과 Pause/사망이 겹치는 상황은 미검증이므로 [현재 인계](TASKS.md#latest-handoff)의 상태·경로 결과를 먼저 확인한다. 저장은 아래 기존 단일 슬롯 안내를 따른다. 조정 위치는 `Assets/ScriptableObjects/FeedbackTuning.asset`의 Hit stop / hitStopSeconds(실시간 초, 기본0.05, 0이면 없음). Play 종료 후 원하는 값을 명시 저장하고 재빌드해야 exe에 반영된다.
+`삭제됨`를 실행한다. 같은 폴더의 Data/DLL을 함께 보존한다. A04 전투·C06 보스에서 명중 히트스톱과 기존 베기·번쩍임·HP 칸을 약5분 확인한다. 히트스톱과 Pause/사망이 겹치는 상황은 미검증이므로 [현재 인계](TASKS.md#latest-handoff)의 상태·경로 결과를 먼저 확인한다. 저장은 아래 기존 단일 슬롯 안내를 따른다. 조정 위치는 `Assets/ScriptableObjects/FeedbackTuning.asset`의 Hit stop / hitStopSeconds(실시간 초, 기본0.05, 0이면 없음). Play 종료 후 원하는 값을 명시 저장하고 재빌드해야 exe에 반영된다.
 
 막힌 길을 기억하고 새 이동 능력으로 돌아와 정상에 도달하는 작은 탐색 게임.
 
@@ -84,19 +84,19 @@ A04/C03 왼쪽 기본 출구 위 선택 문(x2,y5.6)에 높은 점프 후 왼쪽
 
 ## 로컬 빌드 실행
 
-night4 피드백 비교용: `Builds/Q6-A/Afterglow-Q6-A.exe`(현재), `Builds/Q6-B/Afterglow-Q6-B.exe`(강하게), `Builds/Q6-C/Afterglow-Q6-C.exe`(약하게). 각2분간 타이틀 왼쪽 아래 후보명과 A01 공격/A04 적 명중·HP칸·처치 효과를 비교한다. 같은 폴더의 Data/DLL을 유지한다. `Q6-*-attempt1`은 참조 보정 전 증거이며 비교용이 아니다. [후보 표](Validation/Q6-feedback-candidates.txt).
+night4 피드백 비교용: `삭제됨`(현재), `삭제됨`(강하게), `삭제됨`(약하게). 각2분간 타이틀 왼쪽 아래 후보명과 A01 공격/A04 적 명중·HP칸·처치 효과를 비교한다. 같은 폴더의 Data/DLL을 유지한다. `Q6-*-attempt1`은 참조 보정 전 증거이며 비교용이 아니다. [후보 표](Validation/Q6-feedback-candidates.txt).
 
 후보 수정 위치는 `Assets/Resources/Q6/Feedback-A/B/C.asset`이다. 원본 `Assets/ScriptableObjects/FeedbackTuning.asset` 기본값은 변경하지 않았다. Play 종료 후 원하는 값/이전 값을 명시 저장하고 후보를 다시 빌드해야 exe에 반영된다. 원본 기본값 적용은 사용자 결정 후 별도 수행한다. Q7 캡처 스크립트는 `-capture` 없으면 비활성이고 현재 촬영 결과는 검정 이미지라 참고 화면으로 사용할 수 없다.
 
-S4-pre2에서 확인할 것: `Builds/S4-pre2/Afterglow-S4-pre2.exe`에서 왼쪽 위 HP칸·대시/더블 점프 아이콘과 키 표기가 잘 보이고 이동 공간을 가리지 않는지 확인한다.
+S4-pre2에서 확인할 것: `삭제됨`에서 왼쪽 위 HP칸·대시/더블 점프 아이콘과 키 표기가 잘 보이고 이동 공간을 가리지 않는지 확인한다.
 새 게임 A01의 첫 안내가 시간 경과/첫 이동으로 사라지고 Continue에는 안 나오며, 사망 중 검정 표시가 복귀 직후 걷히는지 확인한다.
 수정은 `Assets/Resources/UITuning.asset`(HUD 위치·크기/HP칸/안내 시간/글자/사망 음영); Play 종료 후 원하는 값·이전 값을 명시 저장. `Validation/U1-shots/`에는 촬영 중단 안내만 있으며 스크린샷 6장은 미실시다.
 
-S4-pre에서 확인할 것: `Builds/S4-pre/Afterglow-S4-pre.exe`에서 공격 표시·적 HP칸/흰 번쩍임·처치 효과·보스 상단 HP 막대의 가시성을 확인한다.
+S4-pre에서 확인할 것: `삭제됨`에서 공격 표시·적 HP칸/흰 번쩍임·처치 효과·보스 상단 HP 막대의 가시성을 확인한다.
 새 게임을 시작하면 CSV를 자동 기록하며 사망 원인은 `unrecorded`, 활동 시간에서 Pause를 제외한다. 이어하기는 새 기록 세션을 시작하지 않는다.
 CSV 실제 폴더: `C:\Users\gosu3\AppData\LocalLow\Afterglow\Afterglow\Playtest` (타 PC에서는 해당 사용자의 LocalLow/Afterglow/Afterglow/Playtest).
 
-현재 통합 빌드: `Builds/S4-pre2/Afterglow-S4-pre2.exe` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow-S4-pre2_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 기존 `Builds/S4-pre/Afterglow-S4-pre.exe`와 `Builds/S3-complete/Afterglow.exe`는 보존했다.
+현재 통합 빌드: `삭제됨` (Windows x64, Unity 6000.3.24f1). 같은 폴더의 Afterglow-S4-pre2_Data와 DLL을 함께 보존한다. Menu·15플레이방·Ending 포함, 테스트 씬 제외. Builds는 Git 제외이므로 새 checkout에는 exe가 없다. 기존 `삭제됨`와 `삭제됨`는 보존했다.
 
 이동 ←/→(보조 A/D), 점프 Z(보조 Space)/패드 A, 공격 X(보조 J)/패드 X, Dash 획득 후 C(보조 K/Left Shift)/패드 B. Double Jump 획득 후 공중에서 점프 키를 놓고 다시 누른다. Pause Esc/Menu, 재개 Z/Enter 또는 X/Esc, Menu ↑/↓·Z/Enter·X/Esc. Pause에서는 ↑/↓로 재개/타이틀을 고르고 Z/Enter/패드 A로 확인한다. 종료는 타이틀 Quit 또는 창 닫기/Alt+F4.
 
@@ -138,7 +138,7 @@ Editor에서 A01을 직접 열고 Play하면 기존 디스크 저장을 읽거�
 | 대시 | C (보조 K / Left Shift) | B |
 | 메뉴 이동 / 확인 / 취소 | ↑/↓ / Z·Enter / X·Esc | D-pad / A / B |
 
-아래 문단은 N8 당시 인계 이력입니다. 현재 N9 실행·조작 안내는 문서 끝의 N9 절과 TASKS Latest Handoff를 따르세요. N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `Builds/N7-hard-only/Afterglow-N7-hard-only.exe`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `Builds/REG-route-N8-route-gate-final`은 현재 소스의 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
+아래 문단은 N8 당시 인계 이력입니다. 현재 N9 실행·조작 안내는 문서 끝의 N9 절과 TASKS Latest Handoff를 따르세요. N8 위 공격은 Unity 소스의 기술 REVIEW 후보이며 30/60/120fps에서 검증했다. 아래 공격·포고는 동일 프레임 KillZone 사망 우선 처리 연결부의 허용 판단이 필요해 BLOCKED다. 최종 실행 후보는 `삭제됨`를 유지하며 이 기존 exe에는 N8 위 공격이 없다. `삭제됨`은 현재 소스의 검사 전용 진단 빌드로 S5-hard가 아니다. 포고 미구현이므로 PogoTest 씬과 pogoVelocity/pogoRefreshesAir Inspector 필드는 아직 없다. 위 판정 폭·높이는 `Assets/ScriptableObjects/CombatTuning.asset`의 Directional attack에서 수정하며 Play 종료 후 Asset에 원하는 값을 저장한다.
 
 Gameplay / UI 입력은 분리되어 있다. LCtrl은 다음 능력 예약이며 바인딩하지 않는다. 게임패드 바인딩은 유지한다.
 
@@ -164,7 +164,7 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 
 ## N5 검증 도구 (2026-10-04)
 
-작업 폴더에서 PowerShell로 실행한다. 일반 플레이는 `Builds/S4-pre3/Afterglow-S4-pre3.exe`; 아래 플래그를 주지 않으면 새 검증 도구는 오브젝트를 만들지 않는다. 기존 저장 대신 별도 `-save-path`를 사용하고, 기존 증거 파일에는 덮어쓰지 않는다.
+작업 폴더에서 PowerShell로 실행한다. 일반 플레이는 `삭제됨`; 아래 플래그를 주지 않으면 새 검증 도구는 오브젝트를 만들지 않는다. 기존 저장 대신 별도 `-save-path`를 사용하고, 기존 증거 파일에는 덮어쓰지 않는다.
 
 사용자 플레이 녹화와 같은 시작 슬롯 재생:
 
@@ -204,11 +204,11 @@ S3-01~05와 B04 보정 높이는 2026-10-03 사용자 S3-B exe 플레이로 수�
 
 ## S3-complete v2 (2026-10-03)
 
-실행: `Builds/S3-complete/Afterglow.exe`. [빌드 결과](Validation/S3-complete-v2-build.txt), [실제 exe 결과](Validation/S3-complete-v2-runtime.txt). 15방/17씬, Error/Exception/Assert0. 최초 최종 빌드의 검사 전용 ScreenCapture 컴파일 오류는 호출 제거 1회 보정 후 성공했다.
+실행: `삭제됨`. [빌드 결과](Validation/S3-complete-v2-build.txt), [실제 exe 결과](Validation/S3-complete-v2-runtime.txt). 15방/17씬, Error/Exception/Assert0. 최초 최종 빌드의 검사 전용 ScreenCapture 컴파일 오류는 호출 제거 1회 보정 후 성공했다.
 
 C06 배치와 전투 시작선·예고 영역은 `Assets/Scenes/C06.unity`, 공통 보스 값은 `Assets/ScriptableObjects/BossTuning.asset`, 반복 충격파는 `Assets/Prefabs/BossWave.prefab`에서 수정한다. 빛 시간(2s)은 C06 보스의 EndingFlow / Light Duration, 엔딩 문구·버튼은 `Assets/Scripts/EndingMenu.cs`다. Scene의 Play 변경은 Stop 후 다시 입력·저장한다. 설정 Asset은 Stop 후 원하는 값 또는 이전 값으로 명시적으로 저장한다. 기존 Player/Combat/E1/E2/E3 값은 변경하지 않았다.
 
-F1 실패 실험: `Builds/Experimental-F1/Afterglow.exe`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.
+F1 실패 실험: `삭제됨`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.
 
 
 N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이며 순차60fps3회·30/120fps·가상 패드 완주와 저장을 확인했다. 기본13회귀에 현재소스 새빌드 `RouteAll-60fps`를 더했다. `Validation/Run-Regression.ps1 -Tag <새태그>`는14개, `-OnlyRoute`는 새빌드 경로 검사만 실행한다. 자동 활동시간 약2분은 사람 플레이시간이 아니다. [최종 인계](Validation/N8-final-handoff.md).
@@ -223,11 +223,11 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 
 지상 아래+X는 좌우 공격입니다. 포고는 획득한 더블 점프·대시 사용권만 회복합니다. 몸이 가시에 먼저 닿으면 사망합니다. 설정은 CombatTuning.asset의 Down attack / pogo, 보스 HP는 BossTuning.asset maxHP입니다. Play를 종료한 뒤 Asset에 원하는 값을 다시 입력하고 저장하세요.
 
-본편은 `Builds/S5-hard/Afterglow-S5-hard.exe`, PogoTest는 같은 폴더의 `PogoTest 실행.bat`로 실행합니다. 에디터 Afterglow > Open Pogo Test 또는 exe의 `-pogotest` 인자로도 엽니다. Build Settings와 타이틀 메뉴에는 추가하지 않았습니다. 테스트 과정은 저장을 쓰지 않습니다.
+본편은 `삭제됨`, PogoTest는 같은 폴더의 `PogoTest 실행.bat`로 실행합니다. 에디터 Afterglow > Open Pogo Test 또는 exe의 `-pogotest` 인자로도 엽니다. Build Settings와 타이틀 메뉴에는 추가하지 않았습니다. 테스트 과정은 저장을 쓰지 않습니다.
 
 ## N9 후보 비교와 검증 범위
 
-후보 실행 파일은 `Builds/H1/Afterglow-H1.exe`, `Builds/H2/Afterglow-H2.exe`, `Builds/H3/Afterglow-H3.exe`입니다. H1은 현재 Hard(보스 HP28), H2는 승인된 빠른 적·보스(HP32), H3는 H2 전투와 플레이어 HP5/무적1.0s입니다. 원본 설정을 바꾸지 않고 `Assets/N9Candidates/H2`, `H3`의 Asset·Prefab 복사본을 빌드 씬에 연결했습니다. 각 후보를 10분 비교한 뒤 하나를 선택합니다.
+후보 실행 파일은 `삭제됨`, `삭제됨`, `삭제됨`입니다. H1은 현재 Hard(보스 HP28), H2는 승인된 빠른 적·보스(HP32), H3는 H2 전투와 플레이어 HP5/무적1.0s입니다. 원본 설정을 바꾸지 않고 `Assets/N9Candidates/H2`, `H3`의 Asset·Prefab 복사본을 빌드 씬에 연결했습니다. 각 후보를 10분 비교한 뒤 하나를 선택합니다.
 
 포고 값은 `Assets/ScriptableObjects/CombatTuning.asset`의 `pogoVelocity`, `pogoRefreshesAir`, `downAttackWidth`, `downAttackHeight`, 보스 HP는 `BossTuning.asset`의 `maxHP`입니다. PogoTest 배치·안내 위치는 `Assets/Scenes/Test/PogoTest.unity`, 반복 가시 표적은 `Assets/Prefabs/PogoTarget.prefab`입니다. Scene은 Play 종료 후 다시 입력·저장하고, Asset은 원하는 최종 값을 명시적으로 입력·저장합니다. 후보 값을 기본값으로 적용하려면 사용자 선택이 필요합니다.
 
@@ -237,7 +237,7 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 ## Batch06b 벽 점프 조절·엔딩 후 이어하기 (2026-10-10)
 
 Development 실행기:
-- `Builds/B06b-delivery/Play-WallJumpTest.cmd`: 저장 없는 안전 테스트. 1 기준, 2 짧은 킥, 3 짧은 킥+상승 부착. 벽 쪽 입력으로 점프하면 짧은 킥, 중립·반대 입력은 긴 킥. x114 한쪽12u 벽 추가.
+- `삭제됨`: 저장 없는 안전 테스트. 1 기준, 2 짧은 킥, 3 짧은 킥+상승 부착. 벽 쪽 입력으로 점프하면 짧은 킥, 중립·반대 입력은 긴 킥. x114 한쪽12u 벽 추가.
 - 테스트 전용 `7/8` Short speed ±0.5u/s, `9/0` Short lock ±0.01s, `6` 상승 부착 토글. 화면 전체값과 `Logs/walljump-tuning-last.txt` 일치. 원하는 값을 그대로 남겨 전달한다. Play 복사본이며 원본 Asset에는 자동 반영되지 않는다.
 - 오른쪽 아래 각 굴뚝/한쪽 벽의 최근3회 시간·벽 점프 횟수, `Logs/walljump-runs.txt` 기록.
 - `Play-V2-Guide.cmd` / `Play-V2-NoGuide.cmd`: 기존 독립 QA 슬롯. 현재 가이드 유지, Pause 목표 토글 취소.
@@ -247,8 +247,9 @@ Development 실행기:
 
 ## Batch07 V3 후보 실행 (2026-10-11)
 
-`Builds/B07-delivery/Play-V3-Guide.cmd`와 `Play-V3-NoGuide.cmd`로 시작합니다. QA-V3-A03/B01/C01/C04.cmd는 각각 대시 / 대시·벽점프 / 전 능력 / 보스 직전 CP를 별도 슬롯에 준비하며 타이틀에서 Continue를 선택합니다. 슬롯은 `Builds/B07-delivery/slots/<Mode>.json`입니다. 기본 저장과 분리됩니다. `Play-WallJumpTest.cmd`도 함께 있습니다. 실행기 원본은 `Archive/launchers/B07/`입니다.
+`삭제됨`와 `Play-V3-NoGuide.cmd`로 시작합니다. QA-V3-A03/B01/C01/C04.cmd는 각각 대시 / 대시·벽점프 / 전 능력 / 보스 직전 CP를 별도 슬롯에 준비하며 타이틀에서 Continue를 선택합니다. 슬롯은 `삭제됨`입니다. 기본 저장과 분리됩니다. `Play-WallJumpTest.cmd`도 함께 있습니다. 실행기 원본은 `Archive/launchers/B07/`입니다.
 
 A02 계단·굴뚝과 C03 첫 선택 도전은 PARTIAL입니다. QA 우회 검증은 실행기 기본 플레이에 적용되지 않습니다. 30/60/120fps는 A02 두 구간을 건너뛴 나머지 경로만 엔딩까지 확인했습니다. V2 고정 입력 보스 사망은 회귀 의심으로 남았습니다. 자세한 상태·결정·직접 플레이 순서는 TASKS Latest Handoff에 있습니다.
 
 조정할 배치·영역은 V3 Scene, 반복 오브젝트는 기존 Prefab이 원본입니다. 이동 수치는 기존 PlayerTuning Asset 한 곳에서 조절합니다. Scene 값을 Play에서 바꾸면 Stop 후 같은 값을 다시 입력·저장하고 재빌드합니다. Short 후보는 런타임 복사본이며 기본값으로 채택하지 않았습니다. WallJumpPickup 획득 안내 길이는 해당 컴포넌트 Inspector의 announcementSeconds(초)입니다. V3 방 시간·출구·사망 위치는 `Playtest/` CSV에 기록됩니다.
+

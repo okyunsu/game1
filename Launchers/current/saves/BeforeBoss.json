@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "wallJump": true,
+  "doubleJump": true,
+  "checkpointId": "CP-C04",
+  "visitedRooms": [
+    "C04"
+  ],
+  "endingReached": false,
+  "reachedS02": false,
+  "dash": true,
+  "bossDefeated": false,
+  "hasSlam": false,
+  "brokenWalls": []
+}
