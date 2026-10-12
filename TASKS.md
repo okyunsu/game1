@@ -4,22 +4,35 @@
 
 ## 1. 현재 상태
 
-- Sprint3 / Batch10 예산 종료(2026-10-12 19:06 KST). 다음 Batch는 사용자 승인 후 진행. 기본 채택·감각 수락·Sprint Gate 미실시.
-- 기준 커밋: B10 종료 50a3662, 정리 후 HEAD는 `git log -1`.
+- Sprint3 / Batch10 종료. **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
+- 기준 커밋: B10 종료 50a3662, 태그 B10.
 - 숫자 카드(50a3662..b4907a5, 정리 작업): 2071파일 +3069/-198줄. B10 Task: DONE 9 / PARTIAL 7 / BLOCKED 1 (아래 6번 표).
 - 회귀: 기본 `REGRESSION 13/13` (Tools/Run-Regression.ps1, 2026-10-12). B10 종료 시 RouteAll·Pogo PASS, V2 W22 실제 사망.
 
 ## 2. 결정 대기
 
-| ID | 무엇을 결정 | 결정 방법 | 필요한 것 | 생긴 배치 | 원문 링크 |
-|---|---|---|---|---|---|
-| D-COMBAT | 전투 손맛: B01 히트스톱 0.05s 유지/조정/끄기, B04-AV1 사운드·형태·명도 채택과 B2/fast/slow 보스 선택, Q6 A/B/C 피드백 후보 선택, F2R 표시 수락 | 플레이 각 2~5분 비교 후 선택 | 없음(재빌드 필요) | B01, B04, Q-night4, F2R | [B01 결과](Validation/B02-C-summary.md), [B04](Validation/B04-final-summary.md), [Q6](Validation/Q6-feedback-candidates.txt), [F2R](Validation/F2R-summary.txt) |
-| D-MOVE | 이동 손맛: B06 벽 점프 프리셋(기본1/끈적2/빠름3)·V2 가이드 문구, B10 장치 기본/후보1/후보2/수정(BL2, AI 추천 기본 유지) | 장치 코스 플레이 10분(F로 후보 순환) | [Play-V4-Mechanics](Launchers/current/Play-V4-Mechanics.cmd); B06 프리셋 코스는 없음(재빌드 필요) | B06, B10 | [BL2](Validation/B10-BL2-summary.md), [원문](Archive/TASKS-before-2026-10-12.md) |
-| D-LOOK | 화면·방: B05-V2 CC0 픽셀 스타일 유지/교체, A지역 밀도·필수/선택 난이도, V2 기본 교체 시점 | 플레이 후 선택 | 없음(재빌드 필요) | B05 | [LEVEL_V2](LEVEL_V2.md), [원문](Archive/TASKS-before-2026-10-12.md) |
-| D-RULE-T5 | T5 "다른 문" 기준: 같은 문 귀환·자연 획득/엔딩 재개를 탈출로 허용 / 문 기준 유지 후 설계 별도 승인. BL4: B09 Backlog4~9 원문 제공 / 범위 제외 | 선택지 | 불필요(선택지) | B10 | [T5](Validation/B10-T5-summary.md) |
-| D-RULE-DIST | 낙하 거리: B09 15개 약2.2u·Z01→S02 2u 예외 허용 / .3~.5u 이동 승인. Claude 수정 수락 / 수정 요청 / 취소 | 선택지(확인용 새 게임 25~30분) | [Play-V4](Launchers/current/Play-V4.cmd) | B09, B10 | [B09-T6](Validation/B09-T6-summary.md), [T12 보고서](Validation/B10-geometry-report.md) |
-| D-NEXT | 다음 배치 방향: 남은 자동 경로 재시도 Batch 승인 / 먼저 직접 플레이. B07 A02·C03 후보 유지·수정 포함 | 선택지 | 불필요(선택지) | B07, B10 | [원문](Archive/TASKS-before-2026-10-12.md) |
-| D-BOSS | V2 W22 보스 고정 입력 사망: 조사 / 보류 | 선택지 | 불필요(선택지); V2 재현 빌드는 없음(재빌드 필요) | B07, B09 | [B07-T25](Validation/B07-T25-summary.md), [B09-T12](Validation/B09-T12-summary.md), [B10-T8](Validation/B10-T8-summary.md) |
+없음.
+
+## 2-1. 결정 기록
+
+| ID | 결정 | 날짜 | 근거 |
+|---|---|---|---|
+| D-MOVE | 수락. 현재 기본값 채택(점프 수치, 벽 점프 기본 프리셋1, B10 장치 기본값, V2 가이드 문구 현행). B06 벽 점프·가이드 REVIEW → DONE | 2026-10-12 | 사용자 직접 플레이에서 이동이 자연스러움 |
+| D-LOOK | 방 흐름·방 전환 수락(그레이박스 단계). B05-V2 방 흐름 REVIEW → DONE. 아트 부분은 2-2 단계 보류 | 2026-10-12 | 사용자 결정 |
+| D-COMBAT | 보류. 임팩트(히트 이펙트)·소리 구현 후 히트스톱·AV1·Q6·F2R 후보와 함께 다시 판단(2-2) | 2026-10-12 | 사용자 결정 |
+| D-RULE-T5 | 막다른 방(A01, A05, A06, C06, S01 등 원문 기재)은 들어온 문 귀환·자연 획득·엔딩 후 재개를 탈출로 인정. BL4는 범위 제외(원문 없음) | 2026-10-12 | 사용자 결정; [T5](Validation/B10-T5-summary.md) |
+| D-RULE-DIST | 낙하 도착 약2.2u 15곳과 Z01→S02 2u 예외 승인. B10 Claude 지형 수정 수락 | 2026-10-12 | 사용자 직접 플레이에서 방 전환이 자연스러움; [B09-T6](Validation/B09-T6-summary.md), [T12 보고서](Validation/B10-geometry-report.md) |
+| D-NEXT | 사용자가 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치 결정. 자동 경로 탐색 배치는 하지 않음. B07 A02·C03 후보는 이 플레이 결과까지 유지 | 2026-10-12 | 사용자 결정 |
+| D-BOSS | 보류. 사용자 플레이에서 보스 이상이 보이면 다시 연다 | 2026-10-12 | [B10-T7](Validation/B10-T7-summary.md) 실제 보스→엔딩 자동 검사 2회 PASS |
+
+## 2-2. 단계 보류
+
+결정 대기 상한(8개)에 세지 않는다.
+
+| 항목 | 내용 | 다시 열 조건 | 근거 링크 |
+|---|---|---|---|
+| D-COMBAT | 전투 손맛: B01 히트스톱 0.05s, B04-AV1 사운드·형태·명도와 B2/fast/slow 보스, Q6 A/B/C 후보, F2R 표시 | 임팩트(히트 이펙트)·사운드 구현 후 | [B01 결과](Validation/B02-C-summary.md), [B04](Validation/B04-final-summary.md), [Q6](Validation/Q6-feedback-candidates.txt), [F2R](Validation/F2R-summary.txt) |
+| D-LOOK 아트 | CC0 픽셀 스타일 유지/교체, V2 기본 교체 시점 | 아트 단계 시작 시 | [LEVEL_V2](LEVEL_V2.md) |
 
 ## 3. 직접 플레이 확인
 
@@ -97,6 +110,5 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 ## 7. 다음 배치 후보
 
-- C02 상자 경유→대시 자연 입력부터 새 게임 재시도 → C03/C05/C04→보스→엔딩→Z01→S02 → 실제 보스 전/엔딩 후 저장 확보 → 자연 입력30/120.
-- 남은 입구/왕복의 경유 노드·넓은 도약 위치 탐색, 실제 막힘 입증 후 승인 한도 데이터 수정.
-- V2 W22 빌드 구성 비교는 별도 기록 기반. 기본 수치 채택·Sprint Gate는 사용자 수락 후.
+- 사용자 전체 플레이 대기: 새 게임부터 엔딩까지 직접 플레이한 결과로 다음 배치를 정한다(D-NEXT). 자동 경로 탐색 배치는 하지 않는다.
+- B07 A02·C03 후보와 V2 W22 보스(D-BOSS)는 이 플레이 결과까지 그대로 둔다.
