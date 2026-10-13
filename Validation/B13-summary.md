@@ -33,3 +33,6 @@
 
 | A4 | DONE | Task 로컬 커밋 | README55줄, 런처12개 존재·링크0·Quiet13/13 |
 
+
+| A5 | DONE | Task 로컬 커밋 | 移動0줄·규칙 diff0·247줄 유지 이유 기록·Quiet13/13 |
+
