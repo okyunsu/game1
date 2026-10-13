@@ -46,8 +46,8 @@ foreach($taskCheck in $taskChecks){
 }
 if($BasicOnly){if((Get-Content -LiteralPath $taskSummary) -match ' FAIL'){exit 1};return}
 # Build the current source before replay; an old exe cannot validate new tuning.
-$taskRouteLibrary=Join-Path $taskValidation 'N8-route-final-library.json'
-$taskPogoLibrary=Join-Path $taskValidation 'N9-pogo-library.json'
+$taskRouteLibrary=Join-Path $taskRoot 'Archive/validation-2026-10/N8-route-final-library.json'
+$taskPogoLibrary=Join-Path $taskRoot 'Archive/validation-2026-10/N9-pogo-library.json'
 $taskPogoEnabled=(!$SkipPogo -and (Test-Path -LiteralPath $taskPogoLibrary))
 if(Test-Path -LiteralPath $taskRouteLibrary){
  $taskRouteEvidence=Join-Path $taskValidation "RouteAll-60fps-$Tag.txt"
@@ -152,5 +152,6 @@ Get-ChildItem $taskValidation -File | Where-Object {$_.Name -like "*-$Tag.txt" -
 $taskOut | Set-Content -Encoding utf8 (Join-Path $taskRaw 'result.txt')
 $taskOut
 if($taskPass -ne $taskNames.Count){exit 1}
+
 
 

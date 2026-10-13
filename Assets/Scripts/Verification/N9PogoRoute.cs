@@ -15,7 +15,7 @@ public sealed class N9PogoRoute : N5Runner
         yield return Until(()=>FindFirstObjectByType<PogoTestCourse>()!=null&&Player!=null,"PogoTest boot");course=FindFirstObjectByType<PogoTestCourse>();yield return Ready();yield return new WaitForSecondsRealtime(.4f);
         Check(Player.GetComponent<PlayerDash>().hasDash&&Motor.hasDoubleJump,"course owns both abilities");
         driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;
-        string file=N5Args.Value("-pogo-library","Validation/N9-pogo-library.json");bool train=N5Args.Value("-verify-pogotest","all")=="train";
+        string file=N5Args.Value("-pogo-library","Archive/validation-2026-10/N9-pogo-library.json");bool train=N5Args.Value("-verify-pogotest","all")=="train";
         if(!train)library=JsonUtility.FromJson<RouteLibrary>(File.ReadAllText(file));
         for(index=0;index<3;index++)
         {
@@ -62,3 +62,4 @@ public sealed class N9PogoRoute : N5Runner
         return t;
     }
 }
+

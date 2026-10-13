@@ -76,6 +76,7 @@ DESIGN-DEPENDENCY no reverse enabled door B02/B04-B02 pos=(30.00, 15.30)
 BLOCKED-GEOMETRY route C04/return-C04-C06-C04-C06 segment=1 source=spawn:C04-C06 target=platform2@dj failure=(35.36, 11.46) closest=3.669155 peak=15.388 travel=5.562988 contacts=platform2 attempts=573 grid=573 part=0 parts=1 reached=False classification=pending-physical-cause
 ```
 
-주의: 다른 출구가 PASS한 입구의 실패 분기는 고립 증거가 아니다. 전체 후보를 소진하지 않은 탐색은 예산 미완료이며 실제 막힘으로 확정하지 않는다. 상세 좌표/요소: [Claude 보고서](B10-geometry-report.md).
+주의: 다른 출구가 PASS한 입구의 실패 분기는 고립 증거가 아니다. 전체 후보를 소진하지 않은 탐색은 예산 미완료이며 실제 막힘으로 확정하지 않는다. 상세 좌표/요소: [Claude 보고서](../Archive/validation-2026-10/B10-geometry-report.md).
 
 미실시: 모든 미완료 연결/입구의 확대 후보 전수 소진 및 전체 왕복/고립0 수락. 원본 `_raw/B10/T4-resume-*.txt`, live.txt, inputs/.
+

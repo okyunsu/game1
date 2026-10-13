@@ -8,7 +8,7 @@ public sealed class B05World:N5Runner
  RouteTickDriver driver;RouteLibrary library=new();bool failed,reached;double bossJumped=-1;int jumpUntil,nextAttack;
  protected override void Cleanup(){if(driver!=null)driver.active=false;}
  bool Reached(string goal)=>goal=="Menu"?FindFirstObjectByType<SaveMenu>()!=null:goal=="Ending"?FindFirstObjectByType<EndingMenu>()!=null:goal=="Dash"?Player.GetComponent<PlayerDash>().hasDash:goal=="DoubleJump"?Motor.hasDoubleJump:RoomSession.Instance?.CurrentRoomId==goal;
- protected override IEnumerator Tests(){yield return NewGame();driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;string replay=N5Args.Value("-b05-inputs","");var source=JsonUtility.FromJson<RouteLibrary>(File.ReadAllText(replay!=""?replay:N5Args.Value("-b05-world-prefix","Validation/Routes/V2/V2-A-continuous-margin.json")));
+ protected override IEnumerator Tests(){yield return NewGame();driver=gameObject.AddComponent<RouteTickDriver>();driver.device=keyboard;string replay=N5Args.Value("-b05-inputs","");var source=JsonUtility.FromJson<RouteLibrary>(File.ReadAllText(replay!=""?replay:N5Args.Value("-b05-world-prefix","Archive/validation-2026-10/B13-Routes/V2/V2-A-continuous-margin.json")));
   foreach(var recorded in source.segments)yield return Run(recorded,true);
   if(replay==""){var goals=N5Args.Has("-b05-world-boss-tail")?new[]{"Ending","Menu"}:new[]{"B02","B03","B04","DoubleJump","B03","B02","B01","B05","C01","C02","C03","C04","C06","Ending","Menu"};foreach(string goal in goals){if(goal=="Menu")yield return new WaitForSecondsRealtime(.3f);else {yield return Ready();yield return Keys();yield return Until(()=>Motor.Grounded,"world settle",8);}bool menu=goal=="Menu";var segment=new RouteSegment{id="V2-W"+(library.segments.Count+1).ToString("D2"),startScene=menu?"Ending":RoomSession.Instance.CurrentRoomId+"_V2",goal=goal,startPosition=menu?Vector2.zero:Body.position,dash=menu||Player.GetComponent<PlayerDash>().hasDash,doubleJump=menu||Motor.hasDoubleJump,startHP=menu?0:Health.HP,limitSeconds=60};yield return Run(segment,false);if(goal=="C01"&&N5Args.Value("-b05-world-stage","")=="B")break;}}
   Check(Reached(N5Args.Value("-b05-world-stage","")=="B"?"C01":"Menu"),"new game continuous world complete; no placement or ability grants");
@@ -19,6 +19,7 @@ public sealed class B05World:N5Runner
  }
  N5InputTick BossInput(){var boss=FindFirstObjectByType<BossEncounter>();var v=new N5InputTick();if(!boss.Fighting){v.axis=1;return v;}double phase=Time.timeAsDouble-boss.PhaseStarted;if(bossJumped!=boss.PhaseStarted&&Motor.Grounded&&((boss.State==BossEncounter.Phase.MeleeTell&&phase>boss.tuning.meleeTell-.38)||(boss.State==BossEncounter.Phase.WaveTell&&phase>boss.tuning.waveTell-.38))){jumpUntil=driver.tick+28;bossJumped=boss.PhaseStarted;}if(Body.position.x<13.95f)v.axis=1;else if(Body.position.x>14.10f)v.axis=-1;if(driver.tick<jumpUntil)v.held|=2;if(driver.tick>=nextAttack&&Motor.Grounded){v.axis=1;v.held|=8;nextAttack=driver.tick+20;}return v;}
 }
+
 
 
 

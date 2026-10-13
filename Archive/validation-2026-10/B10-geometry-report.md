@@ -41,4 +41,5 @@ BLOCKED-GEOMETRY route C04/isolation-C03-C04-C05-C04 segment=1 source=spawn:C03-
 BLOCKED-GEOMETRY route C04/return-C04-C06-C04-C06 segment=1 source=spawn:C04-C06 target=platform2@dj failure=(35.36, 11.46) closest=3.669155 peak=15.388 travel=5.562988 contacts=platform2 attempts=573 grid=573 part=0 parts=1 reached=False classification=pending-physical-cause
 ```
 
-원본 위치는 [T4 요약](B10-T4-summary.md), [T5 요약](B10-T5-summary.md)의 표와 `_raw/B10/T4-resume-collected.json`, `T5-resume-collected.json`. r54~r58 구 Scene 결과는 제외. 미실시: 예산 미완료 대안의 전수 확대 탐색·남은 요소 이동량 확정.
+원본 위치는 [T4 요약](../../Validation/B10-T4-summary.md), [T5 요약](../../Validation/B10-T5-summary.md)의 표와 `_raw/B10/T4-resume-collected.json`, `T5-resume-collected.json`. r54~r58 구 Scene 결과는 제외. 미실시: 예산 미완료 대안의 전수 확대 탐색·남은 요소 이동량 확정.
+

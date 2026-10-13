@@ -103,7 +103,7 @@ public sealed class N2VerificationRunner : MonoBehaviour
 
     IEnumerator CameraChecks()
     {
-        string renderDirectory = $"Validation/Camera/Run-{DateTime.UtcNow:yyyyMMdd-HHmmss}";
+        string renderDirectory = $"Validation/_raw/Camera/Run-{DateTime.UtcNow:yyyyMMdd-HHmmss}";
         var rig = FindFirstObjectByType<RoomCameraRig>();
         var player = FindFirstObjectByType<PlayerInputReader>();
         if(SessionState.GetString("N2.Suffix","").StartsWith("lead0")){rig.horizontalLead=0;for(int n=1;n<=4;n++)results.Add(SessionState.GetString("Lead0.A0"+n,""));}
@@ -269,3 +269,4 @@ public sealed class N2VerificationRunner : MonoBehaviour
         Check(!session.Transitioning, "transition or rollback finishes within 10s");
     }
 }
+
