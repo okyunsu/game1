@@ -211,7 +211,7 @@ C06 배치와 전투 시작선·예고 영역은 `Assets/Scenes/C06.unity`, 공�
 F1 실패 실험: `삭제됨`, Menu+14방이며 보스/엔딩은 없다. 공격 베기 .10s / 흰색 번쩍임 .08s / 실시간 히트스톱 .05s가 들어 있지만 필수 T2 검증에 실패하여 기본 프로젝트에서는 모두 복원했다. 실험 빌드는 사용자 판단용이며 성공 빌드로 간주하지 않는다. 폴더 전체를 보존한다.
 
 
-N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이며 순차60fps3회·30/120fps·가상 패드 완주와 저장을 확인했다. 기본13회귀에 현재소스 새빌드 `RouteAll-60fps`를 더했다. `Validation/Run-Regression.ps1 -Tag <새태그>`는14개, `-OnlyRoute`는 새빌드 경로 검사만 실행한다. 자동 활동시간 약2분은 사람 플레이시간이 아니다. [최종 인계](Validation/N8-final-handoff.md).
+N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이며 순차60fps3회·30/120fps·가상 패드 완주와 저장을 확인했다. 기본13회귀에 현재소스 새빌드 `RouteAll-60fps`를 더했다. `Tools/Run-Regression.ps1 -Tag <새태그>`는14개, `-OnlyRoute`는 새빌드 경로 검사만 실행한다. 자동 활동시간 약2분은 사람 플레이시간이 아니다. [최종 인계](Validation/N8-final-handoff.md).
 
 
 ## N9 방향 공격·포고
@@ -231,7 +231,7 @@ N8 자동 경로의 최종 입력은 `Validation/N8-route-final-library.json`이
 
 포고 값은 `Assets/ScriptableObjects/CombatTuning.asset`의 `pogoVelocity`, `pogoRefreshesAir`, `downAttackWidth`, `downAttackHeight`, 보스 HP는 `BossTuning.asset`의 `maxHP`입니다. PogoTest 배치·안내 위치는 `Assets/Scenes/Test/PogoTest.unity`, 반복 가시 표적은 `Assets/Prefabs/PogoTarget.prefab`입니다. Scene은 Play 종료 후 다시 입력·저장하고, Asset은 원하는 최종 값을 명시적으로 입력·저장합니다. 후보 값을 기본값으로 적용하려면 사용자 선택이 필요합니다.
 
-`Validation/Run-Regression.ps1 -Tag <새이름>`은 기본13 + RouteAll60 + PogoTest60, 총15개를 검사합니다. `-SkipPogo`는 이전14개, `-OnlyRoute`는 경로2개만 실행합니다. 실패를 PASS로 바꾸지 않습니다. 기존 FixedUpdate 관찰의 사망 누락을 바로잡은 뒤 R05 실제 사망이 확인되어 연속 완주 경로는 BLOCKED입니다. Editor 고정 Pogo 입력 재생도 별도 BLOCKED이며, 실제 exe Pogo3구간·체크포인트 복귀·능력 회복 PASS와 구분합니다. 상세 결과와 무효화된 과거 결과는 `Validation/N9-route-recheck.txt`, 최종 상태는 TASKS Latest Handoff를 확인합니다.
+`Tools/Run-Regression.ps1 -Tag <새이름>`은 기본13 + RouteAll60 + PogoTest60, 총15개를 검사합니다. `-SkipPogo`는 이전14개, `-OnlyRoute`는 경로2개만 실행합니다. 실패를 PASS로 바꾸지 않습니다. 기존 FixedUpdate 관찰의 사망 누락을 바로잡은 뒤 R05 실제 사망이 확인되어 연속 완주 경로는 BLOCKED입니다. Editor 고정 Pogo 입력 재생도 별도 BLOCKED이며, 실제 exe Pogo3구간·체크포인트 복귀·능력 회복 PASS와 구분합니다. 상세 결과와 무효화된 과거 결과는 `Validation/N9-route-recheck.txt`, 최종 상태는 TASKS Latest Handoff를 확인합니다.
 
 
 ## Batch06b 벽 점프 조절·엔딩 후 이어하기 (2026-10-10)
@@ -252,4 +252,5 @@ Development 실행기:
 A02 계단·굴뚝과 C03 첫 선택 도전은 PARTIAL입니다. QA 우회 검증은 실행기 기본 플레이에 적용되지 않습니다. 30/60/120fps는 A02 두 구간을 건너뛴 나머지 경로만 엔딩까지 확인했습니다. V2 고정 입력 보스 사망은 회귀 의심으로 남았습니다. 자세한 상태·결정·직접 플레이 순서는 TASKS Latest Handoff에 있습니다.
 
 조정할 배치·영역은 V3 Scene, 반복 오브젝트는 기존 Prefab이 원본입니다. 이동 수치는 기존 PlayerTuning Asset 한 곳에서 조절합니다. Scene 값을 Play에서 바꾸면 Stop 후 같은 값을 다시 입력·저장하고 재빌드합니다. Short 후보는 런타임 복사본이며 기본값으로 채택하지 않았습니다. WallJumpPickup 획득 안내 길이는 해당 컴포넌트 Inspector의 announcementSeconds(초)입니다. V3 방 시간·출구·사망 위치는 `Playtest/` CSV에 기록됩니다.
+
 
