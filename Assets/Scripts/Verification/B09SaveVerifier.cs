@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 public sealed class B09SaveVerifier:N5Runner
@@ -11,3 +12,4 @@ public sealed class B09SaveVerifier:N5Runner
  }
 }
 
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 public sealed class B10StageVerifier:N5Runner
@@ -18,3 +19,4 @@ public sealed class B10StageVerifier:N5Runner
  }
  void Row(string value)=>lines.Add(value);
 }
+#endif

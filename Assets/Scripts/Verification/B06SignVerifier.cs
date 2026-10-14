@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 
@@ -18,3 +19,4 @@ public sealed class B06SignVerifier : N5Runner
         Check(Health.HP==hp&&Player.GetComponent<PlayerAttack>().Sequence==attacks,"display has no combat/input writes");Body.simulated=true;
     }
 }
+#endif

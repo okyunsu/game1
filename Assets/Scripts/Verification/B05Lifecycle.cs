@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Linq;
@@ -17,3 +18,4 @@ public sealed class B05Lifecycle:N5Runner
 
 
 
+#endif

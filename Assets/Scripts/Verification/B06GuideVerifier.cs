@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -30,3 +31,4 @@ public sealed class B06GuideVerifier : N5Runner
         if(GuidePresentation.Disabled)Check(guide.GoalText==""&&!guide.DebugVisible,"no-guide goal/debug0 across rooms");
     }
 }
+#endif

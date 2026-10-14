@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.IO;
@@ -19,3 +20,4 @@ public sealed class SaveFailureVerifier:N5Runner
  }
  IEnumerator EndingContinue(){yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"title");yield return new WaitForSecondsRealtime(.2f);Check(ProgressSave.TryLoad(out var data)&&data.bossDefeated&&data.endingReached,"fresh exe reads reached-ending fixture");for(int i=0;i<2;i++){Check(FindFirstObjectByType<SaveMenu>().CanContinue,"ending Continue enabled "+i);yield return Tap(Key.Z);yield return Until(()=>FindFirstObjectByType<EndingMenu>()!=null,"Ending "+i);Check(SceneManager.GetActiveScene().name=="Ending","Continue routes Ending "+i);yield return Tap(Key.Z);yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"Ending title "+i);yield return new WaitForSecondsRealtime(.2f);}Check(ProgressSave.TryLoad(out var saved)&&saved.endingReached&&saved.bossDefeated,"repeat ending preserves flags");}
 }
+#endif

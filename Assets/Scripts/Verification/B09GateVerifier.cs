@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -21,3 +22,4 @@ public sealed class B09GateVerifier:N5Runner
   Check(RoomSession.Instance.CurrentRoomId=="S02","oneway trigger causes no transition");
  }
 }
+#endif

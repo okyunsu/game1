@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using UnityEngine;
 
 // A small opt-in observer for the existing input fight runner; no combat writes.
@@ -23,3 +24,4 @@ public sealed class B02BossStats:MonoBehaviour
     }
     void OnDestroy(){if(health!=null)health.Hit-=Hit;}
 }
+#endif

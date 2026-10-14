@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
@@ -35,3 +36,4 @@ public sealed class B07T0Verifier:N5Runner
   ProgressSave.Enabled=false;ProgressSave.Pending=null;
  }
 }
+#endif

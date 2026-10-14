@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -74,3 +75,4 @@ public sealed class B06WallVerifier : N5Runner
         lines.Add("MEASURE chimney4 jumps="+(Motor.WallJumpsPerformed-initial));dash.hasDash=true;yield return Keys();
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -104,3 +105,4 @@ public sealed class RouteRunner:N5Runner
  static float Axis(float dx)=>dx>.25f?1:dx<-.25f?-1:0;
 }
 
+#endif

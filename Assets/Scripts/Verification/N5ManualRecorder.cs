@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.IO;
 using System.Reflection;
@@ -15,3 +16,4 @@ using UnityEngine.InputSystem;
  void Update(){if(data!=null&&FindFirstObjectByType<EndingMenu>()!=null)Save();}
  void OnApplicationQuit()=>Save();
 }
+#endif

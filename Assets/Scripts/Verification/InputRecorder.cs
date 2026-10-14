@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,3 +38,4 @@ public class InputRecorder:N5Runner
   else{Check(driver.observed.Count==data.rooms.Count,"same room entry count");for(int i=0;i<data.rooms.Count;i++)Check(data.rooms[i].room==driver.observed[i].room&&Math.Abs(data.rooms[i].tick-driver.observed[i].tick)<=1,"room tick tolerance +/-1 "+i);Check(Vector2.Distance(data.finalPosition,driver.finalSnapshot)<=.05f,"final position tolerance .05u");}
  }
 }
+#endif

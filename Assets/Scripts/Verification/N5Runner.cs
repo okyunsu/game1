@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
+// Release builds keep only N5Args (launcher argument parsing used by game code).
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 // Shared mechanics for explicitly opted-in verification tools; never bootstraps itself.
 public abstract class N5Runner:MonoBehaviour
 {
@@ -44,6 +46,7 @@ public abstract class N5Runner:MonoBehaviour
  protected void PlaceForAuthorizedSetup(Vector2 p){Body.position=p;Player.transform.position=p;Body.linearVelocity=Vector2.zero;Physics2D.SyncTransforms();}
  protected IEnumerator PhysicalDoor(string destination){var exit=Array.Find(FindObjectsByType<RoomExit>(FindObjectsSortMode.None),e=>e.destinationRoomId==destination);Check(exit!=null&&exit.enabled,"enabled physical exit "+destination);yield return Keys();PlaceForAuthorizedSetup(exit.GetComponent<BoxCollider2D>().bounds.center);yield return new WaitForFixedUpdate();yield return Until(()=>RoomSession.Instance.CurrentRoomId==destination&&!RoomSession.Instance.Transitioning,"door "+destination);yield return Ready();}
 }
+#endif
 public static class N5Args
 {
  public static bool Has(string flag)=>Array.IndexOf(Environment.GetCommandLineArgs(),flag)>=0;

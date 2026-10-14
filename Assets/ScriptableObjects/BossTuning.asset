@@ -24,10 +24,59 @@ MonoBehaviour:
   chargeSpeed: 10.8
   wallClearance: 0.1
   maxHP: 28
-  damage: 2
+  damage: 1
   meleeTell: 0.48000002
   waveTell: 0.6
   recovery: 0.8
   meleeRange: 3
   waveSpeed: 7.8
   waveHeight: 1
+  b3Patterns: 1
+  meleeEnabled: 1
+  leapEnabled: 1
+  waveEnabled: 1
+  chargeEnabled: 1
+  chaseEnabled: 1
+  comboLeapEnabled: 1
+  backshotEnabled: 1
+  fallingEnabled: 1
+  chaseTell: 0.5
+  chaseStrikeTell: 0.25
+  chaseInterval: 0.35
+  chaseCount: 3
+  chaseSpeed: 3
+  chaseDistance: 4
+  chaseRange: 2.5
+  chaseRecovery: 1.2
+  comboFirstTell: 0.7
+  comboNextTell: 0.5
+  comboLandingGap: 0.3
+  comboLeapCount: 2
+  comboLeapRecovery: 1.5
+  projectilePrefab: {fileID: 7072409975484923023, guid: e1c80dc71e21e424992cf5ba3597ddd3, type: 3}
+  backshotTell: 0.6
+  backstepDistance: 3
+  backstepDuration: 0.3
+  backshotCount: 3
+  backshotInterval: 0.45
+  projectileSpeed: 7
+  projectileSize: 0.6
+  projectileLow: 0.5
+  projectileHigh: 2.8
+  backshotRecovery: 1.2
+  fallingPrefab: {fileID: 8485410997907068938, guid: 0b178cc8f6a17e0449071a3a334894cd, type: 3}
+  fallingTell: 0.8
+  fallingZoneTell: 1
+  fallingWidth: 1.5
+  fallingSpacing: 3
+  fallingHeight: 0.8
+  fallingCeiling: 14
+  fallingSpeed: 10
+  fallingRecovery: 1.2
+  phaseTwoEnabled: 1
+  phaseTwoThreshold: 0.5
+  phaseTwoTell: 0.6
+  phaseTwoRecoveryScale: 0.8
+  phaseTwoRecoveryMinimum: 0.8
+  phaseTwoChaseCount: 4
+  phaseTwoLeapCount: 3

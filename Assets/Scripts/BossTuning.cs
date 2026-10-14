@@ -26,7 +26,7 @@ public sealed class BossTuning:ScriptableObject
  [Min(0),Tooltip("Wave horizontal speed (u/s).")]public float waveSpeed=5;
  [Min(.1f),Tooltip("Wave height above floor (u).")]public float waveHeight=1;
  [Header("B3 candidate — individual pattern switches")]
- [Tooltip("Eight-pattern candidate cycle; default boss remains B2-fast.")] public bool b3Patterns;
+ [Tooltip("Eight-pattern cycle; adopted as the default boss (D-B3).")] public bool b3Patterns;
  [Tooltip("Enable original melee.")] public bool meleeEnabled=true;
  [Tooltip("Enable original leap.")] public bool leapEnabled=true;
  [Tooltip("Enable original wave.")] public bool waveEnabled=true;

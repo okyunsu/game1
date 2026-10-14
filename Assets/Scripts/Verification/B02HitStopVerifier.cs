@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 
@@ -49,3 +50,4 @@ public sealed class B02HitStopVerifier : N5Runner
         lines.Add("Direct existing Begin/TakeDamage/SetPaused calls; perception and physical UI input not tested.");
     }
 }
+#endif

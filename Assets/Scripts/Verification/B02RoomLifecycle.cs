@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using UnityEngine;
@@ -45,3 +46,4 @@ public sealed class B02RoomLifecycle:N5Runner
         lines.Add("Both physical branch entries and fresh E3 after previous death tested; fall and lethal hit fixtures are explicit setup.");
     }
 }
+#endif

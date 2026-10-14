@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using UnityEngine;
@@ -19,3 +20,4 @@ public sealed class B04PresentationVerifier:N5Runner
   if(av!=null){foreach(var s in av.profile.sounds){av.Plays.TryGetValue(s.eventName,out int count);lines.Add("MEASURE audio "+s.eventName+" clip="+s.clip.name+" plays="+count);Check(count>0,"event clip played "+s.eventName);}foreach(string id in new[]{"form-0","form-1","form-2","form-3","form-4","walk","jump","landing","afterimage","hurt","death","attack","fragments"})Check(av.Effects.ContainsKey(id),"effect "+id);}else{Check(PresentationBootstrap.Instance==null,"basic audio plays0");lines.Add("MEASURE basic presentation audio=0 visual=0");}
  }
 }
+#endif

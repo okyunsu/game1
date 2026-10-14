@@ -33,9 +33,10 @@ public static class B12BossAssets
  }
  public static void Build(){
   var basic=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/ScriptableObjects/BossTuning.asset");
-  var fast=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/B2-fast/BossTuning.asset");
-  if(JsonUtility.ToJson(basic)!=JsonUtility.ToJson(fast))throw new Exception("T1 default / B2-fast mismatch");
-  Debug.Log("MEASURE default extendedPatterns="+basic.extendedPatterns+" B2-fast fields identical");
+  // D-B3 (2026-10-14): default boss adopts B3; B2-fast stays selectable as a candidate.
+  var adopted=AssetDatabase.LoadAssetAtPath<BossTuning>(B3);
+  if(JsonUtility.ToJson(basic)!=JsonUtility.ToJson(adopted))throw new Exception("D-B3 default / B3 mismatch");
+  Debug.Log("MEASURE default b3Patterns="+basic.b3Patterns+" B3 fields identical");
   var b3=AssetDatabase.LoadAssetAtPath<BossTuning>(B3);
   if(b3!=null){if(!b3.b3Patterns||b3.damage!=1||b3.maxHP!=28)throw new Exception("B3 import assert");Debug.Log("MEASURE B3 build values "+JsonUtility.ToJson(b3));}
   string folder="Builds/B12-delivery";Directory.CreateDirectory(folder);

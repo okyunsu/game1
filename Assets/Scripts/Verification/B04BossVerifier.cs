@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Reflection;
@@ -17,8 +18,8 @@ public sealed class B04BossVerifier:N5Runner
  #endif
  Check(boss.tuning.extendedPatterns,"candidate active");Health.RestoreMax();Place(new Vector2(11,1.81f));yield return Until(()=>boss.Fighting,"fight");yield return new WaitForSeconds(.1f);hits=0;}
  void Pattern(int i){if(N5Args.Has("-b12-pattern"))foreach(var live in FindObjectsByType<BossB3Hazard>(FindObjectsSortMode.None))Destroy(live.gameObject);if(N5Args.Has("-b12-pattern"))foreach(var live in FindObjectsByType<BossWave>(FindObjectsSortMode.None))Destroy(live.gameObject);typeof(BossEncounter).GetMethod("BeginPattern",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(boss,new object[]{i});lines.Add("FIXTURE fresh isolated pattern="+i+"; no health/position writes during dodge outcome");}
- protected override void Cleanup(){if(driver!=null)driver.produce=null;if(Health!=null)Health.Hit-=Hit;}
- protected override IEnumerator Tests(){if(N5Args.Has("-b12-p2")){yield return B12P2Tests();yield break;}if(N5Args.Has("-b12-cycle")){yield return B12CycleTests();yield break;}if(N5Args.Has("-b12-phase")){yield return B12PhaseTests();yield break;}if(N5Args.Has("-b12-pattern")){yield return B12Tests();yield break;}yield return ContinueGame();Health.Hit+=Hit;driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;
+ protected override void Cleanup(){if(driver!=null)driver.produce=null;if(Player!=null&&Health!=null)Health.Hit-=Hit;}
+ protected override IEnumerator Tests(){if(N5Args.Has("-b14-defeat")){yield return B14DefeatTests();yield break;}if(N5Args.Has("-b12-p2")){yield return B12P2Tests();yield break;}if(N5Args.Has("-b12-cycle")){yield return B12CycleTests();yield break;}if(N5Args.Has("-b12-phase")){yield return B12PhaseTests();yield break;}if(N5Args.Has("-b12-pattern")){yield return B12Tests();yield break;}yield return ContinueGame();Health.Hit+=Hit;driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;
   foreach(bool dodge in new[]{true,false}){yield return Arena();Pattern(3);jumped=-100;second=false;peak=Body.position.y;int dj=Motor.DoubleJumpsPerformed;
    driver.produce=()=>{peak=Mathf.Max(peak,Body.position.y);if(!dodge)return Array.Empty<Key>();float distance=Mathf.Abs(boss.transform.position.x-Body.position.x)-boss.GetComponent<BoxCollider2D>().bounds.extents.x-Player.GetComponent<BoxCollider2D>().bounds.extents.x;if(jumped<0&&boss.State==BossEncounter.Phase.Charge&&distance/boss.tuning.chargeSpeed<=.65f){jumped=Time.timeAsDouble;lines.Add($"INPUT ground jump collisionETA={distance/boss.tuning.chargeSpeed:F3}");}double t=Time.timeAsDouble-jumped;double delay=boss.tuning.chargeSpeed<8?.34:.24;if(jumped>=0&&(t<delay-.06||(t>=delay&&t<delay+.4))){if(t>=delay&&!second){second=true;lines.Add("INPUT sustained second jump .40s");}return new[]{Key.Z};}return Array.Empty<Key>();};
    yield return Until(()=>boss.State==BossEncounter.Phase.ChargeRecovery,"charge resolution",10);driver.produce=null;yield return Keys();lines.Add($"MEASURE fps={Application.targetFrameRate} candidate={N5Args.Value("-b03-candidate","B2")} charge dodge={dodge} hitEvents={hits} DJ={Motor.DoubleJumpsPerformed-dj} peak={peak:F3}");Check(hits==(dodge?0:1),"charge dodge0 / fail1");if(dodge)Check(Motor.DoubleJumpsPerformed>dj,"actual second jump consumed");}
@@ -109,6 +110,24 @@ public sealed class B04BossVerifier:N5Runner
   Check(boss.LiveHazards==0&&FindObjectsByType<BossWave>(FindObjectsSortMode.None).Length==0,"all off: projectiles / falls / waves gone at walls or floor");
  }
 
+ // B14 D-B3: default boss (no -boss argument) defeat -> Slam -> S01 summit ending. HP100 survival fixture,
+ // HP setup by ReceiveHit and S01 entry by transition; only the final blow is actual X. Not a natural victory test.
+ IEnumerator B14DefeatTests(){
+  yield return ContinueGame();driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;
+  Check(RoomSession.Instance.RequestTransition("C06",V4SceneMap.Path("C06"),"C04-C06"),"default arena C06_V4");yield return Ready();boss=FindFirstObjectByType<BossEncounter>();
+  Check(boss.tuning.b3Patterns&&boss.tuning.phaseTwoEnabled,"default boss is B3 without -boss");lines.Add("MEASURE default boss tuning="+boss.tuning.name+" HP="+boss.HP+" patterns="+boss.EnabledPatterns);
+  Health.tuning=Instantiate(Health.tuning);Health.tuning.playerMaxHP=100;Health.RestoreMax();
+  Place(new Vector2(13,1.81f));yield return Until(()=>boss.Fighting,"fight");
+  boss.ReceiveHit(boss.HP-1,Player.transform.position);Check(boss.HP==1,"fixture HP1");
+  yield return Until(()=>boss.IsNewRecovery,"B3 recovery for final X",30);Health.RestoreMax();driver.produce=null;yield return Keys();
+  Place(new Vector2(boss.transform.position.x+boss.GetComponent<BoxCollider2D>().bounds.extents.x+.7f,1.81f));Check(boss.IsNewRecovery,"final X starts inside recovery");
+  yield return Keys(Key.LeftArrow,Key.X);yield return Until(()=>boss.HP==0,"actual final X",.4f);yield return Keys();
+  Check(boss.State==BossEncounter.Phase.Defeated&&ProgressSave.BossDefeated&&Player.GetComponent<PlayerSlam>().hasSlam,"actual final X defeats B3; boss flag and Slam");
+  Check(RoomSession.Instance.RequestTransition("S01",V4SceneMap.Path("S01"),"C06-S01"),"S01 entry");yield return Ready();
+  var summit=FindFirstObjectByType<V3SummitEnding>();Check(summit!=null,"S01 summit ending present");Place(summit.GetComponent<BoxCollider2D>().bounds.center);
+  yield return Until(()=>FindFirstObjectByType<EndingMenu>()!=null,"summit ending",10);
+  Check(ProgressSave.TryLoad(out var saved)&&saved.bossDefeated&&saved.endingReached,"boss defeat -> ending saved");
+ }
  IEnumerator B12P2Tests(){
   yield return ContinueGame();Health.Hit+=Hit;driver=gameObject.AddComponent<N9PogoInput>();driver.keyboard=keyboard;yield return B12Arena(4);
   lines.Add("MEASURE P2 launcher initial HP="+boss.HP);Check(boss.HP==14&&!boss.PhaseTwo,"HP14 begins in phase one before first hit");
@@ -118,3 +137,4 @@ public sealed class B04BossVerifier:N5Runner
  }
 
 }
+#endif

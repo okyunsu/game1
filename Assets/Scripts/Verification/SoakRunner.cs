@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -27,3 +28,4 @@ public sealed class SoakRunner:N5Runner
   Update();sampling=false;lines.Add($"elapsed={Time.realtimeSinceStartupAsDouble-start:F3}s transitions={transitions} deaths={deaths} Pause={pauses} samples={nextSample/60-1} CSV={csv}");Check(Time.realtimeSinceStartupAsDouble-start>=minutes*60,"actual requested wall duration elapsed");if(minutes>=60){Check(baseMemory>0&&baseObjects>0,"10-minute baseline exists");Check(lastMemory<=baseMemory*1.15&&lastObjects<=baseObjects*1.15,$"memory/objects <=+15% baseline={baseMemory}/{baseObjects} final={lastMemory}/{lastObjects}");Check(transitions>=(minutes>=120?500:300)&&deaths>=(minutes>=120?100:50)&&pauses>=(minutes>=120?200:100),"required action totals");}
  }
 }
+#endif

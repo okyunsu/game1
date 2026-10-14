@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.IO;
@@ -63,3 +64,4 @@ public sealed class N9PogoRoute : N5Runner
     }
 }
 
+#endif

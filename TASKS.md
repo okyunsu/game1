@@ -4,10 +4,9 @@
 
 ## 1. 현재 상태
 
-- Sprint3 / Batch12 종료. Batch11·10 종료. **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
-- Batch12 시작: e5a981c(B11). 이번 배치 커밋을 하나로 합쳐 태그 B12. push 안 함.
-- Batch12: DONE 9 / PARTIAL 1. [숫자 카드·실제 검증](Validation/B12-summary.md). B10 이력은 아래6번.
-- 회귀: Batch12 Task별 Quiet13/13, 최종 Quiet13/13. 마지막 기본 방식13/13. B10 RouteAll·Pogo와 V2 W22 사망은 이전 이력이며 B3 자연 승리를 뜻하지 않는다.
+- Sprint3 / Batch14 종료(Batch13은 Track A까지). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
+- Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
+- 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
 
 ## 1-1. Current Tasks (Batch12)
 
@@ -28,12 +27,14 @@
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-B3 | [Boss-B3](Launchers/current/Boss-B3.cmd) / [Boss-B3-P2](Launchers/current/Boss-B3-P2.cmd), C04_V4→C06_V4 각5~10분. 선택: 전체 채택 / 패턴별 끄기 / 수치 조정. 공통 회복≥1s와 기존4 B2-fast 그대로(.8s)의 충돌: 기존4 회복 .8 유지 또는1.0 조정도 선택 | B2-fast 기본을 유지하며 후보를 체험. 추적 회피는 PARTIAL이므로 자동 합격으로 채택하지 않음. 후보는 구4패턴 동일 지시를 따라 .8 유지; 새 패턴은1.2/1.5 | B3 기본값 채택·패턴별 선택·회복 수치 결정; T3 검증 보완의 우선순위 |
+| (없음) | | | |
 
 ## 2-1. 결정 기록
 
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
+| D-B3 | B3(8패턴 + HP50% 2페이즈)를 기본 보스로 채택, 패턴 전부 켬. 기존4패턴 회복 0.8s, 새 패턴 회복 1.2/1.5s 유지. 예고 보임·회피 가능·2페이즈 확인, 사운드는 AV1로 당분간 충분. Boss-B3-rec10(회복1.0 비교) 취소. B2-fast는 [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd)로 계속 선택 | 2026-10-14 | 사용자 직접 플레이 후 결정; Batch14 T1 적용 |
+| D-COMBAT/AV2 | AV2(전투 임팩트·사운드 강화 후보) DEFERRED | 2026-10-14 | 사용자 결정 |
 | D-BOSS-PICK | B2-fast 채택(10/13). 패턴이 보이고 회피·반격 가능, 신규 패턴은 B3 후보에서 추가 | 2026-10-13 | Batch12 사용자 결정 |
 | D-MOVE | 수락. 현재 기본값 채택(점프 수치, 벽 점프 기본 프리셋1, B10 장치 기본값, V2 가이드 문구 현행). B06 벽 점프·가이드 REVIEW → DONE | 2026-10-12 | 사용자 직접 플레이에서 이동이 자연스러움 |
 | D-LOOK | 방 흐름·방 전환 수락(그레이박스 단계). B05-V2 방 흐름 REVIEW → DONE. 아트 부분은 2-2 단계 보류 | 2026-10-12 | 사용자 결정 |
@@ -60,9 +61,7 @@
 - [Play-V4-AfterWall](Launchers/current/Play-V4-AfterWall.cmd): 이어하기→CP-B01 대시+벽 점프 복원, 5분.
 - [Play-V4-BeforeBoss](Launchers/current/Play-V4-BeforeBoss.cmd): 개발 fixture CP-C04, 능력3개, 3분. [Play-V4-AfterEnding](Launchers/current/Play-V4-AfterEnding.cmd): 개발 fixture A01, 엔딩 후 능력/Slam 복원, 3분. 자연 저장 검증과 구분한다.
 
-- D-B3: [Boss-B3](Launchers/current/Boss-B3.cmd) / [Boss-B3-P2](Launchers/current/Boss-B3-P2.cmd), 각5~10분. 타이틀 Z 이어하기→C04_V4 우측 문→C06_V4. 예고·회피·회복 반격, HP 절반 전환·4연타/3도약을 본다. P2는 HP14 개발 시작, 첫 공격으로 2페이즈. 추적은 낮은 지형에서 뒤로 대시가 막힐 때 점프·더블 점프도 직접 확인.
-
-조정 값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). B3는 [후보 BossTuning](Assets/BossCandidates/B3/BossTuning.asset) 한 곳에서 조정하고 Play 종료 후 원하는 값을 명시 저장·재빌드한다.
+조정 값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). 기본 보스(B3, D-B3 10/14)는 [기본 BossTuning](Assets/ScriptableObjects/BossTuning.asset)에서 조정하고(Boss-B3 런처는 [후보 Asset](Assets/BossCandidates/B3/BossTuning.asset)을 쓴다) Play 종료 후 원하는 값을 명시 저장·재빌드한다.
 
 ## 4. 열린 버그
 
@@ -131,32 +130,23 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 ## 7. 다음 배치 후보
 
-- D-B3 체험 결과로 B3 채택·패턴별 끄기·수치를 결정하고 T3 회피 검증을 보완한다. 기본 보스는 B2-fast 유지.
+- D-B3 결정(10/14)으로 기본 보스는 B3. T3 추적 회피 검증 보완은 남아 있다.
 - 기존 D-NEXT 전체 자연 플레이 결과와 B07 A02/C03·V2 W22 검토는 유지한다. 자동 경로 탐색이나 Sprint Gate 통과는 이번 배치에 포함하지 않았다.
 
 ## 8. Approved Backlog
 
 이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
 
-## 9. Latest Handoff — Batch12
-
-### 결정 질문지
-
-D-B3: 위 두 런처 각5~10분 후 전체 채택 / 패턴별 끄기 / 수치 조정. AI 추천: B2-fast 기본 유지 상태에서 B3 체험 후 결정(추적 회피는 PARTIAL). 기존4 회복 .8s 유지 지시와 공통≥1s 기준은 충돌하므로 .8 유지 / 1.0 조정도 알려준다. 답은 B3 기본값·켜진 패턴·수치 반영 경로를 푼다. D-BOSS-PICK은 10/13 B2-fast 채택으로 결정 기록에 옮겼다.
+## 9. Latest Handoff — Batch14
 
 ### 직접 플레이 확인
 
-3번의 기존 수락 대기 순서를 보존했다. 그 뒤 이번 D-B3 두 런처로 C04_V4→C06_V4, 각5~10분: 새 예고·회피·회복 반격·2페이즈를 확인한다. P2는 HP14 개발 fixture이며 첫 X 공격에서 전환한다. 자연 진행 저장/자연 승리 검증과 구분한다.
+3번 기존 순서 유지. 추가: [Play-V4-BeforeBoss](Launchers/current/Play-V4-BeforeBoss.cmd) 10분 — 인자 없는 기본 보스가 B3인지, 8패턴·2페이즈·처치 후 Slam→S01 엔딩. [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd) 2분 — 이전 보스 선택 가능 여부.
 
 ### Task별 결과
 
-[Batch12 요약](Validation/B12-summary.md): DONE9 / PARTIAL1, Task별 커밋·파일·실제 검사·실패 원문·미검증. B11 B3 생성 실패는 컴파일→Editor 직렬화 생성·Save→별도 재로드로 해소. T3 회피 검증은 지형 간섭과 검사 보정 한도로 미완료지만 구현/회귀는 안정적이라 유지했다. T4/T5/T6는 60fps6항목·30/120 회피0, T7 전환1회·전환 중 피해·사망 초기화, T8 순환·런처, T10 HP14·첫 실제 X를 확인했다. 감각·B3 채택은 사용자 판단이다.
-
-기본 BossTuning은 T1에서만 B2-fast로 변경했고, B2 원본·씬 지형·플레이어 Tuning·AV1·PRD·AGENTS는 미변경. B3 조정은 Assets/BossCandidates/B3/BossTuning.asset; Play 종료 후 원하는 값을 명시 저장하고 다시 빌드한다. 실행은 Launchers/current, 빌드는 B12-delivery와 직전 B10-B11-delivery 두 개만 유지한다.
+[Batch14 요약](Validation/B14-summary.md): T0 Codex 금지 규칙 DONE(저장소 밖), T1 D-B3 적용 DONE, T2 검증 코드 Release 분리 DONE(Release 검증 타입 0/73), T3 회귀 탐지 측정 DONE(잡음7/못 잡음16, 테스트 추가 없음), T4 마무리. 이전 Batch12 인계는 [B12 요약](Validation/B12-summary.md).
 
 ### 다음 Batch 후보
 
-D-B3 선택·T3 검증 보완, 또는 D-NEXT 기존 전체 플레이 결과 반영. 승인 Backlog는 소진했고 추가 작업은 하지 않았다. 로컬 커밋을 B12로 합치며 push는 사용자가 한다.
-
-
-
+D-NEXT 전체 플레이 결과 반영; B14 T3 제안대로 Asset 값 기준 이동 측정 검사 추가 여부; T3 추적 회피 검증 보완.

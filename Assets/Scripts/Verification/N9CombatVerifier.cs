@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.IO;
@@ -66,3 +67,4 @@ public sealed class N9CombatVerifier : N5Runner
         Check(HitFeedback.PopsCreated==popsBefore,"boss uses existing defeat/ending effect, no generic enemy DeathPop");
     }
 }
+#endif

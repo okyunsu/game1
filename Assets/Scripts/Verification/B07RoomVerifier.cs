@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -126,3 +127,4 @@ public class B07RoomVerifier:N5Runner
   var target=RenderTexture.GetTemporary(w,h,24);var prior=RenderTexture.active;camera.targetTexture=target;camera.Render();RenderTexture.active=target;var pixels=new Texture2D(w,h,TextureFormat.RGB24,false);pixels.ReadPixels(new Rect(0,0,w,h),0,0);pixels.Apply();var encode=Type.GetType("UnityEngine.ImageConversion, UnityEngine.ImageConversionModule",true).GetMethod("EncodeToPNG",new[]{typeof(Texture2D)});File.WriteAllBytes(path,(byte[])encode.Invoke(null,new object[]{pixels}));RenderTexture.active=prior;camera.targetTexture=null;RenderTexture.ReleaseTemporary(target);Destroy(pixels);Destroy(go);lines.Add("CAPTURE full scene "+path);
  }
 }
+#endif

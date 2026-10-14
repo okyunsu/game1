@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -22,3 +23,4 @@ public sealed class B07GuideVerifier:N5Runner
   Check(guide.graph.NextExit("B01","A02",out var edge)&&edge.to=="A03","guide leads to mandatory descent");lines.Add("MEASURE V3 guide stages=9 rooms=19 requiredLanterns="+total);
  }
 }
+#endif

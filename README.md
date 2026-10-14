@@ -5,8 +5,8 @@
 ## 현재 상태
 
 Sprint 3, Batch 12까지 구현. V4 21방, 대시·더블 점프·벽 점프·Slam,
-보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B2-fast.
-B3 8패턴·2페이즈는 후보이며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
+보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B3(8패턴·2페이즈, 10/14 채택).
+B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
 현재 결과·결정·직접 플레이 목록은 [TASKS](TASKS.md)를 따릅니다.
 
 ## 실행
@@ -22,9 +22,9 @@ B3 8패턴·2페이즈는 후보이며, 자연 전체 플레이와 Sprint Gate�
 - [Play-V4-AfterEnding](Launchers/current/Play-V4-AfterEnding.cmd): 엔딩 후 A01 개발 fixture.
 - [Boss-Base](Launchers/current/Boss-Base.cmd): 현재 기본 보스 비교.
 - [Boss-B2](Launchers/current/Boss-B2.cmd): B2 후보와 AV1 비교.
-- [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd): 채택한 기본 수치와 AV1 비교.
+- [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd): 이전 기본 B2-fast와 AV1 비교.
 - [Boss-B2-slow](Launchers/current/Boss-B2-slow.cmd): 느린 B2 후보와 AV1 비교.
-- [Boss-B3](Launchers/current/Boss-B3.cmd): B3 8패턴 후보, C04에서 오른쪽 문으로 진입.
+- [Boss-B3](Launchers/current/Boss-B3.cmd): B3 8패턴(기본과 같은 값의 후보 Asset), C04에서 오른쪽 문으로 진입.
 - [Boss-B3-P2](Launchers/current/Boss-B3-P2.cmd): B3 HP14 개발 시작, 첫 공격 후 2페이즈.
 
 ## 조작

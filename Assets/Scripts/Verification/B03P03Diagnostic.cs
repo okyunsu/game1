@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.IO;
@@ -18,3 +19,4 @@ public sealed class B03P03Diagnostic:N5Runner
  }
 }
 
+#endif

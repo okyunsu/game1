@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -35,3 +36,4 @@ public sealed class B06bEndingVerifier:N5Runner
         lines.Add("MEASURE post-ending Continue C01_V2/CP-C01 abilities3/3 brokenWalls1/1 boss0 exits usable ending repeats0 legacy PASS");
     }
 }
+#endif

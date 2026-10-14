@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using UnityEngine;
@@ -59,3 +60,4 @@ public sealed class B02RoomVerifier:N5Runner
         return keys.ToArray();
     }
 }
+#endif

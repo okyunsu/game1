@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,3 +44,4 @@ public sealed class B10InputMatrix:N5Runner
   // Findings are a result list even when the intended priorities do not match.
  }
 }
+#endif

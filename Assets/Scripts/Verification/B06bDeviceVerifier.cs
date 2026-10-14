@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,3 +18,4 @@ public sealed class B06bDeviceVerifier:N5Runner
         lines.Add("MEASURE device guide switches=2 keyboard/pad/keyboard actual Input System virtual devices");InputSystem.RemoveDevice(pad);yield return Keys();
     }
 }
+#endif

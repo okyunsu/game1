@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -26,3 +27,4 @@ public sealed class B07FoundationVerifier:N5Runner
   yield return ContinueGame();Check(SceneManager.GetActiveScene().name=="A01_V3","legacy V3 Continue");
  }
 }
+#endif

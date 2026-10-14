@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -51,3 +52,4 @@ public sealed class B06bCourseVerifier:N5Runner
         yield return Keys();Player.GetComponent<PlayerDash>().hasDash=true;
     }
 }
+#endif

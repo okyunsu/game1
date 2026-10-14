@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using UnityEngine;
 // Opt-in route producer state. It never changes gameplay values or places the player.
 public sealed class B05Navigator
@@ -27,3 +28,4 @@ public sealed class B05Navigator
  }
 }
 
+#endif

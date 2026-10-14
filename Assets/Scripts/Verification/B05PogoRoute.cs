@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using UnityEngine;
 // B06's existing lethal pogo targets require deliberate downward attacks.
 public sealed class B05PogoRoute
@@ -13,3 +14,4 @@ public sealed class B05PogoRoute
   return new N5InputTick();
  }
 }
+#endif

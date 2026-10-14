@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,3 +20,4 @@ public sealed class N8AttackVerifier:N5Runner
  }
  }
 }
+#endif

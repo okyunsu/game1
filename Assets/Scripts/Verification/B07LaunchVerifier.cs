@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 
@@ -18,3 +19,4 @@ public sealed class B07LaunchVerifier:N5Runner
   Check(Health.HP>0,"launcher alive");
  }
 }
+#endif

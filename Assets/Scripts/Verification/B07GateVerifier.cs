@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -45,3 +46,4 @@ public sealed class B07GateVerifier:N5Runner
   Check(RoomSession.Instance.CurrentRoomId=="A03"&&Health.HP>0,"pit reverse jumping cannot enter B01");
  }
 }
+#endif

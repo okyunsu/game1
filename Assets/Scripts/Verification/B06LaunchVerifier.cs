@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 
@@ -30,3 +31,4 @@ public sealed class B06LaunchVerifier : N5Runner
         Check(Debug.isDebugBuild,"delivery is Development build");yield return new WaitForSeconds(.5f);
     }
 }
+#endif

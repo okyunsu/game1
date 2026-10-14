@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,3 +31,4 @@ public sealed class B07PartsVerifier:N5Runner
   lines.Add("MEASURE parts: downward only, boss door+suppression, CP-C04 before ending, summit fade2s, CP-C01 after ending");
  }
 }
+#endif

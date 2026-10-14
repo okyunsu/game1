@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using UnityEngine;
 
 // Scene-authored verification itinerary, never controls normal gameplay.
@@ -16,3 +17,4 @@ public sealed class V3RoomRoutes:MonoBehaviour
  public int fallPits,enemyCount;
  public Vector2 dimensions;
 }
+#endif

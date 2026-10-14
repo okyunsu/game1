@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.IO;
 using System.Linq;
@@ -22,3 +23,4 @@ public sealed class B07InventoryVerifier:B07RoomVerifier
   if(!bossLink){PlaytestLogger.Instance?.Finish();string csv=PlaytestLogger.Instance?.CsvPath;Check(!string.IsNullOrEmpty(csv)&&File.Exists(csv),"V3 CSV written");string[] rows=File.ReadAllLines(csv);Check(V3SceneMap.Rooms.All(id=>rows.Any(row=>row.Contains("\"room_enter\",\""+id+"\""))),"19 room enter rows in explicitly labeled QA inventory");lines.Add("MEASURE CSV="+csv+"; fixture sweep is not an automatic continuous completion");}
  }
 }
+#endif

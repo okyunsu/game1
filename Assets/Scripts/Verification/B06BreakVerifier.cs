@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 #if UNITY_EDITOR
 using System.Collections;
 using System.IO;
@@ -43,4 +44,5 @@ public sealed class B06BreakVerifier : N5Runner
         Check(ProgressSave.Continue()&&!ProgressSave.IsWallBroken("B06-Fixture-Shortcut"),"legacy Continue restores empty wall set");
     }
 }
+#endif
 #endif

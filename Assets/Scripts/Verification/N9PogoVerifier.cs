@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using UnityEngine;
@@ -92,3 +93,4 @@ public sealed class N9PogoVerifier : N5Runner
         lines.Add("Clock: Time.timeAsDouble shared startup/active/cooldown; down FixedUpdate order100 after Motor, before physics. Fixtures only at test setup.");
     }
 }
+#endif

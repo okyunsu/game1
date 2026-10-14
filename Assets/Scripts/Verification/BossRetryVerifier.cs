@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,3 +23,4 @@ public sealed class BossRetryVerifier:N5Runner
   lines.Add("MEASURE final boss fight seconds="+(Time.timeAsDouble-fightStarted).ToString("F3"));yield return Until(()=>FindFirstObjectByType<EndingMenu>()!=null,"Ending");Check(ProgressSave.TryLoad(out var saved)&&saved.bossDefeated&&saved.endingReached,"three retries then actual input victory reaches saved ending");
  }
 }
+#endif

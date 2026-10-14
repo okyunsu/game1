@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.IO;
@@ -27,3 +28,4 @@ public sealed class DisplayVerifier:N5Runner
  IEnumerator Traverse(Func<bool> condition,bool jump,float seconds){double started=Time.realtimeSinceStartupAsDouble;while(!condition()){if(Time.realtimeSinceStartupAsDouble-started>seconds)throw new Exception("capture traversal timeout room="+RoomSession.Instance.CurrentRoomId+" pos="+Body.position);bool death=N5Args.Value("-verify-display","")=="death";bool hold=jump&&(!death||Body.position.x<14)&&(Time.realtimeSinceStartupAsDouble-started)%.9<.6;UnityEngine.InputSystem.InputSystem.QueueStateEvent(keyboard,hold?new UnityEngine.InputSystem.LowLevel.KeyboardState(Key.RightArrow,Key.Z):new UnityEngine.InputSystem.LowLevel.KeyboardState(Key.RightArrow));yield return null;}yield return Keys();}
 }
 
+#endif

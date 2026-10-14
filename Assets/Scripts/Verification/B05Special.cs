@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,3 +11,4 @@ public sealed class B05Special:N5Runner
 }
 
 
+#endif

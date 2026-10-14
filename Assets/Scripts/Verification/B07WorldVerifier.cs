@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -45,3 +46,4 @@ public sealed class B07WorldVerifier:B07RoomVerifier
  }
 }
 
+#endif

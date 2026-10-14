@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,3 +73,4 @@ public sealed class B03BossFight:N5Runner
  FinishPattern();lines.Add($"MEASURE candidate={N5Args.Value("-b03-candidate","build")} killGameSeconds={Time.timeAsDouble-start:F3} killRealSeconds={Time.realtimeSinceStartupAsDouble-realStart:F3} hits={hits}");foreach(var pair in counts)lines.Add($"MEASURE observed {pair.Key}={pair.Value}");foreach(var pair in attempts)lines.Add($"MEASURE dodge {pair.Key} safe={dodges[pair.Key]} attempts={pair.Value}");yield return Keys();yield return Until(()=>FindFirstObjectByType<EndingMenu>()!=null,"actual input victory Ending");Check(ProgressSave.TryLoad(out var saved)&&saved.bossDefeated&&saved.endingReached,"saved boss and ending");yield return Tap(Key.Z);yield return Until(()=>FindFirstObjectByType<SaveMenu>()!=null,"Ending to title");Check(true,"actual input defeat-Ending-title");
  }
 }
+#endif

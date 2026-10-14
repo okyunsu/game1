@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,3 +42,4 @@ public sealed class B09Measure:N5Runner
   yield return Keys();
  }
 }
+#endif

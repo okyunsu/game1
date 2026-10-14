@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,3 +41,4 @@ public sealed class B09MechanicsVerifier:N5Runner
   var presets=FindFirstObjectByType<MechanicsTestPresets>();yield return Tap(Key.F);Check(lift.tuning.liftSpeed==4&&FindFirstObjectByType<CrumblePlatform>().tuning.crumbleDelay==.4f,"F candidate1");yield return Tap(Key.F);Check(FindFirstObjectByType<SteamVent>().tuning.steamOn==2.5f,"F candidate2");yield return Tap(Key.F);Check(lift.tuning.liftSpeed==3&&presets.baseline.steamOn==2&&presets.baseline.crumbleDelay==.6f,"F returns baseline without asset mutation");
  }
 }
+#endif

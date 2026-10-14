@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -67,3 +68,4 @@ public sealed class B06bLevelMetricsVerifier:N5Runner
         yield return Keys();Destroy(left);left=null;yield return null;
     }
 }
+#endif
