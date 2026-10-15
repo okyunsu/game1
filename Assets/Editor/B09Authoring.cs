@@ -10,9 +10,11 @@ using Object=UnityEngine.Object;
 using J=B09Json;
 public static class B09Authoring
 {
+ static string designPath="Design/rooms_v2.json",outputFolder="Assets/Scenes/V4";
+ static string OutputPath(string id)=>outputFolder+"/"+id+"_V4.unity";
  static RoomDefinition room;static MechanicsTuning tuning;static readonly List<string> rows=new();static readonly List<GuideGraph.Edge> edges=new();
  static Sprite sprite=>AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Level/Landing.prefab").GetComponent<SpriteRenderer>().sprite;
- static void Init(){Directory.CreateDirectory("Assets/Scenes/V4");Directory.CreateDirectory("Assets/Prefabs/V4");Directory.CreateDirectory("Validation/_raw/B09");AssetDatabase.Refresh();const string path="Assets/ScriptableObjects/MechanicsTuning.asset";tuning=AssetDatabase.LoadAssetAtPath<MechanicsTuning>(path);if(tuning==null){tuning=ScriptableObject.CreateInstance<MechanicsTuning>();AssetDatabase.CreateAsset(tuning,path);}PlayerVariant(); }
+ static void Init(){Directory.CreateDirectory(outputFolder);Directory.CreateDirectory("Assets/Prefabs/V4");Directory.CreateDirectory("Validation/_raw/B09");AssetDatabase.Refresh();const string path="Assets/ScriptableObjects/MechanicsTuning.asset";tuning=AssetDatabase.LoadAssetAtPath<MechanicsTuning>(path);if(tuning==null){tuning=ScriptableObject.CreateInstance<MechanicsTuning>();AssetDatabase.CreateAsset(tuning,path);}PlayerVariant(); }
  static void PlayerVariant(){const string path="Assets/Prefabs/V4/Player.prefab";if(File.Exists(path))return;var root=PrefabUtility.LoadPrefabContents("Assets/Prefabs/Player.prefab");root.GetComponent<BoxCollider2D>().offset=Vector2.up*.8f;var renderer=root.GetComponent<SpriteRenderer>();var source=renderer.sprite;var foot=Sprite.Create(source.texture,source.rect,new Vector2(.5f,0),source.pixelsPerUnit,0,SpriteMeshType.FullRect);foot.name="V4 foot origin";AssetDatabase.CreateAsset(foot,"Assets/Prefabs/V4/PlayerFootSprite.asset");renderer.sprite=foot;PrefabUtility.SaveAsPrefabAsset(root,path);PrefabUtility.UnloadPrefabContents(root);}
  static GameObject Rect(string name,float x,float y,float w,float h,Color color,bool trigger=false){var go=new GameObject(name);go.transform.SetParent(room.transform);go.transform.position=new Vector2(x+w/2,y+h/2);go.transform.localScale=new Vector3(w,h,1);go.layer=trigger?0:6;go.AddComponent<SpriteRenderer>().sprite=sprite;go.GetComponent<SpriteRenderer>().color=color;go.AddComponent<BoxCollider2D>().isTrigger=trigger;return go;}
  static GameObject Rect(string name,List<object> rect,Color color,bool trigger=false)=>Rect(name,J.F(rect[0]),J.F(rect[1]),J.F(rect[2]),J.F(rect[3]),color,trigger);
@@ -43,9 +45,12 @@ public static class B09Authoring
   rows.Add("MARK "+room.roomId+" "+index+" sign-only: "+text);
  }
  [MenuItem("Afterglow/Build V4 From Design")]
- public static void Generate()
+ public static void Generate()=>Generate(N5Args.Value("-room-design","Design/rooms_v2.json"),N5Args.Value("-room-output","Assets/Scenes/V4"),N5Args.Value("-map-design","Design/world_v7.json"));
+ public static void Generate(string dataPath,string destinationFolder,string worldPath="Design/world_v7.json")
  {
-  Init();rows.Clear();edges.Clear();File.Copy("Design/rooms_v2.json","Assets/Resources/V4Design.json",true);var data=J.D(J.Read(File.ReadAllText("Design/rooms_v2.json"))["rooms"]);var world=J.D(J.Read(File.ReadAllText("Design/world_v7.json"))["rooms"]);
+  designPath=dataPath;outputFolder=destinationFolder.Replace("\\","/").TrimEnd('/');
+  bool graphCrlf=File.Exists("Assets/Resources/GuideGraph_V4.asset")&&File.ReadAllText("Assets/Resources/GuideGraph_V4.asset").Contains("\r\n");
+  Init();rows.Clear();edges.Clear();if(outputFolder=="Assets/Scenes/V4")File.Copy(designPath,"Assets/Resources/V4Design.json",true);var data=J.D(J.Read(File.ReadAllText(designPath))["rooms"]);var world=J.D(J.Read(File.ReadAllText(worldPath))["rooms"]);
   foreach(var pair in data)
   {
    var d=J.D(pair.Value);var size=J.A(d,"size");Shell(pair.Key,J.F(size[0]),J.F(size[1]));room.GetComponent<V4Room>().designJson=JsonFragment(pair.Value);
@@ -69,7 +74,7 @@ public static class B09Authoring
    var spawnList=J.A(d,"spawns");foreach(var node in spawnList){var p=J.D(node);Spawn(J.S(p,"id"),J.F(p,"x"),J.F(p,"y"));}var first=J.D(spawnList.First());var start=spawnList.Select(J.D).FirstOrDefault(s=>J.S(s,"id")=="start")??first;Spawn("Entry",J.F(start,"x"),J.F(start,"y"));if(pair.Key=="A01")Spawn("CP-A01",J.F(start,"x"),J.F(start,"y"));
    foreach(var node in J.A(d,"doors"))
    {
-    var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=V4SceneMap.Path(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
+    var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=OutputPath(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
     CoveredFloorTrigger(go,r,d);
     bool hasArrival=J.A(J.D(data[target]),"spawns").Select(J.D).Any(s=>J.S(s,"id")==id);if(!hasArrival){exit.enabled=false;edges.RemoveAt(edges.Count-1);rows.Add("ONEWAY inactive reverse marker "+pair.Key+" "+id);}
     if(exit.mainPath&&hasArrival&&pair.Key!="S02"){var lamp=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/B06/GuideLantern.prefab"));lamp.transform.SetParent(go.transform,false);lamp.transform.localPosition=Vector3.up*.8f;lamp.transform.localScale=new Vector3(.28f/J.F(r[2]),.36f/J.F(r[3]),1);}
@@ -77,13 +82,15 @@ public static class B09Authoring
    int markIndex=0;foreach(var mark in J.A(d,"marks"))Mark(J.D(mark),markIndex++);
    foreach(string kind in new[]{"doors","spawns","marks","enemies","pogo","lifts","steam","crumble"})rows.Add("COUNT "+pair.Key+" "+kind+" json="+J.A(d,kind).Count+" scene="+J.A(d,kind).Count);
    if(pair.Key=="C06")Boss(blocks["solid"]);
-   SaveDeterministic(V4SceneMap.Path(pair.Key));
+   SaveDeterministic(OutputPath(pair.Key));
   }
-  const string graphPath="Assets/Resources/GuideGraph_V4.asset";var graph=AssetDatabase.LoadAssetAtPath<GuideGraph>(graphPath);if(graph==null){graph=ScriptableObject.CreateInstance<GuideGraph>();AssetDatabase.CreateAsset(graph,graphPath);}graph.edges=edges.ToArray();EditorUtility.SetDirty(graph);AssetDatabase.SaveAssets();File.WriteAllLines("Validation/_raw/B09/T5-elements-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt",rows);
+  if(outputFolder!="Assets/Scenes/V4"){File.WriteAllLines("Validation/_raw/B15/BL1-temp-elements.txt",rows);return;}
+  const string graphPath="Assets/Resources/GuideGraph_V4.asset";var graph=AssetDatabase.LoadAssetAtPath<GuideGraph>(graphPath);if(graph==null){graph=ScriptableObject.CreateInstance<GuideGraph>();AssetDatabase.CreateAsset(graph,graphPath);}graph.edges=edges.ToArray();EditorUtility.SetDirty(graph);AssetDatabase.SaveAssets();if(graphCrlf)File.WriteAllText(graphPath,File.ReadAllText(graphPath).Replace("\r\n","\n").Replace("\n","\r\n"),new System.Text.UTF8Encoding(false));File.WriteAllLines("Validation/_raw/B09/T5-elements-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt",rows);
  }
- static string JsonFragment(object obj){return "Design/rooms_v2.json";}
+ static string JsonFragment(object obj){return designPath;}
  static void SaveDeterministic(string path)
  {
+  bool crlf=File.Exists(path)&&File.ReadAllText(path).Contains("\r\n");
   var scene=room.gameObject.scene;
   foreach(var root in scene.GetRootGameObjects())if(PrefabUtility.IsPartOfPrefabInstance(root))PrefabUtility.UnpackPrefabInstance(root,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
   foreach(var transform in scene.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)))if(PrefabUtility.IsAnyPrefabInstanceRoot(transform.gameObject))PrefabUtility.UnpackPrefabInstance(transform.gameObject,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
@@ -92,11 +99,11 @@ public static class B09Authoring
   foreach(var transform in scene.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true))){foreach(var obj in new Object[]{transform.gameObject}.Concat(transform.GetComponents<Component>().Cast<Object>())){long old=(long)GlobalObjectId.GetGlobalObjectIdSlow(obj).targetObjectId;if(old>4&&!ids.ContainsKey(old))ids[old]=next++;}}
   string text=File.ReadAllText(path);text=System.Text.RegularExpressions.Regex.Replace(text,@"(?<=fileID: )-?\d+(?!\d)(?!,\s*guid:)",m=>ids.TryGetValue(long.Parse(m.Value),out var id)?id.ToString():m.Value);
   text=System.Text.RegularExpressions.Regex.Replace(text,@"(?<=&)-?\d+",m=>ids.TryGetValue(long.Parse(m.Value),out var id)?id.ToString():m.Value);
-  var parts=System.Text.RegularExpressions.Regex.Split(text,@"(?m)(?=^--- !u!)");File.WriteAllText(path,parts[0]+string.Concat(parts.Skip(1).OrderBy(p=>long.Parse(System.Text.RegularExpressions.Regex.Match(p,@"&(-?\d+)").Groups[1].Value))),new System.Text.UTF8Encoding(false));
+  var parts=System.Text.RegularExpressions.Regex.Split(text,@"(?m)(?=^--- !u!)");string output=parts[0]+string.Concat(parts.Skip(1).OrderBy(p=>long.Parse(System.Text.RegularExpressions.Regex.Match(p,@"&(-?\d+)").Groups[1].Value)));if(crlf)output=output.Replace("\r\n","\n").Replace("\n","\r\n");File.WriteAllText(path,output,new System.Text.UTF8Encoding(false));
  }
  static void Boss(GameObject[] solids)
  {
-  var source=EditorSceneManager.OpenScene("Assets/Scenes/C06.unity",OpenSceneMode.Additive);var original=source.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<BossEncounter>()).Single();var go=Object.Instantiate(original.gameObject);SceneManager.MoveGameObjectToScene(go,room.gameObject.scene);go.transform.SetParent(room.transform);var boss=go.GetComponent<BossEncounter>();var spec=J.A(J.D(J.D(J.Read(File.ReadAllText("Design/rooms_v2.json"))["rooms"])["C06"]),"enemies").Select(J.D).First(e=>J.S(e,"type").StartsWith("BOSS"));var delta=new Vector3(J.F(spec,"x"),J.F(spec,"y")+boss.GetComponent<Collider2D>().bounds.extents.y,0)-go.transform.position;go.transform.position+=delta;var flow=go.GetComponent<EndingFlow>();if(flow!=null)Object.DestroyImmediate(flow);boss.warning=Object.Instantiate(original.warning,room.transform);boss.warning.transform.position+=delta;boss.wavePrefab=original.wavePrefab;boss.leftExit=room.GetComponentsInChildren<RoomExit>().First(e=>e.destinationRoomId=="C04");EditorSceneManager.CloseScene(source,true);var reward=room.gameObject.AddComponent<V4BossReward>();reward.boss=boss;reward.upperExit=room.GetComponentsInChildren<RoomExit>().First(e=>e.destinationRoomId=="S01");reward.upperExit.enabled=false;reward.roof=solids.Where(s=>s.GetComponent<Collider2D>().bounds.min.y>=15).ToArray();
+  var source=EditorSceneManager.OpenScene("Assets/Scenes/C06.unity",OpenSceneMode.Additive);var original=source.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<BossEncounter>()).Single();var go=Object.Instantiate(original.gameObject);SceneManager.MoveGameObjectToScene(go,room.gameObject.scene);go.transform.SetParent(room.transform);var boss=go.GetComponent<BossEncounter>();var spec=J.A(J.D(J.D(J.Read(File.ReadAllText(designPath))["rooms"])["C06"]),"enemies").Select(J.D).First(e=>J.S(e,"type").StartsWith("BOSS"));var delta=new Vector3(J.F(spec,"x"),J.F(spec,"y")+boss.GetComponent<Collider2D>().bounds.extents.y,0)-go.transform.position;go.transform.position+=delta;var flow=go.GetComponent<EndingFlow>();if(flow!=null)Object.DestroyImmediate(flow);boss.warning=Object.Instantiate(original.warning,room.transform);boss.warning.transform.position+=delta;boss.wavePrefab=original.wavePrefab;boss.leftExit=room.GetComponentsInChildren<RoomExit>().First(e=>e.destinationRoomId=="C04");EditorSceneManager.CloseScene(source,true);var reward=room.gameObject.AddComponent<V4BossReward>();reward.boss=boss;reward.upperExit=room.GetComponentsInChildren<RoomExit>().First(e=>e.destinationRoomId=="S01");reward.upperExit.enabled=false;reward.roof=solids.Where(s=>s.GetComponent<Collider2D>().bounds.min.y>=15).ToArray();
  }
  [MenuItem("Afterglow/Open Mechanics Test")]
  public static void OpenTest(){if(!File.Exists("Assets/Scenes/Test/MechanicsTest.unity"))TestCourse();EditorSceneManager.OpenScene("Assets/Scenes/Test/MechanicsTest.unity");}

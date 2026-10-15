@@ -32,7 +32,8 @@ B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 S
 이동 ←/→ 또는 A/D, 점프 Z 또는 Space, 공격 X 또는 J,
 대시 C 또는 K/Left Shift. 공중에서 점프 키를 놓고 다시 누르면 더블 점프.
 위+X는 위 공격, 공중 아래+X는 아래 공격·포고, 공중 아래+C는 Slam.
-Esc는 Pause, Z/Enter는 확인, X/Esc는 취소, M은 개발 지도.
+Esc는 Pause, Z/Enter는 확인, X/Esc는 취소, M은 개발 지도(기본 작게, 크게→끔→작게 순환).
+V4 Development 지도는 방문한 방만 표시하며 게임은 계속됩니다. `Play-V4.cmd -NoMap`으로 끕니다.
 패드: 스틱 이동, A 점프·확인, X 공격, B 대시·취소, Menu Pause.
 
 ## 폴더와 개발

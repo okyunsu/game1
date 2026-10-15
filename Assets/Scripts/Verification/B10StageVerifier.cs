@@ -16,6 +16,7 @@ public sealed class B10StageVerifier:N5Runner
    if(!saved.endingReached){Check(RoomSession.Instance.RequestTransition("C06",V4SceneMap.Path("C06"),"C04-C06"),"fixture arena transition");yield return Ready();var boss=FindFirstObjectByType<BossEncounter>();Check(boss!=null,"boss arena loaded");Row("MEASURE BossTuning="+boss.tuning.name+" extendedPatterns="+boss.tuning.extendedPatterns);yield return new WaitForSeconds(10);}
    else Check(RoomSession.Instance.CurrentRoomId=="A01"&&ProgressSave.EndingReached&&ProgressSave.BossDefeated,"post-ending A01 flags restored");
   }
+  if(!N5Args.Has("-verify-b11-launch"))yield return new WaitForSecondsRealtime(10);
  }
  void Row(string value)=>lines.Add(value);
 }

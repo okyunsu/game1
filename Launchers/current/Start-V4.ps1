@@ -1,4 +1,4 @@
-param([ValidateSet('NewGame','Mechanics','AfterDash','AfterWall','BeforeBoss','AfterEnding')][string]$Mode='NewGame',[ValidateSet('base','b2','b2fast','b2slow','b3')][string]$Boss='',[switch]$AV1,[switch]$PhaseTwo,[switch]$Smoke,[string]$Evidence='')
+param([ValidateSet('NewGame','Mechanics','AfterDash','AfterWall','BeforeBoss','AfterEnding')][string]$Mode='NewGame',[ValidateSet('base','b2','b2fast','b2slow','b3')][string]$Boss='',[switch]$AV1,[switch]$NoMap,[switch]$PhaseTwo,[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
 $taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $taskBuild=Join-Path $taskRoot 'Builds/B12-delivery'
@@ -13,6 +13,7 @@ $taskArgs=@('-v4','-save-path',('"'+$taskSave+'"'),'-screen-width','1280','-scre
 if($Boss){$taskArgs+='-boss='+$Boss}
 if($PhaseTwo){if($Boss -ne 'b3'){throw 'PhaseTwo launcher requires B3'};$taskArgs+=@('-boss-start-hp','14')}
 if($AV1){$taskArgs+='-av1'}
+if($NoMap){$taskArgs+='-no-map';Write-Output 'MAP off (-no-map)'}
 if($Mode -eq 'BeforeBoss'){$taskArgs+='-boss-fixture'}
 if($Mode -eq 'NewGame'){$taskArgs+='-v4-new-game'}elseif($Mode -eq 'Mechanics'){$taskArgs+='-v4-mechanics'}else{
  $taskSnapshot=Join-Path $PSScriptRoot ('saves/'+$Mode+'.json')

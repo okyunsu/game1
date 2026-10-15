@@ -4,11 +4,31 @@
 
 ## 1. 현재 상태
 
-- Sprint3 / Batch14 종료(Batch13은 Track A까지). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
+- Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
+- Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
 - Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
 - 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
 
-## 1-1. Current Tasks (Batch12)
+## 1-1. Current Tasks (Batch15)
+
+| Task | 상태 | 결과 |
+|---|---|---|
+| B15-T1 | DONE | 지도 TextAsset 21방·32문, 좌표·재생성·v6 검증, Quiet13/13 |
+| B15-T2 | REVIEW | 방문방·위치·M3상태, 실제 exe·시간·입력맵 유지, Quiet13/13 |
+| B15-T3 | REVIEW | 문 약자·종류·미방문 ?, map-all/no-map/비V4 검사, Quiet13/13 |
+| B15-T4 | DONE | 실제 exe 10초·M3회 Error0, 촬영 KNOWN-LIMIT, Quiet13/13 |
+| B15-T5 | REVIEW | 전달 Development·NoMap·3런처 10초 Error0, Quiet13/13 |
+| B15-T6 | DONE | 결정 기록·지도 사용법·인계 갱신, Quiet13/13 |
+| B15-T7 | DONE | 최종12런처+NoMap·지도4모드Error0, Release 표시/검증6타입0, Quiet13/13·기본13/13 |
+| B15-BL1 | DONE | 생성 인자화·방 목록 TextAsset화, 21씬 SHA동일·임시 요소수 동일, V4 저장/Continue·Quiet13/13 |
+| B15-BL2 | DONE | V4 방·문·체류·지도 사용 로그, 기존9열 불변·실제 입력3방2문·Quiet13/13 |
+| B15-BL3 | DONE | 방 기준선21방·37756u²·판정 없음·원본 불변·Quiet13/13 |
+| B15-BL4 | REVIEW | 보유 능력 문 열림색·CP, 저장/Continue·no-map/비V4·Quiet13/13 |
+| B15-BL5a | DONE | 추적 회피60/30/120 피해0·반격·Pause·사망복귀·10회Error0·Quiet13/13 |
+| B15-BL5b | DONE | 2페이즈30/120 전환1·추적4·도약3·회복측정·Error0·Quiet13/13 |
+| B15-BL5c | DONE | 8패턴60fps3바퀴·바퀴별 탄/낙하물/파동0·Error0·Quiet13/13 |
+
+## 1-2. Current Tasks (Batch12)
 
 | Task | 상태 | 결과 |
 |---|---|---|
@@ -33,7 +53,8 @@
 
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
-| D-B3 | B3(8패턴 + HP50% 2페이즈)를 기본 보스로 채택, 패턴 전부 켬. 기존4패턴 회복 0.8s, 새 패턴 회복 1.2/1.5s 유지. 예고 보임·회피 가능·2페이즈 확인, 사운드는 AV1로 당분간 충분. Boss-B3-rec10(회복1.0 비교) 취소. B2-fast는 [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd)로 계속 선택 | 2026-10-14 | 사용자 직접 플레이 후 결정; Batch14 T1 적용 진행 속도가 나쁘지 않았고, 마지막 보스라 난이도가 더 높아도 된다고 판단. |
+| D-V5-PILOT | 방 구조 V5 재설계의 첫 파일럿으로 층 A(A01~A06)만 새 방 문법(방 안 열린 두 갈래·겹침·보이지만 못 가는 곳, 방 크기 축소, 능력 없이 도는 고리 2개)으로 만든다. A06은 더블 점프 전용(A02 벽 점프 문과 B06 구멍 진입은 닫음). 플레이한 뒤 수정한다. 설계 문서와 방 데이터는 Claude 쪽에서 작성한다. | 2026-10-15 | 사용자 결정. V4는 선형이고 방이 크며 비어 있다고 판단함(부서지는 벽 21방 중 1곳, 허브·엔딩 방을 뺀 저밀도 방 존재). 21방 전체 제작 전에 방 문법을 6방으로 먼저 확인한다. |
+| D-B3 | B3(8패턴 + HP50% 2페이즈)를 기본 보스로 채택, 패턴 전부 켬. 기존4패턴 회복 0.8s, 새 패턴 회복 1.2/1.5s 유지. 예고 보임·회피 가능·2페이즈 확인, 사운드는 AV1로 당분간 충분. Boss-B3-rec10(회복1.0 비교) 취소. B2-fast는 [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd)로 계속 선택 | 2026-10-14 | 사용자 직접 플레이 후 결정. 진행 속도가 나쁘지 않았고, 마지막 보스라 난이도가 더 높아도 된다고 판단했다. (적용: Batch14 T1) |
 | D-COMBAT/AV2 | AV2(전투 임팩트·사운드 강화 후보) DEFERRED | 2026-10-14 | D-B3 플레이에서 사운드는 AV1로 당분간 충분하다고 판단해 AV2를 보류. 10/12 D-COMBAT(임팩트·사운드 구현 후 재판단)과 이어진다. (사용자 결정) |
 | D-BOSS-PICK | B2-fast 채택(10/13). 패턴이 보이고 회피·반격 가능, 신규 패턴은 B3 후보에서 추가 | 2026-10-13 | 패턴이 보이고 회피·반격이 가능했다. 패턴 수 부족은 B3 후보로 보완하기로 했다. (Batch12 사용자 결정) |
 | D-MOVE | 수락. 현재 기본값 채택(점프 수치, 벽 점프 기본 프리셋1, B10 장치 기본값, V2 가이드 문구 현행). B06 벽 점프·가이드 REVIEW → DONE | 2026-10-12 | 사용자 직접 플레이에서 이동이 자연스러움 |
@@ -67,7 +88,7 @@
 
 | ID | 증상 | 근거 |
 |---|---|---|
-| B12-CHASE-VERIFY | 추적 연타의 뒤로 대시 fixture가 기존 낮은 지형에 막힘(피해1). T3 PARTIAL; 회피·해당 패턴 Pause/복귀/10회/fps 일부 미검증. 엔진 Error0·컴파일/회귀 정상, 후보 구현 유지 | [B12 실제 결과](Validation/B12-summary.md) |
+| B12-CHASE-VERIFY | CLOSED(B15-BL5a). 추적 연타의 뒤로 대시 fixture가 기존 낮은 지형에 막힘(피해1). T3 PARTIAL; 회피·해당 패턴 Pause/복귀/10회/fps 일부 미검증. 엔진 Error0·컴파일/회귀 정상, 후보 구현 유지 | [B12 실제 결과](Validation/B12-summary.md) |
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
@@ -130,23 +151,31 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 ## 7. 다음 배치 후보
 
-- D-B3 결정(10/14)으로 기본 보스는 B3. T3 추적 회피 검증 보완은 남아 있다.
+- D-B3 결정(10/14)으로 기본 보스는 B3. 추적 회피·2페이즈 fps·3바퀴 보강 검증은 B15-BL5a/b/c에서 완료했다. 다음 콘텐츠 후보는 D-V5-PILOT 층 A 설계·데이터 수신 후 파일럿이다.
 - 기존 D-NEXT 전체 자연 플레이 결과와 B07 A02/C03·V2 W22 검토는 유지한다. 자동 경로 탐색이나 Sprint Gate 통과는 이번 배치에 포함하지 않았다.
 
 ## 8. Approved Backlog
 
 이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
 
-## 9. Latest Handoff — Batch14
+## 9. Latest Handoff — Batch15
 
 ### 직접 플레이 확인
 
-3번 기존 순서 유지. 추가: [Play-V4-BeforeBoss](Launchers/current/Play-V4-BeforeBoss.cmd) 10분 — 인자 없는 기본 보스가 B3인지, 8패턴·2페이즈·처치 후 Slam→S01 엔딩. [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd) 2분 — 이전 보스 선택 가능 여부.
+3절의 기존 대기 순서 유지. 이어 기존 Batch14 추가 확인: [Play-V4-BeforeBoss](Launchers/current/Play-V4-BeforeBoss.cmd) 10분(B3 기본·8패턴·2페이즈·처치 후 Slam→S01), [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd) 2분(이전 보스 선택).
+
+그 다음 **지도 약10분**: [Play-V4](Launchers/current/Play-V4.cmd) 새 게임 → M 키 작게/크게/끔 3상태 → 방 전환 시 지도 변화 → 큰 지도가 화면을 얼마나 가리는지 → `Play-V4.cmd -NoMap`. 기존 AfterDash 확인에서 D 열림색과 CP도 함께 본다. 지도 수락은 T2/T3/T5/BL4 REVIEW → DONE 사용자 판단이다.
 
 ### Task별 결과
 
-[Batch14 요약](Validation/B14-summary.md): T0 Codex 금지 규칙 DONE(저장소 밖), T1 D-B3 적용 DONE, T2 검증 코드 Release 분리 DONE(Release 검증 타입 0/73), T3 회귀 탐지 측정 DONE(잡음7/못 잡음16, 테스트 추가 없음), T4 마무리. 이전 Batch12 인계는 [B12 요약](Validation/B12-summary.md).
+- 인계 커밋·태그: `B15`. [14 Task별 상태·사전 커밋·주요 파일·실제 검증·문제](Validation/B15-summary.md).
+- DONE: T1, T4, T6, T7, BL1, BL2, BL3, BL5a/b/c. REVIEW: T2, T3, T5, BL4(지도 시인성·사용감).
+- 주요 파일: [지도](Assets/Scripts/V4WorldMap.cs), [레이아웃 생성](Assets/Editor/MapLayoutBuilder.cs), [Scene 생성](Assets/Editor/B09Authoring.cs), [방 목록](Assets/Scripts/V4SceneMap.cs), [로그](Assets/Scripts/PlaytestLogger.cs), [방 측정](Tools/Check-RoomRules.py).
+- 새 플레이 범위: 방문한 방·문·위치 지도, 능력 문 열림색·CP, M3상태·NoMap. V5 대비 생성 인자화·방 목록 데이터화, 방/지도 사용 기록, [21방 기준선](Validation/B15-room-rules-v4-baseline.md).
+- 실제 검증: 모든 Task Quiet13/13, 종료 Quiet13/13·기본13/13. 최종12런처+NoMap·지도4모드 Error0. Release 표시/검증6타입0. B3 추적60/30/120 회피0·반격/Pause/복귀/반복, 2페이즈30/120, 8패턴3바퀴 위험물0. B12-CHASE-VERIFY CLOSED(4절 상태만 추가).
+- 제한: 화면 촬영1회 시도에서 ScreenCapture 모듈 참조 불가, 재시도 없이 KNOWN-LIMIT. 시각 QA·감각 수락은 위 직접 플레이에 남김. 원본 실패/보정/측정은 요약에 기록. 새 BLOCKED·결정 대기0.
+- 빌드: 기존 Builds/B12-delivery 경로 갱신, 직전 B13-delivery 유지. 기존 사용자 저장 슬롯 보존, 자동 검사는 별도 슬롯/Validation/_raw 사용. push 없음.
 
 ### 다음 Batch 후보
 
-D-NEXT 전체 플레이 결과 반영; B14 T3 제안대로 Asset 값 기준 이동 측정 검사 추가 여부; T3 추적 회피 검증 보완.
+D-V5-PILOT: Claude가 작성할 층 A(A01~A06) 설계·좌표 데이터 수신 후 파일럿. 이번에는 V5 방 데이터·Scene 제작과 Sprint Gate를 진행하지 않았다. D-NEXT 전체 자연 플레이·기존 A02/C03·V2 W22 검토는 유지. Batch Backlog와 Approved Backlog 소진으로 종료한다.
