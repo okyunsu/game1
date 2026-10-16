@@ -10,10 +10,10 @@ V5 플레이 불가(진행 중). Base `74732cae4b93a74f113dc283a1a2946d37f1a777`
 | T1a | verification | DONE | 기존 CLI 프로브에서 Z01 stub 대상 조회 예외 재현, 제품 변경0, SHA변경0, [원문](B16b-probe.md) |
 | T1b | feature | DONE | 컴파일 오류0·V4재생성 SHA동일·V5임시6방 성공. Quiet13/13, [결과](B16b-generation.md) |
 | T1c | feature | DONE | [patrol13/13·끝점26](B16b-patrol.md), V4 SHA동일·Quiet13/13 |
-| T2 | feature | PARTIAL | V5 선택·출력·fixture·요소 검사 코드 컴파일0, 입력62cc8c1 수신, [Scene6방·요소 일치](B16b-scenes.md). 수정본 Quiet13/13, 실제exe T3대기 |
-| T3 | verification | DOING | 검증기 컴파일0, Scene·exe 생성 뒤 실행 예정 |
+| T2 | feature | REVIEW | V5 선택·출력·fixture·요소 검사 코드 컴파일0, 입력62cc8c1 수신, [Scene6방·요소 일치](B16b-scenes.md). 수정본 Quiet13/13, T3 실제exe14문·저장PASS, 직접플레이대기 |
+| T3 | verification | DONE | [실제exe PASS·14문·Error0](B16b-runtime.md), Quiet13/13 |
 | T4 | verification | DOING | 도착점/포고/위아래 아이템 계산·가짜 위반 검사 통과, 수정본 수신 뒤 최종 보고 |
-| T5 | feature | TODO | Development·Release 제외·3런처 |
+| T5 | feature | DOING | Development빌드0오류·0경고, 15런처+V5 NoMap3 시작 검사 진행 |
 | T6 | doc | TODO | 실제 상태 인계 |
 | T7 | verification | TODO | 마지막 회귀·카드·모든 런처 |
 | BL1 | feature | TODO | stub×·oneway 화살표 지도 |

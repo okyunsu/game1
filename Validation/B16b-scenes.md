@@ -1,6 +1,6 @@
 # B16b T2 — 수정본 기준 V5 Scene 6개
 
-상태: T2 PARTIAL(실제 exe 검증 T3 대기). 요소·보호 SHA 검사·수정본 Quiet REGRESSION 13/13 통과. 입력 커밋 `62cc8c1`.
+상태: T2 REVIEW(직접 플레이 판단 대기). 요소·보호 SHA 검사·수정본 Quiet REGRESSION 13/13 통과. 입력 커밋 `62cc8c1`.
 
 수정 전 영구 V5 Scene은 없었다. 이전 임시 출력은 이미 삭제했고, 수정 전 측정은 `_raw/B16b/T4-before-input-update.md`, `T4-after-seal-model.md`, T1b/T1c 과거 로그로만 보존하며 현재 설계의 합격 근거에서 제외한다. 새 데이터로 임시6방·patrol·V4 재생성 SHA를 다시 검사한 뒤 Assets/Scenes/V5에 처음 저장했다.
 
@@ -24,3 +24,5 @@ fixture는 기존 저장 필드를 사용한다. A03에는 Entry와 같은 위�
 기존 V3 안내 규칙은 바꾸지 않았다. 대시 이후 안내 목표가 층 A 밖의 닫힌 문을 가리킬 수 있다. 조정 위치는 Scene 원본의 지형/marks 산출 오브젝트와 Patrol left/right Transform이다. Play 중 변경은 기록한 뒤 Stop 후 Scene에 반영·저장하고 재빌드한다.
 
 원본: `_raw/B16b/T2-updated-generation.log`, `T1c-updated-generation.txt`, `T2-scenes-updated.log`, `T2-counts.md`.
+
+T3 실제 exe 검증에서 14문 전환·스폰·능력 차단·아이템 획득·저장/Continue가 통과했다. Scene 기술 검증은 완료했고 방 문법·손맛 판단을 기다린다.
