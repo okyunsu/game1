@@ -9,8 +9,8 @@ V5 플레이 불가(진행 중). Base `74732cae4b93a74f113dc283a1a2946d37f1a777`
 |---|---|---|---|
 | T1a | verification | DONE | 기존 CLI 프로브에서 Z01 stub 대상 조회 예외 재현, 제품 변경0, SHA변경0, [원문](B16b-probe.md) |
 | T1b | feature | DONE | 컴파일 오류0·V4재생성 SHA동일·V5임시6방 성공. Quiet13/13, [결과](B16b-generation.md) |
-| T1c | feature | DOING | Scene 순찰 끝점 연결 |
-| T2 | feature | TODO | 6 Scene·V5 모드·아이템 수 |
+| T1c | feature | DONE | [patrol13/13·끝점26](B16b-patrol.md), V4 SHA동일·Quiet13/13 |
+| T2 | feature | DOING | 6 Scene·V5 모드·아이템 수 |
 | T3 | verification | TODO | 실제 exe 문·도착·능력 검사 |
 | T4 | verification | TODO | 포고/도착 시작점/위아래 아이템 정적 검사 |
 | T5 | feature | TODO | Development·Release 제외·3런처 |

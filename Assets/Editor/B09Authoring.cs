@@ -35,6 +35,17 @@ public static class B09Authoring
   boundary.points=new[]{Vector2.zero,new Vector2(w,0),new Vector2(w,h),new Vector2(0,h)};var v4=room.gameObject.AddComponent<V4Room>();v4.tuning=tuning;v4.dimensions=new Vector2(w,h);
  }
  static RoomSpawn Spawn(string id,float x,float y)=>S3Authoring.Spawn(room,id,new Vector2(x,y));
+ static void Patrol(GameObject go,Dictionary<string,object> spec)
+ {
+  var range=J.A(spec,"patrol");if(range.Count!=2)return;
+  if(go.GetComponent<EnemyReset>().prefab.GetComponent<EnemyPatrol>()==null){rows.Add("PATROL fallback "+room.roomId+" x="+J.F(spec,"x"));return;}
+  var binding=go.AddComponent<V5PatrolBinding>();
+  var left=new GameObject("Patrol left").transform;left.SetParent(go.transform);left.position=new Vector2(J.F(range[0]),go.transform.position.y);
+  var right=new GameObject("Patrol right").transform;right.SetParent(go.transform);right.position=new Vector2(J.F(range[1]),go.transform.position.y);
+  binding.leftPoint=left;binding.rightPoint=right;
+  rows.Add("PATROL "+room.roomId+" x="+J.F(spec,"x")+" endpoints="+J.F(range[0])+","+J.F(range[1]));
+  if(J.F(spec,"x")<J.F(range[0])||J.F(spec,"x")>J.F(range[1]))rows.Add("WARN PATROL initial spawn outside endpoints "+room.roomId+" x="+J.F(spec,"x"));
+ }
  static void Mark(Dictionary<string,object> mark,int index)
  {
   float x=J.F(mark,"x"),y=J.F(mark,"y");string text=J.S(mark,"t");string pickup=text.Contains("대시 사당")?"Dash":text.Contains("벽 점프 사당")?"Wall":text.Contains("더블 점프 사당")?"Double":"";
@@ -71,7 +82,7 @@ public static class B09Authoring
    foreach(var node in J.A(d,"pogo")){var p=J.D(node);bool spike=J.S(p,"kind")=="spike";var go=Rect("pogo:"+J.S(p,"id"),J.F(p,"x")-.5f,J.F(p,"y"),1,.5f,spike?Color.red:Color.yellow,true);go.AddComponent<PogoTarget>();if(spike)go.AddComponent<DamageBlock>();}
    foreach(var node in J.A(d,"steam")){var p=J.D(node);Rect("steam:"+J.S(p,"id"),J.F(p,"x0"),J.F(p,"y0"),J.F(p,"x1")-J.F(p,"x0"),J.F(p,"top")-J.F(p,"y0"),Color.white,true).AddComponent<SteamVent>().tuning=tuning;}
    foreach(var node in J.A(d,"lifts")){var p=J.D(node);float x0=J.F(p,"x0"),x1=J.F(p,"x1"),lo=J.F(p,"lo"),hi=J.F(p,"hi");var lift=Rect("lift:"+J.S(p,"id"),x0,hi-.3f,x1-x0,.3f,Color.yellow).AddComponent<LeverLift>();lift.low=lo;lift.high=hi;lift.tuning=tuning;lift.liftId="V4-"+pair.Key+"-"+J.S(p,"id");var lever=J.A(p,"lever");foreach(bool upper in new[]{true,false}){var go=Rect("Lift lever "+upper,J.F(lever[0])-.3f,(upper?J.F(lever[1]):lo)+.4f,.6f,1,Color.yellow,true);var call=go.AddComponent<LiftLever>();call.lift=lift;call.upper=upper;}}
-   foreach(var node in J.A(d,"enemies")){var p=J.D(node);string type=J.S(p,"type","E4");float x=J.F(p,"x"),y=J.F(p,"y");if(type.StartsWith("BOSS"))continue;if(type.StartsWith("E4")||p.ContainsKey("id")){Rect("enemy:"+J.S(p,"id"),x-.5f,y,1,1,Color.green,true).AddComponent<E4Hover>().tuning=tuning;}else{string prefabType=type.StartsWith("E3")?"E3":type.StartsWith("E2")?"E2":"E1";var go=S3Authoring.Enemy(prefabType,new Vector2(x,y+.51f));go.transform.SetParent(room.transform);if(prefabType=="E3"){var reset=go.GetComponent<EnemyReset>();reset.overrideTurretDirection=true;reset.turretDirection=type.Contains("→")?1:-1;}}}
+   foreach(var node in J.A(d,"enemies")){var p=J.D(node);string type=J.S(p,"type","E4");float x=J.F(p,"x"),y=J.F(p,"y");if(type.StartsWith("BOSS"))continue;if(type.StartsWith("E4")||p.ContainsKey("id")){Rect("enemy:"+J.S(p,"id"),x-.5f,y,1,1,Color.green,true).AddComponent<E4Hover>().tuning=tuning;}else{string prefabType=type.StartsWith("E3")?"E3":type.StartsWith("E2")?"E2":"E1";var go=S3Authoring.Enemy(prefabType,new Vector2(x,y+.51f));go.transform.SetParent(room.transform);if(Pilot)Patrol(go,p);if(prefabType=="E3"){var reset=go.GetComponent<EnemyReset>();reset.overrideTurretDirection=true;reset.turretDirection=type.Contains("→")?1:-1;}}}
    var spawnList=J.A(d,"spawns");foreach(var node in spawnList){var p=J.D(node);Spawn(J.S(p,"id"),J.F(p,"x"),J.F(p,"y"));}var first=J.D(spawnList.First());var start=spawnList.Select(J.D).FirstOrDefault(s=>J.S(s,"id")=="start")??first;Spawn("Entry",J.F(start,"x"),J.F(start,"y"));if(pair.Key=="A01")Spawn("CP-A01",J.F(start,"x"),J.F(start,"y"));
    foreach(var node in J.A(d,"doors"))
    {
