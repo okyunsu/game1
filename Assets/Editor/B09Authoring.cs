@@ -12,7 +12,7 @@ public static class B09Authoring
 {
  static string designPath="Design/rooms_v2.json",outputFolder="Assets/Scenes/V4";
  static bool Pilot=>Path.GetFileName(designPath).StartsWith("rooms_v5",StringComparison.Ordinal);
- static string OutputPath(string id)=>outputFolder+"/"+id+"_V4.unity";
+ static string OutputPath(string id)=>Path.Combine(outputFolder,id+(Pilot?"_V5.unity":"_V4.unity")).Replace(Path.DirectorySeparatorChar,'/');
  static RoomDefinition room;static MechanicsTuning tuning;static readonly List<string> rows=new();static readonly List<GuideGraph.Edge> edges=new();
  static Sprite sprite=>AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Level/Landing.prefab").GetComponent<SpriteRenderer>().sprite;
  static void Init(){Directory.CreateDirectory(outputFolder);Directory.CreateDirectory("Assets/Prefabs/V4");Directory.CreateDirectory("Validation/_raw/B09");AssetDatabase.Refresh();const string path="Assets/ScriptableObjects/MechanicsTuning.asset";tuning=AssetDatabase.LoadAssetAtPath<MechanicsTuning>(path);if(tuning==null){tuning=ScriptableObject.CreateInstance<MechanicsTuning>();AssetDatabase.CreateAsset(tuning,path);}PlayerVariant(); }
@@ -31,7 +31,7 @@ public static class B09Authoring
   EditorSceneManager.OpenScene("Assets/Scenes/A01.unity");room=Object.FindFirstObjectByType<RoomDefinition>();var rig=Object.FindFirstObjectByType<RoomCameraRig>();var boundary=rig.boundary;
   foreach(var child in room.transform.Cast<Transform>().ToArray())if(child!=boundary.transform&&!rig.transform.IsChildOf(child))Object.DestroyImmediate(child.gameObject);
   foreach(var c in Object.FindObjectsByType<Collider2D>(FindObjectsSortMode.None).ToArray())if(c!=boundary&&!c.transform.IsChildOf(room.transform))Object.DestroyImmediate(c.gameObject);
-  room.roomId=id;room.name=id+" V4";room.initialSpawnId="Entry";room.playerPrefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/V4/Player.prefab");room.GetComponent<RoomLabel>().notice="V4 "+id;
+  room.roomId=id;room.name=id+(Pilot?" V5":" V4");room.initialSpawnId="Entry";room.playerPrefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/V4/Player.prefab");room.GetComponent<RoomLabel>().notice=(Pilot?"V5 ":"V4 ")+id;
   boundary.points=new[]{Vector2.zero,new Vector2(w,0),new Vector2(w,h),new Vector2(0,h)};var v4=room.gameObject.AddComponent<V4Room>();v4.tuning=tuning;v4.dimensions=new Vector2(w,h);
  }
  static RoomSpawn Spawn(string id,float x,float y)=>S3Authoring.Spawn(room,id,new Vector2(x,y));
@@ -51,7 +51,7 @@ public static class B09Authoring
   float x=J.F(mark,"x"),y=J.F(mark,"y");string text=J.S(mark,"t");string pickup=text.Contains("대시 사당")?"Dash":text.Contains("벽 점프 사당")?"Wall":text.Contains("더블 점프 사당")?"Double":"";
   if(pickup!=""){var go=Rect(pickup+" pickup",x-.4f,y-.4f,.8f,.8f,Color.green,true);if(pickup=="Dash")go.AddComponent<DashPickup>();else if(pickup=="Wall")go.AddComponent<WallJumpPickup>();else go.AddComponent<DoubleJumpPickup>();return;}
   if(text.Contains("CP")){string id="CP-"+room.roomId;var cp=Rect(id,x-.4f,y-.8f,.8f,1.6f,Color.yellow,true).AddComponent<Checkpoint>();cp.checkpointId=id;Physics2D.SyncTransforms();var surface=Physics2D.Raycast(new Vector2(x,y),Vector2.down,100,1<<6);cp.spawn=Spawn(id,x,surface.collider==null?y:surface.point.y+.01f);return;}
-  if(text.Contains("조각")){var go=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DiscoveryReward.prefab"));go.transform.SetParent(room.transform);go.transform.position=new Vector2(x,y);go.GetComponent<DiscoveryReward>().candidateId="V4-"+room.roomId+"-"+index;return;}
+  if(text.Contains("조각")){var go=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DiscoveryReward.prefab"));go.transform.SetParent(room.transform);go.transform.position=new Vector2(x,y);go.GetComponent<DiscoveryReward>().candidateId=(Pilot?"V5-":"V4-")+room.roomId+"-"+index;return;}
   if(text.Contains("엔딩 트리거")){Rect("Summit ending",x-1,y-1,2,2,Color.white,true).AddComponent<V3SummitEnding>();return;}
   var sign=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/B06/SignPost.prefab"));sign.transform.SetParent(room.transform);sign.transform.position=new Vector2(x,y);sign.GetComponent<SignPost>().message=text;
   rows.Add("MARK "+room.roomId+" "+index+" sign-only: "+text);
@@ -73,8 +73,8 @@ public static class B09Authoring
     var list=J.A(d,kind);var made=new List<GameObject>();for(int i=0;i<list.Count;i++)
     {
      var go=Rect(kind+i,(List<object>)list[i],kind=="climb"?Color.cyan:kind=="seal"?new Color(.65f,.4f,.9f):kind=="hazard"?Color.red:kind=="pad"?Color.magenta:new Color(.4f,.5f,.6f),kind=="hazard");made.Add(go);
-     if(kind=="climb")go.AddComponent<ClimbableWall>();if(kind=="seal")go.AddComponent<SealFloor>().sealId="V4-"+pair.Key+"-seal"+i;
-     if(kind=="cover"||kind=="breakable"){var wall=go.AddComponent<BreakableWall>();wall.wallId="V4-"+pair.Key+"-"+kind+i;wall.hitsToBreak=1;}
+     if(kind=="climb")go.AddComponent<ClimbableWall>();if(kind=="seal")go.AddComponent<SealFloor>().sealId=(Pilot?"V5-":"V4-")+pair.Key+"-seal"+i;
+     if(kind=="cover"||kind=="breakable"){var wall=go.AddComponent<BreakableWall>();wall.wallId=(Pilot?"V5-":"V4-")+pair.Key+"-"+kind+i;wall.hitsToBreak=1;}
      if(kind=="hazard")go.AddComponent<DamageBlock>();if(kind=="pad")go.AddComponent<SlamPad>().tuning=tuning;
     }blocks[kind]=made.ToArray();rows.Add("COUNT "+pair.Key+" "+kind+" json="+list.Count+" scene="+made.Count);
    }
@@ -83,7 +83,7 @@ public static class B09Authoring
    foreach(var node in J.A(d,"steam")){var p=J.D(node);Rect("steam:"+J.S(p,"id"),J.F(p,"x0"),J.F(p,"y0"),J.F(p,"x1")-J.F(p,"x0"),J.F(p,"top")-J.F(p,"y0"),Color.white,true).AddComponent<SteamVent>().tuning=tuning;}
    foreach(var node in J.A(d,"lifts")){var p=J.D(node);float x0=J.F(p,"x0"),x1=J.F(p,"x1"),lo=J.F(p,"lo"),hi=J.F(p,"hi");var lift=Rect("lift:"+J.S(p,"id"),x0,hi-.3f,x1-x0,.3f,Color.yellow).AddComponent<LeverLift>();lift.low=lo;lift.high=hi;lift.tuning=tuning;lift.liftId="V4-"+pair.Key+"-"+J.S(p,"id");var lever=J.A(p,"lever");foreach(bool upper in new[]{true,false}){var go=Rect("Lift lever "+upper,J.F(lever[0])-.3f,(upper?J.F(lever[1]):lo)+.4f,.6f,1,Color.yellow,true);var call=go.AddComponent<LiftLever>();call.lift=lift;call.upper=upper;}}
    foreach(var node in J.A(d,"enemies")){var p=J.D(node);string type=J.S(p,"type","E4");float x=J.F(p,"x"),y=J.F(p,"y");if(type.StartsWith("BOSS"))continue;if(type.StartsWith("E4")||p.ContainsKey("id")){Rect("enemy:"+J.S(p,"id"),x-.5f,y,1,1,Color.green,true).AddComponent<E4Hover>().tuning=tuning;}else{string prefabType=type.StartsWith("E3")?"E3":type.StartsWith("E2")?"E2":"E1";var go=S3Authoring.Enemy(prefabType,new Vector2(x,y+.51f));go.transform.SetParent(room.transform);if(Pilot)Patrol(go,p);if(prefabType=="E3"){var reset=go.GetComponent<EnemyReset>();reset.overrideTurretDirection=true;reset.turretDirection=type.Contains("→")?1:-1;}}}
-   var spawnList=J.A(d,"spawns");foreach(var node in spawnList){var p=J.D(node);Spawn(J.S(p,"id"),J.F(p,"x"),J.F(p,"y"));}var first=J.D(spawnList.First());var start=spawnList.Select(J.D).FirstOrDefault(s=>J.S(s,"id")=="start")??first;Spawn("Entry",J.F(start,"x"),J.F(start,"y"));if(pair.Key=="A01")Spawn("CP-A01",J.F(start,"x"),J.F(start,"y"));
+   var spawnList=J.A(d,"spawns");foreach(var node in spawnList){var p=J.D(node);Spawn(J.S(p,"id"),J.F(p,"x"),J.F(p,"y"));}var first=J.D(spawnList.First());var start=spawnList.Select(J.D).FirstOrDefault(s=>J.S(s,"id")=="start")??first;Spawn("Entry",J.F(start,"x"),J.F(start,"y"));if(pair.Key=="A01"||(Pilot&&pair.Key!="A03"))Spawn("CP-A01",J.F(start,"x"),J.F(start,"y"));if(Pilot&&pair.Key=="A03"&&!J.A(d,"marks").Select(J.D).Any(m=>J.S(m,"t").Contains("CP")))Spawn("CP-A03",J.F(start,"x"),J.F(start,"y"));
    foreach(var node in J.A(d,"doors"))
    {
     var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=OutputPath(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});

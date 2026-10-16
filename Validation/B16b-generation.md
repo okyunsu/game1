@@ -13,3 +13,5 @@ PASS six temporary rooms; default SHA equality
 ```
 
 최종: V4 Scene21개·Resources 기존 전체 파일 재생성 전후 SHA256 동일(실제 바이트), V5 데이터 임시6방 생성 오류0. 임시 폴더 삭제. 원본: `_raw/B16b/T1b-generation.txt`(최초), `T1b-r1-generation.txt`(최종), `T1b-changed/`(복원 전 산출물), 컴파일별 로그.
+
+수정본 수신 후 재검증: 입력62cc8c1 기준 T1c-updated-generation.txt에서 V4 SHA동일·V5임시6방 생성 성공. 이전 데이터 측정은 현재 Scene 합격 근거에서 제외하고 원본으로만 보존한다. [새 Scene 결과](B16b-scenes.md).

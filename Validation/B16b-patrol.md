@@ -18,3 +18,5 @@ WARN PATROL initial spawn outside endpoints A04 x=13
 ```
 
 위 경고는 데이터 x=13, patrol=[4,12]에 따른다. 데이터를 고치지 않았다. 원본: `_raw/B16b/T1c-generation.txt`, 해당 시각 generation 원본 로그.
+
+수정본 재검증: 입력62cc8c1로 T1c-updated-generation.txt를 새로 실행, 동일13/13 연결·끝점26·V4 SHA동일. 과거 데이터 측정과 구분하며 최종 Scene 인수 근거는 새 결과를 사용한다.

@@ -33,7 +33,10 @@ public sealed class MapLayoutBuilder:IProcessSceneWithReport
  {
   if(report==null)return;
   var go=new GameObject("World map layout data");SceneManager.MoveGameObjectToScene(go,scene);
-  go.AddComponent<WorldMapSource>().layouts=AssetDatabase.FindAssets("t:TextAsset",new[]{"Assets/Maps"}).Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<TextAsset>).ToArray();
+  bool development=(report.summary.options&BuildOptions.Development)!=0;
+  var layouts=AssetDatabase.FindAssets("t:TextAsset",new[]{"Assets/Maps"}).Select(AssetDatabase.GUIDToAssetPath).Where(p=>development||!Path.GetFileName(p).StartsWith("world_v5",StringComparison.Ordinal)).Select(AssetDatabase.LoadAssetAtPath<TextAsset>).ToArray();
+  go.AddComponent<WorldMapSource>().layouts=layouts;
+  Debug.Log("MAP build development="+development+" layouts="+string.Join(",",layouts.Select(a=>a.name)));
  }
  [InitializeOnLoadMethod]static void EditorLayout(){EditorApplication.playModeStateChanged+=s=>{if(s==PlayModeStateChange.ExitingEditMode&&V4SceneMap.Enabled)WorldMapLayout.Load(AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Maps/"+WorldMapLayout.Name+".json"));};}
 }
