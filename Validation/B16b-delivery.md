@@ -1,6 +1,6 @@
 # B16b T5 — V5 전달
 
-상태: 기술 검증 PASS, Task Quiet 진행 중. 사용자 플레이 수락은 REVIEW.
+상태: 기술 검증 PASS, Task Quiet13/13. 사용자 플레이 수락은 REVIEW.
 
 `Builds/B12-delivery/Afterglow.exe`를 Development로 갱신했다(오류0·경고0). 이전 `Builds/B13-delivery`는 보존했다. V4 런처 12개의 내용·경로·저장 슬롯은 바꾸지 않았다.
 
@@ -16,5 +16,5 @@
 
 Release 빌드 Succeeded errors=0 warnings=0. 빌드 Scene 목록에 V5 없음, 빌드 지도 로그 `MAP build development=False layouts=world_v7`. Assembly-CSharp.dll에서 V4WorldMap/V4MiniMap/V5Launch/V5PatrolBinding/B16V5Verifier/N5Runner 6타입 모두 present=False. 원본 `_raw/B16b/T5-release.txt/log`. 검증용 Release는 절대 경로가 Builds 내부인지 확인한 뒤 삭제했고 최신B12·직전B13만 남겼다.
 
-Task Quiet는 완료 후 추가한다.
+
 최종 Task Quiet: B16b-T5 REGRESSION 13/13. 기술 검증 완료, 직접 플레이 수락 대기 REVIEW.

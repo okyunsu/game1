@@ -4,11 +4,29 @@
 
 ## 1. 현재 상태
 
-- Sprint3 / Batch16 종료: T1 BLOCKED(컴파일 재실패 후 원복), V5 Scene·빌드 미생성. 독립 데이터 검사·비교 수행. **V5 REVIEW 아님**. [B16 결과](Validation/B16-summary.md).
+- **Sprint3 / Batch16b: V5 층 A 파일럿 REVIEW — 플레이 가능**. 사용자 수정본 `62cc8c1`을 별도 저장한 뒤 Scene6개를 생성했다. 문14방향·순찰13개·조각4개·저장 복원과 런처15개+V5 NoMap3를 실제 exe에서 확인했다. [결과](Validation/B16b-summary.md). 직접 플레이·방 문법 수락 대기, Sprint Gate 미실시.
+- Batch16의 T1 BLOCKED·의존 Task/Backlog SKIPPED를 Batch16b에서 이어받았다. [당시 결과](Validation/B16-summary.md)는 보존한다.
 - Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
 - Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
 - Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
 - 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
+
+## 1-0a. Current Tasks (Batch16b)
+
+| Task | 상태 | 현재 결과 |
+|---|---|---|
+| B16b-T1a | DONE | 기존 CLI stub 예외 기록·보호 SHA0변경·Quiet13/13 |
+| B16b-T1b | DONE | stub/일방 문·수정별 컴파일0·V4 재생성 SHA동일·Quiet13/13 |
+| B16b-T1c | DONE | 기존 Prefab 변경0·순찰13개/끝점26·V4 SHA동일·Quiet13/13 |
+| B16b-T2 | REVIEW | 수정본 Scene6개·요소 일치·A02조각2/A04·A06각1·Quiet13/13 |
+| B16b-T3 | DONE | 실제exe14문·도착·stub4·DJ·저장복원·Error0·Quiet13/13 |
+| B16b-T4 | DONE | 포고/모든도착/위아래아이템 검사·자체검사PASS·데이터FAIL10/WARN4 기록 |
+| B16b-T5 | REVIEW | Development 전달·15런처+NoMap3 PASS·Release 제외 검증 |
+| B16b-T6 | DONE | 상태·실행법·인계 갱신·링크0불량·Quiet13/13 |
+| B16b-T7 | TODO | 최종 기본회귀·카드 |
+| B16b-BL1 | TODO | stub×·oneway 화살표 |
+| B16b-BL2 | TODO | 실제입력 구간 측정 |
+| B16b-BL3 | TODO | 수정 데이터 비교 |
 
 ## 1-0. Current Tasks (Batch16)
 
@@ -66,7 +84,7 @@
 
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
-| D-V5-PILOT | 방 구조 V5 재설계의 첫 파일럿으로 층 A(A01~A06)만 새 방 문법(방 안 열린 두 갈래·겹침·보이지만 못 가는 곳, 방 크기 축소, 능력 없이 도는 고리 2개)으로 만든다. A06은 더블 점프 전용(A02 벽 점프 문과 B06 구멍 진입은 닫음). 플레이한 뒤 수정한다. 설계 문서와 방 데이터는 Claude 쪽에서 작성한다. | 2026-10-15 | 사용자 결정. V4는 선형이고 방이 크며 비어 있다고 판단함(부서지는 벽 21방 중 1곳, 허브·엔딩 방을 뺀 저밀도 방 존재). 21방 전체 제작 전에 방 문법을 6방으로 먼저 확인한다. 설계 데이터: `Design/v5/`. Batch16 생성 시도는 컴파일 재실패로 원복되어 실제 Scene 미생성([B16](Validation/B16-summary.md)). |
+| D-V5-PILOT | 방 구조 V5 재설계의 첫 파일럿으로 층 A(A01~A06)만 새 방 문법(방 안 열린 두 갈래·겹침·보이지만 못 가는 곳, 방 크기 축소, 능력 없이 도는 고리 2개)으로 만든다. A06은 더블 점프 전용(A02 벽 점프 문과 B06 구멍 진입은 닫음). 플레이한 뒤 수정한다. 설계 문서와 방 데이터는 Claude 쪽에서 작성한다. | 2026-10-15 | 사용자 결정. V4는 선형이고 방이 크며 비어 있다고 판단함(부서지는 벽 21방 중 1곳, 허브·엔딩 방을 뺀 저밀도 방 존재). 21방 전체 제작 전에 방 문법을 6방으로 먼저 확인한다. 설계 데이터: `Design/v5/`. Batch 16(생성 BLOCKED) → Batch 16b에서 이어함. 사용자 수정본62cc8c1로 V5 Scene6개·전달 빌드를 생성했다([B16b](Validation/B16b-summary.md)). |
 | D-B3 | B3(8패턴 + HP50% 2페이즈)를 기본 보스로 채택, 패턴 전부 켬. 기존4패턴 회복 0.8s, 새 패턴 회복 1.2/1.5s 유지. 예고 보임·회피 가능·2페이즈 확인, 사운드는 AV1로 당분간 충분. Boss-B3-rec10(회복1.0 비교) 취소. B2-fast는 [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd)로 계속 선택 | 2026-10-14 | 사용자 직접 플레이 후 결정. 진행 속도가 나쁘지 않았고, 마지막 보스라 난이도가 더 높아도 된다고 판단했다. (적용: Batch14 T1) |
 | D-COMBAT/AV2 | AV2(전투 임팩트·사운드 강화 후보) DEFERRED | 2026-10-14 | D-B3 플레이에서 사운드는 AV1로 당분간 충분하다고 판단해 AV2를 보류. 10/12 D-COMBAT(임팩트·사운드 구현 후 재판단)과 이어진다. (사용자 결정) |
 | D-BOSS-PICK | B2-fast 채택(10/13). 패턴이 보이고 회피·반격 가능, 신규 패턴은 B3 후보에서 추가 | 2026-10-13 | 패턴이 보이고 회피·반격이 가능했다. 패턴 수 부족은 B3 후보로 보완하기로 했다. (Batch12 사용자 결정) |
@@ -101,11 +119,11 @@
 
 | ID | 증상 | 근거 |
 |---|---|---|
-| B16-GENERATOR | T1 경로 문자열 컴파일 두 번째 실패로 원복. 승인 재시도 한도 소진, 다음 배치에서 재개 필요. V4 제품 영향 없음 | [B16 결과](Validation/B16-summary.md) |
-| B12-CHASE-VERIFY | CLOSED(B15-BL5a). 추적 연타의 뒤로 대시 fixture가 기존 낮은 지형에 막힘(피해1). T3 PARTIAL; 회피·해당 패턴 Pause/복귀/10회/fps 일부 미검증. 엔진 Error0·컴파일/회귀 정상, 후보 구현 유지 | [B12 실제 결과](Validation/B12-summary.md) |
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
+
+B16-GENERATOR는 B16b에서 해결(컴파일0·수정본6방 생성·실제exe PASS). B12-CHASE-VERIFY는 B15-BL5a에서 해결. 이전 실패 원문은 각 Validation에 보존한다. 열린 버그3건, 결정 대기0건. V5 정적 후보는 [검사 결과](Validation/B16b-room-rules-v5-A.md)에 기록했으며 실제 플레이 불가로 확정하지 않았다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -172,22 +190,25 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
 
-## 9. Latest Handoff — Batch16
+## 9. Latest Handoff — Batch16b
 
 ### 직접 플레이 확인
 
-기존 3절 및 [Batch15 인계](Validation/B15-summary.md)의 지도 확인 순서를 유지한다. **V5는 아직 실행할 수 없다.** T1 BLOCKED로 Scene·빌드·런처를 생성하지 않았으므로 V5 20분 플레이 확인은 등록하지 않는다. 향후 실행 가능해지면 [설계 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤)을 기준으로 직접 확인한다.
+기존 3절 및 [Batch15 인계](Validation/B15-summary.md)의 확인 순서를 먼저 유지한다. V5는 다음 순서로 약20분 확인한다.
+
+- [Play-V5](Launchers/current/Play-V5.cmd): A01 등불 포고 높은 선반·천장 빛·금 간 바닥 → A02 아래 통로·중간 선반·감실 → A03 두 갈래 올라가기·대시 문 → A04 위 통로·도랑 → A05 대시 획득·벽 부수기·지름길.
+- [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd): A03에서 대시 문 확인. [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd): A01 천장 DJ 입장 → A06 조각·A02로 나가는 일방 문. 세 런처에 `-NoMap`을 붙일 수 있다.
+
+플레이 뒤 질문은 [WORLD_V5 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤). 감각·방 문법 수락 전이므로 REVIEW로 둔다. Scene 배치 원본은 `Assets/Scenes/V5/`; 순찰 끝점은 각 적 하위 Transform이며 기존 PlayerTuning·CombatTuning은 변경0. Play 중 조정은 종료 시 되돌아가므로 유지할 값은 Edit 모드 Scene에 명시 저장하고 재빌드한다. Design 기반 재생성은 Scene 수동 배치를 덮어쓰므로 설계 좌표 변경은 사용자/Claude 쪽 원본과 함께 반영한다.
 
 ### Task별 결과
 
-- T1 BLOCKED: 경로 이스케이프 컴파일 오류 1회 보정 후 재실패. 배치 재시도 규칙에 따라 제품 코드 전부 원복. T2/T3/T5/BL1/BL2는 선행 의존으로 SKIPPED. V5 생성 완료·REVIEW로 표기하지 않았다.
-- T4 PARTIAL: [방 규칙](Validation/B16-room-rules-v5-A.md) 정적 검사와 가짜 위반 3종 자체 검사 완료. 일반 점프 그래프로 A01 높은 선반 후보 FAIL, 나머지 WARN. 실제 포고·물리 도달성과 gate 차단은 미검증이다.
-- BL3 DONE: [6방 비교](Validation/B16-v4-vs-v5-floorA.md). 면적 8260→4848u², 적 7→12, 방별 문 표식 22→20. 합계 검산 통과.
-- 인계 태그: `B16`(Base 이후 이번 배치만 합친 로컬 커밋). push 없음.
-- 종료: 2026-10-16 11:01 KST. 실행 Task별 Quiet 5회13/13, 최종 기본13/13. 기존12런처 각10초 Error0.
-- 상세 상태·커밋·검증·원문은 [배치 결과](Validation/B16-summary.md), ID·좌표 검토는 [고정 처리 목록](Validation/B16-hardcoded.md). Design 읽기 전용, 기존 빌드·V4 Scene·Resources 보존. push 없음.
-- Claude에게 돌려줄 데이터 확인: A02 감실 marks에 조각 글 없음(본문과 불일치), A04 도면/ascii 높이12와 JSON 크기18 불일치, A05의 A05-A03 도착 x46.5는 해당 문 x0과 반대편. 정적 검사 후보는 실제 플레이 불가 판정과 구분한다. patrol 이탈 실측 미실시.
+- 입력 수정본 `62cc8c1`을 요청한 별도 커밋으로 먼저 보존했다. 이전 입력의 임시Scene은 폐기했고, 이전 측정은 현재 인수 근거에서 제외했다. Design에 에이전트 수정0.
+- T1a `02dbc88`, T1b `40683b4`, T1c `17e1270`, T2 `535ec2f`, T3 `bc59cc0`. 주요 변경은 B09Authoring·V5 Scene6개·V5Launch·V5PatrolBinding·검증기다. [생성](Validation/B16b-generation.md), [순찰](Validation/B16b-patrol.md), [Scene/요소표](Validation/B16b-scenes.md), [문/저장](Validation/B16b-runtime.md).
+- T4 정적 검사는 완료, 데이터FAIL10/WARN4를 원문으로 남겼다. A02 도달성9·머리공간3, A04 도달성1, A06 머리공간1. 낙관적 포고 그래프라 실제 물리 도달성을 보장하지 않는다. A04 적x13이 patrol[4,12] 밖에서 시작하는 데이터도 보존했다.
+- T5 [전달 결과](Validation/B16b-delivery.md): `Builds/B12-delivery` 최신, `Builds/B13-delivery` 직전 유지. 기존 V4 런처 내용 변화0. V5 전용 슬롯은 실행 때 fixture로 초기화한다. 임의 방 fixture Continue는 공식 A01/A03 외 도착을 보장하지 않는다. V3 안내 규칙은 그대로라 대시 뒤 파일럿 밖 닫힌 문을 가리킬 수 있다.
+- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog·마지막 회귀/카드 결과는 [배치 요약](Validation/B16b-summary.md)에 이어 기록한다. push·Sprint Gate 없음.
 
 ### 다음 Batch 후보
 
-생성기 경로 오류를 정상 문법으로 수정해 V5 생성·문·fixture·지도·전달 경로를 재개한다. 이번 배치의 재시도 한도를 다시 넘기지 않는다. 설계 데이터 확인 사항은 Claude 쪽 수정 검토 대상으로 전달할 기록만 남겼다. 외부 메시지는 보내지 않았다. Approved Backlog는 비어 있다. Sprint Gate 미실시.
+V5 직접 플레이 결과와 데이터 후보를 Claude에게 검토할 자료로 전달한다. 층 B/C·수치 수정은 승인하지 않았다. 기존 D-NEXT 전체 플레이와 B07 A02/C03·V2 W22 검토는 유지한다. Approved Backlog는 비어 있다.
