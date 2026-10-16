@@ -1,4 +1,4 @@
-"""Read-only room measurements; no design verdicts or source edits."""
+"""Read-only room measurements and opt-in V5 draft geometry checks."""
 import argparse
 import hashlib
 import json
@@ -74,12 +74,149 @@ def report(source):
     return "\n".join(lines)
 
 
+def intersects(a, b):
+    return a[0] < b[0]+b[2]-1e-6 and b[0] < a[0]+a[2]-1e-6 and a[1] < b[1]+b[3]-1e-6 and b[1] < a[1]+a[3]-1e-6
+
+
+def gap(a, b):
+    return max(0, a[0]-b[0]-b[2], b[0]-a[0]-a[2])
+
+
+def v5_checks(room):
+    """Static candidates, never a substitute for Unity physics or natural input."""
+    findings = []
+    def add(level, rule, detail):
+        findings.append((level, rule, detail))
+    w, h = room['size']
+    title = room.get('title', '')
+    hub = '허브' in title
+    if hub:
+        size_ok = w <= 50 and h <= 24
+    elif '겹침' in title or '척추' in title:
+        size_ok = 30 <= w <= 40 and 24 <= h <= 30
+    elif '갈래' in title or '폐수로' in title:
+        size_ok = w <= 60 and h <= 20
+    else:
+        size_ok = w <= 50 and h <= 16
+    if not size_ok:
+        add('WARN', 'size', f'{w}x{h} title-derived room class')
+    items = [m for m in room.get('marks', []) if any(t in m.get('t', '') for t in ('조각', '사당'))]
+    elements = len(items)+len(room.get('enemies', []))+sum(len(room.get(k, [])) for k in KINDS if k != 'enemies')
+    if not hub and elements*1000/(w*h) < 3:
+        add('WARN', 'density', f'{elements*1000/(w*h):.3f}/1000u2')
+    solid, platforms = room.get('solid', []), room.get('platform', [])
+    surfaces = [r for r in solid+platforms if r[2] > r[3] and r[1]+r[3] < h-1e-6]
+    if h > 20:
+        for level in sorted({r[1]+r[3] for r in surfaces}):
+            if not any(level <= m['y'] <= level+2 for m in items):
+                add('WARN', 'floor-item', f'top={level:g} no item mark within 2u')
+    doors = room.get('doors', [])
+    for i, door in enumerate(doors):
+        rect = door['rect']
+        for j, enemy in enumerate(room.get('enemies', [])):
+            xs = [enemy['x']] + enemy.get('patrol', [])
+            # Door safety applies to enemies whose occupied vertical band meets the door.
+            if enemy['y'] < rect[1]+rect[3] and enemy['y']+1 > rect[1]:
+                for x in xs:
+                    distance = max(0, rect[0]-x, x-rect[0]-rect[2])
+                    if distance < 2:
+                        add('FAIL', 'door-safety', f'door={i}:{door["id"]} enemy={j} x={x:g} distance={distance:g}')
+        for j, block in enumerate(solid+platforms):
+            if intersects(rect, block):
+                add('FAIL', 'overlap', f'door={i}:{door["id"]} block={j}')
+        if door.get('gate') and door['gate'] not in ('DJ', 'Dash', 'Slam', 'WallJump', 'Boss'):
+            add('FAIL', 'ability-gate', f'unknown gate={door["gate"]}')
+    for i, platform in enumerate(platforms):
+        for j, block in enumerate(solid):
+            if intersects(platform, block):
+                add('FAIL', 'overlap', f'platform={i} solid={j}')
+        top = platform[1]+platform[3]
+        above = [r[1]-top for r in solid+platforms if r is not platform and gap(platform, r) == 0 and r[1] >= top-1e-6]
+        if above and min(above) < 2:
+            add('WARN', 'headroom', f'platform={i} clearance={min(above):g}')
+        lower = [r for r in surfaces if r is not platform and r[1]+r[3] < top-1e-6 and gap(platform, r) <= 3]
+        if lower:
+            delta = min(top-r[1]-r[3] for r in lower)
+            pogo = any(abs(p['x']-(platform[0]+platform[2]/2)) <= platform[2]/2+3 and p['y'] < top for p in room.get('pogo', []))
+            if delta > 2+1e-6 and not pogo:
+                add('FAIL', 'height', f'platform={i} nearest lower rise={delta:g} (static candidate)')
+        else:
+            add('WARN', 'horizontal-gap', f'platform={i} no lower surface within 3u')
+    tops = sorted({r[1]+r[3] for r in platforms})
+    if tops and tops[-1]-tops[0] >= 4 and not room.get('pogo') and not room.get('enemies'):
+        add('WARN', 'ascent', '>=4u ascent with platforms only; branch requires human review')
+    # Conservative over-approximation: permit falls and 2u rises, plus authored pogo nodes.
+    nodes = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
+    nodes += [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
+    start = next((s for s in room.get('spawns', []) if s['id'] == 'start'), None)
+    if start:
+        reached = {i for i, r in enumerate(nodes) if r[0] <= start['x'] <= r[0]+r[2] and -0.1 <= start['y']-r[1] <= 2}
+        changed = True
+        while changed:
+            changed = False
+            for i, a in enumerate(nodes):
+                if i not in reached:
+                    continue
+                for j, b in enumerate(nodes):
+                    if j not in reached and gap(a, b) <= 3 and b[1]-a[1] <= 2:
+                        reached.add(j)
+                        changed = True
+        for i, r in enumerate(nodes[:len(surfaces)]):
+            if i not in reached:
+                add('FAIL', 'reachability', f'surface={i} x={r[0]:g} top={r[1]:g} absent in 2u/3u static graph')
+        for d in doors:
+            if d.get('gate') or d.get('stub') or d.get('oneway') == 'in' or d.get('down_only'):
+                continue
+            if not any(i in reached and gap(r, d['rect']) <= 3 and -0.1 <= d['rect'][1]-r[1] <= 2 for i, r in enumerate(nodes)):
+                add('FAIL', 'reachability', f'door={d["id"]} absent in static graph')
+    else:
+        add('WARN', 'reachability', 'no start mark; cross-room arrival reachability unverified')
+    return findings, elements
+
+
+def v5_report(source):
+    rooms = json.loads(source.read_text(encoding='utf-8-sig'))['rooms']
+    lines = ['# V5 층 A 방 규칙 검사', '', f'원본: `{source.as_posix()}` (읽기 전용)', '',
+             '정적 기하 검사 후보 결과. FAIL도 설계 확정 판정이 아니며 Unity 물리·적 포고·공중 조작·벽 가림·능력 문 실제 동작은 미검증이다.',
+             '높이·도달성은 일반 점프 2u/가로 3u의 보수적 그래프. 포고 노드는 높이 y+.5이며 타격 높이·관성은 모델링하지 않는다. 시작 없는 방은 도달성 WARN. 능력 문 검사는 알려진 gate 이름만 확인하며 실제 차단은 T3에서 확인해야 한다.',
+             '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과 층은 수평 상단별 아이템 marks를 검사한다.', '',
+             '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
+    details = []
+    for key, room in rooms.items():
+        checks, elements = v5_checks(room)
+        area = room['size'][0]*room['size'][1]
+        fails = sum(c[0] == 'FAIL' for c in checks)
+        warns = len(checks)-fails
+        lines.append(f'| {key} | {area:g} | {elements} | {elements*1000/area:.3f} | {len(room.get("doors", []))} | {fails} | {warns} | {"FAIL" if fails else "WARN" if warns else "PASS"} |')
+        details.extend(f'{level} {key} {rule}: {detail}' for level, rule, detail in checks)
+    return '\n'.join(lines+['', '```text']+details+['```', ''])
+
+
+def self_test():
+    fake = {'title': 'fake', 'size': [20, 12], 'solid': [[0, 0, 20, 1]],
+            'platform': [[1, 2, 3, .3], [8, 5, 3, .3]],
+            'doors': [{'id': 'fake-door', 'rect': [1, 1, 1, 3]}],
+            'enemies': [{'x': 2, 'y': 1, 'patrol': [1, 3]}],
+            'spawns': [{'id': 'start', 'x': 5, 'y': 1}]}
+    temporary = Path('Validation/_raw/B16/room-rules-fake.json')
+    temporary.parent.mkdir(parents=True, exist_ok=True)
+    with temporary.open('x', encoding='utf-8') as out:
+        json.dump(fake, out)
+    rules = {r[1] for r in v5_checks(json.loads(temporary.read_text(encoding='utf-8')))[0] if r[0] == 'FAIL'}
+    assert {'door-safety', 'overlap', 'height'} <= rules, rules
+    return 'PASS self-test synthetic door-safety / overlap / height detected'
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", nargs="?", type=Path, default=Path("Design/rooms_v2.json"))
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--v5", action="store_true")
+    parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
-    text = report(args.source)
+    text = v5_report(args.source) if args.v5 else report(args.source)
+    if args.self_test:
+        text += '\n'+self_test()+'\n'
     if args.output:
         with args.output.open("x", encoding="utf-8", newline="\n") as output:
             output.write(text)

@@ -54,3 +54,5 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 종료 시 기본 회귀와 Tools/Batch-Card.ps1 -Base 시작커밋 -Allowed 허용범위로 기록합니다.
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
+
+V5 층 A는 아직 실행할 수 없습니다(Batch16 생성기 실패 후 원복). [상태·검사 결과](Validation/B16-summary.md).
