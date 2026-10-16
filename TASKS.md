@@ -25,7 +25,7 @@
 | B16b-T6 | DONE | 상태·실행법·인계 갱신·링크0불량·Quiet13/13 |
 | B16b-T7 | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0 |
 | B16b-BL1 | REVIEW | 지도6방/12문·stub×4/화살표1·V4지도PASS·Quiet13/13 |
-| B16b-BL2 | DONE | 자연A01→A04·A04구간120초BLOCKED·독립A05대시1.48초·Error0·Quiet13/13 |
+| B16b-BL2 | DONE | 자연A01→A04·A04구간120초BLOCKED·독립A05대시1.50초·Error0·Quiet13/13 |
 | B16b-BL3 | DONE | 면적8260/4548·적7/13·장치15/22·문22/20·합계일치·Quiet13/13 |
 
 ## 1-0. Current Tasks (Batch16)
@@ -197,7 +197,7 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 기존 3절 및 [Batch15 인계](Validation/B15-summary.md)의 확인 순서를 먼저 유지한다. V5는 다음 순서로 약20분 확인한다.
 
 - [Play-V5](Launchers/current/Play-V5.cmd): A01 등불 포고 높은 선반·천장 빛·금 간 바닥 → A02 아래 통로·중간 선반·감실 → A03 두 갈래 올라가기·대시 문 → A04 위 통로·도랑 → A05 대시 획득·벽 부수기·지름길.
-- [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd): A03에서 대시 문 확인. [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd): A01 천장 DJ 입장 → A06 조각·A02로 나가는 일방 문. 세 런처에 `-NoMap`을 붙일 수 있다.
+- [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd): A03에서 대시 문 표식(stub은 계속 닫힘) 확인. [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd): A01 천장 DJ 입장 → A06 조각·A02로 나가는 일방 문. 세 런처에 `-NoMap`을 붙일 수 있다.
 
 플레이 뒤 질문은 [WORLD_V5 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤). 감각·방 문법 수락 전이므로 REVIEW로 둔다. Scene 배치 원본은 `Assets/Scenes/V5/`; 순찰 끝점은 각 적 하위 Transform이며 기존 PlayerTuning·CombatTuning은 변경0. Play 중 조정은 종료 시 되돌아가므로 유지할 값은 Edit 모드 Scene에 명시 저장하고 재빌드한다. Design 기반 재생성은 Scene 수동 배치를 덮어쓰므로 설계 좌표 변경은 사용자/Claude 쪽 원본과 함께 반영한다.
 
@@ -206,9 +206,10 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 - 입력 수정본 `62cc8c1`을 요청한 별도 커밋으로 먼저 보존했다. 이전 입력의 임시Scene은 폐기했고, 이전 측정은 현재 인수 근거에서 제외했다. Design에 에이전트 수정0.
 - T1a `02dbc88`, T1b `40683b4`, T1c `17e1270`, T2 `535ec2f`, T3 `bc59cc0`. 주요 변경은 B09Authoring·V5 Scene6개·V5Launch·V5PatrolBinding·검증기다. [생성](Validation/B16b-generation.md), [순찰](Validation/B16b-patrol.md), [Scene/요소표](Validation/B16b-scenes.md), [문/저장](Validation/B16b-runtime.md).
 - T4 정적 검사는 완료, 데이터FAIL10/WARN4를 원문으로 남겼다. A02 도달성9·머리공간3, A04 도달성1, A06 머리공간1. 낙관적 포고 그래프라 실제 물리 도달성을 보장하지 않는다. A04 적x13이 patrol[4,12] 밖에서 시작하는 데이터도 보존했다.
+- T4 `a777653`, T5 `a0f103c`, T6 `9269fad`, T7 `f0b088f`, BL1 `add41ab`, BL2 `fbfc6ee`, BL3 `077ee71`. 주요 변경/실제 검증/문제는 [Task별 요약](Validation/B16b-summary.md).
 - T5 [전달 결과](Validation/B16b-delivery.md): `Builds/B12-delivery` 최신, `Builds/B13-delivery` 직전 유지. 기존 V4 런처 내용 변화0. V5 전용 슬롯은 실행 때 fixture로 초기화한다. 임의 방 fixture Continue는 공식 A01/A03 외 도착을 보장하지 않는다. V3 안내 규칙은 그대로라 대시 뒤 파일럿 밖 닫힌 문을 가리킬 수 있다.
-- [실제 입력 경로](Validation/B16b-route.md): A01→A02→A03→A04 자연 연결. A04 위 발판 접근 x15.63/y1.80에서120초 입력 한도, 전체 자연 대시 완주 미확인. A05는 독립 낙하 도착에서1.48초에 대시 수집. 입력 보정1회 후 결과를 확정했고 지형은 변경하지 않았다.
-- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog·마지막 회귀/카드 결과는 [배치 요약](Validation/B16b-summary.md)에 이어 기록한다. push·Sprint Gate 없음.
+- [실제 입력 경로](Validation/B16b-route.md): A01→A02→A03→A04 자연 연결. A04 위 발판 접근 x15.51/y2.77에서120초 입력 한도, 전체 자연 대시 완주 미확인. A05는 독립 낙하 도착에서1.50초에 대시 수집. 입력 보정1회 후 결과를 확정했고 지형은 변경하지 않았다.
+- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog1~3 완료. 마지막 기본 회귀13/13·카드 결과는 [배치 요약](Validation/B16b-summary.md). push·Sprint Gate 없음.
 
 ### 다음 Batch 후보
 

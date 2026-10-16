@@ -18,3 +18,4 @@ Release 빌드 Succeeded errors=0 warnings=0. 빌드 Scene 목록에 V5 없음, 
 
 
 최종 Task Quiet: B16b-T5 REGRESSION 13/13. 기술 검증 완료, 직접 플레이 수락 대기 REVIEW.
+최종 코드/빌드 재확인: Final-launchers-result.txt 18/18 PASS·각10초Error0, Final-v5.txt 문14방향/저장PASS, Final-release.txt/log V5제외PASS. 최종 전달파일은 BL2-r1-build 결과다.

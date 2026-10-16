@@ -1,6 +1,6 @@
 # B16b BL2 — 실제 입력 경로 측정
 
-측정 완료, 최종 Quiet 진행 중. `-verify-b16-route`는 Development 전용이며 실제 InputSystem 키보드 이동·Z 점프·아래+X 공격을 사용한다. 구간별 상한120초. 구간 안에 위치 직접 변경/능력 부여/HP 복원은0이다. 앞 구간이 목표 방에 도착하지 못하면 다음 방의 기존 도착 spawn으로 명시적 fixture 전환한 뒤 새 구간을 측정한다. 이 재개를 자연 완주로 합치지 않는다.
+상태 DONE(측정 완료). 최종 Quiet13/13. `-verify-b16-route`는 Development 전용이며 실제 InputSystem 키보드 이동·Z 점프·아래+X 공격을 사용한다. 구간별 상한120초. 구간 안에 위치 직접 변경/능력 부여/HP 복원은0이다. 앞 구간이 목표 방에 도착하지 못하면 다음 방의 기존 도착 spawn으로 명시적 fixture 전환한 뒤 새 구간을 측정한다. 이 재개를 자연 완주로 합치지 않는다.
 
 고정 waypoint는 원본 발판·등불·문·사당 주변을 선택한 검증 입력이다. 점프 누름0.42초, 재입력 간격0.65초, 공격 간격0.34초. 최초 가로 도착 허용0.65u, 도구 보정 후0.25u. 게임 수치·Scene·Design·Tuning 변경0. 적 접근 시 점프와 공격을 시도하며, 공중 아래 공격으로 적/등불 포고를 시도한다. 별도 경로 탐색기나 최적 입력 탐색은 만들지 않았다.
 
@@ -53,3 +53,17 @@ Error/Exception/Assert=0
 
 최종 원본 `_raw/B16b/BL2-r1-route.txt/log`, `BL2-r1-route-save.json`, `BL2-r1-compile.log`, `BL2-r1-build.txt/log`. 관찰CSV `_raw/playtest/20261016-152039.csv`(최초), 최종CSV 경로는 실행 log와 _raw/playtest에 보존한다.
 최종 상태 DONE(측정 수행 완료). B16b-BL2-r1 Quiet13/13. A04 구간만 BLOCKED, 검증 입력 보정1회 소진. 제품/설계 변경 없음.
+
+## 종료 증거 보완
+
+종료 문서 스크립트가 반복문의 경로 변수를 재사용하여 `BL2-r1-route.txt`를 요약 내용으로 덮어썼다. 이 txt는 유효 증거에서 제외한다. 덮어쓴 상태는 `_raw/B16b/BL2-r1-route-invalid-overwrite.txt`에 별도 보존했다. 당시 실제 실행 log(`BL2-r1-route.log`)와 위에 먼저 옮긴 측정 줄은 보존돼 있다. 원본 log에서 결과를 복원했다고 주장하지 않고, 동일 최종 exe·동일 입력으로 새 `Final-route.txt/log`를 실행해 증거를 보완한다. 입력/제품 변경은 없다.
+
+최종 증거 재실행 PASS: 동일 exe/입력, Final-route.txt/log. 아래 원문이 최신 인수 근거이며 이전 실행 log·보고서 수치도 보존한다.
+```text
+PASS route A01 goal=A02 elapsed=5.58 position=(46.59, 1.02) step=0 maxX=46.59 maxY=3.54 hp=4 pogos=0
+PASS route A02 goal=A03 elapsed=4.02 position=(26.61, 1.02) step=0 maxX=26.61 maxY=3.54 hp=4 pogos=0
+PASS route A03 goal=A04 elapsed=8.18 position=(48.52, 11.02) step=13 maxX=48.52 maxY=13.36 hp=4 pogos=3
+BLOCKED route A04 goal=A05 elapsed=120.06 position=(15.51, 2.77) step=3 maxX=15.51 maxY=5.42 hp=4 pogos=4 reason=120s input budget exhausted
+PASS route A05 goal=Dash elapsed=1.50 position=(37.55, 3.38) step=1 maxX=46.00 maxY=7.28 hp=4 pogos=4
+Error/Exception/Assert=0
+```

@@ -1,6 +1,6 @@
 # B16b BL1 — V5 지도 문 표시
 
-실제 exe PASS, Quiet 진행 중. 컴파일0·Development 빌드 오류0/경고0. 원본 world 데이터와 생성된 지도6방·12문의 ID/stub 대응을 Python으로 확인했다. V4 지도JSON·Scene·Resources 변경0.
+상태 REVIEW. 실제 exe PASS, Quiet13/13. 컴파일0·Development 빌드 오류0/경고0. 원본 world 데이터와 생성된 지도6방·12문의 ID/stub 대응을 Python으로 확인했다. V4 지도JSON·Scene·Resources 변경0.
 
 실제 M 입력으로 Large, map-all에서6방/12문을 확인했다. 아래 라벨은 OnGUI가 사용하는 동일 표시 함수의 런타임 측정값이다. stub은 능력을 보유해도 닫힌 색+×, b 방이 없으면 ?를 그리지 않는다. A06→A02는 오른쪽 화살표. 화면 캡처는 미실시, 사람의 가독성 판단은 직접 플레이 대기.
 
