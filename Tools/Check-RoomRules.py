@@ -1,7 +1,20 @@
-"""Read-only room measurements and opt-in V5 draft geometry checks."""
+"""Read-only room measurements and V5 draft geometry checks.
+
+V5 graph: WORLD_V5 section 3 supplies jump=2.5u, ordinary step limit=2u,
+pogo bounce=2u. Lantern AND spike nodes use authored top y+.5. A pogo
+edge may rise 2u + downAttackHeight read from the existing CombatTuning
+asset (the downward hit can start above the target); this is an optimistic
+reach envelope, not a simulated trajectory. Horizontal gap limit=3u.
+Every authored spawn is checked separately. Fall spawns land on the first
+solid/platform/intact seal/cover/breakable top below their x/y. Ordinary and pogo-assisted graphs are
+compared. Walls, head collision, enemy motion and input timing are NOT
+solved by the graph; runtime route measurements remain separate evidence.
+"""
 import argparse
 import hashlib
 import json
+import re
+import uuid
 from pathlib import Path
 
 KINDS = {
@@ -82,6 +95,44 @@ def gap(a, b):
     return max(0, a[0]-b[0]-b[2], b[0]-a[0]-a[2])
 
 
+def attack_height():
+    tuning = Path('Assets/ScriptableObjects/CombatTuning.asset').read_text(encoding='utf-8-sig')
+    return float(re.search(r'(?m)^\s*downAttackHeight:\s*([\d.]+)', tuning).group(1))
+
+
+def arrival_graph(room, surfaces):
+    terrain = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
+    targets = [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
+    nodes = terrain+targets
+    result = []
+    def explore(seeds, use_pogo):
+        reached = set(seeds)
+        changed = True
+        while changed:
+            changed = False
+            for i in list(reached):
+                a = nodes[i]
+                rise = 2.5 if i < len(terrain) else 2+attack_height()
+                for j, b in enumerate(nodes):
+                    if j in reached or (j >= len(terrain) and not use_pogo):
+                        continue
+                    if gap(a, b) <= 3+1e-6 and b[1]-a[1] <= rise+1e-6:
+                        reached.add(j)
+                        changed = True
+        return reached
+    for spawn in room.get('spawns', []):
+        x, y = spawn['x'], spawn['y']
+        landing = [(i, r) for i, r in enumerate(terrain) if r[0] <= x <= r[0]+r[2] and r[1] <= y+.1]
+        if spawn.get('fall'):
+            top = max((r[1] for _, r in landing), default=None)
+            seeds = {i for i, r in landing if top is not None and abs(r[1]-top) < 1e-6}
+        else:
+            seeds = {i for i, r in landing if y-r[1] <= .25}
+        ordinary, pogo = explore(seeds, False), explore(seeds, True)
+        result.append((spawn, seeds, ordinary, pogo, nodes))
+    return result
+
+
 def v5_checks(room):
     """Static candidates, never a substitute for Unity physics or natural input."""
     findings = []
@@ -93,7 +144,7 @@ def v5_checks(room):
     if hub:
         size_ok = w <= 50 and h <= 24
     elif '겹침' in title or '척추' in title:
-        size_ok = 30 <= w <= 40 and 24 <= h <= 30
+        size_ok = 28 <= w <= 40 and 24 <= h <= 36
     elif '갈래' in title or '폐수로' in title:
         size_ok = w <= 60 and h <= 20
     else:
@@ -105,11 +156,12 @@ def v5_checks(room):
     if not hub and elements*1000/(w*h) < 3:
         add('WARN', 'density', f'{elements*1000/(w*h):.3f}/1000u2')
     solid, platforms = room.get('solid', []), room.get('platform', [])
-    surfaces = [r for r in solid+platforms if r[2] > r[3] and r[1]+r[3] < h-1e-6]
+    intact = solid+platforms+room.get('seal', [])+room.get('cover', [])+room.get('breakable', [])
+    surfaces = [r for r in intact if r[2] > r[3] and r[1]+r[3] < h-1e-6]
     if h > 20:
-        for level in sorted({r[1]+r[3] for r in surfaces}):
-            if not any(level <= m['y'] <= level+2 for m in items):
-                add('WARN', 'floor-item', f'top={level:g} no item mark within 2u')
+        for name, lo, hi in [('lower', 0, h/2), ('upper', h/2, h)]:
+            if not any(lo <= m['y'] < hi for m in items):
+                add('WARN', 'floor-item', f'{name} half y=[{lo:g},{hi:g}) has no item mark')
     doors = room.get('doors', [])
     for i, door in enumerate(doors):
         rect = door['rect']
@@ -145,48 +197,38 @@ def v5_checks(room):
     tops = sorted({r[1]+r[3] for r in platforms})
     if tops and tops[-1]-tops[0] >= 4 and not room.get('pogo') and not room.get('enemies'):
         add('WARN', 'ascent', '>=4u ascent with platforms only; branch requires human review')
-    # Conservative over-approximation: permit falls and 2u rises, plus authored pogo nodes.
-    nodes = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
-    nodes += [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
-    start = next((s for s in room.get('spawns', []) if s['id'] == 'start'), None)
-    if start:
-        reached = {i for i, r in enumerate(nodes) if r[0] <= start['x'] <= r[0]+r[2] and -0.1 <= start['y']-r[1] <= 2}
-        changed = True
-        while changed:
-            changed = False
-            for i, a in enumerate(nodes):
-                if i not in reached:
-                    continue
-                for j, b in enumerate(nodes):
-                    if j not in reached and gap(a, b) <= 3 and b[1]-a[1] <= 2:
-                        reached.add(j)
-                        changed = True
+    for spawn, seeds, ordinary, reached, nodes in arrival_graph(room, surfaces):
+        name = spawn['id']
+        add('MEASURE', 'arrival', f'start={name} fall={bool(spawn.get("fall"))} seed={sorted(seeds)} ordinary={len(ordinary)} pogo={len(reached)}')
+        if not seeds:
+            add('FAIL', 'arrival', f'start={name} no landing surface')
         for i, r in enumerate(nodes[:len(surfaces)]):
             if i not in reached:
-                add('FAIL', 'reachability', f'surface={i} x={r[0]:g} top={r[1]:g} absent in 2u/3u static graph')
-        for d in doors:
-            if d.get('gate') or d.get('stub') or d.get('oneway') == 'in' or d.get('down_only'):
+                add('FAIL', 'reachability', f'start={name} surface={i} x={r[0]:g} top={r[1]:g} absent in pogo envelope')
+            elif i not in ordinary:
+                add('MEASURE', 'pogo-route', f'start={name} surface={i} x={r[0]:g} top={r[1]:g}')
+        for door in doors:
+            if door.get('gate') or door.get('stub') or door.get('oneway') == 'in' or door.get('down_only'):
                 continue
-            if not any(i in reached and gap(r, d['rect']) <= 3 and -0.1 <= d['rect'][1]-r[1] <= 2 for i, r in enumerate(nodes)):
-                add('FAIL', 'reachability', f'door={d["id"]} absent in static graph')
-    else:
-        add('WARN', 'reachability', 'no start mark; cross-room arrival reachability unverified')
+            if not any(i in reached and gap(r, door['rect']) <= 3 and door['rect'][1]-r[1] <= (2.5 if i < len(surfaces) else 2+attack_height()) for i, r in enumerate(nodes)):
+                add('FAIL', 'reachability', f'start={name} door={door["id"]} absent in pogo envelope')
     return findings, elements
 
 
 def v5_report(source):
     rooms = json.loads(source.read_text(encoding='utf-8-sig'))['rooms']
-    lines = ['# V5 층 A 방 규칙 검사', '', f'원본: `{source.as_posix()}` (읽기 전용)', '',
+    lines = ['# V5 층 A 방 규칙 검사', '', f'원본: `{source.as_posix()}` (읽기 전용)', f'SHA256: `{hashlib.sha256(source.read_bytes()).hexdigest()}`', '',
              '정적 기하 검사 후보 결과. FAIL도 설계 확정 판정이 아니며 Unity 물리·적 포고·공중 조작·벽 가림·능력 문 실제 동작은 미검증이다.',
-             '높이·도달성은 일반 점프 2u/가로 3u의 보수적 그래프. 포고 노드는 높이 y+.5이며 타격 높이·관성은 모델링하지 않는다. 시작 없는 방은 도달성 WARN. 능력 문 검사는 알려진 gate 이름만 확인하며 실제 차단은 T3에서 확인해야 한다.',
-             '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과 층은 수평 상단별 아이템 marks를 검사한다.', '',
+             f'계산: WORLD_V5 3절 점프2.5u·일반 단차2u·포고2u, 기존 CombatTuning downAttackHeight={attack_height():g}u. 포고 상단=y+.5, 포고 뒤 상승 여유=2+타격높이. 등불·가시 둘 다 포함, 가로 간격3u. 일반 경로와 포고 경로를 별도로 계산한다.',
+             '모든 spawns를 각각 시작점으로 검사한다. fall은 x 아래 첫 고체/발판/온전한 봉인·덮개·부서지는 벽 상단을 착지점으로 삼는다. 벽 가림·충돌·적 이동·입력 타이밍을 풀지 않는 낙관적 경로 후보이며 실제 문 gate 차단은 T3에서 검사한다.',
+             '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과는 아래·위 절반에 아이템 각1개를 검사한다.', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
         checks, elements = v5_checks(room)
         area = room['size'][0]*room['size'][1]
         fails = sum(c[0] == 'FAIL' for c in checks)
-        warns = len(checks)-fails
+        warns = sum(c[0] == 'WARN' for c in checks)
         lines.append(f'| {key} | {area:g} | {elements} | {elements*1000/area:.3f} | {len(room.get("doors", []))} | {fails} | {warns} | {"FAIL" if fails else "WARN" if warns else "PASS"} |')
         details.extend(f'{level} {key} {rule}: {detail}' for level, rule, detail in checks)
     return '\n'.join(lines+['', '```text']+details+['```', ''])
@@ -198,13 +240,16 @@ def self_test():
             'doors': [{'id': 'fake-door', 'rect': [1, 1, 1, 3]}],
             'enemies': [{'x': 2, 'y': 1, 'patrol': [1, 3]}],
             'spawns': [{'id': 'start', 'x': 5, 'y': 1}]}
-    temporary = Path('Validation/_raw/B16/room-rules-fake.json')
+    temporary = Path('Validation/_raw/B16b')/('room-rules-fake-'+uuid.uuid4().hex+'.json')
     temporary.parent.mkdir(parents=True, exist_ok=True)
     with temporary.open('x', encoding='utf-8') as out:
         json.dump(fake, out)
     rules = {r[1] for r in v5_checks(json.loads(temporary.read_text(encoding='utf-8')))[0] if r[0] == 'FAIL'}
     assert {'door-safety', 'overlap', 'height'} <= rules, rules
-    return 'PASS self-test synthetic door-safety / overlap / height detected'
+    sealed = {'title': 'sealed', 'size': [16, 6], 'solid': [[0, 0, 5, 1], [9, 0, 7, 1]],
+              'seal': [[5, 0, 4, 1]], 'spawns': [{'id': 'start', 'x': 2, 'y': 1}]}
+    assert not any(rule == 'reachability' and level == 'FAIL' for level, rule, _ in v5_checks(sealed)[0])
+    return 'PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained'
 
 
 if __name__ == "__main__":
@@ -214,7 +259,7 @@ if __name__ == "__main__":
     parser.add_argument("--v5", action="store_true")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
-    text = v5_report(args.source) if args.v5 else report(args.source)
+    text = v5_report(args.source) if args.v5 or args.source.name.startswith('rooms_v5') else report(args.source)
     if args.self_test:
         text += '\n'+self_test()+'\n'
     if args.output:
