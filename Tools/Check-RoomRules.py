@@ -100,6 +100,71 @@ def attack_height():
     return float(re.search(r'(?m)^\s*downAttackHeight:\s*([\d.]+)', tuning).group(1))
 
 
+def player_size():
+    """Read the authored player BoxCollider2D, never a duplicated gameplay value."""
+    text = Path('Assets/Prefabs/Player.prefab').read_text(encoding='utf-8-sig')
+    box = next(p for p in text.split('--- !u!') if p.startswith('61 '))
+    match = re.search(r'm_Size: \{x: ([\d.]+), y: ([\d.]+)\}', box)
+    return tuple(map(float, match.groups()))
+
+
+def floor_pits(room):
+    """Shallow floor sections, excluding authored damaging trenches."""
+    return [r for r in room.get('solid', []) if abs(r[1]) < 1e-6 and 0 < r[3] <= .4+1e-6
+            and not any(min(r[0]+r[2], h[0]+h[2])-max(r[0], h[0]) > 1e-6 for h in room.get('hazard', []))]
+
+
+def headroom_pairs(room):
+    rects = room.get('solid', [])+room.get('platform', [])
+    for i, a in enumerate(rects):
+        top = a[1]+a[3]
+        if top >= room['size'][1]-1e-6:
+            continue
+        for j, b in enumerate(rects):
+            overlap = min(a[0]+a[2], b[0]+b[2])-max(a[0], b[0])
+            clearance = b[1]-top
+            if i != j and overlap > 1e-6 and clearance > 1e-6:
+                # A solid joined directly above makes that part of the lower top
+                # internal, rather than a standing face. Test only exposed spans.
+                spans = [(max(a[0], b[0]), min(a[0]+a[2], b[0]+b[2]))]
+                for cover in room.get('solid', []):
+                    if abs(cover[1]-top) > 1e-6:
+                        continue
+                    spans = [(lo, hi) for l, r in spans for lo, hi in
+                             ((l, min(r, cover[0])), (max(l, cover[0]+cover[2]), r)) if hi-lo > 1e-6]
+                if spans:
+                    yield i, j, clearance
+
+
+def draft2_checks(room):
+    findings = []
+    def fail(rule, detail):
+        findings.append(('FAIL', rule, detail))
+    _, height = player_size()
+    required = height+.6  # WORLD_V5 draft2: body height plus jump clearance.
+    if room['size'][1] < 12:
+        fail('room-height', f'height={room["size"][1]:g} minimum=12 cameraHeight=11')
+    for i, j, clearance in headroom_pairs(room):
+        if clearance < required-1e-6:
+            fail('headroom', f'surface={i} overhead={j} clearance={clearance:g} required={required:g} playerHeight={height:g}')
+    pits = floor_pits(room)
+    trenches = room.get('hazard', [])
+    for zone in trenches+pits:
+        for i, block in enumerate(room.get('solid', [])):
+            if block is zone or abs(block[1]) > 1e-6 or block[1]+block[3] <= .4+1e-6:
+                continue
+            if min(block[0]+block[2], zone[0]+zone[2])-max(block[0], zone[0]) > 1e-6:
+                fail('covered-trench', f'solid={i} x={block[0]:g}..{block[0]+block[2]:g} zone={zone[0]:g}..{zone[0]+zone[2]:g}')
+    for pit in pits:
+        if pit[2] > 3+1e-6:
+            fail('pit-width', f'x={pit[0]:g} width={pit[2]:g} maximum=3')
+        for i, enemy in enumerate(room.get('enemies', [])):
+            patrol = enemy.get('patrol', [])
+            if len(patrol) == 2 and .4-1e-6 <= enemy['y'] <= 1+.1 and min(max(patrol), pit[0]+pit[2])-max(min(patrol), pit[0]) > 1e-6:
+                fail('pit-patrol', f'enemy={i} patrol={patrol} pit={pit[0]:g}..{pit[0]+pit[2]:g} feet={enemy["y"]:g}')
+    return findings
+
+
 def arrival_graph(room, surfaces):
     terrain = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
     targets = [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
@@ -183,9 +248,6 @@ def v5_checks(room):
             if intersects(platform, block):
                 add('FAIL', 'overlap', f'platform={i} solid={j}')
         top = platform[1]+platform[3]
-        above = [r[1]-top for r in solid+platforms if r is not platform and gap(platform, r) == 0 and r[1] >= top-1e-6]
-        if above and min(above) < 2:
-            add('WARN', 'headroom', f'platform={i} clearance={min(above):g}')
         lower = [r for r in surfaces if r is not platform and r[1]+r[3] < top-1e-6 and gap(platform, r) <= 3]
         if lower:
             delta = min(top-r[1]-r[3] for r in lower)
@@ -212,6 +274,7 @@ def v5_checks(room):
                 continue
             if not any(i in reached and gap(r, door['rect']) <= 3 and door['rect'][1]-r[1] <= (2.5 if i < len(surfaces) else 2+attack_height()) for i, r in enumerate(nodes)):
                 add('FAIL', 'reachability', f'start={name} door={door["id"]} absent in pogo envelope')
+    findings.extend(draft2_checks(room))
     return findings, elements
 
 
@@ -222,6 +285,7 @@ def v5_report(source):
              f'계산: WORLD_V5 3절 점프2.5u·일반 단차2u·포고2u, 기존 CombatTuning downAttackHeight={attack_height():g}u. 포고 상단=y+.5, 포고 뒤 상승 여유=2+타격높이. 등불·가시 둘 다 포함, 가로 간격3u. 일반 경로와 포고 경로를 별도로 계산한다.',
              '모든 spawns를 각각 시작점으로 검사한다. fall은 x 아래 첫 고체/발판/온전한 봉인·덮개·부서지는 벽 상단을 착지점으로 삼는다. 벽 가림·충돌·적 이동·입력 타이밍을 풀지 않는 낙관적 경로 후보이며 실제 문 gate 차단은 T3에서 검사한다.',
              '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과는 아래·위 절반에 아이템 각1개를 검사한다.', '',
+             f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지, 바닥 구덩이 순찰 교차 금지·폭≤3. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
@@ -249,7 +313,30 @@ def self_test():
     sealed = {'title': 'sealed', 'size': [16, 6], 'solid': [[0, 0, 5, 1], [9, 0, 7, 1]],
               'seal': [[5, 0, 4, 1]], 'spawns': [{'id': 'start', 'x': 2, 'y': 1}]}
     assert not any(rule == 'reachability' and level == 'FAIL' for level, rule, _ in v5_checks(sealed)[0])
-    return 'PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained'
+    from copy import deepcopy
+    base = {'title': 'fake', 'size': [20, 12], 'solid': [[0, 0, 7, 1], [7, 0, 2.5, .4], [9.5, 0, 10.5, 1]], 'platform': []}
+    examples = {}
+    examples['headroom'] = deepcopy(base)
+    examples['headroom']['platform'] = [[1, 2.4, 3, .3]]  # 1.4u above floor.
+    examples['room-height'] = deepcopy(base)
+    examples['room-height']['size'][1] = 10
+    examples['covered-trench'] = deepcopy(base)
+    examples['covered-trench']['hazard'] = [[12, .4, 4, .3]]
+    examples['pit-patrol'] = deepcopy(base)
+    examples['pit-patrol']['enemies'] = [{'x': 5, 'y': 1, 'patrol': [4, 12]}]
+    examples['pit-width'] = deepcopy(base)
+    examples['pit-width']['solid'][1][2] = 3.5
+    folder = Path('Validation/_raw/B17/rule-fixtures')/uuid.uuid4().hex
+    folder.mkdir(parents=True)
+    results = []
+    for rule, room in examples.items():
+        path = folder/(rule+'.json')
+        path.write_text(json.dumps({'rooms': {'fake': room}}, indent=2), encoding='utf-8')
+        failures = draft2_checks(json.loads(path.read_text(encoding='utf-8'))['rooms']['fake'])
+        assert any(r == rule for _, r, _ in failures), failures
+        results.extend(f'{level} synthetic {r}: {detail}' for level, r, detail in failures)
+    assert not draft2_checks(base)
+    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; clean fixture PASS'])
 
 
 if __name__ == "__main__":

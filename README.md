@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-Sprint 3, Batch 12까지 구현. V4 21방, 대시·더블 점프·벽 점프·Slam,
+Sprint 3, Batch 17까지 구현. V4 21방, 대시·더블 점프·벽 점프·Slam,
 보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B3(8패턴·2페이즈, 10/14 채택).
 B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
 현재 결과·결정·직접 플레이 목록은 [TASKS](TASKS.md)를 따릅니다.
@@ -55,5 +55,9 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
-V5 층 A 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
-세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch16b).
+V5 층 A draft2 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
+세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch17).
+
+Batch17: A02 오른쪽→왼쪽 복귀·A05 카메라·낮은 천장 수정 반영, 바닥 구덩이6개 추가. 최신 V5 빌드는 B17, 기존 V4 런처는 직전 B12를 사용합니다.
+
+Batch17 종료 기본 회귀는 Unity Editor 라이선스(exit198)로 중단됐습니다. 전달 exe의 V5 세 런처는 그 뒤에도10초Error0을 재확인했으며 그대로 플레이할 수 있습니다.

@@ -4,12 +4,26 @@
 
 ## 1. 현재 상태
 
-- **Sprint3 / Batch16b: V5 층 A 파일럿 REVIEW — 플레이 가능**. 사용자 수정본 `62cc8c1`을 별도 저장한 뒤 Scene6개를 생성했다. 문14방향·순찰13개·조각4개·저장 복원과 런처15개+V5 NoMap3를 실제 exe에서 확인했다. [결과](Validation/B16b-summary.md). 직접 플레이·방 문법 수락 대기, Sprint Gate 미실시.
+- **Sprint3 / Batch17 종료: V5 draft2 플레이 가능, 종료 기본 회귀는 라이선스로 BLOCKED**. A02 복귀·A05 카메라·머리 여유를 데이터 재생성으로 해소했다. 코어 로직 수정0, [원인/재측정](Validation/B17-probe.md). 직접 플레이·방 문법 수락 대기, Sprint Gate 미실시.
 - Batch16의 T1 BLOCKED·의존 Task/Backlog SKIPPED를 Batch16b에서 이어받았다. [당시 결과](Validation/B16-summary.md)는 보존한다.
 - Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
 - Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
 - Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
 - 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
+
+## 1-0b. Current Tasks (Batch17)
+
+| Task | 상태 | 현재 결과 |
+|---|---|---|
+| B17-T1 | DONE | 기존 Scene에서 A02 지형 충돌·A05 높이10/Confiner 고정 측정, 제품 코드/Scene 변경0, Quiet13/13 |
+| B17-T2 | REVIEW | draft2 6방·요소 일치·구덩이6·도랑 바닥 수정 반영·보호 SHA0변경, Quiet13/13 |
+| B17-T3 | DONE | A02 왼쪽 복귀·A05 추적·6구덩이 탈출/점프·문14·stub/일방·저장 PASS, Quiet13/13 |
+| B17-T4 | DONE | 추가 규칙 위반0·위반 fixture5개 검출, 기존 정적 후보22FAIL은 보존, Quiet13/13 |
+| B17-T5 | REVIEW | B17 Development·V5 3런처10초Error0·최신+직전2개, Quiet13/13 |
+| B17-T6 | DONE | 피드백 원인·재플레이·빌드 인계 갱신, 링크0불량·결정0·Quiet13/13 |
+| B17-T7 | BLOCKED | 앞선 Quiet13/13·18런처Error0·카드0문제는 유효. 종료 기본 회귀는 Editor 라이선스 exit198로 실행 전 중단 |
+| B17-BL1 | DONE | 자연 A01→A03·독립A05대시2.10초, A03/A04 각120초BLOCKED 측정 완료; 입력 개선 재시도는 라이선스 중단 |
+| B17-BL2 | DONE | 면적4548→4648·적13→15·등불13→14·머리 여유1→2.4u, 합계 일치; WORLD 4절 이전 표기는 Claude 정리 |
 
 ## 1-0a. Current Tasks (Batch16b)
 
@@ -78,7 +92,7 @@
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| (없음) | | | |
+| D-UNITY-LICENSE | A: Unity Hub 라이선스 복구 후 종료 기본 회귀 재실행 / B: 전달 exe 플레이 먼저, 회귀는 보류 | A 추천. 기존 게임 검사는 통과했지만 종료 필수 검사 실행을 복구해야 함 | B17-T7, BL1 입력 개선 재시도 경로 |
 
 ## 2-1. 결정 기록
 
@@ -190,27 +204,31 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
 
-## 9. Latest Handoff — Batch16b
+## 9. Latest Handoff — Batch17
+
+### 결정 질문지
+
+- **D-UNITY-LICENSE** — A: Unity Hub에서 유효한 Editor 라이선스를 복구한 뒤 종료 기본 회귀를 재실행 / B: 전달 exe를 먼저 플레이하고 회귀 재실행은 보류. **A 추천**: 23:32부터 Editor가 exit198로 검사 시작 전에 종료됐다. T1~T7의 이전 Quiet13/13·실제 exe18런처 통과는 유효하지만 종료 기본 회귀는 미실행이다. A가 풀어 주는 항목은 T7와 BL1 입력 개선 재시도다. 전달 exe는 그 뒤에도 V5 3런처를 다시10초Error0으로 확인했다.
 
 ### 직접 플레이 확인
 
-기존 3절 및 [Batch15 인계](Validation/B15-summary.md)의 확인 순서를 먼저 유지한다. V5는 다음 순서로 약20분 확인한다.
+기존 3절·[Batch15 인계](Validation/B15-summary.md)의 수락 순서를 먼저 유지한다. V5는 다음 순서로 약10~15분 확인한다.
 
-- [Play-V5](Launchers/current/Play-V5.cmd): A01 등불 포고 높은 선반·천장 빛·금 간 바닥 → A02 아래 통로·중간 선반·감실 → A03 두 갈래 올라가기·대시 문 → A04 위 통로·도랑 → A05 대시 획득·벽 부수기·지름길.
-- [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd): A03에서 대시 문 표식(stub은 계속 닫힘) 확인. [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd): A01 천장 DJ 입장 → A06 조각·A02로 나가는 일방 문. 세 런처에 `-NoMap`을 붙일 수 있다.
+- [Play-V5](Launchers/current/Play-V5.cmd), `Assets/Scenes/V5/A02_V5.unity`: 첫 블록·발판을 밟아 x≈10까지 갔다가 왼쪽 입구로 복귀. 2분.
+- 같은 실행의 `A05_V5.unity`: A04 구멍에서 낙하 직후·대시 수집 뒤 카메라 추적. 높이12/화면11이므로 세로 여유1u는 유지된다. 3~5분.
+- A01~A05 낮은 통로·구덩이6개·위험 도랑, [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd)의 A06 머리 여유. 5~8분. [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd)는 A03 대시 보유 시작. 세 런처 `-NoMap` 지원.
 
-플레이 뒤 질문은 [WORLD_V5 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤). 감각·방 문법 수락 전이므로 REVIEW로 둔다. Scene 배치 원본은 `Assets/Scenes/V5/`; 순찰 끝점은 각 적 하위 Transform이며 기존 PlayerTuning·CombatTuning은 변경0. Play 중 조정은 종료 시 되돌아가므로 유지할 값은 Edit 모드 Scene에 명시 저장하고 재빌드한다. Design 기반 재생성은 Scene 수동 배치를 덮어쓰므로 설계 좌표 변경은 사용자/Claude 쪽 원본과 함께 반영한다.
+T2/T5는 REVIEW다. 기존 [WORLD_V5 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤)의 방 문법 수락도 대기한다. 배치 원본은 `Assets/Scenes/V5/`, 순찰 끝점은 적 하위 Transform, 수치는 기존 설정 Asset이다. Play 중 변경은 종료 시 되돌아가므로 유지할 값은 Edit 모드에서 명시 저장·재빌드한다. 데이터 재생성은 수동 Scene 배치를 덮어쓰며 Design 수정은 사용자/Claude가 담당한다.
 
 ### Task별 결과
 
-- 입력 수정본 `62cc8c1`을 요청한 별도 커밋으로 먼저 보존했다. 이전 입력의 임시Scene은 폐기했고, 이전 측정은 현재 인수 근거에서 제외했다. Design에 에이전트 수정0.
-- T1a `02dbc88`, T1b `40683b4`, T1c `17e1270`, T2 `535ec2f`, T3 `bc59cc0`. 주요 변경은 B09Authoring·V5 Scene6개·V5Launch·V5PatrolBinding·검증기다. [생성](Validation/B16b-generation.md), [순찰](Validation/B16b-patrol.md), [Scene/요소표](Validation/B16b-scenes.md), [문/저장](Validation/B16b-runtime.md).
-- T4 정적 검사는 완료, 데이터FAIL10/WARN4를 원문으로 남겼다. A02 도달성9·머리공간3, A04 도달성1, A06 머리공간1. 낙관적 포고 그래프라 실제 물리 도달성을 보장하지 않는다. A04 적x13이 patrol[4,12] 밖에서 시작하는 데이터도 보존했다.
-- T4 `a777653`, T5 `a0f103c`, T6 `9269fad`, T7 `f0b088f`, BL1 `add41ab`, BL2 `fbfc6ee`, BL3 `077ee71`. 주요 변경/실제 검증/문제는 [Task별 요약](Validation/B16b-summary.md).
-- T5 [전달 결과](Validation/B16b-delivery.md): `Builds/B12-delivery` 최신, `Builds/B13-delivery` 직전 유지. 기존 V4 런처 내용 변화0. V5 전용 슬롯은 실행 때 fixture로 초기화한다. 임의 방 fixture Continue는 공식 A01/A03 외 도착을 보장하지 않는다. V3 안내 규칙은 그대로라 대시 뒤 파일럿 밖 닫힌 문을 가리킬 수 있다.
-- [실제 입력 경로](Validation/B16b-route.md): A01→A02→A03→A04 자연 연결. A04 위 발판 접근 x15.51/y2.77에서120초 입력 한도, 전체 자연 대시 완주 미확인. A05는 독립 낙하 도착에서1.50초에 대시 수집. 입력 보정1회 후 결과를 확정했고 지형은 변경하지 않았다.
-- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog1~3 완료. 마지막 기본 회귀13/13·카드 결과는 [배치 요약](Validation/B16b-summary.md). 인계 태그 `B16b`. 각 Task Quiet13/13·최종 기본13/13·카드 범위/링크/없는런처0. push·Sprint Gate 없음.
+- 입력 보존 `2559c40`이 Base. 시작2026-10-16 22:50 KST. 9/10 Task, 5시간 이내 종료. **DONE6 / REVIEW2 / BLOCKED1(T7)**. 기능3·검증4·문서2. 제품 코어·V4/Resources·Prefab·튜닝·V4런처·Design 변경0, 보호206파일 SHA변경0. [전체 요약](Validation/B17-summary.md). 최종 합친 커밋은 태그 `B17`, push 없음.
+- T1 `3af35a9` DONE: A02는 `platform0` 측면·`platform1` 낮은 천장 충돌, A05는 높이10 < 화면11의 Confiner 중앙 고정. 입력·Follow 정상. T3 `33bc8a2` DONE: A02 x1.51 복귀, A05 추적, 구덩이6개 탈출0.400~0.417초·달리며 점프, 문14·stub4·일방·순찰15·수집/저장 Error0. [전후 원문](Validation/B17-probe.md).
+- T2 `3778480` REVIEW: V5 Scene6개·요소 수 일치·구덩이6·A04/A05 도랑 덮임 해소. [요소표](Validation/B17-generation.md). T4 `5658814` DONE: 추가 규칙0위반·가짜 위반5개 검출, 머리 여유 최소2.4u. [검사](Validation/B17-room-rules-v5-A.md). 기존 정적 후보22FAIL은 물리 불가 확정 없이 보존했다.
+- T5 `b0b820e` REVIEW: 최신 `Builds/B17-delivery`, 직전 `Builds/B12-delivery`만 유지. V5 런처3개 정상, V4 런처는 직전 B12 유지. [전달](Validation/B17-delivery.md). T6 `ad038a4` DONE: 원인·실행·수락 인계. T7 `c71a5a3`→BLOCKED: Quiet13/13·전체18런처 각10초Error0·카드 범위/링크0문제 후, 종료 기본 회귀가 Editor 라이선스 exit198로 중단됐다. 런처 exe는 계속 플레이 가능하다.
+- BL1 `caa91e4` DONE(측정): 자연 A01→A02→A03 통과, A03 동쪽 포고(40.24,2.78)·A04 상부 진입(19.35,0.58)은 각120초BLOCKED. 독립 A05 대시2.10초. 입력 개선 재시도는 라이선스로 빌드 전 중단했고 미컴파일 변경은 복원했다. [경로 원문](Validation/B17-route.md). 자연 전체 대시 완주로 세지 않는다.
+- BL2 `9b301e2` DONE(계산): 면적4548→4648, 적13→15, 등불13→14, 블록51→71, 발판26→18, 머리 여유 최소1→2.4u, 합계 일치. [비교표](Validation/B17-v5-draft1-vs-draft2.md). readonly WORLD_V5 4절은 구표기(4548/A05높이10)라 9절·draft2 JSON을 우선했고, Claude가 표기를 정리할 자료로 남겼다. BL1/BL2 종료 Quiet도 라이선스 때문에 실행 전 중단됐으며 제품 FAIL 판정으로 세지 않는다.
 
 ### 다음 Batch 후보
 
-V5 직접 플레이 결과와 데이터 후보를 Claude에게 검토할 자료로 전달한다. 층 B/C·수치 수정은 승인하지 않았다. 기존 D-NEXT 전체 플레이와 B07 A02/C03·V2 W22 검토는 유지한다. Approved Backlog는 비어 있다.
+Unity 라이선스 복구 후 T7 종료 기본 회귀 재실행. 이번3건·방 문법·구덩이 직접 플레이 수락 후 후속 범위를 정한다. 정적 후보22건·A03/A04 자동 입력 막힘·WORLD 4절 표기는 Claude에게 검토 자료로 전달한다. 층 B/C·수치 변경·Sprint Gate는 수행하지 않았다. 기존 D-NEXT 전체 플레이와 B07 A02/C03·V2 W22 검토를 유지한다. Approved Backlog는 비어 있다.

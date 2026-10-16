@@ -18,6 +18,11 @@ public sealed class B16V5Verifier:N5Runner
  {
   Check(N5Args.Has("-save-path"),"isolated save path");yield return Ready();
   Check(V4SceneMap.V5&&WorldMapLayout.Current.rooms.Length==6,"V5 six-room layout");
+  if(N5Args.Has("-verify-b17-world"))
+  {
+   var a04=WorldMapLayout.Current.rooms.Single(r=>r.id=="A04");var a05=WorldMapLayout.Current.rooms.Single(r=>r.id=="A05");var door=WorldMapLayout.Current.doors.Single(d=>d.id=="A03-A04");
+   Check(a04.rect.SequenceEqual(new float[]{126,11,176,23})&&a05.rect.SequenceEqual(new float[]{126,-1,176,11})&&door.span.SequenceEqual(new float[]{12,15}),"draft2 world A04/A05 and raised door");
+  }
   Check(RoomSession.Instance.CurrentRoomId==Arg("-start-room=","A01"),"launcher start room");
   string give=Arg("-give=","");Check(Player.GetComponent<PlayerDash>().hasDash==give.Contains("dash"),"fixture dash");Check(Motor.hasDoubleJump==(give.Contains("dj")||give.Contains("double")),"fixture double jump");
   Check(N5Args.Has("-no-map")?FindObjectsByType<V4WorldMap>(FindObjectsSortMode.None).Length==0:V4WorldMap.Instance!=null,"map switch");
@@ -34,7 +39,7 @@ public sealed class B16V5Verifier:N5Runner
    for(int i=0;i<bindings.Length;i++)Check(bindings[i].Connected&&bindings[i].GetComponent<EnemyReset>().Live!=previous[i],"restored patrol endpoints "+id);
    patrolTotal+=bindings.Length;int shards=Room.GetComponentsInChildren<DiscoveryReward>().Length;shardTotal+=shards;Check(shards==(id=="A02"?2:id=="A04"||id=="A06"?1:0),"shard count "+id);lines.Add("MEASURE scene="+id+" patrol="+bindings.Length+" shards="+shards);
   }
-  Check(patrolTotal==13&&shardTotal==4,"patrol13 shards4 total");
+  int expectedPatrol=N5Args.Int("-verify-v5-patrol-count",13);Check(patrolTotal==expectedPatrol&&shardTotal==4,"patrol"+expectedPatrol+" shards4 total");
   foreach(var item in new[]{new[]{"A01","A01-Z01"},new[]{"A02","A02-B05"},new[]{"A03","A03-B01"},new[]{"A05","A05-Z01"}})
   {
    yield return Setup(item[0]);Player.GetComponent<PlayerDash>().hasDash=true;Motor.hasDoubleJump=Motor.hasWallJump=true;Player.GetComponent<PlayerSlam>().hasSlam=true;yield return Blocked(item[1],true);
@@ -55,6 +60,16 @@ public sealed class B16V5Verifier:N5Runner
  IEnumerator Route()
  {
   RouteLog("MEASURE route limit=120s/segment input=virtual-keyboard teleportWithinSegment=0 abilities=none");
+  if(N5Args.Has("-b17-route"))
+  {
+   RouteLog("MEASURE route recipe=draft2 grounded-periodic-jump=True new-block-and-pit-waypoints=True raised-A03-exit=True tuningChanges=0");
+   yield return Segment("A01","start","A02",new[]{new Vector2(47.8f,1)});
+   yield return Segment("A02","A01-A02","A03",new[]{new Vector2(27.8f,1)});
+   yield return Segment("A03","A02-A03","A04",new[]{new Vector2(14.5f,1),new Vector2(18.5f,3),new Vector2(22.5f,1),new Vector2(25.5f,3),new Vector2(30.5f,5),new Vector2(32.4f,5),new Vector2(36.5f,6.9f),new Vector2(38,6.9f),new Vector2(40.2f,9.3f),new Vector2(41.6f,13),new Vector2(46,13),new Vector2(49.8f,13)});
+   yield return Segment("A04","A03-A04","A05",new[]{new Vector2(6.5f,1),new Vector2(9.2f,3),new Vector2(14.5f,5),new Vector2(16.5f,5),new Vector2(19.2f,7.3f),new Vector2(22,6.9f),new Vector2(40,6.9f),new Vector2(43,1),new Vector2(46,1)});
+   yield return Segment("A05","A04-A05","Dash",new[]{new Vector2(40.5f,1),new Vector2(37.5f,2.6f)});
+   RouteLog("MEASURE route measurement complete; BLOCKED rows are controller limits, not proof of impossible geometry");yield return new WaitForSecondsRealtime(10);yield break;
+  }
   yield return Segment("A01","start","A02",new[]{new Vector2(47.8f,1)});
   yield return Segment("A02","A01-A02","A03",new[]{new Vector2(27.8f,1)});
   yield return Segment("A03","A02-A03","A04",new[]{new Vector2(14.5f,1),new Vector2(18.5f,2.9f),new Vector2(20.5f,2.9f),new Vector2(22.5f,1),new Vector2(25.5f,2.9f),new Vector2(27.4f,2.9f),new Vector2(30.5f,4.9f),new Vector2(32.4f,4.9f),new Vector2(36.5f,6.9f),new Vector2(38,6.9f),new Vector2(40.2f,9.3f),new Vector2(41.6f,11.4f),new Vector2(46,11),new Vector2(49.8f,11)});
@@ -86,7 +101,7 @@ public sealed class B16V5Verifier:N5Runner
    double now=Time.realtimeSinceStartupAsDouble;var keys=new List<Key>();float dx=target.x-last.x;
    if(Mathf.Abs(dx)>.2f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
    bool enemyNear=Room.GetComponentsInChildren<EnemyReset>().Any(e=>e.Live!=null&&Mathf.Abs(e.Live.transform.position.x-last.x)<2.5f&&Mathf.Abs(e.Live.transform.position.y-last.y)<2);
-   if(Motor.Grounded&&now>=nextJump&&(target.y>last.y+.4f||enemyNear)){jumpUntil=now+.42;nextJump=now+.65;}
+   if(Motor.Grounded&&now>=nextJump&&(N5Args.Has("-b17-route")||target.y>last.y+.4f||enemyNear)){jumpUntil=now+.42;nextJump=now+.65;}
    if(now<jumpUntil)keys.Add(Key.Z);
    if(now>=nextAttack&&(!Motor.Grounded||enemyNear)){keys.Add(Key.X);if(!Motor.Grounded)keys.Add(Key.DownArrow);nextAttack=now+.34;}
    InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys.ToArray()));
