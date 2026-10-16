@@ -17,7 +17,7 @@ public sealed class MapLayoutBuilder:IProcessSceneWithReport
  {
   var source=J.Read(File.ReadAllText(path));
   var layout=new WorldMapLayout{rooms=J.D(source["rooms"]).Select(p=>new MapRoom{id=p.Key,rect=J.A(J.D(p.Value),"rect").Select(J.F).ToArray()}).ToArray(),
-   doors=J.A(source,"doors").Select(J.D).Select(d=>new MapDoor{id=J.S(d,"id"),a=J.S(d,"a"),b=J.S(d,"b"),edge=J.S(d,"edge"),type=J.S(d,"type"),gate=J.S(d,"gate"),at=J.F(d,"at"),span=J.A(d,"span").Select(J.F).ToArray()}).ToArray()};
+   doors=J.A(source,"doors").Select(J.D).Select(d=>new MapDoor{id=J.S(d,"id"),a=J.S(d,"a"),b=J.S(d,"b"),edge=J.S(d,"edge"),type=J.S(d,"type"),gate=J.S(d,"gate"),at=J.F(d,"at"),span=J.A(d,"span").Select(J.F).ToArray(),stub=d.ContainsKey("stub")&&(bool)d["stub"]}).ToArray()};
   Directory.CreateDirectory("Assets/Maps");string output="Assets/Maps/"+Path.GetFileName(path);File.WriteAllText(output,JsonUtility.ToJson(layout,true)+"\n",new System.Text.UTF8Encoding(false));AssetDatabase.Refresh();
   Debug.Log($"MAP layout={output} rooms={layout.rooms.Length} doors={layout.doors.Length} elevator={layout.doors.Count(d=>d.type=="elevator")}");return output;
  }

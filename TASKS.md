@@ -24,7 +24,7 @@
 | B16b-T5 | REVIEW | Development 전달·15런처+NoMap3 PASS·Release 제외 검증 |
 | B16b-T6 | DONE | 상태·실행법·인계 갱신·링크0불량·Quiet13/13 |
 | B16b-T7 | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0 |
-| B16b-BL1 | TODO | stub×·oneway 화살표 |
+| B16b-BL1 | REVIEW | 지도6방/12문·stub×4/화살표1·V4지도PASS·Quiet13/13 |
 | B16b-BL2 | TODO | 실제입력 구간 측정 |
 | B16b-BL3 | TODO | 수정 데이터 비교 |
 

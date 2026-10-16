@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable] public sealed class MapRoom { public string id; public float[] rect; }
-[Serializable] public sealed class MapDoor { public string id,a,b,edge,type,gate; public float at; public float[] span; }
+[Serializable] public sealed class MapDoor { public string id,a,b,edge,type,gate; public float at; public float[] span; public bool stub; }
 [Serializable] public sealed class WorldMapLayout
 {
  public MapRoom[] rooms; public MapDoor[] doors;

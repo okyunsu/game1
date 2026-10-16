@@ -16,7 +16,7 @@ V5 플레이 가능·REVIEW. Scene6개·실제exe·15런처+NoMap3 PASS, Release
 | T5 | feature | REVIEW | Development0오류·0경고, 15런처+V5 NoMap3 PASS·Release제외PASS·Quiet13/13 |
 | T6 | doc | DONE | 인계·링크0불량·Quiet13/13 |
 | T7 | verification | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0·현재런처18PASS |
-| BL1 | feature | TODO | stub×·oneway 화살표 지도 |
+| BL1 | feature | REVIEW | [지도6방/12문](B16b-map.md)·stub×4/화살표1·V4지도PASS·Quiet13/13 |
 | BL2 | verification | TODO | 실제 입력 경로 측정 |
 | BL3 | doc | TODO | 수정 데이터 비교 |
 

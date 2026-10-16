@@ -30,6 +30,18 @@ public sealed class V4WorldMap:MonoBehaviour
  void Update(){if(Keyboard.current?.mKey.wasPressedThisFrame==true)Cycle();if(Mode!=Display.Off&&RoomSession.Instance?.Player!=null&&Time.unscaledTime>=nextProgressRead){RefreshProgress();nextProgressRead=Time.unscaledTime+.25f;}}
  public static string GateLabel(string gate)=>gate switch{"Dash"=>"D","WallJump"=>"W","DJ"=>"J","Slam"=>"S","Boss"=>"B",_=>""};
  public static Color GateColor(string gate)=>gate switch{"Dash"=>Color.cyan,"WallJump"=>Color.yellow,"DJ"=>new Color(.8f,.5f,1),"Slam"=>new Color(1,.6f,.2f),"Boss"=>new Color(1,.35f,.35f),_=>Color.white};
+ public Color DoorDisplayColor(MapDoor door)=>door.stub?GateColor(door.gate):GateDisplayColor(door.gate);
+ public bool ShowsUnknown(MapDoor door)=>!All&&!door.stub&&WorldMapLayout.Current.Room(door.a)!=null&&WorldMapLayout.Current.Room(door.b)!=null&&(!ProgressSave.HasVisited(door.a)||!ProgressSave.HasVisited(door.b));
+ public string DoorLabel(MapDoor door)
+ {
+  string text=GateLabel(door.gate);if(door.stub)return text+" ×";
+  if(door.type=="oneway")
+  {
+   var a=WorldMapLayout.Current.Room(door.a);var b=WorldMapLayout.Current.Room(door.b);
+   if(a!=null&&b!=null)return text+(door.edge=="x"?(b.rect[0]+b.rect[2]>a.rect[0]+a.rect[2]?" →":" ←"):(b.rect[1]+b.rect[3]>a.rect[1]+a.rect[3]?" ↑":" ↓"));
+  }
+  return text+(door.type=="down"?" ↓":"");
+ }
  static void Line(Vector2 a,Vector2 b,Color color,float width=2){var old=GUI.matrix;var delta=b-a;GUI.color=color;GUIUtility.RotateAroundPivot(Mathf.Atan2(delta.y,delta.x)*Mathf.Rad2Deg,a);GUI.DrawTexture(new Rect(a.x,a.y-width/2,delta.magnitude,width),Texture2D.whiteTexture);GUI.matrix=old;GUI.color=Color.white;}
  static void Border(Rect r,Color c){Line(r.min,new Vector2(r.xMax,r.yMin),c);Line(new Vector2(r.xMax,r.yMin),r.max,c);Line(r.max,new Vector2(r.xMin,r.yMax),c);Line(new Vector2(r.xMin,r.yMax),r.min,c);}
  void OnGUI()
@@ -46,7 +58,7 @@ public sealed class V4WorldMap:MonoBehaviour
   Vector2 P(float x,float y)=>new Vector2(area.width/2+(x-center.x)*scale,area.height/2-(y-center.y)*scale);
   var label=new GUIStyle(GUI.skin.label){fontSize=11,alignment=TextAnchor.MiddleCenter};
   foreach(var r in rooms){Vector2 top=P(r.rect[0],r.rect[3]),bottom=P(r.rect[2],r.rect[1]);var box=Rect.MinMaxRect(top.x,top.y,bottom.x,bottom.y);GUI.color=new Color(.2f,.35f,.45f,.65f);GUI.DrawTexture(box,Texture2D.whiteTexture);GUI.color=Color.white;Border(box,r.id==RoomSession.Instance.CurrentRoomId?Color.yellow:new Color(.5f,.6f,.65f));GUI.Label(box,r.id,label);if(r.id==CheckpointRoom)GUI.Label(new Rect(box.x,box.y+box.height*.55f,box.width,Mathf.Min(16,box.height*.45f)),"CP",label);}
-  foreach(var d in VisibleDoors){if(d.span==null||d.span.Length!=2)continue;Vector2 a=d.edge=="x"?P(d.at,d.span[0]):P(d.span[0],d.at),b=d.edge=="x"?P(d.at,d.span[1]):P(d.span[1],d.at);Color c=GateDisplayColor(d.gate);if(d.type=="shortcut"){for(int i=0;i<5;i+=2)Line(Vector2.Lerp(a,b,i/5f),Vector2.Lerp(a,b,(i+1)/5f),c,3);}else Line(a,b,c,3);var middle=(a+b)/2;string text=GateLabel(d.gate)+(d.type=="down"?" ↓":"");GUI.color=c;GUI.Label(new Rect(middle.x+3,middle.y-14,40,20),text);GUI.color=Color.white;if(!All&&(!ProgressSave.HasVisited(d.a)||!ProgressSave.HasVisited(d.b))){string hidden=ProgressSave.HasVisited(d.a)?d.b:d.a;var r=WorldMapLayout.Current.Room(hidden);Vector2 direction=r==null?Vector2.right:(P((r.rect[0]+r.rect[2])/2,(r.rect[1]+r.rect[3])/2)-middle).normalized;Vector2 q=middle+direction*13;GUI.Label(new Rect(q.x-6,q.y-9,16,18),"?");}}
+  foreach(var d in VisibleDoors){if(d.span==null||d.span.Length!=2)continue;Vector2 a=d.edge=="x"?P(d.at,d.span[0]):P(d.span[0],d.at),b=d.edge=="x"?P(d.at,d.span[1]):P(d.span[1],d.at);Color c=DoorDisplayColor(d);if(d.type=="shortcut"){for(int i=0;i<5;i+=2)Line(Vector2.Lerp(a,b,i/5f),Vector2.Lerp(a,b,(i+1)/5f),c,3);}else Line(a,b,c,3);var middle=(a+b)/2;string text=DoorLabel(d);GUI.color=c;GUI.Label(new Rect(middle.x+3,middle.y-14,40,20),text);GUI.color=Color.white;if(ShowsUnknown(d)){string hidden=ProgressSave.HasVisited(d.a)?d.b:d.a;var r=WorldMapLayout.Current.Room(hidden);Vector2 direction=r==null?Vector2.right:(P((r.rect[0]+r.rect[2])/2,(r.rect[1]+r.rect[3])/2)-middle).normalized;Vector2 q=middle+direction*13;GUI.Label(new Rect(q.x-6,q.y-9,16,18),"?");}}
   Vector2 point=P(PlayerWorld.x,PlayerWorld.y);GUI.color=Color.green;GUI.DrawTexture(new Rect(point.x-3,point.y-3,6,6),Texture2D.whiteTexture);GUI.color=Color.white;GUI.EndGroup();
  }
 }

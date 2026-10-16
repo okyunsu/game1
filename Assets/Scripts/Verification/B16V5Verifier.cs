@@ -3,10 +3,11 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public sealed class B16V5Verifier:N5Runner
 {
- [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init(){if(N5Args.Has("-verify-b16-v5"))N5Args.Start<B16V5Verifier>("-verify-b16-v5");else N5Args.Start<B16V5Verifier>("-verify-b16-launch");}
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init(){if(N5Args.Has("-verify-b16-v5"))N5Args.Start<B16V5Verifier>("-verify-b16-v5");else if(N5Args.Has("-verify-b16-map"))N5Args.Start<B16V5Verifier>("-verify-b16-map");else N5Args.Start<B16V5Verifier>("-verify-b16-launch");}
  static string Arg(string prefix,string fallback){foreach(string a in Environment.GetCommandLineArgs())if(a.StartsWith(prefix,StringComparison.Ordinal))return a.Substring(prefix.Length);return fallback;}
  RoomDefinition Room=>FindFirstObjectByType<RoomDefinition>();
  RoomExit Exit(string id)=>Room.GetComponentsInChildren<RoomExit>().Single(e=>e.exitId==id);
@@ -19,6 +20,7 @@ public sealed class B16V5Verifier:N5Runner
   string give=Arg("-give=","");Check(Player.GetComponent<PlayerDash>().hasDash==give.Contains("dash"),"fixture dash");Check(Motor.hasDoubleJump==(give.Contains("dj")||give.Contains("double")),"fixture double jump");
   Check(N5Args.Has("-no-map")?FindObjectsByType<V4WorldMap>(FindObjectsSortMode.None).Length==0:V4WorldMap.Instance!=null,"map switch");
   Check(ProgressSave.TryLoad(out var initial)&&initial.checkpointId==(Arg("-start-room=","A01")=="A03"?"CP-A03":"CP-A01"),"existing schema checkpoint saved");
+  if(N5Args.Has("-verify-b16-map")){yield return Map();yield break;}
   if(N5Args.Has("-verify-b16-launch")){yield return new WaitForSecondsRealtime(10);yield break;}
   int patrolTotal=0,shardTotal=0;
   foreach(string id in V4SceneMap.Rooms)
@@ -42,6 +44,22 @@ public sealed class B16V5Verifier:N5Runner
   Player.GetComponent<PlayerDash>().hasDash=false;Motor.hasDoubleJump=Motor.hasWallJump=false;ProgressSave.HasSlam=false;yield return Setup("A05");var pickup=FindFirstObjectByType<DashPickup>();Check(pickup!=null,"authored Dash shrine exists");PlaceForAuthorizedSetup(pickup.transform.position);yield return new WaitForSeconds(.2f);Check(Player.GetComponent<PlayerDash>().hasDash,"physical Dash pickup");Check(ProgressSave.TryLoad(out var dash)&&dash.dash,"Dash pickup saved");
   yield return Setup("A04");var reward=FindFirstObjectByType<DiscoveryReward>();string rewardId=reward.candidateId;PlaceForAuthorizedSetup(reward.transform.position);yield return new WaitForSeconds(.15f);Check(DiscoveryReward.Found(rewardId),"physical shard collection");
   ProgressSave.SaveCurrent(RoomSession.Instance);yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A01"&&Player.GetComponent<PlayerDash>().hasDash,"Continue restores V5 checkpoint and Dash");Check(N5Args.Has("-no-map")||FindObjectsByType<V4WorldMap>(FindObjectsSortMode.None).Length==1,"single map after Continue");
+  yield return new WaitForSecondsRealtime(10);
+ }
+ IEnumerator Map()
+ {
+  var map=V4WorldMap.Instance;Check(map!=null&&map.All,"map-all enabled");
+  Check(map.VisibleRooms.Length==6&&map.VisibleDoors.Length==12,"six rooms twelve doors");
+  Check(map.VisibleDoors.Count(d=>d.stub)==4&&map.VisibleDoors.Count(d=>d.type=="oneway")==1,"four stub one oneway");
+  yield return Tap(Key.M);Check(map.Mode==V4WorldMap.Display.Large,"actual M large map");
+  RoomSession.Instance.GrantDash();RoomSession.Instance.GrantDoubleJump();map.RefreshProgress();
+  foreach(var d in map.VisibleDoors)
+  {
+   string label=map.DoorLabel(d);Check(d.span.Length==2,"door geometry "+d.id);
+   if(d.stub){Check(label.Contains("×")&&!map.ShowsUnknown(d),"closed stub no question "+d.id);Check(map.DoorDisplayColor(d)==V4WorldMap.GateColor(d.gate),"stub stays locked color "+d.id);}
+   if(d.type=="oneway")Check(d.a=="A06"&&d.b=="A02"&&label.Contains("→"),"oneway A06 to A02 right arrow");
+   lines.Add("MEASURE map door="+d.id+" a="+d.a+" b="+d.b+" type="+d.type+" stub="+d.stub+" label="+label+" unknown="+map.ShowsUnknown(d));
+  }
   yield return new WaitForSecondsRealtime(10);
  }
  IEnumerator Setup(string id)
