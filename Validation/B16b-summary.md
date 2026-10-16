@@ -1,5 +1,10 @@
 # Batch 16b 결과 — V5 층 A 파일럿 이어하기
 
+회귀: Task별 Quiet12개 모두13/13, 최종 기본 REGRESSION13/13.
+Batch-Card: 허용 범위 밖0 · TASKS 깨진 링크0 · 없는 빌드/런처0 · 결정 대기0 · 열린 버그3.
+최종 런처18/18·각10초Error0, 문14방향/저장PASS, 보호 SHA63파일변경0. 정적 후보FAIL10/WARN4·A04 실제입력120초BLOCKED는 아래 원문에 기록했다.
+카드 원본: `_raw/B16b/Final-card.txt`(38d6a7d) 및 최종 보고서 커밋 재확인 `_raw/B16b/Final-card-final.txt`. 검증 종료2026-10-16 15:42 KST.
+
 V5 플레이 가능·REVIEW. Scene6개·실제exe·15런처+NoMap3 PASS, Release V5 제외 PASS. Base `74732cae4b93a74f113dc283a1a2946d37f1a777`, 시작 2026-10-16 13:34:36 KST. 예산12 Task/6시간, 19:04:36 이후 새 Task 시작 안 함.
 유형별 Task: feature5 / verification5 / doc2 / cleanup0 =12.
 

@@ -209,7 +209,7 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 - T4 `a777653`, T5 `a0f103c`, T6 `9269fad`, T7 `f0b088f`, BL1 `add41ab`, BL2 `fbfc6ee`, BL3 `077ee71`. 주요 변경/실제 검증/문제는 [Task별 요약](Validation/B16b-summary.md).
 - T5 [전달 결과](Validation/B16b-delivery.md): `Builds/B12-delivery` 최신, `Builds/B13-delivery` 직전 유지. 기존 V4 런처 내용 변화0. V5 전용 슬롯은 실행 때 fixture로 초기화한다. 임의 방 fixture Continue는 공식 A01/A03 외 도착을 보장하지 않는다. V3 안내 규칙은 그대로라 대시 뒤 파일럿 밖 닫힌 문을 가리킬 수 있다.
 - [실제 입력 경로](Validation/B16b-route.md): A01→A02→A03→A04 자연 연결. A04 위 발판 접근 x15.51/y2.77에서120초 입력 한도, 전체 자연 대시 완주 미확인. A05는 독립 낙하 도착에서1.50초에 대시 수집. 입력 보정1회 후 결과를 확정했고 지형은 변경하지 않았다.
-- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog1~3 완료. 마지막 기본 회귀13/13·카드 결과는 [배치 요약](Validation/B16b-summary.md). push·Sprint Gate 없음.
+- 자동 문 검사는 문 앞 fixture에서 실제 접촉해 확인했다. 자연 입력 완주와 사람의 시야·길 찾기·손맛은 별도다. Backlog1~3 완료. 마지막 기본 회귀13/13·카드 결과는 [배치 요약](Validation/B16b-summary.md). 인계 태그 `B16b`. 각 Task Quiet13/13·최종 기본13/13·카드 범위/링크/없는런처0. push·Sprint Gate 없음.
 
 ### 다음 Batch 후보
 
