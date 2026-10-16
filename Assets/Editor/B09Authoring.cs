@@ -11,6 +11,7 @@ using J=B09Json;
 public static class B09Authoring
 {
  static string designPath="Design/rooms_v2.json",outputFolder="Assets/Scenes/V4";
+ static bool Pilot=>Path.GetFileName(designPath).StartsWith("rooms_v5",StringComparison.Ordinal);
  static string OutputPath(string id)=>outputFolder+"/"+id+"_V4.unity";
  static RoomDefinition room;static MechanicsTuning tuning;static readonly List<string> rows=new();static readonly List<GuideGraph.Edge> edges=new();
  static Sprite sprite=>AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Level/Landing.prefab").GetComponent<SpriteRenderer>().sprite;
@@ -76,7 +77,10 @@ public static class B09Authoring
    {
     var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=OutputPath(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
     CoveredFloorTrigger(go,r,d);
-    bool hasArrival=J.A(J.D(data[target]),"spawns").Select(J.D).Any(s=>J.S(s,"id")==id);if(!hasArrival){exit.enabled=false;edges.RemoveAt(edges.Count-1);rows.Add("ONEWAY inactive reverse marker "+pair.Key+" "+id);}
+    bool stub=p.ContainsKey("stub")&&(bool)p["stub"];
+    bool inbound=Pilot&&(J.S(p,"oneway")=="in"||(p.ContainsKey("down_only")&&(bool)p["down_only"]));
+    bool hasArrival=!stub&&!inbound&&data.ContainsKey(target)&&J.A(J.D(data[target]),"spawns").Select(J.D).Any(s=>J.S(s,"id")==id);if(!hasArrival){exit.enabled=false;edges.RemoveAt(edges.Count-1);rows.Add("ONEWAY inactive reverse marker "+pair.Key+" "+id);}
+    if(stub||inbound){var color=rule.gate=="Dash"?Color.cyan:rule.gate=="WallJump"?Color.yellow:rule.gate=="DJ"?new Color(.8f,.5f,1):rule.gate=="Slam"?new Color(1,.6f,.2f):Color.gray;go.GetComponent<SpriteRenderer>().color=color;Rect("closed:"+id,r,color);}
     if(exit.mainPath&&hasArrival&&pair.Key!="S02"){var lamp=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/B06/GuideLantern.prefab"));lamp.transform.SetParent(go.transform,false);lamp.transform.localPosition=Vector3.up*.8f;lamp.transform.localScale=new Vector3(.28f/J.F(r[2]),.36f/J.F(r[3]),1);}
    }
    int markIndex=0;foreach(var mark in J.A(d,"marks"))Mark(J.D(mark),markIndex++);
@@ -84,7 +88,7 @@ public static class B09Authoring
    if(pair.Key=="C06")Boss(blocks["solid"]);
    SaveDeterministic(OutputPath(pair.Key));
   }
-  if(outputFolder!="Assets/Scenes/V4"){File.WriteAllLines("Validation/_raw/B15/BL1-temp-elements.txt",rows);return;}
+  if(outputFolder!="Assets/Scenes/V4"){if(Pilot){Directory.CreateDirectory("Validation/_raw/B16b");File.WriteAllLines(Path.Combine("Validation/_raw/B16b","generation-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt"),rows);}else File.WriteAllLines("Validation/_raw/B15/BL1-temp-elements.txt",rows);return;}
   const string graphPath="Assets/Resources/GuideGraph_V4.asset";var graph=AssetDatabase.LoadAssetAtPath<GuideGraph>(graphPath);if(graph==null){graph=ScriptableObject.CreateInstance<GuideGraph>();AssetDatabase.CreateAsset(graph,graphPath);}graph.edges=edges.ToArray();EditorUtility.SetDirty(graph);AssetDatabase.SaveAssets();if(graphCrlf)File.WriteAllText(graphPath,File.ReadAllText(graphPath).Replace("\r\n","\n").Replace("\n","\r\n"),new System.Text.UTF8Encoding(false));File.WriteAllLines("Validation/_raw/B09/T5-elements-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt",rows);
  }
  static string JsonFragment(object obj){return designPath;}
