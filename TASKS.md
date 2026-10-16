@@ -26,7 +26,7 @@
 | B16b-T7 | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0 |
 | B16b-BL1 | REVIEW | 지도6방/12문·stub×4/화살표1·V4지도PASS·Quiet13/13 |
 | B16b-BL2 | DONE | 자연A01→A04·A04구간120초BLOCKED·독립A05대시1.48초·Error0·Quiet13/13 |
-| B16b-BL3 | TODO | 수정 데이터 비교 |
+| B16b-BL3 | DONE | 면적8260/4548·적7/13·장치15/22·문22/20·합계일치·Quiet13/13 |
 
 ## 1-0. Current Tasks (Batch16)
 
