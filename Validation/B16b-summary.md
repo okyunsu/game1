@@ -17,7 +17,7 @@ V5 플레이 가능·REVIEW. Scene6개·실제exe·15런처+NoMap3 PASS, Release
 | T6 | doc | DONE | 인계·링크0불량·Quiet13/13 |
 | T7 | verification | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0·현재런처18PASS |
 | BL1 | feature | REVIEW | [지도6방/12문](B16b-map.md)·stub×4/화살표1·V4지도PASS·Quiet13/13 |
-| BL2 | verification | TODO | 실제 입력 경로 측정 |
+| BL2 | verification | DONE | [실제입력](B16b-route.md)·자연A01→A04·A04구간BLOCKED·독립A05대시1.48s·Quiet13/13 |
 | BL3 | doc | TODO | 수정 데이터 비교 |
 
 ## 기획자에게
@@ -54,4 +54,5 @@ Crash!!!
 
 T7 중간 점검: Quiet13/13. 카드(a777653 이후 문서/런처 포함9269fad) 허용 범위 밖0·TASKS 링크불량0·없는 빌드/런처0, 결정0·열린 버그3. 사용자 입력 Design3경로는 명시적 별도 커밋 허용을 카드에 반영했다. V4 보호63파일 SHA 변경0. T5의 현재 동일 전달exe 런처18검사를 재사용했다(이후 제품 변경0). 기본 회귀는 별도 명령으로 진행 중.
 
-`nT7 최종: B16b-T7 Quiet13/13, B16b-T7-default 기본13/13. 카드 원본 _raw/B16b/T7-card.txt. 본 Task 완료 후 승인 Backlog1~3 진행.`n
+
+T7 최종: B16b-T7 Quiet13/13, B16b-T7-default 기본13/13. 카드 원본 _raw/B16b/T7-card.txt. 본 Task 완료 후 승인 Backlog1~3 진행.
