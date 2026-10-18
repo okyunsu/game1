@@ -62,3 +62,5 @@ Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 �
 Scene 끼임·적·순찰 끝 검사와 JSON 가장자리 머리 여유·적 지지·포고 구간 검사를 추가했습니다. 원래 A02 두 원인은 해소됐지만 확장 몸 박스 후보69와 기존 정적 후보22는 남아 있습니다. 직접 플레이와 Claude 검토가 필요합니다. [검사 결과](Validation/B18-clearance-after.md).
 
 Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output 새파일` 또는 Development exe의 `-verify-b18-clearance`(독립 `-save-path` 필수). JSON 검사: `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --output 새파일`. 검사 결과와 실제 플레이 불가능 판정은 구분합니다.
+
+최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 일반 경로는5구간 통과했고, DJ는 A01 접근120초 미완주 뒤 A06 도착 fixture에서3구간 통과했습니다.

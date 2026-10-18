@@ -26,3 +26,5 @@ Error/Exception/Assert=0
 아직 사람의 끼임·작은 발판 난이도·포고 구간 체감 수락은 미실시. Scene 검사 후보69와 정적 기존 FAIL22를 해결했다고 주장하지 않는다.
 
 T6 REVIEW. Quiet 실제 REGRESSION 13/13. [원문](_raw/regression/B18-T6/result.txt).
+
+종료 전달 갱신: Backlog3 빌드(모든 opt-in 검증 도구 포함, 오류0·경고0)를 같은 B18-delivery 경로로 연결했고 V5+NoMap6모드를 다시10초Error0으로 확인했다. 사용자 슬롯을 raw와 최종 빌드에 보존한 뒤 중간/측정 빌드를 제거했다. 최종 보존은 B18/B12 두 개다. [최종 원문](_raw/B18/Final-V5-result.txt).

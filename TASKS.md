@@ -4,7 +4,7 @@
 
 ## 1. 현재 상태
 
-- **Sprint3 / Batch18 진행: draft3 Scene6개·작은 발판12개·적 박힘0·문14방향 확인**. Scene 확장 몸 박스 후보69, 기존 정적 FAIL22는 남아 있으며 설계·체감 수락 대기. Sprint Gate 미실시. [B18 요약](Validation/B18-summary.md).
+- **Sprint3 / Batch18 종료: draft3 Scene6개·작은 발판12개·적 박힘0·문14방향 확인**. Scene 확장 몸 박스 후보69, 기존 정적 FAIL22는 남아 있으며 설계·체감 수락 대기. Sprint Gate 미실시. [B18 요약](Validation/B18-summary.md).
 - Batch16의 T1 BLOCKED·의존 Task/Backlog SKIPPED를 Batch16b에서 이어받았다. [당시 결과](Validation/B16-summary.md)는 보존한다.
 - Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
 - Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
@@ -23,10 +23,10 @@
 | B18-T6 | REVIEW | Development 빌드·V5+NoMap6모드 각10초Error0. B18/B12 보존·V4 런처 변경0·Quiet13/13 |
 | B18-T7 | DONE | 현재 상태·결정1·직접 플레이·검사·값 반영 안내, 깨진 링크0·Quiet13/13 |
 | B18-T8 | DONE | Quiet13/13·기본13/13·18런처Error0·Batch-Card 범위/링크/없는 런처0·Quiet13/13 |
-| B18-BL1 | DONE | 능력 없이 자연 A01→대시5구간 PASS, 적 포고7·HP4→2·접촉 기록·Quiet13/13 |
-| B18-BL2 | DONE | draft2/draft3 등불·작은 발판·블록·머리 여유·가로 간격 비교, 합계 일치·Quiet13/13 |
-| B18-BL3 | DONE | 오름5종×달리기/제자리 최대 간격·실제 포고1회 두 방식 측정, Error0·Quiet13/13 |
-| B18-BL4 | DONE | DJ 경로 측정: A01→A06 120초BLOCKED, 독립A06 왼쪽 조각·일방 문·A02 조각3구간PASS·Error0·Quiet13/13 |
+| B18-BL1 | DONE | 능력 없이 자연 A01→A02→A03→A04→A05 대시까지5구간 PASS(합29.50초), 적 포고7·HP4→2. A03 동쪽3발판/A04 상부 통과·Quiet13/13 |
+| B18-BL2 | DONE | draft2/draft3 방별 등불·작은 발판·블록·머리 여유·가로 간격 계산·합계 일치·Quiet13/13 |
+| B18-BL3 | DONE | 오름2u 최대 간격 제자리3.25/달리기3.75u, 포고1회 몸 상승2.128u. 오름5종×2/포고2방식 실제 측정·Quiet13/13 |
+| B18-BL4 | DONE | DJ 3PASS/1BLOCKED 측정: A01→A06 x24.95/발4.39·접촉없음·120초 한계. 독립A06 왼쪽 조각/일방 문/A02 조각 PASS, 자연 전체 완주 아님·Quiet13/13 |
 
 ## 1-0b. Current Tasks (Batch17)
 
@@ -255,11 +255,11 @@ Base `e140f14`, 시작2026-10-18 23:23 KST. [전체 요약](Validation/B18-summa
 |T5|PARTIAL|`f67de60`|[결과](Validation/B18-room-rules-v5-A.md)|
 |T6|REVIEW|`675217b`|[결과](Validation/B18-delivery.md)|
 |T7|DONE|`be42902`|[결과](Validation/B18-handoff.md)|
-|T8|DONE|`종료 커밋`|[결과](Validation/B18-final-check.md)|
-|BL1|TODO|`종료 커밋`|대기|
-|BL2|TODO|`종료 커밋`|대기|
-|BL3|TODO|`종료 커밋`|대기|
-|BL4|TODO|`종료 커밋`|대기|
+|T8|DONE|`3827a47`|[결과](Validation/B18-final-check.md)|
+|BL1|DONE|`2ad2283`|[결과](Validation/B18-route.md)|
+|BL2|DONE|`3f385d2`|[결과](Validation/B18-v5-draft2-vs-draft3.md)|
+|BL3|DONE|`5733cc4`|[결과](Validation/B18-hop-limits.md)|
+|BL4|DONE|`e5b75a1`|[결과](Validation/B18-dj-route.md)|
 
 A02 원인2건 해소·적0/순찰끝0·문14/저장 PASS. 후보69와 정적22건은 해결 주장 없이 반환했다. 매 Task Quiet와 종료 기본 회귀는 실제 결과를 전체 요약 맨 위에 기록했다. 경로의 BLOCKED 행은 측정 결과이며 해당 측정 Task의 구현 BLOCKED와 구분한다.
 
