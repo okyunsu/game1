@@ -165,6 +165,82 @@ def draft2_checks(room):
     return findings
 
 
+def draft3_checks(room):
+    """Read-only draft3 margin, enemy support and pogo climb candidates."""
+    findings = []
+    solids = room.get('solid', [])
+    surfaces = solids + room.get('platform', [])
+    required = player_size()[1] + .6
+    for i, a in enumerate(surfaces):
+        top = a[1]+a[3]
+        if top >= room['size'][1]-1e-6:
+            continue
+        for j, b in enumerate(surfaces):
+            clearance = b[1]-top
+            if i == j or not 1e-6 < clearance < required-1e-6 or gap(a, b) > .9+1e-6:
+                continue
+            # Remove internal faces joined directly to a solid above.
+            spans = [(a[0], a[0]+a[2])]
+            for cover in solids:
+                if abs(cover[1]-top) > 1e-6:
+                    continue
+                spans = [(lo, hi) for l, r in spans for lo, hi in
+                         ((l, min(r, cover[0])), (max(l, cover[0]+cover[2]), r)) if hi-lo > 1e-6]
+            if any(gap((lo, 0, hi-lo, 0), b) <= .9+1e-6 for lo, hi in spans):
+                findings.append(('FAIL', 'edge-headroom', f'surface={i} overhead={j} gap={gap(a,b):g} clearance={clearance:g} required={required:g}'))
+    def supported_intervals(y):
+        return sorted((a[0], a[0]+a[2]) for a in surfaces+room.get('seal', [])+room.get('cover', [])+room.get('breakable', []) if abs(a[1]+a[3]-y) < .075)
+    def covered(lo, hi, intervals):
+        end = lo
+        for left, right in intervals:
+            if right < end-1e-6:
+                continue
+            if left > end+1e-6:
+                break
+            end = max(end, right)
+            if end >= hi-1e-6:
+                return True
+        return False
+    for i, enemy in enumerate(room.get('enemies', [])):
+        # Authored y is the foot; E1/E2/E3 prefabs use a 1x1 body.
+        # Read the actual prefab collider rather than changing enemy tuning.
+        kind = enemy.get('type', 'E1').split('-')[0][:2]
+        if kind not in ('E1', 'E2', 'E3'):
+            findings.append(('MEASURE', 'enemy-shape', f'enemy={i} type={kind} unsupported static body; inspect in Unity'))
+            continue
+        prefab = Path('Assets/Prefabs')/(kind+'.prefab')
+        shape = next(p for p in prefab.read_text(encoding='utf-8-sig').split('--- !u!') if p.startswith('61 '))
+        width, height = map(float, re.search(r'm_Size: \{x: ([\d.]+), y: ([\d.]+)\}', shape).groups())
+        body = (enemy['x']-width/2, enemy['y']+.01, width, height-.01)
+        overlap = [j for j, a in enumerate(solids) if intersects(body, a)]
+        if overlap:
+            findings.append(('FAIL', 'enemy-inside-solid', f'enemy={i} x={enemy["x"]:g} feet={enemy["y"]:g} solid={overlap}'))
+        spans = supported_intervals(enemy['y'])
+        if not covered(enemy['x'], enemy['x'], spans):
+            findings.append(('FAIL', 'enemy-support', f'enemy={i} x={enemy["x"]:g} feet={enemy["y"]:g} no standing surface'))
+        patrol = enemy.get('patrol', [])
+        if len(patrol) == 2 and not covered(min(patrol), max(patrol), spans):
+            findings.append(('FAIL', 'patrol-support', f'enemy={i} patrol={patrol} feet={enemy["y"]:g} leaves standing surface'))
+    # Vertical chains are local geometric candidates, not an input route proof.
+    lanterns = sorted((p for p in room.get('pogo', []) if p.get('kind') == 'lantern'), key=lambda p:p['y'])
+    chains = []
+    for p in lanterns:
+        predecessors = [chain for chain in chains if 0 < p['y']-chain[-1]['y'] <= 2+attack_height()+1e-6 and abs(p['x']-chain[-1]['x']) <= 4]
+        chain = max(predecessors, key=len, default=[])+[p]
+        chains.append(chain)
+        if len(chain) > 2:
+            findings.append(('WARN', 'pogo-chain', 'consecutive lanterns='+','.join(str(n.get('id', n['x'])) for n in chain)))
+    for a in surfaces:
+        top = a[1]+a[3]
+        nearby = [p for p in lanterns if abs(p['x']-(a[0]+a[2]/2)) <= max(4, a[2]/2+3) and top < p['y']+.5]
+        if not nearby:
+            continue
+        high = max(p['y']+.5 for p in nearby)
+        if high-top >= 4 and not any(r[2] <= 2.5 and top < r[1]+r[3] <= high+1e-6 and gap(a,r) <= 4 for r in room.get('platform', [])):
+            findings.append(('WARN', 'pogo-only-climb', f'fromTop={top:g} toTop={high:g} rise={high-top:g} no small platform in local climb'))
+    return findings
+
+
 def arrival_graph(room, surfaces):
     terrain = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
     targets = [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
@@ -275,6 +351,7 @@ def v5_checks(room):
             if not any(i in reached and gap(r, door['rect']) <= 3 and door['rect'][1]-r[1] <= (2.5 if i < len(surfaces) else 2+attack_height()) for i, r in enumerate(nodes)):
                 add('FAIL', 'reachability', f'start={name} door={door["id"]} absent in pogo envelope')
     findings.extend(draft2_checks(room))
+    findings.extend(draft3_checks(room))
     return findings, elements
 
 
@@ -286,6 +363,7 @@ def v5_report(source):
              '모든 spawns를 각각 시작점으로 검사한다. fall은 x 아래 첫 고체/발판/온전한 봉인·덮개·부서지는 벽 상단을 착지점으로 삼는다. 벽 가림·충돌·적 이동·입력 타이밍을 풀지 않는 낙관적 경로 후보이며 실제 문 gate 차단은 T3에서 검사한다.',
              '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과는 아래·위 절반에 아이템 각1개를 검사한다.', '',
              f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지, 바닥 구덩이 순찰 교차 금지·폭≤3. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
+             'draft3 추가 규칙: 가장자리 가로0.9u 이내 구조물 머리 여유2.2u, 적 솔리드 침투·서 있는 면·순찰 전구간 지지 FAIL. 오름4u 이상에서 작은 발판 없는 포고 구간·등불3연속은 WARN(기하 후보).', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
@@ -336,7 +414,24 @@ def self_test():
         assert any(r == rule for _, r, _ in failures), failures
         results.extend(f'{level} synthetic {r}: {detail}' for level, r, detail in failures)
     assert not draft2_checks(base)
-    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; clean fixture PASS'])
+    draft3 = {
+        'edge-headroom': {'size':[20,12], 'solid':[[0,0,20,1],[5,1,2.5,2]], 'platform':[[8,4.5,3,.5]]},
+        'enemy-inside-solid': {'size':[20,12], 'solid':[[0,0,20,1],[5,1,2,2]], 'enemies':[{'x':6,'y':1,'type':'E1','patrol':[4,8]}]},
+        'enemy-support': {'size':[20,12], 'solid':[[0,0,5,1]], 'enemies':[{'x':8,'y':1,'type':'E1','patrol':[3,8]}]},
+        'pogo-chain': {'size':[20,16], 'solid':[[0,0,20,1]], 'pogo':[{'id':str(i),'kind':'lantern','x':5+i,'y':3+2*i} for i in range(3)]},
+    }
+    folder = Path('Validation/_raw/B18/rule-fixtures')/uuid.uuid4().hex
+    folder.mkdir(parents=True)
+    for rule, room in draft3.items():
+        path = folder/(rule+'.json')
+        path.write_text(json.dumps({'rooms':{'fake':room}}, indent=2), encoding='utf-8')
+        checks = draft3_checks(json.loads(path.read_text(encoding='utf-8'))['rooms']['fake'])
+        assert any(r == rule for _, r, _ in checks), (rule, checks)
+        if rule == 'enemy-support':
+            assert any(r == 'patrol-support' for _, r, _ in checks), checks
+        results.extend(f'{level} synthetic {r}: {detail}' for level, r, detail in checks)
+    assert not draft3_checks(base)
+    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
 if __name__ == "__main__":
