@@ -26,7 +26,7 @@
 | B18-BL1 | DONE | 능력 없이 자연 A01→대시5구간 PASS, 적 포고7·HP4→2·접촉 기록·Quiet13/13 |
 | B18-BL2 | DONE | draft2/draft3 등불·작은 발판·블록·머리 여유·가로 간격 비교, 합계 일치·Quiet13/13 |
 | B18-BL3 | DONE | 오름5종×달리기/제자리 최대 간격·실제 포고1회 두 방식 측정, Error0·Quiet13/13 |
-| B18-BL4 | TODO | DJ 보유 A01→A06·왼쪽 조각·일방 문→A02 조각, 구간별120초/접촉 측정·대기 |
+| B18-BL4 | DONE | DJ 경로 측정: A01→A06 120초BLOCKED, 독립A06 왼쪽 조각·일방 문·A02 조각3구간PASS·Error0·Quiet13/13 |
 
 ## 1-0b. Current Tasks (Batch17)
 
@@ -233,7 +233,7 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 ### 직접 플레이 확인
 
-기존 3절·[Batch15 인계](Validation/B15-summary.md)의 수락 순서를 먼저 유지한다. V5는 약10~15분:
+기존 3절·[Batch15 인계](Validation/B15-summary.md)의 수락 순서를 먼저 유지한다. 그 다음 Batch17 미수락 항목인 A02 오른쪽→왼쪽 복귀, A05 낙하/사당 뒤 카메라, 낮은 통로·구덩이6개·A06 머리 여유를3~5분 확인한다. 기존 [V5 방 문법](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤) 수락도 유지한다. 이후 Batch18 항목은 약10~15분:
 
 1. [Play-V5](Launchers/current/Play-V5.cmd), `Assets/Scenes/V5/A02_V5.unity`: 첫 블록·발판 구간에서 가장자리 이동·점프, 이전 머리 걸림 재현 여부. 2분.
 2. 같은 A02 중간 선반: 적이 블록에 박히지 않고 선반에서 순찰하는지. 2분.
