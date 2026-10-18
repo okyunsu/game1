@@ -95,3 +95,5 @@ PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; c
 T5 PARTIAL: 신규 규칙 기준은 통과했지만 기존 도달성20·단차2의 정적 FAIL22가 그대로 남아 전체 FAIL0 기준은 충족하지 않는다. 기존 규칙을 완화하지 않았으며 실제 불가능 판정은 아니다. Design 읽기 전용 유지.
 
 최종 코드 자체검사 재실행 PASS. [최종 원문](_raw/B18/T5-rules-final.md). Quiet 실제 REGRESSION 13/13. [원문](_raw/regression/B18-T5/result.txt).
+
+T5 최종 보완: 오름4 이상에서 작은 발판 없는 구간은 등불·가시 포고 모두 검사하며, 등불3연속 규칙만 등불에 한정한다. 가시 전용 오름 위반 자체검사도 PASS. draft3 추가 FAIL0/WARN0 유지. [원문](_raw/B18/T5-rules-all-pogo.md). 게임 코드 변경 없이 정적 검사만 보완했으며 이후 T8 기본 회귀가 현재 트리에서 실행된다.

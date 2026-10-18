@@ -232,7 +232,7 @@ def draft3_checks(room):
             findings.append(('WARN', 'pogo-chain', 'consecutive lanterns='+','.join(str(n.get('id', n['x'])) for n in chain)))
     for a in surfaces:
         top = a[1]+a[3]
-        nearby = [p for p in lanterns if abs(p['x']-(a[0]+a[2]/2)) <= max(4, a[2]/2+3) and top < p['y']+.5]
+        nearby = [p for p in room.get('pogo', []) if abs(p['x']-(a[0]+a[2]/2)) <= max(4, a[2]/2+3) and top < p['y']+.5]
         if not nearby:
             continue
         high = max(p['y']+.5 for p in nearby)
@@ -431,6 +431,11 @@ def self_test():
             assert any(r == 'patrol-support' for _, r, _ in checks), checks
         results.extend(f'{level} synthetic {r}: {detail}' for level, r, detail in checks)
     assert not draft3_checks(base)
+    spike_only = deepcopy(draft3['pogo-chain'])
+    for target in spike_only['pogo']:
+        target['kind'] = 'spike'
+    assert any(rule == 'pogo-only-climb' for _, rule, _ in draft3_checks(spike_only))
+    results.append('PASS spike-only rise>=4 climb without small platform detected; lantern chain remains lantern-only')
     return '\n'.join(['PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
