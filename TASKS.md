@@ -15,18 +15,18 @@
 
 | Task | 상태 | 현재 결과 |
 |---|---|---|
-| B18-T1 | DONE | draft2 A02 간격0.5/머리1.5·블록 안 적 실측, 발판 V4/V5 동일, 제품 코드·Scene 변경0, Quiet13/13 |
-| B18-T2 | DONE | 실제 Scene 검사 추가, 기존 A02 두 문제 FAIL 검출, 컴파일0·Quiet13/13 |
-| B18-T3 | REVIEW | draft3 6방·작은 발판12·요소 일치·문14·stub/일방/저장 PASS, 보호 SHA0변경·Quiet13/13 |
-| B18-T4 | PARTIAL | A02 두 원인 해소·적0/순찰끝0, 전체 후보76→69로 후보0 기준 미충족, 좌표표 보존·Quiet13/13 |
-| B18-T5 | PARTIAL | 추가 규칙FAIL0/WARN0·위반JSON4개 검출, 기존 정적FAIL22 때문에 전체FAIL0 미충족·Quiet13/13 |
-| B18-T6 | REVIEW | B18 Development·V5 세 런처+NoMap 각10초Error0·B18/B12 두 빌드·Quiet13/13 |
-| B18-T7 | DONE | 원인·검사·직접 플레이·설계 반환 항목 갱신, 링크0불량·Quiet13/13 |
-| B18-T8 | DOING | 전체 런처 시작 확인 중, 종료 기본 회귀·Batch-Card 대기 |
-| B18-BL1 | TODO | draft3 일반 경로·접촉 이름 측정 대기 |
-| B18-BL2 | TODO | draft2/draft3 비교표 대기 |
-| B18-BL3 | TODO | 실제 입력 점프·포고 한계 측정 대기 |
-| B18-BL4 | TODO | DJ 보유 A01/A06/A02 경로 측정 대기 |
+| B18-T1 | DONE | draft2 A02 gap0.5/head1.5·solid14 안 적. V4/V5 발판 두께0.5·Effector 없음. 제품 코드/Scene 변경0·Quiet13/13 |
+| B18-T2 | DONE | A02 두 원인 FAIL 검출. Scene 샘플·적·순찰 검사, Editor/Development opt-in·Quiet13/13 |
+| B18-T3 | REVIEW | draft3 Scene6·작은 발판12·적15·구덩이6·요소 일치·문14/stub/일방/저장 PASS·Quiet13/13 |
+| B18-T4 | PARTIAL | A02 두 원인 해소·적0/순찰끝0, 전체 후보76→69. 모두 측면 겹침, overhead-only0. 후보0 미충족·Quiet13/13 |
+| B18-T5 | PARTIAL | 추가 규칙FAIL0/WARN0·위반JSON4개 검출. 기존 도달성20/단차2 FAIL22 보존, 전체FAIL0 미충족·Quiet13/13 |
+| B18-T6 | REVIEW | Development 빌드·V5+NoMap6모드 각10초Error0. B18/B12 보존·V4 런처 변경0·Quiet13/13 |
+| B18-T7 | DONE | 현재 상태·결정1·직접 플레이·검사·값 반영 안내, 깨진 링크0·Quiet13/13 |
+| B18-T8 | DONE | Quiet13/13·기본13/13·18런처Error0·Batch-Card 범위/링크/없는 런처0·Quiet13/13 |
+| B18-BL1 | TODO | 실제 입력 120초/구간, draft3 A03 동쪽3발판·A04 상부, 막힌 위치/접촉 측정·대기 |
+| B18-BL2 | TODO | draft2/draft3 방별 등불·작은 발판·블록·머리 여유·가로 간격 계산·합계 일치·대기 |
+| B18-BL3 | TODO | 실제 입력0.25u 격자·오름5종·달리기/제자리·실제 포고1회, 고정 recipe 한계 측정·대기 |
+| B18-BL4 | TODO | DJ 보유 A01→A06·왼쪽 조각·일방 문→A02 조각, 구간별120초/접촉 측정·대기 |
 
 ## 1-0b. Current Tasks (Batch17)
 
@@ -244,11 +244,24 @@ T3/T6는 REVIEW. 배치 원본은 V5 Scene, 반복 오브젝트는 기존 Prefab
 
 ### Task별 결과
 
-- Base `e140f144e4df8c42f7cf454de11b381c953f3dfb`. 앞선 시작 실패 원문2개는 보존했다. 복구 후2026-10-18 23:23 KST 시작, Unity exit0. push·수치·코어·V4·Design 변경 없음. [전체 요약](Validation/B18-summary.md).
-- T1 DONE: 간격0.5/머리1.5·solid14 속 적. V4/V5 모두 두께0.5·Effector 없음. [실측](Validation/B18-probe.md). T2 DONE: 실제 Scene 검사에서 같은 두 원인 FAIL 검출. [이전 검사](Validation/B18-clearance-before.md).
-- T3 REVIEW: draft3 Scene6·작은 발판12·적15·요소일치·문14/저장/Error0. [생성](Validation/B18-generation.md). T4 PARTIAL: 적0/순찰끝0·원래 A02 후보 해소, 전체 후보69. [후보표](Validation/B18-clearance-after.md).
-- T5 PARTIAL: 신규 규칙FAIL0/WARN0·위반JSON4개 검출, 기존 정적FAIL22 보존. [규칙](Validation/B18-room-rules-v5-A.md). T6 REVIEW: B18 Development·V5+NoMap6모드 Error0, B18/B12 유지. [전달](Validation/B18-delivery.md).
-- T7 문서·T8 종료 점검 및 Backlog는 현재 진행 중이며 완료 결과는 아래와 전체 요약에 기록한다. Unity 라이선스 시작 문제는 이번 정상 실행으로 해소되었지만 이전 실패 원문은 보존한다.
+Base `e140f14`, 시작2026-10-18 23:23 KST. [전체 요약](Validation/B18-summary.md). 제품 코어·Design·V4·튜닝 변경0, 보호230파일 SHA변경0, push·Sprint Gate 없음.
+
+|Task|상태|커밋|증거|
+|---|---|---|---|
+|T1|DONE|`34b737b`|[결과](Validation/B18-probe.md)|
+|T2|DONE|`424fad0`|[결과](Validation/B18-clearance-before.md)|
+|T3|REVIEW|`a321b84`|[결과](Validation/B18-generation.md)|
+|T4|PARTIAL|`ab45cc8`|[결과](Validation/B18-clearance-after.md)|
+|T5|PARTIAL|`f67de60`|[결과](Validation/B18-room-rules-v5-A.md)|
+|T6|REVIEW|`675217b`|[결과](Validation/B18-delivery.md)|
+|T7|DONE|`be42902`|[결과](Validation/B18-handoff.md)|
+|T8|DONE|`종료 커밋`|[결과](Validation/B18-final-check.md)|
+|BL1|TODO|`종료 커밋`|대기|
+|BL2|TODO|`종료 커밋`|대기|
+|BL3|TODO|`종료 커밋`|대기|
+|BL4|TODO|`종료 커밋`|대기|
+
+A02 원인2건 해소·적0/순찰끝0·문14/저장 PASS. 후보69와 정적22건은 해결 주장 없이 반환했다. 매 Task Quiet와 종료 기본 회귀는 실제 결과를 전체 요약 맨 위에 기록했다. 경로의 BLOCKED 행은 측정 결과이며 해당 측정 Task의 구현 BLOCKED와 구분한다.
 
 ### 다음 Batch 후보
 
