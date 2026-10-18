@@ -59,7 +59,27 @@ public sealed class B16V5Verifier:N5Runner
  void RouteLog(string message){lines.Add(message);Debug.Log(message);}
  IEnumerator Route()
  {
-  RouteLog("MEASURE route limit=120s/segment input=virtual-keyboard teleportWithinSegment=0 abilities=none");
+  RouteLog("MEASURE route limit=120s/segment input=virtual-keyboard teleportWithinSegment=0 abilities="+(Motor.hasDoubleJump?"DJ":"none"));
+  if(N5Args.Has("-b18-route"))
+  {
+   RouteLog("MEASURE route recipe=draft3 contacts=actual-player-collider tuningChanges=0");
+   yield return Segment("A01","start","A02",new[]{new Vector2(47.8f,1)});
+   yield return Segment("A02","A01-A02","A03",new[]{new Vector2(27.8f,1)});
+   yield return Segment("A03","A02-A03","A04",new[]{new Vector2(18.3f,3),new Vector2(24.9f,3),new Vector2(29.2f,5),new Vector2(32.7f,5),new Vector2(35.4f,7),new Vector2(38.7f,9),new Vector2(41.9f,11),new Vector2(45.2f,13),new Vector2(49.8f,13)});
+   yield return Segment("A04","A03-A04","A05",new[]{new Vector2(9.2f,3),new Vector2(14.5f,5),new Vector2(16.7f,5),new Vector2(19,6.9f),new Vector2(22,6.9f),new Vector2(41.5f,6.9f),new Vector2(43,1),new Vector2(46,1)});
+   yield return Segment("A05","A04-A05","Dash",new[]{new Vector2(40.5f,1),new Vector2(37.5f,2.6f)});
+   yield break;
+  }
+  if(N5Args.Has("-b18-dj-route"))
+  {
+   Check(Motor.hasDoubleJump,"DJ owned fixture");
+   RouteLog("MEASURE route recipe=draft3-DJ contacts=actual-player-collider eachSegmentLimit=120");
+   yield return Segment("A01","start","A06",new[]{new Vector2(5.5f,3),new Vector2(9.5f,4.8f),new Vector2(16,6.8f),new Vector2(24.8f,8.8f),new Vector2(28.2f,10.5f),new Vector2(32,11.6f),new Vector2(32,15.2f)});
+   yield return Segment("A06","A01-A06","Shard",new[]{new Vector2(38.4f,3),new Vector2(42.5f,5),new Vector2(32,3.9f),new Vector2(25.5f,3),new Vector2(18,4),new Vector2(12,4),new Vector2(8,5),new Vector2(3,7.5f)});
+   yield return Segment("A06","A01-A06","A02",new[]{new Vector2(8,5),new Vector2(25.5f,3),new Vector2(32,3.9f),new Vector2(38.4f,3),new Vector2(42.5f,5),new Vector2(45.5f,5),new Vector2(47.8f,5)});
+   yield return Segment("A02","A02-A06","Shard",new[]{new Vector2(4,22)});
+   yield break;
+  }
   if(N5Args.Has("-b17-route"))
   {
    RouteLog("MEASURE route recipe=draft2 grounded-periodic-jump=True new-block-and-pit-waypoints=True raised-A03-exit=True tuningChanges=0");
@@ -97,20 +117,27 @@ public sealed class B16V5Verifier:N5Runner
    if(RoomSession.Instance.CurrentRoomId!=room){reason="left source room for "+RoomSession.Instance.CurrentRoomId;break;}
    last=Body.position;hp=Health.HP;pogos=Player.GetComponent<PlayerAttack>().PogosPerformed;maxY=Mathf.Max(maxY,last.y);maxX=Mathf.Max(maxX,last.x);
    if(goal=="Dash"&&Player.GetComponent<PlayerDash>().hasDash){passed=true;break;}
+   if(goal=="Shard"&&Room.GetComponentsInChildren<DiscoveryReward>(true).Any(r=>DiscoveryReward.Found(r.candidateId))){passed=true;break;}
    Vector2 target=points[step];if(step<points.Length-1&&Mathf.Abs(last.x-target.x)<.25f&&last.y>=target.y-.25f){step++;target=points[step];RouteLog("MEASURE route waypoint room="+room+" step="+step+" position="+last);}
    double now=Time.realtimeSinceStartupAsDouble;var keys=new List<Key>();float dx=target.x-last.x;
    if(Mathf.Abs(dx)>.2f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
    bool enemyNear=Room.GetComponentsInChildren<EnemyReset>().Any(e=>e.Live!=null&&Mathf.Abs(e.Live.transform.position.x-last.x)<2.5f&&Mathf.Abs(e.Live.transform.position.y-last.y)<2);
-   if(Motor.Grounded&&now>=nextJump&&(N5Args.Has("-b17-route")||target.y>last.y+.4f||enemyNear)){jumpUntil=now+.42;nextJump=now+.65;}
+   if(Motor.Grounded&&now>=nextJump&&((N5Args.Has("-b17-route")||N5Args.Has("-b18-route")||N5Args.Has("-b18-dj-route"))||target.y>last.y+.4f||enemyNear)){jumpUntil=now+.42;nextJump=now+.65;}
+   if(N5Args.Has("-b18-dj-route")&&!Motor.Grounded&&Motor.DoubleJumpAvailable&&Body.linearVelocity.y<.5f&&target.y>last.y+.6f&&now>=nextJump){jumpUntil=now+.3;nextJump=now+.55;}
    if(now<jumpUntil)keys.Add(Key.Z);
    if(now>=nextAttack&&(!Motor.Grounded||enemyNear)){keys.Add(Key.X);if(!Motor.Grounded)keys.Add(Key.DownArrow);nextAttack=now+.34;}
    InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys.ToArray()));
-   if(now>=nextSample){RouteLog("MEASURE route sample room="+room+" elapsed="+(now-began).ToString("F1")+" step="+step+" position="+last+" grounded="+Motor.Grounded+" hp="+hp+" pogos="+pogos);nextSample=now+10;}
+   if(now>=nextSample){RouteLog("MEASURE route contacts room="+room+" position="+last+" colliders="+RouteContacts());RouteLog("MEASURE route sample room="+room+" elapsed="+(now-began).ToString("F1")+" step="+step+" position="+last+" grounded="+Motor.Grounded+" hp="+hp+" pogos="+pogos);nextSample=now+10;}
    yield return null;
   }
   yield return Keys();
-  RouteLog((passed?"PASS route ":"BLOCKED route ")+room+" goal="+goal+" elapsed="+(Time.realtimeSinceStartupAsDouble-began).ToString("F2")+" position="+last+" step="+step+" maxX="+maxX.ToString("F2")+" maxY="+maxY.ToString("F2")+" hp="+hp+" pogos="+pogos+(passed?"":" reason="+reason));
+  RouteLog((passed?"PASS route ":"BLOCKED route ")+room+" goal="+goal+" elapsed="+(Time.realtimeSinceStartupAsDouble-began).ToString("F2")+" position="+last+" step="+step+" maxX="+maxX.ToString("F2")+" maxY="+maxY.ToString("F2")+" hp="+hp+" pogos="+pogos+" contacts="+RouteContacts()+(passed?"":" reason="+reason));
   if(passed)yield return Ready();
+ }
+ string RouteContacts()
+ {
+  var shape=Player.GetComponent<Collider2D>();var contacts=new ContactPoint2D[32];int count=shape.GetContacts(contacts);
+  return string.Join("|",contacts.Take(count).Select(c=>c.collider==shape?c.otherCollider.name:c.collider.name).Distinct());
  }
  IEnumerator Map()
  {
