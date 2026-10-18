@@ -1,7 +1,7 @@
 param([ValidateSet('NewGame','AfterDash','DJ')][string]$Mode='NewGame',[switch]$NoMap,[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
 $taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$taskBuild=Join-Path $taskRoot 'Builds/B17-delivery'
+$taskBuild=Join-Path $taskRoot 'Builds/B18-delivery'
 $taskSlot='V5-'+$Mode
 if($Smoke){if(!$Evidence){throw 'Smoke requires a new evidence path'};$taskSlot+='-smoke-'+[IO.Path]::GetFileNameWithoutExtension($Evidence)}
 $taskSlots=Join-Path $taskBuild 'slots'
