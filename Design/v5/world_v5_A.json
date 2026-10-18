@@ -1,5 +1,5 @@
 {
- "version": "world-v5-A-draft2",
+ "version": "world-v5-A-draft3",
  "unit": "Unity unit. V4와 같은 형식. 파일럿은 층 A 6방만. stub:true 문은 반대편 방이 없는 닫힌 문",
  "rooms": {
   "A01": {
