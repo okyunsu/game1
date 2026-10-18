@@ -4,12 +4,29 @@
 
 ## 1. 현재 상태
 
-- **Sprint3 / Batch17 종료: V5 draft2 플레이 가능, 종료 기본 회귀는 라이선스로 BLOCKED**. A02 복귀·A05 카메라·머리 여유를 데이터 재생성으로 해소했다. 코어 로직 수정0, [원인/재측정](Validation/B17-probe.md). 직접 플레이·방 문법 수락 대기, Sprint Gate 미실시.
+- **Sprint3 / Batch18 진행: draft3 Scene6개·작은 발판12개·적 박힘0·문14방향 확인**. Scene 확장 몸 박스 후보69, 기존 정적 FAIL22는 남아 있으며 설계·체감 수락 대기. Sprint Gate 미실시. [B18 요약](Validation/B18-summary.md).
 - Batch16의 T1 BLOCKED·의존 Task/Backlog SKIPPED를 Batch16b에서 이어받았다. [당시 결과](Validation/B16-summary.md)는 보존한다.
 - Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
 - Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
 - Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
 - 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
+
+## 1-0c. Current Tasks (Batch18)
+
+| Task | 상태 | 현재 결과 |
+|---|---|---|
+| B18-T1 | DONE | draft2 A02 간격0.5/머리1.5·블록 안 적 실측, 발판 V4/V5 동일, 제품 코드·Scene 변경0, Quiet13/13 |
+| B18-T2 | DONE | 실제 Scene 검사 추가, 기존 A02 두 문제 FAIL 검출, 컴파일0·Quiet13/13 |
+| B18-T3 | REVIEW | draft3 6방·작은 발판12·요소 일치·문14·stub/일방/저장 PASS, 보호 SHA0변경·Quiet13/13 |
+| B18-T4 | PARTIAL | A02 두 원인 해소·적0/순찰끝0, 전체 후보76→69로 후보0 기준 미충족, 좌표표 보존·Quiet13/13 |
+| B18-T5 | PARTIAL | 추가 규칙FAIL0/WARN0·위반JSON4개 검출, 기존 정적FAIL22 때문에 전체FAIL0 미충족·Quiet13/13 |
+| B18-T6 | REVIEW | B18 Development·V5 세 런처+NoMap 각10초Error0·B18/B12 두 빌드·Quiet13/13 |
+| B18-T7 | DONE | 원인·검사·직접 플레이·설계 반환 항목 갱신, 링크0불량·Quiet13/13 |
+| B18-T8 | DOING | 전체 런처 시작 확인 중, 종료 기본 회귀·Batch-Card 대기 |
+| B18-BL1 | TODO | draft3 일반 경로·접촉 이름 측정 대기 |
+| B18-BL2 | TODO | draft2/draft3 비교표 대기 |
+| B18-BL3 | TODO | 실제 입력 점프·포고 한계 측정 대기 |
+| B18-BL4 | TODO | DJ 보유 A01/A06/A02 경로 측정 대기 |
 
 ## 1-0b. Current Tasks (Batch17)
 
@@ -92,7 +109,9 @@
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-UNITY-LICENSE | A: Unity Hub 라이선스 복구 후 종료 기본 회귀 재실행 / B: 전달 exe 플레이 먼저, 회귀는 보류 | A 추천. 기존 게임 검사는 통과했지만 종료 필수 검사 실행을 복구해야 함 | B17-T7, BL1 입력 개선 재시도 경로 |
+| D-V5-CLEARANCE | A: Claude와 후보69의 벽·계단·구덩이·닫힌 문 분류 및 검사 기준을 검토 / B: 현재 후보 빌드부터 직접 플레이 | A 추천. 배치의 몸 박스 겹침 규칙은 측면 충돌도 FAIL로 세므로 후보0을 달성하지 못했다. 데이터·검사 기준을 임의로 바꾸지 않음 | B18-T4 후보0 기준, [좌표표](Validation/B18-clearance-after.md), [Play-V5](Launchers/current/Play-V5.cmd) |
+
+문서 충돌 기록: WORLD_V5 4절의 A06 적1과 draft3 JSON의 적3이 다르다. Batch18 사전 결정의 draft3 JSON을 따라 Scene 적3을 유지했으며, 표기 정리는 Claude에게 돌린다. 새 사용자 결정이 필요한 규칙 변경은 하지 않았다.
 
 ## 2-1. 결정 기록
 
@@ -133,11 +152,13 @@
 
 | ID | 증상 | 근거 |
 |---|---|---|
+| B18-CLEARANCE | 확장 몸 박스 후보69: 벽·계단·구덩이·닫힌 문 측면 포함, 후보0 기준 미충족. 실제 진행 불가로 확정하지 않음 | [좌표표](Validation/B18-clearance-after.md) |
+| B18-STATIC | 신규 draft3 규칙FAIL0이나 기존 도달성20·단차2 정적 후보22가 남음. 설계는 Claude 검토 | [규칙](Validation/B18-room-rules-v5-A.md) |
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
 
-B16-GENERATOR는 B16b에서 해결(컴파일0·수정본6방 생성·실제exe PASS). B12-CHASE-VERIFY는 B15-BL5a에서 해결. 이전 실패 원문은 각 Validation에 보존한다. 열린 버그3건, 결정 대기0건. V5 정적 후보는 [검사 결과](Validation/B16b-room-rules-v5-A.md)에 기록했으며 실제 플레이 불가로 확정하지 않았다.
+B16-GENERATOR는 B16b에서 해결(컴파일0·수정본6방 생성·실제exe PASS). B12-CHASE-VERIFY는 B15-BL5a에서 해결. 이전 실패 원문은 각 Validation에 보존한다. 기존 열린 제품 버그3건에 B18 검사 반환 항목을 추가했다. 결정 대기1건. V5 정적 후보는 [검사 결과](Validation/B16b-room-rules-v5-A.md)에 기록했으며 실제 플레이 불가로 확정하지 않았다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -204,31 +225,33 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
 
-## 9. Latest Handoff — Batch17
+## 9. Latest Handoff — Batch18
 
 ### 결정 질문지
 
-- **D-UNITY-LICENSE** — A: Unity Hub에서 유효한 Editor 라이선스를 복구한 뒤 종료 기본 회귀를 재실행 / B: 전달 exe를 먼저 플레이하고 회귀 재실행은 보류. **A 추천**: 23:32부터 Editor가 exit198로 검사 시작 전에 종료됐다. T1~T7의 이전 Quiet13/13·실제 exe18런처 통과는 유효하지만 종료 기본 회귀는 미실행이다. A가 풀어 주는 항목은 T7와 BL1 입력 개선 재시도다. 전달 exe는 그 뒤에도 V5 3런처를 다시10초Error0으로 확인했다.
+- **D-V5-CLEARANCE** — A: Claude와 남은69개 후보 분류·검사 기준 검토 / B: 현재 후보부터 플레이. **A 추천**: 낮은 머리 여유의 A02 원인은 해소했지만 배치 규칙은 벽·계단·구덩이·닫힌 문 측면 겹침도 후보로 센다. [좌표표](Validation/B18-clearance-after.md)를 전달하며 Design과 판정 기준을 임의 수정하지 않았다. B18-T4의 후보0 기준을 푼다. 현재 실행은 [Play-V5](Launchers/current/Play-V5.cmd), 빌드는 `Builds/B18-delivery`. 기존 정적22건·WORLD_V5 A06 적1/JSON 적3 표기도 Claude 검토 자료다.
 
 ### 직접 플레이 확인
 
-기존 3절·[Batch15 인계](Validation/B15-summary.md)의 수락 순서를 먼저 유지한다. V5는 다음 순서로 약10~15분 확인한다.
+기존 3절·[Batch15 인계](Validation/B15-summary.md)의 수락 순서를 먼저 유지한다. V5는 약10~15분:
 
-- [Play-V5](Launchers/current/Play-V5.cmd), `Assets/Scenes/V5/A02_V5.unity`: 첫 블록·발판을 밟아 x≈10까지 갔다가 왼쪽 입구로 복귀. 2분.
-- 같은 실행의 `A05_V5.unity`: A04 구멍에서 낙하 직후·대시 수집 뒤 카메라 추적. 높이12/화면11이므로 세로 여유1u는 유지된다. 3~5분.
-- A01~A05 낮은 통로·구덩이6개·위험 도랑, [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd)의 A06 머리 여유. 5~8분. [Play-V5-AfterDash](Launchers/current/Play-V5-AfterDash.cmd)는 A03 대시 보유 시작. 세 런처 `-NoMap` 지원.
+1. [Play-V5](Launchers/current/Play-V5.cmd), `Assets/Scenes/V5/A02_V5.unity`: 첫 블록·발판 구간에서 가장자리 이동·점프, 이전 머리 걸림 재현 여부. 2분.
+2. 같은 A02 중간 선반: 적이 블록에 박히지 않고 선반에서 순찰하는지. 2분.
+3. A01~A04 작은 발판12개: 간격1.0~1.5u·오름1.5~2.0u의 난이도·반복 점프 피로. A03 동쪽3개·A04 상부 진입 포함, 5분.
+4. A03 남은 등불1개·A04 도랑 등불4개, [Play-V5-DJ](Launchers/current/Play-V5-DJ.cmd)의 A06 가시 포고3개·왼쪽 조각·일방 문. 5분. [대시 보유](Launchers/current/Play-V5-AfterDash.cmd)는 A03 시작. 세 런처 모두 `-NoMap` 지원.
 
-T2/T5는 REVIEW다. 기존 [WORLD_V5 7절](Design/v5/WORLD_V5.md#7-사용자-확인결정-플레이-뒤)의 방 문법 수락도 대기한다. 배치 원본은 `Assets/Scenes/V5/`, 순찰 끝점은 적 하위 Transform, 수치는 기존 설정 Asset이다. Play 중 변경은 종료 시 되돌아가므로 유지할 값은 Edit 모드에서 명시 저장·재빌드한다. 데이터 재생성은 수동 Scene 배치를 덮어쓰며 Design 수정은 사용자/Claude가 담당한다.
+T3/T6는 REVIEW. 배치 원본은 V5 Scene, 반복 오브젝트는 기존 Prefab, 순찰 범위는 적 하위 left/right Transform이다. 수치는 기존 설정 Asset에서 조정한다. Play 중 변경은 종료 시 되돌아가므로 유지할 값은 기록 후 Edit 모드에서 명시 저장·재빌드한다. JSON 재생성은 Scene 수동 배치를 덮어쓰며 Design 수정은 사용자/Claude가 담당한다.
 
 ### Task별 결과
 
-- 입력 보존 `2559c40`이 Base. 시작2026-10-16 22:50 KST. 9/10 Task, 5시간 이내 종료. **DONE6 / REVIEW2 / BLOCKED1(T7)**. 기능3·검증4·문서2. 제품 코어·V4/Resources·Prefab·튜닝·V4런처·Design 변경0, 보호206파일 SHA변경0. [전체 요약](Validation/B17-summary.md). 최종 합친 커밋은 태그 `B17`, push 없음.
-- T1 `3af35a9` DONE: A02는 `platform0` 측면·`platform1` 낮은 천장 충돌, A05는 높이10 < 화면11의 Confiner 중앙 고정. 입력·Follow 정상. T3 `33bc8a2` DONE: A02 x1.51 복귀, A05 추적, 구덩이6개 탈출0.400~0.417초·달리며 점프, 문14·stub4·일방·순찰15·수집/저장 Error0. [전후 원문](Validation/B17-probe.md).
-- T2 `3778480` REVIEW: V5 Scene6개·요소 수 일치·구덩이6·A04/A05 도랑 덮임 해소. [요소표](Validation/B17-generation.md). T4 `5658814` DONE: 추가 규칙0위반·가짜 위반5개 검출, 머리 여유 최소2.4u. [검사](Validation/B17-room-rules-v5-A.md). 기존 정적 후보22FAIL은 물리 불가 확정 없이 보존했다.
-- T5 `b0b820e` REVIEW: 당시 최신은 B17이었다. 현재 전달은 `Builds/B18-delivery`, V4 보존본은 `Builds/B12-delivery`이며 B17 빌드는 교체했다. V5 런처3개 정상, V4 런처는 직전 B12 유지. [전달](Validation/B17-delivery.md). T6 `ad038a4` DONE: 원인·실행·수락 인계. T7 `c71a5a3`→BLOCKED: Quiet13/13·전체18런처 각10초Error0·카드 범위/링크0문제 후, 종료 기본 회귀가 Editor 라이선스 exit198로 중단됐다. 런처 exe는 계속 플레이 가능하다.
-- BL1 `caa91e4` DONE(측정): 자연 A01→A02→A03 통과, A03 동쪽 포고(40.24,2.78)·A04 상부 진입(19.35,0.58)은 각120초BLOCKED. 독립 A05 대시2.10초. 입력 개선 재시도는 라이선스로 빌드 전 중단했고 미컴파일 변경은 복원했다. [경로 원문](Validation/B17-route.md). 자연 전체 대시 완주로 세지 않는다.
-- BL2 `9b301e2` DONE(계산): 면적4548→4648, 적13→15, 등불13→14, 블록51→71, 발판26→18, 머리 여유 최소1→2.4u, 합계 일치. [비교표](Validation/B17-v5-draft1-vs-draft2.md). readonly WORLD_V5 4절은 구표기(4548/A05높이10)라 9절·draft2 JSON을 우선했고, Claude가 표기를 정리할 자료로 남겼다. BL1/BL2 종료 Quiet도 라이선스 때문에 실행 전 중단됐으며 제품 FAIL 판정으로 세지 않는다.
+- Base `e140f144e4df8c42f7cf454de11b381c953f3dfb`. 앞선 시작 실패 원문2개는 보존했다. 복구 후2026-10-18 23:23 KST 시작, Unity exit0. push·수치·코어·V4·Design 변경 없음. [전체 요약](Validation/B18-summary.md).
+- T1 DONE: 간격0.5/머리1.5·solid14 속 적. V4/V5 모두 두께0.5·Effector 없음. [실측](Validation/B18-probe.md). T2 DONE: 실제 Scene 검사에서 같은 두 원인 FAIL 검출. [이전 검사](Validation/B18-clearance-before.md).
+- T3 REVIEW: draft3 Scene6·작은 발판12·적15·요소일치·문14/저장/Error0. [생성](Validation/B18-generation.md). T4 PARTIAL: 적0/순찰끝0·원래 A02 후보 해소, 전체 후보69. [후보표](Validation/B18-clearance-after.md).
+- T5 PARTIAL: 신규 규칙FAIL0/WARN0·위반JSON4개 검출, 기존 정적FAIL22 보존. [규칙](Validation/B18-room-rules-v5-A.md). T6 REVIEW: B18 Development·V5+NoMap6모드 Error0, B18/B12 유지. [전달](Validation/B18-delivery.md).
+- T7 문서·T8 종료 점검 및 Backlog는 현재 진행 중이며 완료 결과는 아래와 전체 요약에 기록한다. Unity 라이선스 시작 문제는 이번 정상 실행으로 해소되었지만 이전 실패 원문은 보존한다.
 
 ### 다음 Batch 후보
 
-Unity 라이선스 복구 후 T7 종료 기본 회귀 재실행. 이번3건·방 문법·구덩이 직접 플레이 수락 후 후속 범위를 정한다. 정적 후보22건·A03/A04 자동 입력 막힘·WORLD 4절 표기는 Claude에게 검토 자료로 전달한다. 층 B/C·수치 변경·Sprint Gate는 수행하지 않았다. 기존 D-NEXT 전체 플레이와 B07 A02/C03·V2 W22 검토를 유지한다. Approved Backlog는 비어 있다.
+69개 Scene 후보 분류·기존 정적22건·실제 점프 측정 자료를 Claude에게 전달한 뒤 다음 설계를 정한다. 사용자 재플레이 수락 후 기본값 채택을 판단한다. 층 B/C·수치 변경·Sprint Gate는 이번 범위 밖이다. 기존 D-NEXT 전체 플레이와 B07 A02/C03·V2 W22 검토를 유지한다. Approved Backlog는 비어 있다.
+
+후보 분류 원문: `MEASURE draft3 clearance total=69 blockerMinY_at_or_below_feet=69 overhead_only=0`. [원본](Validation/_raw/B18/T4-classification.txt). 후보0 기준은 그대로 유지하며 이 분류를 근거로 판정을 완화하지 않았다.
