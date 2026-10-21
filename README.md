@@ -65,6 +65,6 @@ Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-cl
 
 최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 일반 경로는5구간 통과했고, DJ는 A01 접근120초 미완주 뒤 A06 도착 fixture에서3구간 통과했습니다.
 
-Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). Scene·게임 수치·배포 빌드는 유지합니다. B19의 새 프레임·높이 측정 코드는 저장된 Editor 소스에만 있으며 기존 B18 배포 exe에는 포함하지 않았습니다.
+Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). Scene·게임 수치·배포 빌드는 유지합니다. B19의 새 프레임·높이 측정 코드는 저장된 프로젝트 소스에만 있으며 기존 B18 배포 exe에는 포함하지 않았습니다.
 
 Windows 실행: Unity와 Unity를 호출하는 검증 스크립트는 정상 사용자 LOCALAPPDATA를 사용하는 샌드박스 밖 실행으로 검증했습니다. 격리 경로의 라이선스 실패와 게임 실패를 구분합니다. 코드 편집·JSON 분석은 샌드박스 안에서, Git 기록은 별도 사용자 승인 예외로 수행했습니다.

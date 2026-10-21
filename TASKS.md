@@ -23,7 +23,7 @@ Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Valida
 | B19-T3 | DONE | 능력 계산/무능력 계산 분리, 정적22→0·잔여0/새FAIL0·fixture4 검출·근거 없는8규칙 WARN·Quiet13/13 |
 | B19-T4 | DONE | 실제 exe7200프레임·120초: 목표 일치/입력 타이밍 원인, platform2 옆면 뒤 낙하. DJ상승4.884u·Error0·Quiet13/13 |
 | B19-T5 | DONE | 규칙 근거/명시 유지 예외·인계·링크0·보호380파일 SHA0변경·결정0·Quiet13/13 |
-| B19-T6 | DOING | 기본 회귀·런처3·Batch Card 최종 점검 |
+| B19-T6 | DONE | Quiet13/13·종료 기본13/13·V5 런처3 exit0/Error0·보호380 SHA0변경·범위/링크 최종 카드 확인 |
 
 ## 1-0c. Current Tasks (Batch18)
 
@@ -251,7 +251,7 @@ B18-T3/T6는 REVIEW. B19는 검사/측정 Task이며 이 수락 상태를 바꾸
 
 ### Task별 결과
 
-Base `8a9a1b5`, 재개2026-10-21 23:46 KST. [전체 요약](Validation/B19-summary.md). Scene·Design·PlayerTuning·제품 코어 변경0. Unity 및 Unity 호출 스크립트만 샌드박스 밖, 나머지는 샌드박스 안에서 실행했다. .git 쓰기 제한으로 Git add/commit/tag는 사용자가 별도 승인한 예외다. push·Sprint Gate 없음. 앞선 실패 로그2개와 시작 검사 성공 로그를 보존했다.
+Base `8a9a1b5`, 재개2026-10-21 23:46 KST, 종료 2026-10-22 00:21 KST. [전체 요약](Validation/B19-summary.md). Scene·Design·PlayerTuning·제품 코어 변경0. Unity 및 Unity 호출 스크립트만 샌드박스 밖, 나머지는 샌드박스 안에서 실행했다. .git 쓰기 제한으로 Git add/commit/tag는 사용자가 별도 승인한 예외다. push·Sprint Gate 없음. 앞선 실패 로그2개와 시작 검사 성공 로그를 보존했다.
 
 |Task|상태|로컬 커밋|주요 변경/실제 검증/문제|
 |---|---|---|---|
@@ -259,8 +259,8 @@ Base `8a9a1b5`, 재개2026-10-21 23:46 KST. [전체 요약](Validation/B19-summa
 |T2|DONE|`7ddf894`|[Scene 검사](Validation/B19-clearance.md): V5B18Clearance/V5Batch19. draft3 FAIL0/WARN0, draft2 머리 위4/적1·0.5 틈WARN·임시Scene 삭제. Quiet13/13|
 |T3|DONE|`4497104`|[정적 검사](Validation/B19-room-rules-v5-A.md): Check-RoomRules.py. 원래22건은 능력 조건으로0·새FAIL0·fixture4 유지. 근거 없는8규칙 WARN. Quiet13/13|
 |T4|DONE|`a736fbe`|[DJ 측정](Validation/B19-dj-route.md): B16V5Verifier. 실제7200프레임·120초. 목표 일치, platform2 옆면 충돌 뒤 바닥 반복. DJ 상승4.884u·Quiet13/13. 입력 타이밍 개선은 미승인으로 시행하지 않음|
-|T5|DONE|종료 기록 참조|[규칙 장부](Validation/B19-rules-ledger.md)·TASKS·README. 근거 없는 독립 규칙은 WARN/MEASURE, 적 지지/순찰은 T2 명시 유지 예외를 구분. 링크0·보호380 SHA0변경·결정0·Quiet13/13|
-|T6|DOING|대기|기본 회귀·런처3·Batch Card·보호파일 점검 예정|
+|T5|DONE|`11297f1`|[규칙 장부](Validation/B19-rules-ledger.md)·TASKS·README. 근거 없는 독립 규칙은 WARN/MEASURE, 적 지지/순찰은 T2 명시 유지 예외를 구분. 링크0·보호380 SHA0변경·결정0·Quiet13/13|
+|T6|DONE|`B19`|Quiet13/13·기본13/13·런처3 exit0/Error0·보호380 SHA0변경. [종료 요약](Validation/B19-summary.md)|
 
 실행은 [Play-V5](Launchers/current/Play-V5.cmd)·[AfterDash](Launchers/current/Play-V5-AfterDash.cmd)·[DJ](Launchers/current/Play-V5-DJ.cmd), 빌드는 `Builds/B18-delivery`를 유지한다. 새 프레임/높이 검증 소스는 B18 exe에 포함하지 않았다. 직접 조정할 값은 기존 설정 Asset 한 곳이고 배치는 Scene이 원본이다. Play 중 바꾼 값은 종료 전에 기록하고 Edit 모드에서 저장·재빌드한다. JSON 재생성은 Scene 수동 배치를 덮어쓰므로 이번 배치에서는 기본 Scene 재생성을 하지 않았다.
 
