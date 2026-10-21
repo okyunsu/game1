@@ -24,6 +24,15 @@ KINDS = {
     "climb": "벽 점프 벽", "pogo": "포고",
 }
 
+# B19: retain failures tied to observed bugs; speculative geometry is a warning.
+# These are checker severities, not edits to the authored game rules or values.
+UNPROVEN_RULES = {'door-safety', 'overlap', 'ability-gate', 'height', 'arrival',
+                  'reachability', 'pit-patrol', 'pit-width'}
+
+
+def rule_level(level, rule):
+    return 'WARN' if level == 'FAIL' and rule in UNPROVEN_RULES else level
+
 
 def floor_faces(room):
     """Authored horizontal solid/platform tops, merged on the same y plane."""
@@ -139,7 +148,7 @@ def headroom_pairs(room):
 def draft2_checks(room):
     findings = []
     def fail(rule, detail):
-        findings.append(('FAIL', rule, detail))
+        findings.append((rule_level('FAIL', rule), rule, detail))
     _, height = player_size()
     required = height+.6  # WORLD_V5 draft2: body height plus jump clearance.
     if room['size'][1] < 12:
@@ -241,10 +250,35 @@ def draft3_checks(room):
     return findings
 
 
-def arrival_graph(room, surfaces):
+def double_jump_height():
+    """Optimistic held-jump envelope, read-only authored tuning (not a route proof)."""
+    text = Path('Assets/ScriptableObjects/PlayerTuning.asset').read_text(encoding='utf-8-sig')
+    def value(name):
+        return float(re.search(r'(?m)^\s*'+name+r':\s*([\d.]+)', text).group(1))
+    return (value('jumpVelocity')**2+value('doubleJumpVelocity')**2)/(2*value('gravity'))
+
+
+def room_capabilities(room_id, rooms):
+    # A gate implies ownership only when EVERY actual incoming route requires it.
+    # Reverse one-way markers, stubs and absent arrival spawns are not entrances.
+    room = rooms[room_id]
+    arrivals = {s['id'] for s in room.get('spawns', [])}
+    incoming = [d for other in rooms.values() for d in other.get('doors', [])
+                if d.get('to', '').split('(')[0] == room_id and d['id'] in arrivals
+                and not d.get('stub') and d.get('oneway') != 'in' and not d.get('down_only')]
+    required = {incoming[0]['gate']} if len(incoming) == 1 and incoming[0].get('gate') else set()
+    # Authored climb surfaces are evaluated as conditional wall-jump routes.
+    # This does not claim the player already owns WallJump on first arrival.
+    if room.get('climb'):
+        required.add('WallJump')
+    return required
+
+
+def arrival_graph(room, surfaces, capabilities=()):
     terrain = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
     targets = [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
-    nodes = terrain+targets
+    walls = room.get('climb', []) if 'WallJump' in capabilities else []
+    nodes = terrain+targets+[(r[0], r[1]+r[3], r[2], 0) for r in walls]
     result = []
     def explore(seeds, use_pogo):
         reached = set(seeds)
@@ -253,11 +287,18 @@ def arrival_graph(room, surfaces):
             changed = False
             for i in list(reached):
                 a = nodes[i]
-                rise = 2.5 if i < len(terrain) else 2+attack_height()
+                rise = 2+attack_height() if len(terrain) <= i < len(terrain)+len(targets) else 2.5
+                if 'DJ' in capabilities:
+                    rise = max(rise, double_jump_height())
                 for j, b in enumerate(nodes):
-                    if j in reached or (j >= len(terrain) and not use_pogo):
+                    if j in reached or (len(terrain) <= j < len(terrain)+len(targets) and not use_pogo):
                         continue
-                    if gap(a, b) <= 3+1e-6 and b[1]-a[1] <= rise+1e-6:
+                    # Reaching any point near the bottom of an authored climb
+                    # face grants its full vertical interval in this envelope.
+                    # Wall attachment uses the player's side, not just the foot:
+                    # the authored collider can contact a wall above foot level.
+                    bottom = walls[j-len(terrain)-len(targets)][1]-player_size()[1] if j >= len(terrain)+len(targets) else b[1]
+                    if gap(a, b) <= 3+1e-6 and bottom-a[1] <= rise+1e-6:
                         reached.add(j)
                         changed = True
         return reached
@@ -274,7 +315,7 @@ def arrival_graph(room, surfaces):
     return result
 
 
-def v5_checks(room):
+def v5_checks(room, capabilities=()):
     """Static candidates, never a substitute for Unity physics or natural input."""
     findings = []
     def add(level, rule, detail):
@@ -328,16 +369,20 @@ def v5_checks(room):
         if lower:
             delta = min(top-r[1]-r[3] for r in lower)
             pogo = any(abs(p['x']-(platform[0]+platform[2]/2)) <= platform[2]/2+3 and p['y'] < top for p in room.get('pogo', []))
-            if delta > 2+1e-6 and not pogo:
+            limit = max(2, double_jump_height()) if 'DJ' in capabilities else 2
+            climb = 'WallJump' in capabilities and any(gap(platform, r) <= 3 and r[1] <= top <= r[1]+r[3]+2.5 for r in room.get('climb', []))
+            if delta > limit+1e-6 and not pogo and not climb:
                 add('FAIL', 'height', f'platform={i} nearest lower rise={delta:g} (static candidate)')
         else:
             add('WARN', 'horizontal-gap', f'platform={i} no lower surface within 3u')
     tops = sorted({r[1]+r[3] for r in platforms})
     if tops and tops[-1]-tops[0] >= 4 and not room.get('pogo') and not room.get('enemies'):
         add('WARN', 'ascent', '>=4u ascent with platforms only; branch requires human review')
-    for spawn, seeds, ordinary, reached, nodes in arrival_graph(room, surfaces):
+    base_graph = {s['id']: (ordinary, reached) for s, _, ordinary, reached, _ in arrival_graph(room, surfaces)}
+    for spawn, seeds, ordinary, reached, nodes in arrival_graph(room, surfaces, capabilities):
         name = spawn['id']
-        add('MEASURE', 'arrival', f'start={name} fall={bool(spawn.get("fall"))} seed={sorted(seeds)} ordinary={len(ordinary)} pogo={len(reached)}')
+        base_ordinary, base_pogo = base_graph[name]
+        add('MEASURE', 'arrival', f'start={name} fall={bool(spawn.get("fall"))} seed={sorted(seeds)} noAbilityOrdinary={len(base_ordinary)} noAbilityPogo={len(base_pogo)} capabilities={",".join(sorted(capabilities)) or "none"} ordinary={len(ordinary)} pogo={len(reached)}')
         if not seeds:
             add('FAIL', 'arrival', f'start={name} no landing surface')
         for i, r in enumerate(nodes[:len(surfaces)]):
@@ -348,11 +393,12 @@ def v5_checks(room):
         for door in doors:
             if door.get('gate') or door.get('stub') or door.get('oneway') == 'in' or door.get('down_only'):
                 continue
-            if not any(i in reached and gap(r, door['rect']) <= 3 and door['rect'][1]-r[1] <= (2.5 if i < len(surfaces) else 2+attack_height()) for i, r in enumerate(nodes)):
+            door_rise = double_jump_height() if 'DJ' in capabilities else 2.5
+            if not any(i in reached and gap(r, door['rect']) <= 3 and door['rect'][1]-r[1] <= max(door_rise, 2+attack_height() if len(surfaces) <= i < len(surfaces)+len(room.get('pogo', [])) else door_rise) for i, r in enumerate(nodes)):
                 add('FAIL', 'reachability', f'start={name} door={door["id"]} absent in pogo envelope')
     findings.extend(draft2_checks(room))
     findings.extend(draft3_checks(room))
-    return findings, elements
+    return [(rule_level(level, rule), rule, detail) for level, rule, detail in findings], elements
 
 
 def v5_report(source):
@@ -361,13 +407,15 @@ def v5_report(source):
              '정적 기하 검사 후보 결과. FAIL도 설계 확정 판정이 아니며 Unity 물리·적 포고·공중 조작·벽 가림·능력 문 실제 동작은 미검증이다.',
              f'계산: WORLD_V5 3절 점프2.5u·일반 단차2u·포고2u, 기존 CombatTuning downAttackHeight={attack_height():g}u. 포고 상단=y+.5, 포고 뒤 상승 여유=2+타격높이. 등불·가시 둘 다 포함, 가로 간격3u. 일반 경로와 포고 경로를 별도로 계산한다.',
              '모든 spawns를 각각 시작점으로 검사한다. fall은 x 아래 첫 고체/발판/온전한 봉인·덮개·부서지는 벽 상단을 착지점으로 삼는다. 벽 가림·충돌·적 이동·입력 타이밍을 풀지 않는 낙관적 경로 후보이며 실제 문 gate 차단은 T3에서 검사한다.',
+             f'B19: noAbilityOrdinary/noAbilityPogo는 능력 없는 계산이며 capabilities 결과와 구분한다. climb 방은 WallJump 보유를 가정한 벽 전체 길이 경로다(첫 도착 소유 주장 아님). 유효 입구가 하나이고 gate가 있으면 그 능력을 요구한다. DJ 높이는 PlayerTuning의 (jumpVelocity²+doubleJumpVelocity²)/(2×gravity)={double_jump_height():g}u를 읽기 전용으로 계산한다. 연속 벽 접촉에는 프리팹 몸 높이를 포함한다. 가로3u·충돌·입력 제한은 여전히 검사기 한계다.',
              '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과는 아래·위 절반에 아이템 각1개를 검사한다.', '',
-             f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지, 바닥 구덩이 순찰 교차 금지·폭≤3. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
+             f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지는 관찰 버그 근거 FAIL. 구덩이 순찰 교차·폭>3은 WARN. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
+             'B19 근거 없는 정적 후보는 WARN: door-safety, overlap, ability-gate, height, arrival, reachability, pit-patrol, pit-width. 후보 출력은 유지하며 실제 플레이 불가능으로 확정하지 않는다.', '',
              'draft3 추가 규칙: 가장자리 가로0.9u 이내 구조물 머리 여유2.2u, 적 솔리드 침투·서 있는 면·순찰 전구간 지지 FAIL. 오름4u 이상에서 작은 발판 없는 포고 구간·등불3연속은 WARN(기하 후보).', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
-        checks, elements = v5_checks(room)
+        checks, elements = v5_checks(room, room_capabilities(key, rooms))
         area = room['size'][0]*room['size'][1]
         fails = sum(c[0] == 'FAIL' for c in checks)
         warns = sum(c[0] == 'WARN' for c in checks)
@@ -386,7 +434,7 @@ def self_test():
     temporary.parent.mkdir(parents=True, exist_ok=True)
     with temporary.open('x', encoding='utf-8') as out:
         json.dump(fake, out)
-    rules = {r[1] for r in v5_checks(json.loads(temporary.read_text(encoding='utf-8')))[0] if r[0] == 'FAIL'}
+    rules = {r[1] for r in v5_checks(json.loads(temporary.read_text(encoding='utf-8')))[0] if r[0] == 'WARN'}
     assert {'door-safety', 'overlap', 'height'} <= rules, rules
     sealed = {'title': 'sealed', 'size': [16, 6], 'solid': [[0, 0, 5, 1], [9, 0, 7, 1]],
               'seal': [[5, 0, 4, 1]], 'spawns': [{'id': 'start', 'x': 2, 'y': 1}]}
@@ -436,7 +484,7 @@ def self_test():
         target['kind'] = 'spike'
     assert any(rule == 'pogo-only-climb' for _, rule, _ in draft3_checks(spike_only))
     results.append('PASS spike-only rise>=4 climb without small platform detected; lantern chain remains lantern-only')
-    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
+    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height WARN detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
 if __name__ == "__main__":
