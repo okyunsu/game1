@@ -438,7 +438,7 @@ def self_test():
     assert {'door-safety', 'overlap', 'height'} <= rules, rules
     sealed = {'title': 'sealed', 'size': [16, 6], 'solid': [[0, 0, 5, 1], [9, 0, 7, 1]],
               'seal': [[5, 0, 4, 1]], 'spawns': [{'id': 'start', 'x': 2, 'y': 1}]}
-    assert not any(rule == 'reachability' and level == 'FAIL' for level, rule, _ in v5_checks(sealed)[0])
+    assert not any(rule == 'reachability' and level in ('FAIL', 'WARN') for level, rule, _ in v5_checks(sealed)[0])
     from copy import deepcopy
     base = {'title': 'fake', 'size': [20, 12], 'solid': [[0, 0, 7, 1], [7, 0, 2.5, .4], [9.5, 0, 10.5, 1]], 'platform': []}
     examples = {}
@@ -474,7 +474,8 @@ def self_test():
         path = folder/(rule+'.json')
         path.write_text(json.dumps({'rooms':{'fake':room}}, indent=2), encoding='utf-8')
         checks = draft3_checks(json.loads(path.read_text(encoding='utf-8'))['rooms']['fake'])
-        assert any(r == rule for _, r, _ in checks), (rule, checks)
+        expected_level = 'WARN' if rule == 'pogo-chain' else 'FAIL'
+        assert any(r == rule and level == expected_level for level, r, _ in checks), (rule, checks)
         if rule == 'enemy-support':
             assert any(r == 'patrol-support' for _, r, _ in checks), checks
         results.extend(f'{level} synthetic {r}: {detail}' for level, r, detail in checks)
