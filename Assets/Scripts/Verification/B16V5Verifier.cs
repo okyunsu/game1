@@ -27,6 +27,7 @@ public sealed class B16V5Verifier:N5Runner
   string give=Arg("-give=","");Check(Player.GetComponent<PlayerDash>().hasDash==give.Contains("dash"),"fixture dash");Check(Motor.hasDoubleJump==(give.Contains("dj")||give.Contains("double")),"fixture double jump");
   Check(N5Args.Has("-no-map")?FindObjectsByType<V4WorldMap>(FindObjectsSortMode.None).Length==0:V4WorldMap.Instance!=null,"map switch");
   Check(ProgressSave.TryLoad(out var initial)&&initial.checkpointId==(Arg("-start-room=","A01")=="A03"?"CP-A03":"CP-A01"),"existing schema checkpoint saved");
+  if(N5Args.Has("-b19-dj-height")){yield return DoubleJumpHeight();yield break;}
   if(N5Args.Has("-verify-b16-map")){yield return Map();yield break;}
   if(N5Args.Has("-verify-b16-route")){yield return Route();yield break;}
   if(N5Args.Has("-verify-b16-launch")){yield return new WaitForSecondsRealtime(10);yield break;}
@@ -75,6 +76,7 @@ public sealed class B16V5Verifier:N5Runner
    Check(Motor.hasDoubleJump,"DJ owned fixture");
    RouteLog("MEASURE route recipe=draft3-DJ contacts=actual-player-collider eachSegmentLimit=120");
    yield return Segment("A01","start","A06",new[]{new Vector2(5.5f,3),new Vector2(9.5f,4.8f),new Vector2(16,6.8f),new Vector2(24.8f,8.8f),new Vector2(28.2f,10.5f),new Vector2(32,11.6f),new Vector2(32,15.2f)});
+   if(N5Args.Has("-b19-dj-trace"))yield break;
    yield return Segment("A06","A01-A06","Shard",new[]{new Vector2(38.4f,3),new Vector2(42.5f,5),new Vector2(32,3.9f),new Vector2(25.5f,3),new Vector2(18,4),new Vector2(12,4),new Vector2(8,5),new Vector2(3,7.5f)});
    yield return Segment("A06","A01-A06","A02",new[]{new Vector2(8,5),new Vector2(25.5f,3),new Vector2(32,3.9f),new Vector2(38.4f,3),new Vector2(42.5f,5),new Vector2(45.5f,5),new Vector2(47.8f,5)});
    yield return Segment("A02","A02-A06","Shard",new[]{new Vector2(4,22)});
@@ -110,6 +112,13 @@ public sealed class B16V5Verifier:N5Runner
   double began=Time.realtimeSinceStartupAsDouble,jumpUntil=0,nextJump=0,nextAttack=0,nextSample=0;
   int step=0;float maxY=Body.position.y,maxX=Body.position.x;bool passed=false;string reason="120s input budget exhausted";Vector2 last=Body.position;int hp=Health.HP,pogos=0;
   RouteLog("MEASURE route begin room="+room+" spawn="+spawn+" position="+last+" hp="+hp+" dash="+Player.GetComponent<PlayerDash>().hasDash+" dj="+Motor.hasDoubleJump);
+
+  if(N5Args.Has("-b19-dj-trace"))
+  {
+   foreach(var c in Room.GetComponentsInChildren<BoxCollider2D>().Where(c=>c.name.StartsWith("platform")||c.name.StartsWith("solid")))
+    lines.Add("MEASURE authoredCollider room="+room+" name="+c.name+" min="+c.bounds.min+" max="+c.bounds.max);
+   lines.Add("FRAME_HEADER room,frame,elapsed,step,x,bodyY,feet,vx,vy,grounded,djAvailable,djCount,input,targetX,targetY,contacts");
+  }
   while(Time.realtimeSinceStartupAsDouble-began<120)
   {
    if(!RoomSession.Instance.Transitioning&&RoomSession.Instance.CurrentRoomId==goal){passed=true;break;}
@@ -127,6 +136,8 @@ public sealed class B16V5Verifier:N5Runner
    if(now<jumpUntil)keys.Add(Key.Z);
    if(now>=nextAttack&&(!Motor.Grounded||enemyNear)){keys.Add(Key.X);if(!Motor.Grounded)keys.Add(Key.DownArrow);nextAttack=now+.34;}
    InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys.ToArray()));
+   if(N5Args.Has("-b19-dj-trace"))lines.Add($"FRAME {room},{Time.frameCount},{now-began:F4},{step},{last.x:F4},{last.y:F4},{Player.GetComponent<Collider2D>().bounds.min.y:F4},{Body.linearVelocity.x:F4},{Body.linearVelocity.y:F4},{Motor.Grounded},{Motor.DoubleJumpAvailable},{Motor.DoubleJumpsPerformed},{string.Join("|",keys)},{target.x:F4},{target.y:F4},{RouteContacts()}");
+
    if(now>=nextSample){RouteLog("MEASURE route contacts room="+room+" position="+last+" colliders="+RouteContacts());RouteLog("MEASURE route sample room="+room+" elapsed="+(now-began).ToString("F1")+" step="+step+" position="+last+" grounded="+Motor.Grounded+" hp="+hp+" pogos="+pogos);nextSample=now+10;}
    yield return null;
   }
@@ -138,6 +149,28 @@ public sealed class B16V5Verifier:N5Runner
  {
   var shape=Player.GetComponent<Collider2D>();var contacts=new ContactPoint2D[32];int count=shape.GetContacts(contacts);
   return string.Join("|",contacts.Take(count).Select(c=>c.collider==shape?c.otherCollider.name:c.collider.name).Distinct());
+ }
+
+ IEnumerator DoubleJumpHeight()
+ {
+  Check(Motor.hasDoubleJump,"DJ height owned fixture");
+  var floor=new GameObject("B19 DJ measurement floor");floor.layer=6;floor.transform.position=new Vector2(2000,999.5f);floor.AddComponent<BoxCollider2D>().size=new Vector2(10,1);
+  yield return Keys();Motor.ClearTransientState();PlaceForAuthorizedSetup(new Vector2(2000,1000.015f));yield return new WaitForSeconds(.2f);Check(Motor.Grounded,"height fixture supported");
+  float start=Player.GetComponent<Collider2D>().bounds.min.y,apex=start;int before=Motor.DoubleJumpsPerformed;bool second=false;double began=Time.realtimeSinceStartupAsDouble;
+  InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Z));
+  while(Time.realtimeSinceStartupAsDouble-began<2)
+  {
+   float feet=Player.GetComponent<Collider2D>().bounds.min.y;apex=Mathf.Max(apex,feet);
+   lines.Add($"MEASURE DJ-height-frame elapsed={Time.realtimeSinceStartupAsDouble-began:F4} feet={feet:F4} vy={Body.linearVelocity.y:F4} grounded={Motor.Grounded} djCount={Motor.DoubleJumpsPerformed}");
+   if(!second&&Time.realtimeSinceStartupAsDouble-began>.15&&Body.linearVelocity.y<=.5f)
+   {yield return Keys();InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Z));second=true;}
+   if(second&&Motor.DoubleJumpsPerformed>before&&Body.linearVelocity.y<0)break;
+   yield return null;
+  }
+  Check(Motor.DoubleJumpsPerformed==before+1,"one actual extra airborne jump");
+  var t=Motor.Tuning;float envelope=(t.jumpVelocity*t.jumpVelocity+t.doubleJumpVelocity*t.doubleJumpVelocity)/(2*t.gravity);
+  lines.Add($"MEASURE DJ-height actualRise={apex-start:F4} analyticEnvelope={envelope:F4} jumpVelocity={t.jumpVelocity:F4} doubleJumpVelocity={t.doubleJumpVelocity:F4} gravity={t.gravity:F4} finalPlatformFeet=11.6 apexFromFinalPlatform={11.6f+apex-start:F4} doorMinY=15");
+  yield return Keys();Destroy(floor);
  }
  IEnumerator Map()
  {

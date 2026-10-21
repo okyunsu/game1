@@ -20,7 +20,7 @@ Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Valida
 | B19-T1 | DONE | draft3 머리 위0/문6/측면43/구덩이20, draft2 머리 위4·양옆 틈 양쪽0. Quiet13/13 |
 | B19-T2 | DONE | draft3 FAIL0/WARN0·MEASURE69, draft2 머리 위4/적1 검출·틈0.5 WARN·임시Scene 삭제·Quiet13/13 |
 | B19-T3 | DONE | 능력 계산/무능력 계산 분리, 정적22→0·잔여0/새FAIL0·fixture4 검출·근거 없는8규칙 WARN·Quiet13/13 |
-| B19-T4 | DOING | 실제 콜라이더 목표 일치 확인, 프레임 추적·DJ 높이 측정 준비 |
+| B19-T4 | DONE | 실제 exe7200프레임·120초: 목표 일치/입력 타이밍 원인, platform2 옆면 뒤 낙하. DJ상승4.884u·Error0·Quiet13/13 |
 | B19-T5 | TODO | 규칙 근거 장부·인계 |
 | B19-T6 | TODO | 기본 회귀·런처3·Batch Card |
 
