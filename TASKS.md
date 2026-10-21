@@ -11,6 +11,19 @@
 - Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
 - 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
 
+## 1-0d. Current Tasks (Batch19)
+
+Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Validation/_raw/B19/startup-20261021-220750/startup.log`. 이전 실패 기록은 보존한다. 사용자의 재개 지시에 따라 기존 `Validation/B19-blocked.md`는 이번 실행의 선행 실패 기록으로 식별하고 유지한다. Unity·Unity 호출 스크립트만 샌드박스 밖에서 실행한다.
+
+| Task | 상태 | 현재 결과 |
+|---|---|---|
+| B19-T1 | DONE | draft3 머리 위0/문6/측면43/구덩이20, draft2 머리 위4·양옆 틈 양쪽0. Quiet13/13 |
+| B19-T2 | TODO | Scene 검사 분류 및 draft2·틈 fixture |
+| B19-T3 | TODO | 능력 조건을 구분한 정적 도달성 |
+| B19-T4 | TODO | DJ 자동 입력 프레임 측정 |
+| B19-T5 | TODO | 규칙 근거 장부·인계 |
+| B19-T6 | TODO | 기본 회귀·런처3·Batch Card |
+
 ## 1-0c. Current Tasks (Batch18)
 
 | Task | 상태 | 현재 결과 |
