@@ -1,6 +1,49 @@
+```text
+B19-T1 Quiet REGRESSION 13/13
+B19-T2 Quiet REGRESSION 13/13
+B19-T3 Quiet REGRESSION 13/13
+B19-T4 Quiet REGRESSION 13/13
+B19-T5 Quiet REGRESSION 13/13
+B19-T6 Quiet REGRESSION 13/13
+
+S1-02 PASS | S1-02 PASS evidence=S1-02-night-S2-B19-final-default.txt
+S1-04 PASS | S1-04 PASS evidence=S1-04-night-S2-B19-final-default.txt
+S1-07 PASS | S1-07 PASS evidence=S1-07-night-S2-B19-final-default.txt
+S1-08 PASS | S1-08 PASS evidence=S1-08-night-S2-B19-final-default.txt
+Camera PASS | Camera PASS evidence=S1-06-lead0-night-S2-B19-final-default.txt
+T1 PASS | T1 PASS evidence=Verification-night-T1-B19-final-default.txt
+T2 PASS | T2 PASS evidence=Verification-night-T2-B19-final-default.txt
+T3 PASS | T3 PASS evidence=Verification-night-T3-B19-final-default.txt
+T4 PASS | T4 PASS evidence=Verification-T4-night-S2-B19-final-default.txt
+S2 PASS | S2 PASS evidence=S2-01-integration-night-S2-B19-final-default.txt
+F2R PASS | F2R PASS evidence=F2R-feedback-night-S2-B19-final-default.txt
+LOGR PASS | LOGR PASS evidence=LOGR-playtest-night-S2-B19-final-default.txt
+Boss PASS | Boss PASS evidence=boss-recovery-night-S2-B19-final-default.txt
+REGRESSION 13/13
+
+BATCH CARD 8a9a1b53e56934ba22837dffe4605a5b7a154b05..HEAD (c85c294)
+변경 파일: 14 (+569 / -53 줄, 바이너리 0)
+  Scripts: 2
+  Scenes: 0
+  Prefabs: 0
+  Editor: 2
+  Validation: 7
+  문서: 2
+  기타: 1
+허용 범위: Assets/Editor/**, Assets/Scripts/Verification/**, Assets/Scripts/V5*.cs, Tools/Check-RoomRules.py, Validation/B19-*, TASKS.md, README.md, Batches/BATCH-19.md, Builds/**, Launchers/current/*V5*
+허용 범위 밖: 0
+TASKS 상태(표 둘째 칸): DONE 65 / REVIEW 11 / DOING 0 / BLOCKED 3 / PARTIAL 12
+결정 대기(## 2. 결정 대기 표의 D- 행): 0
+열린 버그(## 4. 열린 버그 표 행): 3
+직접 플레이 확인 대기(## 3. 목록 항목): 5
+TASKS 깨진 링크 수: 0
+TASKS가 가리키지만 없는 빌드·런처 수: 0
+마지막 REGRESSION: REGRESSION 13/13 (Validation/_raw/regression/B19-final-default/result.txt)
+```
+
 # Batch 19 — V5 층 A 검사 판정과 DJ 경로 원인
 
-종료 2026-10-22 00:21 KST. T1~T6 DONE6. Task별 Quiet 모두13/13·종료 기본13/13·V5 런처3 exit0/Error0. 최종 Batch Card 원문은 종료 커밋 뒤 이 파일 맨 위에 추가한다.
+종료 2026-10-22 00:21 KST. T1~T6 DONE6. Task별 Quiet 모두13/13·종료 기본13/13·V5 런처3 exit0/Error0. 최종 회귀·Batch Card 원문은 이 파일 맨 위에 기록했다.
 
 Base `8a9a1b53e56934ba22837dffe4605a5b7a154b05`, 재개2026-10-21 23:46 KST. 시작 조건용 Batch19/WORLD_V5/첫 실패 기록은 사용자가 이미 이 커밋에 저장했고 B18은 조상이다. 앞선 실패 기록2개를 보존한 상태에서 사용자가 명시적으로 재개를 승인했다. 정상 LOCALAPPDATA의 Unity 시작 검사 exit0을 재사용했다. 예산6 Task/최대7 Task·3시간, 다음 Task 시작 제한2시간30분 이내. 새 제품 기능·Scene·게임 수치 변경은 없다.
 
@@ -11,7 +54,7 @@ Base `8a9a1b53e56934ba22837dffe4605a5b7a154b05`, 재개2026-10-21 23:46 KST. 시
 |T3|feature|DONE|`4497104`|[능력 조건](B19-room-rules-v5-A.md): 원래22건→0(새FAIL0). WallJump 조건9/DJ13. 무능력 계산 유지·fixture4·Python 컴파일·Quiet13/13|
 |T4|verification|DONE|`a736fbe`|[DJ 측정](B19-dj-route.md): 원인=입력 타이밍, 목표 좌표 일치. 실제exe7200프레임·120초, DJ 상승4.884u·Error0·Quiet13/13|
 |T5|doc|DONE|`11297f1`|[규칙 장부](B19-rules-ledger.md)·TASKS·README 인계·링크0·보호380 SHA0변경·결정0·Quiet13/13|
-|T6|verification|DONE|`B19`|Quiet13/13·기본13/13·V5 런처3 exit0/Error0·보호380 SHA0변경·허용 범위 밖0|
+|T6|verification|DONE|`c85c294`|Quiet13/13·기본13/13·V5 런처3 exit0/Error0·보호380 SHA0변경·허용 범위 밖0|
 
 유형: verification3 / feature2 / doc1. 이번 배치에서 플레이 가능 범위를 확장하지 않았다. 대신 실제 머리 걸림 검출을 유지하면서 정상 벽 옆69개를 오류로 세는 리스크와 능력 미반영22개를 제거했고, DJ 자동 경로 정지 원인을 측정했다. 이전 B18-T3/T6와 기존 체감·설계 REVIEW는 그대로다.
 
@@ -42,3 +85,5 @@ T6 Quiet 원문은13/13 PASS였지만 추가 실행 래퍼가 `$LASTEXITCODE`로
 T6 실제 검증: [Task별 Quiet](_raw/regression/B19-T6/result.txt), [종료 기본 회귀](_raw/regression/B19-final-default/result.txt), [V5 세 런처 결과](_raw/B19/T6-launch-result.txt). 세 모드는 기존 공통 Start-V5.ps1의 Smoke 경로를 각각10초 실행했으며 고유 fixture 저장 슬롯을 사용했다. NewGame A01/AfterDash A03 dash/DJ A01 dj 모두 Error0. 새 배포 빌드 생성은 없고 측정용 Development 임시 빌드만 만들었다가 삭제해 B18/B12 두 빌드만 남겼다. Scene 임시 폴더도 삭제됐고 raw 로그·입력·프레임·측정 원문은 삭제하지 않았다.
 
 보호380파일 SHA변경0, 제품 코어·Design·기존 Scene/Prefab/수치 에셋·V4 런처·V5 런처 Git 변경0. Validation B18 이전 요약도 변경0. 문서10개 링크 오류0·결정 대기0·기존 제품 버그3개를 유지한다. 단, 자동 검사 PASS가 기존 사람 수락 대기를 DONE으로 바꾸지는 않는다. B19 태그는 최종 인계 커밋에 붙이고 Task별 로컬 커밋을 보존한다.
+
+최종 카드는 T6 커밋까지의 실제 Git 변경과 갱신된 TASKS를 기준으로 실행했다. 카드 뒤의 변경은 같은 허용 범위인 이 요약에 원문을 붙이고 TASKS의 종료 표현을 확정하는 문서 변경뿐이다. [카드 원문](_raw/B19/T6-card.txt). 결정 대기0·허용 범위 밖0·깨진 링크0·없는 빌드/런처0. 최종 `B19` 태그는 이 인계 확정 커밋을 가리킨다.
