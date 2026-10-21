@@ -13,7 +13,7 @@ public sealed class V5B18Clearance : N5Runner
  public static bool Positive(Bounds a,Bounds b)=>Mathf.Min(a.max.x,b.max.x)-Mathf.Max(a.min.x,b.min.x)>.003f&&Mathf.Min(a.max.y,b.max.y)-Mathf.Max(a.min.y,b.min.y)>.003f;
  public static List<string> Scan(RoomDefinition room,Vector2 size)
  {
-  Physics2D.SyncTransforms();var rows=new List<string>();int clearance=0,enemyFailures=0,patrolFailures=0,samples=0;
+  Physics2D.SyncTransforms();var rows=new List<string>();int clearance=0,enemyFailures=0,patrolFailures=0,samples=0,doors=0,sides=0,pits=0,gaps=0;
   var blockers=room.GetComponentsInChildren<Collider2D>().Where(Blocking).ToArray();
   var faces=blockers.OfType<BoxCollider2D>().Where(c=>c.name.StartsWith("solid",StringComparison.Ordinal)||c.name.StartsWith("platform",StringComparison.Ordinal)).ToArray();
   float roof=room.GetComponent<V4Room>().dimensions.y;
@@ -30,9 +30,20 @@ public sealed class V5B18Clearance : N5Runner
     foreach(var hit in Physics2D.OverlapBoxAll(center,querySize,0,1<<6).Where(c=>c!=face&&Blocking(c)&&Positive(body,c.bounds)))
     {
      var eff=hit.GetComponent<PlatformEffector2D>();bool oneWay=eff!=null&&hit.usedByEffector&&eff.useOneWay;
-     rows.Add((oneWay?"MEASURE ":"FAIL ")+room.roomId+" clearance surface="+face.name+" x="+x.ToString("F3")+" feet="+top.ToString("F3")+" blocker="+hit.name+" oneWay="+oneWay+" minY="+hit.bounds.min.y.ToString("F3"));if(!oneWay)clearance++;
+     string category=hit.bounds.min.y>top+.003f?"overhead":hit.name.StartsWith("closed:",StringComparison.Ordinal)?"closed-door":top<=.4001f?"pit-edge":"side";
+     string level=!oneWay&&category=="overhead"?"FAIL ":"MEASURE ";
+     rows.Add(level+room.roomId+" clearance surface="+face.name+" x="+x.ToString("F3")+" feet="+top.ToString("F3")+" blocker="+hit.name+" oneWay="+oneWay+" minY="+hit.bounds.min.y.ToString("F3")+" category="+category);
+     if(!oneWay&&category=="overhead")clearance++;else if(category=="closed-door")doors++;else if(category=="pit-edge")pits++;else if(category=="side")sides++;
     }
    }
+  }
+  // Separate horizontal throat warning. No observed draft2/draft3 bug justifies FAIL.
+  for(int i=0;i<blockers.Length;i++)for(int j=i+1;j<blockers.Length;j++)
+  {
+   Bounds a=blockers[i].bounds,b=blockers[j].bounds;if(a.min.x>b.min.x){var swap=a;a=b;b=swap;}
+   float width=b.min.x-a.max.x,low=Mathf.Max(a.min.y,b.min.y),high=Mathf.Min(a.max.y,b.max.y);
+   if(width>.003f&&width<size.x+.2f-.003f&&high-low>=size.y-.003f)
+   {rows.Add("WARN "+room.roomId+" side-gap left="+blockers[i].name+" right="+blockers[j].name+" width="+width.ToString("F3")+" required="+(size.x+.2f).ToString("F3"));gaps++;}
   }
   foreach(var reset in room.GetComponentsInChildren<EnemyReset>())
   {
@@ -49,7 +60,7 @@ public sealed class V5B18Clearance : N5Runner
    inspect("enemy-spawn",center,false);var binding=reset.GetComponent<V5PatrolBinding>();if(binding==null)continue;
    foreach(var point in new[]{binding.leftPoint,binding.rightPoint})inspect("patrol-end",(Vector2)point.position+shape.offset,true);
   }
-  rows.Add("MEASURE "+room.roomId+" summary samples="+samples+" clearance="+clearance+" enemy="+enemyFailures+" patrol="+patrolFailures);return rows;
+  rows.Add("MEASURE "+room.roomId+" summary samples="+samples+" clearance="+clearance+" enemy="+enemyFailures+" patrol="+patrolFailures+" overhead="+clearance+" closedDoor="+doors+" side="+sides+" pitEdge="+pits+" sideGap="+gaps);return rows;
  }
  protected override IEnumerator Tests()
  {

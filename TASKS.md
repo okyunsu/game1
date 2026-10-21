@@ -18,8 +18,8 @@ Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Valida
 | Task | 상태 | 현재 결과 |
 |---|---|---|
 | B19-T1 | DONE | draft3 머리 위0/문6/측면43/구덩이20, draft2 머리 위4·양옆 틈 양쪽0. Quiet13/13 |
-| B19-T2 | TODO | Scene 검사 분류 및 draft2·틈 fixture |
-| B19-T3 | TODO | 능력 조건을 구분한 정적 도달성 |
+| B19-T2 | DONE | draft3 FAIL0/WARN0·MEASURE69, draft2 머리 위4/적1 검출·틈0.5 WARN·임시Scene 삭제·Quiet13/13 |
+| B19-T3 | DOING | 능력 계산과 무능력 계산 분리, 정적22→0·기존 fixture4 검출 |
 | B19-T4 | TODO | DJ 자동 입력 프레임 측정 |
 | B19-T5 | TODO | 규칙 근거 장부·인계 |
 | B19-T6 | TODO | 기본 회귀·런처3·Batch Card |
