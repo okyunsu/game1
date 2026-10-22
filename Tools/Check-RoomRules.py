@@ -401,8 +401,83 @@ def v5_checks(room, capabilities=()):
     return [(rule_level(level, rule), rule, detail) for level, rule, detail in findings], elements
 
 
-def v5_report(source):
+def shortcut_checks(room_id, rooms, world):
+    """B20: observed A03->A05 bypass, with explicit checker-only lock metadata.
+
+    closed_until_wall_broken on the incoming room door must name an existing
+    persistent wall key. This annotation alone does not implement runtime locks.
+    The barrier room is determined by actual breakable/seal geometry, not by
+    treating the world a/b order as a direction rule.
+    """
+    findings = []
+    for link in world.get('doors', []):
+        if link.get('type') != 'shortcut':
+            continue
+        for destination in (link['a'], link['b']):
+            target = rooms.get(destination, {})
+            barriers = [(kind, i, r) for kind in ('breakable', 'seal')
+                        for i, r in enumerate(target.get(kind, []))]
+            if not barriers:
+                continue
+            origin = link['b'] if destination == link['a'] else link['a']
+            entrances = [d for d in rooms.get(origin, {}).get('doors', [])
+                         if d['id'] == link['id'] and d.get('to') == destination]
+            if room_id == origin:
+                keys = {f'V5-{destination}-{kind}{i}' for kind, i, _ in barriers}
+                if not entrances or entrances[0].get('closed_until_wall_broken') not in keys:
+                    findings.append(('FAIL', 'shortcut-closed',
+                                     f'door={link["id"]} from={origin} to={destination} missing valid closed_until_wall_broken key'))
+            if room_id != destination:
+                continue
+            arrival = next((s for s in target.get('spawns', []) if s['id'] == link['id'] and s.get('from') == origin), None)
+            door = next((d for d in target.get('doors', []) if d['id'] == link['id']), None)
+            if arrival is None or door is None:
+                continue  # missing-arrival candidates remain covered by existing checks
+            axis = 0 if link.get('edge') == 'x' else 1
+            entry = door['rect'][axis] + door['rect'][axis+2]/2
+            spawn = arrival['x'] if axis == 0 else arrival['y']
+            bypassed = []
+            for kind, i, rect in barriers:
+                lo, hi = rect[axis], rect[axis] + rect[axis+2]
+                across = entry <= lo+1e-6 and spawn >= hi-1e-6 or entry >= hi-1e-6 and spawn <= lo+1e-6
+                # Only barriers crossing this arrival corridor, not unrelated walls.
+                overlaps = (arrival['y'] < rect[1]+rect[3] and arrival['y']+player_size()[1] > rect[1]) if axis == 0 else (rect[0] <= arrival['x'] <= rect[0]+rect[2])
+                if across and overlaps:
+                    bypassed.append(f'{kind}{i}')
+            if bypassed:
+                findings.append(('FAIL', 'shortcut-spawn-bypass',
+                                 f'door={link["id"]} from={origin} spawn=({arrival["x"]:g},{arrival["y"]:g}) already past {",".join(bypassed)}'))
+    return findings
+
+
+def trench_measurements(room, max_step):
+    """Compare authored lip depth to an explicitly supplied B20 measured limit.
+
+    A geometric escape estimate ignores damage, knockback and head clearance;
+    it is deliberately MEASURE and never a new game-rule FAIL.
+    """
+    if max_step is None:
+        return []
+    solids = room.get('solid', [])
+    candidates = [('trench', i, r[0], r[0]+r[2], r[1]) for i, r in enumerate(room.get('hazard', []))]
+    for i, r in enumerate(solids):
+        if abs(r[1]) < 1e-6 and r[3] <= .4001 and not any(h[0] < r[0]+r[2] and r[0] < h[0]+h[2] for h in room.get('hazard', [])):
+            candidates.append(('pit', i, r[0], r[0]+r[2], r[1]+r[3]))
+    rows = []
+    for kind, i, left, right, bottom in candidates:
+        lips = [r[1]+r[3] for r in solids if abs(r[0]+r[2]-left)<1e-5 or abs(r[0]-right)<1e-5]
+        lips = [y for y in lips if y > bottom+1e-6]
+        if lips:
+            depth = min(lips)-bottom
+            escape = 'possible' if depth <= max_step+1e-6 else 'not-in-measured-envelope'
+            rows.append(('MEASURE', 'trench-escape', f'{kind}={i} x={left:g}..{right:g} depth={depth:g} measuredMaxStep={max_step:g} noAbilityJumpEscape={escape}; damage/headroom not solved'))
+    return rows
+
+
+def v5_report(source, world_source=None, max_step=None):
     rooms = json.loads(source.read_text(encoding='utf-8-sig'))['rooms']
+    world_source = world_source or source.with_name(source.name.replace('rooms_', 'world_', 1))
+    world = json.loads(world_source.read_text(encoding='utf-8-sig')) if world_source.is_file() else {}
     lines = ['# V5 층 A 방 규칙 검사', '', f'원본: `{source.as_posix()}` (읽기 전용)', f'SHA256: `{hashlib.sha256(source.read_bytes()).hexdigest()}`', '',
              '정적 기하 검사 후보 결과. FAIL도 설계 확정 판정이 아니며 Unity 물리·적 포고·공중 조작·벽 가림·능력 문 실제 동작은 미검증이다.',
              f'계산: WORLD_V5 3절 점프2.5u·일반 단차2u·포고2u, 기존 CombatTuning downAttackHeight={attack_height():g}u. 포고 상단=y+.5, 포고 뒤 상승 여유=2+타격높이. 등불·가시 둘 다 포함, 가로 간격3u. 일반 경로와 포고 경로를 별도로 계산한다.',
@@ -412,10 +487,13 @@ def v5_report(source):
              f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지는 관찰 버그 근거 FAIL. 구덩이 순찰 교차·폭>3은 WARN. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
              'B19 근거 없는 정적 후보는 WARN: door-safety, overlap, ability-gate, height, arrival, reachability, pit-patrol, pit-width. 후보 출력은 유지하며 실제 플레이 불가능으로 확정하지 않는다.', '',
              'draft3 추가 규칙: 가장자리 가로0.9u 이내 구조물 머리 여유2.2u, 적 솔리드 침투·서 있는 면·순찰 전구간 지지 FAIL. 오름4u 이상에서 작은 발판 없는 포고 구간·등불3연속은 WARN(기하 후보).', '',
+             'B20: shortcut 반대편 진입의 closed_until_wall_broken 저장 키 표시와 도착 spawn의 장벽 우회는 실제 A03→A05 통과 근거 FAIL. 표시는 검사 계약이며 런타임 잠금 구현을 보장하지 않는다. 도랑·구덩이 탈출은 --max-step-evidence의 실측치와 비교한 MEASURE(피해·머리 충돌 제외).', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
         checks, elements = v5_checks(room, room_capabilities(key, rooms))
+        checks += shortcut_checks(key, rooms, world)
+        checks += trench_measurements(room, max_step)
         area = room['size'][0]*room['size'][1]
         fails = sum(c[0] == 'FAIL' for c in checks)
         warns = sum(c[0] == 'WARN' for c in checks)
@@ -485,6 +563,27 @@ def self_test():
         target['kind'] = 'spike'
     assert any(rule == 'pogo-only-climb' for _, rule, _ in draft3_checks(spike_only))
     results.append('PASS spike-only rise>=4 climb without small platform detected; lantern chain remains lantern-only')
+    fixture = json.loads(Path('Tools/fixtures/B20-shortcut.json').read_text(encoding='utf-8'))
+    def shortcut_rows(data):
+        return [row for key in data['rooms'] for row in shortcut_checks(key, data['rooms'], data['world'])]
+    assert not shortcut_rows(fixture)
+    missing = deepcopy(fixture)
+    del missing['rooms']['A03']['doors'][0]['closed_until_wall_broken']
+    assert [r[1] for r in shortcut_rows(missing)] == ['shortcut-closed']
+    bypass = deepcopy(fixture)
+    bypass['rooms']['A05']['spawns'][0]['x'] = 3.5
+    assert [r[1] for r in shortcut_rows(bypass)] == ['shortcut-spawn-bypass']
+    bad_key = deepcopy(fixture)
+    bad_key['rooms']['A03']['doors'][0]['closed_until_wall_broken'] = 'missing-wall-key'
+    assert [r[1] for r in shortcut_rows(bad_key)] == ['shortcut-closed']
+    swapped = deepcopy(fixture)
+    swapped['world']['doors'][0].update(a='A03', b='A05')
+    assert not shortcut_rows(swapped)
+    seal = deepcopy(bypass)
+    seal['rooms']['A05']['seal'] = seal['rooms']['A05'].pop('breakable')
+    seal['rooms']['A03']['doors'][0]['closed_until_wall_broken'] = 'V5-A05-seal0'
+    assert [r[1] for r in shortcut_rows(seal)] == ['shortcut-spawn-bypass']
+    results.append('PASS B20 fixed shortcut fixture FAIL=0; missing lock/bad key/bypass/seal each detected; a/b order independent')
     return '\n'.join(['PASS self-test synthetic door-safety / overlap / height WARN detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
@@ -494,8 +593,11 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path)
     parser.add_argument("--v5", action="store_true")
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--world", type=Path, help="World JSON used for shortcut barrier checks")
+    parser.add_argument("--max-step-evidence", type=Path, help="B20 measured JSON containing maxStep; no hardcoded substitute")
     args = parser.parse_args()
-    text = v5_report(args.source) if args.v5 or args.source.name.startswith('rooms_v5') else report(args.source)
+    max_step = json.loads(args.max_step_evidence.read_text(encoding='utf-8-sig'))['maxStep'] if args.max_step_evidence else None
+    text = v5_report(args.source, args.world, max_step) if args.v5 or args.source.name.startswith('rooms_v5') else report(args.source)
     if args.self_test:
         text += '\n'+self_test()+'\n'
     if args.output:

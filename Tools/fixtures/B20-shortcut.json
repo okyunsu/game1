@@ -1,0 +1,16 @@
+{
+  "world": {"doors": [{"id": "A05-A03", "a": "A05", "b": "A03", "type": "shortcut", "edge": "x"}]},
+  "rooms": {
+    "A03": {
+      "size": [8, 12], "title": "fixture 허브", "solid": [[0, 0, 8, 1]],
+      "doors": [{"id": "A05-A03", "to": "A05", "rect": [7, 1, 1, 3], "closed_until_wall_broken": "V5-A05-breakable0"}],
+      "spawns": [{"id": "A05-A03", "from": "A05", "x": 5, "y": 1}]
+    },
+    "A05": {
+      "size": [12, 12], "title": "fixture", "solid": [[0, 0, 12, 1]],
+      "breakable": [[1, 1, 1, 3]],
+      "doors": [{"id": "A05-A03", "to": "A03", "rect": [0, 1, 1, 3]}],
+      "spawns": [{"id": "A05-A03", "from": "A03", "x": 0.5, "y": 1}]
+    }
+  }
+}
