@@ -445,8 +445,16 @@ def shortcut_checks(room_id, rooms, world):
                 if across and overlaps:
                     bypassed.append(f'{kind}{i}')
             if bypassed:
-                findings.append(('FAIL', 'shortcut-spawn-bypass',
-                                 f'door={link["id"]} from={origin} spawn=({arrival["x"]:g},{arrival["y"]:g}) already past {",".join(bypassed)}'))
+                lock = entrances[0].get('closed_until_wall_broken') if entrances else None
+                # Runtime contract is ProgressSave.IsWallBroken, not SealFloor.
+                # The key must unlock every barrier actually crossed by this
+                # spawn; an unrelated but existing wall key is insufficient.
+                locked = all(name.startswith('breakable') and
+                             lock == f'V5-{destination}-{name}' for name in bypassed)
+                detail = f'door={link["id"]} from={origin} spawn=({arrival["x"]:g},{arrival["y"]:g}) already past {",".join(bypassed)}'
+                if locked:
+                    detail += f'; 잠금으로 해소 key={lock}; runtime lock NOT VERIFIED'
+                findings.append(('MEASURE' if locked else 'FAIL', 'shortcut-spawn-bypass', detail))
     return findings
 
 
@@ -487,7 +495,7 @@ def v5_report(source, world_source=None, max_step=None):
              f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지는 관찰 버그 근거 FAIL. 구덩이 순찰 교차·폭>3은 WARN. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
              'B19 근거 없는 정적 후보는 WARN: door-safety, overlap, ability-gate, height, arrival, reachability, pit-patrol, pit-width. 후보 출력은 유지하며 실제 플레이 불가능으로 확정하지 않는다.', '',
              'draft3 추가 규칙: 가장자리 가로0.9u 이내 구조물 머리 여유2.2u, 적 솔리드 침투·서 있는 면·순찰 전구간 지지 FAIL. 오름4u 이상에서 작은 발판 없는 포고 구간·등불3연속은 WARN(기하 후보).', '',
-             'B20: shortcut 반대편 진입의 closed_until_wall_broken 저장 키 표시와 도착 spawn의 장벽 우회는 실제 A03→A05 통과 근거 FAIL. 표시는 검사 계약이며 런타임 잠금 구현을 보장하지 않는다. 도랑·구덩이 탈출은 --max-step-evidence의 실측치와 비교한 MEASURE(피해·머리 충돌 제외).', '',
+             'B21: shortcut 반대편 진입의 closed_until_wall_broken 저장 키가 실제 우회된 breakable과 일치하면 spawn-bypass는 MEASURE(잠금으로 해소). 누락·잘못된 키·봉인 우회는 FAIL을 유지한다. 표시는 검사 계약이며 런타임 잠금 구현을 보장하지 않는다. 도랑·구덩이 탈출은 --max-step-evidence의 실측치와 비교한 MEASURE(피해·머리 충돌 제외). 실측 JSON 미지정 시 trench-escape MEASURE는 미실시.', '',
              '| 방 | 면적 u² | 요소 | /1000u² | 문 | FAIL | WARN | 판정 |', '|---|---:|---:|---:|---:|---:|---:|---|']
     details = []
     for key, room in rooms.items():
@@ -502,13 +510,14 @@ def v5_report(source, world_source=None, max_step=None):
     return '\n'.join(lines+['', '```text']+details+['```', ''])
 
 
-def self_test():
+def self_test(output_root=Path('Validation/_raw/room-rules-self-test')):
+    run = output_root/uuid.uuid4().hex
     fake = {'title': 'fake', 'size': [20, 12], 'solid': [[0, 0, 20, 1]],
             'platform': [[1, 2, 3, .3], [8, 5, 3, .3]],
             'doors': [{'id': 'fake-door', 'rect': [1, 1, 1, 3]}],
             'enemies': [{'x': 2, 'y': 1, 'patrol': [1, 3]}],
             'spawns': [{'id': 'start', 'x': 5, 'y': 1}]}
-    temporary = Path('Validation/_raw/B16b')/('room-rules-fake-'+uuid.uuid4().hex+'.json')
+    temporary = run/'room-rules-fake.json'
     temporary.parent.mkdir(parents=True, exist_ok=True)
     with temporary.open('x', encoding='utf-8') as out:
         json.dump(fake, out)
@@ -530,7 +539,7 @@ def self_test():
     examples['pit-patrol']['enemies'] = [{'x': 5, 'y': 1, 'patrol': [4, 12]}]
     examples['pit-width'] = deepcopy(base)
     examples['pit-width']['solid'][1][2] = 3.5
-    folder = Path('Validation/_raw/B17/rule-fixtures')/uuid.uuid4().hex
+    folder = run/'draft2'
     folder.mkdir(parents=True)
     results = []
     for rule, room in examples.items():
@@ -546,7 +555,7 @@ def self_test():
         'enemy-support': {'size':[20,12], 'solid':[[0,0,5,1]], 'enemies':[{'x':8,'y':1,'type':'E1','patrol':[3,8]}]},
         'pogo-chain': {'size':[20,16], 'solid':[[0,0,20,1]], 'pogo':[{'id':str(i),'kind':'lantern','x':5+i,'y':3+2*i} for i in range(3)]},
     }
-    folder = Path('Validation/_raw/B18/rule-fixtures')/uuid.uuid4().hex
+    folder = run/'draft3'
     folder.mkdir(parents=True)
     for rule, room in draft3.items():
         path = folder/(rule+'.json')
@@ -572,7 +581,7 @@ def self_test():
     assert [r[1] for r in shortcut_rows(missing)] == ['shortcut-closed']
     bypass = deepcopy(fixture)
     bypass['rooms']['A05']['spawns'][0]['x'] = 3.5
-    assert [r[1] for r in shortcut_rows(bypass)] == ['shortcut-spawn-bypass']
+    assert [(r[0], r[1]) for r in shortcut_rows(bypass)] == [('MEASURE', 'shortcut-spawn-bypass')]
     bad_key = deepcopy(fixture)
     bad_key['rooms']['A03']['doors'][0]['closed_until_wall_broken'] = 'missing-wall-key'
     assert [r[1] for r in shortcut_rows(bad_key)] == ['shortcut-closed']
@@ -583,7 +592,28 @@ def self_test():
     seal['rooms']['A05']['seal'] = seal['rooms']['A05'].pop('breakable')
     seal['rooms']['A03']['doors'][0]['closed_until_wall_broken'] = 'V5-A05-seal0'
     assert [r[1] for r in shortcut_rows(seal)] == ['shortcut-spawn-bypass']
-    results.append('PASS B20 fixed shortcut fixture FAIL=0; missing lock/bad key/bypass/seal each detected; a/b order independent')
+    results.append('PASS B20 fixed shortcut fixture FAIL=0; missing lock/bad key/seal detected; valid locked bypass is MEASURE; a/b order independent')
+    fixture21 = json.loads(Path('Tools/fixtures/B21-shortcut.json').read_text(encoding='utf-8'))
+    assert [(r[0], r[1]) for r in shortcut_rows(fixture21)] == [('MEASURE', 'shortcut-spawn-bypass')]
+    for name, key in [('unlocked', None), ('bad-key', 'missing-wall-key'),
+                      ('unrelated-key', 'V5-A05-breakable1')]:
+        broken = deepcopy(fixture21)
+        entrance = broken['rooms']['A03']['doors'][0]
+        if key is None:
+            del entrance['closed_until_wall_broken']
+        else:
+            entrance['closed_until_wall_broken'] = key
+        if name == 'unrelated-key':
+            broken['rooms']['A05']['breakable'].append([8, 1, 1, 3])
+        rows = shortcut_rows(broken)
+        assert ('FAIL', 'shortcut-spawn-bypass') in [(r[0], r[1]) for r in rows], rows
+        results.extend(f'{level} B21-fixture-{name} {rule}: {detail}' for level, rule, detail in rows)
+    swapped21 = deepcopy(fixture21)
+    swapped21['world']['doors'][0].update(a='A03', b='A05')
+    assert shortcut_rows(swapped21) == shortcut_rows(fixture21)
+    results.extend(f'{level} B21-fixture-locked {rule}: {detail}' for level, rule, detail in shortcut_rows(fixture21))
+    results.extend(f'{level} B21-fixture-seal {rule}: {detail}' for level, rule, detail in shortcut_rows(seal))
+    results.append('PASS B21 locked spawn bypass MEASURE; unlocked/bad-key/unrelated-key/seal bypass FAIL; a/b order independent')
     return '\n'.join(['PASS self-test synthetic door-safety / overlap / height WARN detected; intact seal traversal retained', *results, 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
@@ -593,13 +623,14 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path)
     parser.add_argument("--v5", action="store_true")
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--self-test-output-dir", type=Path, default=Path('Validation/_raw/room-rules-self-test'), help="Root for unique self-test fixture output")
     parser.add_argument("--world", type=Path, help="World JSON used for shortcut barrier checks")
     parser.add_argument("--max-step-evidence", type=Path, help="B20 measured JSON containing maxStep; no hardcoded substitute")
     args = parser.parse_args()
     max_step = json.loads(args.max_step_evidence.read_text(encoding='utf-8-sig'))['maxStep'] if args.max_step_evidence else None
     text = v5_report(args.source, args.world, max_step) if args.v5 or args.source.name.startswith('rooms_v5') else report(args.source)
     if args.self_test:
-        text += '\n'+self_test()+'\n'
+        text += '\n'+self_test(args.self_test_output_dir)+'\n'
     if args.output:
         with args.output.open("x", encoding="utf-8", newline="\n") as output:
             output.write(text)

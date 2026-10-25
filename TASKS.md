@@ -2,23 +2,42 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-25, Codex (OPS-20261025 종료)
-- Git 기준: B20 `bf9693a`에서 OPS 시작. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
-- push 대기: 종료 커밋 포함 7커밋(B20 관련2 + OPS5), 로컬 origin/main 기준. 현재 수 확인: `git rev-list --count origin/main..HEAD`.
-- 진행 중: 없음. OPS-20261025 종료, 게임 Batch21 미승인
+- 갱신: 2026-10-26, Codex (Batch21 진행)
+- Git 기준: 시작 계약 커밋/Base `7d40918`. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
+- push 대기: Base 시점9커밋(이전8+시작 계약1). 현재 수 확인: `git rev-list --count origin/main..HEAD`. push·squash 없음.
+- 진행 중: 승인 Batch21. Preflight exit198, 독립 T3 검사기 보정 완료·종료 검사 진행.
 - 사용자 차례: 기존 V4/V5 수락 대기 순서 유지, D-BODY 크기 비교, 로컬 커밋 push
 - Claude 차례: B20 측정 근거로 draft4 제안(D-V5-DRAFT4), 사용자 채택은 별도
-- Codex 차례: 없음(Ready Queue 0건). 실제 Unity 연동은 다음 needs-unity=yes Batch 시작 시 확인
-- 막힌 것: 게임 구현 차단 없음. Unity 실제 기동은 이번 문서/도구 작업 범위 밖.
+- Codex 차례: T3 로컬 커밋 후 Batch 종료 기록. Ready Queue 0건.
+- 막힌 것: Unity 라이선스 exit198. T1/2/4/5/6/8 및 의존 T7/9·Backlog1~3 BLOCKED. 환경 변경 전 재실행하지 않음.
 - 최신 게임 결과: [B20 요약](Validation/B20-summary.md). 기본 크기·규칙·Scene 유지, Sprint Gate 미실시.
 
 ## 1. 현재 상태 / Current Sprint
 
-- Sprint3: V5 층 A 파일럿. B20 측정·비교 도구 완료, 크기와 draft4 결정 대기2건.
+- Sprint3: V5 층 A 파일럿. B21 정적 잠금 계약 보정 완료, 실제 잠금·후보·새 측정은 Unity exit198로 차단. 크기와 draft4 결정 대기2건.
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
-- 운영 개선은 [승인 Batch](Batches/BATCH-OPS-20261025.md)만 수행한다. 게임 Batch21은 승인되지 않았다.
+- 운영 개선은 종료했다. 게임 [Batch21](Batches/BATCH-21.md)은 사용자 2026-10-26 실행 지시로 승인됐다.
 
-## 1-0. Current Tasks (OPS-20261025)
+## 1-0. Current Tasks (Batch21)
+
+Base `7d40918`(Claude 설계 계약·지시문 시작 커밋). 이전8커밋 보존. [T3 검증](Validation/B21-room-rules.md).
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| B21-T1 | BLOCKED | needs-unity=yes: Preflight exit198. 런타임/생성기 수정 미착수 |
+| B21-T2 | BLOCKED | T1·Unity 의존. Scene 재생성·실제 exe 5항목 미실시 |
+| B21-T3 | DONE | 잠긴 우회 MEASURE, 무잠금/틀린 키/다른 벽 키/봉인 FAIL 검출. 전체 정적 FAIL0/WARN0·기존 fixture 유지 |
+| B21-T4 | BLOCKED | needs-unity=yes. B21Arena·가로 간격 신규 실측 미실시 |
+| B21-T5 | BLOCKED | needs-unity=yes. 위험 지형 복귀 후보·도랑 폭별 측정 미착수 |
+| B21-T6 | BLOCKED | needs-unity=yes. 모서리 보정 후보 미착수·PlayerMotor 변경0 |
+| B21-T7 | BLOCKED | needs-unity=no이나 T4 선행 의존. 36면 부족분 새 표 미작성 |
+| B21-T8 | BLOCKED | T1~T6·Unity 의존. 새 빌드·8런처·회귀·Scene 검사 미실시 |
+| B21-T9 | BLOCKED | T8 의존. 후보 전달용 결정/README/플레이 안내 미작성. 의무 종료 인계는 별도 수행 |
+| B21-BL1 | BLOCKED | T7 의존. 1.3/1.1 머리 여유 표 미작성 |
+| B21-BL2 | BLOCKED | T6·Unity 의존. 대시 모서리 보정 미착수 |
+| B21-BL3 | BLOCKED | T5·Unity 의존. A04 후보 포고 시도 미실시 |
+
+### 이전 OPS-20261025 결과
 
 Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태그 변경 없음.
 
@@ -66,6 +85,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
+| D-B21-EXEC | Batch21 실행 승인. 시작 3파일 커밋·draft3.1 계약 구현·기본 꺼짐 후보2종·T6 한정 PlayerMotor 예외. 기본 크기 채택은 제외 | 2026-10-26 | 사용자: “Batches/BATCH-21.md 읽고 진행해줘”. [승인 범위·사전 결정](Batches/BATCH-21.md). Claude 설계·제안을 사용자 감각 수락으로 바꾸지 않음 |
 | D-OPS-20261025 | P1~P7·P9·P10을 검토 보완과 함께 적용. P8·게임 수정 제외 | 2026-10-25 | 사용자: “그렇게 해서 진행해줄래/”. 직전 검토의 적용 순서·보완을 승인. [범위](Batches/BATCH-OPS-20261025.md) |
 | D-PLAY-20261022 | 점프 불쾌 원인 ① 캐릭터 크기 ③ 머리 충돌. draft4는 B20 측정 후 작성하며 기본 크기 채택은 별도 | 2026-10-22 | B20 사전 지시가 전달한 사용자 판단을 대리 기록. 채팅 전문·직접 발언 인용은 없음. [B20 목적·지시](Batches/BATCH-20.md), [플레이](Playtest/20261022-233114.csv) |
 | D-V5-PILOT | 방 구조 V5 재설계의 첫 파일럿으로 층 A(A01~A06)만 새 방 문법(방 안 열린 두 갈래·겹침·보이지만 못 가는 곳, 방 크기 축소, 능력 없이 도는 고리 2개)으로 만든다. A06은 더블 점프 전용(A02 벽 점프 문과 B06 구멍 진입은 닫음). 플레이한 뒤 수정한다. 설계 문서와 방 데이터는 Claude 쪽에서 작성한다. | 2026-10-15 | 사용자 결정. V4는 선형이고 방이 크며 비어 있다고 판단함(부서지는 벽 21방 중 1곳, 허브·엔딩 방을 뺀 저밀도 방 존재). 21방 전체 제작 전에 방 문법을 6방으로 먼저 확인한다. 설계 데이터: `Design/v5/`. Batch 16(생성 BLOCKED) → Batch 16b에서 이어함. 사용자 수정본62cc8c1로 V5 Scene6개·전달 빌드를 생성했다([B16b](Validation/B16b-summary.md)). |
