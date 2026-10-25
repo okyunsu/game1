@@ -2,15 +2,15 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-26, Codex (Batch21 진행)
+- 갱신: 2026-10-26, Codex (Batch21 종료: T3 DONE, Unity 경로 BLOCKED)
 - Git 기준: 시작 계약 커밋/Base `7d40918`. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
-- push 대기: Base 시점9커밋(이전8+시작 계약1). 현재 수 확인: `git rev-list --count origin/main..HEAD`. push·squash 없음.
-- 진행 중: 승인 Batch21. Preflight exit198, 독립 T3 검사기 보정 완료·종료 검사 진행.
+- push 대기: 종료 커밋 포함11커밋(이전8+Batch21 관련3), 로컬 origin/main 기준. 실제 수: `git rev-list --count origin/main..HEAD`. push·squash 없음.
+- 진행 중: 없음. 승인 Batch21은 독립 T3 완료 후 Unity/선행 차단으로 종료.
 - 사용자 차례: 기존 V4/V5 수락 대기 순서 유지, D-BODY 크기 비교, 로컬 커밋 push
 - Claude 차례: B20 측정 근거로 draft4 제안(D-V5-DRAFT4), 사용자 채택은 별도
-- Codex 차례: T3 로컬 커밋 후 Batch 종료 기록. Ready Queue 0건.
+- Codex 차례: Unity 라이선스 환경이 바뀌었다는 확인 후 B21 미완료 경로 재개. Ready Queue 0건.
 - 막힌 것: Unity 라이선스 exit198. T1/2/4/5/6/8 및 의존 T7/9·Backlog1~3 BLOCKED. 환경 변경 전 재실행하지 않음.
-- 최신 게임 결과: [B20 요약](Validation/B20-summary.md). 기본 크기·규칙·Scene 유지, Sprint Gate 미실시.
+- 최신: [B21 요약](Validation/B21-summary.md), T3 `736c6aa`·최종 태그 B21. 실제 게임/빌드는 [B20](Validation/B20-summary.md) 유지, Sprint Gate 미실시.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -20,7 +20,7 @@
 
 ## 1-0. Current Tasks (Batch21)
 
-Base `7d40918`(Claude 설계 계약·지시문 시작 커밋). 이전8커밋 보존. [T3 검증](Validation/B21-room-rules.md).
+Base `7d40918`(Claude 설계 계약·지시문 시작 커밋). 이전8커밋 보존. [T3 검증](Validation/B21-room-rules.md)·[종료 요약](Validation/B21-summary.md). T3 `736c6aa` 외 필수8개·Backlog3개는 외부/선행 차단. 종료 문서는 아래 상태를 DONE으로 바꾸지 않는다.
 
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
@@ -129,7 +129,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
-| V5-A05-SHORTCUT | A03에서 A05로 x3.5에 도착해 온전한 벽 x1..2 안쪽으로 우회. 벽도 Side.Any로 생성됨 | [사용자 CSV 9~10행](Playtest/20261022-233114.csv), [B20 T1](Validation/B20-shortcut.md) |
+| V5-A05-SHORTCUT | 실제 Scene/빌드는 A03→A05 온전한 벽 우회·Side.Any 상태 유지. B21은 draft3.1 정적 잠금 계약 보정만 완료, 런타임·Scene은 exit198 BLOCKED | [사용자 CSV 9~10행](Playtest/20261022-233114.csv), [B20 T1](Validation/B20-shortcut.md), [B21](Validation/B21-room-rules.md) |
 | V5-A05-TRENCH | 대시 없이 일반 점프로 도랑 통과(피해1). 걷기만은 이번 측정에서 실패·사망. A04/A05의 도랑 입구 복귀 동작 없음 | [사용자 CSV](Playtest/20261022-233114.csv), [B20 T2](Validation/B20-trench.md) |
 | V5-HEADBUMP | 사용자 점프 머리 걸림 피드백. h1.6 머리 충돌 후보36면·격리 실측33/36 접촉, 모서리 수평 보정 없음. 불일치3과 초기 문 전환2도 보존 | [플레이 CSV](Playtest/20261022-233114.csv), [B20 T3](Validation/B20-headbump.md), [전체 실측](Validation/B20-headbump-all.md) |
 
@@ -178,11 +178,11 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — OPS-20261025
+## 9. Latest Handoff — Batch21
 
 ### 결정 질문지
 
-기존 D-BODY(1.6 유지/1.3/1.1)·D-V5-DRAFT4(draft4 제안 작성/현행 보류)는 2절 그대로다. 추천은 1.3 우선 비교, B20 측정 근거의 draft4 제안 작성. 이번 운영 개선은 두 결정을 대신하지 않는다.
+기존 D-BODY(1.6 유지/1.3/1.1)·D-V5-DRAFT4(draft4 제안 작성/현행 보류)는 2절 그대로다. 추천은 1.3 우선 비교, B20 측정 근거의 draft4 제안 작성. B21 신규 후보가 없어 D-HAZARD-RETURN/D-CORNER-FIX는 아직 추가하지 않았다. 결정2/8. Unity 경로 재개에는 라이선스 활성화 등 환경 변경 확인이 필요하다.
 
 ### 직접 플레이 확인
 
@@ -191,23 +191,25 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 1. 새 [BodySizeTest](Launchers/current/Play-BodySize.cmd), `Assets/Scenes/Test/BodySizeTest.unity`: F6으로1.6→1.3→1.1, 막대6개·계단5개·등불 포고·E1, 약5분.
 2. [V5 기본1.6](Launchers/current/Play-V5.cmd) → [1.3](Launchers/current/Play-V5-Body13.cmd) → [1.1](Launchers/current/Play-V5-Body11.cmd): A01의 화면 점유·점프·사거리, 약5분. 실제 방에서도 F6 전환 가능(비교 런처에서만).
 
+B21 새 후보 Asset·런처·빌드는 없다. 기존 수락 순서에 후보 비교를 추가하지 않는다. A05 실제 잠금은 미구현이며 기존 빌드의 버그가 고쳐졌다고 판단하지 않는다.
+
 배치는 Scene이 원본, 반복 오브젝트는 Prefab이다. 비교 높이는 Dev 컴포넌트의 후보3개만 사용하고, 공격 크기는 런타임 전용 CombatTuning 복사본에서 같은 비율로 축소한다. 기본 PlayerTuning·Prefab은 그대로다. Play 변경은 종료 시 되돌아가므로 유지할 배치·값은 기록 후 Edit 모드에서 명시 저장한다. 기본 크기 적용은 D-BODY 후 별도 배치다.
 
 ### Task별 결과
 
-세 Task DONE, 게임 변경·이전 수락 상태 변경 없음. [전체 검증](Validation/OPS-20261025-summary.md). 기본 검사기 PyYAML 부재는 단순 frontmatter/참조 직접 검사로 대체했다.
+**Claude 설계 변경:** `7d40918`, `Design/v5/WORLD_V5.md`·`rooms_v5_A.json`에 draft3.1 잠금/벽 방향 계약 추가. 좌표·수치 변경 없음. 사용자 실행 승인은 2-1절, 감각·기본값 수락과 구분한다. Base 이후 Design 변경0. [B21 전체 검증](Validation/B21-summary.md).
 
 | Task | 상태 | 커밋 | 주요 파일·실제 검증·남은 한계 |
 | --- | --- | --- | --- |
-| OPS-T1 | DONE | `a0ee60a` | TASKS·Archive·CLAUDE·인계 skill. 과거 원문 완전 보관, 미종결18행 추적, 7문서 링크0. 실제 앱 skill 선택은 미실시 |
-| OPS-T2 | DONE | `db7c23e` | AGENTS·Batch 템플릿·보호 목록. 완료/중단/Queue/시간·V5 명령 정리. Queue0, P8 제외 |
-| OPS-T3 | DONE | `0d5db36` | Tools/Preflight.ps1. 구문오류0·모의8경로 PASS·보호387 SHA변경0·카드 범위/링크/런처0. 실제 Unity·게임 회귀 미실시 |
+| B21-T3 | DONE | `736c6aa` | Tools/Check-RoomRules.py·새 B21 fixture·검증 요약. 정적 FAIL1→0/WARN0·기존 fixture 유지·무잠금/틀린 키/다른 벽 키/봉인 검출. 실제 게임 잠금 검증은 별도 |
+| B21-T1/2/4/5/6/8 | BLOCKED | 구현 커밋 없음 | Preflight Unity exit198. 게임 코드·Scene·후보·빌드 미착수, Quiet/기본 회귀·Scene 검사·exe 검증 미실시 |
+| B21-T7/9·BL1~3 | BLOCKED | 구현 커밋 없음 | 명시 선행 차단. 여유 표·후보 전달 안내 미작성. 의무 종료 기록은 TASKS·B21-summary에 수행 |
 
-기존 B20 미푸시2커밋을 보존해 squash·게임 태그 변경·push를 하지 않았다. 최종 문서 확인은 종료 기록 커밋에 포함한다. 카드 상태 합계는 1-1의 역사적 미종결 행을 포함하므로 이번 Task 상태와 구분한다.
+보호 정책 현행88파일 SHA변경0·범위 밖0·깨진 링크0·없는 런처0. 과거387은 당시 정책의 수치이며 이번 검사 수와 구분한다. 카드의 과거 REGRESSION은 이번 증거가 아니다. 이전8개 미푸시 커밋이 있어 squash 없이 이번3커밋 보존·B21 태그·push 없음. 이전 OPS 표는 1-0에 보존하고 [OPS 요약](Validation/OPS-20261025-summary.md)을 연결한다(Archive는 이번 허용 범위 밖).
 
 ### 다음 Batch 후보
 
-Claude draft4 제안과 사용자 판단 후 A05 문-벽 저장 키·도랑/머리 여유 반영을 별도 승인한다. D-BODY 선택 후 기본 크기 반영도 별도 승인이다. 기존 D-NEXT 전체 플레이·B07 미완주 확인은 유지한다. 층 B/C 확대·Sprint Gate는 승인되지 않았다. P8 문서 정리는 이번 범위 밖이다.
+Unity 환경 변경 확인 후 B21 T1부터 미완료 경로를 이어간다. T3는 소스 변경 등 새 이유가 없으면 반복하지 않는다. 새 B21 측정 전 draft4에는 이번 신규 수치가 없음을 전달한다. D-BODY 선택 후 기본 크기 반영은 별도 승인이다. 기존 D-NEXT 전체 플레이·B07 미완주 확인 유지. 층 B/C 확대·Sprint Gate는 승인되지 않았다.
 
 ## 10. Playtest·Before-After
 
