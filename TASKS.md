@@ -25,7 +25,7 @@ Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태�
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
 | OPS-T1 | DONE | TASKS 원문 완전 보관·과거 미종결18행 유지·관련7문서 링크0불량·skill frontmatter/참조 확인. 기본 검사기 PyYAML 부재로 직접 구조 검사 대체 |
-| OPS-T2 | TODO | 공통 완료 조건·보호·Queue·V5 종료 규칙 |
+| OPS-T2 | DONE | 완료·재시도·시간/상한·보호·Queue·증거 규칙 통일, V5 대상/판정·템플릿 명시. 게임 변경0 |
 | OPS-T3 | TODO | Preflight·최종 검증 |
 
 ## 1-1. 이전 Batch 미종결 추적

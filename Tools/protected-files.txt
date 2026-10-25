@@ -1,0 +1,13 @@
+# 기본 보호 정책: 저장소 상대 경로, PowerShell -like 패턴
+# 사용자 지시 또는 승인 Batch 사전 결정의 명시 예외만 허용.
+# B20 387경로+해시: Validation/_raw/B20/protected-before.json.
+# 그 스냅샷은 당시 범위이며 현재 정책/해시 기준을 대신하지 않는다.
+# Batch 시작 시 그 Batch의 대상 목록·해시를 _raw/에 새로 보존한다.
+Design/*
+PRD.md
+GAME_DESIGN.md
+Assets/*Tuning*.asset
+Assets/*Tuning*.asset.meta
+Assets/Prefabs/Player.prefab
+Assets/Prefabs/Player.prefab.meta
+ProjectSettings/*
