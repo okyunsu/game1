@@ -1,139 +1,57 @@
 # 개발 작업과 기록
 
-원문 전체: [TASKS-before-2026-10-12](Archive/TASKS-before-2026-10-12.md). 이 파일은 원문을 옮겨 요약했으며 새 판단을 추가하지 않았다.
+## 0. 지금
 
-## 1. 현재 상태
+- 갱신: 2026-10-25, Codex (운영 개선 진행 중)
+- Git 기준: B20 `bf9693a`에서 OPS 시작. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
+- push 대기: 시작 시 2커밋 + 이번 OPS 로컬 커밋. 정확한 현재 수는 `git rev-list --count origin/main..HEAD`.
+- 진행 중: OPS-20261025 (게임 구현 없음)
+- 사용자 차례: 기존 V4/V5 수락 대기 순서 유지, D-BODY 크기 비교, 로컬 커밋 push
+- Claude 차례: B20 측정 근거로 draft4 제안(D-V5-DRAFT4), 사용자 채택은 별도
+- Codex 차례: 승인된 OPS-T1~T3, Ready Queue 0건
+- 막힌 것: 게임 구현 차단 없음. Unity 실제 기동은 이번 문서/도구 작업 범위 밖.
+- 최신 게임 결과: [B20 요약](Validation/B20-summary.md). 기본 크기·규칙·Scene 유지, Sprint Gate 미실시.
 
-- **Sprint3 / Batch20 측정·크기 비교**: 지름길 우회·무능력 점프 도랑 통과 재현, 머리 여유3크기 측정, F6 비교 코스·V5 크기 런처 추가. 기본 Design/Scene/수치 유지. D-BODY·D-V5-DRAFT4 대기2, Sprint Gate 미실시. [B20 요약](Validation/B20-summary.md).
+## 1. 현재 상태 / Current Sprint
 
-- **Sprint3 / Batch19 검사 정리**: Scene FAIL0/WARN0·기존69는 MEASURE, 정적22→0(조건부 능력 계산), DJ 정지 원인=입력 타이밍. Scene·Design·수치·런처 빌드는 유지. Sprint Gate 미실시. [B19 요약](Validation/B19-summary.md).
-- **Sprint3 / Batch18 종료: draft3 Scene6개·작은 발판12개·적 박힘0·문14방향 확인**. Scene 확장 몸 박스 후보69, 기존 정적 FAIL22는 남아 있으며 설계·체감 수락 대기. Sprint Gate 미실시. [B18 요약](Validation/B18-summary.md).
-- Batch16의 T1 BLOCKED·의존 Task/Backlog SKIPPED를 Batch16b에서 이어받았다. [당시 결과](Validation/B16-summary.md)는 보존한다.
-- Sprint3 / Batch15 종료(14 Task: DONE10 / REVIEW4, V5 방 데이터·Scene 제작 제외). **사용자 전체 플레이 대기**: 새 게임부터 엔딩까지 직접 플레이한 뒤 다음 배치를 정한다(D-NEXT). Sprint Gate 미실시.
-- Batch15: 시작 HEAD `299a4f4`, 최종 인계 태그 `B15`, push 안 함. 모든 Task Quiet13/13·종료 기본13/13, 최종12런처+NoMap·지도4모드 Error0. [B15 결과](Validation/B15-summary.md).
-- Batch14 시작: 2de8d26(B13 A5). 커밋을 하나로 합쳐 태그 B14. push 안 함. [B14 결과](Validation/B14-summary.md): 기본 보스 B3(D-B3), 검증 코드 Release 제외, 회귀 탐지 범위 측정(못 잡는 PlayerTuning 항목 16개).
-- 회귀: Batch14 Task별 Quiet13/13, 최종 기본13/13. Batch12 결과는 아래 1-1.
+- Sprint3: V5 층 A 파일럿. B20 측정·비교 도구 완료, 크기와 draft4 결정 대기2건.
+- B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
+- 운영 개선은 [승인 Batch](Batches/BATCH-OPS-20261025.md)만 수행한다. 게임 Batch21은 승인되지 않았다.
 
-## 1-0e. Current Tasks (Batch20)
+## 1-0. Current Tasks (OPS-20261025)
 
-Base `1a27b1d5646ba03cd21998693552b8cf6cda539a`. 시작 2026-10-22 23:55 KST. 최초 Unity exit198 원문은 [보존](Validation/B20-blocked.md). Hub 재실행 이후 23:58 샌드박스 밖 재검사 exit0, `Validation/_raw/B20/recheck-20261022-235846/startup.log`. Design·기본 Scene·수치·Player prefab 변경 금지. Git 기록만 .git 쓰기 제한에 따른 외부 실행 예외. push 없음.
-
-| Task | 상태 | 현재 결과 |
-|---|---|---|
-| B20-T1 | DONE | 실제 exe A03→A05 x3.5·벽 온전, 파괴/왕복/저장·Continue 유지. 문과 벽 저장 키 연결 새 코드 필요. [측정](Validation/B20-shortcut.md) |
-| B20-T2 | DONE | 무능력 일반 점프 통과·피해1, 걷기만 실패·입구복귀 없음. 턱2.5125u·지상/공중 대시2.87988u·높이변화0. Quiet13/13. [측정](Validation/B20-trench.md) |
-| B20-T3 | DONE | 크기별86면: h1.6 b3/c33, h1.3·1.1 b0/c32. 실제11표본9일치·2불일치, 모서리 보정 없음. Quiet13/13. [측정](Validation/B20-headbump.md) |
-| B20-T4 | REVIEW | F6 세 크기·접지/걷기/착지 각10회·막대18/18·포고/E1 성공. 새 런처3 Error0·Release 제외·Quiet13/13. [도구](Validation/B20-bodysize.md) |
-| B20-T5 | DONE | 지름길 잠금 누락1/도착 우회1 FAIL, 고친 fixture FAIL0·기존4검출·다른 새FAIL0. Quiet13/13. [근거](Validation/B20-rules-ledger-add.md) |
-| B20-T6 | DONE | 버그3·결정2 추가, 비교 순서와 인계 갱신·문서 링크 확인 |
-| B20-T7 | DONE | 기본 회귀13/13·실제 런처6개 각10초Error0·보호387 SHA0변경·범위 밖0/깨진 링크0 |
-| B20-BL1 | DONE | 실제36면 격리 재측정33/36 일치, 불일치3 목록·Quiet13/13. 초기 문 전환2는 재측정 일치. [전체 측정](Validation/B20-headbump-all.md). 8Task 상한 도달, BL2 미시작 |
-## 1-0d. Current Tasks (Batch19)
-
-Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Validation/_raw/B19/startup-20261021-220750/startup.log`. 이전 실패 기록은 보존한다. 사용자의 재개 지시에 따라 기존 `Validation/B19-blocked.md`는 이번 실행의 선행 실패 기록으로 식별하고 유지한다. Unity·Unity 호출 스크립트는 샌드박스 밖에서 실행한다. Git 기록 명령도 사용자 추가 승인 예외다.
+Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태그 변경 없음.
 
 | Task | 상태 | 현재 결과 |
-|---|---|---|
-| B19-T1 | DONE | draft3 머리 위0/문6/측면43/구덩이20, draft2 머리 위4·양옆 틈 양쪽0. Quiet13/13 |
-| B19-T2 | DONE | draft3 FAIL0/WARN0·MEASURE69, draft2 머리 위4/적1 검출·틈0.5 WARN·임시Scene 삭제·Quiet13/13 |
-| B19-T3 | DONE | 능력 계산/무능력 계산 분리, 정적22→0·잔여0/새FAIL0·fixture4 검출·근거 없는8규칙 WARN·Quiet13/13 |
-| B19-T4 | DONE | 실제 exe7200프레임·120초: 목표 일치/입력 타이밍 원인, platform2 옆면 뒤 낙하. DJ상승4.884u·Error0·Quiet13/13 |
-| B19-T5 | DONE | 규칙 근거/명시 유지 예외·인계·링크0·보호380파일 SHA0변경·결정0·Quiet13/13 |
-| B19-T6 | DONE | Quiet13/13·종료 기본13/13·V5 런처3 exit0/Error0·보호380 SHA0변경·범위 밖0/링크0·카드 PASS |
+| --- | --- | --- |
+| OPS-T1 | DONE | TASKS 원문 완전 보관·과거 미종결18행 유지·관련7문서 링크0불량·skill frontmatter/참조 확인. 기본 검사기 PyYAML 부재로 직접 구조 검사 대체 |
+| OPS-T2 | TODO | 공통 완료 조건·보호·Queue·V5 종료 규칙 |
+| OPS-T3 | TODO | Preflight·최종 검증 |
 
-## 1-0c. Current Tasks (Batch18)
+## 1-1. 이전 Batch 미종결 추적
 
-| Task | 상태 | 현재 결과 |
-|---|---|---|
-| B18-T1 | DONE | draft2 A02 gap0.5/head1.5·solid14 안 적. V4/V5 발판 두께0.5·Effector 없음. 제품 코드/Scene 변경0·Quiet13/13 |
-| B18-T2 | DONE | A02 두 원인 FAIL 검출. Scene 샘플·적·순찰 검사, Editor/Development opt-in·Quiet13/13 |
+B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수락 대기. 이전 B12~B19의 기록상 미종결 행은 아래에 유지한다. 후속 Batch에서 해소·대체된 역사적 상태도 있으므로 현재 버그/차단 수에 합산하지 않는다. 원문은 [B12~B19](Archive/TASKS-B12-B19.md), 전체는 [B20 종료 스냅샷](Archive/TASKS-B20.md). 이번 정리는 상태를 재판정하지 않는다.
+
+| Task | 상태 | 당시 결과·남은 확인 |
+| --- | --- | --- |
 | B18-T3 | REVIEW | draft3 Scene6·작은 발판12·적15·구덩이6·요소 일치·문14/stub/일방/저장 PASS·Quiet13/13 |
 | B18-T4 | PARTIAL | A02 두 원인 해소·적0/순찰끝0, 전체 후보76→69. 모두 측면 겹침, overhead-only0. 후보0 미충족·Quiet13/13 |
 | B18-T5 | PARTIAL | 추가 규칙FAIL0/WARN0·위반JSON4개 검출. 기존 도달성20/단차2 FAIL22 보존, 전체FAIL0 미충족·Quiet13/13 |
 | B18-T6 | REVIEW | Development 빌드·V5+NoMap6모드 각10초Error0. B18/B12 보존·V4 런처 변경0·Quiet13/13 |
-| B18-T7 | DONE | 현재 상태·결정1·직접 플레이·검사·값 반영 안내, 깨진 링크0·Quiet13/13 |
-| B18-T8 | DONE | Quiet13/13·기본13/13·18런처Error0·Batch-Card 범위/링크/없는 런처0·Quiet13/13 |
-| B18-BL1 | DONE | 능력 없이 자연 A01→A02→A03→A04→A05 대시까지5구간 PASS(합29.50초), 적 포고7·HP4→2. A03 동쪽3발판/A04 상부 통과·Quiet13/13 |
-| B18-BL2 | DONE | draft2/draft3 방별 등불·작은 발판·블록·머리 여유·가로 간격 계산·합계 일치·Quiet13/13 |
-| B18-BL3 | DONE | 오름2u 최대 간격 제자리3.25/달리기3.75u, 포고1회 몸 상승2.128u. 오름5종×2/포고2방식 실제 측정·Quiet13/13 |
-| B18-BL4 | DONE | DJ 3PASS/1BLOCKED 측정: A01→A06 x24.95/발4.39·접촉없음·120초 한계. 독립A06 왼쪽 조각/일방 문/A02 조각 PASS, 자연 전체 완주 아님·Quiet13/13 |
-
-## 1-0b. Current Tasks (Batch17)
-
-| Task | 상태 | 현재 결과 |
-|---|---|---|
-| B17-T1 | DONE | 기존 Scene에서 A02 지형 충돌·A05 높이10/Confiner 고정 측정, 제품 코드/Scene 변경0, Quiet13/13 |
 | B17-T2 | REVIEW | draft2 6방·요소 일치·구덩이6·도랑 바닥 수정 반영·보호 SHA0변경, Quiet13/13 |
-| B17-T3 | DONE | A02 왼쪽 복귀·A05 추적·6구덩이 탈출/점프·문14·stub/일방·저장 PASS, Quiet13/13 |
-| B17-T4 | DONE | 추가 규칙 위반0·위반 fixture5개 검출, 기존 정적 후보22FAIL은 보존, Quiet13/13 |
 | B17-T5 | REVIEW | B17 Development·V5 3런처10초Error0·최신+직전2개, Quiet13/13 |
-| B17-T6 | DONE | 피드백 원인·재플레이·빌드 인계 갱신, 링크0불량·결정0·Quiet13/13 |
 | B17-T7 | BLOCKED | 앞선 Quiet13/13·18런처Error0·카드0문제는 유효. 종료 기본 회귀는 Editor 라이선스 exit198로 실행 전 중단 |
-| B17-BL1 | DONE | 자연 A01→A03·독립A05대시2.10초, A03/A04 각120초BLOCKED 측정 완료; 입력 개선 재시도는 라이선스 중단 |
-| B17-BL2 | DONE | 면적4548→4648·적13→15·등불13→14·머리 여유1→2.4u, 합계 일치; WORLD 4절 이전 표기는 Claude 정리 |
-
-## 1-0a. Current Tasks (Batch16b)
-
-| Task | 상태 | 현재 결과 |
-|---|---|---|
-| B16b-T1a | DONE | 기존 CLI stub 예외 기록·보호 SHA0변경·Quiet13/13 |
-| B16b-T1b | DONE | stub/일방 문·수정별 컴파일0·V4 재생성 SHA동일·Quiet13/13 |
-| B16b-T1c | DONE | 기존 Prefab 변경0·순찰13개/끝점26·V4 SHA동일·Quiet13/13 |
 | B16b-T2 | REVIEW | 수정본 Scene6개·요소 일치·A02조각2/A04·A06각1·Quiet13/13 |
-| B16b-T3 | DONE | 실제exe14문·도착·stub4·DJ·저장복원·Error0·Quiet13/13 |
-| B16b-T4 | DONE | 포고/모든도착/위아래아이템 검사·자체검사PASS·데이터FAIL10/WARN4 기록 |
 | B16b-T5 | REVIEW | Development 전달·15런처+NoMap3 PASS·Release 제외 검증 |
-| B16b-T6 | DONE | 상태·실행법·인계 갱신·링크0불량·Quiet13/13 |
-| B16b-T7 | DONE | Quiet13/13·기본13/13·카드 범위/링크/없는런처0 |
 | B16b-BL1 | REVIEW | 지도6방/12문·stub×4/화살표1·V4지도PASS·Quiet13/13 |
-| B16b-BL2 | DONE | 자연A01→A04·A04구간120초BLOCKED·독립A05대시1.50초·Error0·Quiet13/13 |
-| B16b-BL3 | DONE | 면적8260/4548·적7/13·장치15/22·문22/20·합계일치·Quiet13/13 |
-
-## 1-0. Current Tasks (Batch16)
-
-| Task | 상태 | 결과 |
-|---|---|---|
 | B16-T1 | BLOCKED | 생성기 경로 문자열 컴파일 오류 1회 보정 후 재실패, 제품 코드 전체 원복. Quiet13/13 |
-| B16-T2/T3/T5 | SKIPPED | T1 의존. V5 Scene·문 exe 검사·전달 빌드·런처 미생성 |
 | B16-T4 | PARTIAL | 정적 방 규칙·가짜 문 안전/겹침/높이 위반 검출. 실제 gate·물리 도달성 미검증 |
-| B16-T6 | DONE | 실제 실패 상태·데이터 불일치 인계, V5 플레이 링크 생성 안 함 |
 | B16-T7 | PARTIAL | Quiet13/13·기본13/13, 기존12런처 Error0. 카드 범위밖/깨진링크/없는런처0. V5 전달 기준 미충족 |
-| B16-BL1/BL2 | SKIPPED | V5 지도/Scene/exe 의존. 실제 경로 측정 없음 |
-| B16-BL3 | DONE | V4/V5 6방 비교: 면적8260/4848, 적7/12, 문표식22/20, 데이터·행 합계 일치 |
-
-## 1-1. Current Tasks (Batch15)
-
-| Task | 상태 | 결과 |
-|---|---|---|
-| B15-T1 | DONE | 지도 TextAsset 21방·32문, 좌표·재생성·v6 검증, Quiet13/13 |
 | B15-T2 | REVIEW | 방문방·위치·M3상태, 실제 exe·시간·입력맵 유지, Quiet13/13 |
 | B15-T3 | REVIEW | 문 약자·종류·미방문 ?, map-all/no-map/비V4 검사, Quiet13/13 |
-| B15-T4 | DONE | 실제 exe 10초·M3회 Error0, 촬영 KNOWN-LIMIT, Quiet13/13 |
 | B15-T5 | REVIEW | 전달 Development·NoMap·3런처 10초 Error0, Quiet13/13 |
-| B15-T6 | DONE | 결정 기록·지도 사용법·인계 갱신, Quiet13/13 |
-| B15-T7 | DONE | 최종12런처+NoMap·지도4모드Error0, Release 표시/검증6타입0, Quiet13/13·기본13/13 |
-| B15-BL1 | DONE | 생성 인자화·방 목록 TextAsset화, 21씬 SHA동일·임시 요소수 동일, V4 저장/Continue·Quiet13/13 |
-| B15-BL2 | DONE | V4 방·문·체류·지도 사용 로그, 기존9열 불변·실제 입력3방2문·Quiet13/13 |
-| B15-BL3 | DONE | 방 기준선21방·37756u²·판정 없음·원본 불변·Quiet13/13 |
 | B15-BL4 | REVIEW | 보유 능력 문 열림색·CP, 저장/Continue·no-map/비V4·Quiet13/13 |
-| B15-BL5a | DONE | 추적 회피60/30/120 피해0·반격·Pause·사망복귀·10회Error0·Quiet13/13 |
-| B15-BL5b | DONE | 2페이즈30/120 전환1·추적4·도약3·회복측정·Error0·Quiet13/13 |
-| B15-BL5c | DONE | 8패턴60fps3바퀴·바퀴별 탄/낙하물/파동0·Error0·Quiet13/13 |
-
-## 1-2. Current Tasks (Batch12)
-
-| Task | 상태 | 결과 |
-|---|---|---|
-| B12-T1 | DONE | B2-fast 기본 채택; 필드 일치·인자 없는 런처2개·Quiet13/13 |
-| B12-T2 | DONE | 분리 생성·저장·재로드·빌드 성공; 새 필드 유지·assert0·Quiet13/13 |
 | B12-T3 | PARTIAL | 추적 연타·정지 피격·P2 회복 X·Quiet13/13; 회피 지형 간섭, Pause/복귀/10회/fps 일부 미검증 |
-| B12-T4 | DONE | 연속 도약 60fps 6항목·30/120 회피0·Quiet13/13 |
-| B12-T5 | DONE | 백스텝 탄·높은 탄 정지0·회복 반격·Pause·복귀·반복·벽 소멸·전 fps 회피0·Quiet13/13 |
-| B12-T6 | DONE | 낙하물·안전 지대 전 fps 피해0·Pause·복귀·10회·Quiet13/13 |
-| B12-T7 | DONE | 전환1회·전환 중 피해·4연타·3도약·회복.967s·사망 1페이즈 초기화·Quiet13/13 |
-| B12-T8 | DONE | 실제 런처·활성 이름·8패턴 순환·꺼진 패턴·Error0·Quiet13/13 |
-| B12-T9 | DONE | 13절 추가만·기존 문장 유지·링크0·Quiet13/13 |
-| B12-T10 | DONE | 실제 P2 런처 HP14·첫 X HP13/2페이즈1회·최종 Quiet13/13 |
 
 ## 2. 결정 대기
 
@@ -148,6 +66,8 @@ Base `8a9a1b5`, 재개 2026-10-21 23:46 KST. 시작 검사 exit0 원문: `Valida
 
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
+| D-OPS-20261025 | P1~P7·P9·P10을 검토 보완과 함께 적용. P8·게임 수정 제외 | 2026-10-25 | 사용자: “그렇게 해서 진행해줄래/”. 직전 검토의 적용 순서·보완을 승인. [범위](Batches/BATCH-OPS-20261025.md) |
+| D-PLAY-20261022 | 점프 불쾌 원인 ① 캐릭터 크기 ③ 머리 충돌. draft4는 B20 측정 후 작성하며 기본 크기 채택은 별도 | 2026-10-22 | B20 사전 지시가 전달한 사용자 판단을 대리 기록. 채팅 전문·직접 발언 인용은 없음. [B20 목적·지시](Batches/BATCH-20.md), [플레이](Playtest/20261022-233114.csv) |
 | D-V5-PILOT | 방 구조 V5 재설계의 첫 파일럿으로 층 A(A01~A06)만 새 방 문법(방 안 열린 두 갈래·겹침·보이지만 못 가는 곳, 방 크기 축소, 능력 없이 도는 고리 2개)으로 만든다. A06은 더블 점프 전용(A02 벽 점프 문과 B06 구멍 진입은 닫음). 플레이한 뒤 수정한다. 설계 문서와 방 데이터는 Claude 쪽에서 작성한다. | 2026-10-15 | 사용자 결정. V4는 선형이고 방이 크며 비어 있다고 판단함(부서지는 벽 21방 중 1곳, 허브·엔딩 방을 뺀 저밀도 방 존재). 21방 전체 제작 전에 방 문법을 6방으로 먼저 확인한다. 설계 데이터: `Design/v5/`. Batch 16(생성 BLOCKED) → Batch 16b에서 이어함. 사용자 수정본62cc8c1로 V5 Scene6개·전달 빌드를 생성했다([B16b](Validation/B16b-summary.md)). |
 | D-B3 | B3(8패턴 + HP50% 2페이즈)를 기본 보스로 채택, 패턴 전부 켬. 기존4패턴 회복 0.8s, 새 패턴 회복 1.2/1.5s 유지. 예고 보임·회피 가능·2페이즈 확인, 사운드는 AV1로 당분간 충분. Boss-B3-rec10(회복1.0 비교) 취소. B2-fast는 [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd)로 계속 선택 | 2026-10-14 | 사용자 직접 플레이 후 결정. 진행 속도가 나쁘지 않았고, 마지막 보스라 난이도가 더 높아도 된다고 판단했다. (적용: Batch14 T1) |
 | D-COMBAT/AV2 | AV2(전투 임팩트·사운드 강화 후보) DEFERRED | 2026-10-14 | D-B3 플레이에서 사운드는 AV1로 당분간 충분하다고 판단해 AV2를 보류. 10/12 D-COMBAT(임팩트·사운드 구현 후 재판단)과 이어진다. (사용자 결정) |
@@ -224,49 +144,25 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 | Experimental-F1 | 닫힘(4번 근거) | [B01 인계](Archive/B01-latest-handoff-20261007.md) |
 | Approved Backlog | Batch09 세 항목 처리 완료, 이전 승인 Backlog 소진 | [원문](Archive/TASKS-before-2026-10-12.md) |
 
-## 6. 최근 배치 결과 (B10)
 
-| Task | 상태 | 현재 결과 |
-|---|---|---|
-| B10-T1 | DONE | 장치9개·기존 경로10개 저장 입력/전체 경로2회 PASS |
-| B10-T2 | DONE | 재개 설계 70/70 저장 전체 입력2회 PASS; A02/wall·C02/low·Z01/up_A05 해소. r54~r58 이전 Scene 결과 제외; r59/r61/r63 현재 Scene·설계 hash 확인 |
-| B10-T3 | DONE | covered floor trigger inset 수정 47b20ac, Claude 설계 수정 662cc0c / V4 재생성 24ceeda, 21방 검사 PASS |
-| B10-T4 | PARTIAL | 실제 전체 왕복 저장2회 PASS34건, 나머지 탐색/판정 미완료 |
-| B10-T5 | PARTIAL | 최소 능력 다른 출구 저장2회 PASS36입구, 고립0 미증명 |
-| B10-T6 | PARTIAL | 새 게임·대시·벽 점프·B05 자연 등반→C02; S02 미완주 |
-| B10-T7 | DONE | 보스전→Slam→천장→S01 저장 입력2회 연속 PASS |
-| B10-T8 | DONE | 동일 HEAD 과거 빌드 고정 입력2회 PASS; 빌드 구성으로 범위 축소, 원인 커밋 미확정/수정0 |
-| B10-T9 | DONE | 작성된 시작→끝 16구간, 전체 저장 입력2회 PASS; 장치 작동은 T1 별도 |
-| B10-T10 | PARTIAL | 70경로30fps43PASS/27FAIL,120fps59PASS/11FAIL; 자연 미실시 |
-| B10-T11 | DONE | 27 실제 입력 조합 unexpected=0, Error0 |
-| B10-T12 | PARTIAL | Claude 보고서·실제 Scene4방 촬영; 남은 분기 물리 원인 미확정 |
-| B10-T13 | PARTIAL | 기본13+RouteAll+Pogo PASS, V2 W22사망; 전달1개·4기동PASS, 자연 저장2개 미확보 |
+| B12~B19 Task 표 | 과거 상태 보존, 미종결은 1-1에서 추적 | [이력](Archive/TASKS-B12-B19.md) |
+| B10 결과·이전 후보 | 현재 계획과 분리해 보관 | [이력](Archive/TASKS-B10-operations-20261025.md) |
+| B20 전체 상태·인계 | 운영 정리 전 원문과 Task 결과 | [스냅샷](Archive/TASKS-B20.md) |
 
-| 항목 | 상태 | 결과 |
-|---|---|---|
-| BL1 | DONE | V4 회귀 등록1회63/69 PASS,6 FAIL |
-| BL2 | DONE | 장치19경로 기본17/후보1 11/후보2 12 PASS, 기본값 유지 |
-| BL3 | PARTIAL | C01까지 완료 구간 시간, 전체 미완주 |
-| BL4 | BLOCKED | 참조된 B09 Backlog4~9가 BATCH-09에 없음(1~3만 있음), 합격 기준 결정 필요 |
+## 8. Ready Queue
 
-Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-summary.md) · [T3](Validation/B10-T3-summary.md) · [T4](Validation/B10-T4-summary.md) · [T5](Validation/B10-T5-summary.md) · [T6](Validation/B10-T6-summary.md) · [T7](Validation/B10-T7-summary.md) · [T8](Validation/B10-T8-summary.md) · [T9](Validation/B10-T9-summary.md) · [T10](Validation/B10-T10-summary.md) · [T11](Validation/B10-T11-summary.md) · [T12](Archive/validation-2026-10/B10-geometry-report.md) · [T13](Validation/B10-T13-summary.md) · [BL1](Validation/B10-BL1-summary.md) · [BL2](Validation/B10-BL2-summary.md) · [BL3](Validation/B10-BL3-summary.md)
+사용자가 승인했고 사용자 플레이 결과에 의존하지 않는 Task만 둔다. Batch Task·Backlog 종료 후 남은 시간과 Task 상한 안에서 위부터 진행한다. 각 행의 허용 범위는 실행 Batch 종료 검사의 허용 목록에 합친다. 비어 있으면 종료하며 임의로 일감을 추가하지 않는다.
 
-## 7. 다음 배치 후보
+| ID | 내용 | 합격 기준 | 허용 범위 | needs-unity | 선행 | 승인일·출처 |
+| --- | --- | --- | --- | --- | --- | --- |
 
-- D-B3 결정(10/14)으로 기본 보스는 B3. 추적 회피·2페이즈 fps·3바퀴 보강 검증은 B15-BL5a/b/c에서 완료했다. 다음 콘텐츠 후보는 D-V5-PILOT 층 A 설계·데이터 수신 후 파일럿이다.
-- 기존 D-NEXT 전체 자연 플레이 결과와 B07 A02/C03·V2 W22 검토는 유지한다. 자동 경로 탐색이나 Sprint Gate 통과는 이번 배치에 포함하지 않았다.
+현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 8. Approved Backlog
-
-이전 승인 Backlog 소진. Batch11 BL1 완료. 추가 작업 없음.
-
-<a id="9-latest-handoff--batch19"></a>
-
-## 9. Latest Handoff — Batch20
+## 9. Latest Handoff — OPS-20261025
 
 ### 결정 질문지
 
-2절의 D-BODY(1.6/1.3/1.1, 직접 비교 후 선택)와 D-V5-DRAFT4(Claude draft4 작성 후 다음 배치 반영 / 현행 보류) 두 건이다. AI는1.3을 비교 우선 후보로, draft4 작성을 추천한다. 기본 채택·Scene 반영·문과 벽 저장 키 연결은 이번 배치에 하지 않았다.
+기존 D-BODY(1.6 유지/1.3/1.1)·D-V5-DRAFT4(draft4 제안 작성/현행 보류)는 2절 그대로다. 추천은 1.3 우선 비교, B20 측정 근거의 draft4 제안 작성. 이번 운영 개선은 두 결정을 대신하지 않는다.
 
 ### 직접 플레이 확인
 
@@ -279,23 +175,14 @@ Task별 요약: [T1](Validation/B10-T1-summary.md) · [T2](Validation/B10-T2-sum
 
 ### Task별 결과
 
-Base `1a27b1d`, 시작2026-10-22 23:55 KST. 종료 2026-10-23 01:05 KST(8Task 상한). 아래 커밋은 합치기 전 Task별 로컬 기록이며 최종 합친 인계는 태그 `B20`을 따른다. [전체 요약](Validation/B20-summary.md). Unity·Unity 호출 스크립트는 샌드박스 밖, 편집·분석·exe 측정은 샌드박스 안이다. Git 쓰기는 .git 제한에 따른 승인 예외. 최초 exit198은 보존하고 Hub 재실행 후 exit0으로 재개했다. push·Sprint Gate 없음.
-
-|Task|상태|커밋|주요 파일·실제 검증·문제|
-|---|---|---|---|
-|T1|DONE|`a70d385`|[shortcut](Validation/B20-shortcut.md), B20Probe/V5Batch20. 실제 A03→A05 x3.5·벽 온전, 파괴/왕복/저장/Continue 유지. 새 문 연동 코드 필요. Quiet13/13|
-|T2|DONE|`1e71e69`|[trench](Validation/B20-trench.md), B20Metrics. 무능력 일반 점프 통과, 걷기만 사망, 입구복귀 없음. 턱2.5125·대시2.87988·높이0. 각3회·Quiet13/13|
-|T3|DONE|`eddaeaf`|[headbump](Validation/B20-headbump.md), B20Headroom/Scan/Probe. 3크기×86면, 실제11표본9일치/2불일치. MEASURE·Quiet13/13|
-|T4|REVIEW|`dfc2c26`|[bodysize](Validation/B20-bodysize.md), Dev 컴포넌트/BodySizeAuthoring/새 Scene/런처3. 접지·걷기·착지 각10회/크기·막대18/18·포고/E1·Release제외·10초Error0·Quiet13/13. 크기 선택 대기|
-|T5|DONE|`80ccf4c`|Check-RoomRules.py·[추가 장부](Validation/B20-rules-ledger-add.md)·[보고서](Validation/B20-room-rules-v5-A.md). 실제 두FAIL 각1, 고친 fixture FAIL0·기존4·그 외 새FAIL0·Quiet13/13|
-|T6|DONE|`8ba9b29`|TASKS/README: 버그3·결정2·비교 순서·값 위치·종료 후 저장 안내|
-|T7|DONE|`d290bb3`|기본13/13·6런처10초Error0·보호387 SHA0변경·카드 범위/링크/없는 런처0|
-|BL1|DONE|`bdd3585`|[전체 머리 접촉](Validation/B20-headbump-all.md): 후보36면 실제33/36 일치·불일치3. 문 전환·피해를 격리해 전부 같은 방 확인. Quiet13/13|
-
-Backlog1은 [전체 머리 접촉](Validation/B20-headbump-all.md)36면 중33일치/3불일치로 완료했다. 최초 표본2의 문 전환을 실제 CSV로 확인해 검증 실행만 격리하고 다시 측정했다. 실행8Task 상한으로 Backlog2는 미시작이다.
-
-전달 빌드는 `Builds/B20-delivery`, V4 보존본은 `Builds/B12-delivery`. 대체된 B18과 임시 Release 빌드를 정리했고 B18 슬롯은 `Validation/_raw/B20/retired-B18-slots`에 보존했다. 기본 V5/AfterDash/DJ의 게임 시작 조건은 유지하고, 새 크기 런처만 별도 크기 인자를 넘긴다. 보호 파일387개 SHA 변경0을 중간 확인했다.
+진행 중. 완료 결과·실제 검증·커밋은 [OPS 요약](Validation/OPS-20261025-summary.md)에 기록한다. 게임 변경·이전 수락 상태 변경 없음.
 
 ### 다음 Batch 후보
 
-Claude draft4 수신·검토 후 A05 문-벽 영구 저장 키 연결, 안쪽 공격 제한·도착 위치, 도랑 깊이/복귀 의도·머리 여유 배치를 다음 배치에서 승인한다. D-BODY 선택 후 기본 크기 반영도 별도 승인한다. 자동 측정의 모서리 불일치를 진행 불가 증명으로 쓰지 않는다. 층 B/C 확대·Sprint Gate·기존 D-NEXT의 전체 자연 플레이는 이번 범위 밖이다.
+Claude draft4 제안과 사용자 판단 후 A05 문-벽 저장 키·도랑/머리 여유 반영을 별도 승인한다. D-BODY 선택 후 기본 크기 반영도 별도 승인이다. 기존 D-NEXT 전체 플레이·B07 미완주 확인은 유지한다. 층 B/C 확대·Sprint Gate는 승인되지 않았다. P8 문서 정리는 이번 범위 밖이다.
+
+## 10. Playtest·Before-After
+
+| 날짜 | 방·대상 | 사용자 피드백 / 변경 전→후 | 근거 |
+| --- | --- | --- | --- |
+| 2026-10-22 | A03→A05·A05 도랑·점프 | 지름길 우회·무능력 도랑 통과, 점프 불쾌 원인 ①크기 ③머리 충돌. B20은 측정·비교 도구 추가까지; 기본 설계 수정·개선 수락은 아직 없음 | [사용자 로그](Playtest/20261022-233114.csv), [전달 지시](Batches/BATCH-20.md), [측정 결과](Validation/B20-summary.md) |
