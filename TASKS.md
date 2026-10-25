@@ -2,13 +2,13 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-25, Codex (운영 개선 진행 중)
+- 갱신: 2026-10-25, Codex (운영 개선 종료 점검)
 - Git 기준: B20 `bf9693a`에서 OPS 시작. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
 - push 대기: 시작 시 2커밋 + 이번 OPS 로컬 커밋. 정확한 현재 수는 `git rev-list --count origin/main..HEAD`.
-- 진행 중: OPS-20261025 (게임 구현 없음)
+- 진행 중: OPS-20261025 종료 기록 (게임 구현 없음)
 - 사용자 차례: 기존 V4/V5 수락 대기 순서 유지, D-BODY 크기 비교, 로컬 커밋 push
 - Claude 차례: B20 측정 근거로 draft4 제안(D-V5-DRAFT4), 사용자 채택은 별도
-- Codex 차례: 승인된 OPS-T1~T3, Ready Queue 0건
+- Codex 차례: OPS-T1~T3 구현·검증 완료, 종료 카드 기록. Ready Queue 0건
 - 막힌 것: 게임 구현 차단 없음. Unity 실제 기동은 이번 문서/도구 작업 범위 밖.
 - 최신 게임 결과: [B20 요약](Validation/B20-summary.md). 기본 크기·규칙·Scene 유지, Sprint Gate 미실시.
 
@@ -26,7 +26,7 @@ Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태�
 | --- | --- | --- |
 | OPS-T1 | DONE | TASKS 원문 완전 보관·과거 미종결18행 유지·관련7문서 링크0불량·skill frontmatter/참조 확인. 기본 검사기 PyYAML 부재로 직접 구조 검사 대체 |
 | OPS-T2 | DONE | 완료·재시도·시간/상한·보호·Queue·증거 규칙 통일, V5 대상/판정·템플릿 명시. 게임 변경0 |
-| OPS-T3 | TODO | Preflight·최종 검증 |
+| OPS-T3 | DONE | Preflight 구문오류0·모의8경로 PASS·실제 Unity 미실시·보호387 SHA변경0. 종료 카드 기록 예정 |
 
 ## 1-1. 이전 Batch 미종결 추적
 
