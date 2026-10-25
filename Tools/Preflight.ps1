@@ -2,7 +2,7 @@ param(
  [Parameter(Mandatory=$true)][ValidatePattern('^[A-Za-z0-9-]+$')][string]$Batch,
  [switch]$SkipUnity,
  [string]$UnityPath,
- [ValidateRange(1,600)][int]$TimeoutSeconds=120
+ [ValidateRange(1,1800)][int]$TimeoutSeconds=300
 )
 # This script does not grant sandbox permissions, change Git, or repair licensing.
 $ErrorActionPreference='Stop'
@@ -14,6 +14,9 @@ $taskResult=[ordered]@{batch=$Batch;project=$taskRoot;skipUnity=[bool]$SkipUnity
 $taskCode=1
 function Write-Check([string]$Line){$taskLines.Add($Line);Write-Output $Line}
 Push-Location -LiteralPath $taskRoot
+# Git prints UTF-8 (Korean commit messages). Decode native output as UTF-8 and restore afterwards.
+$taskOldEncoding=$null
+try {$taskOldEncoding=[Console]::OutputEncoding;[Console]::OutputEncoding=New-Object System.Text.UTF8Encoding($false)} catch {$taskOldEncoding=$null}
 try {
  Write-Check ('MEASURE project='+$taskRoot)
  Write-Check ('MEASURE LOCALAPPDATA='+$env:LOCALAPPDATA)
@@ -65,9 +68,11 @@ try {
    Write-Check ('MEASURE unityExecutable='+$UnityPath+' timeoutSeconds='+$TimeoutSeconds)
    $taskProcess=Start-Process -FilePath $UnityPath -ArgumentList $taskArgs -WorkingDirectory $taskRoot -WindowStyle Hidden -PassThru
    if(!$taskProcess.WaitForExit($TimeoutSeconds*1000)){
-    Stop-Process -Id $taskProcess.Id -ErrorAction SilentlyContinue
+    # Stop only the process tree this script started (Unity may spawn worker processes).
+    try {& taskkill.exe /PID $taskProcess.Id /T /F 2>&1 | Out-Null} catch {}
+    try {Stop-Process -Id $taskProcess.Id -ErrorAction SilentlyContinue} catch {}
     $taskResult.status='TIMEOUT';$taskCode=124
-    Write-Check 'FAIL Unity startup timeout; only spawned preflight process stopped; non-Unity tasks may continue'
+    Write-Check 'FAIL Unity startup timeout; only the spawned preflight process tree stopped; non-Unity tasks may continue'
    } else {
     $taskProcess.WaitForExit();$taskProcess.Refresh()
     $taskUnityExit=$taskProcess.ExitCode
@@ -85,6 +90,7 @@ try {
  Write-Check ('FAIL preflight '+$_.Exception.Message+'; non-Unity tasks may continue after checking their dependencies')
 } finally {
  Pop-Location
+ if($taskOldEncoding){try {[Console]::OutputEncoding=$taskOldEncoding} catch {}}
  $taskResult.exitCode=$taskCode
  $taskLines | Set-Content -LiteralPath (Join-Path $taskRun 'preflight.txt') -Encoding UTF8
  $taskResult | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskRun 'result.json') -Encoding UTF8
