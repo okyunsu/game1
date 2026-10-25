@@ -2,13 +2,13 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-25, Codex (운영 개선 종료 점검)
+- 갱신: 2026-10-25, Codex (OPS-20261025 종료)
 - Git 기준: B20 `bf9693a`에서 OPS 시작. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch하지 않음.
-- push 대기: 시작 시 2커밋 + 이번 OPS 로컬 커밋. 정확한 현재 수는 `git rev-list --count origin/main..HEAD`.
-- 진행 중: OPS-20261025 종료 기록 (게임 구현 없음)
+- push 대기: 종료 커밋 포함 7커밋(B20 관련2 + OPS5), 로컬 origin/main 기준. 현재 수 확인: `git rev-list --count origin/main..HEAD`.
+- 진행 중: 없음. OPS-20261025 종료, 게임 Batch21 미승인
 - 사용자 차례: 기존 V4/V5 수락 대기 순서 유지, D-BODY 크기 비교, 로컬 커밋 push
 - Claude 차례: B20 측정 근거로 draft4 제안(D-V5-DRAFT4), 사용자 채택은 별도
-- Codex 차례: OPS-T1~T3 구현·검증 완료, 종료 카드 기록. Ready Queue 0건
+- Codex 차례: 없음(Ready Queue 0건). 실제 Unity 연동은 다음 needs-unity=yes Batch 시작 시 확인
 - 막힌 것: 게임 구현 차단 없음. Unity 실제 기동은 이번 문서/도구 작업 범위 밖.
 - 최신 게임 결과: [B20 요약](Validation/B20-summary.md). 기본 크기·규칙·Scene 유지, Sprint Gate 미실시.
 
@@ -26,7 +26,7 @@ Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태�
 | --- | --- | --- |
 | OPS-T1 | DONE | TASKS 원문 완전 보관·과거 미종결18행 유지·관련7문서 링크0불량·skill frontmatter/참조 확인. 기본 검사기 PyYAML 부재로 직접 구조 검사 대체 |
 | OPS-T2 | DONE | 완료·재시도·시간/상한·보호·Queue·증거 규칙 통일, V5 대상/판정·템플릿 명시. 게임 변경0 |
-| OPS-T3 | DONE | Preflight 구문오류0·모의8경로 PASS·실제 Unity 미실시·보호387 SHA변경0. 종료 카드 기록 예정 |
+| OPS-T3 | DONE | Preflight 구문오류0·모의8경로 PASS·실제 Unity 미실시·보호387 SHA변경0. 카드 범위 밖0·깨진 링크0·없는 런처0 |
 
 ## 1-1. 이전 Batch 미종결 추적
 
@@ -175,7 +175,15 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 ### Task별 결과
 
-진행 중. 완료 결과·실제 검증·커밋은 [OPS 요약](Validation/OPS-20261025-summary.md)에 기록한다. 게임 변경·이전 수락 상태 변경 없음.
+세 Task DONE, 게임 변경·이전 수락 상태 변경 없음. [전체 검증](Validation/OPS-20261025-summary.md). 기본 검사기 PyYAML 부재는 단순 frontmatter/참조 직접 검사로 대체했다.
+
+| Task | 상태 | 커밋 | 주요 파일·실제 검증·남은 한계 |
+| --- | --- | --- | --- |
+| OPS-T1 | DONE | `a0ee60a` | TASKS·Archive·CLAUDE·인계 skill. 과거 원문 완전 보관, 미종결18행 추적, 7문서 링크0. 실제 앱 skill 선택은 미실시 |
+| OPS-T2 | DONE | `db7c23e` | AGENTS·Batch 템플릿·보호 목록. 완료/중단/Queue/시간·V5 명령 정리. Queue0, P8 제외 |
+| OPS-T3 | DONE | `0d5db36` | Tools/Preflight.ps1. 구문오류0·모의8경로 PASS·보호387 SHA변경0·카드 범위/링크/런처0. 실제 Unity·게임 회귀 미실시 |
+
+기존 B20 미푸시2커밋을 보존해 squash·게임 태그 변경·push를 하지 않았다. 최종 문서 확인은 종료 기록 커밋에 포함한다. 카드 상태 합계는 1-1의 역사적 미종결 행을 포함하므로 이번 Task 상태와 구분한다.
 
 ### 다음 Batch 후보
 
