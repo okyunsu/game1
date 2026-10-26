@@ -27,6 +27,14 @@ try {
  if($taskSandboxLocal){Write-Check 'WARN sandbox LOCALAPPDATA detected; Unity requires approved outside-sandbox invocation'}
  $taskHub=@(Get-Process -Name 'Unity Hub' -ErrorAction SilentlyContinue)
  Write-Check ('MEASURE unityHubProcesses='+$taskHub.Count+' informationalOnly=True')
+ # Codex-launched Unity only got a license when the Hub's licensing client was already running (B19-B21 logs).
+ $taskHubLicensing='unknown'
+ try {
+  $taskLicensing=@(Get-CimInstance Win32_Process -Filter "Name = 'Unity.Licensing.Client.exe'" -ErrorAction Stop)
+  $taskHubLicensing=[bool](@($taskLicensing | Where-Object {$_.ExecutablePath -and $_.ExecutablePath -match '(?i)Unity Hub'}).Count)
+  Write-Check ('MEASURE licensingClients='+$taskLicensing.Count+' hubLicensingClient='+$taskHubLicensing)
+ } catch {Write-Check 'MEASURE hubLicensingClient=unknown (process query failed)'}
+ if($taskHubLicensing -eq $false -and !$SkipUnity){Write-Check 'WARN no Unity Hub licensing client running; agent-launched Unity previously failed with exit198 in this state. Open Unity Hub (signed in) and keep it running.'}
  $taskStatus=@(& git status --short 2>&1)
  if($LASTEXITCODE -ne 0){throw ('git status failed: '+($taskStatus -join ' '))}
  Write-Check ('MEASURE workingTreeEntries='+$taskStatus.Count)
@@ -79,7 +87,7 @@ try {
     $taskResult.unityExitCode=$taskUnityExit
     Write-Check ('MEASURE unityExitCode='+$taskUnityExit)
     if($taskUnityExit -eq 0){$taskResult.status='PASS';$taskCode=0;Write-Check 'PASS Unity startup exit=0'}
-    elseif($taskUnityExit -eq 198){$taskResult.status='LICENSE_BLOCKED';$taskCode=198;Write-Check 'FAIL Unity startup exit=198; Unity tasks BLOCKED(external dependency); do not retry unchanged environment; non-Unity tasks may continue'}
+    elseif($taskUnityExit -eq 198){$taskResult.status='LICENSE_BLOCKED';$taskCode=198;Write-Check 'FAIL Unity startup exit=198; Unity tasks BLOCKED(external dependency); do not retry unchanged environment; non-Unity tasks may continue';if($taskHubLicensing -ne $true){Write-Check 'MEASURE likelyCause=no Unity Hub licensing client; user action: open Unity Hub signed in, keep it running, then resume'}}
     else{$taskResult.status='UNITY_ERROR';$taskCode=1;Write-Check ('FAIL Unity startup exit='+$taskUnityExit+'; cause not classified as licensing; non-Unity tasks may continue')}
    }
    if(!(Test-Path -LiteralPath $taskUnityLog)){Write-Check 'WARN Unity log missing; see process exit result'}

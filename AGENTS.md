@@ -57,7 +57,7 @@
 
 - Batch 시작 시 Tools/Preflight.ps1을 실행한다. 문서·분석·Python·운영 도구만 바꾸는 Batch는 -SkipUnity로 Git·환경 정보만 확인한다.
 - Unity와 Unity 호출 스크립트(회귀·빌드·executeMethod), Unity 검증 exe는 샌드박스 밖 실행 경로를 사용한다. 편집·분석은 샌드박스 안에서 한다. 환경의 별도 권한 검사가 요구되면 해당 절차를 따르며 우회하지 않는다.
-- Preflight는 LOCALAPPDATA·Hub 프로세스·작업 트리·로컬 origin/main..HEAD와 Unity 기동 종료 코드·timeout을 기록한다. Hub 실행 여부만으로 성공/실패를 판정하지 않는다. 동일 프로젝트 Unity가 이미 열려 있으면 두 번째 Editor를 실행하지 않고 Unity 경로만 중단한다.
+- Preflight는 LOCALAPPDATA·Hub 프로세스·작업 트리·로컬 origin/main..HEAD와 Unity 기동 종료 코드·timeout을 기록한다. Hub 프로세스 수만으로 성공/실패를 판정하지 않는다. 단, 에이전트가 띄운 Unity는 Unity Hub의 라이선스 클라이언트가 이미 실행 중일 때만 라이선스를 받았고, 없으면 Unity가 직접 띄운 클라이언트가 라이선스를 찾지 못해 exit198이 났다(B19·B20·B21 로그, 사용자 PowerShell 실행은 Hub 없이도 성공). Preflight가 hubLicensingClient=False를 보고하고 exit198이면 원인을 이것으로 기록하고 사용자에게 Hub 실행을 요청한다. 동일 프로젝트 Unity가 이미 열려 있으면 두 번째 Editor를 실행하지 않고 Unity 경로만 중단한다.
 - exit198이면 재조사·반복 실행하지 않고 needs-unity=yes Task와 그 의존 경로만 BLOCKED(외부 의존성)로 기록한다. no Task는 계속한다. 사용자가 환경을 고쳤거나 다른 원인 증거가 생기면 재확인할 수 있다.
 - 다른 종료 코드·실행 파일 부재·timeout은 라이선스 문제로 단정하지 말고 실제 원인·영향을 기록한다. 환경 실패가 전체 제품 구현 실패는 아니다.
 - 결과와 원본 로그는 Validation/_raw/<Batch>/의 새 실행 폴더에 보존한다. 실패 원문·미실시는 Task/Batch 요약에 옮긴다. 기존 결과는 덮어쓰지 않는다.
