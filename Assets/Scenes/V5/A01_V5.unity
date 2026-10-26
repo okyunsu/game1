@@ -3005,6 +3005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: DJ
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,6 +3558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: Slam
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10126
 GameObject:
   m_ObjectHideFlags: 0

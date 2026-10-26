@@ -4192,6 +4192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4468,6 +4469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,6 +5022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: WallJump
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,6 +5332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10183
 GameObject:
   m_ObjectHideFlags: 0

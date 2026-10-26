@@ -23,7 +23,13 @@ public sealed class PlayerDash:MonoBehaviour
         if(!hasDash||now-started>=motor.Tuning.dashDuration-.000001){Cancel();return false;}
         var filter=new ContactFilter2D{useLayerMask=true,layerMask=1<<6,useTriggers=false};
         int count=body.Cast(Vector2.right*direction,filter,hits,motor.Tuning.dashSpeed*Time.fixedDeltaTime+.01f);
-        for(int i=0;i<count;i++)if(hits[i].collider.GetComponent<DashGate>()==null&&Mathf.Abs(hits[i].normal.x)>.7f){Cancel();return false;}
+        for(int i=0;i<count;i++)if(hits[i].collider.GetComponent<DashGate>()==null&&Mathf.Abs(hits[i].normal.x)>.7f)
+        {
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if(B21CandidateHost.DashCornerEnabled&&GetComponent<B21CornerFix>()?.TryDashAdjust(hits[i].collider,direction)==true)break;
+            #endif
+            Cancel();return false;
+        }
         body.linearVelocity=new Vector2(direction*motor.Tuning.dashSpeed,0);return true;
     }
 }

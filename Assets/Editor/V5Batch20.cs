@@ -17,9 +17,10 @@ public static class V5Batch20
   var scenes=B07Build.Scenes().Concat(Directory.GetFiles("Assets/Scenes/V4","*.unity").OrderBy(p=>p)).Concat(new[]{"Assets/Scenes/Test/MechanicsTest.unity"});
   if(!release)scenes=scenes.Concat(Directory.GetFiles("Assets/Scenes/V5","*.unity").OrderBy(p=>p));
   if(!release&&File.Exists("Assets/Scenes/Test/BodySizeTest.unity"))scenes=scenes.Concat(new[]{"Assets/Scenes/Test/BodySizeTest.unity"});
+  if(!release&&File.Exists("Assets/Scenes/Test/B21Arena.unity"))scenes=scenes.Concat(new[]{"Assets/Scenes/Test/B21Arena.unity"});
   string[] paths=scenes.Select(p=>p.Replace(Path.DirectorySeparatorChar,'/')).Distinct().ToArray();
   Directory.CreateDirectory(folder);
-  var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=paths,locationPathName=folder+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=release?BuildOptions.None:BuildOptions.Development});
+  var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=paths,locationPathName=folder+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=release?BuildOptions.None:BuildOptions.Development|(N5Args.Has("-b21-candidates")?BuildOptions.CleanBuildCache:BuildOptions.None)});
   var rows=new System.Collections.Generic.List<string>{report.summary.result+" errors="+report.summary.totalErrors+" warnings="+report.summary.totalWarnings,"Development="+!release};
   bool pass=report.summary.result==BuildResult.Succeeded&&report.summary.totalErrors==0;
   if(pass&&release)

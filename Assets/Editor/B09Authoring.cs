@@ -74,7 +74,7 @@ public static class B09Authoring
     {
      var go=Rect(kind+i,(List<object>)list[i],kind=="climb"?Color.cyan:kind=="seal"?new Color(.65f,.4f,.9f):kind=="hazard"?Color.red:kind=="pad"?Color.magenta:new Color(.4f,.5f,.6f),kind=="hazard");made.Add(go);
      if(kind=="climb")go.AddComponent<ClimbableWall>();if(kind=="seal")go.AddComponent<SealFloor>().sealId=(Pilot?"V5-":"V4-")+pair.Key+"-seal"+i;
-     if(kind=="cover"||kind=="breakable"){var wall=go.AddComponent<BreakableWall>();wall.wallId=(Pilot?"V5-":"V4-")+pair.Key+"-"+kind+i;wall.hitsToBreak=1;}
+     if(kind=="cover"||kind=="breakable"){var wall=go.AddComponent<BreakableWall>();wall.wallId=(Pilot?"V5-":"V4-")+pair.Key+"-"+kind+i;wall.hitsToBreak=1;if(kind=="breakable"){var sides=J.A(d,"breakable_side");if(i<sides.Count){string side=Convert.ToString(sides[i]);wall.breakableFrom=side=="left"?BreakableWall.Side.Left:side=="right"?BreakableWall.Side.Right:BreakableWall.Side.Any;}}}
      if(kind=="hazard")go.AddComponent<DamageBlock>();if(kind=="pad")go.AddComponent<SlamPad>().tuning=tuning;
     }blocks[kind]=made.ToArray();rows.Add("COUNT "+pair.Key+" "+kind+" json="+list.Count+" scene="+made.Count);
    }
@@ -86,7 +86,7 @@ public static class B09Authoring
    var spawnList=J.A(d,"spawns");foreach(var node in spawnList){var p=J.D(node);Spawn(J.S(p,"id"),J.F(p,"x"),J.F(p,"y"));}var first=J.D(spawnList.First());var start=spawnList.Select(J.D).FirstOrDefault(s=>J.S(s,"id")=="start")??first;Spawn("Entry",J.F(start,"x"),J.F(start,"y"));if(pair.Key=="A01"||(Pilot&&pair.Key!="A03"))Spawn("CP-A01",J.F(start,"x"),J.F(start,"y"));if(Pilot&&pair.Key=="A03"&&!J.A(d,"marks").Select(J.D).Any(m=>J.S(m,"t").Contains("CP")))Spawn("CP-A03",J.F(start,"x"),J.F(start,"y"));
    foreach(var node in J.A(d,"doors"))
    {
-    var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=OutputPath(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
+    var p=J.D(node);var r=J.A(p,"rect");string target=J.S(p,"to").Split('(')[0],id=J.S(p,"id");var go=Rect("door:"+id,r,Color.white,true);var exit=go.AddComponent<RoomExit>();exit.exitId=id;exit.destinationRoomId=target;exit.destinationScenePath=OutputPath(target);exit.destinationSpawnId=id;exit.mainPath=target!="S02"&&target!="Z01";var rule=go.AddComponent<V4ExitRule>();rule.gate=J.S(p,"gate");rule.closedUntilWallBroken=J.S(p,"closed_until_wall_broken");if(pair.Key=="Z01"&&id=="Z01-S02")rule.elevatorSeal=blocks["seal"].Last().GetComponent<SealFloor>();if(pair.Key=="S02")exit.enabled=false;edges.Add(new GuideGraph.Edge{from=pair.Key,to=target,exitId=id,position=go.transform.position});
     CoveredFloorTrigger(go,r,d);
     bool stub=p.ContainsKey("stub")&&(bool)p["stub"];
     bool inbound=Pilot&&(J.S(p,"oneway")=="in"||(p.ContainsKey("down_only")&&(bool)p["down_only"]));
@@ -99,7 +99,7 @@ public static class B09Authoring
    if(pair.Key=="C06")Boss(blocks["solid"]);
    SaveDeterministic(OutputPath(pair.Key));
   }
-  if(outputFolder!="Assets/Scenes/V4"){if(Pilot){Directory.CreateDirectory("Validation/_raw/B16b");File.WriteAllLines(Path.Combine("Validation/_raw/B16b","generation-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt"),rows);}else File.WriteAllLines("Validation/_raw/B15/BL1-temp-elements.txt",rows);return;}
+  if(outputFolder!="Assets/Scenes/V4"){if(Pilot){Directory.CreateDirectory("Validation/_raw/B16b");File.WriteAllLines(N5Args.Value("-generation-output",Path.Combine("Validation/_raw/B16b","generation-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt")),rows);}else File.WriteAllLines("Validation/_raw/B15/BL1-temp-elements.txt",rows);return;}
   const string graphPath="Assets/Resources/GuideGraph_V4.asset";var graph=AssetDatabase.LoadAssetAtPath<GuideGraph>(graphPath);if(graph==null){graph=ScriptableObject.CreateInstance<GuideGraph>();AssetDatabase.CreateAsset(graph,graphPath);}graph.edges=edges.ToArray();EditorUtility.SetDirty(graph);AssetDatabase.SaveAssets();if(graphCrlf)File.WriteAllText(graphPath,File.ReadAllText(graphPath).Replace("\r\n","\n").Replace("\n","\r\n"),new System.Text.UTF8Encoding(false));File.WriteAllLines("Validation/_raw/B09/T5-elements-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".txt",rows);
  }
  static string JsonFragment(object obj){return designPath;}

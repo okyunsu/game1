@@ -21,7 +21,11 @@ public sealed class B20HeadProbe:N5Runner
   {
    yield return Keys();if(RoomSession.Instance.CurrentRoomId!=face.room){Check(RoomSession.Instance.RequestTransition(face.room,V4SceneMap.Path(face.room),"Entry"),"fixture "+face.room);yield return Ready();}
    Health.RestoreMax();foreach(var e in FindFirstObjectByType<RoomDefinition>().GetComponentsInChildren<EnemyReset>())if(e.Live!=null)e.Live.SetActive(false);
-   foreach(var exit in FindFirstObjectByType<RoomDefinition>().GetComponentsInChildren<RoomExit>())exit.enabled=false;
+   foreach(var exit in FindFirstObjectByType<RoomDefinition>().GetComponentsInChildren<RoomExit>())
+   {
+    exit.enabled=false;
+    if(exit.TryGetComponent<V4ExitRule>(out var rule)&&!string.IsNullOrWhiteSpace(rule.closedUntilWallBroken))exit.GetComponent<Collider2D>().enabled=false;
+   }
    foreach(var hazard in FindFirstObjectByType<RoomDefinition>().GetComponentsInChildren<DamageBlock>())hazard.GetComponent<Collider2D>().enabled=false;
    Motor.hasDoubleJump=Motor.hasWallJump=false;Player.GetComponent<PlayerDash>().hasDash=false;
    Motor.ClearTransientState();PlaceForAuthorizedSetup(new Vector2(face.x,face.top+.015f));yield return new WaitForSeconds(.25f);

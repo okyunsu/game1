@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-Sprint 3, Batch 20 측정·크기 비교 도구까지 구현. V5 지형은 draft3 유지. V4 21방, 대시·더블 점프·벽 점프·Slam,
+Sprint 3, Batch 21 A05 지름길 잠금·이동 실측·후보 비교까지 구현. V5 배치는 draft3과 같은 draft3.1입니다. V4 21방, 대시·더블 점프·벽 점프·Slam,
 보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B3(8패턴·2페이즈, 10/14 채택).
 B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
 현재 결과·결정·직접 플레이 목록은 [TASKS](TASKS.md)를 따릅니다.
@@ -55,17 +55,17 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
-V5 층 A draft3 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
-세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch20).
+V5 층 A draft3.1 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
+세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch21).
 
-Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 수정했고 작은 발판12개를 넣었습니다. 최신 V5는 `Builds/B20-delivery`, 기존 V4 런처는 보존본 `Builds/B12-delivery`를 사용합니다.
+Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 수정했고 작은 발판12개를 넣었습니다. 최신 V5는 `Builds/B21-delivery`, 기존 V4 런처는 보존본 `Builds/B12-delivery`를 사용합니다.
 Batch19 검사 정리: 기존 후보69는 머리 위0·닫힌 문6·측면43·구덩이 가장자리20입니다. 실제 Scene은 FAIL0/WARN0이며 닫힌 문·측면·구덩이는 MEASURE로 표시합니다. draft2 머리 위4건은 계속 FAIL로 검출합니다. 정적 후보22는 A02 WallJump 조건과 A06 유일 입구 DJ 조건을 반영하면0입니다. 무능력 계산도 별도로 남기며 실제 자연 완주와 구분합니다. [후보](Validation/B19-candidates.md), [Scene 검사](Validation/B19-clearance.md), [정적 검사](Validation/B19-room-rules-v5-A.md), [규칙 근거](Validation/B19-rules-ledger.md).
 
 Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output 새파일` 또는 Development exe의 `-verify-b18-clearance`(독립 `-save-path` 필수). JSON 검사: `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --output 새파일`. 검사 결과와 실제 플레이 불가능 판정은 구분합니다.
 
 최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 일반 경로는5구간 통과했고, DJ는 A01 접근120초 미완주 뒤 A06 도착 fixture에서3구간 통과했습니다.
 
-Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). B19 당시에는 Scene·게임 수치·배포 빌드를 유지하고 측정 소스만 추가했습니다. 현재 B20 배포 exe에는 이 측정 코드와 새 크기 비교 도구가 들어 있으며, 기본 V5 지형·수치는 그대로입니다.
+Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). B19 당시에는 Scene·게임 수치·배포 빌드를 유지하고 측정 소스만 추가했습니다. 현재 B21 배포 exe에도 이 측정 코드와 크기 비교 도구가 들어 있습니다.
 
 Windows 실행: Unity와 Unity를 호출하는 검증 스크립트는 정상 사용자 LOCALAPPDATA를 사용하는 샌드박스 밖 실행으로 검증했습니다. 격리 경로의 라이선스 실패와 게임 실패를 구분합니다. 코드 편집·JSON 분석은 샌드박스 안에서, Git 기록은 별도 사용자 승인 예외로 수행했습니다.
 
@@ -75,3 +75,15 @@ Batch20 크기 비교: [BodySizeTest](Launchers/current/Play-BodySize.cmd)에서
 
 비교는 플레이어 전체의 균일 축소이며 전환 순간 발 위치를 유지합니다. 공격 판정도 같은 비율로 줄고, 이동·점프·중력·카메라 설정은 유지합니다. 도구는 Editor/Development 전용이며 Release에는 포함하지 않습니다. 크기 선택은 런타임 비교라 종료하면 저장되지 않습니다. 기본 크기 채택은 사용자가 D-BODY에서 고른 뒤 별도 배치로 반영합니다. 배치는 새 [BodySizeTest Scene](Assets/Scenes/Test/BodySizeTest.unity)이 원본입니다. Play 중 바꾼 배치를 유지하려면 변경을 기록한 뒤 Edit 모드에서 저장하세요. 기본 PlayerTuning·Prefab은 이번 배치에서 바꾸지 않습니다.
 Batch20 결과: [전체 요약](Validation/B20-summary.md). A03→A05 우회와 대시 없는 일반 점프 도랑 통과를 재현했습니다. 정적 검사 새 FAIL2는 이 실제 버그를 검출한 기대 결과이며 수정 fixture는 FAIL0입니다. draft4 작성과 기본 크기 선택은 TASKS의 결정 대기를 따릅니다.
+
+Batch21에서는 A03 쪽 A05 지름길이 벽 파괴 전에는 닫힙니다. A04에서 A05로 들어가 벽의 오른쪽에서 왼쪽으로 공격하면 열린 뒤 저장·이어하기에도 양방향 통과가 유지됩니다. 방의 좌표·기본 몸 크기·이동 수치는 같습니다.
+
+후보 비교는 기존 크기 비교 다음에 진행합니다. 후보마다 독립 저장 슬롯을 쓰며 기본 Play-V5에는 두 동작이 모두 꺼져 있습니다.
+
+- [위험 지형 복귀](Launchers/current/Play-V5-HazardReturn.cmd): A05 도랑에 닿으면 피해1 뒤 마지막 안전 바닥으로 돌아오는 동작을 비교합니다. A05 이동을 포함해 약5~10분.
+- [머리 모서리 보정](Launchers/current/Play-V5-CornerFix.cmd): A01/A02 발판 모서리에서 상승이 끊기는지 비교합니다. 허용 겹침0.25u이며 넓은 천장은 그대로 막힙니다. 약3~5분.
+- [두 후보 동시](Launchers/current/Play-V5-Candidates.cmd): 머리 보정과 A05 도랑 복귀를 함께 확인합니다. 약5~10분.
+
+세 후보는 A01부터 시작합니다. 크기와 함께 비교하려면 런처 인자 `-BodyHeight 1.3` 또는 `-BodyHeight 1.1`을 붙일 수 있습니다. 후보 값은 `Assets/Candidates/B21HazardReturn.asset`·`B21CornerFix.asset`에서만 조정합니다. Play 중 변경은 기록한 뒤 Edit 모드에서 명시 저장하고 Development 빌드를 다시 만듭니다. 후보 빌드에는 기존 빌드 진입점에 `-b21-candidates`를 함께 전달합니다. 기본 채택은 TASKS의 D-HAZARD-RETURN·D-CORNER-FIX 결정 후 별도 반영합니다.
+
+Backlog 대시 비교: [머리+대시 모서리](Launchers/current/Play-V5-DashCornerFix.cmd)는 발끝이 낮은 모서리에 걸릴 때 위로 올리는 후보도 켭니다. 같은 B21CornerFix Asset의 별도 토글은 기본 꺼짐이며, 허용 발끝 겹침 높이는0.25u입니다. 기존 머리 후보와 두 후보 동시 런처에는 이 추가 동작이 꺼져 있습니다. 선택 비교 후 D-CORNER-FIX에서 머리만/머리+대시/미채택을 고릅니다.

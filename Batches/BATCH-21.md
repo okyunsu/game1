@@ -56,3 +56,16 @@ AGENTS.md, TASKS.md(0·2·4·9·10절), `Design/v5/WORLD_V5.md`(10~12절), `Desi
 ## 종료 처리
 - `Validation/B21-summary.md` 맨 위에 Preflight 결과, 회귀, V5 검사, Batch-Card를 붙인다. Task별 결과, 후보 2종의 꺼짐/켜짐 비교 수치, draft4용 수치 요약(T4·T5 도랑 폭 표·T7), Ruling 목록, 미실시 항목, 사용자가 할 일(플레이 순서와 시간)을 적는다.
 - 기록은 AGENTS Handoff 순서로 TASKS 0·9절에 남긴다. Codex 요약과 로그가 다르면 로그 원문을 우선한다. push는 사용자가 한다.
+
+## 재개 실행 기록 (2026-10-26)
+
+사용자 직접 지시: Unity Hub 실행 후 T1부터 재개, 완료된 T3는 반복하지 않는다. Unity·Unity 호출 스크립트/검증 exe는 샌드박스 밖에서 실행한다. 최초 Base `7d40918` 이후 이력은 이미 공개되어 재개 Base `544ea5e`를 사용한다. 공개된 기존 B21 태그는 보존하고 이번 미공개 재개분만 합쳐 `B21-resume`으로 구분한다.
+
+- Unity: `C:/Program Files/Unity/Hub/Editor/6000.3.24f1/Editor/Unity.exe`
+- Python: `C:/Users/gosu3/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe`
+- Scene 대상: `Assets/Scenes/V5/*.unity`. 동일 규칙 비교 기준: B19 clearance, 기하/요소 기준: B18 및 재생성 전 스냅샷.
+- 전달 빌드: `Builds/B21-delivery/Afterglow.exe`(Development), 생성 `V5Batch20.Build -b21-candidates`. V4는 기존 B12-delivery 보존.
+- 이번 원문 루트: `Validation/_raw/21/resume-20261026-210738/`. 최초 exit198 원문과 이전 요약은 보존한다. 최신 종료 요약은 `Validation/B21-resume-summary.md`.
+- 필수 종료 정적 검사: 위 Python으로 `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --world Design/v5/world_v5_A.json --max-step-evidence Validation/_raw/21/resume-20261026-210738/T6-off/T2-metrics.json --self-test-output-dir Validation/_raw/21/resume-20261026-210738/T8-rule-fixtures --output Validation/_raw/21/resume-20261026-210738/T8-static.md`. T3 재구현/개별 Task 반복과 구분한다.
+- 필수 Scene 검사: 위 Unity의 `-batchmode -quit -projectPath <저장소> -executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output <원문루트>/T8-clearance.txt -logFile <원문루트>/T8-clearance.log`.
+- 최종 빌드 출력 `postdoor-build.txt/log`, 실제 문 규칙/지름길 `postdoor-rule.txt`·`postdoor-shortcut.txt`, 머리36면 `postdoor-head.txt`. 종료 기본 회귀 `Validation/_raw/regression/B21-postdoor-default/result.txt`, 런처10개 `postdoor-launchers-retry1/summary.txt`, 카드 `final-batch-card.txt`·별도 작업 트리 `final-worktree.txt`는 모두 새 출력이다.

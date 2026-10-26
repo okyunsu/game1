@@ -178,6 +178,9 @@ public sealed class PlayerMotor : MonoBehaviour
             jumpCutAvailable = false;
         }
         if (velocity.y <= 0) jumpCutAvailable = false;
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (B21CandidateHost.CornerEnabled) GetComponent<B21CornerFix>()?.TryAdjust(velocity);
+        #endif
         body.linearVelocity = velocity;
     }
 }

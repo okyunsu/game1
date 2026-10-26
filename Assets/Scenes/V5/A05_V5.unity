@@ -2047,7 +2047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableWall
   hitsToBreak: 1
-  breakableFrom: 2
+  breakableFrom: 1
   wallId: V5-A05-breakable0
 --- !u!1 &10059
 GameObject:
@@ -2679,6 +2679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,6 +2955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: 
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3263,6 +3265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V4ExitRule
   gate: Slam
   elevatorSeal: {fileID: 0}
+  closedUntilWallBroken: 
 --- !u!1 &10110
 GameObject:
   m_ObjectHideFlags: 0
