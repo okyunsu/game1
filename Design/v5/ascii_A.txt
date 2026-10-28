@@ -60,20 +60,20 @@ A03 [50, 20]
 d                                                #
 d                                                #
 d                                                D
-#===========                                     D
+#==========================                      D
 #                                                D
-#            o                              =====#
+#                              ===          =====#
 D                                                #
-D               ==                       ==      #
-D      E                                         #
-#==============                      ===         #
+D               ==     ====              ==      #
+D                                                #
+#==============                       ==         #
 #                                                #
 #                ==               ===            #
-#            E                E                  #
+#                                                #
 #          =====            =====                #
 D                                                D
 D                ###    ###                      D
-D                ###    ###     E                D
+D                ###    ###    C                 D
 ##################################################
 
 A04 [50, 12]
@@ -82,13 +82,13 @@ A04 [50, 12]
 #                                                #
 #                                                #
 #                                                #
-#                 == ==========E==========       #
-#              E                                 #
-#            ====                                #
+#            ==========                          #
+#         E                                      #
+#       ====                                     #
 D                                                #
-D       ###             o  o      o   o          #
-D       ###   E              ####                #
-######################^^^^^^^^^^^^^^^^^^####DDDDD#
+D    ###       o     o                           #
+D    ###         ###                             #
+##############^^^^^^^^^#####################DDDDD#
 
 A05 [50, 12]
 ############################################DDDDD#
@@ -99,9 +99,9 @@ A05 [50, 12]
 #                                                #
 #                                                #
 #                                                #
-DB                                               #
-DB                                  ###          #
-DB                E                 ###          #
+D                                                #
+D                                   ###          #
+D                 E                 ###          #
 ######^^^^^^##############dddd####################
 
 A06 [48, 14]
@@ -120,3 +120,7 @@ A06 [48, 14]
 #  ###      o   o  o    ###          ###     E #
 #########^^^^^^^^^^^^^########DDDD##############
 
+draft4 legend: # solid / = platform / ^ acid hazard (trench) / D door / d closed stub door / E enemy / o lantern / C checkpoint (CP-A03, street x31)
+A03: west-upper dash practice = village (y9) -> S0 (x16-17.8,y11) -> 5.5u gap -> P1 (x23.3-26.3,y11) -> 4.5u gap, rise 2 -> P2 (x30.8-33.5,y13) -> 4.5u gap, rise 2 -> shelf (end x26.3,y15). Gaps are candidates (finalize after Batch22 trench measurement)
+A04: x24-49 = boss 1 arena (flat floor y1, nothing inside). x23-24 = gate wall slot (closed only during the fight). Floor hole x44-49 is covered (V5-A04-bossfloor) until the boss is defeated
+A05: trench x6-12. No breakable wall in draft4
