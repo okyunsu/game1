@@ -1,6 +1,13 @@
 # Batch 22 — 보스1과 draft4.1 고리
 
-종료 카드: 최종 Task 커밋 후 `Tools/Batch-Card.ps1 -Base e437320`으로 확인한다. 결과는 [_raw/22/final-batch-card.txt](_raw/22/final-batch-card.txt), 별도 미커밋·보호 검사는 [final-worktree.txt](_raw/22/final-worktree.txt). 이번 회귀는 [B22-final](_raw/regression/B22-final/result.txt)의 **REGRESSION 13/13**이다. 카드에 표시되는 과거 회귀와 구분한다.
+| 종료 검사 | 이번 실행 결과 |
+| --- | --- |
+| Batch-Card | [T9 후 카드](_raw/22/final-batch-card.txt): 38파일, 범위 밖0·깨진 링크0·없는 빌드/런처0. 기준 HEAD `5154bf5`; 이후 종료 기록2파일만 추가 |
+| 별도 작업 트리 | [검사 원문](_raw/22/final-worktree.txt): 이번 미커밋0, 시작 사용자 변경8개·미추적 D41 그대로. 시작/종료 사용자 diff patch SHA 동일 |
+| 보호 파일 | 시작 정책96파일 SHA 변경0. Design·기본 튜닝·Player.prefab·ProjectSettings 변경0 |
+| 현재 소스 회귀 | [B22-final](_raw/regression/B22-final/result.txt): **REGRESSION 13/13**. 카드의 과거 행을 대신 쓰지 않음 |
+| 실제 배포 | Development 오류0/경고0·[런처14개](_raw/22/smoke-all-summary.txt) PASS/Error0·몸1.6/1.3 고리와 Continue PASS |
+
 
 2026-10-28 시작, 10-29 종료. Base `e437320`, 기존 로컬 origin/main 대비 2커밋은 보존했다. fetch/push/squash 없음. 사용자 지정 [06 지시문](../Design/proposals-1028/06_CODEX_BATCH22_BOSS1.md)을 실행 승인으로 사용했다. 별도 Batches/BATCH-22.md는 없고, 허용 범위에 Batches가 없어 복제하지 않았다. 실행 11 Task(T0~T9, BL1), Ready Queue0.
 

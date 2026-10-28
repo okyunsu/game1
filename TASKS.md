@@ -3,7 +3,8 @@
 ## 0. 지금
 
 - 갱신: 2026-10-29, Codex (Batch22 종료)
-- Base `e437320`, 최종 HEAD는 `git log -1`. 기존 미푸시2커밋·태그 보존, fetch/push/squash 없음.
+- Base `e437320`, 최종 HEAD는 `git log -1`, 태그 B22. 기존 미푸시2커밋·태그 보존, fetch/push/squash 없음.
+- push 대기: 로컬 origin/main 대비14커밋(이전2+B22 Task/종료12), 이번 실행1 Batch. 원격 최신 여부는 미확인.
 - 상태: 승인 T0~T9·BL1 기술 작업 완료. T5/T8 고리 감각 REVIEW, Ready Queue0.
 - 플레이: [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd), A03부터 보스1→A05 대시→A03 연습. [보스만](Launchers/current/Play-BossTest-B1.cmd).
 - 실제 검증: 기본 몸1.6 고리46.731s·몸1.3 고리46.716s·저장/Continue PASS. 첫 사람 플레이 시간과 구분.
