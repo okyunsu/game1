@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$Run,[string]$Mode='boss',[string[]]$Extra=@(),[string]$Build='Builds/_tmp/B22-work',[switch]$V4,[int]$TimeoutSeconds=240)
+param([Parameter(Mandatory=$true)][string]$Run,[string]$Mode='boss',[string[]]$Extra=@(),[string]$Build='Builds/B22-delivery',[switch]$V4,[int]$TimeoutSeconds=240)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
 $taskOutput=Join-Path $taskRoot ('Validation/_raw/22/'+$Run)

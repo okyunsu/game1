@@ -16,11 +16,12 @@ public sealed class B03Build:IProcessSceneWithReport
    var profile=AssetDatabase.LoadAssetAtPath<PresentationProfile>("Assets/Candidates/AV1/PresentationProfile.asset");
    var bootstrap=new GameObject("B11 candidate references");SceneManager.MoveGameObjectToScene(bootstrap,scene);bootstrap.AddComponent<BossCandidateSelection>().av1=profile;
    foreach(var root in scene.GetRootGameObjects())foreach(var boss in root.GetComponentsInChildren<BossEncounter>(true)){
+    if(boss.bossId!=ProgressSave.FinalBossId)continue;
     var select=boss.gameObject.AddComponent<BossCandidateSelection>();select.av1=profile;
     select.b2=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/B2/BossTuning.asset");select.b2fast=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/B2-fast/BossTuning.asset");select.b2slow=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/B2-slow/BossTuning.asset");select.b3=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/B3/BossTuning.asset");
    }
   }
-  string id=N5Args.Value("-b03-candidate","");if(id.Length==0)return;var tuning=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/"+id+"/BossTuning.asset");if(tuning==null)throw new BuildFailedException(id);foreach(var root in scene.GetRootGameObjects())foreach(var boss in root.GetComponentsInChildren<BossEncounter>(true))boss.tuning=tuning;
+  string id=N5Args.Value("-b03-candidate","");if(id.Length==0)return;var tuning=AssetDatabase.LoadAssetAtPath<BossTuning>("Assets/BossCandidates/"+id+"/BossTuning.asset");if(tuning==null)throw new BuildFailedException(id);foreach(var root in scene.GetRootGameObjects())foreach(var boss in root.GetComponentsInChildren<BossEncounter>(true))if(boss.bossId==ProgressSave.FinalBossId)boss.tuning=tuning;
  }
  public static void Candidates(){
   foreach(string id in new[]{"B2","B2-fast","B2-slow"}){

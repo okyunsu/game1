@@ -22,14 +22,14 @@
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
 | B22-T0 | DONE | 01_DECISIONS 반영. 사용자 대화(Claude 앱) 전달 결정과 추천을 구분. B21 완료 결과 유지 |
-| B22-T1 | PARTIAL | ID 저장·구 version1 호환·Continue/초기화 PASS, Unity compile0. 최종 C06 Completion 회귀는 현재 빌드에서 예정. raw/22/T1-save |
-| B22-T2 | PARTIAL | ID·게이트·덮개·발 위치/높이 트리거·등장 예고 일반화. 기존 BossRecovery 실제 X PASS·Error0. B3 실행 빌드 회귀 예정 |
+| B22-T1 | DONE | ID 저장·구 version1 로드·Continue/초기화 PASS. CompletionBuildVerification 처치 즉시 저장+별도 프로세스 Continue/엔딩 PASS·Error0. raw/22/T1-save·T1-completion |
+| B22-T2 | DONE | ID/아레나/트리거/덮개 인스턴스화. BossRecovery·B3 8패턴·2페이즈·사망 초기화·Slam/엔딩 PASS. 후보 선택 주입은 최종 보스만 |
 | B22-T3 | DONE | HP14/피해1·돌진7.5u/s·도약/충격파/돌진만 관측·페이즈전환0. 실제 윗면포고1·vy11.000u/s. raw/22/T4-complete |
-| B22-T4 | PARTIAL | BossTest_B1 실제 무능력 처치8.500s·HP3·사망→CP-A03·HP14초기화·ID저장·재진입 보스/게이트/덮개 없음 PASS·Error0. 사용자 런처 제공 예정 |
-| B22-T5 | DONE | V5 인자 없이 HazardReturn·안전바닥/복귀 실측 PASS. V4 기본 hazard=False·Error0, 기존 DamageBlock 변경0 |
+| B22-T4 | DONE | BossTest_B1 실제 무능력 처치8.500s·HP3·사망→CP-A03·HP14초기화·ID저장·재진입 보스/게이트/덮개 없음 PASS·Error0. Play-BossTest-B1 제공 |
+| B22-T5 | REVIEW | V5 인자 없이 HazardReturn·안전바닥/복귀 실측 PASS. V4 기본 hazard=False·Error0, 기존 DamageBlock 변경0 |
 | B22-T6 | DONE | C-1/C-2/C-6 필드 fixture 및 잘못된 spawn 거절 PASS, A03 CP 하나·6방 잠금/벽0 검증 |
 | B22-T7 | DONE | 6방 생성. A04 직행0/5·좌복귀5/5·등불2포고보상5/5, A05 무능력0/10·진입쪽복귀10/10·대시10/10, A03 각각0/5·5/5. 정적FAIL0/WARN16·SceneFAIL0 |
-| B22-T8 | TODO | 고리 통합·저장 Continue |
+| B22-T8 | REVIEW | 실제 연속 고리46.731s·보스전8.618s·일반 적 포함·대시 획득·3연습·Continue PASS·Error0. 자연 사용자 고리 수락 대기 |
 | B22-T9 | TODO | 런처·사용자 안내 |
 | B22-BL1 | TODO | 몸1.3 고리 참고 측정 |
 

@@ -147,6 +147,48 @@ public sealed class B22Probe:N5Runner
   for(int stage=0;stage<3;stage++){int no=0,yes=0;foreach(bool owned in new[]{false,true})for(int trial=1;trial<=5;trial++){yield return PracticeSample(stage,owned,trial);if(sampleSuccess){if(owned)yes++;else no++;}}Record("MEASURE A03 summary stage="+(stage+1)+" noAbility="+no+"/5 dash="+yes+"/5");pass&=no==0&&yes==5;}
   Check(pass,"A03 each noAbility0/5 dash5/5");
  }
- IEnumerator Loop(){yield return BossTests();}
+ IEnumerator GoX(float x,float seconds=8,bool stop=true)
+ {
+  double end=Time.realtimeSinceStartupAsDouble+seconds,next=0;
+  while(Mathf.Abs(Body.position.x-x)>.12f){if(Time.realtimeSinceStartupAsDouble>end)throw new Exception("GoX timeout target="+x+" actual="+Body.position);var keys=new List<Key>{Body.position.x<x?Key.RightArrow:Key.LeftArrow};if(Time.timeAsDouble>=next){keys.Add(Key.X);next=Time.timeAsDouble+Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.04;}Input(keys.ToArray());yield return null;}
+  if(stop)yield return Keys();
+ }
+ IEnumerator JumpTo(float takeoff,float x,float top,string label,bool dash=false)
+ {
+  bool running=label=="upper village";yield return GoX(takeoff,8,!running);yield return Until(()=>Motor.Grounded,"takeoff supported "+label,3);if(!running)yield return Keys();
+  double began=Time.timeAsDouble,end=Time.realtimeSinceStartupAsDouble+4;bool launched=false,dashed=false,landed=false;
+  while(Time.realtimeSinceStartupAsDouble<end)
+  {
+   var keys=new List<Key>();float dx=x-Body.position.x;if(Mathf.Abs(dx)>.12f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
+   if(Time.timeAsDouble-began<.45)keys.Add(Key.Z);
+   if((Time.timeAsDouble-began)%.4<.04)keys.Add(Key.X);
+   launched|=Body.linearVelocity.y>0;
+   if(dash&&launched&&!dashed&&Body.linearVelocity.y<=.6f){keys.Add(Key.LeftShift);dashed=true;}
+   Input(keys.ToArray());
+   if(launched&&Motor.Grounded&&Mathf.Abs(Body.position.x-x)<.35f&&Mathf.Abs(Body.position.y-top)<.08f){landed=true;break;}
+   if(Health.HP<=0||RoomSession.Instance.Respawning)break;yield return null;
+  }
+  yield return Keys();Record("MEASURE loop jump="+label+" landed="+landed+" end="+Body.position.ToString("F4")+" hp="+Health.HP);Check(landed,"physical jump "+label);
+ }
+ IEnumerator Loop()
+ {
+  Check(RoomSession.Instance.CurrentRoomId=="A03","loop starts A03");NoAbilities();double began=Time.timeAsDouble;Record("FIXTURE loop starts at CP-A03 via explicit isolated launch; no teleport, HP, ability or boss writes after start");
+  // East stairway to the A04 door.
+  yield return JumpTo(28,25.7f,3,"hub block");yield return JumpTo(26.15f,28.7f,5,"east platform5");yield return JumpTo(32.65f,35.1f,7,"east platform7");yield return JumpTo(36,38.4f,9,"east platform9");yield return JumpTo(39.3f,41.6f,11,"east platform11");yield return JumpTo(42.5f,45,13,"A04 door shelf");
+  yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A04",Key.RightArrow,"physical A03-A04 door",5);yield return Ready();Check(RoomSession.Instance.CheckpointId=="CP-A03","hub checkpoint retained");
+  // Upper route uses the actual general enemy and authored platforms.
+  yield return JumpTo(4.2f,5.8f,3,"A04 block");yield return JumpTo(7.15f,9.1f,5,"A04 enemy platform");yield return JumpTo(11.35f,13.5f,7,"A04 upper step");yield return JumpTo(14.1f,16.3f,7,"A04 long upper route");yield return GoX(27.5f);yield return Until(()=>Boss!=null&&Boss.Fighting,"arena landing trigger",4);
+  Check(Boss.encounterGate.activeSelf,"loop arena locked");yield return Fight();Check(!Boss.floorCover.activeSelf,"loop defeat removes floor cover");
+  yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A05",Key.RightArrow,"physical opened floor fall",6);yield return Ready();Check(!Player.GetComponent<PlayerDash>().hasDash,"A05 reached before dash acquisition");
+  yield return JumpTo(40,37.5f,2.6f,"A05 dash shrine");yield return Until(()=>Player.GetComponent<PlayerDash>().hasDash,"actual DashPickup",3);Record("PASS loop dash acquired in A05");
+  yield return JumpTo(35.35f,31.8f,1,"A05 shallow pit");yield return GoX(15.5f);yield return Until(()=>Motor.Grounded,"trench runup ground",3);
+  // The actual six-unit trench, without resetting pose or health.
+  yield return JumpTo(12.3f,4.6f,1,"A05 trench dash",true);
+  yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"physical A05-A03 door",5);yield return Ready();Record("PASS loop back in A03 with dash");
+  yield return JumpTo(38.8f,35.5f,1,"A03 eastern shallow pit");yield return GoX(27.9f);yield return JumpTo(27.9f,25.5f,3,"return hub block");yield return JumpTo(24.3f,20,1,"return west floor");yield return JumpTo(20.1f,18.8f,3,"west block");yield return JumpTo(17.3f,14.9f,5,"west platform5");yield return JumpTo(15.7f,17.5f,7,"west platform7");yield return JumpTo(16.85f,14.4f,9,"upper village");yield return JumpTo(14.7f,16.5f,11,"S0");
+  yield return JumpTo(17.55f,24,11,"practice1 gap5.5",true);yield return JumpTo(26.05f,32.5f,13,"practice2 rise2 gap4.5",true);yield return JumpTo(31.05f,24.5f,15,"practice3 dash-door shelf",true);
+  Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save contains acquired dash and B1");yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"loop Continue restores CP-A03 dash and B1");
+  Record("MEASURE loop seconds="+(Time.timeAsDouble-began).ToString("F3")+" body="+Player.GetComponent<Collider2D>().bounds.size.y.ToString("F2")+" complete=True");
+ }
 }
 #endif
