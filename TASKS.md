@@ -2,16 +2,14 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-26, Codex (Batch21 재개 종료)
-- Git 기준: 최초 Base `7d40918`, 재개 Base `544ea5e`. 최종 HEAD는 `git log -1`, 태그 `B21-resume`.
-- push 대기: 이번 재개1 Batch·정리 후1커밋. 원격 main `544ea5e`를 종료 전 ls-remote로 확인, fetch하지 않음. push 없음.
-- 상태: 필수 Task·Backlog 기술 작업 완료, T3 기존 완료 유지·반복0. T5/T6/BL2는 사용자 채택 REVIEW.
-- 사용자 차례: 기존 V4/V5·D-BODY 수락 순서 뒤 후보 비교. 결정4/8.
-- Claude 차례: B21 실측으로 draft4 제안, 사용자 채택 별도.
-- Codex 차례: 승인 Queue0으로 종료. 추가 제품 작업 시작하지 않음.
-- 환경: 재개 Preflight PASS·hubLicensingClient=True·Unity exit0. 과거 exit198 원문 보존.
-- 전달: B21-delivery·후보 기본 꺼짐, V4 B12-delivery 유지. 최종 기본13/13·Quiet13/13·런처10개Error0.
-- 근거: [재개 종료 요약](Validation/B21-resume-summary.md). 기존 B21 태그/공개 이력 보존, Sprint Gate 미실시.
+- 갱신: 2026-10-28, Codex (Batch22 진행 중)
+- Base: `e437320`. 로컬 origin/main 대비 기존 2커밋 보존, fetch·push 없음.
+- 승인: 사용자 지정 [Batch22 지시문](Design/proposals-1028/06_CODEX_BATCH22_BOSS1.md). 별도 Batches/BATCH-22.md 없음; 지정 원문을 승인 범위로 사용.
+- 기존 변경: Design/proposals 4개·Design/v5 3개·GAME_DESIGN 및 D41 검증문서 보존. 시작 patch·보호 SHA는 Validation/_raw/22/start/.
+- 상태: T0 결정 반영, T1 보스 ID 저장 착수. Task 상한14, 실행 Task/Backlog 총11.
+- 환경: Preflight PASS, hubLicensingClient=True, Unity exit0.
+- Codex 차례: 보스1·draft4.1 통합과 실측. 사용자 감각 수락·Sprint Gate 별도.
+- 결정: D-BODY·D-CORNER-FIX 유지, Ready Queue0.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -19,7 +17,27 @@
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
 - 운영 개선은 종료했다. 게임 [Batch21](Batches/BATCH-21.md)은 사용자 2026-10-26 실행 지시로 승인됐다.
 
-## 1-0. Current Tasks (Batch21)
+## 1-0. Current Tasks (Batch22)
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| B22-T0 | DONE | 01_DECISIONS 반영. 사용자 대화(Claude 앱) 전달 결정과 추천을 구분. B21 완료 결과 유지 |
+| B22-T1 | DOING | 보스 ID별 저장, 구 저장·최종 보스 호환 |
+| B22-T2 | TODO | 인스턴스 아레나·잠금벽·트리거·처치 이벤트 |
+| B22-T3 | TODO | B1 후보 Asset·3패턴·포고 |
+| B22-T4 | TODO | BossTest_B1·무능력 전투·재시도 |
+| B22-T5 | TODO | V5 HazardReturn 기본 켜짐 |
+| B22-T6 | TODO | draft4.1 boss 필드·CP 생성 |
+| B22-T7 | TODO | V5 6방·A04/A05/A03 실측 |
+| B22-T8 | TODO | 고리 통합·저장 Continue |
+| B22-T9 | TODO | 런처·사용자 안내 |
+| B22-BL1 | TODO | 몸1.3 고리 참고 측정 |
+
+### B21 결과 인계 처리
+
+T1/T2 잠금 코드·T3 검사기는 유지하며 draft4.1 데이터에 잠금/벽이 없으면 비활성을 확인한다. T4 가로 한계는 설계 근거, T5 REVIEW는 V5 기본 적용 후 고리 수락 대기, T6/BL2는 기본 꺼짐 유지, T7/BL1은 D-BODY 참고다. BL3의 draft3 섬 성공은 draft4.1 실측을 대신하지 않는다.
+
+### 이전 Current Tasks (Batch21)
 
 Base `7d40918`(Claude 설계 계약·지시문 시작 커밋). 이전8커밋 보존. [T3 검증](Validation/B21-room-rules.md)·[재개 종료 요약](Validation/B21-resume-summary.md). [이전 차단 원문](Validation/B21-summary.md) 보존. 재개 Base `544ea5e`에서 T1부터 진행하며 T3 `736c6aa`는 반복하지 않는다.
 
@@ -78,16 +96,28 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B21-delivery, B20 슬롯12개는 이번 raw에 보존 |
-| D-V5-DRAFT4 | Claude가 B21 실측으로 draft4 제안 / draft3.1 유지·보류 | 제안 작성 추천. 가로 한계·도랑 폭 표·36면 부족분을 확보했다. 지름길 코드는 이미 해결했고 후보 채택은 별개 | 도랑/머리 여유 배치 다음 설계. [가로](Validation/B21-gaps.md)·[도랑](Validation/B21-hazard-return.md)·[36면](Validation/B21-headroom-table.md) |
-| D-HAZARD-RETURN | [위험 지형 후보](Launchers/current/Play-V5-HazardReturn.cmd) 채택 / 미채택 | 채택 우선 비교 추천. A05 일반 점프 우회0/5·동쪽 복귀5/5. A04 실제 적제외 고정입력5/5 섬보상·피해0·복귀0, 재도전 위치 감각 확인 필요 | B21-T5 REVIEW와 기본 적용 다음 배치. [실측](Validation/B21-hazard-return.md) |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
 
-결정 대기4건. 기본 크기와 지형 좌표는 유지했고 draft3.1 잠금만 반영했다. 두 후보는 기본 꺼짐이다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+결정 대기2건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
 
+아래 10/28 설계 결정의 전달 출처는 사용자 대화(Claude 앱) → 01_DECISIONS.md다. 직접 대화 전문은 없으며 D-BOSS1-LINK·D-HUB-ENEMY는 Claude 추천값을 이번 실행 지시 범위에서 사용한다.
+
 | ID | 결정 | 날짜 | 근거 |
 |---|---|---|---|
+| D-B22-EXEC | 보스1·draft4.1 통합 실행. 기존 최종 보스 호환을 유지하는 ID별 저장 확장(T1) 승인. 계약·사전 결정의 추천값도 이번 범위에서 실행하며 감각 수락과 구분 | 2026-10-28 | 사용자: 지정 06_CODEX_BATCH22_BOSS1.md “읽고 진행해줘” |
+| D-PROC-1028 | 잔수정→검수 반복 대신 방 목적+요소 스펙 단위로 요청. 검수는 구역(고리) 단위로 1회. 운영 체계(AGENTS·Batch 승인)는 유지 | 2026-10-28 | 방 5~6개 1~2분 소요, 수정해도 체감 변화 없음. 원인은 내용물 부족 |
+| D-V5-DRAFT4 | **채택**: draft4.1 (WORLD_V5 13·14절). A03 허브 적0+CP, A03 대시 연습, A04 두 갈래+보스1 아레나, A05 벽 삭제·도랑 게이트 | 2026-10-28 | 기존 결정 대기 해소 |
+| D-A05-TRENCH | A05 부서지는 벽 삭제. A03→A05 직행은 도랑이 막음 | 2026-10-28 | 벽 잠금 계약이 반복 문제. 지형이 같은 역할을 단순하게 함 |
+| D-HAZARD-RETURN | **V5 기본 켜짐**(B21 T5 후보, 마지막 안전 바닥 복귀). V4는 기존 유지. 최종 채택 여부는 고리 플레이에서 판단 | 2026-10-28 | 도랑 게이트에 필요. 실측 A05 우회0/5·동쪽 복귀5/5 |
+| D-A04-BOSS | A04 일반 적 1, 오른쪽 x24~49 보스1 아레나 | 2026-10-28 | 대표 구역에 전투 정점 필요 |
+| D-PRACTICE | 능력 연습은 얻은 방이 아니라 다음 방에서 | 2026-10-28 | 사용자 판단 |
+| D-BOSS4 | 보스 4. 홀수 싸우고 얻음 / 짝수 얻고 싸움. 1 A04 → 대시, 2 B04 벽 점프 획득 후 벽 점프로 잡음, 3 C05 처치 → 더블 점프, 4 C06 최종 모든 능력(처치 시 Slam 유지). Target 4 / Minimum 2 | 2026-10-28 | PRD·GAME_DESIGN 반영됨(로컬 커밋 10/28) |
+| D-SPLIT | 방 데이터는 Claude 담당, Codex는 V5 Design JSON 수정 금지. B22는 Codex가 보스1 구현 + draft4.1 씬 반영까지 한 번에 | 2026-10-28 | 방 데이터 확정 후 한 번 실행으로 합치기까지 |
+| D-A03-PRACTICE-HAZARD | A03 대시 연습 3단계의 공중 hazard는 이번에 넣지 않음 | 2026-10-28 | 검사기 수정 필요. 우선순위 낮음 |
+| D-V5-DRAFT4 | 2-1로 이동(채택) |
+| D-HAZARD-RETURN | 2-1로 이동(V5 기본 켜짐). B21-T5 REVIEW → B22에서 V5 기본 적용, 최종 수락은 고리 플레이 |
 | D-B21-RESUME | Hub 실행 후 T1부터 재개, T3 반복 금지. Unity·Unity 호출 스크립트는 샌드박스 밖에서 실행 | 2026-10-26 | 사용자 이번 대화 직접 지시. 환경 변경 근거로 Preflight 재확인 허용 |
 | D-B21-EXEC | Batch21 실행 승인. 시작 3파일 커밋·draft3.1 계약 구현·기본 꺼짐 후보2종·T6 한정 PlayerMotor 예외. 기본 크기 채택은 제외 | 2026-10-26 | 사용자: “Batches/BATCH-21.md 읽고 진행해줘”. [승인 범위·사전 결정](Batches/BATCH-21.md). Claude 설계·제안을 사용자 감각 수락으로 바꾸지 않음 |
 | D-OPS-20261025 | P1~P7·P9·P10을 검토 보완과 함께 적용. P8·게임 수정 제외 | 2026-10-25 | 사용자: “그렇게 해서 진행해줄래/”. 직전 검토의 적용 순서·보완을 승인. [범위](Batches/BATCH-OPS-20261025.md) |
