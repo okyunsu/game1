@@ -24,7 +24,7 @@
 | B22-T0 | DONE | 01_DECISIONS 반영. 사용자 대화(Claude 앱) 전달 결정과 추천을 구분. B21 완료 결과 유지 |
 | B22-T1 | PARTIAL | ID 저장·구 version1 호환·Continue/초기화 PASS, Unity compile0. 최종 C06 Completion 회귀는 현재 빌드에서 예정. raw/22/T1-save |
 | B22-T2 | PARTIAL | ID·게이트·덮개·발 위치/높이 트리거·등장 예고 일반화. 기존 BossRecovery 실제 X PASS·Error0. B3 실행 빌드 회귀 예정 |
-| B22-T3 | TODO | B1 후보 Asset·3패턴·포고 |
+| B22-T3 | PARTIAL | Unity API로 HP14/피해1·3패턴·단일 페이즈 Asset 생성, 돌진7.5u/s·앵커29/44. 런타임 패턴/포고 실측은 T4에서 |
 | B22-T4 | TODO | BossTest_B1·무능력 전투·재시도 |
 | B22-T5 | TODO | V5 HazardReturn 기본 켜짐 |
 | B22-T6 | TODO | draft4.1 boss 필드·CP 생성 |
