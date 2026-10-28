@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(BoxCollider2D),typeof(SpriteRenderer))]
 public sealed partial class BossEncounter:MonoBehaviour,IDamageable
 {
- public enum Phase{Idle,MeleeTell,MeleeRecovery,WaveTell,WaveRecovery,Defeated,Walk,LeapTell,LeapFlight,LeapRecovery,ChargeTell,Charge,ChargeRecovery,ChaseTell,Chase,ChaseRecovery,ComboLeapTell,ComboLeapFlight,ComboLeapGap,ComboLeapRecovery,BackshotTell,Backstep,BackshotFire,BackshotRecovery,FallingTell,FallingZones,FallingDrop,FallingRecovery,PhaseTwoTell,Dormant}
+ public enum Phase{Idle,MeleeTell,MeleeRecovery,WaveTell,WaveRecovery,Defeated,Walk,LeapTell,LeapFlight,LeapRecovery,ChargeTell,Charge,ChargeRecovery,ChaseTell,Chase,ChaseRecovery,ComboLeapTell,ComboLeapFlight,ComboLeapGap,ComboLeapRecovery,BackshotTell,Backstep,BackshotFire,BackshotRecovery,FallingTell,FallingZones,FallingDrop,FallingRecovery,PhaseTwoTell,Dormant,EntranceTell}
+ [Tooltip("Stable save ID. C06 retains the legacy final-boss flag.")]public string bossId=ProgressSave.FinalBossId;
+ [Tooltip("Optional solid encounter gate, active only during combat.")]public GameObject encounterGate;
+ [Tooltip("Optional floor cover removed permanently after this boss is defeated.")]public GameObject floorCover;
+ [Tooltip("Use player feet and the upper trigger bound instead of the legacy center trigger.")]public bool feetTrigger;
+ [Tooltip("Maximum player feet y for encounter entry (world u).")]public float startMaxY=4;
+ [Min(0),Tooltip("Encounter arrival warning before the first pattern (s).")]public float entranceSeconds;
  [Tooltip("Shared boss prototype values.")]public BossTuning tuning;
  [Header("Scene references")]
  public RoomExit leftExit;
@@ -33,15 +39,17 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  public int AttackToken=>attackToken;
  public float Facing=>facing;
  public Bounds MeleeBounds=>new Bounds(new Vector3(tuning.extendedPatterns?transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+tuning.meleeRange*.5f):GetComponent<BoxCollider2D>().bounds.min.x-tuning.meleeRange*.5f,floorY+.5f,0),new Vector3(tuning.meleeRange,1,1));
- void Awake(){HP=tuning.b3Patterns&&Debug.isDebugBuild?Mathf.Clamp(N5Args.Int("-boss-start-hp",tuning.maxHP),1,tuning.maxHP):tuning.maxHP;Debug.Log($"BOSS initial HP={HP} maxHP={tuning.maxHP} phase=1");doorSprites=leftExit.GetComponentsInChildren<SpriteRenderer>();doorColors=new Color[doorSprites.Length];for(int i=0;i<doorSprites.Length;i++)doorColors[i]=doorSprites[i].color;warning.enabled=false;}
- void SetLock(bool locked){leftExit.enabled=!locked;for(int i=0;i<doorSprites.Length;i++)doorSprites[i].color=locked?new Color(.9f,.2f,.2f):doorColors[i];}
+ void Awake(){HP=tuning.b3Patterns&&Debug.isDebugBuild?Mathf.Clamp(N5Args.Int("-boss-start-hp",tuning.maxHP),1,tuning.maxHP):tuning.maxHP;Debug.Log($"BOSS id={bossId} initial HP={HP} maxHP={tuning.maxHP} phase=1");doorSprites=leftExit!=null?leftExit.GetComponentsInChildren<SpriteRenderer>():Array.Empty<SpriteRenderer>();doorColors=new Color[doorSprites.Length];for(int i=0;i<doorSprites.Length;i++)doorColors[i]=doorSprites[i].color;warning.enabled=false;}
+ void Start(){if(bossId!=ProgressSave.FinalBossId){bool defeated=ProgressSave.IsBossDefeated(bossId);SetLock(false);if(floorCover!=null)floorCover.SetActive(!defeated);if(defeated)gameObject.SetActive(false);}}
+ void SetLock(bool locked){if(leftExit!=null)leftExit.enabled=!locked;if(encounterGate!=null)encounterGate.SetActive(locked);for(int i=0;i<doorSprites.Length;i++)doorSprites[i].color=locked?new Color(.9f,.2f,.2f):doorColors[i];}
  void SetPhase(Phase phase){LastPhaseDuration=Time.timeAsDouble-PhaseStarted;State=phase;PhaseStarted=Time.timeAsDouble;warning.enabled=phase==Phase.MeleeTell||phase==Phase.WaveTell;warning.color=phase==Phase.MeleeTell?new Color(1,.25f,.15f,.6f):new Color(1,.8f,.1f,.6f);}
  void Update(){
   var session=RoomSession.Instance;if(session?.Player==null)return;
   if(wave==null)wave=null;
-  if(State==Phase.Idle){if(!session.Player.InputLocked&&session.Player.transform.position.x>startX){SetLock(true);if(tuning.extendedPatterns){GetComponent<BoxCollider2D>().isTrigger=true;BeginPattern(0);}else SetPhase(Phase.MeleeTell);}return;}
+  if(State==Phase.Idle){var feet=session.Player.GetComponent<Collider2D>().bounds.min;if(!session.Player.InputLocked&&(feetTrigger?session.Player.transform.position.x>=startX&&feet.y<=startMaxY:session.Player.transform.position.x>startX)){SetLock(true);if(tuning.extendedPatterns)GetComponent<BoxCollider2D>().isTrigger=true;if(entranceSeconds>0){SetPhase(Phase.EntranceTell);Warn(transform.position.x,GetComponent<BoxCollider2D>().bounds.size.x,new Color(1,.7f,.1f,.8f));}else if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}return;}
   if(!Fighting||GameState.GetOrCreate().Paused||session.Transitioning||session.Respawning||deathQueued)return;
   double elapsed=Time.timeAsDouble-PhaseStarted;
+  if(State==Phase.EntranceTell){if(elapsed>=entranceSeconds){if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}return;}
   if(tuning.extendedPatterns){UpdateExtended((float)elapsed);return;}
   if(State==Phase.MeleeTell&&elapsed>=tuning.meleeTell){var bounds=MeleeBounds;int n=Physics2D.OverlapBox(bounds.center,bounds.size,0,new ContactFilter2D{useTriggers=true},contacts);for(int i=0;i<n;i++)contacts[i].GetComponent<PlayerHealth>()?.TakeDamage(tuning.damage,transform.position);SetPhase(Phase.MeleeRecovery);}
   else if(State==Phase.MeleeRecovery&&elapsed>=tuning.recovery)SetPhase(Phase.WaveTell);
@@ -72,7 +80,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
   else if(State==Phase.Charge){float x=ClampX(transform.position.x+facing*tuning.chargeSpeed*Time.deltaTime);MoveBoss(new Vector3(x,StandingY,0));DamageArea(GetComponent<BoxCollider2D>().bounds);if(Mathf.Abs(x-ClampX(facing<0?leftWallX:rightWallX))<.001f)SetPhase(Phase.ChargeRecovery);}
   else if((State==Phase.MeleeRecovery||State==Phase.LeapRecovery||State==Phase.WaveRecovery||State==Phase.ChargeRecovery)&&elapsed>=RecoveryTime(tuning.recovery))BeginWalk();
  }
- public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;CheckPhaseTwoHit();GetComponent<HitFeedback>()?.Hit(HP);if(HP==0){ClearFallingWarnings();ClearB3Hazards();SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);foreach(var live in candidateWaves)if(live!=null)Destroy(live.gameObject);wave=null;warning.enabled=false;Defeated?.Invoke();}}
+ public void ReceiveHit(int damage,Vector2 source){if(!Fighting||HP<=0||damage<=0)return;HP=Mathf.Max(0,HP-damage);Hits++;CheckPhaseTwoHit();GetComponent<HitFeedback>()?.Hit(HP);if(HP==0){ClearFallingWarnings();ClearB3Hazards();SetPhase(Phase.Defeated);SetLock(false);if(wave!=null)Destroy(wave.gameObject);foreach(var live in candidateWaves)if(live!=null)Destroy(live.gameObject);wave=null;warning.enabled=false;if(bossId!=ProgressSave.FinalBossId){ProgressSave.MarkBossDefeated(bossId,RoomSession.Instance);if(floorCover!=null)floorCover.SetActive(false);}Defeated?.Invoke();}}
  public bool DeferDeath(){if(resolvingDeath)return false;if(State==Phase.Defeated)return true;if(!Fighting)return false;if(!deathQueued){deathQueued=true;}return true;}
  void LateUpdate(){if(!deathQueued)return;if(State==Phase.Defeated){deathQueued=false;return;}resolvingDeath=true;deathQueued=false;RoomSession.Instance.Die();}
  void Contact(Collision2D c){if(Fighting&&!deathQueued){var health=c.collider.GetComponent<PlayerHealth>();if(health==null)return;if(tuning.extendedPatterns&&State!=Phase.Walk)TryPatternDamage(health,attackToken,transform.position);else health.TakeDamage(tuning.damage,transform.position);}}

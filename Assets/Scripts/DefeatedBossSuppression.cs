@@ -10,6 +10,7 @@ public sealed class DefeatedBossSuppression:MonoBehaviour
         foreach(var root in gameObject.scene.GetRootGameObjects())
             foreach(var boss in root.GetComponentsInChildren<BossEncounter>(true))
             {
+                if(boss.bossId!=ProgressSave.FinalBossId)continue;
                 if(boss.leftExit!=null)boss.leftExit.enabled=true;
                 if(boss.warning!=null)boss.warning.enabled=false;
                 boss.gameObject.SetActive(false);
