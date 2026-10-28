@@ -1,7 +1,7 @@
-param([ValidateSet('NewGame','AfterDash','DJ','BodySizeTest')][string]$Mode='NewGame',[ValidateSet('','1.6','1.3','1.1')][string]$BodyHeight='',[switch]$HazardReturn,[switch]$CornerFix,[switch]$DashCornerFix,[switch]$NoMap,[switch]$Smoke,[string]$Evidence='')
+param([ValidateSet('NewGame','AfterDash','DJ','BodySizeTest','Loop','BossTestB1')][string]$Mode='NewGame',[ValidateSet('','1.6','1.3','1.1')][string]$BodyHeight='',[switch]$HazardReturn,[switch]$CornerFix,[switch]$DashCornerFix,[switch]$NoMap,[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
 $taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$taskBuild=Join-Path $taskRoot 'Builds/B21-delivery'
+$taskBuild=Join-Path $taskRoot 'Builds/B22-delivery'
 if($DashCornerFix){$CornerFix=$true}
 $taskSlot='V5-'+$Mode
 if($BodyHeight){$taskSlot+='-Body'+$BodyHeight.Replace('.','')}
@@ -12,10 +12,11 @@ if($Smoke){if(!$Evidence){throw 'Smoke requires a new evidence path'};$taskSlot+
 $taskSlots=Join-Path $taskBuild 'slots'
 New-Item -ItemType Directory -Force $taskSlots | Out-Null
 $taskSave=Join-Path $taskSlots ($taskSlot+'.json')
-$taskRoom=if($Mode -eq 'BodySizeTest'){'BodySizeTest'}elseif($Mode -eq 'AfterDash'){'A03'}else{'A01'}
+$taskRoom=if($Mode -eq 'BodySizeTest'){'BodySizeTest'}elseif($Mode -in @('AfterDash','Loop','BossTestB1')){'A03'}else{'A01'}
 $taskGive=if($Mode -eq 'AfterDash'){'dash'}elseif($Mode -eq 'DJ'){'dj'}else{''}
 $taskArgs=@('-v5','-map-layout=world_v5_A',('-start-room='+$taskRoom),('-give='+$taskGive),'-save-path',('"'+$taskSave+'"'),'-screen-width','1280','-screen-height','720','-screen-fullscreen','0')
 if($Mode -eq 'BodySizeTest'){$taskArgs=@('-body-size-test','-save-path',('"'+$taskSave+'"'),'-screen-width','1280','-screen-height','720','-screen-fullscreen','0')}
+if($Mode -eq 'BossTestB1'){$taskArgs+='-boss-test-b1'}
 if($BodyHeight){$taskArgs+=@('-body-height',$BodyHeight)}
 if($HazardReturn){$taskArgs+='-hazard-return'}
 if($CornerFix){$taskArgs+='-corner-fix'}

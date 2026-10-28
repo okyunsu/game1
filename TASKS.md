@@ -2,20 +2,22 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-28, Codex (Batch22 진행 중)
-- Base: `e437320`. 로컬 origin/main 대비 기존 2커밋 보존, fetch·push 없음.
-- 승인: 사용자 지정 [Batch22 지시문](Design/proposals-1028/06_CODEX_BATCH22_BOSS1.md). 별도 Batches/BATCH-22.md 없음; 지정 원문을 승인 범위로 사용.
-- 기존 변경: Design/proposals 4개·Design/v5 3개·GAME_DESIGN 및 D41 검증문서 보존. 시작 patch·보호 SHA는 Validation/_raw/22/start/.
-- 상태: T0 결정 반영, T1 보스 ID 저장 착수. Task 상한14, 실행 Task/Backlog 총11.
-- 환경: Preflight PASS, hubLicensingClient=True, Unity exit0.
-- Codex 차례: 보스1·draft4.1 통합과 실측. 사용자 감각 수락·Sprint Gate 별도.
-- 결정: D-BODY·D-CORNER-FIX 유지, Ready Queue0.
+- 갱신: 2026-10-29, Codex (Batch22 종료)
+- Base `e437320`, 최종 HEAD는 `git log -1`. 기존 미푸시2커밋·태그 보존, fetch/push/squash 없음.
+- 상태: 승인 T0~T9·BL1 기술 작업 완료. T5/T8 고리 감각 REVIEW, Ready Queue0.
+- 플레이: [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd), A03부터 보스1→A05 대시→A03 연습. [보스만](Launchers/current/Play-BossTest-B1.cmd).
+- 실제 검증: 기본 몸1.6 고리46.731s·몸1.3 고리46.716s·저장/Continue PASS. 첫 사람 플레이 시간과 구분.
+- 환경: Preflight PASS·Hub licensing client=True·Unity exit0. Development 오류0/경고0·기본 회귀13/13·실제 런처14개 Error0.
+- 사용자 차례: 기존 수락 순서 유지 후 새 고리1회(예상10~15분). D-BODY/D-CORNER-FIX 결정2/8.
+- Claude 차례: 실측·고리 피드백을 참고. 방 좌표·게임 규칙 원본 이번 변경0.
+- Codex 차례: Queue0으로 종료. 후속 제품 작업은 다음 승인 범위에서 진행.
+- 보존: 시작 설계 수정8개·미추적 D41 문서·기존2커밋 그대로. [요약](Validation/B22-summary.md).
 
 ## 1. 현재 상태 / Current Sprint
 
-- Sprint3: V5 층 A 파일럿. B21 실제 지름길·가로 한계·36면 여유 표·승인 Backlog 완료. 크기·draft4·후보 채택 결정4건.
+- Sprint3: V5 draft4.1 층 A 파일럿. B22 보스1·대시 고리 통합과 실측 완료, 사용자 고리 수락 대기. 크기·모서리 결정2건.
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
-- 운영 개선은 종료했다. 게임 [Batch21](Batches/BATCH-21.md)은 사용자 2026-10-26 실행 지시로 승인됐다.
+- 운영 개선은 종료했다. 이번 [Batch22](Design/proposals-1028/06_CODEX_BATCH22_BOSS1.md)는 사용자 2026-10-28 실행 지시로 승인됐다.
 
 ## 1-0. Current Tasks (Batch22)
 
@@ -30,7 +32,7 @@
 | B22-T6 | DONE | C-1/C-2/C-6 필드 fixture 및 잘못된 spawn 거절 PASS, A03 CP 하나·6방 잠금/벽0 검증 |
 | B22-T7 | DONE | 6방 생성. A04 직행0/5·좌복귀5/5·등불2포고보상5/5, A05 무능력0/10·진입쪽복귀10/10·대시10/10, A03 각각0/5·5/5. 정적FAIL0/WARN16·SceneFAIL0 |
 | B22-T8 | REVIEW | 실제 연속 고리46.731s·보스전8.618s·일반 적 포함·대시 획득·3연습·Continue PASS·Error0. 자연 사용자 고리 수락 대기 |
-| B22-T9 | TODO | 런처·사용자 안내 |
+| B22-T9 | DONE | README·TASKS3/9·고리/보스 런처·질문2개/기록 칸 |
 | B22-BL1 | DONE | 몸1.3 연속 고리46.716s·모든 단계/Continue PASS·Error0. 기본 크기 변경0. [원문](Validation/_raw/22/BL1-body13/result.txt) |
 
 ### B21 결과 인계 처리
@@ -95,7 +97,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B21-delivery, B20 슬롯12개는 이번 raw에 보존 |
+| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B22-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
 
 결정 대기2건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
@@ -153,10 +155,12 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 - [Play-V5 기본1.6](Launchers/current/Play-V5.cmd) → [1.3](Launchers/current/Play-V5-Body13.cmd) → [1.1](Launchers/current/Play-V5-Body11.cmd): 각 A01 시작, 화면 점유·머리 걸림·공격 사거리 비교 후 D-BODY 답변, 약5분. 기본 채택은 별도 배치.
 
 
-- [Play-V5-HazardReturn](Launchers/current/Play-V5-HazardReturn.cmd): 기존 수락 목록 뒤 A05 도랑에서 피해1→동쪽 안전 바닥 복귀, A04 포고 재도전 위치 확인. A01 시작·A05 이동 포함5~10분.
+- [Play-V5-HazardReturn](Launchers/current/Play-V5-HazardReturn.cmd): B21 복귀 수락 항목은 아래 B22 고리 플레이에 통합. 이제 모든 V5에서 같은 기본 복귀를 사용하며 별도 꺼짐 비교가 아님.
 - [Play-V5-CornerFix](Launchers/current/Play-V5-CornerFix.cmd): A01/A02 작은 머리 모서리에서 상승 유지와 옆 밀림 체감. 넓은 천장은 계속 막힘. 3~5분.
 - [Play-V5-Candidates](Launchers/current/Play-V5-Candidates.cmd): 두 후보 동시, A01 머리/ A05 도랑 비교5~10분. `-BodyHeight 1.3/1.1` 인자로 크기와 함께 실행 가능.
 - 선택 비교 [Play-V5-DashCornerFix](Launchers/current/Play-V5-DashCornerFix.cmd): 대시 발끝 모서리 보정 추가, A01/A02에서 대시 중 낮은 모서리3~5분. 기본/기존 머리 후보에는 이 토글 꺼짐.
+
+- [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): 기존 순서 뒤 draft4.1 고리 수락. A03→A04 보스→A05 대시→A03 연습/대시 문 선반, 예상10~15분. 보스만 [BossTest_B1](Launchers/current/Play-BossTest-B1.cmd), 3~5분. 질문: 전투/처치 후 구멍의 이유가 읽히나? 대시가 손에 익나? 기록: 고리 시간____ / 보스 시도____ / 막힌 곳____.
 
 조정 값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). 기본 보스(B3, D-B3 10/14)는 [기본 BossTuning](Assets/ScriptableObjects/BossTuning.asset)에서 조정하고(Boss-B3 런처는 [후보 Asset](Assets/BossCandidates/B3/BossTuning.asset)을 쓴다) Play 종료 후 원하는 값을 명시 저장·재빌드한다.
 
@@ -167,10 +171,9 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
-| V5-A05-TRENCH | 대시 없이 일반 점프로 도랑 통과(피해1). 걷기만은 이번 측정에서 실패·사망. A04/A05의 도랑 입구 복귀 동작 없음 | [사용자 CSV](Playtest/20261022-233114.csv), [B20 T2](Validation/B20-trench.md) |
 | V5-HEADBUMP | 사용자 점프 머리 걸림 피드백. h1.6 머리 충돌 후보36면·격리 실측33/36 접촉, 모서리 수평 보정 없음. 불일치3과 초기 문 전환2도 보존 | [플레이 CSV](Playtest/20261022-233114.csv), [B20 T3](Validation/B20-headbump.md), [전체 실측](Validation/B20-headbump-all.md) |
 
-B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 기존 제품 버그3건에 B20의 V5 관찰3건을 추가해 열린 버그5건, 결정 대기4건이다. V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
+B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그4건, 결정 대기2건이다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -215,49 +218,41 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch21
+## 9. Latest Handoff — Batch22
 
 ### 결정 질문지
 
-기존 D-BODY(1.6/1.3/1.1)·D-V5-DRAFT4(새 실측으로 제안 작성/보류)를 유지한다. D-HAZARD-RETURN(채택/미채택)·D-CORNER-FIX(0.25 머리만/머리+대시/미채택·재비교)를 추가해4/8이다. 추천과 풀리는 Task는2절 표를 따른다. 후보는 기술 검증 뒤에도 기본 꺼짐이며 기본 적용은 사용자 결정 후 별도 배치다.
+D-BODY: 기본1.6 / 1.3 / 1.1. AI 추천은1.3 우선 비교이며 자동 고리1.3도 통과했지만 직접 크기·공격 사거리 판단이 필요하다. D-CORNER-FIX: 머리만 / 머리+대시 / 미채택. 기본 꺼짐 유지, 이전 비교 런처로 판단한다. 풀리는 항목은2절 표 참조. draft4.1과 V5 복귀 기본 적용은 승인됐고 고리의 감각 수락만 남았다.
 
 ### 직접 플레이 확인
 
-기존3절 V4 수락 순서 → B17/B18 A02/작은 발판/등불/A06 → BodySizeTest5분 → V5 1.6/1.3/1.1 비교5분을 유지한다. 기존 미수락 상태를 DONE으로 바꾸지 않았다. 이어 아래 후보들을 비교한다.
+기존 V4 장치·V4 경로·자연 저장·기존 보스/엔딩 → BodySizeTest·V5 몸 비교 → B21 복귀 항목(아래 고리에 통합) → 머리·동시·대시 모서리 비교 순서를 유지했다. 상세 런처·시간은3절이다.
 
-1. [위험 지형 복귀](Launchers/current/Play-V5-HazardReturn.cmd), V5 A05: 일반 점프로 도랑 진입 후 피해1·동쪽 안전 바닥 복귀, A04 등불 포고 재도전. A01 시작·이동 포함5~10분.
-2. [머리 모서리 보정](Launchers/current/Play-V5-CornerFix.cmd), V5 A01/A02: 작은 겹침에서 상승 유지·옆 밀림이 자연스러운지, 넓은 천장은 막히는지. 3~5분.
-3. [동시 후보](Launchers/current/Play-V5-Candidates.cmd), V5 A01/A05: 두 동작 함께5~10분. 크기 인자1.3/1.1에서도 실제 보정 확인.
-4. [대시 후보](Launchers/current/Play-V5-DashCornerFix.cmd), V5 작은 턱에서 대시 발끝이 살짝 걸릴 때 위 보정 비교3~5분. 별도 토글 기본false.
+그 다음 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd), Scene A03_V5→A04_V5→A05_V5→A03_V5. 예상10~15분. 질문: ① A04 전투와 이긴 뒤 구멍의 이유가 읽히나? ② A03 연습 후 대시가 손에 익나? 기록: 고리 시간____ / 보스1 시도____ / 막힌 곳____. [보스 단독](Launchers/current/Play-BossTest-B1.cmd)은 BossTest_B1, 사망 CP-A03, 3~5분.
 
-후보 값은 `Assets/Candidates/B21HazardReturn.asset`(접지0.1s·안전 여백0.5u·정지0.12s), `B21CornerFix.asset`(머리 겹침0.25u·추가 여백0.01u·대시 토글false/최대턱0.25u)에만 있다. Play 변경은 기록 후 Edit 모드에서 명시 저장·Development 재빌드한다. Scene은 배치 원본, 반복 오브젝트는 Prefab 원본이다. 기본 크기 채택은 D-BODY 뒤 별도다.
+조정 위치: B1 BossTuning.asset의 HP14·피해1·돌진7.5u/s·패턴 토글, Scene BossEncounter의 아레나/등장0.8s, B21HazardReturn.asset의 접지0.1s·여백0.5u·정지0.12s. 같은 값은 중복 노출하지 않았다. Play 변경은 종료 전에 기록 → Edit 모드에서 명시 저장 → 재빌드한다. 기본 몸1.6·모서리 후보 꺼짐 유지.
 
 ### Task별 결과
 
-**Claude 설계 변경:** 시작 계약 `7d40918`, WORLD_V5.md·rooms_v5_A.json의 잠금/방향 표시. 좌표·수치 변경 없음. 재개 Base `544ea5e`, 사용자 Hub 실행 확인 후 Preflight `hubLicensingClient=True`·exit0. T3는 반복하지 않았다. 최초 exit198 원문은 [이전 실행](Validation/B21-summary.md)에 보존했다.
+Claude 설계 변경: `e437320`과 시작 작업 트리 Design/proposals·Design/v5·GAME_DESIGN(문서 표기 출처=Claude). 사용자 설계 수정8개·D41 문서를 이번 커밋에 섞지 않았다. Base `e437320`, [종료 요약](Validation/B22-summary.md)에 원문·실패·실측 표와 실행 대상을 연결했다. 이전 인계는 [B21 재개 요약](Validation/B21-resume-summary.md)·현재 남은 B21 표로 보존한다.
 
-| Task | 상태 | 커밋 | 실제 결과·주요 파일·한계 |
+| Task | 상태 | 커밋 | 주요 변경·검증·남은 판단 |
 | --- | --- | --- | --- |
-| T1 | DONE | `767fd2c`·`60604f4` | V4ExitRule·생성기. 저장 키/방향 연결·기존 gate/봉인·문 물리잠금/복원, 빌드0오류·최종 규칙/지름길 Error0·Quiet13/13. [근거](Validation/B21-lock.md) |
-| T2 | DONE | `49be69f` | Scene6개·기하/요소 불변, 실제5항목/14문/stub4/일방역2 PASS·Quiet13/13. [근거](Validation/B21-shortcut.md) |
-| T3 | DONE 유지 | `736c6aa` | 이전 완료 그대로. 구현·개별 검증 재실행0. T8 종료 정적 검사만 수행 |
-| T4 | DONE | `98f6f79` | B21Arena·4레시피 각3회. 달리기4.55~4.60, 공중대시7.35~7.40, 지상대시후4.30, 대시만3.05u. [표](Validation/B21-gaps.md) |
-| T5 | REVIEW | `930fa70`·`4816fff` | 위험 지형 후보. A05 통과0/5·복귀5/5, A04 섬 접지(복귀2), HP0 기존 사망 유지. [폭24회·실패 원문](Validation/B21-hazard-return.md) |
-| T6 | REVIEW | `4816fff` | PlayerMotor 후보 호출3줄·후보 Asset. 접촉33→10/36·벽점프/포고/대시각10·몸1.3/1.1 보정 PASS. 꺼짐 최대값 재현, 짧은1회0.84003 편차 보존. [전후](Validation/B21-corner.md) |
-| T7 | DONE | `0f73b48` | 36면 부족0.12~1.82u·오름·천장 표, 지형 변경0. [표](Validation/B21-headroom-table.md) |
-| T8 | DONE | `91e4dfb` | B21 최종 Development·기본/Quiet각13/13·런처10개각10초Error0·정적/Scene FAIL0/WARN0·보호88/범위/링크0 |
-| T9 | DONE | `38527fe` | 결정4/8·플레이 순서·README·0/9절 |
-| BL1 | DONE | `f13c9a5` | 몸1.3/1.1 동일36면·후보각32면·최대부족1.52/1.32u. [표](Validation/B21-headroom-small.md) |
-| BL2 | REVIEW | `c440ed8` | 대시 발끝 별도토글 기본꺼짐, 0.2u턱10/10·꺼짐개별수치동일·Quiet13/13. [근거](Validation/B21-dash-corner.md) |
-| BL3 | DONE | `0b70fb6` | 실제 적제외·능력없음 A04 섬보상5/5·피해/복귀0·포고2·Quiet13/13. [근거](Validation/B21-a04-island.md) |
+| T0 | DONE | `c99f22e` | TASKS 결정 전달 출처·추천 구분·B21 처리 |
+| T1 | DONE | `43edba8`·`dbe1a19` | ProgressSave ID 배열·구 version1·최종 C06/Completion/Continue PASS |
+| T2 | DONE | `a3dd8a4`·`dbe1a19` | BossEncounter 인스턴스화·Ending/Suppression 최종만. B3 8패턴·2페이즈·사망·Slam/엔딩 PASS |
+| T3/T4 | DONE | `46c0343`·`d9b4841` | B1 Asset·BossTest_B1·3패턴·예고.8s·포고vy11·무능력 실제처치8.500s HP3·CP/재진입 PASS |
+| T5 | REVIEW | `a878837` | V5 기본 안전 바닥 복귀·V4 컴포넌트 없음. 고리 체감 수락 대기 |
+| T6/T7 | DONE | `30e8d7b`·`622c6a4` | Scripts/Editor 생성기·6 Scene·CP·고정 계약 fixture. A04 직행0/5/포고5/5, A05 무능력0/10/대시10/10, A03 각각0/5/5/5. 정적FAIL0/WARN16·SceneFAIL0 |
+| T8 | REVIEW | `dbe1a19` | 실제 연속 고리46.731s·저장/Continue·Error0. 고리 감각 수락 대기 |
+| BL1 | DONE | `55da7dd` | 몸1.3 고리46.716s 모든 단계·Continue PASS, 기본값 변경0 |
+| T9/종료 | DONE | 이번 종료 커밋(`git log -1`) | README·런처2개·빌드/슬롯 보존·기본 회귀13/13·카드/보호/작업 트리 검사 |
 
-표의 해시는 이번 재개분을 합치기 전 Task 커밋이며 최종 커밋은 `git log -1`·`B21-resume`으로 확인한다. 기존 공개 `B21`·T3 이력은 보존한다. 이전 Base부터 공개된 커밋은 합치지 않고 재개 Base 이후 미공개분만 정리했다. push 없음.
-
-최신 [재개 요약](Validation/B21-resume-summary.md): 기본 빌드 B21-delivery·V4 B12-delivery 유지. 최종 [기본13/13](Validation/_raw/regression/B21-postdoor-default/result.txt)·[Quiet13/13](Validation/_raw/regression/B21-T1-physical/result.txt)·[10런처Error0](Validation/_raw/21/resume-20261026-210738/postdoor-launchers-retry1/summary.txt). [최종 카드](Validation/_raw/21/resume-20261026-210738/final-batch-card.txt)와 [작업 트리](Validation/_raw/21/resume-20261026-210738/final-worktree.txt)를 별도 확인했다. 카드의 과거 REGRESSION을 이번 증거로 세지 않는다. 재사용 Smoke 슬롯의 최초 room-ready timeout은 원인 미확정·새 슬롯 재시도 PASS, 절대 Evidence 경로를 잘못 넘긴 호출 실패는 상대 경로로 수정해 새 실행10건 PASS. 초기 실패와 적 격리 라벨 정정은 요약/Task별 원문에 보존했다.
+B1 자동 처치 약8.6초·고리 약47초는 빠른 처방 입력 결과이며 첫 사람 플레이 2~5분/고리10~15분의 충족 증거가 아니다. 계약 수치를 임의로 조정하지 않았다. 첫 전투의 사망, 별도 포고 조건 실패, A04 첫 레시피0/5, 고리의 구덩이/머리 충돌 입력 실패는 요약에 원문과 함께 남겼다. B3 초기 검사는 증분 빌드의 CP-C04 fixture 누락으로 시작 못 했고 클린 빌드에서 패턴·페이즈·엔딩·기존 런처가 통과했다. 사람 감각·실제 패드·Release·Sprint Gate는 미실시다.
 
 ### 다음 Batch 후보
 
-현재 Batch의 Backlog1~3와 최종 검사를 마쳤고 Queue0으로 종료했다. 다음 제품 작업은 후보 채택·D-BODY·Claude draft4 제안 후 승인하며 층B/C 확장·Sprint Gate는 하지 않는다.
+고리 피드백·D-BODY/D-CORNER-FIX 결정에 따른 승인된 보완. 첫 승리/고리 시간은 사용자 실측 후 계약 조정을 제안한다. 보스2~4·층B/C 확대·Sprint Gate는 이번에 진행하지 않았다. Backlog 소진·Queue0으로 종료한다.
 
 ## 10. Playtest·Before-After
 

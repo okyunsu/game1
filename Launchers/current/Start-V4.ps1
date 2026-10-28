@@ -1,7 +1,7 @@
 param([ValidateSet('NewGame','Mechanics','AfterDash','AfterWall','BeforeBoss','AfterEnding')][string]$Mode='NewGame',[ValidateSet('base','b2','b2fast','b2slow','b3')][string]$Boss='',[switch]$AV1,[switch]$NoMap,[switch]$PhaseTwo,[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
 $taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$taskBuild=Join-Path $taskRoot 'Builds/B12-delivery'
+$taskBuild=Join-Path $taskRoot 'Builds/B22-delivery'
 $taskSlot=$Mode
 if($Boss){$taskSlot+='-'+$Boss}
 if($PhaseTwo){$taskSlot+='-P2'}
