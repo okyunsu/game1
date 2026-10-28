@@ -24,11 +24,11 @@
 | B22-T0 | DONE | 01_DECISIONS 반영. 사용자 대화(Claude 앱) 전달 결정과 추천을 구분. B21 완료 결과 유지 |
 | B22-T1 | PARTIAL | ID 저장·구 version1 호환·Continue/초기화 PASS, Unity compile0. 최종 C06 Completion 회귀는 현재 빌드에서 예정. raw/22/T1-save |
 | B22-T2 | PARTIAL | ID·게이트·덮개·발 위치/높이 트리거·등장 예고 일반화. 기존 BossRecovery 실제 X PASS·Error0. B3 실행 빌드 회귀 예정 |
-| B22-T3 | PARTIAL | Unity API로 HP14/피해1·3패턴·단일 페이즈 Asset 생성, 돌진7.5u/s·앵커29/44. 런타임 패턴/포고 실측은 T4에서 |
-| B22-T4 | TODO | BossTest_B1·무능력 전투·재시도 |
+| B22-T3 | DONE | HP14/피해1·돌진7.5u/s·도약/충격파/돌진만 관측·페이즈전환0. 실제 윗면포고1·vy11.000u/s. raw/22/T4-complete |
+| B22-T4 | PARTIAL | BossTest_B1 실제 무능력 처치8.500s·HP3·사망→CP-A03·HP14초기화·ID저장·재진입 보스/게이트/덮개 없음 PASS·Error0. 사용자 런처 제공 예정 |
 | B22-T5 | DONE | V5 인자 없이 HazardReturn·안전바닥/복귀 실측 PASS. V4 기본 hazard=False·Error0, 기존 DamageBlock 변경0 |
 | B22-T6 | DONE | C-1/C-2/C-6 필드 fixture 및 잘못된 spawn 거절 PASS, A03 CP 하나·6방 잠금/벽0 검증 |
-| B22-T7 | TODO | V5 6방·A04/A05/A03 실측 |
+| B22-T7 | DONE | 6방 생성. A04 직행0/5·좌복귀5/5·등불2포고보상5/5, A05 무능력0/10·진입쪽복귀10/10·대시10/10, A03 각각0/5·5/5. 정적FAIL0/WARN16·SceneFAIL0 |
 | B22-T8 | TODO | 고리 통합·저장 Continue |
 | B22-T9 | TODO | 런처·사용자 안내 |
 | B22-BL1 | TODO | 몸1.3 고리 참고 측정 |
@@ -116,8 +116,6 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | D-BOSS4 | 보스 4. 홀수 싸우고 얻음 / 짝수 얻고 싸움. 1 A04 → 대시, 2 B04 벽 점프 획득 후 벽 점프로 잡음, 3 C05 처치 → 더블 점프, 4 C06 최종 모든 능력(처치 시 Slam 유지). Target 4 / Minimum 2 | 2026-10-28 | PRD·GAME_DESIGN 반영됨(로컬 커밋 10/28) |
 | D-SPLIT | 방 데이터는 Claude 담당, Codex는 V5 Design JSON 수정 금지. B22는 Codex가 보스1 구현 + draft4.1 씬 반영까지 한 번에 | 2026-10-28 | 방 데이터 확정 후 한 번 실행으로 합치기까지 |
 | D-A03-PRACTICE-HAZARD | A03 대시 연습 3단계의 공중 hazard는 이번에 넣지 않음 | 2026-10-28 | 검사기 수정 필요. 우선순위 낮음 |
-| D-V5-DRAFT4 | 2-1로 이동(채택) |
-| D-HAZARD-RETURN | 2-1로 이동(V5 기본 켜짐). B21-T5 REVIEW → B22에서 V5 기본 적용, 최종 수락은 고리 플레이 |
 | D-B21-RESUME | Hub 실행 후 T1부터 재개, T3 반복 금지. Unity·Unity 호출 스크립트는 샌드박스 밖에서 실행 | 2026-10-26 | 사용자 이번 대화 직접 지시. 환경 변경 근거로 Preflight 재확인 허용 |
 | D-B21-EXEC | Batch21 실행 승인. 시작 3파일 커밋·draft3.1 계약 구현·기본 꺼짐 후보2종·T6 한정 PlayerMotor 예외. 기본 크기 채택은 제외 | 2026-10-26 | 사용자: “Batches/BATCH-21.md 읽고 진행해줘”. [승인 범위·사전 결정](Batches/BATCH-21.md). Claude 설계·제안을 사용자 감각 수락으로 바꾸지 않음 |
 | D-OPS-20261025 | P1~P7·P9·P10을 검토 보완과 함께 적용. P8·게임 수정 제외 | 2026-10-25 | 사용자: “그렇게 해서 진행해줄래/”. 직전 검토의 적용 순서·보완을 승인. [범위](Batches/BATCH-OPS-20261025.md) |
