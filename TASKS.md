@@ -26,8 +26,8 @@
 | B22-T2 | PARTIAL | ID·게이트·덮개·발 위치/높이 트리거·등장 예고 일반화. 기존 BossRecovery 실제 X PASS·Error0. B3 실행 빌드 회귀 예정 |
 | B22-T3 | PARTIAL | Unity API로 HP14/피해1·3패턴·단일 페이즈 Asset 생성, 돌진7.5u/s·앵커29/44. 런타임 패턴/포고 실측은 T4에서 |
 | B22-T4 | TODO | BossTest_B1·무능력 전투·재시도 |
-| B22-T5 | TODO | V5 HazardReturn 기본 켜짐 |
-| B22-T6 | TODO | draft4.1 boss 필드·CP 생성 |
+| B22-T5 | DONE | V5 인자 없이 HazardReturn·안전바닥/복귀 실측 PASS. V4 기본 hazard=False·Error0, 기존 DamageBlock 변경0 |
+| B22-T6 | DONE | C-1/C-2/C-6 필드 fixture 및 잘못된 spawn 거절 PASS, A03 CP 하나·6방 잠금/벽0 검증 |
 | B22-T7 | TODO | V5 6방·A04/A05/A03 실측 |
 | B22-T8 | TODO | 고리 통합·저장 Continue |
 | B22-T9 | TODO | 런처·사용자 안내 |

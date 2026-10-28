@@ -6,7 +6,7 @@ public sealed class B21CandidateHost:MonoBehaviour
  public B21HazardReturnSettings hazardSettings;
  public B21CornerFixSettings cornerSettings;
  public static B21CandidateHost Instance{get;private set;}
- public static bool HazardEnabled=>Instance!=null&&N5Args.Has("-hazard-return")&&(V4SceneMap.V5||N5Args.Has("-b21-arena"));
+ public static bool HazardEnabled=>Instance!=null&&(V4SceneMap.V5||RoomSession.Instance?.Player.gameObject.scene.path.StartsWith("Assets/Scenes/V5/")==true||UnityEngine.SceneManagement.SceneManager.GetActiveScene().path.StartsWith("Assets/Scenes/V5/")||N5Args.Has("-hazard-return")&&N5Args.Has("-b21-arena"));
  public static bool CornerEnabled=>Instance!=null&&N5Args.Has("-corner-fix")&&(V4SceneMap.V5||N5Args.Has("-b21-arena"));
  public static bool DashCornerEnabled=>CornerEnabled&&Instance.cornerSettings!=null&&(Instance.cornerSettings.dashCornerEnabled||N5Args.Has("-dash-corner-fix"));
  void Awake(){if(Instance!=null){Destroy(gameObject);return;}Instance=this;DontDestroyOnLoad(gameObject);Debug.Log("B21 candidate host hazardAsset="+(hazardSettings!=null)+" hazardFlag="+N5Args.Has("-hazard-return"));}
