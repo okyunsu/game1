@@ -59,7 +59,7 @@
          "floor_cover": {"id": "V5-A04-bossfloor", "rect": [44, 0, 5, 1]},
          "checkpoint": "CP-A03"}
 ```
-hazard 복귀 필드(12-1): `"hazard": [[x, y, w, h]]`와 같은 순서로 `"hazard_return": [[x, y], ...]`.
+~~hazard 복귀 필드~~ (draft4.1 삭제): 위험 지형 복귀는 B21 HazardReturn(마지막 안전 바닥)을 V5 기본으로 켜서 처리한다. 방 데이터에 복귀 좌표를 넣지 않는다.
 
 ## C-7. 소유 범위
 

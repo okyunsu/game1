@@ -65,3 +65,15 @@
 5) TASKS.md, AGENTS.md, Assets/ 아래는 수정하지 않는다(TASKS는 Codex 담당). 01_DECISIONS는 Codex 전달용으로 그대로 둔다.
 6) 커밋은 로컬 1회, push하지 않는다. 마지막에 바뀐 파일·검사 결과·계약과 어긋난 점을 짧게 보고한다.
 ```
+
+---
+
+## 개정 (2026-10-28 23시) — B21 재개 결과 반영, draft4.1
+
+처음 묶음은 원격 main 기준이라 로컬의 Batch21 재개 결과(10/26: Unity 라이선스 해결, HazardReturn 후보, 도랑 폭·가로 한계 실측)를 몰랐다. 바뀐 것:
+
+- **위 "적용 순서" 0번(라이선스)과 2개 세션 분리는 더 이상 필요 없음.** 방 데이터는 Claude가 draft4.1로 확정했고, Codex가 B22 한 번에 보스1 구현 + 씬 재생성 + 합치기까지 한다.
+- **draft4.1**(WORLD_V5 14절): `hazard_return` 고정 좌표 삭제 → B21 HazardReturn(마지막 안전 바닥)을 V5 기본으로. A04 섬 간격 3.1 → 5.0(달리기 점프 4.60u로 그냥 건너졌음). A03 연습 hazard는 이번에 안 넣음. 정적 검사 FAIL0/WARN16(`Validation/D41-room-rules-v5-A.md`).
+- **01·06 재작성**, 04 계약 C-6의 hazard_return 줄 삭제, GAME_DESIGN 12-2를 "마지막 안전 바닥 복귀"로 수정.
+
+다음: Codex에 `06_CODEX_BATCH22_BOSS1.md`를 그대로 준다. 끝나면 사용자 검수는 고리 1회.

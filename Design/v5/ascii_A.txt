@@ -124,3 +124,4 @@ draft4 legend: # solid / = platform / ^ acid hazard (trench) / D door / d closed
 A03: west-upper dash practice = village (y9) -> S0 (x16-17.8,y11) -> 5.5u gap -> P1 (x23.3-26.3,y11) -> 4.5u gap, rise 2 -> P2 (x30.8-33.5,y13) -> 4.5u gap, rise 2 -> shelf (end x26.3,y15). Gaps are candidates (finalize after Batch22 trench measurement)
 A04: x24-49 = boss 1 arena (flat floor y1, nothing inside). x23-24 = gate wall slot (closed only during the fight). Floor hole x44-49 is covered (V5-A04-bossfloor) until the boss is defeated
 A05: trench x6-12. No breakable wall in draft4
+draft4.1: A04 island moved to x19.3-21.3 (gap 5.0 from left floor, lanterns L1 x15.8 / L2 x17.8). No fixed hazard_return; hazard return = last safe ground (B21 HazardReturn)
