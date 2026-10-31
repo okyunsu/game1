@@ -2,17 +2,13 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-29, Codex (Batch22 종료)
-- Base `e437320`, 최종 HEAD는 `git log -1`, 태그 B22. 기존 미푸시2커밋·태그 보존, fetch/push/squash 없음.
-- push 대기: 로컬 origin/main 대비14커밋(이전2+B22 Task/종료12), 이번 실행1 Batch. 원격 최신 여부는 미확인.
-- 상태: 승인 T0~T9·BL1 기술 작업 완료. T5/T8 고리 감각 REVIEW, Ready Queue0.
-- 플레이: [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd), A03부터 보스1→A05 대시→A03 연습. [보스만](Launchers/current/Play-BossTest-B1.cmd).
-- 실제 검증: 기본 몸1.6 고리46.731s·몸1.3 고리46.716s·저장/Continue PASS. 첫 사람 플레이 시간과 구분.
-- 환경: Preflight PASS·Hub licensing client=True·Unity exit0. Development 오류0/경고0·기본 회귀13/13·실제 런처14개 Error0.
-- 사용자 차례: 기존 수락 순서 유지 후 새 고리1회(예상10~15분). D-BODY/D-CORNER-FIX 결정2/8.
-- Claude 차례: 실측·고리 피드백을 참고. 방 좌표·게임 규칙 원본 이번 변경0.
-- Codex 차례: Queue0으로 종료. 후속 제품 작업은 다음 승인 범위에서 진행.
-- 보존: 시작 설계 수정8개·미추적 D41 문서·기존2커밋 그대로. [요약](Validation/B22-summary.md).
+- 갱신: 2026-10-31, Codex (Batch23 시작 검사 후 차단 종료).
+- 실제 HEAD `e085ed9`, 최근 태그 B22. 로컬 origin/main 대비 미푸시0(기록 전); fetch하지 않아 원격 최신 여부 미확인.
+- B23 Preflight: Hub0·hubLicensingClient=False·Unity exit198. B23 명시 종료 조건에 따라 제품 Task 미착수.
+- 사용자 차례: Unity Hub 로그인 실행 유지 후 재개. 선행 Claude 문서 커밋은 자동 승인 검사 거부로 명시 승인 필요.
+- B23-T1~T4/T6~T8 BLOCKED(환경), T9 BLOCKED(T8 의존). T0/T5/BL1 TODO(이번 지시의 Preflight 실패 종료 조건).
+- 기존 Claude 설계 변경·추천값·사용자 수락 상태 보존. 게임 코드·에셋·런처 변경0, Ready Queue0.
+- 상세: [B23 시작 차단 요약](Validation/B23-summary.md). 아래 B22 기록은 이전 종료 시점 정보다.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -20,7 +16,20 @@
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
 - 운영 개선은 종료했다. 이번 [Batch22](Design/proposals-1028/06_CODEX_BATCH22_BOSS1.md)는 사용자 2026-10-28 실행 지시로 승인됐다.
 
-## 1-0. Current Tasks (Batch22)
+## 1-0. Current Tasks (Batch23)
+
+실행 지시: [01_CODEX_BATCH23](Design/proposals-1031/01_CODEX_BATCH23.md), 사용자 2026-10-31 “읽고 진행”. Base `e085ed9`. 별도 Batches 파일은 생성하지 않았다.
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| B23-T0 | TODO | 결정·플레이 기록 이관 미실시. Preflight 실패 시 종료 지시 적용 |
+| B23-T1~T4 | BLOCKED | 필수 Unity 검증 불가(exit198), 구현 미착수 |
+| B23-T5 | TODO | Python 검사기 변경 미착수. 이번 Batch는 Preflight 실패 시 종료 |
+| B23-T6~T8 | BLOCKED | Unity 환경 및 선행 구현 미완료 |
+| B23-T9 | BLOCKED | T8 의존. 기존 B22 런처·안내 유지 |
+| B23-BL1 | TODO | T5 미실시로 미착수 |
+
+### 이전 Current Tasks (Batch22)
 
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
@@ -219,7 +228,22 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch22
+## 9. Latest Handoff — Batch23 시작 차단
+
+### 재개에 필요한 조치
+
+1. Unity Hub를 로그인 상태로 실행 유지한 뒤 B23 재개. Preflight는 hubLicensingClient=False·exit198이며 같은 환경에서 재시도하지 않았다.
+2. 기존 Claude 설계 문서의 선행 로컬 커밋 승인. 지시문이 요구한 커밋은 자동 승인 검사에서 보호 파일의 기존 변경 커밋에 명시 승인이 부족하다는 이유로 거부됐다. 기존 변경을 보존했고 우회하지 않았다.
+
+### Task별 결과
+
+Claude 설계 변경: 시작 작업 트리의 Design/v5 3파일·Design/proposals-1031·GAME_DESIGN.md·Validation/D42-room-rules-v5-A.md. 출처는 B23 지시문에 Claude로 표기되어 있으며 아직 커밋되지 않았다. T0~T9/BL1 제품 작업은 시작하지 않았다. [실제 환경 검사·미실시 목록](Validation/B23-summary.md).
+
+### 다음 실행
+
+환경 조치와 선행 커밋 승인 후 같은 B23을 재개한다. 기존 직접 플레이 순서와 미해결 REVIEW·PARTIAL·BLOCKED는 아래 B22 인계 및 1-1·3절을 유지한다. 새 빌드 없음.
+
+### 이전 Batch22 인계 (보존)
 
 ### 결정 질문지
 
