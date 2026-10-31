@@ -23,7 +23,7 @@ MonoBehaviour:
   chargeTell: 0.48000002
   chargeSpeed: 7.5
   wallClearance: 0.1
-  maxHP: 14
+  maxHP: 22
   damage: 1
   meleeTell: 0.48000002
   waveTell: 0.6
