@@ -17,6 +17,8 @@ public sealed class RoomCameraRig : MonoBehaviour
     CinemachineBrain brain;
     PlayerInputReader input;
     float facing = 1;
+    double shakeUntil;float shakeAmplitude;
+    public void Shake(float seconds,float amplitude){shakeUntil=Time.timeAsDouble+seconds;shakeAmplitude=amplitude;}
 
     void Awake()
     {
@@ -46,7 +48,8 @@ public sealed class RoomCameraRig : MonoBehaviour
         OutputCamera.orthographic = true;
         VirtualCamera.Lens.ModeOverride = LensSettings.OverrideModes.Orthographic;
         VirtualCamera.Lens.OrthographicSize = orthographicSize;
-        composer.TargetOffset = new Vector3(facing * horizontalLead, 0, 0);
+        float shake=Time.timeAsDouble<shakeUntil?shakeAmplitude:0;
+        composer.TargetOffset = new Vector3(facing * horizontalLead+Mathf.Sin(Time.time*87)*shake, Mathf.Sin(Time.time*113)*shake, 0);
         composer.Damping = new Vector3(damping, damping, 0);
         if (confiner.BoundingShape2D != boundary)
         {

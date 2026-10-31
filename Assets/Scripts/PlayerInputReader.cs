@@ -12,9 +12,13 @@ public sealed class PlayerInputReader : MonoBehaviour
     bool suppressJump;
     public int PauseSelection { get; private set; }
     GameState state;
-    public bool InputLocked => state != null && (state.Paused || state.Transitioning || state.Respawning || state.Completing);
+    public bool MovementOnly { get; private set; }
+    public bool HazardLocked { get; private set; }
+    public void SetMovementOnly(bool active) { MovementOnly=active; ClearTransientInput(); }
+    public void SetHazardLock(bool active) { HazardLocked=active; ClearTransientInput(); }
+    public bool InputLocked => HazardLocked || state != null && (state.Paused || state.Transitioning || state.Respawning || state.Completing);
     public Vector2 Move => InputLocked ? Vector2.zero : move.ReadValue<Vector2>();
-    public bool JumpHeld => !InputLocked && !suppressJump && jump.IsPressed();
+    public bool JumpHeld => !InputLocked && !MovementOnly && !suppressJump && jump.IsPressed();
     public uint JumpSequence { get; private set; }
     public double JumpPressedAt { get; private set; } = double.NegativeInfinity;
     public double JumpReleasedAt { get; private set; } = double.NegativeInfinity;
@@ -35,13 +39,13 @@ public sealed class PlayerInputReader : MonoBehaviour
         jump.performed += ctx =>
         {
             lastDevice = ctx.control.device;
-            if (suppressJump || InputLocked || (GetComponent<PlayerDash>() != null && GetComponent<PlayerDash>().IsDashing)) return;
+            if (suppressJump || InputLocked || MovementOnly || (GetComponent<PlayerDash>() != null && GetComponent<PlayerDash>().IsDashing)) return;
             JumpSequence++;
             JumpPressedAt = ctx.time;
         };
         jump.canceled += ctx => JumpReleasedAt = ctx.time;
-        runtime.FindAction("Gameplay/Dash",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked)DashPressed?.Invoke(); };
-        runtime.FindAction("Gameplay/Attack",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked)AttackPressed?.Invoke(); };
+        runtime.FindAction("Gameplay/Dash",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked&&!MovementOnly)DashPressed?.Invoke(); };
+        runtime.FindAction("Gameplay/Attack",true).performed += ctx => { lastDevice=ctx.control.device;if(!InputLocked&&!MovementOnly)AttackPressed?.Invoke(); };
         runtime.FindAction("Gameplay/Pause", true).performed += ctx => { lastDevice = ctx.control.device; SetPaused(true); };
         runtime.FindAction("UI/Navigate", true).performed += ctx => { lastDevice = ctx.control.device; if(Paused && Mathf.Abs(ctx.ReadValue<Vector2>().y)>.5f)PauseSelection=ctx.ReadValue<Vector2>().y<0?1:0; };
         runtime.FindAction("UI/Submit", true).performed += ctx => { lastDevice = ctx.control.device; if(Paused && PauseSelection==1)ReturnTitle();else SetPaused(false); };

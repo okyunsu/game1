@@ -14,7 +14,7 @@ public sealed class PlayerHealth:MonoBehaviour
     void Awake(){body=GetComponent<Rigidbody2D>();sprite=GetComponent<SpriteRenderer>();original=sprite.color;HP=tuning.playerMaxHP;}
     public bool TakeDamage(int damage,Vector2 source)
     {
-        if(damage<=0||HP<=0||Invincible||GetComponent<PlayerInputReader>().InputLocked)return false;
+        if(damage<=0||HP<=0||Invincible||GetComponent<PlayerInputReader>().MovementOnly||GetComponent<PlayerInputReader>().InputLocked)return false;
         HP=Mathf.Max(0,HP-damage);invincibleUntil=Time.timeAsDouble+tuning.invincibility;lockUntil=Time.timeAsDouble+tuning.knockbackLock;
         GetComponent<PlayerDash>()?.Cancel();GetComponent<PlayerInputReader>().ClearTransientInput();Hit?.Invoke();
         int direction=transform.position.x>=source.x?1:-1;

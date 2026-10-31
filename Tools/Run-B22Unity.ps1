@@ -1,7 +1,7 @@
-param([Parameter(Mandatory=$true)][string]$Method,[Parameter(Mandatory=$true)][string]$Run,[string[]]$Extra=@(),[int]$TimeoutSeconds=600)
+param([ValidatePattern('^[A-Za-z0-9-]+$')][string]$Batch='22',[Parameter(Mandatory=$true)][string]$Method,[Parameter(Mandatory=$true)][string]$Run,[string[]]$Extra=@(),[int]$TimeoutSeconds=600)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
-$taskOutput=Join-Path $taskRoot ('Validation/_raw/22/'+$Run)
+$taskOutput=Join-Path $taskRoot ('Validation/_raw/'+$Batch+'/'+$Run)
 if(Test-Path -LiteralPath $taskOutput){throw "Preserve $taskOutput"}
 New-Item -ItemType Directory -Path $taskOutput | Out-Null
 $taskArgs=@('-batchmode','-projectPath',('"'+$taskRoot+'"'),'-executeMethod',$Method,'-verify-output',('"'+$taskOutput+'/result.txt"'),'-save-path',('"'+$taskOutput+'/save.json"'),'-logFile',('"'+$taskOutput+'/unity.log"'))+$Extra

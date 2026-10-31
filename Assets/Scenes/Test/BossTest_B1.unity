@@ -1023,6 +1023,9 @@ MonoBehaviour:
   feetTrigger: 1
   startMaxY: 4
   entranceSeconds: 0.8
+  introDuration: 1.8
+  introDropHeight: 5
+  introShake: 0.18
   tuning: {fileID: 11400000, guid: 6e1babe364babb14283e21987b2819ad, type: 2}
   leftExit: {fileID: 0}
   warning: {fileID: 1233434166}
