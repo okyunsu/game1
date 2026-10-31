@@ -2,13 +2,11 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-31, Codex (Batch23 시작 검사 후 차단 종료).
-- Base `e085ed9`, 차단 기록 `35a2445`, 최종 HEAD는 `git log -1`, 최근 태그 B22. 로컬 origin/main 대비 차단 기록 커밋만 존재; fetch/push 없음.
-- B23 Preflight: Hub0·hubLicensingClient=False·Unity exit198. B23 명시 종료 조건에 따라 제품 Task 미착수.
-- 사용자 차례: Unity Hub 로그인 실행 유지 후 재개. 선행 Claude 문서 커밋은 자동 승인 검사 거부로 명시 승인 필요.
-- B23-T1~T4/T6~T8 BLOCKED(환경), T9 BLOCKED(T8 의존). T0/T5/BL1 TODO(이번 지시의 Preflight 실패 종료 조건).
-- 기존 Claude 설계 변경·추천값·사용자 수락 상태 보존. 게임 코드·에셋·런처 변경0, Ready Queue0.
-- 상세: [B23 시작 차단 요약](Validation/B23-summary.md). 아래 B22 기록은 이전 종료 시점 정보다.
+- 갱신: 2026-10-31, Codex (Batch23 재개 진행 중).
+- 재개 Base `667543d`, 기존 차단 기록2커밋 및 Claude 설계 커밋 보존. fetch/push 없음.
+- Preflight 재확인 PASS: hubLicensingClient=True·Unity exit0. 이전 exit198 원문 보존.
+- 승인 B23 T0~T9·BL1 실행 중. Ready Queue0. 기존 D-BODY/D-CORNER-FIX 대기 유지.
+- 사용자 플레이 피드백·추천 수치는 2-1/10절에서 구분. 제품 감각 수락은 구현 후 별도.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -22,12 +20,17 @@
 
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
-| B23-T0 | TODO | 결정·플레이 기록 이관 미실시. Preflight 실패 시 종료 지시 적용 |
-| B23-T1~T4 | BLOCKED | 필수 Unity 검증 불가(exit198), 구현 미착수 |
-| B23-T5 | TODO | Python 검사기 변경 미착수. 이번 Batch는 Preflight 실패 시 종료 |
-| B23-T6~T8 | BLOCKED | Unity 환경 및 선행 구현 미완료 |
-| B23-T9 | BLOCKED | T8 의존. 기존 B22 런처·안내 유지 |
-| B23-BL1 | TODO | T5 미실시로 미착수 |
+| B23-T0 | DONE | 전달 플레이 기록·사전 결정 2-1/10절 반영. 복귀 딜레이 요구 유지 |
+| B23-T1 | DOING | 보스 등장 연출 구현·검증 |
+| B23-T2 | TODO | B1 HP22 |
+| B23-T3 | TODO | 위험 지형 복귀 일어나기 |
+| B23-T4 | TODO | low 시작 승강기 |
+| B23-T5 | TODO | 승강기 도달·접근 머리 규칙 |
+| B23-T6 | TODO | draft4.2 재생성·검사 |
+| B23-T7 | TODO | 방별 실제 입력 측정 |
+| B23-T8 | TODO | 새 고리·저장/Continue |
+| B23-T9 | TODO | 사용자 안내 |
+| B23-BL1 | TODO | A06 검출 목록 |
 
 ### 이전 Current Tasks (Batch22)
 
@@ -113,6 +116,19 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 결정 대기2건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
+
+B23 실행은 2026-10-31 사용자 “Design/proposals-1031/01_CODEX_BATCH23.md 읽고 진행”, 환경 조치 후 “다시해줘 틀어놨어”로 재개했다. 아래 전달 출처는 Claude 작성 [00_README](Design/proposals-1031/00_README.md)이며 사용자 대화 전문은 없다. 추천 수치는 이번 Batch 구현 범위 승인과 최종 플레이 수락을 구분한다.
+
+| ID | 내용 | 출처 구분 |
+| --- | --- | --- |
+| D-HUB-CLEAR | A03 구조물 삭제, 필드 구덩이·오름에 이유 있는 요소 | 사용자 결정 2026-10-31 전달 |
+| D-BOSS-INTRO | 등장 방향·무피해는 사용자, 총1.8s는 Claude 추천 | B23 구현 승인, 감각 수락 별도 |
+| D-BOSS1-HP | 체력으로 난이도 보완 방향은 사용자, 14→22 값은 Claude 추천 | B23 구현 승인 |
+| D-RETURN-GETUP | 일어나는 딜레이 방향은 사용자, 0.45s는 Claude 추천 | B23 구현 승인, 감각 수락 별도 |
+| D-CLIMB-GAP | 떠 있는 발판 오름≥1.5u의 가로 간격≥1.8u | Claude 추천, 이번 검사 규칙 범위 |
+| D-HUB-LIFT | 거리↔위층 동쪽 승강기, low 시작 | Claude 추천, 이번 구현 범위 |
+| D-HAZARD-RETURN-B23 | V5 기본 복귀 유지, 사용자 추가 요구는 딜레이 | B22-T5 REVIEW 유지: 명시 수락 대신 개선 요구로 기록 |
+
 
 아래 10/28 설계 결정의 전달 출처는 사용자 대화(Claude 앱) → 01_DECISIONS.md다. 직접 대화 전문은 없으며 D-BOSS1-LINK·D-HUB-ENEMY는 Claude 추천값을 이번 실행 지시 범위에서 사용한다.
 
@@ -284,3 +300,5 @@ B1 자동 처치 약8.6초·고리 약47초는 빠른 처방 입력 결과이며
 | 날짜 | 방·대상 | 사용자 피드백 / 변경 전→후 | 근거 |
 | --- | --- | --- | --- |
 | 2026-10-22 | A03→A05·A05 도랑·점프 | 지름길 우회·무능력 도랑 통과, 점프 불쾌 원인 ①크기 ③머리 충돌. B20은 측정·비교 도구 추가까지; 기본 설계 수정·개선 수락은 아직 없음 | [사용자 로그](Playtest/20261022-233114.csv), [전달 지시](Batches/BATCH-20.md), [측정 결과](Validation/B20-summary.md) |
+
+| 2026-10-31 | A03~A05 고리 | 보스/처치 후 구멍 좋음·대시 익음. 보스 등장 딜레이·HP 증가 방향·복귀 일어나기 요구. A03 위 마을→S0 머리 충돌 불쾌, 맵 빈 느낌·얕은 구덩이 기대·계단 늘림 느낌. 시간·시도 수 미기록. B23 변경 후 결과는 미확인 | [Claude 전달 플레이 기록](Design/proposals-1031/00_README.md) |
