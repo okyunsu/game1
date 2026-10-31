@@ -3,7 +3,7 @@
 ## 0. 지금
 
 - 갱신: 2026-10-31, Codex (Batch23 시작 검사 후 차단 종료).
-- 실제 HEAD `e085ed9`, 최근 태그 B22. 로컬 origin/main 대비 미푸시0(기록 전); fetch하지 않아 원격 최신 여부 미확인.
+- Base `e085ed9`, 차단 기록 `35a2445`, 최종 HEAD는 `git log -1`, 최근 태그 B22. 로컬 origin/main 대비 차단 기록 커밋만 존재; fetch/push 없음.
 - B23 Preflight: Hub0·hubLicensingClient=False·Unity exit198. B23 명시 종료 조건에 따라 제품 Task 미착수.
 - 사용자 차례: Unity Hub 로그인 실행 유지 후 재개. 선행 Claude 문서 커밋은 자동 승인 검사 거부로 명시 승인 필요.
 - B23-T1~T4/T6~T8 BLOCKED(환경), T9 BLOCKED(T8 의존). T0/T5/BL1 TODO(이번 지시의 Preflight 실패 종료 조건).
