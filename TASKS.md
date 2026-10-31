@@ -23,7 +23,7 @@
 | B23-T0 | DONE | 전달 플레이 기록·사전 결정 2-1/10절 반영. 복귀 딜레이 요구 유지 |
 | B23-T1 | REVIEW | 등장1.800s·피해0·이동만 허용·B3 패턴/페이즈/엔딩 PASS. B1 감각 수락 대기 |
 | B23-T2 | DONE | Unity API HP14→22만 변경. 실제 무능력 처치12.867s·HP3·패턴3종·Error0. raw/23/T1-T2-boss1 |
-| B23-T3 | TODO | 위험 지형 복귀 일어나기 |
+| B23-T3 | REVIEW | getUp0.450s·추가 피해0·총복귀0.650s·HP0 기존 사망 PASS. 기존3값 유지. 일어나기 감각 수락 대기 |
 | B23-T4 | TODO | low 시작 승강기 |
 | B23-T5 | PARTIAL | 새 규칙·승강기 양방향 self-test PASS. 첫 고리 접근19→0, A06 FAIL3 잔존. 원문의20건은1.1u 오름 포함으로 본문≥1.5와 충돌. raw/23/T5-comparison.txt |
 | B23-T6 | TODO | draft4.2 재생성·검사 |

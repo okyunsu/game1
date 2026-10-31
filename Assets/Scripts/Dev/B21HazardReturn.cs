@@ -10,11 +10,13 @@ public sealed class B21HazardReturn:MonoBehaviour
  public bool Returning{get;private set;}
  public bool HasSafePoint{get;private set;}
  public Vector2 SafePoint{get;private set;}
- string room;float supported;
+ string room;float supported,fade;
+ public double LastGetUpSeconds{get;private set;}
+ PlayerInputReader input;
  Rigidbody2D body;BoxCollider2D shape;PlayerMotor motor;PlayerHealth health;
  readonly ContactPoint2D[] contacts=new ContactPoint2D[16];
- void Awake(){body=GetComponent<Rigidbody2D>();shape=GetComponent<BoxCollider2D>();motor=GetComponent<PlayerMotor>();health=GetComponent<PlayerHealth>();}
- void OnDisable(){if(Returning&&body!=null&&RoomSession.Instance?.Respawning!=true&&RoomSession.Instance?.Transitioning!=true)body.simulated=true;Returning=false;}
+ void Awake(){input=GetComponent<PlayerInputReader>();body=GetComponent<Rigidbody2D>();shape=GetComponent<BoxCollider2D>();motor=GetComponent<PlayerMotor>();health=GetComponent<PlayerHealth>();}
+ void OnDisable(){StopAllCoroutines();if(input!=null)input.SetHazardLock(false);fade=0;if(Returning&&body!=null&&RoomSession.Instance?.Respawning!=true&&RoomSession.Instance?.Transitioning!=true)body.simulated=true;Returning=false;}
  void FixedUpdate()
  {
   var session=RoomSession.Instance;if(session==null||settings==null)return;
@@ -43,13 +45,18 @@ public sealed class B21HazardReturn:MonoBehaviour
  public void AfterHazardDamage(){if(!Returning&&HasSafePoint&&health.HP>0&&settings!=null)StartCoroutine(Return());}
  IEnumerator Return()
  {
-  Returning=true;string origin=room;Vector2 point=SafePoint;body.simulated=false;body.linearVelocity=Vector2.zero;
-  yield return new WaitForSeconds(settings.pauseSeconds);
-  if(RoomSession.Instance!=null&&RoomSession.Instance.CurrentRoomId==origin&&health.HP>0)
+  Returning=true;string origin=room;Vector2 point=SafePoint;input.SetHazardLock(true);body.simulated=false;body.linearVelocity=Vector2.zero;
+  float before=Mathf.Max(settings.pauseSeconds,settings.fadeSeconds);double began=Time.timeAsDouble;
+  while(Time.timeAsDouble-began<before){fade=settings.fadeSeconds>0?Mathf.Clamp01((float)(Time.timeAsDouble-began)/settings.fadeSeconds):1;yield return null;}
+  if(RoomSession.Instance!=null&&RoomSession.Instance.CurrentRoomId==origin&&health.HP>0&&!RoomSession.Instance.Respawning&&!RoomSession.Instance.Transitioning)
   {
-   body.position=point;transform.position=point;body.linearVelocity=Vector2.zero;motor.ClearTransientState();GetComponent<PlayerInputReader>().ClearTransientInput();Physics2D.SyncTransforms();Returns++;
+   body.position=point;transform.position=point;body.linearVelocity=Vector2.zero;motor.ClearTransientState();input.ClearTransientInput();Physics2D.SyncTransforms();Returns++;
+   began=Time.timeAsDouble;
+   while(Time.timeAsDouble-began<settings.getUpTime){fade=1-Mathf.Clamp01((float)(Time.timeAsDouble-began)/Mathf.Max(.001f,settings.fadeSeconds));yield return null;}
+   LastGetUpSeconds=Time.timeAsDouble-began;
   }
-  if(RoomSession.Instance?.Respawning!=true&&RoomSession.Instance?.Transitioning!=true)body.simulated=true;Returning=false;supported=0;
+  fade=0;if(RoomSession.Instance?.Respawning!=true&&RoomSession.Instance?.Transitioning!=true)body.simulated=true;input.SetHazardLock(false);Returning=false;supported=0;
  }
+ void OnGUI(){if(fade<=0)return;var previous=GUI.color;GUI.depth=-100;GUI.color=new Color(0,0,0,fade);GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height),Texture2D.whiteTexture);GUI.color=previous;}
 }
 #endif

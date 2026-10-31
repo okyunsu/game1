@@ -15,3 +15,5 @@ MonoBehaviour:
   safeGroundSeconds: 0.1
   edgeMargin: 0.5
   pauseSeconds: 0.12
+  fadeSeconds: 0.15
+  getUpTime: 0.45
