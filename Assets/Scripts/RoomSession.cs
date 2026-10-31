@@ -4,6 +4,21 @@ using UnityEngine.SceneManagement;
 
 public sealed class RoomSession : MonoBehaviour
 {
+    // Batch24 Play-mode probes load authored assets without editing protected build settings.
+    public static AsyncOperation LoadSceneForPlay(string path,LoadSceneMode mode=LoadSceneMode.Single)
+    {
+#if UNITY_EDITOR
+        if(N5Args.Has("-b24-editor"))return UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(path,new LoadSceneParameters(mode));
+#endif
+        return SceneManager.LoadSceneAsync(path,mode);
+    }
+    static bool CanLoadForPlay(string path)
+    {
+#if UNITY_EDITOR
+        if(N5Args.Has("-b24-editor"))return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.SceneAsset>(path)!=null;
+#endif
+        return Application.CanStreamedLevelBeLoaded(path);
+    }
     public static RoomSession Instance { get; private set; }
     public PlayerInputReader Player { get; private set; }
     public string CurrentRoomId { get; private set; }
@@ -83,7 +98,7 @@ public sealed class RoomSession : MonoBehaviour
         if (Transitioning || Respawning) return false;
         if (state.Paused) return Reject("Cannot enter another room while paused");
         if (string.IsNullOrWhiteSpace(roomId) || string.IsNullOrWhiteSpace(spawnId)
-            || !Application.CanStreamedLevelBeLoaded(scenePath))
+            || !CanLoadForPlay(scenePath))
             return Reject("Invalid destination Scene or ID");
         if (SceneManager.GetSceneByPath(scenePath).isLoaded)
             return Reject("Destination Scene already loaded");
@@ -152,7 +167,7 @@ public sealed class RoomSession : MonoBehaviour
     {
         state.SetTransitioning(true);
         body.simulated = false;
-        yield return SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
+        yield return LoadSceneForPlay(path, LoadSceneMode.Additive);
         var next = SceneManager.GetSceneByPath(path);
         RoomDefinition room = null;
         foreach (var root in next.GetRootGameObjects())

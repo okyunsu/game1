@@ -18,6 +18,9 @@ public sealed class V5Launch:MonoBehaviour
   if(!ProgressSave.NewGame())yield break;
   var data=new ProgressData{checkpointId=room=="A03"?"CP-A03":"CP-A01",dash=give.Contains("dash"),doubleJump=give.Contains("dj")||give.Contains("double"),wallJump=give.Contains("wall"),hasSlam=give.Contains("slam")};
   if(!ProgressSave.Write(data)||!ProgressSave.Continue())yield break;
+#if UNITY_EDITOR
+  if(N5Args.Has("-b24-editor"))yield return RoomSession.LoadSceneForPlay(V4SceneMap.Path(room));else
+#endif
   SceneManager.LoadScene(V4SceneMap.Path(room));Debug.Log("V5 launch room="+room+" give="+give+" layout="+WorldMapLayout.Name);Destroy(gameObject);
  }
 }

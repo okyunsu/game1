@@ -23,7 +23,7 @@
 | --- | --- | --- |
 | B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
 | B24-T1 | DONE | draft5 Scene6 재생성·정적 FAIL0/WARN27·Scene FAIL0(기존 A02 overhead4 해소)·A01 E4/감실·A02/A05 E2 요소 수 일치. raw/24/T1-* |
-| B24-T2 | TODO | 승인 단계 순서대로 진행 |
+| B24-T2 | DONE | A03 4·A02 5·A04 2·A06 3구간 각 머리0/5·착지5/5. A02 조각 P3는 코요테 이륙 필요(보통 이륙5/5 머리, 수정 입력0/5). raw/24/T2-head2-editor·T2-shard-coyote |
 | B24-T3 | TODO | 승인 단계 순서대로 진행 |
 | B24-T4 | TODO | 승인 단계 순서대로 진행 |
 | B24-T5 | TODO | 승인 단계 순서대로 진행 |
