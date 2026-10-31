@@ -2,16 +2,12 @@
 
 ## 0. 지금
 
-- 갱신: 2026-10-31, Codex (Batch23 종료).
-- 재개 Base `667543d`, 최종 HEAD는 `git log -1`, 태그 B23. 기존 차단2·Claude 문서1커밋 보존, fetch/push/squash 없음.
-- push 대기: 로컬 origin/main 대비16커밋(시작 전3+이번 재개13), Batch23 한 묶음. 원격 최신 여부 미확인.
-- 결과: T0/T2/T4/BL1 DONE, T1/T3 REVIEW, T5/T6/T7/T9 PARTIAL, T8 BLOCKED(자동 경로 재시도 한도). Ready Queue0.
-- 새 기능: B1 등장1.8s·HP22, 복귀 일어나기0.45s, draft4.2 Scene6·low 시작 승강기. [고리](Launchers/current/Play-V5-Loop.cmd).
-- 검증: B1 등장1.800s·양쪽 피해0·무능력 처치12.867s HP3, 복귀0.450s·추가 피해0, 승강기 왕복/V4 보존, 연습3단계 각0/5·5/5 PASS.
-- 전체 기본 회귀13/13·Development 오류0/경고0·런처 smoke2 Error0. 새 연속 고리와 그 뒤 Continue 미통과.
-- 잔여: A02 Scene overhead FAIL4, A04 오름 머리1/5, A06 정적 FAIL3. 방 좌표/설계 원본 수정0.
-- 사용자/Claude 차례: 기존 수락 순서 유지·새 연출/승강기 플레이, 방 기하·검사 기준 충돌 결정4/8. Codex 승인 Queue 소진.
-- 빌드: B23 최신·B22 직전, B21 슬롯20개 raw 보존 후 오래된 빌드 정리. [종료 요약](Validation/B23-resume-summary.md).
+- 갱신: 2026-11-01, Codex (Batch24 진행 중).
+- Base `88f458e`, 기존 B23 미푸시16커밋·B23 태그 보존, Claude draft5 문서 선행 커밋 완료. fetch/push 없음.
+- Preflight PASS: hubLicensingClient=True·Unity exit0. 기존 사용자 변경은 승인된 선행9파일 커밋으로 보존.
+- 승인 범위: P1~P5, T0~T14. 사용자 직접 지시로 P3 승인(지시문 보류 표기보다 우선), PRD 지정3곳·조각 저장/HP 포함.
+- 현재 P1 진행. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
+- 기존 수락 대기·직접 플레이 순서 보존. 방 좌표·기본 튜닝 원본은 변경하지 않음.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -19,7 +15,30 @@
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
 - 이번 [Batch23](Design/proposals-1031/01_CODEX_BATCH23.md)는 사용자 2026-10-31 실행·재개 지시로 승인됐다.
 
-## 1-0. Current Tasks (Batch23)
+## 1-0. Current Tasks (Batch24)
+
+실행 지시: [Batch24](Design/proposals-1101/01_CODEX_BATCH24.md). 사용자 2026-11-01 “읽고 진행해줘 P3의 경우는 승인해서 변경하는쪽으로”. 선행 Claude 설계9파일 `88f458e`, 이전16커밋 보존.
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
+| B24-T1 | TODO | 승인 단계 순서대로 진행 |
+| B24-T2 | TODO | 승인 단계 순서대로 진행 |
+| B24-T3 | TODO | 승인 단계 순서대로 진행 |
+| B24-T4 | TODO | 승인 단계 순서대로 진행 |
+| B24-T5 | TODO | 승인 단계 순서대로 진행 |
+| B24-T6 | TODO | 승인 단계 순서대로 진행 |
+| B24-T7 | TODO | 승인 단계 순서대로 진행 |
+| B24-T8 | TODO | 승인 단계 순서대로 진행 |
+| B24-T9 | TODO | 승인 단계 순서대로 진행 |
+| B24-T10 | TODO | 승인 단계 순서대로 진행 |
+| B24-T11 | TODO | 승인 단계 순서대로 진행 |
+| B24-T12 | TODO | 승인 단계 순서대로 진행 |
+| B24-T13 | TODO | 승인 단계 순서대로 진행 |
+| B24-T14 | TODO | 승인 단계 순서대로 진행 |
+
+### 이전 Current Tasks (Batch23)
+
 
 실행 지시: [01_CODEX_BATCH23](Design/proposals-1031/01_CODEX_BATCH23.md), 사용자 2026-10-31 “읽고 진행”. Base `e085ed9`. 별도 Batches 파일은 생성하지 않았다.
 
@@ -124,6 +143,16 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 결정 대기4건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
+
+| ID | 결정 | 날짜·출처 |
+| --- | --- | --- |
+| D-B24-EXEC | 확장 Batch24 P1~P5 실행·단계별 회귀·사람 검수 마지막1회 | 2026-11-01 이번 사용자 직접 지시·[지시문](Design/proposals-1101/01_CODEX_BATCH24.md) |
+| D-FRAGMENT-HP | **P3 승인**: 조각4개마다 최대 HP+1·전회복·ID 저장·HUD, PRD 지정3곳 패치. 지시문 첫 줄 `P3: 보류`보다 직접 지시 우선 | 2026-11-01 사용자 “P3의 경우는 승인해서 변경하는쪽으로” |
+| D-HUB-STREET | 빈 평지 대신 A03 건물 거리 | 사용자 2026-11-01 결정의 Claude 전달, [00_README](Design/proposals-1101/00_README.md) |
+| D-BIG-BATCH | 작은 반복 대신 큰 묶음, 사람 검수 마지막1회 | 사용자 요청의 Claude 전달, 같은 문서 |
+| D-DRAFT5 | A01 대시 감실·E4/E2·A06 수정 데이터 반영 | Claude 추천, 이번 실행 범위 승인. 감각 수락 별도 |
+| D-BOSS2 | 벽 점프 획득 후 싸우는 보스2 시험 아레나. 규칙/수치는 [사양](Design/proposals-1101/03_BOSS2_SPEC.md) | 사용자 D-BOSS4 원칙·Claude 추천 수치, 이번 시험 구현 승인 |
+
 
 B23 실행은 2026-10-31 사용자 “Design/proposals-1031/01_CODEX_BATCH23.md 읽고 진행”, 환경 조치 후 “다시해줘 틀어놨어”로 재개했다. 아래 전달 출처는 Claude 작성 [00_README](Design/proposals-1031/00_README.md)이며 사용자 대화 전문은 없다. 추천 수치는 이번 Batch 구현 범위 승인과 최종 플레이 수락을 구분한다.
 
@@ -299,3 +328,5 @@ Claude가 A02/A04 머리 기하와 승강기 탑승 동선을 검토하고 A06·
 | 2026-10-22 | A03→A05·A05 도랑·점프 | 지름길 우회·무능력 도랑 통과, 점프 불쾌 원인 ①크기 ③머리 충돌. B20은 측정·비교 도구 추가까지; 기본 설계 수정·개선 수락은 아직 없음 | [사용자 로그](Playtest/20261022-233114.csv), [전달 지시](Batches/BATCH-20.md), [측정 결과](Validation/B20-summary.md) |
 
 | 2026-10-31 | A03~A05 고리 | 보스/처치 후 구멍 좋음·대시 익음. 보스 등장 딜레이·HP 증가 방향·복귀 일어나기 요구. A03 위 마을→S0 머리 충돌 불쾌, 맵 빈 느낌·얕은 구덩이 기대·계단 늘림 느낌. 시간·시도 수 미기록. B23 변경 후 결과는 미확인 | [Claude 전달 플레이 기록](Design/proposals-1031/00_README.md) |
+
+| 2026-11-01 | B23 A03 허브 | 사용자 “A03 전부 사라졌는데 비었어”, 분량 추가 요청. Claude는 허브 평지화를 과잉 해석으로 기록, 건물 거리 draft4.3/5 작성. B24 반영 후 플레이 수락은 미실시 | [전달 기록](Design/proposals-1101/00_README.md) |
