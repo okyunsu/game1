@@ -24,10 +24,10 @@
 | B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
 | B24-T1 | DONE | draft5 Scene6 재생성·정적 FAIL0/WARN27·Scene FAIL0(기존 A02 overhead4 해소)·A01 E4/감실·A02/A05 E2 요소 수 일치. raw/24/T1-* |
 | B24-T2 | DONE | A03 4·A02 5·A04 2·A06 3구간 각 머리0/5·착지5/5. A02 조각 P3는 코요테 이륙 필요(보통 이륙5/5 머리, 수정 입력0/5). raw/24/T2-head2-editor·T2-shard-coyote |
-| B24-T3 | PARTIAL | 연속 입력으로 승강기·A04 아래 포고·B1 처치13.000s HP3·대시 획득 PASS. A05 봉인 바닥 경계에서 보행 정지. 입력만 점프로 보완, P2 확장 경로/P5 실제 빌드에서 나머지 확인 예정. raw/24/T3-loop* |
+| B24-T3 | PARTIAL | 연속 승강기→A04 포고→B1 처치13.017s HP3→대시→도랑→A03 건물/W옥상 PASS. 반환 승강기 surface13/feet1로 재탑승 실패·Continue 미실시. raw/24/T6-revisit2-reboard |
 | B24-T4 | DONE | A01 감실 무능력0/5·대시5/5·실제 조각 수집 PASS. raw/24/T4-vault1 |
 | B24-T5 | DONE | A01 E4 포고1·피해0, A02 E2 점프5/5·A05 E2 점프대시5/5 모두 피해0·Error0. 정적 적 배치 FAIL0. raw/24/T5-enemies1 |
-| B24-T6 | TODO | 승인 단계 순서대로 진행 |
+| B24-T6 | BLOCKED | 반환 승강기 탑승이2회 실패, T3 후반/Continue가 선행이라 A01 왕복은 실행 전 중단. 실패한 재탑승 점프 실험 제거·원문 보존. P5 exe의 다른 검증 접근만 확인 예정. raw/24/T6-revisit1·2 |
 | B24-T7 | TODO | 승인 단계 순서대로 진행 |
 | B24-T8 | TODO | 승인 단계 순서대로 진행 |
 | B24-T9 | TODO | 승인 단계 순서대로 진행 |

@@ -25,6 +25,7 @@ public sealed partial class B22Probe
   if(Body.position.x>45.85f)yield return WalkTo(()=>Body.position.x<=45.5f,Key.LeftArrow,"step onto lift",4);
   if(Body.position.x<45.85f)yield return WalkTo(()=>Body.position.x>=45.85f,Key.RightArrow,"walk onto lift",12);
   else yield return Keys();
+  yield return new WaitForSeconds(Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.02f);
   if(up&&Body.position.y<lift.high-1&&lift.GetComponent<Collider2D>().bounds.max.y>lift.low+.1f){yield return Tap(Key.X);yield return Until(()=>Math.Abs(lift.GetComponent<Collider2D>().bounds.max.y-lift.low)<.02f,"call lift down",12);yield return new WaitForSeconds(.4f);}
   yield return new WaitForSeconds(Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.02f);
   yield return Tap(Key.X);

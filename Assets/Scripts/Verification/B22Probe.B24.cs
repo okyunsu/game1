@@ -83,7 +83,7 @@ public sealed partial class B22Probe
   yield return JumpTo(30.6f,24.5f,1,"A05 sealed floor crossing",true);yield return JumpTo(24.5f,18.0f,1,"A05 E2 dash avoidance",true);yield return GoX(15.5f);yield return JumpTo(12.3f,4.6f,1,"A05 trench",true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"A03 physical return",5);yield return Ready();
   yield return GoX(26);yield return HubBuildings();yield return GoX(44.8f);yield return LiftRide(true);
   yield return JumpTo(43.75f,36.7f,13,"practice1",true);yield return JumpTo(35.25f,28.1f,13,"practice2",true);yield return JumpTo(26.75f,20.8f,15,"practice3 shelf",true);
-  Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save has dash and B1");yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"Continue restores CP-A03 dash and B1");Record($"MEASURE B24 loop seconds={Time.timeAsDouble-began:F3} complete=True");
+  Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save has dash and B1");yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"Continue restores CP-A03 dash and B1");Record($"MEASURE B24 loop seconds={Time.timeAsDouble-began:F3} complete=True");if(N5Args.Has("-b24-revisit"))yield return A01Revisit();
  }
 }
 #endif
