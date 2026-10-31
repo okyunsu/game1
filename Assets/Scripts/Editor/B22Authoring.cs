@@ -41,7 +41,7 @@ public static class B22Authoring
   var floor=Rect(room.transform,J.S(cover,"id"),Floats(cover,"rect"),new Color(.65f,.4f,.9f));
   var go=Rect(room.transform,J.S(spec,"id"),new[]{spawn[0]-1,spawn[1],2f,2f},new Color(.75f,.2f,.5f));
   var boss=go.AddComponent<BossEncounter>();boss.tuning=AssetDatabase.LoadAssetAtPath<BossTuning>(TuningPath);boss.bossId=J.S(spec,"id");
-  boss.floorY=a[1];boss.leftWallX=a[0];boss.rightWallX=a[0]+a[2];boss.startX=J.F(trigger["x_min"]);boss.startMaxY=J.F(trigger["y_max"]);boss.feetTrigger=true;boss.entranceSeconds=.8f;
+  boss.floorY=a[1];boss.leftWallX=a[0];boss.rightWallX=a[0]+a[2];boss.startX=J.F(trigger["x_min"]);boss.startMaxY=J.F(trigger["y_max"]);boss.feetTrigger=true;boss.entranceSeconds=.8f;boss.introDuration=1.8f;
   boss.encounterGate=gate;boss.floorCover=floor;boss.wavePrefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/BossWave.prefab");
   boss.warning=Rect(room.transform,"B1 warning",new[]{spawn[0]-1,a[1],2f,.3f},Color.yellow,true).GetComponent<SpriteRenderer>();UnityEngine.Object.DestroyImmediate(boss.warning.GetComponent<Collider2D>());
   // Separate top target; the boss body remains damageable and uses its existing contact rules.
@@ -72,6 +72,9 @@ public static class B22Authoring
   {
    EditorSceneManager.OpenScene(path);var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();
    if(room.roomId=="A04")AttachBoss(room,spec);
+   var source=J.D(J.Read(File.ReadAllText("Design/v5/rooms_v5_A.json"))["rooms"]);
+   foreach(var node in J.A(J.D(source[room.roomId]),"lifts")){var data=J.D(node);var lift=room.GetComponentsInChildren<LeverLift>().Single(l=>l.name=="lift:"+J.S(data,"id"));lift.startLow=J.S(data,"start")=="low";if(lift.startLow){var p=lift.transform.position;p.y=lift.low-lift.GetComponent<Collider2D>().bounds.extents.y;lift.transform.position=p;}}
+
    var host=new GameObject("V5 hazard configuration").AddComponent<B21CandidateHost>();SceneManager.MoveGameObjectToScene(host.gameObject,room.gameObject.scene);
    host.hazardSettings=AssetDatabase.LoadAssetAtPath<B21HazardReturnSettings>("Assets/Candidates/B21HazardReturn.asset");host.cornerSettings=AssetDatabase.LoadAssetAtPath<B21CornerFixSettings>("Assets/Candidates/B21CornerFix.asset");
    if(room.roomId=="A03"&&(!room.TryGetSpawn("CP-A03",out var cp)||room.GetComponentsInChildren<Checkpoint>().Count(c=>c.checkpointId=="CP-A03")!=1))throw new Exception("CP-A03 missing/duplicate");
