@@ -65,6 +65,9 @@ public static class ProgressSave
  {
   get
   {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+   if(N5Args.Has("-boss-test-b2"))return "Assets/Scenes/Test/BossTest_B2.unity";
+#endif
    if(V4SceneMap.Enabled)return V4SceneMap.Path(Pending?.endingReached==true?"A01":Pending?.checkpointId=="CP-C04"?"C04":Pending?.checkpointId=="CP-C01"?"C01":Pending?.checkpointId=="CP-B01"?"B01":Pending?.checkpointId=="CP-A03"?"A03":"A01");
    if(V3SceneMap.Enabled&&Pending?.bossDefeated==true&&!Pending.endingReached){Pending.checkpointId="CP-C04";return V3SceneMap.Path("C04");}
    return V3SceneMap.Resolve(Pending?.bossDefeated==true&&!((V2SceneMap.Enabled||V3SceneMap.Enabled)&&Pending.endingReached)?"Assets/Scenes/Ending.unity":Pending?.checkpointId=="CP-C04"?"Assets/Scenes/C04.unity":Pending?.checkpointId=="CP-C01"?"Assets/Scenes/C01.unity":Pending?.checkpointId=="CP-B01"?"Assets/Scenes/B01.unity":Pending?.checkpointId=="CP-A03"?"Assets/Scenes/A03.unity":"Assets/Scenes/A01.unity");
