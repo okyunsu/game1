@@ -55,25 +55,27 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
-Batch22 고리 플레이: [Play-V5-Loop.cmd](Launchers/current/Play-V5-Loop.cmd)를 실행하면 **A03·이동 능력 없음·기본 몸1.6**으로 시작합니다. 고리 1회는 첫 탐색·재시도를 포함해 **10~15분 예상**입니다. 자동 고정 입력은 약47초에 통과했으며 사람 플레이 시간과 구분합니다.
+Batch23 고리 플레이: [Play-V5-Loop.cmd](Launchers/current/Play-V5-Loop.cmd)는 **A03·이동 능력 없음·기본 몸1.6**으로 시작합니다. 첫 탐색·재시도를 포함해 **10~15분 예상**입니다. 새 자동 고리는 A04에서 미완주해 전체 경로·그 뒤 이어하기 검증이 남아 있습니다.
 
-1. CP-A03에서 오른쪽 계단을 올라 A04로 갑니다. 위 길 또는 아래 등불 포고 길을 골라 오른쪽 아레나로 내려갑니다.
-2. 보스1을 처치하면 잠금벽과 바닥 덮개가 사라집니다. 열린 구멍으로 A05에 떨어져 대시를 얻습니다.
-3. 왼쪽으로 돌아와 얕은 구덩이를 점프하고, 6u 도랑은 점프 정점의 대시로 건넙니다. 피해를 입으면 마지막 안전 바닥으로 돌아갑니다.
-4. A03 서쪽 위 마을 → S0 → 대시 연습3단계 → 대시 문 선반까지 갑니다. S0 밑에서는 머리가 닿을 수 있으니 발판 왼쪽 끝에서 달리며 점프합니다. 문은 파일럿 stub이라 선반까지만 확인합니다.
+1. CP-A03에서 동쪽 승강기로 갑니다. 레버는 X로 치며 아래·위에서 모두 호출할 수 있습니다. 작동 후 승강기 중앙으로 옮겨 탑니다. 위층에서 오른쪽 A04로 갑니다.
+2. A04 위 길 또는 아래 포고 길을 지나 보스1과 싸웁니다. 잠금벽이 닫힌 뒤 약1.8초 동안 등장하며 이동만 가능합니다. HP22 보스를 처치하면 열린 구멍으로 A05에 내려가 대시를 얻습니다.
+3. 왼쪽으로 돌아와6u 도랑을 점프 정점의 대시로 건넙니다. 위험 지형에 닿으면 화면이 어두워지고 마지막 안전 바닥으로 복귀한 뒤 약0.45초 일어납니다.
+4. A03에서 승강기를 타고 위층으로 올라가 **서쪽 방향** 대시 연습3단계 → 대시 문 선반까지 갑니다. 떨어지면 거리로 돌아와 승강기를 다시 호출합니다. 문은 파일럿 stub입니다.
 
-플레이 전 질문: **① A04 전투 진입과 처치 후 구멍으로 내려갈 이유가 읽히나요? ② A05 이후 A03 연습을 마쳤을 때 대시가 손에 익었나요?**
+플레이 전 질문: **① 보스 등장이 “나타나는” 느낌인가요? ② A03 위층 연습과 승강기가 자연스러운가요?**
 
-기록: 고리 시간____ / 보스1 시도 횟수____ / 막힌 곳____. [기술 결과·실패 기록](Validation/B22-summary.md).
+기록: 고리 시간____ / 보스 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____. [기술 결과·남은 기준·실패 기록](Validation/B23-resume-summary.md).
+
+남은 문제: A02 조각 길의 머리 여유 검사4건, A04 오름 실측 머리 접촉1/5가 남았습니다. 승강기 레버 쪽 끝에 계속 서 있으면 위층 선반 아래에 머리가 닿으므로 탑승 후 중앙으로 이동해 주세요. 방 좌표는 설계 검토 대기입니다.
 
 보스만 확인하려면 [Play-BossTest-B1.cmd](Launchers/current/Play-BossTest-B1.cmd)를 실행합니다. Scene은 `Assets/Scenes/Test/BossTest_B1.unity`, 사망 시 실제 CP-A03으로 돌아가며 A04로 가서 재도전할 수 있습니다. 고리 런처와 보스 테스트는 각각 별도 fixture 저장 슬롯을 초기화합니다. 같은 실행 안에서는 제목 화면의 이어하기가 보스 처치·획득 대시를 복원합니다.
 
-몸 비교는 `Start-V5.ps1 -Mode Loop -BodyHeight 1.3` 또는 고리 cmd 뒤 `-BodyHeight 1.3`을 붙입니다. 기본값 채택은 별도입니다. 조정 값은 `Assets/BossCandidates/B1/BossTuning.asset`(HP/피해·패턴·돌진 속도), Scene의 BossEncounter(아레나·등장 예고), `Assets/Candidates/B21HazardReturn.asset`(복귀)입니다. Play 중 변경은 종료 전 기록하고 Edit 모드에서 명시 저장 후 빌드를 다시 만듭니다.
+몸 비교는 `Start-V5.ps1 -Mode Loop -BodyHeight 1.3` 또는 고리 cmd 뒤 `-BodyHeight 1.3`을 붙입니다. 기본값 채택은 별도입니다. 조정 값은 `Assets/BossCandidates/B1/BossTuning.asset`(HP/피해·패턴·돌진 속도), Scene의 BossEncounter(`introDuration`1.8s·아레나), `Assets/Candidates/B21HazardReturn.asset`(`fadeSeconds`0.15s·`getUpTime`0.45s, 기존 접지0.1s·여백0.5u·정지0.12s 유지)입니다. Play 중 변경은 종료 전 기록하고 Edit 모드에서 명시 저장 후 빌드를 다시 만듭니다.
 
-V5 층 A draft4.1 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
-세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch22).
+V5 층 A draft4.2 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
+세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch23).
 
-Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 수정했고 작은 발판12개를 넣었습니다. 현재 V4/V5 런처는 모두 `Builds/B22-delivery`를 사용합니다. 직전 V5 빌드 B21은 비교용으로 보존합니다.
+Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 수정했고 작은 발판12개를 넣었습니다. 현재 V4/V5 런처는 모두 `Builds/B23-delivery`를 사용합니다. 직전 B22 빌드는 비교용으로 보존합니다.
 Batch19 검사 정리: 기존 후보69는 머리 위0·닫힌 문6·측면43·구덩이 가장자리20입니다. 실제 Scene은 FAIL0/WARN0이며 닫힌 문·측면·구덩이는 MEASURE로 표시합니다. draft2 머리 위4건은 계속 FAIL로 검출합니다. 정적 후보22는 A02 WallJump 조건과 A06 유일 입구 DJ 조건을 반영하면0입니다. 무능력 계산도 별도로 남기며 실제 자연 완주와 구분합니다. [후보](Validation/B19-candidates.md), [Scene 검사](Validation/B19-clearance.md), [정적 검사](Validation/B19-room-rules-v5-A.md), [규칙 근거](Validation/B19-rules-ledger.md).
 
 Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output 새파일` 또는 Development exe의 `-verify-b18-clearance`(독립 `-save-path` 필수). JSON 검사: `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --output 새파일`. 검사 결과와 실제 플레이 불가능 판정은 구분합니다.

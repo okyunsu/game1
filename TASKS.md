@@ -281,8 +281,8 @@ Claude 설계 변경: `667543d`, Design/v5 3파일·Design/proposals-1031 3파�
 | T5 | PARTIAL | `d65bedc` Tools 검사기 양방향 승강기·간격 fixture PASS. 첫 고리19→0, A06 FAIL3·WARN24. 기대20 불일치 |
 | T6 | PARTIAL | `0027aa3` Unity 생성6 Scene·요소 수 일치. Scene A02 overhead FAIL4·정적 A06 FAIL3 |
 | T7 | PARTIAL | `cf37877` 연습 각0/5·5/5, 무너짐3·가시2방·높은조각 PASS. A04 머리1/5 잔존 |
-| T8 | BLOCKED | 이번 T8 커밋은 `git log --oneline` 확인. 연속 고리는 A04 일반 적 피해/무너짐 착지에서 미완주. 재시도 종료, 그 뒤 Continue 미실시 |
-| T9 | PARTIAL | 이번 T9 커밋. README/3·9절·런처 갱신, V5 Loop/V4 BeforeBoss smoke PASS. 고리 검증 한계 명시 |
+| T8 | BLOCKED | `665753e` 자동 고리 원문 보존. 연속 고리는 A04 일반 적 피해/무너짐 착지에서 미완주. 재시도 종료, 그 뒤 Continue 미실시 |
+| T9 | PARTIAL | T9 안내 커밋(`git log --oneline` 확인). README/3·9절·런처 갱신, V5 Loop/V4 BeforeBoss smoke PASS. 고리 검증 한계 명시 |
 | BL1 | DONE | `343b203` A06 본문3·참고5 검출 목록, 데이터 수정0 |
 
 기본 회귀13/13·Development 오류0/경고0. B1 패턴 관측은 HP100 fixture, 무능력 승리는 기본 HP 별도 입력이다. 방별 시험은 시작 pose/능력 fixture이며 전체 자연 고리 성공 증거와 구분한다. 고리 중 HP·위치·보스·획득 능력 쓰기는 없었다. Release·실제 패드·사람 감각·Sprint Gate는 미실시다.
