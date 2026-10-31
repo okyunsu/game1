@@ -2,6 +2,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName="Afterglow/Boss Tuning")]
 public sealed class BossTuning:ScriptableObject
 {
+ [Tooltip("Optional pattern IDs in order: 0 melee,1 leap,2 wave,3 charge,4 chase,5 combo,6 backshot,7 falling. Empty preserves B3 order.")] public int[] patternOrder=System.Array.Empty<int>();
+ [Tooltip("Emit the standalone wave to both sides. Leap waves already use both sides.")] public bool waveBothDirections;
+ [Min(0),Tooltip("First wave warning only, seconds. Zero uses the regular wave tell.")] public float firstWaveTell;
  [Header("Adopted B2-fast cycle")]
  [Tooltip("Enable the adopted four-pattern cycle. B3 uses its additional switches below.")]public bool extendedPatterns=false;
  [Min(0),Tooltip("Walk between arena anchors (u/s).")]public float walkSpeed=2.5f;

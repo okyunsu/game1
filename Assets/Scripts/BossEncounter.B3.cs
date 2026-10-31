@@ -8,9 +8,10 @@ public sealed partial class BossEncounter
  public int PhaseTransitions{get;private set;}
  static readonly int[] B3Order={0,4,1,6,2,5,7,3};
  public static string PatternLabel(int i)=>i switch{0=>"melee",1=>"leap",2=>"wave",3=>"charge",4=>"chase",5=>"comboLeap",6=>"backshot",7=>"falling",_=>"off"};
- public string EnabledPatterns=>string.Join(",",System.Array.ConvertAll(System.Array.FindAll(B3Order,PatternEnabled),PatternLabel));
+ public string EnabledPatterns=>string.Join(",",System.Array.ConvertAll(System.Array.FindAll(PatternOrder,PatternEnabled),PatternLabel));
+ int[] PatternOrder=>tuning.patternOrder!=null&&tuning.patternOrder.Length>0?tuning.patternOrder:B3Order;
  bool PatternEnabled(int i)=>i switch{0=>tuning.meleeEnabled,1=>tuning.leapEnabled,2=>tuning.waveEnabled,3=>tuning.chargeEnabled,4=>tuning.chaseEnabled,5=>tuning.comboLeapEnabled,6=>tuning.backshotEnabled,7=>tuning.fallingEnabled,_=>false};
- int NextPattern(){if(!tuning.b3Patterns)return (pattern+1)%4;int at=System.Array.IndexOf(B3Order,pattern);for(int step=1;step<=B3Order.Length;step++){int next=B3Order[(at+step)%B3Order.Length];if(PatternEnabled(next))return next;}return -1;}
+ int NextPattern(){if(!tuning.b3Patterns)return (pattern+1)%4;var order=PatternOrder;int at=System.Array.IndexOf(order,pattern);for(int step=1;step<=order.Length;step++){int next=order[(at+step)%order.Length];if(PatternEnabled(next))return next;}return -1;}
  int strikes;float chaseStart,nextStrike;
  Bounds ChaseBounds=>new Bounds(new Vector3(transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+tuning.chaseRange*.5f),floorY+.5f,0),new Vector3(tuning.chaseRange,1,1));
  float RecoveryTime(float value)=>PhaseTwo?Mathf.Max(tuning.phaseTwoRecoveryMinimum,value*tuning.phaseTwoRecoveryScale):value;

@@ -55,7 +55,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  void Update(){
   var session=RoomSession.Instance;if(session?.Player==null)return;
   if(wave==null)wave=null;
-  if(State==Phase.Idle){var feet=session.Player.GetComponent<Collider2D>().bounds.min;if(!session.Player.InputLocked&&(feetTrigger?session.Player.transform.position.x>=startX&&feet.y<=startMaxY:session.Player.transform.position.x>startX)){SetLock(true);if(tuning.extendedPatterns)GetComponent<BoxCollider2D>().isTrigger=true;if(introDuration>0){StartIntro(session.Player);}else if(entranceSeconds>0){SetPhase(Phase.EntranceTell);Warn(transform.position.x,GetComponent<BoxCollider2D>().bounds.size.x,new Color(1,.7f,.1f,.8f));}else if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}return;}
+  if(State==Phase.Idle){var feet=session.Player.GetComponent<Collider2D>().bounds.min;if(!session.Player.InputLocked&&(startsAfterWallJumpPickup?WallPickupReady(session.Player):(feetTrigger?session.Player.transform.position.x>=startX&&feet.y<=startMaxY:session.Player.transform.position.x>startX))){SetLock(true);if(tuning.extendedPatterns)GetComponent<BoxCollider2D>().isTrigger=true;if(introDuration>0){StartIntro(session.Player);}else if(entranceSeconds>0){SetPhase(Phase.EntranceTell);Warn(transform.position.x,GetComponent<BoxCollider2D>().bounds.size.x,new Color(1,.7f,.1f,.8f));}else if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}return;}
   if(!Fighting||GameState.GetOrCreate().Paused||session.Transitioning||session.Respawning||deathQueued)return;
   double elapsed=Time.timeAsDouble-PhaseStarted;
   if(State==Phase.EntranceTell){if(introDuration>0){UpdateIntro((float)elapsed);return;}if(elapsed>=entranceSeconds){if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}return;}
@@ -84,7 +84,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
   else if(State==Phase.MeleeTell&&elapsed>=tuning.meleeTell){DamageArea(MeleeBounds);SetPhase(Phase.MeleeRecovery);}
   else if(State==Phase.LeapTell&&elapsed>=tuning.leapTell){leapStart=transform.position;SetPhase(Phase.LeapFlight);Warn(leapTarget,tuning.slamWidth,new Color(1,.25f,.15f,.6f));}
   else if(State==Phase.LeapFlight){float t=Mathf.Clamp01(elapsed/tuning.leapFlight);MoveBoss(new Vector3(Mathf.Lerp(leapStart.x,leapTarget,t),StandingY+4*t*(1-t)*tuning.leapHeight,0));if(t>=1){DamageArea(new Bounds(new Vector3(leapTarget,floorY+.5f,0),new Vector3(tuning.slamWidth,1,1)));SpawnCandidateWave(-1,leapTarget-1.3f);SpawnCandidateWave(1,leapTarget+1.3f);SetPhase(Phase.LeapRecovery);}}
-  else if(State==Phase.WaveTell&&elapsed>=tuning.waveTell){SpawnCandidateWave(facing,transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+.3f));SetPhase(Phase.WaveRecovery);}
+  else if(State==Phase.WaveTell&&elapsed>=CurrentWaveTell){if(tuning.waveBothDirections){float offset=GetComponent<BoxCollider2D>().bounds.extents.x+.3f;SpawnCandidateWave(-1,transform.position.x-offset);SpawnCandidateWave(1,transform.position.x+offset);}else SpawnCandidateWave(facing,transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+.3f));SetPhase(Phase.WaveRecovery);}
   else if(State==Phase.ChargeTell&&elapsed>=tuning.chargeTell)SetPhase(Phase.Charge);
   else if(State==Phase.Charge){float x=ClampX(transform.position.x+facing*tuning.chargeSpeed*Time.deltaTime);MoveBoss(new Vector3(x,StandingY,0));DamageArea(GetComponent<BoxCollider2D>().bounds);if(Mathf.Abs(x-ClampX(facing<0?leftWallX:rightWallX))<.001f)SetPhase(Phase.ChargeRecovery);}
   else if((State==Phase.MeleeRecovery||State==Phase.LeapRecovery||State==Phase.WaveRecovery||State==Phase.ChargeRecovery)&&elapsed>=RecoveryTime(tuning.recovery))BeginWalk();
@@ -96,7 +96,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  void OnCollisionEnter2D(Collision2D c)=>Contact(c);
  void OnCollisionStay2D(Collision2D c)=>Contact(c);
  void OnTriggerStay2D(Collider2D c){if(!tuning.extendedPatterns||!Fighting||State==Phase.LeapFlight||State==Phase.Walk||deathQueued||(tuning.b3Patterns&&(pattern>=4||IsNewRecovery||State==Phase.PhaseTwoTell)))return;var health=c.GetComponent<PlayerHealth>();if(health!=null)TryPatternDamage(health,attackToken,transform.position);}
- void OnGUI(){if(State==Phase.Idle)return;float x=Screen.width*.5f-200;GUI.Box(new Rect(x,30,400,28),$"정상 수문장  {HP}/{tuning.maxHP}");GUI.Box(new Rect(x,60,400f*HP/tuning.maxHP,8),"");}
+ void OnGUI(){if(State==Phase.Idle)return;float x=Screen.width*.5f-200;GUI.Box(new Rect(x,30,400,28),$"{displayName}  {HP}/{tuning.maxHP}");GUI.Box(new Rect(x,60,400f*HP/tuning.maxHP,8),"");}
 }
 
 
