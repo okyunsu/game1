@@ -30,7 +30,7 @@
 | B23-T7 | PARTIAL | 연습30회 각0/5·5/5 PASS. A01/A02 접근0, A04 두 번째접근1/5 접촉·4/5착지. 무너짐3·가시복귀2방·높은조각 PASS. raw/23/T7-field2/practice2 |
 | B23-T8 | TODO | 새 고리·저장/Continue |
 | B23-T9 | TODO | 사용자 안내 |
-| B23-BL1 | TODO | A06 접근3건·참고 규칙5건 목록 종료 요약에 기록 예정 |
+| B23-BL1 | DONE | A06 본문 FAIL3(간격1/1/1.4u·오름2), 참고 APPROACH5(추가 오름0.9 두 곳). 데이터 수정0. raw/23/T5-comparison.txt·BL1-reference-d42.txt |
 
 ### 이전 Current Tasks (Batch22)
 
