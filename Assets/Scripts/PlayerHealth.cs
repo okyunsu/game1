@@ -5,13 +5,15 @@ public sealed class PlayerHealth:MonoBehaviour
 {
     [Tooltip("Shared HP, invincibility and knockback Prototype Values.")] public CombatTuning tuning;
     public int HP { get; private set; }
+    public int MaxHP=>tuning.playerMaxHP+ProgressSave.MaxHPBonus;
+    public void RestoreFragmentMax(){HP=MaxHP;lockUntil=invincibleUntil=0;sprite.color=original;}
     public bool KnockbackLocked=>Time.timeAsDouble<lockUntil;
     public bool Invincible=>Time.timeAsDouble<invincibleUntil;
     public event Action Hit;
     public event Action Restored;
     double lockUntil,invincibleUntil;
     Rigidbody2D body;SpriteRenderer sprite;Color original;
-    void Awake(){body=GetComponent<Rigidbody2D>();sprite=GetComponent<SpriteRenderer>();original=sprite.color;HP=tuning.playerMaxHP;}
+    void Awake(){body=GetComponent<Rigidbody2D>();sprite=GetComponent<SpriteRenderer>();original=sprite.color;HP=MaxHP;}
     public bool TakeDamage(int damage,Vector2 source)
     {
         if(damage<=0||HP<=0||Invincible||GetComponent<PlayerInputReader>().MovementOnly||GetComponent<PlayerInputReader>().InputLocked)return false;
@@ -22,7 +24,7 @@ public sealed class PlayerHealth:MonoBehaviour
         if(HP==0)RoomSession.Instance.Die();return true;
     }
     public void MarkDead(){HP=0;lockUntil=invincibleUntil=0;Hit?.Invoke();}
-    public void RestoreMax(){HP=tuning.playerMaxHP;lockUntil=invincibleUntil=0;sprite.color=original;Restored?.Invoke();}
+    public void RestoreMax(){HP=MaxHP;lockUntil=invincibleUntil=0;sprite.color=original;Restored?.Invoke();}
     void Update(){var color=original;if(Invincible&&((int)(Time.time*10)%2==0))color.a=.25f;sprite.color=color;}
-    void OnGUI(){if(GameHUD.Instance!=null)return;GUI.Label(new Rect(16,76,200,24),$"HP {HP}/{tuning.playerMaxHP}");}
+    void OnGUI(){if(GameHUD.Instance!=null)return;GUI.Label(new Rect(16,76,200,24),$"HP {HP}/{MaxHP}");}
 }

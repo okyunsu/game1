@@ -8,6 +8,9 @@ public sealed class GameHUD : MonoBehaviour
     public UITuning tuning;
     public bool FirstNoticeVisible => input!=null&&!input.Paused&&firstNotice&&Time.unscaledTimeAsDouble<firstUntil;
     public bool AcquisitionVisible => input!=null&&!input.Paused&&Time.unscaledTimeAsDouble<acquisitionUntil;
+    double fragmentUntil;
+    public bool FragmentNoticeVisible=>input!=null&&!input.Paused&&Time.unscaledTimeAsDouble<fragmentUntil;
+    public void NotifyFragmentUpgrade(){fragmentUntil=Time.unscaledTimeAsDouble+tuning.fragmentNoticeSeconds;}
     public bool DeathOverlayVisible => RoomSession.Instance?.Player!=null&&RoomSession.Instance.Respawning;
     public int VisibleHP => health!=null?health.HP:0;
     public bool DashOwned => dash!=null&&dash.hasDash;
@@ -45,7 +48,7 @@ public sealed class GameHUD : MonoBehaviour
             if(menu!=null)
             {
                 DiscoveryReward.ResetSession();
-                pendingNewGame=false;firstNotice=false;acquisitionUntil=0;observedSession=null;
+                pendingNewGame=false;firstNotice=false;acquisitionUntil=fragmentUntil=0;observedSession=null;
                 if(menu.GetComponent<HUDMenuIntent>()==null)menu.gameObject.AddComponent<HUDMenuIntent>().menu=menu;
             }
         }
@@ -109,9 +112,9 @@ public sealed class GameHUD : MonoBehaviour
         {
             float x=tuning.hudPosition.x,y=tuning.hudPosition.y;Fill(new Rect(x,y,tuning.hudSize.x,tuning.hudSize.y),new Color(.04f,.05f,.07f,.84f));
             GUI.Label(new Rect(x+12,y+4,tuning.hudSize.x-24,24),observedSession.CurrentRoomId,text);
-            if(observedSession.CurrentRoomId!="PogoTest")GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),"발견 "+DiscoveryReward.Count+(V2SceneMap.Enabled?"/18":"/9"),text);
+            if(observedSession.CurrentRoomId!="PogoTest")GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),ProgressSave.Enabled?"조각 "+(ProgressSave.FragmentCount%4)+"/4":"발견 "+DiscoveryReward.Count+(V2SceneMap.Enabled?"/18":"/9"),text);
             GUI.Label(new Rect(x+12,y+31,30,24),"HP",text);
-            for(int i=0;i<health.tuning.playerMaxHP;i++)Fill(new Rect(x+48+i*(tuning.hpPipSize+tuning.hpPipGap),y+34,tuning.hpPipSize,tuning.hpPipSize),i<VisibleHP?Color.white:new Color(.32f,.32f,.35f));
+            for(int i=0;i<health.MaxHP;i++)Fill(new Rect(x+48+i*(tuning.hpPipSize+tuning.hpPipGap),y+34,tuning.hpPipSize,tuning.hpPipSize),i<VisibleHP?Color.white:new Color(.32f,.32f,.35f));
             Ability(new Rect(x+12,y+65,160,24),DashOwned,false,input.UsingGamepad?"B":"C");
             Ability(new Rect(x+176,y+65,160,24),DoubleJumpOwned,true,input.UsingGamepad?"A":"Z");
             if(WallJumpOwned) { Fill(new Rect(x+12,y+tuning.hudSize.y+70,22,22),Color.cyan); GUI.Label(new Rect(x+42,y+tuning.hudSize.y+68,250,26),"벽 점프  "+(input.UsingGamepad?"A":"Z"),text); }
@@ -119,6 +122,7 @@ public sealed class GameHUD : MonoBehaviour
             if(label!=null&&!string.IsNullOrEmpty(label.notice))GUI.Label(new Rect(x,y+tuning.hudSize.y+4,width-x*2,28),label.notice,text);
             if(!string.IsNullOrEmpty(ProgressSave.Message))GUI.Label(new Rect(x,y+tuning.hudSize.y+34,width-x*2,36),ProgressSave.Message,text);
             if(FirstNoticeVisible)Notice(new Rect(140,height-88,width-280,tuning.noticeHeight),input.UsingGamepad?"스틱 이동 / A 점프 / X 공격 / Menu 일시정지\n스틱 위+X 위 공격 / 공중 스틱 아래+X 아래 공격(튕기기)":"←→ 이동 / Z 점프 / X 공격 / Esc 일시정지\n↑+X 위 공격 / 공중 ↓+X 아래 공격(튕기기)");
+            if(FragmentNoticeVisible)Notice(new Rect(240,220,width-480,tuning.noticeHeight),"최대 HP +1");
             if(AcquisitionVisible)Notice(new Rect(240,170,width-480,tuning.noticeHeight),AcquisitionText);
         }
         GUI.matrix=oldMatrix;GUI.color=oldColor;GUI.depth=oldDepth;

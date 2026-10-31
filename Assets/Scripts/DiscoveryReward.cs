@@ -5,14 +5,14 @@ using UnityEngine;
 public sealed class DiscoveryReward : MonoBehaviour
 {
     [Header("Session discovery")]
-    [Tooltip("Unique level candidate ID, A-1 through C-2. Not saved to disk.")]
+    [Tooltip("Stable fragment ID. Persisted when saving is enabled.")]
     public string candidateId;
     [Header("Glow — seconds / opacity")]
     [Min(.1f), Tooltip("Seconds per glow cycle.")] public float glowPeriod = 1.2f;
     [Range(0, 1), Tooltip("Minimum glow opacity.")] public float minimumOpacity = .55f;
     static readonly HashSet<string> discovered = new();
-    public static int Count => discovered.Count;
-    public static bool Found(string id) => discovered.Contains(id);
+    public static int Count => ProgressSave.Enabled?ProgressSave.FragmentCount:discovered.Count;
+    public static bool Found(string id) => discovered.Contains(id)||ProgressSave.Enabled&&ProgressSave.IsFragmentCollected(id);
     public static void ResetSession() => discovered.Clear();
     SpriteRenderer image;
     Color tint;
@@ -34,6 +34,7 @@ public sealed class DiscoveryReward : MonoBehaviour
         var player = other.GetComponentInParent<PlayerInputReader>();
         if (player == null || player.InputLocked || string.IsNullOrEmpty(candidateId)) return;
         discovered.Add(candidateId);
+        if(ProgressSave.Enabled)ProgressSave.CollectFragment(candidateId,RoomSession.Instance);
         gameObject.SetActive(false);
     }
     void OnValidate() => GetComponent<BoxCollider2D>().isTrigger = true;

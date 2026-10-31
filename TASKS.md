@@ -6,7 +6,7 @@
 - Base `88f458e`, 기존 B23 미푸시16커밋·B23 태그 보존, Claude draft5 문서 선행 커밋 완료. fetch/push 없음.
 - Preflight PASS: hubLicensingClient=True·Unity exit0. 기존 사용자 변경은 승인된 선행9파일 커밋으로 보존.
 - 승인 범위: P1~P5, T0~T14. 사용자 직접 지시로 P3 승인(지시문 보류 표기보다 우선), PRD 지정3곳·조각 저장/HP 포함.
-- P1 Quiet13/13, P2 감실·적 검증 DONE·고리 잔여. P2 Quiet 실행 중, 독립 P3 문서 패치 완료·구현 예정. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
+- P1 Quiet13/13, P2 감실·적 검증 DONE·고리 잔여. P2 Quiet13/13, P3 조각/HP·저장 검증 완료. P3 Quiet 후 P4 보스2 진행. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
 - 기존 수락 대기·직접 플레이 순서 보존. 방 좌표·기본 튜닝 원본은 변경하지 않음.
 
 ## 1. 현재 상태 / Current Sprint
@@ -29,7 +29,7 @@
 | B24-T5 | DONE | A01 E4 포고1·피해0, A02 E2 점프5/5·A05 E2 점프대시5/5 모두 피해0·Error0. 정적 적 배치 FAIL0. raw/24/T5-enemies1 |
 | B24-T6 | BLOCKED | 반환 승강기 탑승이2회 실패, T3 후반/Continue가 선행이라 A01 왕복은 실행 전 중단. 실패한 재탑승 점프 실험 제거·원문 보존. P5 exe의 다른 검증 접근만 확인 예정. raw/24/T6-revisit1·2 |
 | B24-T7 | DONE | 사용자 직접 P3 승인으로 02_FRAGMENT_HP의 PRD71/83/111 세 문장만 원문 일치 확인 후 그대로 패치. 새 성장/ID/최대HP 저장 예외 |
-| B24-T8 | TODO | 승인 단계 순서대로 진행 |
+| B24-T8 | DONE | 실제4조각 maxHP4→5·HP3→5·안내1.500s, ID/bonus 즉시 저장·중복거절·Continue·재진입숨김·NewGame초기화·구version1 PASS/Error0. raw/24/T8-fragments1 |
 | B24-T9 | TODO | 승인 단계 순서대로 진행 |
 | B24-T10 | TODO | 승인 단계 순서대로 진행 |
 | B24-T11 | TODO | 승인 단계 순서대로 진행 |
