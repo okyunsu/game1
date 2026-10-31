@@ -24,10 +24,10 @@
 | B23-T1 | REVIEW | 등장1.800s·피해0·이동만 허용·B3 패턴/페이즈/엔딩 PASS. B1 감각 수락 대기 |
 | B23-T2 | DONE | Unity API HP14→22만 변경. 실제 무능력 처치12.867s·HP3·패턴3종·Error0. raw/23/T1-T2-boss1 |
 | B23-T3 | REVIEW | getUp0.450s·추가 피해0·총복귀0.650s·HP0 기존 사망 PASS. 기존3값 유지. 일어나기 감각 수락 대기 |
-| B23-T4 | TODO | low 시작 승강기 |
+| B23-T4 | DONE | low 잠금 없음·실제 X 레버 상→하→상 탑승 PASS. V4 B01/C01 기존 위 시작·하단 잠금·상단 해제 PASS. raw/23/T4-lift-centered |
 | B23-T5 | PARTIAL | 새 규칙·승강기 양방향 self-test PASS. 첫 고리 접근19→0, A06 FAIL3 잔존. 원문의20건은1.1u 오름 포함으로 본문≥1.5와 충돌. raw/23/T5-comparison.txt |
-| B23-T6 | TODO | draft4.2 재생성·검사 |
-| B23-T7 | TODO | 방별 실제 입력 측정 |
+| B23-T6 | PARTIAL | 6 Scene·요소 수 일치. Scene A02 overhead FAIL4·정적 A06 FAIL3. 좌표 변경 금지로 보존, raw/23/T6-* |
+| B23-T7 | PARTIAL | 연습30회 각0/5·5/5 PASS. A01/A02 접근0, A04 두 번째접근1/5 접촉·4/5착지. 무너짐3·가시복귀2방·높은조각 PASS. raw/23/T7-field2/practice2 |
 | B23-T8 | TODO | 새 고리·저장/Continue |
 | B23-T9 | TODO | 사용자 안내 |
 | B23-BL1 | TODO | A06 접근3건·참고 규칙5건 목록 종료 요약에 기록 예정 |
@@ -112,7 +112,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 |---|---|---|---|
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B22-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
-| D-B23-A02 | A02 platform3(x12~13.4,上10.5)와 climb0(y11~)가 겹쳐 Scene overhead FAIL4. Claude 데이터 수정 / 현재 조각 길 보류 중 선택 | 데이터 수정 추천. 승인 범위상 Codex 좌표 변경 금지 | B23-T6 FAIL0 기준·A02 조각 길 |
+| D-B23-GEOMETRY | A02 platform3(상면10.5)·climb0(하단11) Scene overhead FAIL4, A04 다음 platform2 실제 머리 접촉1/5. Claude 데이터 수정 / 문제 경로 보류 중 선택 | 데이터 수정 추천. 승인 범위상 Codex 좌표 변경 금지 | B23-T6 FAIL0·T7 머리0 기준 |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반도 전체 FAIL0과 충돌 | 본문 유지 추천. 첫 고리19→0, A063건은 다음 draft에서 수정 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
 
