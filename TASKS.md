@@ -327,7 +327,7 @@ Claude 설계 변경: `88f458e`, Design/v5 3파일·proposals-1101 4문서·D43/
 | T11 | REVIEW `118eb66` | 후보HP26/피해1·패턴2,3,7만 관측·페이즈전환0·파동 collider2.800u/양방향·첫예고1.000~1.017s |
 | T12 | PARTIAL `878f734` | 바닥 무벽점프10/10 피격·벽점프 실입력 처치24.767s HP2·벽점프7/포고26, 사망복귀·획득유지·처치ID/재진입없음 PASS/Error0. 획득대 위 일반점프 회피 예외가 있어 설계 조건은 미충족 |
 | T13 | DONE `60fbcef` | B22Authoring 빌드 Scene 추가·현재 런처, Development 오류0/경고0·최종13/13·smoke4 Error0·B3 엔딩 PASS |
-| T14 | DONE | README·TASKS3/9 검수20~30분·질문/기록·값조정·미완주 한계 안내, 커밋은 종료 요약 참조 |
+| T14 | DONE `cdbfa3f` | README·TASKS3/9 검수20~30분·질문/기록·값조정·미완주 한계 안내, 커밋은 종료 요약 참조 |
 
 패턴 관측 HP100 fixture와 실제 HP4 전투를 분리했다. B2 실입력 처치24.767s/HP2, 벽점프7·포고26·죽음/저장/재진입 PASS. 바닥10/10 피격은 획득대 예외를 포함한 보편적 능력 게이트 증명이 아니다. P1~P4 Quiet각13/13·P5 전체13/13·Development 오류0/경고0·런처4개 Error0. 실제 패드·Release·자연 사람 완주·Sprint Gate는 미실시.
 
