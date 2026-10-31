@@ -29,7 +29,7 @@ public sealed partial class B22Probe:N5Runner
  {
   Check(N5Args.Has("-save-path"),"isolated save");yield return Ready();
   string mode=N5Args.Value("-b22-mode","boss");
-  if(mode=="b24-head-shard")yield return B24HeadShard();else if(mode=="b24-head")yield return B24Head();else if(mode=="b24-loop")yield return B24Loop();else if(mode=="b23-hazard")yield return B23Hazard();else if(mode=="b23-lift")yield return B23Lift();else if(mode=="b23-field")yield return B23Field();else if(mode=="b23-loop")yield return B23Loop();else if(mode=="boss")yield return BossTests();else if(mode=="a05")yield return Trench();else if(mode=="a04")yield return Island();else if(mode=="practice")yield return Practice();else if(mode=="hazard")yield return HazardPresence();else if(mode=="loop")yield return Loop();
+  if(mode=="b24-vault")yield return B24Vault();else if(mode=="b24-enemies")yield return B24Enemies();else if(mode=="b24-head-shard")yield return B24HeadShard();else if(mode=="b24-head")yield return B24Head();else if(mode=="b24-loop")yield return B24Loop();else if(mode=="b23-hazard")yield return B23Hazard();else if(mode=="b23-lift")yield return B23Lift();else if(mode=="b23-field")yield return B23Field();else if(mode=="b23-loop")yield return B23Loop();else if(mode=="boss")yield return BossTests();else if(mode=="a05")yield return Trench();else if(mode=="a04")yield return Island();else if(mode=="practice")yield return Practice();else if(mode=="hazard")yield return HazardPresence();else if(mode=="loop")yield return Loop();
  }
  IEnumerator HazardPresence()
  {
