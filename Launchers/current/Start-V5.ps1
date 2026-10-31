@@ -1,7 +1,7 @@
 param([ValidateSet('NewGame','AfterDash','DJ','BodySizeTest','Loop','BossTestB1')][string]$Mode='NewGame',[ValidateSet('','1.6','1.3','1.1')][string]$BodyHeight='',[switch]$HazardReturn,[switch]$CornerFix,[switch]$DashCornerFix,[switch]$NoMap,[switch]$Smoke,[string]$Evidence='')
 $ErrorActionPreference='Stop'
 $taskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$taskBuild=Join-Path $taskRoot 'Builds/B23-delivery'
+$taskBuild=Join-Path $taskRoot 'Builds/B24-delivery'
 if($DashCornerFix){$CornerFix=$true}
 $taskSlot='V5-'+$Mode
 if($BodyHeight){$taskSlot+='-Body'+$BodyHeight.Replace('.','')}

@@ -98,7 +98,7 @@ public static class B22Authoring
  public static void Build()
  {
   string folder=N5Args.Value("-b22-build","Builds/_tmp/B22-work");
-  var scenes=B07Build.Scenes().Concat(Directory.GetFiles("Assets/Scenes/V4","*.unity")).Concat(Directory.GetFiles("Assets/Scenes/V5","*.unity")).Concat(new[]{"Assets/Scenes/Test/BossTest_B1.unity","Assets/Scenes/Test/BodySizeTest.unity","Assets/Scenes/Test/B21Arena.unity","Assets/Scenes/Test/MechanicsTest.unity"}).Distinct().ToArray();
+  var scenes=B07Build.Scenes().Concat(Directory.GetFiles("Assets/Scenes/V4","*.unity")).Concat(Directory.GetFiles("Assets/Scenes/V5","*.unity")).Concat(new[]{"Assets/Scenes/Test/BossTest_B1.unity","Assets/Scenes/Test/BossTest_B2.unity","Assets/Scenes/Test/BodySizeTest.unity","Assets/Scenes/Test/B21Arena.unity","Assets/Scenes/Test/MechanicsTest.unity"}).Distinct().ToArray();
   var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName=folder+"/Afterglow.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.Development|BuildOptions.CleanBuildCache});
   File.WriteAllText(Output,report.summary.result+" errors="+report.summary.totalErrors+" warnings="+report.summary.totalWarnings+"\n"+string.Join("\n",scenes));EditorApplication.Exit(report.summary.result==BuildResult.Succeeded?0:1);
  }

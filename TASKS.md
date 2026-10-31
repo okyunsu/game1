@@ -11,9 +11,9 @@
 
 ## 1. 현재 상태 / Current Sprint
 
-- Sprint3: V5 draft4.2 층 A 파일럿. B23 등장·복귀·승강기 구현과 개별 실측 완료. 방 기하 기준 미달·새 자동 고리 미완주, 결정4건.
+- Sprint3: V5 draft5 층 A 파일럿. 건물 거리·대시 감실·적·조각 최대HP 성장·B2 시험장 구현. 자동 고리 반환 승강기·A02 조각 이륙 민감도·B2 획득대 회피 예외가 남아 있다. 감각 수락·Sprint Gate 대기.
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
-- 이번 [Batch23](Design/proposals-1031/01_CODEX_BATCH23.md)는 사용자 2026-10-31 실행·재개 지시로 승인됐다.
+- 이번 [Batch24](Design/proposals-1101/01_CODEX_BATCH24.md)는 사용자 2026-11-01 실행·P3 직접 승인 지시로 수행했다. B23 이력은 아래 표와 기존 요약에 보존한다.
 
 ## 1-0. Current Tasks (Batch24)
 
@@ -24,17 +24,17 @@
 | B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
 | B24-T1 | DONE | draft5 Scene6 재생성·정적 FAIL0/WARN27·Scene FAIL0(기존 A02 overhead4 해소)·A01 E4/감실·A02/A05 E2 요소 수 일치. raw/24/T1-* |
 | B24-T2 | DONE | A03 4·A02 5·A04 2·A06 3구간 각 머리0/5·착지5/5. A02 조각 P3는 코요테 이륙 필요(보통 이륙5/5 머리, 수정 입력0/5). raw/24/T2-head2-editor·T2-shard-coyote |
-| B24-T3 | PARTIAL | 연속 승강기→A04 포고→B1 처치13.017s HP3→대시→도랑→A03 건물/W옥상 PASS. 반환 승강기 surface13/feet1로 재탑승 실패·Continue 미실시. raw/24/T6-revisit2-reboard |
+| B24-T3 | PARTIAL | 연속 승강기→A04 포고→B1 처치13.017s HP3→대시→도랑→A03 건물/W옥상 PASS. 반환 승강기 surface13/feet1로 재탑승 실패·Continue 미실시. raw/24/T6-revisit2-reboard·P5-loop-exe |
 | B24-T4 | DONE | A01 감실 무능력0/5·대시5/5·실제 조각 수집 PASS. raw/24/T4-vault1 |
 | B24-T5 | DONE | A01 E4 포고1·피해0, A02 E2 점프5/5·A05 E2 점프대시5/5 모두 피해0·Error0. 정적 적 배치 FAIL0. raw/24/T5-enemies1 |
-| B24-T6 | BLOCKED | 반환 승강기 탑승이2회 실패, T3 후반/Continue가 선행이라 A01 왕복은 실행 전 중단. 실패한 재탑승 점프 실험 제거·원문 보존. P5 exe의 다른 검증 접근만 확인 예정. raw/24/T6-revisit1·2 |
+| B24-T6 | BLOCKED | 반환 승강기 탑승이2회 실패, T3 후반/Continue가 선행이라 A01 왕복은 실행 전 중단. 실패한 재탑승 점프 실험 제거·원문 보존. P5 실제 exe도 같은 surface13/feet1.015 실패, 재시도 종료. raw/24/T6-revisit1·2·P5-loop-exe |
 | B24-T7 | DONE | 사용자 직접 P3 승인으로 02_FRAGMENT_HP의 PRD71/83/111 세 문장만 원문 일치 확인 후 그대로 패치. 새 성장/ID/최대HP 저장 예외 |
 | B24-T8 | DONE | 실제4조각 maxHP4→5·HP3→5·안내1.500s, ID/bonus 즉시 저장·중복거절·Continue·재진입숨김·NewGame초기화·구version1 PASS/Error0. raw/24/T8-fragments1 |
 | B24-T9 | DONE | 충격파 높이는 기존 보스별 waveHeight 재사용, 양방향/첫예고/패턴순서 필드 기본은 기존 유지. B1·B3 cycle/phase/사망 회귀 PASS, 금지 튜닝diff0. raw/24/T9-* |
 | B24-T10 | DONE | 실제 획득→3u 이탈 잠금·인트로1.817s·첫예고1.000s, 양방향 실 collider2.800u PASS. 초기 비활성 RoomExit 트리거 처리 보완. raw/24/T12-patterns3-physics |
 | B24-T11 | REVIEW | 후보HP26·피해1·실제 패턴2,3,7만 순서 관측·페이즈전환0. 실높이2.800·양방향·첫예고1.000s 확인. 양벽 ClimbableWall 시험장, 감각 수락 대기. raw/24/T12-patterns3-physics |
 | B24-T12 | PARTIAL | 바닥 무벽점프10/10피격·실입력24.767s 처치 HP2/벽점프7/포고26·사망복귀/능력유지·ID저장/재진입없음 Error0. 획득대 일반점프 회피 예외 발견, D-B24-B2-GATE 대기. raw/24/T12-patterns5-wave-lifecycle·T12-fight2-chargeInput |
-| B24-T13 | TODO | 승인 단계 순서대로 진행 |
+| B24-T13 | DONE | 최종 Development 오류0/경고0, 전체13/13·P1~P4 Quiet각13/13, Loop/B1/B2/V4 smoke4 Error0·기존 B3 처치→엔딩 PASS. 실제 exe 고리 반환 승강기 실패 별도 기록. B24/B23만 보존·B22 슬롯 raw보관 |
 | B24-T14 | TODO | 승인 단계 순서대로 진행 |
 
 ### 이전 Current Tasks (Batch23)
@@ -134,7 +134,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B22-delivery, B20 슬롯12개는 B21 raw에 보존 |
+| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B24-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
 | D-B23-GEOMETRY | draft5로 기존 A02 overhead4·A04 접촉1/5는 해소. A02 조각 P3는 일반 이륙 머리5/5·코요테 이륙0/5. 더 관대한 접근으로 설계 수정 / 현재 유지 | 설계 검토 추천. 특정 늦은 이륙에 의존하는 잔여 문제 | B24-T2의 입력 민감도, [Loop](Launchers/current/Play-V5-Loop.cmd) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
@@ -225,7 +225,10 @@ B23 실행은 2026-10-31 사용자 “Design/proposals-1031/01_CODEX_BATCH23.md 
 - [Play-V5-Candidates](Launchers/current/Play-V5-Candidates.cmd): 두 후보 동시, A01 머리/ A05 도랑 비교5~10분. `-BodyHeight 1.3/1.1` 인자로 크기와 함께 실행 가능.
 - 선택 비교 [Play-V5-DashCornerFix](Launchers/current/Play-V5-DashCornerFix.cmd): 대시 발끝 모서리 보정 추가, A01/A02에서 대시 중 낮은 모서리3~5분. 기본/기존 머리 후보에는 이 토글 꺼짐.
 
-- [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): 기존 수락 순서 뒤 B23 등장/복귀·승강기/서쪽 대시 연습 확인, 예상10~15분. A03→승강기→A04 보스→A05 대시→A03 승강기→서쪽 연습/선반. 자동 전체 고리는 A04에서 미완주했다. 레버 X 후 중앙 탑승. 질문: ① 보스 등장이 “나타나는” 느낌인가? ② 위층 연습과 승강기가 자연스러운가? 기록: 고리 시간____ / 보스 시도____ / 막힌 곳____ / 머리 박은 곳____. [보스 단독](Launchers/current/Play-BossTest-B1.cmd)3~5분. A02/A04 머리 문제는 아래 인계 참고. 새로운 연출 감각은 수락 대기다.
+- [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): 기존 수락 순서 뒤 이번 B24 검수1회 중 앞15~20분. A03 건물 거리→승강기→A04 B1→A05 대시→도랑→A03 건물/W옥상→승강기→서쪽 연습/선반→A02→A01 대시 감실→A03 왕복. [보스1 단독](Launchers/current/Play-BossTest-B1.cmd)은 선택3~5분. 보스 등장/복귀0.45s·승강기/연습·쉬는 거리·조각 재방문 동기를 본다. 자동 고리는 반환 승강기에서 미완주했고 A01 왕복/그 뒤 Continue는 미실시다. 수동으로도 막히면 위치를 기록하고 다음 B2로 넘어간다.
+- [Play-BossTest-B2](Launchers/current/Play-BossTest-B2.cmd), `Assets/Scenes/Test/BossTest_B2.unity`: 같은 검수의 뒤5~10분. 중앙 벽 점프 획득→3u 이탈→잠금/1.8s 등장→양벽 벽 점프 전투. 사망 뒤 능력 유지·중앙 재통과 재시작. 벽 점프를 배워 사용해야 한다는 느낌인지 확인한다. 획득대 일반점프 회피 예외는 설계 대기다. 독립 슬롯이 유지되며 Esc→제목→새 게임으로 초기화할 수 있다.
+
+이번 기록: 고리 시간____ / B1·B2 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____ / 쉬는 거리로 보였는지____. 전체20~30분. 조각은4개마다 최대HP+1/전회복, 저장·Continue·새 게임은 기술 검증 PASS다.
 
 조정 값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). 기본 보스(B3, D-B3 10/14)는 [기본 BossTuning](Assets/ScriptableObjects/BossTuning.asset)에서 조정하고(Boss-B3 런처는 [후보 Asset](Assets/BossCandidates/B3/BossTuning.asset)을 쓴다) Play 종료 후 원하는 값을 명시 저장·재빌드한다.
 
@@ -236,9 +239,10 @@ B23 실행은 2026-10-31 사용자 “Design/proposals-1031/01_CODEX_BATCH23.md 
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
+| B24-RETURN-LIFT | 자동 연속 고리 반환 승강기 surface13인데 feet1.015. Editor 두 입력과 최종 exe에서 재현. 최초 탑승은 성공, 수동 제품 결함 여부는 미확정. T3 후반·T6·그 뒤 Continue가 선행 차단 | [이번 원문](Validation/_raw/24/P5-loop-exe/result.txt), [요약](Validation/B24-summary.md) |
 | V5-HEADBUMP | 사용자 점프 머리 걸림 피드백. h1.6 머리 충돌 후보36면·격리 실측33/36 접촉, 모서리 수평 보정 없음. 불일치3과 초기 문 전환2도 보존 | [플레이 CSV](Playtest/20261022-233114.csv), [B20 T3](Validation/B20-headbump.md), [전체 실측](Validation/B20-headbump-all.md) |
 
-B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그4건, 결정 대기2건이다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
+B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그5건, 결정 대기5건이다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -283,45 +287,50 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch23
+## 9. Latest Handoff — Batch24
 
 ### 결정 질문지
 
-- D-BODY·D-CORNER-FIX: 기존 크기/모서리 후보 선택 대기. 기존 비교 순서와 추천은2·3절 유지.
-- D-B23-GEOMETRY: A02 조각 길(상면10.5·굴뚝 하단11, Scene FAIL4), A04 무너지는 발판 뒤 머리 접촉1/5를 Claude가 수정 / 현재 경로 보류. **수정 추천**: 머리0 기준 회복과 고리 검증을 위해 필요하다. Codex 좌표 변경은 금지라 보존했다. 승강기는 오른쪽 끝에 남으면 위층 발판 아래와 부딪혀 중앙 탑승이 필요하다.
-- D-B23-RULE: 본문 오름≥1.5 유지 / 참고 스크립트처럼 낮은 오름 포함. **본문 유지 추천**. 첫 고리19→0이며 기대20과 차이는 A01 오름1.1이다. A06 기존3 FAIL은 다음 draft에서 수정해야 전체 FAIL0을 충족한다. T5/T6을 푼다.
+- D-BODY·D-CORNER-FIX: 기존 선택·추천·비교 순서는2·3절 유지.
+- D-B23-GEOMETRY: draft5로 A02 Scene overhead4·A04 접촉은 해소. A02 조각 P3 일반 이륙 머리5/5·늦은 코요테 이륙0/5의 민감도를 더 관대하게 수정 / 유지 중 선택. **설계 검토 추천**, 특정 입력만 통과한다. B24-T2 후속을 푼다.
+- D-B23-RULE: 오름≥1.5 본문 / 낮은 오름 포함 선택. **본문 유지 추천**, 기대20의 차이는1.1u 오름이며 A06 기존3 FAIL은 draft5로 해소했다.
+- D-B24-B2-GATE: 전투 중 획득대 비활성 설계 / 현재 예외 허용. **비활성 설계 검토 추천**, 받침 위 일반점프가 파동을 넘는다. B24-T12의 벽 전용 회피 조건을 푼다. [B2 런처](Launchers/current/Play-BossTest-B2.cmd), [원문](Validation/_raw/24/T12-patterns5-wave-lifecycle/result.txt).
 
 ### 직접 플레이 확인
 
-기존 V4 장치·경로·저장·보스/엔딩 → BodySizeTest·몸 비교 → 머리/동시/대시 모서리 비교 순서는3절을 유지한다. B22 기본 복귀는 사용자가 딜레이 추가를 요청해 T5 REVIEW를 유지하고 이번 일어나기와 함께 본다.
+기존 V4 장치·경로·저장·보스/엔딩 → 몸 비교 → 모서리 후보 순서는3절에 보존했다. 기존 B21/B22 복귀 REVIEW와 B23 등장·일어나기 감각 수락도 계속 대기다.
 
-그 뒤 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd), A03→승강기→A04→A05→A03→승강기→서쪽 연습.10~15분 예상. 질문: ① 보스 등장이 “나타나는” 느낌인가? ② A03 위층 연습과 승강기가 자연스러운가? 기록: 고리 시간____ / 보스 시도____ / 막힌 곳____ / 머리 박은 곳____. **새 자동 고리는 미완주**이며 이전 B22 성공으로 대신하지 않는다. [보스 단독](Launchers/current/Play-BossTest-B1.cmd)은3~5분.
+이번 검수는 **1회20~30분**: [V5 고리](Launchers/current/Play-V5-Loop.cmd)의 A03 건물 거리→B1→대시→A01 감실 왕복15~20분, 그 뒤 [B2 시험장](Launchers/current/Play-BossTest-B2.cmd)5~10분. 승강기·서쪽 연습/선반·쉬는 거리·조각 재방문 동기·벽 점프 학습을 본다. 자동 고리는 반환 승강기에서 실패해 전체 왕복/그 뒤 Continue는 미실시다. 수동으로도 막히면 기록 후 B2로 넘어간다. 질문·기록 칸·저장 초기화는3절/[README](README.md)에 있다.
 
-조정: B1 BossTuning.asset HP22·피해1·돌진7.5u/s, Scene BossEncounter `introDuration`1.8s·낙하높이·흔들림, B21HazardReturn.asset `fadeSeconds`0.15s·`getUpTime`0.45s. 기존 접지0.1s·여백0.5u·정지0.12s 유지. Play 종료 전 값을 기록하고 Edit 모드에서 명시 저장 후 재빌드한다. 기본 몸1.6·모서리 후보 꺼짐 유지.
+조정 위치: B1/B2 `Assets/BossCandidates/B1|B2/BossTuning.asset`, B2 Scene `BossEncounter`의 등장시간·획득대 중심/이탈거리, `Assets/Candidates/B21HazardReturn.asset`의 fade0.15s/getUp0.45s. Play 중 변경값을 기록하고 종료 후 Edit 모드 원본에 명시 저장·재빌드한다. 기본 몸1.6·머리/대시 모서리 후보 꺼짐 유지.
 
 ### Task별 결과
 
-Claude 설계 변경: `667543d`, Design/v5 3파일·Design/proposals-1031 3파일·GAME_DESIGN·D42 검증 문서. 기존 내용 그대로 선행 커밋했으며 이후 Design 변경0. [종료 요약](Validation/B23-resume-summary.md)에 실제 FAIL/MEASURE·원문·A06 목록·미실시를 연결했다. 이전 [B22 인계/결과](Validation/B22-summary.md)·현재 이전 Task 표와 미종결 목록을 보존한다. Archive는 이번 허용 범위 밖이라 옮기지 않았다.
+Claude 설계 변경: `88f458e`, Design/v5 3파일·proposals-1101 4문서·D43/D50 2문서를 내용 변경 없이 승인 선행 커밋. 그 뒤 Design 변경0. [Batch24 요약](Validation/B24-summary.md)에 실제 FAIL/MEASURE·미실시·실패 시도를 연결했다. 이전 B23 상세는 [B23 요약](Validation/B23-resume-summary.md)과 위 기존 Task 표에 보존한다. Archive는 이번 허용 범위 밖이라 새 이동은 하지 않았다.
 
-| Task | 상태 | 커밋·변경·실제 결과 |
+| Task | 상태·커밋 | 변경·직접 검증 |
 | --- | --- | --- |
-| T0 | DONE | `8d4d3ab` TASKS 전달 피드백·추천/사용자 결정 구분 |
-| T1 | REVIEW | `3c0416f` 등장1.800s·양쪽 피해0·이동만, B3 8패턴/페이즈/사망/엔딩 PASS |
-| T2 | DONE | `1bbbbf0` B1 HP22, 무능력 실제 처치12.867s HP3 |
-| T3 | REVIEW | `5b1d291` 일어나기0.450s·추가 피해0·HP0 기존 사망 PASS |
-| T4 | DONE | `b370eb1` startLow·실제 레버 상하상 탑승, V4 B01/C01 위 시작/하단 잠금/상단 해제 PASS |
-| T5 | PARTIAL | `d65bedc` Tools 검사기 양방향 승강기·간격 fixture PASS. 첫 고리19→0, A06 FAIL3·WARN24. 기대20 불일치 |
-| T6 | PARTIAL | `0027aa3` Unity 생성6 Scene·요소 수 일치. Scene A02 overhead FAIL4·정적 A06 FAIL3 |
-| T7 | PARTIAL | `cf37877` 연습 각0/5·5/5, 무너짐3·가시2방·높은조각 PASS. A04 머리1/5 잔존 |
-| T8 | BLOCKED | `665753e`·`539fa2b` 실패 원문 보존·실험 제거. 연속 고리는 A04 일반 적 피해/무너짐 착지에서 미완주. 재시도 종료, 그 뒤 Continue 미실시 |
-| T9 | PARTIAL | `698e041` 안내 커밋. README/3·9절·런처 갱신, V5 Loop/V4 BeforeBoss smoke PASS. 고리 검증 한계 명시 |
-| BL1 | DONE | `343b203` A06 본문3·참고5 검출 목록, 데이터 수정0 |
+| T0 | DONE `eab5ab9` | TASKS 전달 피드백·명시 P3 승인 |
+| T1 | DONE `c75ecb0` | V5 6 Scene 재생성. 정적 FAIL0/WARN27(주로 A03 건물), Scene FAIL0. E4/E2·보상 요소 일치 |
+| T2 | DONE `815107f` | A03 4·A02 5·A04 2·A06 3구간, 각 머리0/5·착지5/5. A02 조각 P3는 코요테 이륙 레시피 조건부, 보통 이륙은 머리5/5 실패 |
+| T3 | PARTIAL `fa6d76c` | 실제 고리 A04 하부 포고→B1→대시→도랑→A03 건물/W옥상까지. 반환 승강기 재탑승 실패, 연습/그 뒤 Continue 잔여 |
+| T4 | DONE `c7cdca7` | 감실 무능력0/5·대시5/5·실제 조각 수집 |
+| T5 | DONE `6814ed8` | E4 포고1·피해0, A02 E2 점프5/5·A05 E2 점프대시5/5·피해0 |
+| T6 | BLOCKED `42f31fe` | T3 후반 선행 실패로 A01 왕복 미진입. 반환 승강기 입력2회 실패·실험 제거, 결과 보존 |
+| T7 | DONE `5669bf8` | PRD 지정3문장만 정확 패치 |
+| T8 | DONE `371946c` | 실제4조각 maxHP4→5/HP3→5·안내1.500s·ID/bonus 즉시저장·중복거절·Continue·재진입숨김·새게임·구version1 호환 Error0 |
+| T9 | DONE `b1d8a98` | 보스별 양방향·첫예고·패턴순서 선택 필드, 기본값은 기존 유지. B1/B3 cycle·phase·사망 PASS |
+| T10 | DONE `8a0c6dd` | 새 B2 Scene·개발 런처·동일방 체크포인트 재시작. 실제 획득→3u 이탈 잠금·인트로1.800~1.817s. 비활성 RoomExit의 트리거를 명시 차단 |
+| T11 | REVIEW `118eb66` | 후보HP26/피해1·패턴2,3,7만 관측·페이즈전환0·파동 collider2.800u/양방향·첫예고1.000~1.017s |
+| T12 | PARTIAL `878f734` | 바닥 무벽점프10/10 피격·벽점프 실입력 처치24.767s HP2·벽점프7/포고26, 사망복귀·획득유지·처치ID/재진입없음 PASS/Error0. 획득대 위 일반점프 회피 예외가 있어 설계 조건은 미충족 |
+| T13 | DONE | B22Authoring 빌드 Scene 추가·현재 런처, Development 오류0/경고0·최종13/13·smoke4 Error0·B3 엔딩 PASS |
+| T14 | DOING | README·TASKS에 사람 검수1회 안내 |
 
-기본 회귀13/13·Development 오류0/경고0. B1 패턴 관측은 HP100 fixture, 무능력 승리는 기본 HP 별도 입력이다. 방별 시험은 시작 pose/능력 fixture이며 전체 자연 고리 성공 증거와 구분한다. 고리 중 HP·위치·보스·획득 능력 쓰기는 없었다. Release·실제 패드·사람 감각·Sprint Gate는 미실시다.
+패턴 관측 HP100 fixture와 실제 HP4 전투를 분리했다. B2 실입력 처치24.767s/HP2, 벽점프7·포고26·죽음/저장/재진입 PASS. 바닥10/10 피격은 획득대 예외를 포함한 보편적 능력 게이트 증명이 아니다. P1~P4 Quiet각13/13·P5 전체13/13·Development 오류0/경고0·런처4개 Error0. 실제 패드·Release·자연 사람 완주·Sprint Gate는 미실시.
 
 ### 다음 Batch 후보
 
-Claude가 A02/A04 머리 기하와 승강기 탑승 동선을 검토하고 A06·접근 규칙 충돌을 정리한 뒤 새 고리 검증을 승인한다. 보스2~4·다른 층 확장은 하지 않았다. Backlog 처리·Queue0으로 종료한다.
+반환 승강기 재탑승 원인(입력/운반) 확인, A02 조각 접근·B2 획득대 예외 설계 정리 후 새 고리 왕복 검증. 사용자 검수 결과를 받은 뒤 층 B 설계/배치는 별도 승인한다. B24 Backlog 없음·Ready Queue0으로 종료하며 층 B 확장은 하지 않았다.
 
 ## 10. Playtest·Before-After
 
@@ -334,7 +343,3 @@ Claude가 A02/A04 머리 기하와 승강기 탑승 동선을 검토하고 A06·
 | 2026-11-01 | B23 A03 허브 | 사용자 “A03 전부 사라졌는데 비었어”, 분량 추가 요청. Claude는 허브 평지화를 과잉 해석으로 기록, 건물 거리 draft4.3/5 작성. B24 반영 후 플레이 수락은 미실시 | [전달 기록](Design/proposals-1101/00_README.md) |
 
 B24 Ruling: PRD77의 과거 DEC-LEVEL-001은 당시 세션 한정 발견 승인 기록으로 보존한다. 2026-11-01 사용자 D-FRAGMENT-HP 직접 승인과 지정3곳 패치가 이번 영구 조각/HP 구현의 근거이며, 승인 밖인77행은 바꾸지 않는다.
-
-
-
-
