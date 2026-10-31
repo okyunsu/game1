@@ -22,7 +22,7 @@
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
 | B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
-| B24-T1 | TODO | 승인 단계 순서대로 진행 |
+| B24-T1 | DONE | draft5 Scene6 재생성·정적 FAIL0/WARN27·Scene FAIL0(기존 A02 overhead4 해소)·A01 E4/감실·A02/A05 E2 요소 수 일치. raw/24/T1-* |
 | B24-T2 | TODO | 승인 단계 순서대로 진행 |
 | B24-T3 | TODO | 승인 단계 순서대로 진행 |
 | B24-T4 | TODO | 승인 단계 순서대로 진행 |
