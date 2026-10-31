@@ -33,7 +33,7 @@
 | B24-T9 | DONE | 충격파 높이는 기존 보스별 waveHeight 재사용, 양방향/첫예고/패턴순서 필드 기본은 기존 유지. B1·B3 cycle/phase/사망 회귀 PASS, 금지 튜닝diff0. raw/24/T9-* |
 | B24-T10 | DONE | 실제 획득→3u 이탈 잠금·인트로1.817s·첫예고1.000s, 양방향 실 collider2.800u PASS. 초기 비활성 RoomExit 트리거 처리 보완. raw/24/T12-patterns3-physics |
 | B24-T11 | REVIEW | 후보HP26·피해1·실제 패턴2,3,7만 순서 관측·페이즈전환0. 실높이2.800·양방향·첫예고1.000s 확인. 양벽 ClimbableWall 시험장, 감각 수락 대기. raw/24/T12-patterns3-physics |
-| B24-T12 | TODO | 승인 단계 순서대로 진행 |
+| B24-T12 | PARTIAL | 바닥 무벽점프10/10피격·실입력24.767s 처치 HP2/벽점프7/포고26·사망복귀/능력유지·ID저장/재진입없음 Error0. 획득대 일반점프 회피 예외 발견, D-B24-B2-GATE 대기. raw/24/T12-patterns5-wave-lifecycle·T12-fight2-chargeInput |
 | B24-T13 | TODO | 승인 단계 순서대로 진행 |
 | B24-T14 | TODO | 승인 단계 순서대로 진행 |
 
@@ -136,11 +136,13 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 |---|---|---|---|
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B22-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
-| D-B23-GEOMETRY | A02 platform3(상면10.5)·climb0(하단11) Scene overhead FAIL4, A04 다음 platform2 실제 머리 접촉1/5. Claude 데이터 수정 / 문제 경로 보류 중 선택 | 데이터 수정 추천. 승인 범위상 Codex 좌표 변경 금지 | B23-T6 FAIL0·T7 머리0 기준 |
-| D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반도 전체 FAIL0과 충돌 | 본문 유지 추천. 첫 고리19→0, A063건은 다음 draft에서 수정 | B23-T5/T6 전체 FAIL0 및 기대20건 |
+| D-B23-GEOMETRY | draft5로 기존 A02 overhead4·A04 접촉1/5는 해소. A02 조각 P3는 일반 이륙 머리5/5·코요테 이륙0/5. 더 관대한 접근으로 설계 수정 / 현재 유지 | 설계 검토 추천. 특정 늦은 이륙에 의존하는 잔여 문제 | B24-T2의 입력 민감도, [Loop](Launchers/current/Play-V5-Loop.cmd) |
+| D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
 
-결정 대기4건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+| D-B24-B2-GATE | 중앙 획득대 위 일반 점프로 높은 파동 회피 가능. 전투 중 획득대 비활성 설계 / 현재 예외 허용 중 선택 | 획득 후 전투 중 획득대 비활성 설계 검토 추천. 바닥10/10 피격만으로 벽 전용 회피가 보장되지 않음 | B24-T12 설계 조건, [B2 시험](Launchers/current/Play-BossTest-B2.cmd), raw/24/T12-patterns5-wave-lifecycle |
+
+결정 대기5건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
 
@@ -332,5 +334,7 @@ Claude가 A02/A04 머리 기하와 승강기 탑승 동선을 검토하고 A06·
 | 2026-11-01 | B23 A03 허브 | 사용자 “A03 전부 사라졌는데 비었어”, 분량 추가 요청. Claude는 허브 평지화를 과잉 해석으로 기록, 건물 거리 draft4.3/5 작성. B24 반영 후 플레이 수락은 미실시 | [전달 기록](Design/proposals-1101/00_README.md) |
 
 B24 Ruling: PRD77의 과거 DEC-LEVEL-001은 당시 세션 한정 발견 승인 기록으로 보존한다. 2026-11-01 사용자 D-FRAGMENT-HP 직접 승인과 지정3곳 패치가 이번 영구 조각/HP 구현의 근거이며, 승인 밖인77행은 바꾸지 않는다.
+
+
 
 
