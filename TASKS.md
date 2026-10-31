@@ -2,12 +2,15 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-01, Codex (Batch24 진행 중).
-- Base `88f458e`, 기존 B23 미푸시16커밋·B23 태그 보존, Claude draft5 문서 선행 커밋 완료. fetch/push 없음.
-- Preflight PASS: hubLicensingClient=True·Unity exit0. 기존 사용자 변경은 승인된 선행9파일 커밋으로 보존.
-- 승인 범위: P1~P5, T0~T14. 사용자 직접 지시로 P3 승인(지시문 보류 표기보다 우선), PRD 지정3곳·조각 저장/HP 포함.
-- P1 Quiet13/13, P2 감실·적 검증 DONE·고리 잔여. P2 Quiet13/13, P3 조각/HP·저장 검증·Quiet13/13 완료. P4 보스2 아레나 생성·검증 중. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
-- 기존 수락 대기·직접 플레이 순서 보존. 방 좌표·기본 튜닝 원본은 변경하지 않음.
+- 갱신: 2026-11-01, Codex — Batch24 종료, 사용자 검수 차례.
+- Base `88f458e`(Claude 설계 선행 승인), 최종 커밋은 `git log -1` 확인. 로컬 태그 B24, 기존 B23 보존.
+- 종료 기준 로컬 origin/main 대비33커밋/2 Batch(B23·B24), fetch/push 없음. 기존16커밋을 포함해 squash하지 않음.
+- 사용자 직접 P3 승인으로 PRD 지정3곳·조각ID 저장·4개당 최대HP+1 구현. draft5 건물·감실·E4/E2·B2 시험장 제공.
+- P1~P4 Quiet 각각13/13, P5 전체13/13, 최종 Development 오류0/경고0, 런처4개·B3 엔딩 Error0.
+- T3 PARTIAL/T6 BLOCKED: 반환 승강기 자동 재탑승은 Editor·exe 모두 실패, 전체 왕복·그 뒤 Continue 미실시.
+- T11 REVIEW/T12 PARTIAL: B2 실처치·저장 통과, 획득대 일반점프 회피 예외 설계 대기. A02 조각 접근 입력 민감도도 남음.
+- 이번 검수1회20~30분: V5 Loop→B2. 기존 수락 대기 순서는3절 유지. 결정5건·Ready Queue0·추가 Backlog 없음.
+- 현재 빌드 B24/직전 B23, B22 슬롯/목록 raw 보존 후 오래된 빌드 정리. [종료 증거](Validation/B24-summary.md).
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -35,7 +38,7 @@
 | B24-T11 | REVIEW | 후보HP26·피해1·실제 패턴2,3,7만 순서 관측·페이즈전환0. 실높이2.800·양방향·첫예고1.000s 확인. 양벽 ClimbableWall 시험장, 감각 수락 대기. raw/24/T12-patterns3-physics |
 | B24-T12 | PARTIAL | 바닥 무벽점프10/10피격·실입력24.767s 처치 HP2/벽점프7/포고26·사망복귀/능력유지·ID저장/재진입없음 Error0. 획득대 일반점프 회피 예외 발견, D-B24-B2-GATE 대기. raw/24/T12-patterns5-wave-lifecycle·T12-fight2-chargeInput |
 | B24-T13 | DONE | 최종 Development 오류0/경고0, 전체13/13·P1~P4 Quiet각13/13, Loop/B1/B2/V4 smoke4 Error0·기존 B3 처치→엔딩 PASS. 실제 exe 고리 반환 승강기 실패 별도 기록. B24/B23만 보존·B22 슬롯 raw보관 |
-| B24-T14 | TODO | 승인 단계 순서대로 진행 |
+| B24-T14 | DONE | README·TASKS3/9에 마지막 검수1회20~30분·고리→B2·질문/기록칸·슬롯/초기화·조정위치·잔여 한계 안내 |
 
 ### 이전 Current Tasks (Batch23)
 
@@ -323,8 +326,8 @@ Claude 설계 변경: `88f458e`, Design/v5 3파일·proposals-1101 4문서·D43/
 | T10 | DONE `8a0c6dd` | 새 B2 Scene·개발 런처·동일방 체크포인트 재시작. 실제 획득→3u 이탈 잠금·인트로1.800~1.817s. 비활성 RoomExit의 트리거를 명시 차단 |
 | T11 | REVIEW `118eb66` | 후보HP26/피해1·패턴2,3,7만 관측·페이즈전환0·파동 collider2.800u/양방향·첫예고1.000~1.017s |
 | T12 | PARTIAL `878f734` | 바닥 무벽점프10/10 피격·벽점프 실입력 처치24.767s HP2·벽점프7/포고26, 사망복귀·획득유지·처치ID/재진입없음 PASS/Error0. 획득대 위 일반점프 회피 예외가 있어 설계 조건은 미충족 |
-| T13 | DONE | B22Authoring 빌드 Scene 추가·현재 런처, Development 오류0/경고0·최종13/13·smoke4 Error0·B3 엔딩 PASS |
-| T14 | DOING | README·TASKS에 사람 검수1회 안내 |
+| T13 | DONE `60fbcef` | B22Authoring 빌드 Scene 추가·현재 런처, Development 오류0/경고0·최종13/13·smoke4 Error0·B3 엔딩 PASS |
+| T14 | DONE | README·TASKS3/9 검수20~30분·질문/기록·값조정·미완주 한계 안내, 커밋은 종료 요약 참조 |
 
 패턴 관측 HP100 fixture와 실제 HP4 전투를 분리했다. B2 실입력 처치24.767s/HP2, 벽점프7·포고26·죽음/저장/재진입 PASS. 바닥10/10 피격은 획득대 예외를 포함한 보편적 능력 게이트 증명이 아니다. P1~P4 Quiet각13/13·P5 전체13/13·Development 오류0/경고0·런처4개 Error0. 실제 패드·Release·자연 사람 완주·Sprint Gate는 미실시.
 

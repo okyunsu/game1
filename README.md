@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-Sprint 3, Batch 21 A05 지름길 잠금·이동 실측·후보 비교까지 구현. V5 배치는 draft3과 같은 draft3.1입니다. V4 21방, 대시·더블 점프·벽 점프·Slam,
+Sprint 3, Batch24 V5 draft5 건물 거리·대시 감실·적 배치·조각 성장·보스2 시험장까지 구현했습니다. V4 21방, 대시·더블 점프·벽 점프·Slam,
 보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B3(8패턴·2페이즈, 10/14 채택).
 B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
 현재 결과·결정·직접 플레이 목록은 [TASKS](TASKS.md)를 따릅니다.
@@ -21,7 +21,7 @@ B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 S
 - [Play-V4-BeforeBoss](Launchers/current/Play-V4-BeforeBoss.cmd): C04 개발 fixture, 기본 보스.
 - [Play-V4-AfterEnding](Launchers/current/Play-V4-AfterEnding.cmd): 엔딩 후 A01 개발 fixture.
 - [Boss-Base](Launchers/current/Boss-Base.cmd): 현재 기본 보스 비교.
-- [Boss-B2](Launchers/current/Boss-B2.cmd): B2 후보와 AV1 비교.
+- [Play-BossTest-B2](Launchers/current/Play-BossTest-B2.cmd): 벽 점프를 얻고 싸우는 보스2 시험장. Boss-B2도 같은 시험장을 엽니다.
 - [Boss-B2-fast](Launchers/current/Boss-B2-fast.cmd): 이전 기본 B2-fast와 AV1 비교.
 - [Boss-B2-slow](Launchers/current/Boss-B2-slow.cmd): 느린 B2 후보와 AV1 비교.
 - [Boss-B3](Launchers/current/Boss-B3.cmd): B3 8패턴(기본과 같은 값의 후보 Asset), C04에서 오른쪽 문으로 진입.
@@ -55,34 +55,32 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
-Batch23 고리 플레이: [Play-V5-Loop.cmd](Launchers/current/Play-V5-Loop.cmd)는 **A03·이동 능력 없음·기본 몸1.6**으로 시작합니다. 첫 탐색·재시도를 포함해 **10~15분 예상**입니다. 새 자동 고리는 A04에서 미완주해 전체 경로·그 뒤 이어하기 검증이 남아 있습니다.
+Batch24 검수는 마지막에 **한 번, 약20~30분** 진행합니다. 기존 수락 대기 항목의 순서는 [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 보존했습니다.
 
-1. CP-A03에서 동쪽 승강기로 갑니다. 레버는 X로 치며 아래·위에서 모두 호출할 수 있습니다. 작동 후 승강기 중앙으로 옮겨 탑니다. 위층에서 오른쪽 A04로 갑니다.
-2. A04 위 길 또는 아래 포고 길을 지나 보스1과 싸웁니다. 잠금벽이 닫힌 뒤 약1.8초 동안 등장하며 이동만 가능합니다. HP22 보스를 처치하면 열린 구멍으로 A05에 내려가 대시를 얻습니다.
-3. 왼쪽으로 돌아와6u 도랑을 점프 정점의 대시로 건넙니다. 위험 지형에 닿으면 화면이 어두워지고 마지막 안전 바닥으로 복귀한 뒤 약0.45초 일어납니다.
-4. A03에서 승강기를 타고 위층으로 올라가 **서쪽 방향** 대시 연습3단계 → 대시 문 선반까지 갑니다. 떨어지면 거리로 돌아와 승강기를 다시 호출합니다. 문은 파일럿 stub입니다.
+1. [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): A03·능력 없음·기본 몸1.6으로 시작합니다. 건물 거리(상자→M건물→굴뚝→W옥상)를 둘러본 뒤 CP-A03→동쪽 승강기→A04 보스1→A05 대시→도랑→A03 건물/옥상→승강기→서쪽 대시 연습3단계/선반을 확인합니다. 레버는 X, 탑승은 승강기 중앙입니다. 이어서 A02를 거쳐 A01 높은 대시 감실의 조각을 얻고 A03으로 돌아옵니다. 고리 약15~20분.
+2. [Play-BossTest-B2](Launchers/current/Play-BossTest-B2.cmd): 중앙 획득대에서 벽 점프를 얻고 좌우로3u 멀어지면 잠금·1.8초 등장 후 전투가 시작됩니다. 양쪽 벽에 붙어 Z를 다시 눌러 높은 충격파를 피하고 돌진·낙하물 틈에 공격합니다. HP26·피해1·한 페이즈입니다. 사망하면 입구 체크포인트로 돌아오며 벽 점프는 유지됩니다. 재도전은 중앙 통과로 시작합니다. 약5~10분.
 
-플레이 전 질문: **① 보스 등장이 “나타나는” 느낌인가요? ② A03 위층 연습과 승강기가 자연스러운가요?**
+조각은 ID별로 저장되며4개마다 최대 HP가1 증가하고 즉시 모두 회복합니다. HUD의 `조각 n/4`는 다음 성장까지의 수입니다. 같은 조각은 이어하기·방 재진입 시 다시 나오지 않습니다. Loop/B1 런처는 매번 독립 fixture 슬롯을 초기화합니다. B2 런처는 독립 슬롯을 유지하며, 처음부터 다시 보려면 Esc→제목으로→새 게임을 선택합니다. 제목 화면의 이어하기로 현재 슬롯을 재개합니다.
 
-기록: 고리 시간____ / 보스 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____. [기술 결과·남은 기준·실패 기록](Validation/B23-resume-summary.md).
+질문: **A03이 쉬는 거리로 보이나요? 보스 등장·위험 지형 복귀의 딜레이가 자연스러운가요? 승강기·서쪽 연습이 자연스러운가요? 조각을 찾아 돌아갈 이유가 생겼나요? B2에서 벽 점프를 배워 써야 한다고 느꼈나요?**
 
-남은 문제: A02 조각 길의 머리 여유 검사4건, A04 오름 실측 머리 접촉1/5가 남았습니다. 승강기 레버 쪽 끝에 계속 서 있으면 위층 선반 아래에 머리가 닿으므로 탑승 후 중앙으로 이동해 주세요. 방 좌표는 설계 검토 대기입니다.
+기록: 고리 시간____ / B1·B2 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____ / 쉬는 거리로 보였는지____.
 
-보스만 확인하려면 [Play-BossTest-B1.cmd](Launchers/current/Play-BossTest-B1.cmd)를 실행합니다. Scene은 `Assets/Scenes/Test/BossTest_B1.unity`, 사망 시 실제 CP-A03으로 돌아가며 A04로 가서 재도전할 수 있습니다. 고리 런처와 보스 테스트는 각각 별도 fixture 저장 슬롯을 초기화합니다. 같은 실행 안에서는 제목 화면의 이어하기가 보스 처치·획득 대시를 복원합니다.
+기술 확인과 한계: B1 실제 처치13.017초, B2 벽 점프7회·포고26회 처치24.767초/HP2, 조각4개 최대HP4→5·저장/이어하기/새 게임 초기화는 통과했습니다. 새 연속 고리는 Editor·최종 exe 모두 A03 반환 승강기에서 재탑승이 안 되어 전체 완주·그 뒤 A01 왕복/Continue가 남아 있습니다. A02 조각길은 늦은 코요테 이륙으로 머리0/5이나 보통 이륙에서는5/5 접촉합니다. B2 바닥 일반 점프는10/10 피격되지만 중앙 획득대 위 일반 점프로는 회피할 수 있어 설계 검토 대기입니다. 수동으로도 반환 탑승이 막히면 위치를 기록하고 B2로 넘어가 주세요. [이번 결과·원문](Validation/B24-summary.md).
 
-몸 비교는 `Start-V5.ps1 -Mode Loop -BodyHeight 1.3` 또는 고리 cmd 뒤 `-BodyHeight 1.3`을 붙입니다. 기본값 채택은 별도입니다. 조정 값은 `Assets/BossCandidates/B1/BossTuning.asset`(HP/피해·패턴·돌진 속도), Scene의 BossEncounter(`introDuration`1.8s·아레나), `Assets/Candidates/B21HazardReturn.asset`(`fadeSeconds`0.15s·`getUpTime`0.45s, 기존 접지0.1s·여백0.5u·정지0.12s 유지)입니다. Play 중 변경은 종료 전 기록하고 Edit 모드에서 명시 저장 후 빌드를 다시 만듭니다.
+보스1만 확인하려면 [Play-BossTest-B1](Launchers/current/Play-BossTest-B1.cmd)을 실행합니다. 사망 시 실제 CP-A03으로 돌아갑니다. 몸 비교는 고리 cmd 뒤 `-BodyHeight 1.3`을 붙이며 기본 채택은 별도입니다.
 
-V5 층 A draft4.2 파일럿: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd).
-세 런처 모두 `-NoMap` 지원·V5 전용 fixture 슬롯 사용. [검증·직접 플레이 안내](TASKS.md#9-latest-handoff--batch23).
+조정 위치: B1/B2는 각각 `Assets/BossCandidates/B1/BossTuning.asset`, `Assets/BossCandidates/B2/BossTuning.asset`(HP·피해·파동 높이/방향·예고·패턴). B2 배치·획득대·벽·체크포인트는 `Assets/Scenes/Test/BossTest_B2.unity`, BossEncounter의 `introDuration`·`acquisitionX`·`acquisitionDistance`입니다. 복귀 딜레이는 `Assets/Candidates/B21HazardReturn.asset`의 `fadeSeconds`0.15초·`getUpTime`0.45초입니다. Play 중 바꾼 값은 종료 전 기록하고 Edit 모드에서 원본을 저장한 뒤 재빌드합니다.
 
-Batch18: A02 블록·발판 간격과 블록 속 적을 draft3 재생성으로 수정했고 작은 발판12개를 넣었습니다. 현재 V4/V5 런처는 모두 `Builds/B23-delivery`를 사용합니다. 직전 B22 빌드는 비교용으로 보존합니다.
+V5 층 A draft5: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd). `-NoMap` 지원. 현재 V4/V5 런처는 모두 `Builds/B24-delivery`를 사용하고 직전 B23 빌드는 비교용으로 보존합니다.
+
 Batch19 검사 정리: 기존 후보69는 머리 위0·닫힌 문6·측면43·구덩이 가장자리20입니다. 실제 Scene은 FAIL0/WARN0이며 닫힌 문·측면·구덩이는 MEASURE로 표시합니다. draft2 머리 위4건은 계속 FAIL로 검출합니다. 정적 후보22는 A02 WallJump 조건과 A06 유일 입구 DJ 조건을 반영하면0입니다. 무능력 계산도 별도로 남기며 실제 자연 완주와 구분합니다. [후보](Validation/B19-candidates.md), [Scene 검사](Validation/B19-clearance.md), [정적 검사](Validation/B19-room-rules-v5-A.md), [규칙 근거](Validation/B19-rules-ledger.md).
 
 Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output 새파일` 또는 Development exe의 `-verify-b18-clearance`(독립 `-save-path` 필수). JSON 검사: `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --output 새파일`. 검사 결과와 실제 플레이 불가능 판정은 구분합니다.
 
 최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 일반 경로는5구간 통과했고, DJ는 A01 접근120초 미완주 뒤 A06 도착 fixture에서3구간 통과했습니다.
 
-Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). B19 당시에는 Scene·게임 수치·배포 빌드를 유지하고 측정 소스만 추가했습니다. 현재 B22 배포 exe에도 이 측정 코드와 크기 비교 도구가 들어 있습니다.
+Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). B19 당시에는 Scene·게임 수치·배포 빌드를 유지하고 측정 소스만 추가했습니다. 현재 B24 배포 exe에도 이 측정 코드와 크기 비교 도구가 들어 있습니다.
 
 Windows 실행: Unity와 Unity를 호출하는 검증 스크립트는 정상 사용자 LOCALAPPDATA를 사용하는 샌드박스 밖 실행으로 검증했습니다. 격리 경로의 라이선스 실패와 게임 실패를 구분합니다. 코드 편집·JSON 분석은 샌드박스 안에서, Git 기록은 별도 사용자 승인 예외로 수행했습니다.
 
