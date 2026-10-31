@@ -79,12 +79,24 @@ public sealed partial class B22Probe
   }
   Check(allClear,"all field approach head contacts0");
  }
+ IEnumerator ClearFieldEnemy()
+ {
+  var enemy=Room.GetComponentsInChildren<EnemyReset>().Single();double end=Time.realtimeSinceStartupAsDouble+3,next=0;
+  while(enemy.Live!=null&&Mathf.Abs(enemy.Live.transform.position.y-Body.position.y)<1.8f&&Health.HP>0&&Time.realtimeSinceStartupAsDouble<end)
+  {
+   float target=Mathf.Max(9.1f,enemy.Live.transform.position.x-1.3f),dx=target-Body.position.x;
+   var keys=new System.Collections.Generic.List<Key>();if(Mathf.Abs(dx)>.12f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
+   if(Time.timeAsDouble>=next){keys.Remove(Key.LeftArrow);keys.Remove(Key.RightArrow);keys.Add(enemy.Live.transform.position.x>Body.position.x?Key.RightArrow:Key.LeftArrow);keys.Add(Key.X);next=Time.timeAsDouble+Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.04;}
+   Input(keys.ToArray());yield return null;
+  }
+  yield return Keys();Record("MEASURE loop generalEnemy defeated="+(enemy.Live==null)+" playerHP="+Health.HP+" player="+Body.position+" enemy="+(enemy.Live!=null?enemy.Live.transform.position.ToString():"none"));Check(Health.HP>0,"survive actual A04 enemy approach");
+ }
  IEnumerator B23Loop()
  {
   Check(RoomSession.Instance.CurrentRoomId=="A03","loop starts A03");NoAbilities();double began=Time.timeAsDouble;
   Record("FIXTURE loop initial CP-A03 only; no position/health/ownership writes after start");
   yield return LiftRide(true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A04",Key.RightArrow,"A04 physical door",5);yield return Ready();
-  yield return JumpTo(4.2f,5.8f,3,"A04 block");yield return JumpTo(7.25f,10.2f,5,"A04 platform");yield return JumpTo(11.4f,14.1f,7,"A04 crumble");yield return JumpTo(14.25f,16.5f,7,"A04 upper");yield return GoX(27.5f);yield return Until(()=>Boss!=null&&Boss.Fighting,"arena trigger",4);yield return Fight();
+  yield return JumpTo(4.2f,5.8f,3,"A04 block");yield return JumpTo(7.25f,9.45f,5,"A04 platform");yield return ClearFieldEnemy();yield return JumpTo(11.4f,14.1f,7,"A04 crumble");yield return JumpTo(14.25f,16.5f,7,"A04 upper");yield return GoX(27.5f);yield return Until(()=>Boss!=null&&Boss.Fighting,"arena trigger",4);yield return Fight();
   yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A05",Key.RightArrow,"opened floor",8);yield return Ready();yield return JumpTo(40,37.5f,2.6f,"dash shrine");yield return Until(()=>Player.GetComponent<PlayerDash>().hasDash,"dash pickup",3);
   yield return GoX(15.5f);yield return JumpTo(12.3f,4.6f,1,"A05 trench",true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"return A03",5);yield return Ready();
   yield return LiftRide(true);yield return JumpTo(43.75f,36.7f,13,"practice1",true);yield return JumpTo(35.25f,28.1f,13,"practice2",true);yield return JumpTo(26.75f,20.8f,15,"practice3 shelf",true);
