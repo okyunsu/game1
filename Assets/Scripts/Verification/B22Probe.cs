@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
-public sealed class B22Probe:N5Runner
+public sealed partial class B22Probe:N5Runner
 {
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Init()=>N5Args.Start<B22Probe>("-verify-b22");
  void Input(params Key[] keys)=>InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys));
@@ -29,7 +29,7 @@ public sealed class B22Probe:N5Runner
  {
   Check(N5Args.Has("-save-path"),"isolated save");yield return Ready();
   string mode=N5Args.Value("-b22-mode","boss");
-  if(mode=="boss")yield return BossTests();else if(mode=="a05")yield return Trench();else if(mode=="a04")yield return Island();else if(mode=="practice")yield return Practice();else if(mode=="hazard")yield return HazardPresence();else if(mode=="loop")yield return Loop();
+  if(mode=="b23-hazard")yield return B23Hazard();else if(mode=="b23-lift")yield return B23Lift();else if(mode=="b23-field")yield return B23Field();else if(mode=="b23-loop")yield return B23Loop();else if(mode=="boss")yield return BossTests();else if(mode=="a05")yield return Trench();else if(mode=="a04")yield return Island();else if(mode=="practice")yield return Practice();else if(mode=="hazard")yield return HazardPresence();else if(mode=="loop")yield return Loop();
  }
  IEnumerator HazardPresence()
  {
@@ -40,7 +40,7 @@ public sealed class B22Probe:N5Runner
  IEnumerator EnterBoss()
  {
   yield return RoomAt("A03");NoAbilities();var cp=Room.GetComponentsInChildren<Checkpoint>().Single(c=>c.checkpointId=="CP-A03");RoomSession.Instance.ActivateCheckpoint(cp);
-  yield return RoomAt("A04",BossPath);yield return ResetAt(new Vector2(25.5f,1.015f));Check(Boss!=null&&Boss.HP==14&&!Boss.Fighting,"B1 fresh HP14 idle safe landing");
+  yield return RoomAt("A04",BossPath);yield return ResetAt(new Vector2(25.5f,1.015f));Check(Boss!=null&&Boss.HP==Boss.tuning.maxHP&&!Boss.Fighting,"B1 fresh configured HP idle safe landing");
  }
  IEnumerator Fight()
  {
@@ -73,7 +73,10 @@ public sealed class B22Probe:N5Runner
   yield return EnterBoss();var boss=Boss;
   Body.simulated=false;PlaceForAuthorizedSetup(new Vector2(28,7));yield return new WaitForSeconds(.15f);Check(!boss.Fighting&&!boss.encounterGate.activeSelf,"passing upper route does not trigger fight");Body.simulated=true;
   PlaceForAuthorizedSetup(new Vector2(27.5f,1.015f));yield return Until(()=>boss.State==BossEncounter.Phase.EntranceTell,"B1 arrival tell");double start=boss.PhaseStarted;
-  Check(boss.encounterGate.activeSelf&&boss.floorCover.activeSelf,"entry closes gate, retains floor cover");yield return Until(()=>boss.PatternStarts>0,"first pattern");Record("MEASURE B1 entrance seconds="+(Time.timeAsDouble-start).ToString("F3"));Check(Time.timeAsDouble-start>=.8,"entrance warning >=0.8s");
+  Check(boss.encounterGate.activeSelf&&boss.floorCover.activeSelf,"entry closes gate, retains floor cover");
+  int introHP=Health.HP,bossHP=boss.HP;uint jump=Player.JumpSequence,attacks=Player.GetComponent<PlayerAttack>().Sequence;
+  if(boss.Introducing){boss.ReceiveHit(1,Body.position);Check(!Health.TakeDamage(1,boss.transform.position),"intro player damage rejected");Input(Key.RightArrow,Key.Z,Key.X,Key.LeftShift);yield return new WaitForSeconds(.3f);Check(Player.MovementOnly&&Player.JumpSequence==jump&&Player.GetComponent<PlayerAttack>().Sequence==attacks&&!Player.GetComponent<PlayerDash>().IsDashing,"intro only movement allowed");Check(Mathf.Abs(Body.linearVelocity.x)>0,"intro horizontal movement allowed");yield return Keys();}
+  yield return Until(()=>boss.PatternStarts>0,"first pattern");float duration=boss.introDuration>0?boss.introDuration:boss.entranceSeconds;double actual=Time.timeAsDouble-start;Record("MEASURE B1 entrance seconds="+actual.ToString("F3")+" target="+duration+" damage="+(introHP-Health.HP)+" bossDamage="+(bossHP-boss.HP));Check(Math.Abs(actual-duration)<=.05&&Health.HP==introHP&&boss.HP==bossHP&&!Player.MovementOnly,"intro duration tolerance and no damage");
   // Observe all enabled patterns in a separate durability fixture, then reset by real death.
   var original=Health.tuning;Health.tuning=Instantiate(original);Health.tuning.playerMaxHP=100;Health.RestoreMax();var seen=new HashSet<int>();double until=Time.realtimeSinceStartupAsDouble+40;
   while(seen.Count<3&&Time.realtimeSinceStartupAsDouble<until){seen.Add(boss.ActivePattern);yield return null;}
@@ -82,7 +85,7 @@ public sealed class B22Probe:N5Runner
   int pogoBefore=Player.GetComponent<PlayerAttack>().PogosPerformed;PlaceForAuthorizedSetup(new Vector2(boss.transform.position.x,boss.GetComponent<Collider2D>().bounds.max.y+.6f));Motor.ClearTransientState();yield return Until(()=>!Motor.Grounded,"airborne pogo fixture",1);yield return Keys(Key.DownArrow,Key.X);yield return Until(()=>Player.GetComponent<PlayerAttack>().PogosPerformed>pogoBefore,"top pogo bounce",1);
   Record("MEASURE B1 topPogo="+(Player.GetComponent<PlayerAttack>().PogosPerformed-pogoBefore)+" velocityY="+Body.linearVelocity.y.ToString("F3")+" fixture=airborne-recovery");yield return Keys();
   Health.tuning=original;Health.RestoreMax();Check(Health.TakeDamage(Health.HP,Body.position),"lethal retry fixture");yield return Until(()=>RoomSession.Instance.Respawning,"death queued");yield return Ready();Check(RoomSession.Instance.CurrentRoomId=="A03"&&RoomSession.Instance.CheckpointId=="CP-A03","death returns actual CP-A03");
-  yield return EnterBoss();Check(Boss.HP==14&&Boss.PatternStarts==0,"retry resets B1 HP and patterns");
+  yield return EnterBoss();Check(Boss.HP==Boss.tuning.maxHP&&Boss.PatternStarts==0,"retry resets B1 HP and patterns");
   yield return WalkTo(()=>Body.position.x>=27.5f,Key.RightArrow,"walk into B1");yield return Fight();
   Check(ProgressSave.TryLoad(out var save)&&save.defeatedBossIds.Contains("B1-A04")&&!save.bossDefeated&&!save.endingReached,"kill synchronously saves B1 only, no final ending");
   Check(!Boss.encounterGate.activeSelf&&!Boss.floorCover.activeSelf,"victory opens gate and removes cover");
@@ -136,6 +139,7 @@ public sealed class B22Probe:N5Runner
  {
   // Authored platforms; only initial pose and ability ownership are fixture setup.
   float[] edge={17.8f,26.3f,30.8f},start={16.4f,23.9f,32.8f},y={11f,11,13},dest={23.3f,30.8f,26.3f},top={11f,13,15};int direction=stage==2?-1:1;
+  if(N5Args.Has("-b23")){edge=new[]{43.5f,35f,26.5f};start=new[]{45.4f,37f,28.5f};y=new[]{13f,13,13};dest=new[]{38f,29.5f,22f};top=new[]{13f,13,15};direction=-1;}
   yield return ResetAt(new Vector2(start[stage],y[stage]+.015f));NoAbilities();Player.GetComponent<PlayerDash>().hasDash=owned;Key dir=direction>0?Key.RightArrow:Key.LeftArrow;
   Input(dir);yield return Until(()=>direction*(Body.position.x-edge[stage])>=-.25f,"practice runup",2);Input(dir,Key.Z);bool launched=false,dashed=false;sampleSuccess=false;double end=Time.realtimeSinceStartupAsDouble+3;
   while(Time.realtimeSinceStartupAsDouble<end){launched|=Body.linearVelocity.y>0;if(owned&&launched&&!dashed&&Body.linearVelocity.y<=.6f){Input(dir,Key.Z,Key.LeftShift);dashed=true;}else if(dashed)Input(dir,Key.Z);if(Motor.Grounded&&direction*(Body.position.x-dest[stage])>=.05f&&Body.position.y>=top[stage]-.1f){sampleSuccess=true;break;}if(Body.position.y<y[stage]-1)break;yield return null;}
@@ -144,6 +148,7 @@ public sealed class B22Probe:N5Runner
  IEnumerator Practice()
  {
   yield return RoomAt("A03");bool pass=true;
+  if(N5Args.Has("-b23")){var lift=Room.GetComponentsInChildren<LeverLift>().Single();lift.Call(false);yield return Until(()=>Math.Abs(lift.GetComponent<Collider2D>().bounds.max.y-lift.high)<.02f,"practice lift fixture",12);}
   for(int stage=0;stage<3;stage++){int no=0,yes=0;foreach(bool owned in new[]{false,true})for(int trial=1;trial<=5;trial++){yield return PracticeSample(stage,owned,trial);if(sampleSuccess){if(owned)yes++;else no++;}}Record("MEASURE A03 summary stage="+(stage+1)+" noAbility="+no+"/5 dash="+yes+"/5");pass&=no==0&&yes==5;}
   Check(pass,"A03 each noAbility0/5 dash5/5");
  }
