@@ -6,7 +6,7 @@
 - Base `88f458e`, 기존 B23 미푸시16커밋·B23 태그 보존, Claude draft5 문서 선행 커밋 완료. fetch/push 없음.
 - Preflight PASS: hubLicensingClient=True·Unity exit0. 기존 사용자 변경은 승인된 선행9파일 커밋으로 보존.
 - 승인 범위: P1~P5, T0~T14. 사용자 직접 지시로 P3 승인(지시문 보류 표기보다 우선), PRD 지정3곳·조각 저장/HP 포함.
-- 현재 P1 진행. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
+- P1 구현·기하 실측 완료, 고리 PARTIAL. 단계 Quiet 후 P2 진행. 단계 실패는 독립 다음 단계로 분리, 사람 검수는 끝에1회. Ready Queue0.
 - 기존 수락 대기·직접 플레이 순서 보존. 방 좌표·기본 튜닝 원본은 변경하지 않음.
 
 ## 1. 현재 상태 / Current Sprint
@@ -24,7 +24,7 @@
 | B24-T0 | DONE | 전달 피드백·사전 결정·P3 직접 승인 반영 |
 | B24-T1 | DONE | draft5 Scene6 재생성·정적 FAIL0/WARN27·Scene FAIL0(기존 A02 overhead4 해소)·A01 E4/감실·A02/A05 E2 요소 수 일치. raw/24/T1-* |
 | B24-T2 | DONE | A03 4·A02 5·A04 2·A06 3구간 각 머리0/5·착지5/5. A02 조각 P3는 코요테 이륙 필요(보통 이륙5/5 머리, 수정 입력0/5). raw/24/T2-head2-editor·T2-shard-coyote |
-| B24-T3 | TODO | 승인 단계 순서대로 진행 |
+| B24-T3 | PARTIAL | 연속 입력으로 승강기·A04 아래 포고·B1 처치13.000s HP3·대시 획득 PASS. A05 봉인 바닥 경계에서 보행 정지. 입력만 점프로 보완, P2 확장 경로/P5 실제 빌드에서 나머지 확인 예정. raw/24/T3-loop* |
 | B24-T4 | TODO | 승인 단계 순서대로 진행 |
 | B24-T5 | TODO | 승인 단계 순서대로 진행 |
 | B24-T6 | TODO | 승인 단계 순서대로 진행 |

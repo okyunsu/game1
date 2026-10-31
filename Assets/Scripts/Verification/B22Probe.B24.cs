@@ -61,11 +61,11 @@ public sealed partial class B22Probe
   Input(Key.RightArrow);yield return Until(()=>Body.position.x>=13.9f,"pogo runup",3);Input(Key.RightArrow,Key.Z);
   while(Time.realtimeSinceStartupAsDouble<end)
   {
-   int target=Mathf.Min(2,Player.GetComponent<PlayerAttack>().PogosPerformed-before);float x=target==0?15.8f:target==1?17.8f:20.3f,dx=x-Body.position.x;
+   int target=Mathf.Min(2,Player.GetComponent<PlayerAttack>().PogosPerformed-before);float x=target==0?15.8f:20.3f,dx=x-Body.position.x;
    var keys=new List<Key>{Key.Z,Key.DownArrow};if(Mathf.Abs(dx)>.15f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);
    float top=target==0?2.8f:3.1f,allowance=target==0?.4f:.7f;
-   if(target<2&&Time.realtimeSinceStartupAsDouble>=nextAttack&&!Motor.Grounded&&Body.linearVelocity.y<0&&Math.Abs(dx)<.7f&&Player.GetComponent<Collider2D>().bounds.min.y<=top+allowance){keys.Add(Key.X);nextAttack=Time.realtimeSinceStartupAsDouble+Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.03;}
-   Input(keys.ToArray());if(Motor.Grounded&&Body.position.x>=19.3f&&Body.position.x<=21.3f&&target==2){success=true;break;}if(Hazard.Returns>returns)break;yield return null;
+   if(target==0&&Time.realtimeSinceStartupAsDouble>=nextAttack&&!Motor.Grounded&&Body.linearVelocity.y<0&&Math.Abs(dx)<.7f&&Player.GetComponent<Collider2D>().bounds.min.y<=top+allowance){keys.Add(Key.X);nextAttack=Time.realtimeSinceStartupAsDouble+Player.GetComponent<PlayerAttack>().tuning.attackCooldown+.03;}
+   Input(keys.ToArray());if(Motor.Grounded&&Body.position.x>=19.3f&&Body.position.x<=21.3f&&target>=1){success=true;break;}if(Hazard.Returns>returns)break;yield return null;
   }
   yield return Keys();Record($"MEASURE loop A04 lower route pogos={Player.GetComponent<PlayerAttack>().PogosPerformed-before} landed={success} hp={Health.HP}");Check(success,"actual lower pogo route reaches island");
  }
@@ -77,10 +77,10 @@ public sealed partial class B22Probe
  {
   Check(RoomSession.Instance.CurrentRoomId=="A03","loop starts CP-A03");NoAbilities();double began=Time.timeAsDouble;
   Record("FIXTURE initial CP only; subsequent route uses actual inputs, no HP/pose/enemy/boss/ability writes. A04 uses its lower pogo branch, upper E1 stays live.");
-  yield return LiftRide(true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A04",Key.RightArrow,"A04 physical door",5);yield return Ready();
+  yield return JumpTo(42.3f,44.8f,1,"board low lift");yield return LiftRide(true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A04",Key.RightArrow,"A04 physical door",5);yield return Ready();
   yield return JumpTo(4.2f,5.8f,3,"A04 block");yield return GoX(10.8f);yield return PogoIslandRoute();yield return JumpTo(20.8f,24.7f,1,"A04 island exit");yield return GoX(27.5f);yield return Until(()=>Boss!=null&&Boss.Fighting,"arena trigger",4);yield return Fight();
   yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A05",Key.RightArrow,"opened boss floor",8);yield return Ready();yield return JumpTo(40,37.5f,2.6f,"dash shrine");yield return Until(()=>Player.GetComponent<PlayerDash>().hasDash,"dash pickup",3);
-  yield return JumpTo(26.5f,18.8f,1,"A05 E2 dash avoidance",true);yield return GoX(15.5f);yield return JumpTo(12.3f,4.6f,1,"A05 trench",true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"A03 physical return",5);yield return Ready();
+  yield return JumpTo(30.6f,24.5f,1,"A05 sealed floor crossing",true);yield return JumpTo(24.5f,18.0f,1,"A05 E2 dash avoidance",true);yield return GoX(15.5f);yield return JumpTo(12.3f,4.6f,1,"A05 trench",true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"A03 physical return",5);yield return Ready();
   yield return GoX(26);yield return HubBuildings();yield return GoX(44.8f);yield return LiftRide(true);
   yield return JumpTo(43.75f,36.7f,13,"practice1",true);yield return JumpTo(35.25f,28.1f,13,"practice2",true);yield return JumpTo(26.75f,20.8f,15,"practice3 shelf",true);
   Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save has dash and B1");yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"Continue restores CP-A03 dash and B1");Record($"MEASURE B24 loop seconds={Time.timeAsDouble-began:F3} complete=True");
