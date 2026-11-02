@@ -39,7 +39,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  public bool Fighting=>State!=Phase.Idle&&State!=Phase.Defeated;
  public BossWave LiveWave=>wave;
  public event Action Defeated;
- BossWave wave;bool deathQueued,resolvingDeath;Color[] doorColors;
+ BossWave wave;bool deathQueued,resolvingDeath,encounterLocked;Color[] doorColors;
  SpriteRenderer[] doorSprites;readonly Collider2D[] contacts=new Collider2D[16];
  readonly System.Collections.Generic.List<BossWave> candidateWaves=new();
  readonly System.Collections.Generic.HashSet<int> damagedPatterns=new();
@@ -50,7 +50,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  public Bounds MeleeBounds=>new Bounds(new Vector3(tuning.extendedPatterns?transform.position.x+facing*(GetComponent<BoxCollider2D>().bounds.extents.x+tuning.meleeRange*.5f):GetComponent<BoxCollider2D>().bounds.min.x-tuning.meleeRange*.5f,floorY+.5f,0),new Vector3(tuning.meleeRange,1,1));
  void Awake(){HP=tuning.b3Patterns&&Debug.isDebugBuild?Mathf.Clamp(N5Args.Int("-boss-start-hp",tuning.maxHP),1,tuning.maxHP):tuning.maxHP;Debug.Log($"BOSS id={bossId} initial HP={HP} maxHP={tuning.maxHP} phase=1");doorSprites=leftExit!=null?leftExit.GetComponentsInChildren<SpriteRenderer>():Array.Empty<SpriteRenderer>();doorColors=new Color[doorSprites.Length];for(int i=0;i<doorSprites.Length;i++)doorColors[i]=doorSprites[i].color;warning.enabled=false;}
  void Start(){if(bossId!=ProgressSave.FinalBossId){bool defeated=ProgressSave.IsBossDefeated(bossId);SetLock(false);if(floorCover!=null)floorCover.SetActive(!defeated);if(defeated)gameObject.SetActive(false);}}
- void SetLock(bool locked){if(locked)LowerPedestal();if(leftExit!=null)leftExit.enabled=!locked;if(encounterGate!=null)encounterGate.SetActive(locked);for(int i=0;i<doorSprites.Length;i++)doorSprites[i].color=locked?new Color(.9f,.2f,.2f):doorColors[i];}
+ void SetLock(bool locked){if(encounterLocked!=locked){encounterLocked=locked;B25EffectsHost.Emit(locked?"doorLock":"doorOpen",transform.position);}if(locked)LowerPedestal();if(leftExit!=null)leftExit.enabled=!locked;if(encounterGate!=null)encounterGate.SetActive(locked);for(int i=0;i<doorSprites.Length;i++)doorSprites[i].color=locked?new Color(.9f,.2f,.2f):doorColors[i];}
  void SetPhase(Phase phase){LastPhaseDuration=Time.timeAsDouble-PhaseStarted;State=phase;PhaseStarted=Time.timeAsDouble;warning.enabled=phase==Phase.MeleeTell||phase==Phase.WaveTell;warning.color=phase==Phase.MeleeTell?new Color(1,.25f,.15f,.6f):new Color(1,.8f,.1f,.6f);}
  void Update(){
   var session=RoomSession.Instance;if(session?.Player==null)return;

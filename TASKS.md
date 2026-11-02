@@ -50,7 +50,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T17 | BLOCKED | Unity exit198. Development 빌드·전체13개 회귀·smoke5종 미실시 |
 | B25-T18 | DONE | README·TASKS0/3/9·종료 요약에 차단/재개 순서·현재 빌드와 미래 B25 검수30~40분·미실시 구분 |
 | B25-Q1 | DONE | 기존AV1 직접클립 재사용·Assets/Audio/B25/Feedback.asset 단일볼륨·AttackFeedback 확장. swing/hit/death/hurt 각재생1, SourcePlaying=True·입자burst3/lifetime0.180s/소멸·Error0. API이벤트fixture로 자연전투증거와구분. raw/25/Q1-events |
-| B25-Q2 | BLOCKED | Unity exit198. 조각/문/승강기/증기 효과음 미실시 |
+| B25-Q2 | DONE | 실제조각접촉·레버공격·증기On·보스문잠금/열림 각재생1/Error0, 볼륨/클립공유Asset. raw/25/Q2-events. 즉시처치API는Audio이벤트fixture이며 자연전투증거아님 |
 | B25-Q3 | BLOCKED | Unity exit198. B1/B2 줌0.9·처치 정지0.1s·B3 불변 미실시 |
 | B25-Q4 | BLOCKED | Unity exit198. E1/E2/E3 예고0.3s 미실시 |
 | B25-Q5 | BLOCKED | Unity exit198. Run-RoomRoutes 12방 묶음 미실시 |

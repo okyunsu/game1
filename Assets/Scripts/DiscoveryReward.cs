@@ -34,6 +34,7 @@ public sealed class DiscoveryReward : MonoBehaviour
         var player = other.GetComponentInParent<PlayerInputReader>();
         if (player == null || player.InputLocked || string.IsNullOrEmpty(candidateId)) return;
         discovered.Add(candidateId);
+        B25EffectsHost.Emit("fragment",transform.position);
         if(ProgressSave.Enabled)ProgressSave.CollectFragment(candidateId,RoomSession.Instance);
         gameObject.SetActive(false);
     }
