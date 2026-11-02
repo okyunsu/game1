@@ -13,7 +13,8 @@ using UnityEngine.SceneManagement;
  readonly Dictionary<string,double> last=new();AudioSource source;PlayerHealth health;bool dead;
  void Awake(){Active=this;source=gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;HitFeedback.Presented+=Hit;}
  void OnDestroy(){HitFeedback.Presented-=Hit;if(health!=null){health.Hit-=Hurt;health.Restored-=Restored;}if(Active==this)Active=null;}
- void Update(){var candidate=RoomSession.Instance?.Player?.GetComponent<PlayerHealth>();if(candidate==health)return;if(health!=null){health.Hit-=Hurt;health.Restored-=Restored;}health=candidate;if(health!=null){health.Hit+=Hurt;health.Restored+=Restored;dead=health.HP<=0;}}
+ void Update(){BindTells();var candidate=RoomSession.Instance?.Player?.GetComponent<PlayerHealth>();if(candidate==health)return;if(health!=null){health.Hit-=Hurt;health.Restored-=Restored;}health=candidate;if(health!=null){health.Hit+=Hurt;health.Restored+=Restored;dead=health.HP<=0;}}
+ void BindTells(){if(profile==null)return;foreach(var reset in GetComponentsInChildren<EnemyReset>()){if(reset.Live==null||reset.Live.GetComponent<B25EnemyTell>()!=null)continue;reset.Live.AddComponent<B25EnemyTell>().profile=profile;}}
  void Restored()=>dead=false;
  void Hurt(){if(Active!=this||health==null)return;if(health.HP<=0){if(dead)return;dead=true;Emit("death",health.transform.position);}else Emit("hurt",health.transform.position);Burst(health.gameObject);}
  void Hit(HitFeedback feedback,int hp){if(Active==this)EnemyHit(feedback.gameObject,hp);}

@@ -78,6 +78,8 @@ MonoBehaviour:
   deviceSoundRange: 12
   bossIntroZoom: 0.9
   bossDeathFreeze: 0.1
+  enemyTellLead: 0.3
+  enemyTellBrightness: 1.8
   bodyColors:
   - {r: 0.9, g: 0.98, b: 1, a: 1}
   - {r: 0.78, g: 0.43, b: 0.1, a: 1}

@@ -10,6 +10,7 @@ public sealed class EnemyTurret:MonoBehaviour,IDamageable
     public int HP{get;private set;}
     public bool Warning{get;private set;}
     public int ShotsFired{get;private set;}
+    public float WarningTimeRemaining=>Warning?Mathf.Max(0,tuning.warningSeconds-(float)(Time.timeAsDouble-started)):float.PositiveInfinity;
     public double LastShotAt{get;private set;}
     double nextWarning,started;SpriteRenderer sprite;Color original;
     void Awake(){HP=tuning.maxHP;sprite=GetComponent<SpriteRenderer>();original=sprite.color;}

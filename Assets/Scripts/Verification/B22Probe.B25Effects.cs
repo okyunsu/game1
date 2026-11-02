@@ -45,5 +45,14 @@ public sealed partial class B22Probe
   yield return RoomAt("C06","Assets/Scenes/V4/C06_V4.unity");Check(Boss!=null&&Boss.bossId==ProgressSave.FinalBossId&&Boss.GetComponent<B25BossFx>()==null&&FindFirstObjectByType<RoomCameraRig>().PresentationZoom==1,"B3 no optional effect component and camera unchanged");
  }
 
+ IEnumerator B25EnemyTells()
+ {
+  yield return RoomAt("A02");PlaceForAuthorizedSetup(new Vector2(23.5f,9.015f));Health.RestoreMax();yield return null;yield return null;
+  var e1=Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyPatrol>()!=null).Live;yield return Until(()=>e1.GetComponent<B25EnemyTell>()!=null,"E1 tell bound",1);var tell=e1.GetComponent<B25EnemyTell>();yield return Until(()=>tell.Bright,"E1 predicted contact tell",4);double began=Time.timeAsDouble;float predicted=tell.LeadSeconds;int hp=Health.HP;yield return Until(()=>Health.HP<hp,"E1 actual contact",1);
+  Record($"MEASURE B25 E1 cue predicted={predicted:F3} actualContactLead={Time.timeAsDouble-began:F3}");Check(predicted<=.301&&Time.timeAsDouble-began>=.18&&Time.timeAsDouble-began<.4,"E1 cue before projected contact without AI delay");
+  yield return B25Pose("A02",new Vector2(16,1.015f));var e2=Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyCharger>()!=null).Live.GetComponent<EnemyCharger>();yield return Until(()=>e2.GetComponent<B25EnemyTell>()!=null,"E2 tell bound",1);tell=e2.GetComponent<B25EnemyTell>();PlaceForAuthorizedSetup(new Vector2(18,1.015f));yield return Until(()=>tell.Bright,"E2 tell",2);began=Time.timeAsDouble;predicted=tell.LeadSeconds;yield return Until(()=>e2.State==EnemyCharger.Phase.Charge,"E2 charge",1);Record($"MEASURE B25 E2 cue remaining={predicted:F3} actualChargeLead={Time.timeAsDouble-began:F3}");Check(predicted<=.301&&Time.timeAsDouble-began>=.2&&Time.timeAsDouble-began<.36,"E2 last0.3s bright cue, timing unchanged");
+  yield return RoomAt("B02");PlaceForAuthorizedSetup(new Vector2(29,8.015f));FindFirstObjectByType<RoomCameraRig>().BindAndSnap(Player);yield return null;var e3=Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyTurret>()!=null).Live.GetComponent<EnemyTurret>();yield return Until(()=>e3.GetComponent<B25EnemyTell>()!=null,"E3 tell bound",1);tell=e3.GetComponent<B25EnemyTell>();yield return Until(()=>tell.Bright,"E3 tell",3);began=Time.timeAsDouble;predicted=tell.LeadSeconds;int shots=e3.ShotsFired;yield return Until(()=>e3.ShotsFired>shots,"E3 shot",1);Record($"MEASURE B25 E3 cue remaining={predicted:F3} actualShotLead={Time.timeAsDouble-began:F3}");Check(predicted<=.301&&Time.timeAsDouble-began>=.2&&Time.timeAsDouble-began<.36,"E3 last0.3s bright cue, timing unchanged");
+ }
+
 }
 #endif

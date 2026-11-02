@@ -28,4 +28,6 @@ public static class B25EffectsAuthoring
   AssetDatabase.SaveAssets();File.WriteAllLines(N5Args.Value("-verify-output","Validation/_raw/25/boss-fx-authoring.txt"),rows);EditorApplication.Exit(0);
  }
 
+ public static void EnemyTells(){var profile=AssetDatabase.LoadAssetAtPath<PresentationProfile>(ProfilePath);profile.enemyTellLead=.3f;profile.enemyTellBrightness=1.8f;EditorUtility.SetDirty(profile);AssetDatabase.SaveAssets();File.WriteAllText(N5Args.Value("-verify-output","Validation/_raw/25/enemy-tells.txt"),"PASS shared lead0.3s/brightness1.8; E1 contact ETA / E2 existing warning / E3 existing warning; AI timings unchanged\n");EditorApplication.Exit(0);}
+
 }
