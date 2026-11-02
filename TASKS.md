@@ -2,7 +2,7 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-01, Codex — Batch24 종료, 사용자 검수 차례.
+- 갱신: 2026-11-02, Codex — Batch25 진행, Unity exit198로 yes 작업 차단·독립 no 작업 진행 중.
 - Base `88f458e`(Claude 설계 선행 승인), 최종 커밋은 `git log -1` 확인. 로컬 태그 B24, 기존 B23 보존.
 - 종료 기준 로컬 origin/main 대비33커밋/2 Batch(B23·B24), fetch/push 없음. 기존16커밋을 포함해 squash하지 않음.
 - 사용자 직접 P3 승인으로 PRD 지정3곳·조각ID 저장·4개당 최대HP+1 구현. draft5 건물·감실·E4/E2·B2 시험장 제공.
@@ -18,7 +18,25 @@
 - B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
 - 이번 [Batch24](Design/proposals-1101/01_CODEX_BATCH24.md)는 사용자 2026-11-01 실행·P3 직접 승인 지시로 수행했다. B23 이력은 아래 표와 기존 요약에 보존한다.
 
-## 1-0. Current Tasks (Batch24)
+## 1-0. Current Tasks (Batch25)
+
+사용자 2026-11-02 [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md) 실행 및 `Design/art_v1/` 선행 커밋 포함 직접 승인. Claude 설계 변경: `e6b5172`, Design/v5 draft6 AB·Design/art_v1·B25 지시문. 실행 Base `e6b5172`. 기존 B23/B24 33커밋 보존, fetch/push 없음.
+
+Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE licensingClients=0 hubLicensingClient=False`, `MEASURE unityExitCode=198`. Unity 재시도 없이 yes 작업만 BLOCKED(외부 의존성), 독립 no 작업 진행. 기존 B24 빌드를 B25 증거로 사용하지 않는다.
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| B25-T0 | DONE | 사전 결정 5행 출처 구분·실행 승인 기록. B24 결정 2건은 설계안 선택 완료, 구현 검증은 T2/T4~T10 대기 |
+| B25-T1~T2 | BLOCKED | Unity exit198. 승강기 수정·획득대 sink 구현/실측 미실시 |
+| B25-T3 | DOING | 증기 아래→top 정적 연결 및 self-test |
+| B25-T4~T12 | BLOCKED | Unity exit198. AB 생성·지도·실측·확장 고리·저장/Continue 미실시 |
+| B25-T13 | TODO | 직접 제작 아트 복사·등록, Unity import 검증 별도 |
+| B25-T14~T17 | BLOCKED | Unity exit198. 표시층·12방 적용·스크린샷·빌드·전체/Quiet 회귀·smoke 미실시 |
+| B25-T18 | TODO | 현재 결과와 재개/검수 안내 |
+| B25-Q1~Q5 | BLOCKED | Unity exit198. 사운드·입자·줌/정지·예고·12방 경로 묶음 미실시 |
+| B25-Q6 | TODO | 기존 사람 플레이 CSV를 이용한 방별 체류 시간 도구 |
+
+### 이전 Current Tasks (Batch24)
 
 실행 지시: [Batch24](Design/proposals-1101/01_CODEX_BATCH24.md). 사용자 2026-11-01 “읽고 진행해줘 P3의 경우는 승인해서 변경하는쪽으로”. 선행 Claude 설계9파일 `88f458e`, 이전16커밋 보존.
 
@@ -139,15 +157,24 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 |---|---|---|---|
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B24-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
-| D-B23-GEOMETRY | draft5로 기존 A02 overhead4·A04 접촉1/5는 해소. A02 조각 P3는 일반 이륙 머리5/5·코요테 이륙0/5. 더 관대한 접근으로 설계 수정 / 현재 유지 | 설계 검토 추천. 특정 늦은 이륙에 의존하는 잔여 문제 | B24-T2의 입력 민감도, [Loop](Launchers/current/Play-V5-Loop.cmd) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
 
-| D-B24-B2-GATE | 중앙 획득대 위 일반 점프로 높은 파동 회피 가능. 전투 중 획득대 비활성 설계 / 현재 예외 허용 중 선택 | 획득 후 전투 중 획득대 비활성 설계 검토 추천. 바닥10/10 피격만으로 벽 전용 회피가 보장되지 않음 | B24-T12 설계 조건, [B2 시험](Launchers/current/Play-BossTest-B2.cmd), raw/24/T12-patterns5-wave-lifecycle |
 
-결정 대기5건. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인으로 이동했다. 기본 크기·모서리 후보 채택은 대기다. D-V5-CLEARANCE와 WORLD의 A06 적 표기 정리는 B19에서 해소한 상태를 유지한다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+결정 대기3건。D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·실측은 Unity 차단으로 미실시이며 기존 B24 PARTIAL은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
+
+| ID | 결정 | 날짜·출처 |
+| --- | --- | --- |
+| D-B25-EXEC | B25 P1~P5·Queue 실행. `Design/art_v1/`도 선행 커밋에 포함 | 2026-11-02 사용자 직접 “읽고 실행”, 추가 폴더 확인 뒤 “어 진행해줘” |
+| D-FLOOR-B6 | 층 B 6방 draft6, AB JSON을 새 생성 입력으로 사용 | 사용자 2026-11-01 결정의 Claude 전달, [B25](Design/proposals-1101-B25/01_CODEX_BATCH25.md) 실행 승인 |
+| D-ART-1 | 그래픽 1차. 직접 제작 원본 복사·16 PPU/Point/무압축, 외부 다운로드 없음 | 사용자 결정의 Claude 전달(11-01 적용·11-02 직접 제작), [그래픽](Design/proposals-1101-B25/02_GRAPHICS.md)·이번 실행 승인 |
+| D-B24-B2-GATE | 전투 시작 시 획득대를 바닥으로 내림(`sink_on_fight`). 설계안 선택 완료, 구현·검증 대기 | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인. 플레이 수락은 별도 |
+| D-B23-GEOMETRY | A02 조각길 발판 삭제·선반 이동, 벽 점프 재방문 경로. 설계안 선택 완료, 재생성·검증 대기 | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인 |
+| D-A03-B01 | A03 서쪽 벽 대시 문을 선반 끝 천장 구멍으로 변경 | 2026-11-01 Claude world 겹침 정정; 2026-11-02 사용자 B25 실행 범위 승인 |
+
+추천안의 실행 승인은 제품 검증·감각 수락을 의미하지 않는다. 선행 설계·아트 커밋 `e6b5172`는 원본 내용 변경 없이 보존했다.
 
 | ID | 결정 | 날짜·출처 |
 | --- | --- | --- |
