@@ -30,5 +30,20 @@ public sealed partial class B22Probe
   Record($"MEASURE B25 devices fragment={B25Sounds("fragment")-fragment} lever={B25Sounds("lift")-lift} steam={B25Sounds("steam")-steam} lock={B25Sounds("doorLock")-locked} open={B25Sounds("doorOpen")-opened}");
  }
 
+ IEnumerator B25MeasureBossFx()
+ {
+  var boss=Boss;var rig=FindFirstObjectByType<RoomCameraRig>();float smallest=1;double began=boss.PhaseStarted;
+  while(boss.Introducing){smallest=Math.Min(smallest,rig.PresentationZoom);yield return null;}
+  Record($"MEASURE B25 introFX id={boss.bossId} seconds={Time.timeAsDouble-began:F3} minZoom={smallest:F4} restoredZoom={rig.PresentationZoom:F4}");Check(Math.Abs(smallest-.9)<.005&&Math.Abs(rig.PresentationZoom-1)<.005,"boss intro zoom0.9 inside1.8s and restored");
+  yield return new WaitForSeconds(.12f);double freeze=Time.realtimeSinceStartupAsDouble;Record("FIXTURE lethal ReceiveHit for freeze frame measurement, not natural boss victory");boss.ReceiveHit(boss.HP,Body.position);Check(Time.timeScale==0,"boss defeat freeze begins before ordinary hit feedback");
+  yield return Until(()=>Time.timeScale>0,"boss freeze ends",1);double elapsed=Time.realtimeSinceStartupAsDouble-freeze;Record($"MEASURE B25 defeatFX id={boss.bossId} realSeconds={elapsed:F4}");Check(elapsed>=.095&&elapsed<.15,"boss freeze0.1 real seconds");
+ }
+ IEnumerator B25BossPresentation()
+ {
+  yield return EnterBoss();yield return GoX(27.5f);Check(Boss.Introducing,"B1 intro fixture");yield return B25MeasureBossFx();
+  yield return B25Pose("B04",new Vector2(20.5f,1.015f));yield return JumpTo(14.5f,12,2,"B04 FX acquisition");yield return WalkTo(()=>Body.position.x>=15.2f,Key.RightArrow,"B04 FX departure",3);Check(Boss.Introducing,"B2 intro fixture");yield return B25MeasureBossFx();
+  yield return RoomAt("C06","Assets/Scenes/V4/C06_V4.unity");Check(Boss!=null&&Boss.bossId==ProgressSave.FinalBossId&&Boss.GetComponent<B25BossFx>()==null&&FindFirstObjectByType<RoomCameraRig>().PresentationZoom==1,"B3 no optional effect component and camera unchanged");
+ }
+
 }
 #endif

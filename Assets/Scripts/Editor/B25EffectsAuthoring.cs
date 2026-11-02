@@ -20,4 +20,12 @@ public static class B25EffectsAuthoring
   {EditorSceneManager.OpenScene(path);var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();var host=room.GetComponent<B25EffectsHost>()??room.gameObject.AddComponent<B25EffectsHost>();host.profile=profile;EditorSceneManager.SaveScene(room.gameObject.scene,path);rows.Add("PASS B25 effect profile bound "+path);}
   AssetDatabase.SaveAssets();File.WriteAllLines(N5Args.Value("-verify-output","Validation/_raw/25/effects-authoring.txt"),rows);EditorApplication.Exit(0);
  }
+ public static void BossPresentation()
+ {
+  var profile=AssetDatabase.LoadAssetAtPath<PresentationProfile>(ProfilePath);profile.bossIntroZoom=.9f;profile.bossDeathFreeze=.1f;EditorUtility.SetDirty(profile);var rows=new List<string>();
+  foreach(string path in Directory.GetFiles("Assets/Scenes/V5","*.unity").Concat(new[]{"Assets/Scenes/Test/BossTest_B1.unity","Assets/Scenes/Test/BossTest_B2.unity"}))
+  {EditorSceneManager.OpenScene(path);var bosses=UnityEngine.Object.FindObjectsByType<BossEncounter>(FindObjectsSortMode.None).Where(b=>b.bossId!=ProgressSave.FinalBossId).ToArray();foreach(var boss in bosses){var fx=boss.GetComponent<B25BossFx>()??boss.gameObject.AddComponent<B25BossFx>();fx.profile=profile;rows.Add("PASS boss fx "+boss.bossId+" zoom0.9 intro unchanged freeze0.1");}if(bosses.Length>0)EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene(),path);}
+  AssetDatabase.SaveAssets();File.WriteAllLines(N5Args.Value("-verify-output","Validation/_raw/25/boss-fx-authoring.txt"),rows);EditorApplication.Exit(0);
+ }
+
 }

@@ -996,6 +996,7 @@ GameObject:
   - component: {fileID: 1288515109}
   - component: {fileID: 1288515108}
   - component: {fileID: 1288515107}
+  - component: {fileID: 1288515110}
   m_Layer: 6
   m_Name: B1-A04
   m_TagString: Untagged
@@ -1159,6 +1160,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1288515110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288515105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909e3e83e78d6244d98f3416a4ddba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B25BossFx
+  profile: {fileID: 11400000, guid: 666feeec5f1a22d4a84cf56fc636002b, type: 2}
 --- !u!1 &1331633141
 GameObject:
   m_ObjectHideFlags: 0

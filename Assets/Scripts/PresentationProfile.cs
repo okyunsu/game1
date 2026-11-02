@@ -9,6 +9,8 @@ public sealed class PresentationProfile:ScriptableObject
  [Header("B25 impact and devices")]
  [Min(.01f),Tooltip("Impact fragment width/height, world u.")]public float impactSize=.12f;
  [Min(0),Tooltip("Maximum steam/lever cue distance from player, world u.")]public float deviceSoundRange=12;
+ [Range(.5f,1),Tooltip("B1/B2 minimum orthographic half-height / normal half-height during introduction.")]public float bossIntroZoom=.9f;
+ [Min(0),Tooltip("B1/B2 defeated freeze frame, real seconds.")]public float bossDeathFreeze=.1f;
  [Tooltip("Candidate body colors: player, E1, E2, E3, boss.")]public Color[] bodyColors={new Color(.9f,.98f,1),new Color(1,.72f,.24f),new Color(1,.43f,.4f),new Color(.75f,.65f,1),new Color(1,.45f,.75f)};
  [Tooltip("Eye and identity mark color.")]public Color markColor=new Color(.035f,.045f,.07f);
  [Range(0,1),Tooltip("AV1 hazard sprite opacity (0–1); collider and basic colors unchanged.")]public float hazardOpacity=1;

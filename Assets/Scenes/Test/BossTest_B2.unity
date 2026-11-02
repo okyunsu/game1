@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 394904149}
   - component: {fileID: 394904148}
   - component: {fileID: 394904147}
+  - component: {fileID: 394904151}
   m_Layer: 6
   m_Name: B2-B04
   m_TagString: Untagged
@@ -583,6 +584,19 @@ Transform:
   - {fileID: 483600460}
   m_Father: {fileID: 879108773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394904151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394904146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909e3e83e78d6244d98f3416a4ddba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B25BossFx
+  profile: {fileID: 11400000, guid: 666feeec5f1a22d4a84cf56fc636002b, type: 2}
 --- !u!1 &483600459
 GameObject:
   m_ObjectHideFlags: 0

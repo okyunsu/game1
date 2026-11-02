@@ -17,6 +17,9 @@ public sealed class RoomCameraRig : MonoBehaviour
     CinemachineBrain brain;
     PlayerInputReader input;
     float facing = 1;
+    float presentationZoom=1;
+    public float PresentationZoom=>presentationZoom;
+    public void SetPresentationZoom(float ratio){if(Mathf.Abs(presentationZoom-ratio)<.00001f)return;presentationZoom=ratio;if(confiner!=null)confiner.InvalidateLensCache();}
     double shakeUntil;float shakeAmplitude;
     public void Shake(float seconds,float amplitude){shakeUntil=Time.timeAsDouble+seconds;shakeAmplitude=amplitude;}
 
@@ -47,7 +50,7 @@ public sealed class RoomCameraRig : MonoBehaviour
         if (VirtualCamera == null) return;
         OutputCamera.orthographic = true;
         VirtualCamera.Lens.ModeOverride = LensSettings.OverrideModes.Orthographic;
-        VirtualCamera.Lens.OrthographicSize = orthographicSize;
+        VirtualCamera.Lens.OrthographicSize = orthographicSize*presentationZoom;
         float shake=Time.timeAsDouble<shakeUntil?shakeAmplitude:0;
         composer.TargetOffset = new Vector3(facing * horizontalLead+Mathf.Sin(Time.time*87)*shake, Mathf.Sin(Time.time*113)*shake, 0);
         composer.Damping = new Vector3(damping, damping, 0);
