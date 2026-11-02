@@ -53,7 +53,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-Q2 | DONE | 실제조각접촉·레버공격·증기On·보스문잠금/열림 각재생1/Error0, 볼륨/클립공유Asset. raw/25/Q2-events. 즉시처치API는Audio이벤트fixture이며 자연전투증거아님 |
 | B25-Q3 | DONE | B1/B2 등장1.800/1.817s 안 minZoom0.9000→1.0000 복원, 처치정지요청0.100s 실측0.1168/0.1167s(60fps). B3 FX컴포넌트없음/줌1 PASS/Error0. 실제획득·트리거+처치API연출fixture, 자연승리와구분. raw/25/Q3-measure |
 | B25-Q4 | DONE | E1 접촉예측0.280/실접촉0.267s·E2 예고0.280/실돌진0.283s·E3 예고0.283/실발사0.283s PASS/Error0. 공유Asset lead0.3/brightness1.8, AI·공격시간 변경0. raw/25/Q4-measure |
-| B25-Q5 | BLOCKED | Unity exit198. Run-RoomRoutes 12방 묶음 미실시 |
+| B25-Q5 | DONE | Run-RoomRoutes 실제Development exe12방 전부시도, PASS6/FAIL6·Error0. 합격기준의 실패원문보존 충족이며 12/12통과 아님. A01/A02/A04/B01/B03/B05통과; A03/A05 접근 timeout·A06 경로이탈·B02 긴도약·B04 접근·B06포고 실패. raw/25/Q5-final-routes, 추가재시도/좌표수정0 |
 | B25-Q6 | DONE | Tools/Export-RoomTimes.py·README. 실제 Playtest CSV8방문/4방 출력, 활성95.926496s(과거 샘플). 일시정지 제외·재방문·마지막방·비정상종료·누락출구·잘못된 시간·덮어쓰기 거절 확인. raw/25/Q6-checks.txt·Q6-human-room-times.csv. 신규 B25 플레이 측정 아님 |
 
 ### 이전 Current Tasks (Batch24)
