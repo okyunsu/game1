@@ -30,7 +30,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T1~T2 | BLOCKED | Unity exit198. 승강기 수정·획득대 sink 구현/실측 미실시 |
 | B25-T3 | DONE | 증기 y0→top 정적 연결·혼합 승강기 인덱스/증기 부재·먼 증기 fixture PASS. AB FAIL0/WARN55→47, B02 위 통로·B03 선반/B04 문 reachability WARN8 해소. raw/25/T3-before.md·T3-after.md. 실제 물리 미검증 |
 | B25-T4~T12 | BLOCKED | Unity exit198. AB 생성·지도·실측·확장 고리·저장/Continue 미실시 |
-| B25-T13 | TODO | 직접 제작 아트 복사·등록, Unity import 검증 별도 |
+| B25-T13 | PARTIAL | RESOURCES 직접 제작 등록·PNG18개 raw 스테이징/해시 일치. 16 PPU·Point·무압축 예정 설정 manifest 기록. Unity exit198로 Assets 복사/import/.meta 생성·커밋은 미실시. 미완성 에셋은 제품에 추가하지 않음 |
 | B25-T14~T17 | BLOCKED | Unity exit198. 표시층·12방 적용·스크린샷·빌드·전체/Quiet 회귀·smoke 미실시 |
 | B25-T18 | TODO | 현재 결과와 재개/검수 안내 |
 | B25-Q1~Q5 | BLOCKED | Unity exit198. 사운드·입자·줌/정지·예고·12방 경로 묶음 미실시 |
