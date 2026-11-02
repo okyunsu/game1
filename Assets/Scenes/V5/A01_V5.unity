@@ -231,7 +231,7 @@ MonoBehaviour:
   tuning: {fileID: 11400000, guid: f848812f7542d354e9eef19e3aa81366, type: 2}
   testCourse: 0
   dimensions: {x: 48, y: 16}
-  designJson: Design/v5/rooms_v5_A.json
+  designJson: Design/v5/rooms_v5_AB.json
 --- !u!1 &10005
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,7 +5151,7 @@ PolygonCollider2D:
       - {x: 48, y: 16}
       - {x: 0, y: 16}
   m_UseDelaunayMesh: 1
---- !u!1 &551937230
+--- !u!1 &1303396773
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5159,8 +5159,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 551937232}
-  - component: {fileID: 551937231}
+  - component: {fileID: 1303396775}
+  - component: {fileID: 1303396774}
   m_Layer: 0
   m_Name: V5 hazard configuration
   m_TagString: Untagged
@@ -5168,13 +5168,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &551937231
+--- !u!114 &1303396774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551937230}
+  m_GameObject: {fileID: 1303396773}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eec6e27335c6fa140beb5487bf51d1e6, type: 3}
@@ -5182,13 +5182,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B21CandidateHost
   hazardSettings: {fileID: 11400000, guid: 2426218ae32f6494c9fd1ad0ed1c65d0, type: 2}
   cornerSettings: {fileID: 11400000, guid: 0176adccf4685e841a6a23299867ede6, type: 2}
---- !u!4 &551937232
+--- !u!4 &1303396775
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551937230}
+  m_GameObject: {fileID: 1303396773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -5204,4 +5204,4 @@ SceneRoots:
   - {fileID: 10001}
   - {fileID: 10169}
   - {fileID: 10179}
-  - {fileID: 551937232}
+  - {fileID: 1303396775}

@@ -220,7 +220,7 @@ MonoBehaviour:
   tuning: {fileID: 11400000, guid: f848812f7542d354e9eef19e3aa81366, type: 2}
   testCourse: 0
   dimensions: {x: 50, y: 12}
-  designJson: Design/v5/rooms_v5_A.json
+  designJson: Design/v5/rooms_v5_AB.json
 --- !u!1 &10005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3605,7 +3605,7 @@ PolygonCollider2D:
       - {x: 50, y: 12}
       - {x: 0, y: 12}
   m_UseDelaunayMesh: 1
---- !u!1 &1066402782
+--- !u!1 &1627238626
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3613,8 +3613,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1066402784}
-  - component: {fileID: 1066402783}
+  - component: {fileID: 1627238628}
+  - component: {fileID: 1627238627}
   m_Layer: 0
   m_Name: V5 hazard configuration
   m_TagString: Untagged
@@ -3622,13 +3622,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1066402783
+--- !u!114 &1627238627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066402782}
+  m_GameObject: {fileID: 1627238626}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eec6e27335c6fa140beb5487bf51d1e6, type: 3}
@@ -3636,13 +3636,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B21CandidateHost
   hazardSettings: {fileID: 11400000, guid: 2426218ae32f6494c9fd1ad0ed1c65d0, type: 2}
   cornerSettings: {fileID: 11400000, guid: 0176adccf4685e841a6a23299867ede6, type: 2}
---- !u!4 &1066402784
+--- !u!4 &1627238628
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066402782}
+  m_GameObject: {fileID: 1627238626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3658,4 +3658,4 @@ SceneRoots:
   - {fileID: 10001}
   - {fileID: 10110}
   - {fileID: 10120}
-  - {fileID: 1066402784}
+  - {fileID: 1627238628}

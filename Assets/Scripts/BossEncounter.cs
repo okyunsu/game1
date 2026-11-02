@@ -19,7 +19,7 @@ public sealed partial class BossEncounter:MonoBehaviour,IDamageable
  public bool Introducing=>State==Phase.EntranceTell&&introDuration>0;
  void EndIntro(){if(introPlayer!=null)introPlayer.SetMovementOnly(false);introPlayer=null;}
  void OnDisable(){EndIntro();}
- void StartIntro(PlayerInputReader player){introRest=transform.position;introLanded=false;introPlayer=player;player.SetMovementOnly(true);player.GetComponent<PlayerDash>()?.Cancel();SetPhase(Phase.EntranceTell);FindFirstObjectByType<RoomCameraRig>()?.Shake(introDuration*.25f,introShake);MoveBoss(introRest+Vector3.up*introDropHeight);}
+ void StartIntro(PlayerInputReader player){introRest=transform.position;if(startsAfterWallJumpPickup)introRest.y=floorY+GetComponent<BoxCollider2D>().bounds.extents.y;introLanded=false;introPlayer=player;player.SetMovementOnly(true);player.GetComponent<PlayerDash>()?.Cancel();SetPhase(Phase.EntranceTell);FindFirstObjectByType<RoomCameraRig>()?.Shake(introDuration*.25f,introShake);MoveBoss(introRest+Vector3.up*introDropHeight);}
  void UpdateIntro(float elapsed){float t=elapsed/introDuration;if(t<.25f)return;if(t<.7f){float drop=Mathf.InverseLerp(.25f,.7f,t);MoveBoss(introRest+Vector3.up*introDropHeight*(1-drop*drop));return;}MoveBoss(introRest);if(!introLanded){introLanded=true;Warn(introRest.x,GetComponent<BoxCollider2D>().bounds.size.x*3,new Color(1,.8f,.2f,.8f));FindFirstObjectByType<RoomCameraRig>()?.Shake(introDuration*.2f,introShake*1.5f);}if(t>=1){EndIntro();if(tuning.extendedPatterns)BeginPattern(0);else SetPhase(Phase.MeleeTell);}}
  [Tooltip("Shared boss prototype values.")]public BossTuning tuning;
  [Header("Scene references")]

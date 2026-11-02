@@ -36,7 +36,7 @@ public static class B25WorldAuthoring
   var pedestal=J.D(spec["pedestal"]);var r=F(pedestal,"rect");Physics2D.SyncTransforms();
   var support=room.GetComponentsInChildren<BoxCollider2D>().Single(c=>c.name.StartsWith("solid")&&Vector2.Distance(c.bounds.center,new Vector2(r[0]+r[2]/2,r[1]+r[3]/2))<.001&&Math.Abs(c.bounds.size.x-r[2])<.001);
   Rect(room,"Wall pickup",new[]{pickup[0]-.4f,pickup[1]+.3f,.8f,.8f},Color.yellow,true).AddComponent<WallJumpPickup>();
-  var boss=Rect(room,J.S(spec,"id"),new[]{spawn[0]-1,arena[1],2f,3f},new Color(.6f,.2f,.8f)).AddComponent<BossEncounter>();
+  var boss=Rect(room,J.S(spec,"id"),new[]{spawn[0]-1,spawn[1],2f,3f},new Color(.6f,.2f,.8f)).AddComponent<BossEncounter>();
   boss.bossId=J.S(spec,"id");boss.displayName="벽 감시자";boss.tuning=AssetDatabase.LoadAssetAtPath<BossTuning>(J.S(spec,"tuning"));boss.leftExit=room.GetComponentsInChildren<RoomExit>().Single();boss.encounterGate=gate;
   boss.floorY=arena[1];boss.leftWallX=arena[0];boss.rightWallX=arena[0]+arena[2];boss.startsAfterWallJumpPickup=true;boss.acquisitionX=pickup[0];boss.acquisitionDistance=J.F(J.D(spec["trigger"])["after_pickup_leave"]);boss.retryTriggerFromRight=true;
   boss.introDuration=1.8f;boss.introDropHeight=spawn[1]-arena[1];boss.sinkingPedestal=support.transform;
