@@ -36,7 +36,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T4 | DONE | AB12 입력 wrapper·수평 구멍 문·B04 보스/우측 재도전/획득대sink·CP-B01 연결. fixture/생성12방 PASS, B05 중복 solid8 충돌은 동일영역 cover0에 위임. Scene은 T5에서 검증/커밋. raw/25/T4-fixtures·T4-generate |
 | B25-T5 | DONE | AB12방 Unity 재생성·실제 요소 일치. 정적FAIL0/WARN47·SceneFAIL0/WARN0. B04는 JSON 천장spawn13을 보존하고 등장 시 바닥floorY 착지. raw/25/T5-skyspawn·T5-counts-final·T5-clearance-final·T5-static.md |
 | B25-T6 | PARTIAL | AB12방/B6방·18문·방문전숨김/방문후표시·stub 체크 PASS. 허용 Scripts/Resources에 지도TextAsset, V5 기본AB. batch GameView 스크린샷 미생성으로 캡처 기준만 잔여(게임Error0). raw/25/T6-map-play·T6-map-generate2 |
-| B25-T7 | BLOCKED | Unity exit198. 대시 첫 통과·구간5회·머리0·산성복귀 미실시 |
+| B25-T7 | PARTIAL | A03→B01·B01시장/지붕·B03증기2/문 각5/5·머리0·Error0. B02 바닥 자동 포고는 정지0회/달리기1회 뒤 산성복귀로 실패, 경로별재시도 종료·좌표수치변경0. raw/25/T7-A03-five·T7-B01-five·T7-B03-five·T7-B02-five/running. 초기 도구실패 원문 보존 |
 | B25-T8 | BLOCKED | Unity exit198. B02 위 길·B06 포고·조각 실측 미실시 |
 | B25-T9 | BLOCKED | Unity exit198. B04 획득/이탈/잠금/연출/처치·사망복귀 미실시 |
 | B25-T10 | BLOCKED | Unity exit198. 벽 점프 재방문 경로별3회 미실시 |

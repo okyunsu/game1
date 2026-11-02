@@ -11,6 +11,8 @@ public sealed partial class B22Probe
   if(mode=="b25-lift")yield return B25Lift();
   else if(mode=="b25-sink")yield return B25Sink();
   else if(mode=="b25-map")yield return B25Map();
+  else if(mode=="b25-first")yield return B25FirstPass();
+  else if(mode=="b25-optional")yield return B25Optional();
   else throw new ArgumentException("Unknown B25 mode "+mode);
  }
  void CaptureScreen(string path)
