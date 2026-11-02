@@ -10,7 +10,28 @@ public sealed partial class B22Probe
  {
   if(mode=="b25-lift")yield return B25Lift();
   else if(mode=="b25-sink")yield return B25Sink();
+  else if(mode=="b25-map")yield return B25Map();
   else throw new ArgumentException("Unknown B25 mode "+mode);
+ }
+ void CaptureScreen(string path)
+ {
+  var type=Type.GetType("UnityEngine.ScreenCapture, UnityEngine.ScreenCaptureModule",true);
+  type.GetMethod("CaptureScreenshot",new[]{typeof(string),typeof(int)}).Invoke(null,new object[]{path,1});
+ }
+ IEnumerator B25Map()
+ {
+  Check(WorldMapLayout.Current.rooms.Length==12&&WorldMapLayout.Current.rooms.Count(r=>r.id.StartsWith("B"))==6,"AB12 map loaded");
+  var map=V4WorldMap.Instance;Check(map!=null&&!map.All,"normal visited-only map fixture");
+  Check(map.VisibleRooms.All(r=>!r.id.StartsWith("B")),"B rooms initially unvisited and hidden");
+  map.Cycle();yield return new WaitForSeconds(.2f);
+  string folder=System.IO.Path.GetDirectoryName(Evidence);
+  CaptureScreen(System.IO.Path.Combine(folder,"map-unvisited.png"));yield return new WaitForSeconds(.5f);
+  foreach(var room in WorldMapLayout.Current.rooms)ProgressSave.VisitRoom(room.id,RoomSession.Instance);
+  map.RefreshProgress();Check(map.VisibleRooms.Count(r=>r.id.StartsWith("B"))==6,"six visited B rooms visible");
+  Check(map.VisibleDoors.Any(d=>d.id=="A03-B01")&&map.VisibleDoors.Any(d=>d.id=="B05-C01"&&d.stub),"new floor links and stub displayed");
+  CaptureScreen(System.IO.Path.Combine(folder,"map-visited.png"));yield return new WaitForSeconds(.5f);
+  Check(System.IO.File.Exists(System.IO.Path.Combine(folder,"map-visited.png")),"map screenshots captured");
+  Record($"MEASURE map rooms={map.VisibleRooms.Length} doors={map.VisibleDoors.Length} B=6");
  }
  IEnumerator B25Sink()
  {

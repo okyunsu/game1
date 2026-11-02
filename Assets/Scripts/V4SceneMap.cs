@@ -5,6 +5,7 @@ public static class V4SceneMap
  #if UNITY_EDITOR
  if(WorldMapLayout.Current==null)WorldMapLayout.Load(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset>("Assets/Maps/"+WorldMapLayout.Name+".json"));
  #endif
+ if(WorldMapLayout.Current==null&&WorldMapLayout.Name=="world_v5_AB")WorldMapLayout.Load(UnityEngine.Resources.Load<UnityEngine.TextAsset>("world_v5_AB"));
  if(WorldMapLayout.Current==null)throw new System.InvalidOperationException("Map layout TextAsset not loaded");
  return System.Array.ConvertAll(WorldMapLayout.Current.rooms,r=>r.id);
  }}
