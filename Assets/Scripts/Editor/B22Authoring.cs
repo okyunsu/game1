@@ -34,7 +34,7 @@ public static class B22Authoring
  {
   var rooms=J.D(J.Read(File.ReadAllText("Design/v5/rooms_v5_A.json"))["rooms"]);return J.D(J.D(rooms["A04"])["boss"]);
  }
- static void AttachBoss(RoomDefinition room,Dictionary<string,object> spec)
+ public static void AttachBoss(RoomDefinition room,Dictionary<string,object> spec)
  {
   var a=Floats(spec,"arena");var spawn=Floats(spec,"spawn");var trigger=J.D(spec["trigger"]);var cover=J.D(spec["floor_cover"]);
   var gate=Rect(room.transform,"V5-A04-bossgate",Floats(spec,"gate_wall"),new Color(.8f,.25f,.2f));gate.SetActive(false);

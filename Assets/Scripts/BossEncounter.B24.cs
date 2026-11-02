@@ -9,13 +9,14 @@ public sealed partial class BossEncounter
  bool pedestalCaptured;Vector3 pedestalRest;
  void LowerPedestal(){if(sinkingPedestal==null)return;if(!pedestalCaptured){pedestalCaptured=true;pedestalRest=sinkingPedestal.position;}var c=sinkingPedestal.GetComponent<Collider2D>();sinkingPedestal.position+=Vector3.up*(floorY-c.bounds.max.y);Physics2D.SyncTransforms();}
  void RestorePedestal(){if(pedestalCaptured&&sinkingPedestal!=null){sinkingPedestal.position=pedestalRest;Physics2D.SyncTransforms();}}
+ [Tooltip("For an entrance on the right, an owned wall jump starts the retry when crossing the centre from that side.")]public bool retryTriggerFromRight;
  bool entryOwnershipSampled,wallOwnedAtEntry;
  float CurrentWaveTell=>PatternStarts==1&&tuning.firstWaveTell>0?tuning.firstWaveTell:tuning.waveTell;
  bool WallPickupReady(PlayerInputReader player)
  {
   bool owned=player.GetComponent<PlayerMotor>().hasWallJump;
   if(!entryOwnershipSampled){entryOwnershipSampled=true;wallOwnedAtEntry=owned;}
-  return owned&&(wallOwnedAtEntry?player.transform.position.x>=acquisitionX:Mathf.Abs(player.transform.position.x-acquisitionX)>=acquisitionDistance);
+  return owned&&(wallOwnedAtEntry?(retryTriggerFromRight?player.transform.position.x<=acquisitionX:player.transform.position.x>=acquisitionX):Mathf.Abs(player.transform.position.x-acquisitionX)>=acquisitionDistance);
  }
  public void ResetAfterArenaDeath(Vector3 spawn)
  {
