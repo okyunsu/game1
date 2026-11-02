@@ -443,6 +443,7 @@ MonoBehaviour:
   startsAfterWallJumpPickup: 1
   acquisitionX: 12
   acquisitionDistance: 3
+  sinkingPedestal: {fileID: 658651939}
   bossId: B2-B04
   encounterGate: {fileID: 1731156828}
   floorCover: {fileID: 0}

@@ -9,7 +9,20 @@ public sealed partial class B22Probe
  IEnumerator B25Tests(string mode)
  {
   if(mode=="b25-lift")yield return B25Lift();
+  else if(mode=="b25-sink")yield return B25Sink();
   else throw new ArgumentException("Unknown B25 mode "+mode);
+ }
+ IEnumerator B25Sink()
+ {
+  yield return B2Intro();
+  Check(Boss.sinkingPedestal!=null&&Math.Abs(Boss.sinkingPedestal.GetComponent<Collider2D>().bounds.max.y-Boss.floorY)<.001,"combat pedestal flush with floor");
+  var original=Health.tuning;Health.tuning=Instantiate(original);Health.tuning.playerMaxHP=100;Health.RestoreMax();
+  Motor.hasWallJump=Motor.hasDoubleJump=false;Player.GetComponent<PlayerDash>().hasDash=false;
+  int floor=0,pedestal=0;
+  for(int i=1;i<=10;i++){yield return B2JumpWave(5,1,"B25 floor trial="+i);if(waveHit)floor++;}
+  for(int i=1;i<=10;i++){yield return B2JumpWave(12,1,"B25 sunk pedestal trial="+i);if(waveHit)pedestal++;}
+  Record($"MEASURE B25 noWallJump floorHits={floor}/10 pedestalAvoidances={10-pedestal}/10 pedestalTop={Boss.sinkingPedestal.GetComponent<Collider2D>().bounds.max.y:F3}");
+  Check(floor==10&&pedestal==10,"floor hit10/10 and pedestal bypass0/10");Health.tuning=original;Health.RestoreMax();
  }
  IEnumerator B25Lift()
  {

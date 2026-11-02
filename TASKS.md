@@ -31,7 +31,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | --- | --- | --- |
 | B25-T0 | DONE | 사전 결정 5행 출처 구분·실행 승인 기록. B24 결정 2건은 설계안 선택 완료, 구현 검증은 T2/T4~T10 대기 |
 | B25-T1 | DONE | 접촉 skin 2×Physics2D.defaultContactOffset를 V5(startLow)에만 반영. 공격 관성으로 lift 옆0.015u 이탈이 원인. A03 왕복3회·다른층 호출/재탑승·V4 B01/C01 PASS/Error0. raw/25/T1-contact-skin, 원문실패 T1-launch-diagnosis·T1-call-trace. 초기 저장진입 일시실패는 별도 기록 |
-| B25-T2 | BLOCKED | Unity exit198. 획득대 sink·위 일반점프 회피0/10·바닥10/10 미실시 |
+| B25-T2 | DONE | 전투 lock 때 기존 획득대를 floorY로 내림·사망reset 복원, 다른보스 ref null 유지. 실제 획득/3u이탈/1.817s 등장·양방향2.8u, 바닥10/10 피격·획득대 회피0/10 PASS/Error0. raw/25/T2-sink10, P1 Quiet13/13 |
 | B25-T3 | DONE | 증기 y0→top 정적 연결·혼합 승강기 인덱스/증기 부재·먼 증기 fixture PASS. AB FAIL0/WARN55→47, B02 위 통로·B03 선반/B04 문 reachability WARN8 해소. raw/25/T3-before.md·T3-after.md. 실제 물리 미검증 |
 | B25-T4 | BLOCKED | Unity exit198. AB 생성기·천장/바닥 문·B04 boss/cover·CP-B01 미실시 |
 | B25-T5 | BLOCKED | Unity exit198. 12방 생성·Scene/요소 검사 (정적 부분만 T3 완료) 미실시 |
