@@ -6,7 +6,7 @@
 - 실행 Base `e6b5172`, 재개 Base `fb63b98`. 기존 B23/B24 및 B25 독립 no 작업 보존, fetch/push/squash 없음.
 - 사용자 Hub 실행 후 새 Preflight `hubLicensingClient=True`/Unity exit0. 이전 exit198 원문은 raw에 보존.
 - P1: 승강기 반환 접촉 skin 수정·왕복3회/다른층호출/V4 PASS. B2 획득대 바닥하강·회피0/10·바닥피격10/10 PASS.
-- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2/P3 Quiet 각각13/13.
+- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2/P3/P4 Quiet 각각13/13.
 - 지도AB12방/B6방·18문·방문전후표시 PASS, batch 캡처 미생성으로 T6 PARTIAL.
 - T7: A03→B01/B01시장·지붕/B03증기 각5/5 머리0. B02 바닥 자동포고 미완주 PARTIAL.
 - T8: B02 위통로/조각5/5 머리0. B06 자동포고2입력 실패·실험제거 PARTIAL, 좌표수치변경0.
@@ -49,7 +49,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T16 | DONE | 실제 게임카메라12방×2 PNG24장(1280×720)·B03전체768×1152·목업/실제 나란히1장·24장컨택트시트 생성/시각확인. 접촉fixture/physics꺼짐·HUD제외로 경로증명과 구분. raw/25/art·T16-art-capture·T16-B03-overview Error0 |
 | B25-T17 | BLOCKED | Unity exit198. Development 빌드·전체13개 회귀·smoke5종 미실시 |
 | B25-T18 | DONE | README·TASKS0/3/9·종료 요약에 차단/재개 순서·현재 빌드와 미래 B25 검수30~40분·미실시 구분 |
-| B25-Q1 | BLOCKED | Unity exit198. 전투 효과음·입자·볼륨 Asset 미실시 |
+| B25-Q1 | DONE | 기존AV1 직접클립 재사용·Assets/Audio/B25/Feedback.asset 단일볼륨·AttackFeedback 확장. swing/hit/death/hurt 각재생1, SourcePlaying=True·입자burst3/lifetime0.180s/소멸·Error0. API이벤트fixture로 자연전투증거와구분. raw/25/Q1-events |
 | B25-Q2 | BLOCKED | Unity exit198. 조각/문/승강기/증기 효과음 미실시 |
 | B25-Q3 | BLOCKED | Unity exit198. B1/B2 줌0.9·처치 정지0.1s·B3 불변 미실시 |
 | B25-Q4 | BLOCKED | Unity exit198. E1/E2/E3 예고0.3s 미실시 |

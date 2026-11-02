@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 10003}
   - component: {fileID: 10004}
   - component: {fileID: 1505052629}
+  - component: {fileID: 1505052630}
   m_Layer: 0
   m_Name: B05 V5
   m_TagString: Untagged
@@ -5741,6 +5742,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B25ArtRoom
   settings: {fileID: 11400000, guid: 8c86cb990c8dc0846a2d06541047bdc1, type: 2}
   background: {fileID: 431909164}
+--- !u!114 &1505052630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c9ddb334d4da947a9de4c87bf5a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B25EffectsHost
+  profile: {fileID: 11400000, guid: 666feeec5f1a22d4a84cf56fc636002b, type: 2}
 --- !u!114 &1531252854
 MonoBehaviour:
   m_ObjectHideFlags: 0

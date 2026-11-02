@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 879108773}
   - component: {fileID: 879108772}
   - component: {fileID: 879108774}
+  - component: {fileID: 879108775}
   m_Layer: 0
   m_Name: BossTest_B1
   m_TagString: Untagged
@@ -605,6 +606,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomLabel
   notice: 
+--- !u!114 &879108775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879108771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c9ddb334d4da947a9de4c87bf5a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B25EffectsHost
+  profile: {fileID: 11400000, guid: 666feeec5f1a22d4a84cf56fc636002b, type: 2}
 --- !u!1 &898382918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1031,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfe48b10a4181541b6974e2068a8580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEncounter
+  displayName: "\uC815\uC0C1 \uC218\uBB38\uC7A5"
+  startsAfterWallJumpPickup: 0
+  acquisitionX: 12
+  acquisitionDistance: 3
+  sinkingPedestal: {fileID: 0}
+  retryTriggerFromRight: 0
   bossId: B1-A04
   encounterGate: {fileID: 986280881}
   floorCover: {fileID: 1452300865}

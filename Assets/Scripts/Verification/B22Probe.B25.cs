@@ -19,6 +19,7 @@ public sealed partial class B22Probe
   else if(mode=="b25-loop")yield return B25Loop();
   else if(mode=="b25-art")yield return B25ArtCapture();
   else if(mode=="b25-overview")yield return B25OverviewCapture();
+  else if(mode=="b25-combat-fx")yield return B25CombatEffects();
   else throw new ArgumentException("Unknown B25 mode "+mode);
  }
  void CaptureScreen(string path)
