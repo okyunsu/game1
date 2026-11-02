@@ -290,11 +290,24 @@ def approach_checks(room):
     return findings
 
 
+def transport_surfaces(room):
+    """Virtual endpoints for optimistic lift/steam reachability, not solid geometry."""
+    lifts = [[lift['x0'], y, lift['x1']-lift['x0'], 0]
+             for lift in room.get('lifts', []) for y in (lift['lo'], lift['hi'])]
+    steam = [[jet['x0'], y, jet['x1']-jet['x0'], 0]
+             for jet in room.get('steam', []) for y in (jet['y0'], jet['top'])]
+    return lifts+steam
+
+
 def arrival_graph(room, surfaces, capabilities=()):
     terrain = [(r[0], r[1]+r[3], r[2], 0) for r in surfaces]
-    lift_begin=len(terrain)-2*len(room.get('lifts',[]))
-    lift_edges={(i,i+1) for i in range(lift_begin,len(terrain),2)}
+    steam_begin=len(terrain)-2*len(room.get('steam',[]))
+    lift_begin=steam_begin-2*len(room.get('lifts',[]))
+    lift_edges={(i,i+1) for i in range(lift_begin,steam_begin,2)}
     lift_edges |= {(b,a) for a,b in list(lift_edges)}
+    # Steam only adds a bottom -> top edge. Falling uses the ordinary envelope.
+    # This ignores on/off timing, obstacles and real jet velocity; never route proof.
+    steam_edges={(i,i+1) for i in range(steam_begin,len(terrain),2)}
     targets = [(p['x']-.5, p['y']+.5, 1, 0) for p in room.get('pogo', [])]
     walls = room.get('climb', []) if 'WallJump' in capabilities else []
     nodes = terrain+targets+[(r[0], r[1]+r[3], r[2], 0) for r in walls]
@@ -317,7 +330,7 @@ def arrival_graph(room, surfaces, capabilities=()):
                     # Wall attachment uses the player's side, not just the foot:
                     # the authored collider can contact a wall above foot level.
                     bottom = walls[j-len(terrain)-len(targets)][1]-player_size()[1] if j >= len(terrain)+len(targets) else b[1]
-                    if (i,j) in lift_edges or gap(a, b) <= 3+1e-6 and bottom-a[1] <= rise+1e-6:
+                    if (i,j) in lift_edges or (i,j) in steam_edges or gap(a, b) <= 3+1e-6 and bottom-a[1] <= rise+1e-6:
                         reached.add(j)
                         changed = True
         return reached
@@ -359,8 +372,7 @@ def v5_checks(room, capabilities=()):
     solid, platforms = room.get('solid', []), room.get('platform', [])
     intact = solid+platforms+room.get('seal', [])+room.get('cover', [])+room.get('breakable', [])
     surfaces = [r for r in intact if r[2] > r[3] and r[1]+r[3] < h-1e-6]
-    for lift in room.get('lifts',[]):
-        surfaces.extend([[lift['x0'],y,lift['x1']-lift['x0'],0] for y in (lift['lo'],lift['hi'])])
+    surfaces.extend(transport_surfaces(room))
     if h > 20:
         for name, lo, hi in [('lower', 0, h/2), ('upper', h/2, h)]:
             if not any(lo <= m['y'] < hi for m in items):
@@ -515,7 +527,7 @@ def v5_report(source, world_source=None, max_step=None):
              f'B19: noAbilityOrdinary/noAbilityPogo는 능력 없는 계산이며 capabilities 결과와 구분한다. climb 방은 WallJump 보유를 가정한 벽 전체 길이 경로다(첫 도착 소유 주장 아님). 유효 입구가 하나이고 gate가 있으면 그 능력을 요구한다. DJ 높이는 PlayerTuning의 (jumpVelocity²+doubleJumpVelocity²)/(2×gravity)={double_jump_height():g}u를 읽기 전용으로 계산한다. 연속 벽 접촉에는 프리팹 몸 높이를 포함한다. 가로3u·충돌·입력 제한은 여전히 검사기 한계다.',
              '밀도 요소=아이템 marks(조각/사당)+기존 11종. 높이20 초과는 아래·위 절반에 아이템 각1개를 검사한다.', '',
              f'draft2 추가 규칙: 몸체 {player_size()}u를 프리팹에서 읽음. 머리 여유=키+.6u, 방 높이≥12, 도랑 위 바닥 금지는 관찰 버그 근거 FAIL. 구덩이 순찰 교차·폭>3은 WARN. 맞닿은 고체의 내부 면은 서 있는 면에서 제외한다.', '',
-             'B23: 승강기 lo↔hi 상면을 양방향 연결한 낙관적 도달 후보. 접근 머리 충돌은 떠 있는 목표 발판, 오름1.5~2.6u·간격1.8u 미만 FAIL. 블록 목표 제외. 실제 물리 검증 별도.', '',
+             'B23: 승강기 lo↔hi 상면을 양방향 연결한 낙관적 도달 후보. B25: 증기 x0~x1의 y0→top 단방향 상승 연결 추가(주기·실속도·벽 가림 미검증, 가상 끝점은 고체가 아님). 접근 머리 충돌은 떠 있는 목표 발판, 오름1.5~2.6u·간격1.8u 미만 FAIL. 블록 목표 제외. 실제 물리 검증 별도.', '',
              'B19 근거 없는 정적 후보는 WARN: door-safety, overlap, ability-gate, height, arrival, reachability, pit-patrol, pit-width. 후보 출력은 유지하며 실제 플레이 불가능으로 확정하지 않는다.', '',
              'draft3 추가 규칙: 가장자리 가로0.9u 이내 구조물 머리 여유2.2u, 적 솔리드 침투·서 있는 면·순찰 전구간 지지 FAIL. 오름4u 이상에서 작은 발판 없는 포고 구간·등불3연속은 WARN(기하 후보).', '',
              'B21: shortcut 반대편 진입의 closed_until_wall_broken 저장 키가 실제 우회된 breakable과 일치하면 spawn-bypass는 MEASURE(잠금으로 해소). 누락·잘못된 키·봉인 우회는 FAIL을 유지한다. 표시는 검사 계약이며 런타임 잠금 구현을 보장하지 않는다. 도랑·구덩이 탈출은 --max-step-evidence의 실측치와 비교한 MEASURE(피해·머리 충돌 제외). 실측 JSON 미지정 시 trench-escape MEASURE는 미실시.', '',
@@ -546,6 +558,19 @@ def self_test(output_root=Path('Validation/_raw/room-rules-self-test')):
     lift_room['spawns'][0]['y']=10
     graph=arrival_graph(lift_room,[[0,0,6,1],[2,1,2,0],[2,10,2,0]])
     assert 1 in graph[0][2], 'lift high to low'
+    steam_room={'steam':[{'x0':2,'x1':4,'y0':1,'top':10}],
+                'spawns':[{'id':'low','x':1,'y':1}]}
+    geometry=[[0,0,6,1],[5,9.5,2,.5]]
+    graph=arrival_graph(steam_room,geometry+transport_surfaces(steam_room))
+    assert 1 in graph[0][2], 'steam enables high shelf without pogo or wall jump'
+    assert 1 not in arrival_graph({'spawns':steam_room['spawns']},geometry)[0][2], 'no jet no high shelf'
+    remote={'steam':[{'x0':20,'x1':22,'y0':1,'top':10}], 'spawns':steam_room['spawns']}
+    assert 1 not in arrival_graph(remote,geometry+transport_surfaces(remote))[0][2], 'remote jet requires reaching bottom'
+    mixed={'lifts':[{'x0':2,'x1':4,'lo':1,'hi':10}],
+           'steam':[{'x0':5,'x1':7,'y0':10,'top':20}],
+           'spawns':[{'id':'low','x':1,'y':1},{'id':'high','x':3,'y':10}]}
+    graph=arrival_graph(mixed,[[0,0,6,1]]+transport_surfaces(mixed))
+    assert 4 in graph[0][2] and 1 in graph[1][2], 'mixed steam ascent and bidirectional lift preserve indices'
     run = output_root/uuid.uuid4().hex
     fake = {'title': 'fake', 'size': [20, 12], 'solid': [[0, 0, 20, 1]],
             'platform': [[1, 2, 3, .3], [8, 5, 3, .3]],
@@ -649,7 +674,7 @@ def self_test(output_root=Path('Validation/_raw/room-rules-self-test')):
     results.extend(f'{level} B21-fixture-locked {rule}: {detail}' for level, rule, detail in shortcut_rows(fixture21))
     results.extend(f'{level} B21-fixture-seal {rule}: {detail}' for level, rule, detail in shortcut_rows(seal))
     results.append('PASS B21 locked spawn bypass MEASURE; unlocked/bad-key/unrelated-key/seal bypass FAIL; a/b order independent')
-    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height WARN detected; intact seal traversal retained', *results, 'PASS B23 approach threshold/solid exclusion and bidirectional lift fixtures', 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
+    return '\n'.join(['PASS self-test synthetic door-safety / overlap / height WARN detected; intact seal traversal retained', *results, 'PASS B23 approach threshold/solid exclusion and bidirectional lift fixtures', 'PASS B25 steam bottom-to-top / absent and remote jet rejection / mixed lift-steam fixtures', 'PASS draft2 five synthetic rules detected; draft3 four JSON fixtures detected; clean fixture PASS'])
 
 
 if __name__ == "__main__":

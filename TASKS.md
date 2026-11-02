@@ -28,7 +28,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | --- | --- | --- |
 | B25-T0 | DONE | 사전 결정 5행 출처 구분·실행 승인 기록. B24 결정 2건은 설계안 선택 완료, 구현 검증은 T2/T4~T10 대기 |
 | B25-T1~T2 | BLOCKED | Unity exit198. 승강기 수정·획득대 sink 구현/실측 미실시 |
-| B25-T3 | DOING | 증기 아래→top 정적 연결 및 self-test |
+| B25-T3 | DONE | 증기 y0→top 정적 연결·혼합 승강기 인덱스/증기 부재·먼 증기 fixture PASS. AB FAIL0/WARN55→47, B02 위 통로·B03 선반/B04 문 reachability WARN8 해소. raw/25/T3-before.md·T3-after.md. 실제 물리 미검증 |
 | B25-T4~T12 | BLOCKED | Unity exit198. AB 생성·지도·실측·확장 고리·저장/Continue 미실시 |
 | B25-T13 | TODO | 직접 제작 아트 복사·등록, Unity import 검증 별도 |
 | B25-T14~T17 | BLOCKED | Unity exit198. 표시층·12방 적용·스크린샷·빌드·전체/Quiet 회귀·smoke 미실시 |
