@@ -45,7 +45,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T12 | PARTIAL | 실제 A고리(B1→대시→반환승강기→연습/선반)65.207s·65.027s 및 그 뒤 Continue PASS, B01 CP/지붕/B02위통로까지 연속PASS. B02 E3앞 긴도약 HP1/후속포고 HP0 실패2회·중단, 실패포고실험제거. 전체AB/최종Continue 미실시. raw/25/T12-expanded1·expanded2-E3 |
 | B25-T13 | DONE | PNG18개 원본바이트/SHA256 일치·Assets/Art/Original/v1 복사, Unity16PPU/Point/무압축/FullRect·meta/ArtSettings Asset 생성 PASS. RESOURCES 적용등록. raw/25/T13-import·T13-hashes.txt |
 | B25-T14 | REVIEW | 12방 표시 Sprite자식/윗면/벽/위험/문/조각·캐릭터/적·배경0.3패럴랙스 적용. Collider직렬화/위치/크기 불변, Scene검사원문 T10/T14 완전동일 FAIL0. 실제카메라24장 Error0·플레이어.7×1.6/적콜라이더불변. 감각수락대기. raw/25/T14-apply·T14-clearance·T14-geometry-comparison.txt |
-| B25-T15 | BLOCKED | Unity exit198. 12방 아트 적용·Graybox 런처 미실시 |
+| B25-T15 | PARTIAL | 12방 적용완료·Play-V5-Graybox.cmd/별도slot·같은AB Scene의표시만전환. Start-V5 B25/AB 연결·PowerShell구문확인, 최종빌드/런처Error0 검증은 T17에서 수행 |
 | B25-T16 | DONE | 실제 게임카메라12방×2 PNG24장(1280×720)·B03전체768×1152·목업/실제 나란히1장·24장컨택트시트 생성/시각확인. 접촉fixture/physics꺼짐·HUD제외로 경로증명과 구분. raw/25/art·T16-art-capture·T16-B03-overview Error0 |
 | B25-T17 | BLOCKED | Unity exit198. Development 빌드·전체13개 회귀·smoke5종 미실시 |
 | B25-T18 | DONE | README·TASKS0/3/9·종료 요약에 차단/재개 순서·현재 빌드와 미래 B25 검수30~40분·미실시 구분 |
