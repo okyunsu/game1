@@ -34,7 +34,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T14~T17 | BLOCKED | Unity exit198. 표시층·12방 적용·스크린샷·빌드·전체/Quiet 회귀·smoke 미실시 |
 | B25-T18 | TODO | 현재 결과와 재개/검수 안내 |
 | B25-Q1~Q5 | BLOCKED | Unity exit198. 사운드·입자·줌/정지·예고·12방 경로 묶음 미실시 |
-| B25-Q6 | TODO | 기존 사람 플레이 CSV를 이용한 방별 체류 시간 도구 |
+| B25-Q6 | DONE | Tools/Export-RoomTimes.py·README. 실제 Playtest CSV8방문/4방 출력, 활성95.926496s(과거 샘플). 일시정지 제외·재방문·마지막방·비정상종료·누락출구·잘못된 시간·덮어쓰기 거절 확인. raw/25/Q6-checks.txt·Q6-human-room-times.csv. 신규 B25 플레이 측정 아님 |
 
 ### 이전 Current Tasks (Batch24)
 

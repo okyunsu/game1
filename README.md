@@ -55,6 +55,14 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
+사람 플레이 방별 체류 시간 CSV: 제목 화면에서 **새 게임**으로 시작한 V4/V5 세션은 기존 PlaytestLogger가 `Playtest/<날짜-시간>.csv`를 기록합니다. 게임을 종료하거나 제목으로 돌아간 뒤 아래 명령으로 방별 합계를 저장합니다. Continue만 사용한 세션이나 fixture 시작은 기록이 없을 수 있으며, 이번 도구가 게임의 기록 시작 조건을 바꾸지는 않습니다.
+
+```powershell
+& 'C:/Users/gosu3/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -B Tools/Export-RoomTimes.py Playtest/20261022-233114.csv
+```
+
+입력 경로는 자신의 세션으로 바꿉니다. 기본 출력은 `Playtest/<입력파일명>-room-times.csv`이며 열은 `source,room,visits,completed_visits,incomplete_visits,active_seconds`입니다. 같은 방 재방문은 합산하고 일시정지는 제외합니다. 종료 전 마지막 방도 포함합니다. 비정상 종료는 마지막 기록까지의 하한, 출구 기록 누락은 다음 입장까지의 추정으로 `incomplete_visits`에 표시합니다. 기존 파일은 덮어쓰지 않으므로 재출력은 `--output Playtest/다른이름.csv`를 사용합니다. 원본 로그와 요약 CSV는 Git 제외입니다. 이 도구는 과거 로그에도 쓸 수 있으며 새 게임 플레이 측정과 구분합니다.
+
 Batch24 검수는 마지막에 **한 번, 약20~30분** 진행합니다. 기존 수락 대기 항목의 순서는 [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 보존했습니다.
 
 1. [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): A03·능력 없음·기본 몸1.6으로 시작합니다. 건물 거리(상자→M건물→굴뚝→W옥상)를 둘러본 뒤 CP-A03→동쪽 승강기→A04 보스1→A05 대시→도랑→A03 건물/옥상→승강기→서쪽 대시 연습3단계/선반을 확인합니다. 레버는 X, 탑승은 승강기 중앙입니다. 이어서 A02를 거쳐 A01 높은 대시 감실의 조각을 얻고 A03으로 돌아옵니다. 고리 약15~20분.
