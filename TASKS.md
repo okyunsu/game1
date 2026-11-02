@@ -2,18 +2,19 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-02, Codex — Batch25 재개 진행 중(T1). 사용자 Hub 실행 후 새 Preflight PASS.
-- 실행 Base `e6b5172`(승인 Claude 설계·아트 선행 커밋), 최종 커밋은 `git log -1`, 태그 B25.
-- 기존 B23/B24 33커밋 보존. 로컬 origin/main 참조 대비 최종 수는 종료 요약 확인, fetch/push/squash 없음.
-- Preflight: `hubLicensingClient=False`, Unity `exit198`. 같은 환경 재시도 없음. 로그인된 Unity Hub 실행 후 재확인 필요.
-- 완료: 결정 출처·사전 선택 기록, 증기 정적 도달 연결/self-test, 사람 플레이 방별 체류 CSV 도구, 재개 안내.
-- 정적 AB12방 FAIL0/WARN47(이전55). B02 위 통로·B03 선반/B04 문 도달 WARN8 해소. 실제 도달 증명 아님.
-- 아트18 PNG 해시 일치 raw 스테이징·출처 등록. Assets import/16 PPU·Point·무압축 적용은 미실시(T13 PARTIAL).
-- B25 DONE4/PARTIAL1/BLOCKED20(25 Task). Unity 코드·Scene·빌드 변경0. Quiet·전체 회귀·Scene 검사·smoke 미실시.
-- 층 B 생성·승강기 수정·획득대 sink·그래픽·P3 실측·Q1~Q5는 미구현. 새 플레이 가능 범위는 늘지 않음.
-- B24 미해결 REVIEW/PARTIAL/BLOCKED와 직접 플레이 순서는 유지. 설계 결정2건 선택 완료, 제품 반영 대기. 결정3건.
-- 빌드 최신 B24/직전 B23·런처 유지, B25/Graybox 런처 없음. Batch 밖 Ready Queue0.
-- [Batch25 결과](Validation/B25-summary.md), 이전 [Batch24](Validation/B24-summary.md). 재개는 T1/T2→T4부터, 완료 T0/T3/Q6 반복 불필요.
+- 갱신: 2026-11-02, Codex — Batch25 재개 진행 중, T10 벽 점프 재방문 측정 차례.
+- 실행 Base `e6b5172`, 재개 Base `fb63b98`. 기존 B23/B24 및 B25 독립 no 작업 보존, fetch/push/squash 없음.
+- 사용자 Hub 실행 후 새 Preflight `hubLicensingClient=True`/Unity exit0. 이전 exit198 원문은 raw에 보존.
+- P1: 승강기 반환 접촉 skin 수정·왕복3회/다른층호출/V4 PASS. B2 획득대 바닥하강·회피0/10·바닥피격10/10 PASS.
+- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2 Quiet 각각13/13.
+- 지도AB12방/B6방·18문·방문전후표시 PASS, batch 캡처 미생성으로 T6 PARTIAL.
+- T7: A03→B01/B01시장·지붕/B03증기 각5/5 머리0. B02 바닥 자동포고 미완주 PARTIAL.
+- T8: B02 위통로/조각5/5 머리0. B06 자동포고2입력 실패·실험제거 PARTIAL, 좌표수치변경0.
+- T9: B04 실획득·잠금·연출·사망CP-B01·재시도·실입력32.350s 처치HP1/벽점프7/포고26·저장/재진입 PASS/Error0.
+- T10: B01 탑/조각/B05 3/3. A02-B05의 오래된 stub은 WORLD18/B25-T4 명시 연결에 따라 생성기/Scene에서 해소·원본보존.
+- 아트18장 import/표시층·빌드·Q1~Q5는 앞으로 진행. Q6 방별체류 도구는 이전 완료 결과 유지.
+- 빌드는 아직 B24/직전B23, B25/Graybox 런처 아직 없음. 기존 수락 순서 유지, Batch 밖 Ready Queue0.
+- 상세는 Current Tasks·raw/25, 이전 차단 종료 증거는 [B25](Validation/B25-summary.md). 이번 재개 종료 인계는 작업 후 갱신한다.
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -39,7 +40,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T7 | PARTIAL | A03→B01·B01시장/지붕·B03증기2/문 각5/5·머리0·Error0. B02 바닥 자동 포고는 정지0회/달리기1회 뒤 산성복귀로 실패, 경로별재시도 종료·좌표수치변경0. raw/25/T7-A03-five·T7-B01-five·T7-B03-five·T7-B02-five/running. 초기 도구실패 원문 보존 |
 | B25-T8 | PARTIAL | B02 증기→위통로→조각5/5·머리0·HP4 PASS. B06 등불→무너지는 발판은 보통/공중대시 입력 각포고1 뒤 산성복귀 실패, 조각 미획득. 실패 대시 입력 보완 제거·원문보존, 좌표수치변경0. raw/25/T8-B02-upper-five·T8-B06-five/airdash |
 | B25-T9 | DONE | B04 실제획득/저장→3u이탈잠금→등장1.817s/바닥착지·받침하강·첫예고1.005s/실높이2.800 양방향 PASS. 사망CP-B01·능력유지·우측재입장/중앙재시작·실입력32.350s 처치HP1/벽점프7/포고26·ID저장/재진입없음 Error0. raw/25/T9-B04-fight1 |
-| B25-T10 | BLOCKED | Unity exit198. 벽 점프 재방문 경로별3회 미실시 |
+| B25-T10 | PARTIAL | B01탑/조각/B05·B05↔A02왕복/이동조각·B03굴뚝/B06 각3/3 PASS/Error0. A02 stale stub 해소(Design원본보존). B05서쪽 조각은 바닥구멍에서 A02로 전환되어 도보/늦은/앞당긴이륙3접근 실패·종료, 실패입력보완제거. raw/25/T10-* |
 | B25-T11 | BLOCKED | Unity exit198. 새 첫 통과 조각4개 최대HP5 실측 미실시 |
 | B25-T12 | BLOCKED | Unity exit198. AB 확장 고리·시간·저장/Continue 미실시 |
 | B25-T13 | PARTIAL | RESOURCES 직접 제작 등록·PNG18개 raw 스테이징/해시 일치. 16 PPU·Point·무압축 예정 설정 manifest 기록. Unity exit198로 Assets 복사/import/.meta 생성·커밋은 미실시. 미완성 에셋은 제품에 추가하지 않음 |
@@ -179,6 +180,8 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
 
+
+해소한 문서 충돌(B25 재개): `rooms_v5_AB.json`의 A02-B05에는 이전 `stub:true`가 남았지만 WORLD18·world_v5_AB와 B25-T4는 양방향 연결을 명시한다. 사용자 승인 B25 연결 지시를 우선해 생성기/Scene에서 해당 닫힘만 제거하고 WallJump gate를 유지했다. Design 원본 수정0, T10-A02-link 근거.
 
 결정 대기3건. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·실측은 Unity 차단으로 미실시이며 기존 B24 PARTIAL은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 

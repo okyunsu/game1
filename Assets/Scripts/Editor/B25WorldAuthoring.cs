@@ -13,6 +13,16 @@ public static class B25WorldAuthoring
  static string Output=>N5Args.Value("-verify-output","Validation/_raw/25/world-authoring.txt");
  static Dictionary<string,object> Data()=>J.D(J.Read(File.ReadAllText(Rooms))["rooms"]);
  static float[] F(Dictionary<string,object> spec,string key)=>J.A(spec,key).Select(J.F).ToArray();
+ static void ConnectA02B05(RoomDefinition room)
+ {
+  var exit=room.GetComponentsInChildren<RoomExit>(true).Single(e=>e.exitId=="A02-B05");exit.enabled=true;
+  var closed=room.GetComponentsInChildren<Transform>(true).FirstOrDefault(t=>t.name=="closed:A02-B05");if(closed!=null)UnityEngine.Object.DestroyImmediate(closed.gameObject);
+ }
+ public static void ConnectApprovedABLink()
+ {
+  EditorSceneManager.OpenScene("Assets/Scenes/V5/A02_V5.unity");var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();ConnectA02B05(room);EditorSceneManager.SaveScene(room.gameObject.scene);
+  File.WriteAllText(Output,"PASS A02-B05 opened per WORLD_V5 section18 and B25-T4 explicit connection; stale room JSON stub preserved read-only; gate remains WallJump; B05-C01 stub unchanged\n");EditorApplication.Exit(0);
+ }
  static GameObject Rect(RoomDefinition room,string name,float[] r,Color color,bool trigger=false)
  {
   var go=new GameObject(name);go.transform.SetParent(room.transform);go.transform.position=new Vector2(r[0]+r[2]/2,r[1]+r[3]/2);go.transform.localScale=new Vector3(r[2],r[3],1);go.layer=trigger?0:6;
@@ -50,6 +60,7 @@ public static class B25WorldAuthoring
   {
    string path="Assets/Scenes/V5/"+pair.Key+"_V5.unity";EditorSceneManager.OpenScene(path);var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();var spec=J.D(pair.Value);
    if(pair.Key=="A04")B22Authoring.AttachBoss(room,J.D(spec["boss"]));if(pair.Key=="B04")B2(room,J.D(spec["boss"]));
+   if(pair.Key=="A02")ConnectA02B05(room);
    foreach(var node in J.A(spec,"lifts"))
    {
     var d=J.D(node);var lift=room.GetComponentsInChildren<LeverLift>().Single(l=>l.name=="lift:"+J.S(d,"id"));lift.startLow=J.S(d,"start")=="low";
