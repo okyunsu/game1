@@ -13,6 +13,7 @@ public sealed partial class B22Probe
   else if(mode=="b25-map")yield return B25Map();
   else if(mode=="b25-first")yield return B25FirstPass();
   else if(mode=="b25-optional")yield return B25Optional();
+  else if(mode=="b25-boss")yield return B25BossField();
   else throw new ArgumentException("Unknown B25 mode "+mode);
  }
  void CaptureScreen(string path)

@@ -38,7 +38,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T6 | PARTIAL | AB12방/B6방·18문·방문전숨김/방문후표시·stub 체크 PASS. 허용 Scripts/Resources에 지도TextAsset, V5 기본AB. batch GameView 스크린샷 미생성으로 캡처 기준만 잔여(게임Error0). raw/25/T6-map-play·T6-map-generate2 |
 | B25-T7 | PARTIAL | A03→B01·B01시장/지붕·B03증기2/문 각5/5·머리0·Error0. B02 바닥 자동 포고는 정지0회/달리기1회 뒤 산성복귀로 실패, 경로별재시도 종료·좌표수치변경0. raw/25/T7-A03-five·T7-B01-five·T7-B03-five·T7-B02-five/running. 초기 도구실패 원문 보존 |
 | B25-T8 | PARTIAL | B02 증기→위통로→조각5/5·머리0·HP4 PASS. B06 등불→무너지는 발판은 보통/공중대시 입력 각포고1 뒤 산성복귀 실패, 조각 미획득. 실패 대시 입력 보완 제거·원문보존, 좌표수치변경0. raw/25/T8-B02-upper-five·T8-B06-five/airdash |
-| B25-T9 | BLOCKED | Unity exit198. B04 획득/이탈/잠금/연출/처치·사망복귀 미실시 |
+| B25-T9 | DONE | B04 실제획득/저장→3u이탈잠금→등장1.817s/바닥착지·받침하강·첫예고1.005s/실높이2.800 양방향 PASS. 사망CP-B01·능력유지·우측재입장/중앙재시작·실입력32.350s 처치HP1/벽점프7/포고26·ID저장/재진입없음 Error0. raw/25/T9-B04-fight1 |
 | B25-T10 | BLOCKED | Unity exit198. 벽 점프 재방문 경로별3회 미실시 |
 | B25-T11 | BLOCKED | Unity exit198. 새 첫 통과 조각4개 최대HP5 실측 미실시 |
 | B25-T12 | BLOCKED | Unity exit198. AB 확장 고리·시간·저장/Continue 미실시 |
