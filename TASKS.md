@@ -2,11 +2,11 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-02, Codex — Batch25 재개 진행 중, T10 벽 점프 재방문 측정 차례.
+- 갱신: 2026-11-03, Codex — Batch25 재개 진행 중, T14 그래픽 표시층 적용 차례.
 - 실행 Base `e6b5172`, 재개 Base `fb63b98`. 기존 B23/B24 및 B25 독립 no 작업 보존, fetch/push/squash 없음.
 - 사용자 Hub 실행 후 새 Preflight `hubLicensingClient=True`/Unity exit0. 이전 exit198 원문은 raw에 보존.
 - P1: 승강기 반환 접촉 skin 수정·왕복3회/다른층호출/V4 PASS. B2 획득대 바닥하강·회피0/10·바닥피격10/10 PASS.
-- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2 Quiet 각각13/13.
+- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2/P3 Quiet 각각13/13.
 - 지도AB12방/B6방·18문·방문전후표시 PASS, batch 캡처 미생성으로 T6 PARTIAL.
 - T7: A03→B01/B01시장·지붕/B03증기 각5/5 머리0. B02 바닥 자동포고 미완주 PARTIAL.
 - T8: B02 위통로/조각5/5 머리0. B06 자동포고2입력 실패·실험제거 PARTIAL, 좌표수치변경0.
@@ -44,7 +44,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T11 | DONE | A01선반 V5-A01-3·A04섬 -0·A01감실 -4·B02위 -0 실제 트리거접촉4개→maxHP5/HP5·ID/보너스저장·Continue PASS/Error0. 접촉위치fixture이며 연속자연수집증명과 구분. raw/25/T11-first-four |
 | B25-T12 | PARTIAL | 실제 A고리(B1→대시→반환승강기→연습/선반)65.207s·65.027s 및 그 뒤 Continue PASS, B01 CP/지붕/B02위통로까지 연속PASS. B02 E3앞 긴도약 HP1/후속포고 HP0 실패2회·중단, 실패포고실험제거. 전체AB/최종Continue 미실시. raw/25/T12-expanded1·expanded2-E3 |
 | B25-T13 | DONE | PNG18개 원본바이트/SHA256 일치·Assets/Art/Original/v1 복사, Unity16PPU/Point/무압축/FullRect·meta/ArtSettings Asset 생성 PASS. RESOURCES 적용등록. raw/25/T13-import·T13-hashes.txt |
-| B25-T14 | BLOCKED | Unity exit198. 표시층 스프라이트·배경/패럴랙스·충돌체 불변 검증 미실시 |
+| B25-T14 | REVIEW | 12방 표시 Sprite자식/윗면/벽/위험/문/조각·캐릭터/적·배경0.3패럴랙스 적용. Collider직렬화/위치/크기 불변, Scene검사원문 T10/T14 완전동일 FAIL0. 실제카메라24장 Error0·플레이어.7×1.6/적콜라이더불변. 감각수락대기. raw/25/T14-apply·T14-clearance·T14-geometry-comparison.txt |
 | B25-T15 | BLOCKED | Unity exit198. 12방 아트 적용·Graybox 런처 미실시 |
 | B25-T16 | BLOCKED | Unity exit198. 방별2장 총24장·목업 비교1장 미실시 |
 | B25-T17 | BLOCKED | Unity exit198. Development 빌드·전체13개 회귀·smoke5종 미실시 |
