@@ -42,7 +42,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T9 | DONE | B04 실제획득/저장→3u이탈잠금→등장1.817s/바닥착지·받침하강·첫예고1.005s/실높이2.800 양방향 PASS. 사망CP-B01·능력유지·우측재입장/중앙재시작·실입력32.350s 처치HP1/벽점프7/포고26·ID저장/재진입없음 Error0. raw/25/T9-B04-fight1 |
 | B25-T10 | PARTIAL | B01탑/조각/B05·B05↔A02왕복/이동조각·B03굴뚝/B06 각3/3 PASS/Error0. A02 stale stub 해소(Design원본보존). B05서쪽 조각은 바닥구멍에서 A02로 전환되어 도보/늦은/앞당긴이륙3접근 실패·종료, 실패입력보완제거. raw/25/T10-* |
 | B25-T11 | DONE | A01선반 V5-A01-3·A04섬 -0·A01감실 -4·B02위 -0 실제 트리거접촉4개→maxHP5/HP5·ID/보너스저장·Continue PASS/Error0. 접촉위치fixture이며 연속자연수집증명과 구분. raw/25/T11-first-four |
-| B25-T12 | BLOCKED | Unity exit198. AB 확장 고리·시간·저장/Continue 미실시 |
+| B25-T12 | PARTIAL | 실제 A고리(B1→대시→반환승강기→연습/선반)65.207s·65.027s 및 그 뒤 Continue PASS, B01 CP/지붕/B02위통로까지 연속PASS. B02 E3앞 긴도약 HP1/후속포고 HP0 실패2회·중단, 실패포고실험제거. 전체AB/최종Continue 미실시. raw/25/T12-expanded1·expanded2-E3 |
 | B25-T13 | PARTIAL | RESOURCES 직접 제작 등록·PNG18개 raw 스테이징/해시 일치. 16 PPU·Point·무압축 예정 설정 manifest 기록. Unity exit198로 Assets 복사/import/.meta 생성·커밋은 미실시. 미완성 에셋은 제품에 추가하지 않음 |
 | B25-T14 | BLOCKED | Unity exit198. 표시층 스프라이트·배경/패럴랙스·충돌체 불변 검증 미실시 |
 | B25-T15 | BLOCKED | Unity exit198. 12방 아트 적용·Graybox 런처 미실시 |

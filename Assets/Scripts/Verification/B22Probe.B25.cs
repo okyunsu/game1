@@ -16,6 +16,7 @@ public sealed partial class B22Probe
   else if(mode=="b25-boss")yield return B25BossField();
   else if(mode=="b25-wall")yield return B25Revisit();
   else if(mode=="b25-first-four")yield return B25FirstFour();
+  else if(mode=="b25-loop")yield return B25Loop();
   else throw new ArgumentException("Unknown B25 mode "+mode);
  }
  void CaptureScreen(string path)

@@ -35,7 +35,7 @@ public sealed partial class B22Probe
    if(count>=xs.Length&&dash&&!dashed&&Body.linearVelocity.y<=.6f){keys.Add(Key.LeftShift);dashed=true;}
    Input(keys.ToArray());if(count>=xs.Length&&Motor.Grounded&&Math.Abs(Body.position.y-landY)<.12f&&Math.Abs(Body.position.x-landX)<1){landed=true;break;}if(Hazard.Returns>returns||Health.HP<=0||RoomSession.Instance.Respawning)break;yield return null;
   }
-  yield return Keys();Record($"MEASURE B25 pogo={label} pogos={Player.GetComponent<PlayerAttack>().PogosPerformed-before} landed={landed} head={b25Head} HP={Health.HP} pos={Body.position:F3}");Check(landed,"pogo route "+label);
+  yield return Keys();Record($"MEASURE B25 pogo={label} pogos={Player.GetComponent<PlayerAttack>().PogosPerformed-before} landed={landed} headObserved={b25Watch} head={b25Head} HP={Health.HP} pos={Body.position:F3}");Check(landed,"pogo route "+label);
  }
  IEnumerator B25FirstPass()
  {
