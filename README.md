@@ -62,21 +62,19 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 입력 경로는 자신의 세션으로 바꿉니다. 기본 출력은 `Playtest/<입력파일명>-room-times.csv`이며 열은 `source,room,visits,completed_visits,incomplete_visits,active_seconds`입니다. 같은 방 재방문은 합산하고 일시정지는 제외합니다. 종료 전 마지막 방도 포함합니다. 비정상 종료는 마지막 기록까지의 하한, 출구 기록 누락은 다음 입장까지의 추정으로 `incomplete_visits`에 표시합니다. 기존 파일은 덮어쓰지 않으므로 재출력은 `--output Playtest/다른이름.csv`를 사용합니다. 원본 로그와 요약 CSV는 Git 제외입니다. 이 도구는 과거 로그에도 쓸 수 있으며 새 게임 플레이 측정과 구분합니다.
 
-B25 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd)에서 **한 번, 약30~40분** 진행합니다. A03 CP→승강기→A04 보스1→A05 대시→A03 연습/서쪽 선반→천장 구멍 B01→지붕→B02→B03 증기→B04 보스2→벽 점프 재방문(B06·B05·A02) 순서입니다. [검수 계획](Design/proposals-1101-B25/00_README.md). 기존 수락 대기 순서는 [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 유지했습니다.
+B26 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd) **1회30~40분** + [BodySizeTest](Launchers/current/Play-BodySize.cmd) **약5분**입니다. 현재 Builds/B26-delivery의 draft6.1·아트v1.1을 실행합니다. [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 기존 QA6개와 이번 신규 REVIEW 각각의 확인 항목을 적었습니다. 크기 비교 뒤 A03 CP→A04 B1→A05 대시→A03 연습/선반→B01→B02→B03→B04 보스2→벽 점프 재방문(B06·B02위통로·B01탑·B05·A02)을 진행합니다.
 
-자동 확인 결과·남은 경로와 근거는 [TASKS 현재 작업](TASKS.md#1-0-current-tasks-batch25)을 따릅니다. 플레이 중 막히면 방·위치·입력을 적고 다른 구간으로 넘어가 주세요.
+기존 QA: B20-T4 크기 / B22-T5 도랑복귀 / B23-T1 보스1등장 / B23-T3 일어나기 / B24-T11 보스2 / B25-T14 그래픽. 신규 QA: B26-T4 종류별 스프라이트 식별, B26-T5 배경 이음새·투명 증기. Backlog/Queue 신규 REVIEW도 같은 TASKS 목록에 이어집니다.
 
-[Play-V5-Graybox](Launchers/current/Play-V5-Graybox.cmd)는 같은 AB 배치의 원래 도형 표시와 비교합니다. 별도 저장 슬롯을 쓰며 충돌체는 같습니다. M으로 지도 크기를 바꾸고 방문 전후 B층·문 표시를 확인합니다. 그래픽에서 바닥/발판/위험/적이 구분되는지, 타격·장치 소리와 적의 공격 직전 밝아짐이 읽히는지 봅니다.
+[Graybox](Launchers/current/Play-V5-Graybox.cmd)는 같은 충돌체·별도 슬롯입니다. [B1 단독](Launchers/current/Play-BossTest-B1.cmd)·[B2 단독](Launchers/current/Play-BossTest-B2.cmd)은 필요한 경우 선택합니다. M으로 지도를 전환하며 방문 전후를 봅니다. B2는 중앙 벽점프 획득→3u이탈→잠금/1.8초 등장, 전투 중 받침 하강, 사망 뒤 능력유지/재도전을 확인합니다.
 
-[보스1 단독](Launchers/current/Play-BossTest-B1.cmd), [보스2 시험장](Launchers/current/Play-BossTest-B2.cmd)도 사용할 수 있습니다. B2는 중앙에서 벽 점프를 얻고 3u 이탈하면 잠금·1.8초 등장 후 전투가 시작됩니다. 이때 획득대가 바닥으로 내려갑니다. 양벽에서 Z를 놓고 다시 눌러 벽 점프로 충격파를 피합니다. HP26·피해1·한 페이즈, 사망 뒤 능력 유지·중앙 재통과로 재시작합니다. B04 필드 사망은 CP-B01로 돌아갑니다.
+기록: 전체 시간____ / 보스 시도 횟수____ / 막힌 방·좌표·입력____ / 머리 박은 곳____ / 그래픽이 헷갈린 곳____ / 캐릭터 크기 선택(1.6/1.3/1.1)____ / 소리·예고 느낌____.
 
-조각은 ID별 저장되며4개마다 최대HP+1/전회복입니다. HUD `조각 n/4`는 다음 성장까지입니다. Loop/B1은 독립 fixture 슬롯으로 시작하고, B2 슬롯은 유지됩니다. B2 초기화는 Esc→제목→새 게임입니다. 제목 화면의 이어하기로 해당 슬롯을 재개합니다.
+조정 위치: Assets/Art/Original/v1/ArtSettings.asset의 종류별 스프라이트·패럴랙스0.3, V5 Scene의 B26SteamVisual opacity0.25/riseSpeed1.4, Assets/Audio/B25/Feedback.asset의 이벤트볼륨·입자·보스연출·적예고. B1/B2 전투 튜닝 값은 기존 Asset을 유지합니다. Play 중 변경은 메모→Stop→원본 Asset/Scene 저장→재빌드합니다.
 
-기록: 전체 시간____ / 보스 시도 횟수____ / 막힌 방·위치____ / 머리 박은 곳____ / 그래픽이 헷갈린 곳____ / 소리·예고 느낌____.
+자동 측정은 [B26 현재 작업](TASKS.md#1-26-current-tasks-batch26), 독립 진입 반복은 [경로 측정](Validation/B26-T2-routes.md), 남은 지형/입력 한계는 [원인 장부](Validation/B26-T8-route-ledger.md)를 따릅니다. 모서리 후보는 미채택 종료(기본 꺼짐)입니다. 조각은 ID별 저장·4개마다 최대HP+1/전회복이며 Loop/B1 독립 fixture 슬롯, B2 유지 슬롯입니다.
 
-조정 위치: 공통 그래픽 `Assets/Art/Original/v1/ArtSettings.asset`의 스프라이트·패럴랙스0.3, 공통 효과 `Assets/Audio/B25/Feedback.asset`의 이벤트별 볼륨·입자 수명0.18s·등장 줌0.9·처치 정지0.1s·적 예고0.3s입니다. B1/B2 전투값은 각각 `Assets/BossCandidates/B1/BossTuning.asset`, `Assets/BossCandidates/B2/BossTuning.asset`입니다. 배치는 `Assets/Scenes/V5`, B2 시험장은 `Assets/Scenes/Test/BossTest_B2.unity`의 BossEncounter입니다. Play 중 변경은 종료 전 기록하고 Stop 후 원본 Asset/Scene에 반영·저장한 뒤 재빌드합니다.
-
-V5 AB draft6: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd). `-NoMap` 지원. [이전 B24 결과](Validation/B24-summary.md)는 당시의 기록이며 이번 검증과 구분합니다.
+V5 AB draft6.1: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프](Launchers/current/Play-V5-DJ.cmd), -NoMap 지원.
 
 방별 실제 입력 회귀 묶음은 새 Development 빌드 후 `Tools/Run-RoomRoutes.ps1 -Tag 고유이름`으로 실행합니다. 12방을 독립 진입 fixture에서 시작하고 적을 유지한 채 주요 출구까지 입력합니다. B06은 선택 도전 뒤 입구로 돌아오는 경로입니다. 통과/실패와 각 원문은 `Validation/_raw/25/<태그>/routes.csv`·방별 result/game.log에 보존하며, 하나가 실패해도 나머지 방을 검사합니다. 전체 자연 완주와 구분합니다.
 
