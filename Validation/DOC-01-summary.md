@@ -37,3 +37,9 @@ BATCH CARD: 종료 T8에서 Task 커밋 뒤 실행 결과를 이 위치에 기�
 | 이동 후 현재 Task 표 전체 | 20 | 16 | 4 |
 
 PASS 상태별 행/Task ID/상태/결과 원문 전후 동일, B25 본문·표 원문 동일. REVIEW 총 21개는 표 REVIEW 20개 + 기존 본문 B20-T4 1개이며, 보관 표·Handoff 중복 언급은 합산하지 않는다. 과거 해소/대체 여부를 이번 정리에서 재판정하지 않음. 직접 플레이 목록·순서 불변.
+
+## T4 결정 장부
+
+PASS 기존 결정 ID 44개 각1회 보존, DOC-01 D1~D11/D1-3 추가. D-DRAFT5·D-CLIMB-GAP·D-HUB-LIFT는 제안, D-BIG-BATCH는 개별 날짜 미확인 전달로 구분해 별도 절 보존. 추천값의 실행 승인과 감각 수락을 구분하고 원문 출처 한계를 유지했다. TASKS2-1은 링크만 남겼다.
+
+T1 이후 D9에 따른 추가 교체: AGENTS Handoff의 “실제 사용자 사전 결정을 TASKS 2-1에 옮긴다” → DECISIONS.md만 기록·TASKS2-1 링크(남은 위치: AGENTS Handoff, DECISIONS). 템플릿·CLAUDE 결정 경로도 함께 정합화했다. 읽기 전용 `.agents/skills/metro-handoff/SKILL.md`의 예전 2-1 기록 안내는 사용자 D9와 갱신 AGENTS가 우선하며 스킬 파일은 수정하지 않았다.

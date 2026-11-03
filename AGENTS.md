@@ -250,7 +250,7 @@ REVIEW 대기 상한은 8개다. Batch 종료 시 Current Tasks·미해결 목�
 
 Batch 종료 시 TASKS의 Latest Handoff를 아래 순서로 갱신한다.
 
-- 시작 기록에서 날짜·출처가 있는 실제 사용자 사전 결정을 TASKS 2-1에 옮긴다. Claude 설계안·에이전트 제안은 사용자 결정과 구분하며 “출처=Claude”는 승인 증거가 아니다.
+- 시작 기록에서 날짜·출처가 있는 실제 사용자 사전 결정은 DECISIONS.md에만 기록한다. TASKS 2-1에는 장부 링크만 둔다. Claude 설계안·에이전트 제안은 “제안”으로 구분하며 “출처=Claude”는 승인 증거가 아니다.
 - 시작점에 포함된 관련 Design/ 변경이 있으면 Task별 결과 첫 줄에 “Claude 설계 변경”과 커밋/파일을 기록한다. 작성 주체가 미확인이면 단정하지 않는다.
 - 과거 표 보관 시 미해결 REVIEW·PARTIAL·BLOCKED와 기존 직접 플레이 순서는 현재 TASKS에 유지한다. 종료 시 0절도 갱신한다.
 
