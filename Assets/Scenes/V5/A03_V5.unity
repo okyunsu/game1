@@ -5354,6 +5354,7 @@ GameObject:
   - component: {fileID: 10179}
   - component: {fileID: 10180}
   - component: {fileID: 371584170}
+  - component: {fileID: 371584171}
   m_Layer: 0
   m_Name: CP-A03
   m_TagString: Untagged
@@ -7134,6 +7135,19 @@ MonoBehaviour:
   originalEnabled: 1
   followColor: 0
   followAlpha: 0
+--- !u!114 &371584171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a486de5010b4f4c87b59c03d825d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B26IdleSparkle
+  settings: {fileID: 11400000, guid: 8c86cb990c8dc0846a2d06541047bdc1, type: 2}
 --- !u!1 &380387633
 GameObject:
   m_ObjectHideFlags: 0

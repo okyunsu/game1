@@ -4565,6 +4565,7 @@ GameObject:
   - component: {fileID: 10161}
   - component: {fileID: 10162}
   - component: {fileID: 7071023}
+  - component: {fileID: 7071024}
   m_Layer: 0
   m_Name: DiscoveryReward
   m_TagString: Untagged
@@ -4721,6 +4722,7 @@ GameObject:
   - component: {fileID: 10166}
   - component: {fileID: 10167}
   - component: {fileID: 521149454}
+  - component: {fileID: 521149455}
   m_Layer: 0
   m_Name: DiscoveryReward
   m_TagString: Untagged
@@ -5318,6 +5320,19 @@ MonoBehaviour:
   originalEnabled: 1
   followColor: 0
   followAlpha: 1
+--- !u!114 &7071024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a486de5010b4f4c87b59c03d825d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B26IdleSparkle
+  settings: {fileID: 11400000, guid: 8c86cb990c8dc0846a2d06541047bdc1, type: 2}
 --- !u!1 &22933974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6337,6 +6352,19 @@ MonoBehaviour:
   originalEnabled: 1
   followColor: 0
   followAlpha: 1
+--- !u!114 &521149455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a486de5010b4f4c87b59c03d825d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B26IdleSparkle
+  settings: {fileID: 11400000, guid: 8c86cb990c8dc0846a2d06541047bdc1, type: 2}
 --- !u!114 &565789227
 MonoBehaviour:
   m_ObjectHideFlags: 0

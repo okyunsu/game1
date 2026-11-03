@@ -3225,6 +3225,7 @@ GameObject:
   - component: {fileID: 10109}
   - component: {fileID: 10110}
   - component: {fileID: 2017430941}
+  - component: {fileID: 2017430942}
   m_Layer: 0
   m_Name: DiscoveryReward
   m_TagString: Untagged
@@ -7659,6 +7660,19 @@ MonoBehaviour:
   originalEnabled: 1
   followColor: 0
   followAlpha: 1
+--- !u!114 &2017430942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a486de5010b4f4c87b59c03d825d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B26IdleSparkle
+  settings: {fileID: 11400000, guid: 8c86cb990c8dc0846a2d06541047bdc1, type: 2}
 --- !u!1 &2042829523
 GameObject:
   m_ObjectHideFlags: 0
