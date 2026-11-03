@@ -15,6 +15,7 @@ public sealed class B25ArtRoom:MonoBehaviour
   var go=new GameObject("Original art character");go.transform.SetParent(actor.transform);var image=go.AddComponent<SpriteRenderer>();image.sprite=sprite;image.sortingOrder=source.sortingOrder;
   var scale=new Vector3(b.size.x/size.x,b.size.y/size.y,1);go.transform.position=b.center-Vector3.Scale(sprite.bounds.center,scale);var inherited=actor.transform.lossyScale;go.transform.localScale=new Vector3(scale.x/inherited.x,scale.y/inherited.y,1);
   var binding=actor.AddComponent<B25ArtVisual>();binding.source=source;binding.images=new[]{image};binding.followAlpha=true;source.sprite=sprite;source.enabled=false;
+  if(player)go.AddComponent<B26PlayerArtMotion>().Initialize(actor,settings);
  }
  void LateUpdate()
  {
