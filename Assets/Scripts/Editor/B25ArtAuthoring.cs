@@ -34,9 +34,14 @@ public static class B25ArtAuthoring
     else if(name.StartsWith("lift:"))id="B_plat";
     else if(source.GetComponent<DiscoveryReward>()!=null){id="fragment";alpha=true;}
     else if(source.GetComponent<PogoTarget>()!=null)id=source.GetComponent<DamageBlock>()!=null?"spike":"lantern";
-    if(source.GetComponent<BossEncounter>()!=null)source.color=new Color(.6f,.2f,.8f);
+    if(source.GetComponent<BossEncounter>()!=null){id=source.GetComponent<BossEncounter>().bossId=="B1-A04"?"boss1":"boss2";alpha=true;}
+    else if(source.GetComponent<DashPickup>()!=null){id="pickup_dash";alpha=true;}
+    else if(source.GetComponent<WallJumpPickup>()!=null){id="pickup_walljump";alpha=true;}
+    else if(source.GetComponent<Checkpoint>()!=null)id="checkpoint";
+    else if(source.GetComponent<LiftLever>()!=null)id="lever";
     if(id==null)continue;
     var bounds=shape.bounds;var images=new List<SpriteRenderer>();images.Add(Layer(source.transform,"Original art "+id,Sprite(id),bounds.size,bounds.center,source.sortingOrder,Color.white));
+    if(id=="boss1"||id=="boss2"||id=="checkpoint"||id=="pickup_dash"||id=="pickup_walljump"||id=="lever")images[0].drawMode=SpriteDrawMode.Sliced;
     if(top)images.Add(Layer(source.transform,"Original art top",Sprite(floor+"_top"),new Vector2(bounds.size.x,Math.Min(1,bounds.size.y)),new Vector3(bounds.center.x,bounds.max.y-Math.Min(1,bounds.size.y)/2,0),source.sortingOrder+1,Color.white));
     var binding=source.gameObject.AddComponent<B25ArtVisual>();binding.source=source;binding.images=images.ToArray();binding.originalEnabled=source.enabled;binding.followColor=color;binding.followAlpha=alpha;source.enabled=false;
    }

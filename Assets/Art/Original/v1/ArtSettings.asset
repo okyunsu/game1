@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::B25ArtSettings
   player: {fileID: 21300000, guid: 6a9d4baecab08304397c1c4fdcc39201, type: 3}
   enemy: {fileID: 21300000, guid: 825298ab2ff75514cbf9330d96f6f1fb, type: 3}
+  e1: {fileID: 21300000, guid: 2098356e0a36a8d45841f073514c6f5d, type: 3}
+  e2: {fileID: 21300000, guid: 4ffa40551bf302345b40cecca60b4aac, type: 3}
+  e3: {fileID: 21300000, guid: 6645caa710f58b64d96237432f2654b6, type: 3}
+  e4: {fileID: 21300000, guid: d00a25d3ab13ce64883c13aaefe1e46e, type: 3}
   parallax: 0.3

@@ -11,7 +11,7 @@ public sealed class B25ArtRoom:MonoBehaviour
  {
   if(actor==null||!drawn.Add(actor.GetInstanceID())||actor.transform.Find("Original art character")!=null)return;
   var source=actor.GetComponent<SpriteRenderer>();var shape=actor.GetComponent<Collider2D>();if(source==null||shape==null)return;
-  var sprite=player?settings.player:settings.enemy;var b=shape.bounds;var size=sprite.bounds.size;
+  var sprite=player?settings.player:actor.GetComponent<EnemyCharger>()!=null?settings.e2:actor.GetComponent<EnemyTurret>()!=null?settings.e3:actor.GetComponent<E4Hover>()!=null?settings.e4:settings.e1;if(sprite==null)sprite=settings.enemy;var b=shape.bounds;var size=sprite.bounds.size;
   var go=new GameObject("Original art character");go.transform.SetParent(actor.transform);var image=go.AddComponent<SpriteRenderer>();image.sprite=sprite;image.sortingOrder=source.sortingOrder;
   var scale=new Vector3(b.size.x/size.x,b.size.y/size.y,1);go.transform.position=b.center-Vector3.Scale(sprite.bounds.center,scale);var inherited=actor.transform.lossyScale;go.transform.localScale=new Vector3(scale.x/inherited.x,scale.y/inherited.y,1);
   var binding=actor.AddComponent<B25ArtVisual>();binding.source=source;binding.images=new[]{image};binding.followAlpha=true;source.sprite=sprite;source.enabled=false;
@@ -24,6 +24,6 @@ public sealed class B25ArtRoom:MonoBehaviour
   foreach(var bug in GetComponentsInChildren<E4Hover>())Character(bug.gameObject,false);
   var camera=Camera.main;if(camera==null||background==null)return;
   if(!anchored){anchored=true;origin=background.transform.position;cameraOrigin=camera.transform.position;}
-  var delta=camera.transform.position-cameraOrigin;delta.z=0;background.transform.position=origin+delta*settings.parallax;
+  camera.backgroundColor=new Color(27/255f,34/255f,54/255f);var delta=camera.transform.position-cameraOrigin;delta.y=0;delta.z=0;background.transform.position=origin+delta*settings.parallax;
  }
 }
