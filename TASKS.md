@@ -23,7 +23,7 @@
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
 | DOC-01-T0 | DONE | 지정4경로 외 변경0·staged0, 시작 바이트 기록, Preflight -SkipUnity PASS/Unity 미실시 |
-| DOC-01-T1 | TODO | AGENTS 운영 결정·통합 대조 |
+| DOC-01-T1 | DONE | D1~D6/D11 반영·기존 권한/보호/push 유지, 삭제·통합 문장별 남은 절은 DOC-01 요약 |
 | DOC-01-T2 | TODO | Batch 템플릿 |
 | DOC-01-T3 | TODO | 지난 표·미해결 목록 |
 | DOC-01-T4 | TODO | 결정 장부 |

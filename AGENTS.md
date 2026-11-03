@@ -55,25 +55,25 @@
 
 ## Environment
 
-- Batch 시작 시 Tools/Preflight.ps1을 실행한다. 문서·분석·Python·운영 도구만 바꾸는 Batch는 -SkipUnity로 Git·환경 정보만 확인한다.
+- Batch 첫 단계에서 Tools/Preflight.ps1로 Unity 실행을 먼저 확인한다. 실패하면 Unity가 필요한 Task와 그 의존 경로만 BLOCKED로 두고, Batch의 “Unity 없이 가능한 작업” 목록을 진행한다. 문서·분석·Python·운영 도구만 바꾸는 Batch는 -SkipUnity로 Git·환경 정보만 확인하며 Unity를 실행하지 않는다.
 - Unity와 Unity 호출 스크립트(회귀·빌드·executeMethod), Unity 검증 exe는 샌드박스 밖 실행 경로를 사용한다. 편집·분석은 샌드박스 안에서 한다. 환경의 별도 권한 검사가 요구되면 해당 절차를 따르며 우회하지 않는다.
 - Preflight는 LOCALAPPDATA·Hub 프로세스·작업 트리·로컬 origin/main..HEAD와 Unity 기동 종료 코드·timeout을 기록한다. Hub 프로세스 수만으로 성공/실패를 판정하지 않는다. 단, 에이전트가 띄운 Unity는 Unity Hub의 라이선스 클라이언트가 이미 실행 중일 때만 라이선스를 받았고, 없으면 Unity가 직접 띄운 클라이언트가 라이선스를 찾지 못해 exit198이 났다(B19·B20·B21 로그, 사용자 PowerShell 실행은 Hub 없이도 성공). Preflight가 hubLicensingClient=False를 보고하고 exit198이면 원인을 이것으로 기록하고 사용자에게 Hub 실행을 요청한다. 동일 프로젝트 Unity가 이미 열려 있으면 두 번째 Editor를 실행하지 않고 Unity 경로만 중단한다.
 - exit198이면 재조사·반복 실행하지 않고 needs-unity=yes Task와 그 의존 경로만 BLOCKED(외부 의존성)로 기록한다. no Task는 계속한다. 사용자가 환경을 고쳤거나 다른 원인 증거가 생기면 재확인할 수 있다.
 - 다른 종료 코드·실행 파일 부재·timeout은 라이선스 문제로 단정하지 말고 실제 원인·영향을 기록한다. 환경 실패가 전체 제품 구현 실패는 아니다.
-- 결과와 원본 로그는 Validation/_raw/<Batch>/의 새 실행 폴더에 보존한다. 실패 원문·미실시는 Task/Batch 요약에 옮긴다. 기존 결과는 덮어쓰지 않는다.
+- 실행 결과·실패 원문·미실시의 기록과 원본 보관은 Evidence를 따른다. 기존 결과는 덮어쓰지 않는다.
 
 ## Batch Approval
 
 사용자는 개별 Task가 아니라 Batch(여러 Task·트랙의 묶음)를 승인한다. Batch에는 예산, 트랙, 사전 결정 표, 허용 범위, Backlog, 종료 조건이 포함된다.
 
-- Batch 안의 모든 Task를 끝낼 때까지 진행한다. 중간에 사용자에게 묻고 멈추지 않는다.
+- Batch 목표 상태 도달 또는 시간 예산 소진을 종료 기준으로 삼고, 아래 안전 상한·중단 조건 안에서 진행한다. 중간에 사용자에게 묻고 전체 실행을 멈추지 않는다.
 - 한 Task가 BLOCKED이면 그 Task와 그 결과에 의존하는 Task만 중단하고, 의존하지 않는 다음 Task로 넘어간다.
 - 사전 결정 표에 있는 항목은 표대로 진행한다. "막히면 대체" 칸은 사용자가 적은 대체안만 유효하다. 칸이 비어 있거나 표에 없는 설계 결정이 필요하면 해당 경로만 멈추고 Decisions Needed에 기록한다.
-- Batch의 Task가 모두 끝나거나 BLOCKED이면, 예산이 남아 있는 한 Batch에 적힌 Backlog를 위에서부터 진행한다.
+- Batch 목표 상태에 도달하거나 Task가 모두 끝나거나 BLOCKED여도, 시간이 남고 안전 상한 미도달이면 Batch Backlog를 위에서부터 진행한다.
 - Backlog 항목도 적힌 합격 기준을 따른다.
 - Batch의 Backlog까지 소진되면 TASKS의 Ready Queue를 위에서부터 진행한다. Queue 각 행은 사용자 승인·합격 기준·허용 범위·needs-unity·선행을 갖추며 플레이 수락 대기 작업은 넣지 않는다. 실행 행의 범위는 종료 검사 허용 목록에 합친다. 필수 필드가 빠지면 그 행만 중단하고 다음 독립 행으로 간다. 그것도 소진되면 종료한다. Batch 밖 작업은 하지 않는다.
 
-예산: 시간을 기본 기준으로 하고 Task 수는 안전 상한(명시 없으면 20)으로 쓴다. 둘 중 하나에 도달하면 새 Task를 시작하지 않고 현재 Task를 안전하게 정리한다. 종료 처리 시간을 먼저 확보한다. 시간이 남고 상한 미도달이면 Batch Backlog → Ready Queue 순으로 진행한다. Task를 쪼개 상한을 우회하지 않는다. Queue가 비면 종료하며 새 제품 작업을 임의로 승인하지 않는다.
+예산: 시간을 기본 기준으로 하고 Task 수는 안전 상한(명시 없으면 30)으로만 쓴다. 목표 상태 도달 뒤에도 시간이 남으면 Batch Backlog → Ready Queue 순으로 계속한다. 시간 예산 또는 안전 상한에 도달하면 새 Task를 시작하지 않고 현재 Task를 안전하게 정리한다. 종료 처리 시간을 먼저 확보한다. Task를 쪼개 상한을 우회하지 않는다. Backlog·Queue가 소진되면 종료하며 새 제품 작업을 임의로 승인하지 않는다.
 
 재시도 한도:
 
@@ -94,6 +94,37 @@
 
 단, Batch의 사전 결정 표에 명시적으로 허용된 범위는 예외다.
 
+## 자율 처리 단계
+
+사용자 2026-11-03 결정(D1·D1-3). 현재 승인 Batch의 허용 범위·사전 결정과 실행환경 권한 안에서만 적용한다. 아래 단계는 Batch 밖 작업이나 보호 예외를 새로 승인하지 않는다.
+
+### A. 승인 없이 처리 (종료 요약에 한 줄)
+
+1. 컴파일 오류, 실행 중 Error 로그 수정
+2. 이번 Batch에서 만든 코드·Scene의 결함 수정
+3. 검사 도구·런처·Python 스크립트의 오류 수정. 합격 기준과 판정 규칙은 바꾸지 않는다.
+4. 설계 JSON 그대로 Scene 재생성(생성기 실행)
+5. 후보 Asset 폴더(Assets/Candidates, Assets/BossCandidates) 안의 작업
+
+### B. 처리하되 종료 보고 맨 위에 따로 표시
+
+1. 기존 시스템 안에 새 스크립트·컴포넌트 추가
+2. 충돌체에 영향 없는 표시층 변경(아트·배경·이펙트)
+3. Batch 사전 결정 표에 적힌 범위 안의 수치 조정
+4. 기존 기능이 GAME_DESIGN 규칙과 다르게 동작하는 결함 수정. 재현 증거가 필요하고, 수정 범위가 보호 파일 밖이며 C-5(REVIEW 감각 수치)에 해당하지 않을 때만 처리한다. 보고에는 재현 방법과 근거가 된 GAME_DESIGN 절을 적는다.
+
+### C. 해당 경로만 멈추고 Decisions Needed
+
+1. Tools/protected-files.txt 대상 전체
+2. 저장 형식(version), 입력 Asset(Action Map)
+3. 방 좌표·연결·게이트 등 설계 원본 변경
+4. 능력·적·보스 패턴 추가, 월드 진행 순서 변경
+5. REVIEW 상태 항목의 감각 수치 변경
+6. 회귀 테스트 삭제, 합격 기준 완화, 검사 규칙 FAIL→WARN 하향
+7. 기존 Validation 수정, push, 이미 push한 커밋 합치기
+
+Batch 사전 결정의 명시 예외는 Batch Approval·Stop Conditions에 따라 적용한다. push 금지는 Git Rule을 따르며 변경하지 않는다.
+
 ## Definition of Done (Task)
 
 아래를 충족하면 DONE이다. 사용자 감각·설계 수락만 남으면 REVIEW, 유용한 안정 결과에 일부 기준이 남으면 PARTIAL, 필수 구현·기술 검증을 외부 의존성 등으로 진행할 수 없으면 BLOCKED로 기록하고 다음 독립 Task로 간다. DONE만 다음 Task 진행 조건으로 삼지 않는다.
@@ -102,13 +133,13 @@
 2. 게임 코드/에셋 변경은 컴파일 오류0과 핵심 동작을 확인하고 연결 회귀는 Validation 위험도에 비례해 수행한다. Batch가 요구하거나 핵심/통합 변경이면 전체 회귀를 실행한다. 문서·운영 스크립트는 자체를 확인하며 Unity 검증을 요구하지 않는다.
 3. 이번 Task의 허용 범위 밖 변경0. 커밋 전 git diff·git status로 미추적/미커밋까지 확인하고 기존 사용자 변경은 구분해 보존한다. Batch-Card는 커밋 간 검사이므로 미커밋 검사를 대신하지 않는다.
 4. 증거에 실제 FAIL·핵심 MEASURE 원문, 미실시와 한계를 기록한다. 이전 실행 결과는 비교 기준이며 이번 통과 증거를 대신하지 않는다. 영향 없는 영역은 재실행하지 않아도 된다.
-5. TASKS Current Tasks 상태·결과를 갱신하고 이번 Task 파일만 로컬 커밋한다.
+5. TASKS Current Tasks 상태·결과를 갱신하고 Git Rule에 따라 커밋한다.
 
 측정 자체가 목적이면 나쁜 결과도 정해진 측정·기록을 완료했을 때 DONE이다. 기능 구현 실패를 측정 완료로 바꿔 DONE 처리하지 않는다.
 
 ## Git Rule
 
-- Batch 시작 전 작업 트리를 확인한다.
+- 시작 상태 확인은 Session Start를 따른다.
 - 작업 트리가 깨끗하지 않아도 기존 사용자 변경의 범위와 출처를 식별할 수 있고 현재 Batch 변경과 충돌하지 않으면 보존한 채 진행한다. 커밋할 때는 이번 작업 파일만 add한다.
 - 기존 변경과 Batch 변경의 경계를 구분할 수 없거나 충돌 위험이 높을 때만 해당 경로를 BLOCKED로 둔다.
 - Task마다 로컬 커밋한다.
@@ -158,11 +189,9 @@ Prototype Value는 명시된 탐색 범위 안에서 이전 값을 보존한 후
 
 상태와 의존성 표기는 TASKS를 따른다.
 
-REVIEW는 기술 구현과 관련 Unity 검증이 완료되어 사용자 판단을 기다리는 상태다.
+상태 정의·완료 판정은 Task Status와 Definition of Done (Task)을 따른다. 감각·설계 수락(REVIEW → DONE)은 Batch Approval의 사용자 권한이다.
 
-감각·설계 수락이 필요한 Task는 사용자가 수락한 뒤 DONE으로 바꾼다.
-
-별도 사용자 판단이 없는 Task는 완료 조건과 필요한 검증을 충족하면 DONE으로 둔다.
+REVIEW 대기 상한은 8개다. Batch 종료 시 Current Tasks·미해결 목록의 고유 Task ID를 기준으로 REVIEW 개수를 TASKS 0절에 적는다. 8개를 넘으면 “다음 콘텐츠 Batch 전에 사용자 QA 1회 필요”라고 표시한다.
 
 감각·설계 수락 전이라도 후속 구현은 REVIEW를 기반으로 진행한다.
 
@@ -201,24 +230,19 @@ REVIEW는 기술 구현과 관련 Unity 검증이 완료되어 사용자 판단�
 
 문서·결정 작업에는 게임 실행 조건을 적용하지 않는다.
 
-작은 Task마다 전체 검증을 반복하지 않는다.
-
-전체 회귀는 아래 시점에 집중한다.
-
-- Vertical Slice
-- Sprint 종료
-- Core Loop 통합
-- Content Complete
-- Release Candidate
+작은 Task마다 전체 검증을 반복하지 않는다. 전체 회귀는 위 Milestone 시점에 집중한다.
 
 기존 Validation 파일은 덮어쓰지 않고 새 파일로 저장한다.
 
 ## Evidence
 
-- Task별 Validation 요약은 필요할 때 최대 1개, Batch 종료 요약은 1개 커밋한다. 같은 내용을 복제하지 않으며 원본 자동 산출물은 _raw/에 둔다.
-- 원본 로그에 FAIL·MEASURE 줄이 있으면 실패 줄과 핵심 수치를 원문 그대로 넣고, 미실시 항목을 적는다.
-- 원본 로그·CSV·json·PNG는 `Validation/_raw/`에 남기고 커밋하지 않는다(.gitignore 대상).
+- Task별 Validation 요약은 필요할 때 최대 1개, Batch 종료 요약은 1개 커밋한다. 같은 내용을 복제하지 않는다. 통과한 실행은 요약 한 줄만 남긴다.
+- 원본 로그에 FAIL·MEASURE 줄이 있으면 실패 줄과 핵심 수치를 원문 그대로 요약에 넣고, 미실시 항목을 적는다. 이전 실행 결과를 이번 통과 증거로 대신하지 않는다.
+- 원본 로그·CSV·json·PNG는 FAIL·BLOCKED·REVIEW의 근거일 때만 `Validation/_raw/<Batch>/`의 새 실행 폴더에 저장하고 커밋하지 않는다(.gitignore 대상). 기존 결과는 덮어쓰지 않는다.
+- `_raw`에 빌드·worktree·dll·Python 환경을 넣지 않는다. 검증용 사본은 임시 폴더에 만들고 Batch 종료 시 삭제한다.
+- regression 원본은 최근 2개 Batch분만 풀어 두고 이전 것은 zip으로 묶는다. 압축 파일 수와 원본 수가 일치하는지 확인한 뒤 압축한 원본을 삭제한다.
 - 원본 자료는 삭제하지 않는다.
+- 예외: Git 커밋으로 다시 만들 수 있는 빌드·worktree·도구 환경 사본은 원본 증거가 아니며 정리할 수 있다.
 - TASKS.md에는 Current Sprint, Current Tasks, Bugs, Decisions Needed, Ready Queue, Latest Handoff를 둔다.
 - 끝난 Task 이력과 해결된 Bugs·Decisions는 Archive/로 옮긴다.
 
@@ -273,7 +297,7 @@ Batch 종료 시 TASKS의 Latest Handoff를 아래 순서로 갱신한다.
 - 허용 범위 밖 또는 `Tools/protected-files.txt` 해당 변경이 필요하면 **수정 전에** 해당 경로를 중단하고 파일·위치·이유를 기록한다. Batch 사전 결정의 명시 예외만 허용한다. 안전한 기존 결과는 PARTIAL 등으로 보존한다.
 - .unity·.prefab·.asset·.meta는 텍스트로 직접 편집하지 않는다. Unity Editor와 executeMethod 생성기/API로만 변경한다. 새 에셋은 Unity가 만든 .meta와 함께 커밋하며 GUID 수동 변경·.meta 단독 삭제를 하지 않는다.
 - 이미 위반했다면 그 Task의 위반 변경만 제거한다. 사용자 변경·다른 Task 결과는 보존한다. 전체 되돌리기는 Git Rule의 불안정 조건에 해당할 때만 한다.
-- git push·reset --hard·clean·stash drop/pop/apply, 이미 push된 커밋 합치기는 실행하지 않는다. 저장 형식·ProjectSettings 변경은 사용자 명시 승인 없이는 중단한다. 로컬 reset --soft는 Housekeeping의 한정된 조건을 따른다.
+- reset --hard·clean·stash drop/pop/apply, 이미 push된 커밋 합치기는 실행하지 않는다. push는 Git Rule을 따른다. 저장 형식·ProjectSettings 변경은 사용자 명시 승인 없이는 중단한다. 로컬 reset --soft는 Housekeeping의 한정된 조건을 따른다.
 
 다른 독립 Task와 Backlog는 계속한다.
 
@@ -286,7 +310,7 @@ Sprint Gate를 통과하기 전 다음 Sprint의 대규모 콘텐츠 확장은 �
 - 빌드는 Builds/에 최신 1개와 직전 1개만 남기고, 새 빌드를 만든 뒤 그보다 오래된 빌드는 삭제한다.
 - 실행용 바로가기는 Launchers/current만 쓰고 배치별 폴더를 만들지 않는다.
 - 배치 지시문은 Batches/BATCH-<번호>.md에 둔다. 작업 시 이번 배치 파일만 읽는다.
-- 자동 실행 로그·csv·스크린샷은 Validation/_raw/에 둔다(git 제외). Validation/에는 필요한 Task 요약 최대1개씩과 Batch 종료 요약1개만 커밋한다(Evidence와 동일).
+- 검증 요약·원본 보관·regression 압축·임시 사본 정리는 Evidence를 따른다.
 - 게임 코드·에셋을 바꾼 Batch는 종료 시 Tools/Run-Regression.ps1을 실행한다. 문서·운영 도구만 바꾸면 자체 최소 검증으로 대체하고 Unity 회귀 미실시를 명시한다. 모든 Batch는 Task 커밋 후 Tools/Batch-Card.ps1 -Base <시작 커밋> -Allowed <Batch 및 실행 Queue 허용 범위>와 별도 git status/diff 확인을 수행해 요약 맨 위에 붙인다. 카드의 과거 REGRESSION 행을 이번 실행 증거로 읽지 않는다.
 - Design/v5·V5 Scene 또는 그 동작에 영향을 주는 생성기/런타임/검사기를 바꾼 Batch는 아래 기존 검사를 추가한다. Python·Unity 실행파일, 대상 Scene/빌드·기준 결과·새 출력 경로를 Batch에 명시한다.
   - 정적: `<Python> Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --world Design/v5/world_v5_A.json --output Validation/_raw/<Batch>/<새이름>.md`. 도랑 탈출 측정이 필요하면 대상에 유효한 측정 JSON을 `--max-step-evidence <경로>`로 전달한다. 없으면 그 MEASURE는 미실시로 표시하며 값을 만들지 않는다.
@@ -294,4 +318,4 @@ Sprint Gate를 통과하기 전 다음 Sprint의 대규모 콘텐츠 확장은 �
   - 종료 코드뿐 아니라 원문 FAIL·WARN·MEASURE 및 self-test 결과를 확인한다. 정적 검사기는 데이터 FAIL이 있어도 exit0일 수 있다. 같은 규칙 버전·대상 기준과 비교해 기존/해소/새 FAIL을 구분한다. 규칙·샘플링이 달라졌으면 개수만으로 회귀 판정하지 않는다. 정적 도달 후보는 실제 완주 증명이 아니다.
 - 결정 대기는 최대 8개. 초과하면 새 기능 Task를 시작하지 말고 사용자에게 정리를 요청한다.
 - 결정 대기 항목은 존재하는 런처·빌드를 가리킨다. 빌드를 삭제하거나 대체할 때는 그 빌드를 가리키는 TASKS 항목을 같은 커밋에서 갱신한다.
-- 배치 진행 중에는 Task마다 로컬 커밋한다. 배치 종료 후 push 직전에 git reset --soft <배치 시작 커밋>으로 하나로 합쳐 커밋한다. 메시지 첫 줄은 "Batch <번호>: <요약>", 본문에 Task별 상태 표를 넣는다. 그 커밋에 태그 B<번호>를 붙인다. 합치기는 origin/main..HEAD가 이번 배치 커밋뿐일 때만 하고, 이미 push된 커밋은 절대 합치지 않는다.
+- 배치 진행 중 커밋은 Git Rule을 따른다. 배치 종료 후 push 직전에 git reset --soft <배치 시작 커밋>으로 하나로 합쳐 커밋한다. 메시지 첫 줄은 "Batch <번호>: <요약>", 본문에 Task별 상태 표를 넣는다. 그 커밋에 태그 B<번호>를 붙인다. 합치기는 origin/main..HEAD가 이번 배치 커밋뿐일 때만 하고, 이미 push된 커밋은 절대 합치지 않는다.
