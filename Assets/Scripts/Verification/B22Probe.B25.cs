@@ -28,8 +28,7 @@ public sealed partial class B22Probe
  }
  void CaptureScreen(string path)
  {
-  var type=Type.GetType("UnityEngine.ScreenCapture, UnityEngine.ScreenCaptureModule",true);
-  type.GetMethod("CaptureScreenshot",new[]{typeof(string),typeof(int)}).Invoke(null,new object[]{path,1});
+  V4WorldMap.Instance.ExportPng(path);
  }
  IEnumerator B25Map()
  {

@@ -31,6 +31,22 @@ public sealed class V4WorldMap:MonoBehaviour
  public static string GateLabel(string gate)=>gate switch{"Dash"=>"D","WallJump"=>"W","DJ"=>"J","Slam"=>"S","Boss"=>"B",_=>""};
  public static Color GateColor(string gate)=>gate switch{"Dash"=>Color.cyan,"WallJump"=>Color.yellow,"DJ"=>new Color(.8f,.5f,1),"Slam"=>new Color(1,.6f,.2f),"Boss"=>new Color(1,.35f,.35f),_=>Color.white};
  public Color DoorDisplayColor(MapDoor door)=>door.stub?GateColor(door.gate):GateDisplayColor(door.gate);
+ public void ExportPng(string path,int width=1280,int height=720)
+ {
+  if(System.IO.File.Exists(path))throw new System.IO.IOException("Preserve "+path);
+  var rooms=VisibleRooms;if(rooms.Length==0)throw new InvalidOperationException("No visited map rooms");
+  var root=new GameObject("Temporary map export");root.transform.position=new Vector3(10000,10000,0);var previous=RenderTexture.active;var target=RenderTexture.GetTemporary(width,height,24);Texture2D pixels=null;
+  try
+  {
+   var white=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,1,1),Vector2.one*.5f,1);
+   void Box(Vector2 at,Vector2 size,Color color,int order=0){var go=new GameObject("Map export shape");go.layer=31;go.transform.SetParent(root.transform,false);go.transform.localPosition=at;go.transform.localScale=new Vector3(size.x,size.y,1);var sr=go.AddComponent<SpriteRenderer>();sr.sprite=white;sr.color=color;sr.sortingOrder=order;}
+   float x0=rooms.Min(r=>r.rect[0]),x1=rooms.Max(r=>r.rect[2]),y0=rooms.Min(r=>r.rect[1]),y1=rooms.Max(r=>r.rect[3]);
+   foreach(var r in rooms){Vector2 a=new Vector2(r.rect[0],r.rect[1]),b=new Vector2(r.rect[2],r.rect[3]);var c=(a+b)/2;Box(c,b-a,r.id==RoomSession.Instance.CurrentRoomId?new Color(.35f,.5f,.35f):new Color(.2f,.35f,.45f));var go=new GameObject("Room label");go.layer=31;go.transform.SetParent(root.transform,false);go.transform.localPosition=new Vector3(c.x,c.y,-1);var text=go.AddComponent<TextMesh>();text.text=r.id+(r.id==CheckpointRoom?" CP":"");text.font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");text.fontSize=48;text.characterSize=.8f;text.anchor=TextAnchor.MiddleCenter;go.GetComponent<MeshRenderer>().material=text.font.material;}
+   foreach(var d in VisibleDoors){if(d.span==null||d.span.Length!=2)continue;var center=d.edge=="x"?new Vector2(d.at,(d.span[0]+d.span[1])/2):new Vector2((d.span[0]+d.span[1])/2,d.at);var size=d.edge=="x"?new Vector2(.8f,d.span[1]-d.span[0]):new Vector2(d.span[1]-d.span[0],.8f);Box(center,size,DoorDisplayColor(d),1);}
+   Box(PlayerWorld,Vector2.one*.9f,Color.green,2);var cameraGo=new GameObject("Map RenderTexture camera");cameraGo.transform.SetParent(root.transform,false);cameraGo.transform.localPosition=new Vector3((x0+x1)/2,(y0+y1)/2,-20);var camera=cameraGo.AddComponent<Camera>();camera.enabled=false;camera.orthographic=true;camera.orthographicSize=Mathf.Max((y1-y0+10)/2,(x1-x0+10)*height/width/2);camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.04f,.06f,.09f);camera.cullingMask=1<<31;camera.targetTexture=target;camera.Render();RenderTexture.active=target;pixels=new Texture2D(width,height,TextureFormat.RGB24,false);pixels.ReadPixels(new Rect(0,0,width,height),0,0);pixels.Apply();var encode=Type.GetType("UnityEngine.ImageConversion, UnityEngine.ImageConversionModule",true).GetMethod("EncodeToPNG",new[]{typeof(Texture2D)});System.IO.File.WriteAllBytes(path,(byte[])encode.Invoke(null,new object[]{pixels}));Destroy(white);
+  }
+  finally{RenderTexture.active=previous;RenderTexture.ReleaseTemporary(target);if(pixels!=null)Destroy(pixels);Destroy(root);}
+ }
  public bool ShowsUnknown(MapDoor door)=>!All&&!door.stub&&WorldMapLayout.Current.Room(door.a)!=null&&WorldMapLayout.Current.Room(door.b)!=null&&(!ProgressSave.HasVisited(door.a)||!ProgressSave.HasVisited(door.b));
  public string DoorLabel(MapDoor door)
  {
