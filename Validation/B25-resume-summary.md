@@ -1,7 +1,30 @@
 # Batch25 재개 결과 — 2026-11-03
 
 <!-- BATCH-CARD -->
-Task 커밋 후 Batch Card를 여기에 기록한다. 검사 기준은 e6b5172, 이번 최종 회귀는 B25-delivery-final이다.
+```text
+BATCH CARD e6b5172..HEAD (f971b8f)
+변경 파일: 136 (+65026 / -1883 줄, 바이너리 18)
+  Scripts: 48
+  Scenes: 20
+  Prefabs: 0
+  Editor: 13
+  Validation: 2
+  문서: 3
+  기타: 50
+허용 범위: Assets/Scripts/*, Assets/Art/Original/*, Assets/Art/Original.meta, Assets/Audio/*, Assets/BossCandidates/B2/*, Assets/Scenes/Test/*, Assets/Scenes/V5/*, Launchers/current/*, Tools/*, Validation/*, TASKS.md, README.md, RESOURCES.md
+허용 범위 밖: 0
+TASKS 상태(표 둘째 칸): DONE 55 / REVIEW 20 / DOING 0 / BLOCKED 4 / PARTIAL 16
+결정 대기(## 2. 결정 대기 표의 D- 행): 3
+열린 버그(## 4. 열린 버그 표 행): 7
+직접 플레이 확인 대기(## 3. 목록 항목): 14
+TASKS 깨진 링크 수: 0
+TASKS가 가리키지만 없는 빌드·런처 수: 0
+마지막 REGRESSION: REGRESSION 13/13 (Validation/_raw/regression/B25-delivery-final/result.txt)
+```
+
+B25만의 상태: DONE19 / REVIEW1 / PARTIAL5 (총25 Task). 위 TASKS 상태 합계는 이전 Batch 이력 포함이다. 별도 검사: 작업트리/미추적 변경0(Task커밋 직후), 보호134 SHA변경0, README/TASKS/이번요약 깨진파일링크0. 최종회귀는 위 B25-delivery-final 이번실행이다.
+
+전체범위 `git diff --check e6b5172..HEAD`는 exit2, Unity Editor가 생성한 `.meta/.asset/.unity`의 빈 YAML 값 뒤 공백638건이다. 코드/문서 경고0. 에셋 텍스트 직접수정 금지에 따라 임의정규화하지 않았다. 원문 `_raw/25/T18-batch-diff-check.txt` 보존.
 <!-- /BATCH-CARD -->
 
 V5 층 A·B12방, 직접 제작 그래픽18개·배경, 효과음/짧은 입자·적 예고·보스 연출을 실제 빌드에 반영했다. 반환 승강기와 B2 획득대 예외를 수정했고 A 고리/Continue와 B04 실전 승리를 확인했다. **전체 AB 자동 완주는 남았다.** T6/T7/T8/T10/T12 PARTIAL, T14 REVIEW이며 사용자 감각 수락·Sprint Gate는 대신하지 않는다.
