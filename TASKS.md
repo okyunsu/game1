@@ -2,31 +2,31 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-03, Codex — Batch25 재개 진행 중, T14 그래픽 표시층 적용 차례.
-- 실행 Base `e6b5172`, 재개 Base `fb63b98`. 기존 B23/B24 및 B25 독립 no 작업 보존, fetch/push/squash 없음.
-- 사용자 Hub 실행 후 새 Preflight `hubLicensingClient=True`/Unity exit0. 이전 exit198 원문은 raw에 보존.
-- P1: 승강기 반환 접촉 skin 수정·왕복3회/다른층호출/V4 PASS. B2 획득대 바닥하강·회피0/10·바닥피격10/10 PASS.
-- P2: AB12 Scene 생성·정적FAIL0/WARN47·SceneFAIL0/WARN0·요소일치. P1/P2/P3/P4 Quiet 각각13/13.
-- 지도AB12방/B6방·18문·방문전후표시 PASS, batch 캡처 미생성으로 T6 PARTIAL.
-- T7: A03→B01/B01시장·지붕/B03증기 각5/5 머리0. B02 바닥 자동포고 미완주 PARTIAL.
-- T8: B02 위통로/조각5/5 머리0. B06 자동포고2입력 실패·실험제거 PARTIAL, 좌표수치변경0.
-- T9: B04 실획득·잠금·연출·사망CP-B01·재시도·실입력32.350s 처치HP1/벽점프7/포고26·저장/재진입 PASS/Error0.
-- T10: B01 탑/조각/B05 3/3. A02-B05의 오래된 stub은 WORLD18/B25-T4 명시 연결에 따라 생성기/Scene에서 해소·원본보존.
-- 아트18장 import/표시층·빌드·Q1~Q5는 앞으로 진행. Q6 방별체류 도구는 이전 완료 결과 유지.
-- 빌드는 아직 B24/직전B23, B25/Graybox 런처 아직 없음. 기존 수락 순서 유지, Batch 밖 Ready Queue0.
-- 상세는 Current Tasks·raw/25, 이전 차단 종료 증거는 [B25](Validation/B25-summary.md). 이번 재개 종료 인계는 작업 후 갱신한다.
+- 갱신: 2026-11-03, Codex — Batch25 재개 종료 검증 중. 사용자 플레이 수락은 별도.
+- 실행 Base `e6b5172`, 재개 Base `fb63b98`. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch/push 없음.
+- V5 AB12방·직접 제작 아트18개·패럴랙스·효과음/입자·적 예고·보스 줌/정지 구현.
+- 반환 승강기 왕복/호출 PASS, A 고리65.207s/Continue PASS, B04 실제승리32.350s/HP1 PASS.
+- T7/T8/T10/T12 PARTIAL: B02 포고/E3·B06 포고·B05 서쪽 조각의 자동 입력 실패 보존. 좌표/규칙 임의 변경0.
+- T6 PARTIAL: 지도AB12/방문전후/문 PASS, 캡처실패·Computer Use 앱 접근 시간초과로 이미지 미확보.
+- T14 REVIEW: 그래픽 감각 수락 대기. 24장/비교 이미지 raw/25/art.
+- 정적FAIL0/WARN47·SceneFAIL0/WARN0, T14/최종 Scene 검사 원문 동일. 보호134경로 변경0.
+- 최종 Development B25 오류0/경고0·전체회귀13/13·런처5종exit0/Error0·B3 cycle/phase/사망복귀PASS.
+- Q1~Q6 완료. Q5는12방 전부시도 PASS6/FAIL6 원문기록 기준 충족이며 완주통과가 아님.
+- 빌드 B25/직전B24만 보존, B23 슬롯/목록은 raw/25/T17-housekeeping에 보존. 실행기는 Launchers/current.
+- 현재 Codex 종료검증·문서정리 차례. Batch 밖 Ready Queue0, 결정3건, 기존 수락 대기 순서 유지.
+- 최초 exit198와 차단결과는 [이전 요약](Validation/B25-summary.md)에 보존, 이번 결과는 재개 종료 요약에 작성 중.
 
 ## 1. 현재 상태 / Current Sprint
 
-- Sprint3: V5 draft5 층 A 파일럿. 건물 거리·대시 감실·적·조각 최대HP 성장·B2 시험장 구현. 자동 고리 반환 승강기·A02 조각 이륙 민감도·B2 획득대 회피 예외가 남아 있다. 감각 수락·Sprint Gate 대기.
-- B19 검사 판정 정리와 B20 결과는 [B19](Validation/B19-summary.md)·[B20](Validation/B20-summary.md) 참조.
-- 이번 [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md)는 사용자 2026-11-02 실행 승인. draft6 AB12방·직접 제작 아트는 설계 원본만 확정했고, Unity exit198로 제품 반영은 미실시다. B24/B23 결과와 미해결 상태는 아래 표·기존 요약에 보존한다.
+- Sprint3: V5 draft6 층 A·B12방, 건물 거리·대시/벽 점프 재방문·조각 HP 성장·보스1/2·직접 제작 아트와 효과 구현. 사용자 감각 수락·Sprint Gate 대기.
+- 반환 승강기는 B25 T1/T12에서 기술적으로 해소했고 A 고리/Continue를 확인했다. B02/B06/B05 자동 경로 잔여는 아래 PARTIAL·열린 버그를 따른다.
+- [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md)는 사용자 2026-11-02 실행 승인, Hub 실행 후 재개. 최초 차단 증거와 B24/B23 당시 상태는 보존한다.
 
 ## 1-0. Current Tasks (Batch25)
 
 사용자 2026-11-02 [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md) 실행 및 `Design/art_v1/` 선행 커밋 포함 직접 승인. Claude 설계 변경: `e6b5172`, Design/v5 draft6 AB·Design/art_v1·B25 지시문. 실행 Base `e6b5172`. 기존 B23/B24 33커밋 보존, fetch/push 없음.
 
-Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE licensingClients=0 hubLicensingClient=False`, `MEASURE unityExitCode=198`. Unity 재시도 없이 yes 작업만 BLOCKED(외부 의존성), 독립 no 작업 완료. 기존 B24 빌드를 B25 증거로 사용하지 않는다.
+초기 Preflight `preflight-20261102-165715-327-dff360f2`는 exit198로 차단했다. 사용자 Hub 실행 후 새 `preflight-20261102-223351-597-a0db2b7c`는 hubLicensingClient=True/exit0으로 재개. 원문은 raw/25에 보존하며 이전 B24 통과를 이번 증거로 재사용하지 않는다.
 
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
@@ -36,7 +36,7 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T3 | DONE | 증기 y0→top 정적 연결·혼합 승강기 인덱스/증기 부재·먼 증기 fixture PASS. AB FAIL0/WARN55→47, B02 위 통로·B03 선반/B04 문 reachability WARN8 해소. raw/25/T3-before.md·T3-after.md. 실제 물리 미검증 |
 | B25-T4 | DONE | AB12 입력 wrapper·수평 구멍 문·B04 보스/우측 재도전/획득대sink·CP-B01 연결. fixture/생성12방 PASS, B05 중복 solid8 충돌은 동일영역 cover0에 위임. Scene은 T5에서 검증/커밋. raw/25/T4-fixtures·T4-generate |
 | B25-T5 | DONE | AB12방 Unity 재생성·실제 요소 일치. 정적FAIL0/WARN47·SceneFAIL0/WARN0. B04는 JSON 천장spawn13을 보존하고 등장 시 바닥floorY 착지. raw/25/T5-skyspawn·T5-counts-final·T5-clearance-final·T5-static.md |
-| B25-T6 | PARTIAL | AB12방/B6방·18문·방문전숨김/방문후표시·stub 체크 PASS. 허용 Scripts/Resources에 지도TextAsset, V5 기본AB. batch GameView 스크린샷 미생성으로 캡처 기준만 잔여(게임Error0). raw/25/T6-map-play·T6-map-generate2 |
+| B25-T6 | PARTIAL | AB12방/B6방·18문·방문전숨김/방문후표시·stub 체크 PASS. 허용 Scripts/Resources에 지도TextAsset, V5 기본AB. Editor batch 캡처 미생성·exe 캡처오류2·Computer Use 앱승인시간초과로 이미지 잔여. raw/25/T6-map-play·T6-map-exe·T6-native |
 | B25-T7 | PARTIAL | A03→B01·B01시장/지붕·B03증기2/문 각5/5·머리0·Error0. B02 바닥 자동 포고는 정지0회/달리기1회 뒤 산성복귀로 실패, 경로별재시도 종료·좌표수치변경0. raw/25/T7-A03-five·T7-B01-five·T7-B03-five·T7-B02-five/running. 초기 도구실패 원문 보존 |
 | B25-T8 | PARTIAL | B02 증기→위통로→조각5/5·머리0·HP4 PASS. B06 등불→무너지는 발판은 보통/공중대시 입력 각포고1 뒤 산성복귀 실패, 조각 미획득. 실패 대시 입력 보완 제거·원문보존, 좌표수치변경0. raw/25/T8-B02-upper-five·T8-B06-five/airdash |
 | B25-T9 | DONE | B04 실제획득/저장→3u이탈잠금→등장1.817s/바닥착지·받침하강·첫예고1.005s/실높이2.800 양방향 PASS. 사망CP-B01·능력유지·우측재입장/중앙재시작·실입력32.350s 처치HP1/벽점프7/포고26·ID저장/재진입없음 Error0. raw/25/T9-B04-fight1 |
@@ -45,10 +45,10 @@ Preflight `Validation/_raw/25/preflight-20261102-165715-327-dff360f2`: `MEASURE 
 | B25-T12 | PARTIAL | 실제 A고리(B1→대시→반환승강기→연습/선반)65.207s·65.027s 및 그 뒤 Continue PASS, B01 CP/지붕/B02위통로까지 연속PASS. B02 E3앞 긴도약 HP1/후속포고 HP0 실패2회·중단, 실패포고실험제거. 전체AB/최종Continue 미실시. raw/25/T12-expanded1·expanded2-E3 |
 | B25-T13 | DONE | PNG18개 원본바이트/SHA256 일치·Assets/Art/Original/v1 복사, Unity16PPU/Point/무압축/FullRect·meta/ArtSettings Asset 생성 PASS. RESOURCES 적용등록. raw/25/T13-import·T13-hashes.txt |
 | B25-T14 | REVIEW | 12방 표시 Sprite자식/윗면/벽/위험/문/조각·캐릭터/적·배경0.3패럴랙스 적용. Collider직렬화/위치/크기 불변, Scene검사원문 T10/T14 완전동일 FAIL0. 실제카메라24장 Error0·플레이어.7×1.6/적콜라이더불변. 감각수락대기. raw/25/T14-apply·T14-clearance·T14-geometry-comparison.txt |
-| B25-T15 | PARTIAL | 12방 적용완료·Play-V5-Graybox.cmd/별도slot·같은AB Scene의표시만전환. Start-V5 B25/AB 연결·PowerShell구문확인, 최종빌드/런처Error0 검증은 T17에서 수행 |
+| B25-T15 | DONE | 12방 적용·Play-V5-Graybox.cmd/별도slot·같은AB Scene의표시만전환. Start-V5 B25/AB 연결·PowerShell구문0·최종Graybox launcher exit0/Error0. raw/25/T17-smoke-final/Graybox.txt |
 | B25-T16 | DONE | 실제 게임카메라12방×2 PNG24장(1280×720)·B03전체768×1152·목업/실제 나란히1장·24장컨택트시트 생성/시각확인. 접촉fixture/physics꺼짐·HUD제외로 경로증명과 구분. raw/25/art·T16-art-capture·T16-B03-overview Error0 |
-| B25-T17 | BLOCKED | Unity exit198. Development 빌드·전체13개 회귀·smoke5종 미실시 |
-| B25-T18 | DONE | README·TASKS0/3/9·종료 요약에 차단/재개 순서·현재 빌드와 미래 B25 검수30~40분·미실시 구분 |
+| B25-T17 | DONE | 최종Development errors0/warnings0·전체REGRESSION13/13·smoke5종exit0/Error0·B3 cycle/phase/사망복귀PASS. CP-C04 개발fixture누락은 opt-in등록으로 해소, V4Scene변경0. raw/25/T17-build-final·T17-smoke-final·T17-B3-*-final·raw/regression/B25-delivery-final |
+| B25-T18 | DOING | 재개 결과·잔여경로·현재B25/Graybox·1회30~40분검수·조정Asset 안내로 README/TASKS·새종료요약 정리 중 |
 | B25-Q1 | DONE | 기존AV1 직접클립 재사용·Assets/Audio/B25/Feedback.asset 단일볼륨·AttackFeedback 확장. swing/hit/death/hurt 각재생1, SourcePlaying=True·입자burst3/lifetime0.180s/소멸·Error0. API이벤트fixture로 자연전투증거와구분. raw/25/Q1-events |
 | B25-Q2 | DONE | 실제조각접촉·레버공격·증기On·보스문잠금/열림 각재생1/Error0, 볼륨/클립공유Asset. raw/25/Q2-events. 즉시처치API는Audio이벤트fixture이며 자연전투증거아님 |
 | B25-Q3 | DONE | B1/B2 등장1.800/1.817s 안 minZoom0.9000→1.0000 복원, 처치정지요청0.100s 실측0.1168/0.1167s(60fps). B3 FX컴포넌트없음/줌1 PASS/Error0. 실제획득·트리거+처치API연출fixture, 자연승리와구분. raw/25/Q3-measure |
@@ -175,7 +175,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B24-delivery, B20 슬롯12개는 B21 raw에 보존 |
+| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B25-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
@@ -183,7 +183,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 해소한 문서 충돌(B25 재개): `rooms_v5_AB.json`의 A02-B05에는 이전 `stub:true`가 남았지만 WORLD18·world_v5_AB와 B25-T4는 양방향 연결을 명시한다. 사용자 승인 B25 연결 지시를 우선해 생성기/Scene에서 해당 닫힘만 제거하고 WallJump gate를 유지했다. Design 원본 수정0, T10-A02-link 근거.
 
-결정 대기3건. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·실측은 Unity 차단으로 미실시이며 기존 B24 PARTIAL은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+결정 대기3건. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·검증은 이번 T2/T10에서 진행했고, 감각 수락과 기존 B24 당시 PARTIAL 이력은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
 
@@ -192,8 +192,8 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | D-B25-EXEC | B25 P1~P5·Queue 실행. `Design/art_v1/`도 선행 커밋에 포함 | 2026-11-02 사용자 직접 “읽고 실행”, 추가 폴더 확인 뒤 “어 진행해줘” |
 | D-FLOOR-B6 | 층 B 6방 draft6, AB JSON을 새 생성 입력으로 사용 | 사용자 2026-11-01 결정의 Claude 전달, [B25](Design/proposals-1101-B25/01_CODEX_BATCH25.md) 실행 승인 |
 | D-ART-1 | 그래픽 1차. 직접 제작 원본 복사·16 PPU/Point/무압축, 외부 다운로드 없음 | 사용자 결정의 Claude 전달(11-01 적용·11-02 직접 제작), [그래픽](Design/proposals-1101-B25/02_GRAPHICS.md)·이번 실행 승인 |
-| D-B24-B2-GATE | 전투 시작 시 획득대를 바닥으로 내림(`sink_on_fight`). 설계안 선택 완료, 구현·검증 대기 | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인. 플레이 수락은 별도 |
-| D-B23-GEOMETRY | A02 조각길 발판 삭제·선반 이동, 벽 점프 재방문 경로. 설계안 선택 완료, 재생성·검증 대기 | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인 |
+| D-B24-B2-GATE | 전투 시작 시 획득대를 바닥으로 내림(`sink_on_fight`). 설계안 선택 완료, B25 T2 구현·기술검증 PASS/감각수락 별도 | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인. 플레이 수락은 별도 |
+| D-B23-GEOMETRY | A02 조각길 발판 삭제·선반 이동, 벽 점프 재방문 경로. 설계안 선택 완료, B25 T5/T10 재생성·재방문검증 PASS | 2026-11-01 Claude 추천; 2026-11-02 사용자 B25 실행 범위 승인 |
 | D-A03-B01 | A03 서쪽 벽 대시 문을 선반 끝 천장 구멍으로 변경 | 2026-11-01 Claude world 겹침 정정; 2026-11-02 사용자 B25 실행 범위 승인 |
 
 추천안의 실행 승인은 제품 검증·감각 수락을 의미하지 않는다. 선행 설계·아트 커밋 `e6b5172`는 원본 내용 변경 없이 보존했다.
@@ -277,12 +277,11 @@ B23 실행은 2026-10-31 사용자 “Design/proposals-1031/01_CODEX_BATCH23.md 
 - [Play-V5-Candidates](Launchers/current/Play-V5-Candidates.cmd): 두 후보 동시, A01 머리/ A05 도랑 비교5~10분. `-BodyHeight 1.3/1.1` 인자로 크기와 함께 실행 가능.
 - 선택 비교 [Play-V5-DashCornerFix](Launchers/current/Play-V5-DashCornerFix.cmd): 대시 발끝 모서리 보정 추가, A01/A02에서 대시 중 낮은 모서리3~5분. 기본/기존 머리 후보에는 이 토글 꺼짐.
 
-- [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): 기존 수락 순서 뒤 이번 B24 검수1회 중 앞15~20분. A03 건물 거리→승강기→A04 B1→A05 대시→도랑→A03 건물/W옥상→승강기→서쪽 연습/선반→A02→A01 대시 감실→A03 왕복. [보스1 단독](Launchers/current/Play-BossTest-B1.cmd)은 선택3~5분. 보스 등장/복귀0.45s·승강기/연습·쉬는 거리·조각 재방문 동기를 본다. 자동 고리는 반환 승강기에서 미완주했고 A01 왕복/그 뒤 Continue는 미실시다. 수동으로도 막히면 위치를 기록하고 다음 B2로 넘어간다.
-- [Play-BossTest-B2](Launchers/current/Play-BossTest-B2.cmd), `Assets/Scenes/Test/BossTest_B2.unity`: 같은 검수의 뒤5~10분. 중앙 벽 점프 획득→3u 이탈→잠금/1.8s 등장→양벽 벽 점프 전투. 사망 뒤 능력 유지·중앙 재통과 재시작. 벽 점프를 배워 사용해야 한다는 느낌인지 확인한다. 획득대 일반점프 회피 예외는 B25의 sink 설계안이 선택됐으나 구현·검증 대기다. 독립 슬롯이 유지되며 Esc→제목→새 게임으로 초기화할 수 있다.
+- [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd): 기존 대기 순서 다음에 B25 검수 **1회30~40분**. A03→승강기→A04 B1→A05 대시→A03 연습/선반→천장 구멍 B01→지붕→B02→B03 증기→B04 보스2→벽 점프 재방문(B06·B05·A02). 자동 A 고리65초/Continue와 B04 실제승리 통과, 전체 AB 자동완주는 미확인이다. B02 E3·B06 포고·B05 서쪽 조각에서 막히면 위치/입력 기록 후 다음 구간으로 간다. 아트 가독성·효과음/입자·적 예고0.3s·보스 등장 줌을 함께 확인한다.
+- [Play-BossTest-B2](Launchers/current/Play-BossTest-B2.cmd), `Assets/Scenes/Test/BossTest_B2.unity`: 같은 검수에서 필요할 때5~10분. 중앙 벽 점프 획득→3u이탈→잠금/1.8s 등장→양벽 벽 점프. 전투 때 받침은 바닥으로 내려가며 일반점프 회피0/10 기술검증 완료. 사망/능력유지/중앙재시작 확인. [보스1 단독](Launchers/current/Play-BossTest-B1.cmd)은 선택3~5분.
+- [Play-V5-Graybox](Launchers/current/Play-V5-Graybox.cmd): 같은 AB 배치의 원래 도형 표시와 비교3~5분. 별도 슬롯, 충돌체 불변. 바닥/발판/위험/적이 읽히는지 확인하며 아트의 기본 채택 감각 수락은 T14 REVIEW다.
 
-B25 제품 검수는 아직 시작하지 않는다. 재개 후 AB12방·그래픽 빌드가 생성되면 [B25 검수 계획](Design/proposals-1101-B25/00_README.md)에 따라 1회30~40분, A03→B1→대시→B01→B02→B03→B04 보스2→벽 점프 재방문(B06·B05·A02), 이후 Graybox 비교를 확인한다. 현재 Loop/B2 런처는 B24를 실행하며 B25 층 B·sink·아트를 포함하지 않는다. 기존 수락 대기 순서는 위 목록 그대로다.
-
-기존 B24 기록: 고리 시간____ / B1·B2 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____ / 쉬는 거리로 보였는지____. 전체20~30분. 조각은4개마다 최대HP+1/전회복, 저장·Continue·새 게임은 기술 검증 PASS다.
+기록: 전체 시간____ / 보스 시도 횟수____ / 막힌 방·위치____ / 머리 박은 곳____ / 그래픽이 헷갈린 곳____ / 소리·예고 느낌____. 기존 B21/B22 복귀·B23 등장·B24 고리/조각 수락을 이 플레이에서 함께 확인하되 과거 상태를 자동 DONE으로 바꾸지 않는다.
 
 조정 값 위치와 Play 종료 후 반영은 [LEVEL_V4](LEVEL_V4.md). 기본 보스(B3, D-B3 10/14)는 [기본 BossTuning](Assets/ScriptableObjects/BossTuning.asset)에서 조정하고(Boss-B3 런처는 [후보 Asset](Assets/BossCandidates/B3/BossTuning.asset)을 쓴다) Play 종료 후 원하는 값을 명시 저장·재빌드한다.
 
@@ -293,10 +292,12 @@ B25 제품 검수는 아직 시작하지 않는다. 재개 후 AB12방·그래�
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
-| B24-RETURN-LIFT | 자동 연속 고리 반환 승강기 surface13인데 feet1.015. Editor 두 입력과 최종 exe에서 재현. 최초 탑승은 성공, 수동 제품 결함 여부는 미확정. T3 후반·T6·그 뒤 Continue가 선행 차단 | [이번 원문](Validation/_raw/24/P5-loop-exe/result.txt), [요약](Validation/B24-summary.md) |
+| B25-ROUTES | B02 바닥 포고/위길 E3·B06 포고·B05 서쪽조각 자동입력 미완주. 지형/능력값 변경 없이 재시도 종료. 사람도 막히면 방/위치/입력 기록→설계 검토 필요 | [T7](Validation/_raw/25/T7-B02-running/result.txt)·[T8](Validation/_raw/25/T8-B06-airdash/result.txt)·[T12](Validation/_raw/25/T12-expanded1/result.txt), T10-cover 원문 raw/25 |
+| B25-Q5-ROUTES | 독립12방 묶음 PASS6/FAIL6. A03/A05 접근 timeout, A06 경로이탈, B02 긴도약, B04 접근, B06 포고. 자동입력의 한계와 제품 결함을 구분, 전체12방 완주 증명 아님 | [12방 결과](Validation/_raw/25/Q5-final-routes/routes.csv) |
+| B25-MAP-CAPTURE | AB12/방문전후/문 표시 로직은 PASS. Editor 캡처미생성, exe screen capture 실패 Error2, Computer Use 앱 접근승인시간초과. 실제 지도 이미지 잔여 | [원문](Validation/_raw/25/T6-map-exe/result.txt) |
 | V5-HEADBUMP | 사용자 점프 머리 걸림 피드백. h1.6 머리 충돌 후보36면·격리 실측33/36 접촉, 모서리 수평 보정 없음. 불일치3과 초기 문 전환2도 보존 | [플레이 CSV](Playtest/20261022-233114.csv), [B20 T3](Validation/B20-headbump.md), [전체 실측](Validation/B20-headbump-all.md) |
 
-B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그5건, 결정 대기3건이다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
+B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그7건, 결정 대기3건이다. B24-RETURN-LIFT는 B25 T1 왕복3회/다른층호출 및 T12 실제 A 고리/Continue 통과로 해소했다. 이전 실패 원문은 유지한다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -341,40 +342,46 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch25 차단 종료
+## 9. Latest Handoff — Batch25 재개
 
 ### 결정 질문지
 
-기존 3건 D-BODY·D-CORNER-FIX·D-B23-RULE의 선택지·추천·풀리는 항목은 2절을 따른다. 이번 새 설계 질문은 없다. D-B24-B2-GATE·D-B23-GEOMETRY는 B25 실행 승인으로 안을 선택했고, Unity 차단으로 제품 반영 대기다.
-
-환경 조치: 로그인된 Unity Hub를 실행해 유지한 뒤 B25 재개. 원문 `MEASURE licensingClients=0 hubLicensingClient=False` / `MEASURE unityExitCode=198`. 동일 환경 재시도 없이 Unity 의존 Task만 중단했다.
+기존3건은 순서 유지: D-BODY **1.6 유지/1.3/1.1**(추천1.3 비교, 화면 점유·공격거리 절충; B20-T4), D-CORNER-FIX **머리0.25/머리+대시/미채택**(추천 머리0.25 직접 비교; B21-T6/BL2), D-B23-RULE **엄격 오름≥1.5/낮은 오름 포함**(추천 본문 유지; B23-T5/T6). 링크·근거는 2절. 새 기본값 채택은 하지 않았다.
 
 ### 직접 플레이 확인
 
-기존 V4 장치/경로/저장/보스·엔딩→몸 비교→모서리 후보→V5 고리/B2 시험장의 수락 순서는 3절에 유지한다. 기존 B21/B22 복귀 REVIEW·B23 등장/일어나기 REVIEW와 B24 잔여 문제도 유지한다. 현재 런처는 B24 빌드이므로 B25 검수 대상이 아니다.
+기존 V4→몸 비교→모서리 후보→V5 복귀/고리 순서를 3절에 유지했다. 이번 확인은 [Loop](Launchers/current/Play-V5-Loop.cmd)에서 **1회30~40분**: A03→B1→대시→반환승강기/연습→B01→B02→B03→B04 B2→벽 점프 B06·B05·A02, [Graybox](Launchers/current/Play-V5-Graybox.cmd) 비교. B2 시험장은 필요할 때 선택한다. 기본1.6, 복귀·보스 등장·조각 동기·아트/소리 가독성을 함께 본다. 막힌 방·위치/입력, 머리 접촉, 보스 시도/전체 시간을 기록한다.
 
-B25 빌드가 나온 뒤 **1회30~40분**: A03→B1→대시→A03 연습/선반→B01→B02→B03→B04 보스2→벽 점프 B06·B05·A02 재방문, Graybox 비교. 기록: 전체 시간____ / 보스 시도 횟수____ / 막힌 곳____ / 머리 박은 곳____ / 그래픽이 헷갈린 곳____. B25/Graybox 런처는 아직 없다.
-
-기존 조정 위치·Play 종료 후 반영 방법은 [README](README.md) 그대로다. 이번 새 게임 수치나 Asset은 추가하지 않았다.
+A 고리/Continue·B04 실제전투는 기술 통과. B02 바닥/상부E3·B06 포고·B05 서쪽조각과 전체AB 자동완주는 남았다. 좌표나 기본값을 바꿔 통과 처리하지 않았다. 지도 방문전후 로직은 통과했지만 실제 화면 캡처는 남았다.
 
 ### Task별 결과
 
-Claude 설계 변경: `e6b5172`, Design/v5 draft6 AB·Design/art_v1·B25 지시문·D60. 사용자 추가 폴더 승인 후 원문 그대로 선행 커밋. 이후 Design 변경0. [종료 요약](Validation/B25-summary.md)에 실제 FAIL/MEASURE와 미실시를 연결했다.
+Claude 설계 변경: `e6b5172`, Design/v5 draft6 AB·Design/art_v1·B25 지시문/D60. 사용자 추가 폴더 승인 후 원문 선행 커밋, 이후 Design 변경0. 최초 exit198 종료는 [이전 요약](Validation/B25-summary.md), 실제 재개 증거는 [재개 요약](Validation/B25-resume-summary.md). 각 Task 상세는 1-0절.
 
-| Task | 상태·커밋 | 변경·직접 검증 |
+| Task·상태 | 커밋 | 주요 변경·검증 |
 | --- | --- | --- |
-| T0 | DONE `b52f24f` | TASKS 사전 결정5행·사용자 직접 실행 승인·Claude 추천 구분, 결정2건 선택 완료 |
-| T3 | DONE `8968b29` | Tools/Check-RoomRules.py. 증기 상승·증기 없음/먼 위치·혼합 승강기 self-test PASS, AB FAIL0/WARN55→47. 실제 물리 별도 |
-| T13 | PARTIAL `2d9d3a8` | RESOURCES 등록·PNG18 raw 스테이징/해시 일치·import 예정 manifest. Assets 복사/import/.meta 미실시 |
-| Q6 | DONE `d9d782d` | Tools/Export-RoomTimes.py·README. 과거 실제 로그4방8방문 CSV 및 중단/잘못된 입력/덮어쓰기 보호 확인. 신규 플레이 측정 아님 |
-| T18 | DONE, 종료 안내 커밋은 `git log` 확인 | README·TASKS0/3/9·종료 요약. 미래 검수와 현재 배포 구분 |
-| T1~T2/T4~T12/T14~T17/Q1~Q5 | BLOCKED | Unity exit198, 제품 구현·컴파일·Scene/Quiet/전체회귀·빌드·smoke·실측 모두 미실시. 개별 범위는 Current Tasks 표 |
+| T0/T3/Q6 DONE | b52f24f / 8968b29 / d9d782d | 사전결정·증기 정적연결·방별CSV. 최초차단 때 완료한 독립작업 재사용 |
+| T1/T2 DONE | bc97de0 / 2193b67 | LeverLift 접촉skin·B2 sink. 왕복3회/V4회귀·바닥10/10/회피0/10 |
+| T4/T5 DONE | 2679939 / 4b1aae9 | B25WorldAuthoring·AB12 Scene/요소일치. 정적FAIL0/WARN47·SceneFAIL0/WARN0 |
+| T6 PARTIAL | 466e285 | AB 지도12방/18문·방문전후 PASS, 캡처실패/앱접근시간초과 |
+| T7/T8 PARTIAL | 3b4bfe5 / 0c0fda4 | A03/B01/B03 각5/5·B02위5/5, B02바닥/B06포고 실패 원문 |
+| T9 DONE | 4de750a | B04 획득/사망CP-B01/우측재시도·실전32.350s HP1/벽점프7/포고26·저장 |
+| T10 PARTIAL | 039c24f | B01탑·A02왕복/조각·B03굴뚝 각3/3. stale stub해소, B05서쪽조각3접근실패 |
+| T11 DONE / T12 PARTIAL | f747a64 / 4e87cab | 실제4접촉 maxHP5/저장Continue, A고리65.207s/Continue PASS·B02 E3 확장실패 |
+| T13 DONE / T14 REVIEW | c996a5a / 18cd4aa | 원본18장 import16PPU·표시층/패럴랙스. Collider불변·Scene원문동일. 감각수락 별도 |
+| T15/T16 DONE | 19165df / 28a3e57 | Graybox 최종smoke0, 실제24장/목업비교 raw/25/art. 촬영fixture는 경로증명과구분 |
+| Q1/Q2 DONE | 23275ff / feef556 | B25 공유Audio Asset·타격/장치별재생·입자0.18s, Error0 |
+| Q3/Q4 DONE | b0a7485 / 66c4918 | 줌0.9/1.8s·정지0.1s·B3영향없음, E1/E2/E3 실예고0.267/0.283/0.283s |
+| Q5 DONE | 2925805 | Tools/Run-RoomRoutes 12방 시도 PASS6/FAIL6 원문보존 기준충족, 12/12완주 아님 |
+| T17/T18 | 이번 종료 커밋은 git log 참조 | 최종 빌드·전체회귀·런처/B3·문서/Batch Card는 재개 요약 맨 위 |
 
-새 플레이 가능 범위는 늘지 않았다. 완료한 no-unity 결과는 재사용 가능하다. B24 반환 승강기·A02 조각 접근·획득대 예외는 기존 배포에서 여전히 남아 있다. B24의 실제 전투/저장/회귀 통과를 B25 통과로 재사용하지 않는다.
+수치 조정은 `Assets/Audio/B25/Feedback.asset`, `Assets/Art/Original/v1/ArtSettings.asset`, 배치는 `Assets/Scenes/V5`. Play 중 변경은 기록한 뒤 Stop 후 원본에 저장·재빌드한다. B1/기본 튜닝과 보호134경로 변경0. B25/직전B24만 보존, B23 슬롯/목록은 raw/25/T17-housekeeping에 보존했다.
 
 ### 다음 Batch 후보
 
-먼저 **승인된 B25 재개**: 환경 수정 근거가 생기면 새 Preflight→T1/T2→T4~T12→T13 import/T14~T17→Q1~Q5. 완료 T0/T3/Q6는 반복 불필요, T18은 최종 결과로 갱신. no-unity Queue 소진·Batch 밖 Ready Queue0. Archive 이동은 B25 허용 범위 밖이라 과거 표를 현재 TASKS에 보존했다. 기존33커밋이 있어 squash하지 않고, push 없음.
+사용자 플레이 결과에 따라 B02/B06/B05 미완주 경로 설계 검토·지도 이미지 확보·그래픽/효과 수락 정리. 이전 A01 왕복 미측정도 남아 있다. 이 목록은 승인 Queue가 아니며 현재 Ready Queue0/Batch25 Queue6개 소진이다. Sprint Gate·기본 몸/모서리 후보 채택은 사용자 판단이다.
+
+Git: 이번 재개 전 결과 fb63b98이 현재 로컬 origin/main 및 기존 태그 B25다. 게시 이력 보호를 위해 squash/태그이동 없이 재개 Task커밋을 보존하고 B25-resume 태그를 사용한다. fetch/push는 하지 않는다. Archive 이동은 허용 밖이라 이전 표를 TASKS에 보존했다.
 
 ## 10. Playtest·Before-After
 
