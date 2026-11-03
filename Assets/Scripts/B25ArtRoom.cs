@@ -6,7 +6,7 @@ public sealed class B25ArtRoom:MonoBehaviour
  public SpriteRenderer background;
  Vector3 origin,cameraOrigin;bool anchored;
  readonly HashSet<int> drawn=new();
- void Awake(){if(N5Args.Has("-v5-graybox")&&background!=null)background.enabled=false;}
+ void Awake(){if(N5Args.Has("-v5-graybox")&&background!=null)background.enabled=false;if(N5Args.Has("-v5-graybox")){var cap=transform.Find("Sky1 seamless transition");if(cap!=null)cap.GetComponent<SpriteRenderer>().enabled=false;}}
  void Character(GameObject actor,bool player)
  {
   if(actor==null||!drawn.Add(actor.GetInstanceID())||actor.transform.Find("Original art character")!=null)return;

@@ -13,5 +13,5 @@ public sealed class SteamVent:MonoBehaviour
   if(body.position.x<area.min.x||body.position.x>area.max.x||shape.min.y>=area.max.y||shape.max.y<=area.min.y||player.GetComponent<PlayerSlam>()?.Slamming==true)return;
   body.linearVelocity=new Vector2(body.linearVelocity.x,Mathf.Min(tuning.steamSpeed,Mathf.Max(0,(area.max.y-shape.min.y)/Time.fixedDeltaTime)));
  }
- void Update(){bool on=On;if(on&&!previousOn)B25EffectsHost.Emit("steam",transform.position);previousOn=on;var sr=GetComponent<SpriteRenderer>();if(sr!=null){var c=sr.color;c.a=On?.5f:.08f;sr.color=c;}}
+ void Update(){bool on=On;if(on&&!previousOn)B25EffectsHost.Emit("steam",transform.position);previousOn=on;var sr=GetComponent<SpriteRenderer>();if(sr!=null){var c=sr.color;float opacity=GetComponent<B26SteamVisual>()?.opacity??.5f;c.a=On?opacity:opacity*.16f;sr.color=c;}}
 }

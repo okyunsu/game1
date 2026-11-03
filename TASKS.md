@@ -28,7 +28,7 @@
 | B26-T4 | REVIEW | v1.1 28PNG import·종류별 스프라이트·meta 생성. Collider직렬화불변·T1/T4 Scene 원문동일. 감각 QA 대기 |
 | B26-T5 | REVIEW | 배경22.5u 아래정렬·세로반복 제거·sky1·증기alpha0.25 상승입자. Collider불변·T1 Scene원문동일. T7 캡처 후 감각QA |
 | B26-T6 | DONE | 갈색0.4×0.8 안내 SignPost. 12방 가이드 SpriteRenderer만 기본숨김·충돌/상호작용불변. raw/26/T6-guide-display |
-| B26-T7 | TODO | 승인 지시문 기준 진행 |
+| B26-T7 | DONE | 최종 카메라24 PNG·contact sheet·B03 목업 비교, raw/26/art/final·T7-art-verified Error0. physics꺼짐 fixture |
 | B26-T8 | TODO | 승인 지시문 기준 진행 |
 | B26-T9 | TODO | 승인 지시문 기준 진행 |
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
