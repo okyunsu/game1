@@ -30,7 +30,7 @@
 | B26-T6 | DONE | 갈색0.4×0.8 안내 SignPost. 12방 가이드 SpriteRenderer만 기본숨김·충돌/상호작용불변. raw/26/T6-guide-display |
 | B26-T7 | DONE | 최종 카메라24 PNG·contact sheet·B03 목업 비교, raw/26/art/final·T7-art-verified Error0. physics꺼짐 fixture |
 | B26-T8 | DONE | 기존실패6건 재시도: PASS5(A05/A06/B02/B04/B06)·FAIL1(A03 4u벽 지형). 입력/도구 수정, 설계수정0. Validation/B26-T8-route-ledger.md |
-| B26-T9 | TODO | 승인 지시문 기준 진행 |
+| B26-T9 | DONE | 測정기준: A고리64.946s/Continue·B02바닥·B04실제승리까지. 귀환/굴뚝 GoX15.8 timeout; 최초막힘원문·도구한계기록. 전체AB/최종Continue 미실시. Validation/B26-T9-AB-loop.md |
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
 | B26-T11 | DONE | Development errors0/warnings0, 전체 회귀B26-main13/13, Loop·Graybox·B1·B2·V4 smoke5/5 Error0·B3 cycle/phase/사망복귀 PASS |
 | B26-T12 | DONE | README·TASKS3/9 QA1회 안내, 기존6+신규2 각각 항목/기록칸. 이후 Backlog 신규 REVIEW는 종료 시 추가 |
@@ -253,7 +253,7 @@ D-BODY: 1.6 유지 / 1.3 / 1.1(추천1.3 비교), B20-T4. D-B23-RULE: 기존 엄
 
 ### Task별 결과
 
-Current Tasks Batch26 표와 Validation/B26-T0-review-cleanup.md·B26-T1-world.md·B26-T2-routes.md·B26-T3-art-staging.md·B26-T6-guide.md·B26-T7-art.md·B26-T8-route-ledger.md에 실제 결과·원문 경로. T9 전체고리 진행 중, 이후 Backlog→승인Queue 순서로 계속한다. Git 태그/최종 커밋은 종료 시 기록한다.
+Current Tasks Batch26 표와 Validation/B26-T0-review-cleanup.md·B26-T1-world.md·B26-T2-routes.md·B26-T3-art-staging.md·B26-T6-guide.md·B26-T7-art.md·B26-T8-route-ledger.md에 실제 결과·원문 경로. T9은 첫 막힘 원문까지 기록 완료(전체 AB 미완주), 이후 Backlog→승인Queue 순서로 계속한다. Git 태그/최종 커밋은 종료 시 기록한다.
 
 이전 인계: [DOC-01](Validation/DOC-01-summary.md), [B25](Validation/B25-resume-summary.md). 기존 미해결 Task는 현재 표에 보존했다.
 
