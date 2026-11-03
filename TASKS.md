@@ -2,25 +2,35 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-03, Codex — Batch25 재개 종료. DONE19/REVIEW1/PARTIAL5, 사용자 플레이 수락 별도.
-- 실행 Base `e6b5172`, 재개 Base `fb63b98`. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch/push 없음.
-- V5 AB12방·직접 제작 아트18개·패럴랙스·효과음/입자·적 예고·보스 줌/정지 구현.
-- 반환 승강기 왕복/호출 PASS, A 고리65.207s/Continue PASS, B04 실제승리32.350s/HP1 PASS.
-- T7/T8/T10/T12 PARTIAL: B02 포고/E3·B06 포고·B05 서쪽 조각의 자동 입력 실패 보존. 좌표/규칙 임의 변경0.
-- T6 PARTIAL: 지도AB12/방문전후/문 PASS, 캡처실패·Computer Use 앱 접근 시간초과로 이미지 미확보.
-- T14 REVIEW: 그래픽 감각 수락 대기. 24장/비교 이미지 raw/25/art.
-- 정적FAIL0/WARN47·SceneFAIL0/WARN0, T14/최종 Scene 검사 원문 동일. 보호134경로 변경0.
-- 최종 Development B25 오류0/경고0·전체회귀13/13·런처5종exit0/Error0·B3 cycle/phase/사망복귀PASS.
-- Q1~Q6 완료. Q5는12방 전부시도 PASS6/FAIL6 원문기록 기준 충족이며 완주통과가 아님.
-- 빌드 B25/직전B24만 보존, B23 슬롯/목록은 raw/25/T17-housekeeping에 보존. 실행기는 Launchers/current.
-- 현재 사용자 플레이·Claude 경로검토 차례. Batch 밖 Ready Queue0/결정3건. 재개 미푸시23커밋·1Batch(종료커밋 기준), 기존 수락순서 유지.
-- 최초 exit198와 차단결과는 [이전 요약](Validation/B25-summary.md)에 보존, 이번 결과는 [재개 종료](Validation/B25-resume-summary.md).
+- 갱신: 2026-11-03, Codex — DOC-01 문서·기록 정리 진행 중(90분/Task9).
+- Base `f1a6f5a`; 현재 HEAD는 `git log -1`. origin/main은 로컬 참조, 이번 fetch/push 없음.
+- 시작 미푸시24커밋(B25 재개23+별도 Claude 아트1), 이번 커밋은 별도 DOC-01로 기록.
+- 사용자 기존 변경4경로 보존: Design/v5 2파일·Design/proposals-1103-B26/·Validation/D61-room-rules-v5-AB.md.
+- Unity/게임 코드/Scene/Assets/ProjectSettings/PRD/GAME_DESIGN/Design 수정 금지. Preflight -SkipUnity PASS.
+- Codex DOC-01 차례. Ready Queue0, 기존 결정3건/직접 플레이 순서 유지.
+- B25 제품 상태는 아래 Current Tasks와 기존 인계/Validation을 유지하며 이번 문서 정리로 재판정하지 않음.
 
 ## 1. 현재 상태 / Current Sprint
 
 - Sprint3: V5 draft6 층 A·B12방, 건물 거리·대시/벽 점프 재방문·조각 HP 성장·보스1/2·직접 제작 아트와 효과 구현. 사용자 감각 수락·Sprint Gate 대기.
 - 반환 승강기는 B25 T1/T12에서 기술적으로 해소했고 A 고리/Continue를 확인했다. B02/B06/B05 자동 경로 잔여는 아래 PARTIAL·열린 버그를 따른다.
 - [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md)는 사용자 2026-11-02 실행 승인, Hub 실행 후 재개. 최초 차단 증거와 B24/B23 당시 상태는 보존한다.
+
+## 1-DOC. Current Tasks (DOC-01)
+
+[사용자 승인 지시·T0 시작 기록](Batches/BATCH-DOC-01.md), 문서 전용 / needs-unity=no / Base `f1a6f5a`.
+
+| Task | 상태 | 현재 결과 |
+| --- | --- | --- |
+| DOC-01-T0 | DONE | 지정4경로 외 변경0·staged0, 시작 바이트 기록, Preflight -SkipUnity PASS/Unity 미실시 |
+| DOC-01-T1 | TODO | AGENTS 운영 결정·통합 대조 |
+| DOC-01-T2 | TODO | Batch 템플릿 |
+| DOC-01-T3 | TODO | 지난 표·미해결 목록 |
+| DOC-01-T4 | TODO | 결정 장부 |
+| DOC-01-T5 | TODO | 옛 설계 참조·이동 |
+| DOC-01-T6 | TODO | raw 정리 |
+| DOC-01-T7 | TODO | README 상태 링크 |
+| DOC-01-T8 | TODO | 종료 요약·태그 |
 
 ## 1-0. Current Tasks (Batch25)
 
