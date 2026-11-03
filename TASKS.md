@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | DOC-01-T0 | DONE | 지정4경로 외 변경0·staged0, 시작 바이트 기록, Preflight -SkipUnity PASS/Unity 미실시 |
 | DOC-01-T1 | DONE | D1~D6/D11 반영·기존 권한/보호/push 유지, 삭제·통합 문장별 남은 절은 DOC-01 요약 |
-| DOC-01-T2 | TODO | Batch 템플릿 |
+| DOC-01-T2 | DONE | 목표/시간·상한30/Hub 점검/Unity 없는 목록/A·B·C 링크·증거/REVIEW 규칙 정리 |
 | DOC-01-T3 | TODO | 지난 표·미해결 목록 |
 | DOC-01-T4 | TODO | 결정 장부 |
 | DOC-01-T5 | TODO | 옛 설계 참조·이동 |
