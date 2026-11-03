@@ -102,13 +102,13 @@ im=tile(); d=ImageDraw.Draw(im); d.rounded_rectangle([1,3,14,15],3,fill=C['enemy
 d.line([3,3,1,0],fill=C['enemyD']); d.line([12,3,14,0],fill=C['enemyD']); tiles['enemy']=im
 # backgrounds (parallax) 320x180 each
 def bg(kind):
-    W,H=320,180; im=Image.new('RGBA',(W,H)); d=ImageDraw.Draw(im)
+    W,H=320,360; im=Image.new('RGBA',(W,H)); d=ImageDraw.Draw(im)
     for y in range(H):
         t=y/H; c=tuple(int(C['sky1'][i]*(1-t)+C['sky0'][i]*t) for i in range(3))+(255,); d.line([0,y,W,y],fill=c)
     rnd=random.Random(3 if kind=='A' else 5)
     x=0
     while x<W:
-        w=rnd.randint(18,40); h=rnd.randint(60,170); col=C['sil0'] if rnd.random()<.5 else C['sil1']
+        w=rnd.randint(18,40); h=rnd.randint(90,300); col=C['sil0'] if rnd.random()<.5 else C['sil1']
         d.rectangle([x,H-h,x+w,H],fill=col)
         if kind=='A':
             for wy in range(H-h+6,H-4,9):
@@ -117,10 +117,30 @@ def bg(kind):
         else:
             if rnd.random()<.5:
                 cx=x+w//2; d.rectangle([cx-3,H-h-30,cx+3,H-h],fill=col)
-                for k in range(3): d.ellipse([cx-6-k*3,H-h-40-k*10,cx+6+k*3,H-h-30-k*10],fill=(120,135,150,40))
+                ov=Image.new('RGBA',(W,H),(0,0,0,0)); od=ImageDraw.Draw(ov)
+                for k in range(3): od.ellipse([cx-6-k*3,H-h-40-k*10,cx+6+k*3,H-h-30-k*10],fill=(120,135,150,40))
+                im.alpha_composite(ov)
             for py in range(H-h+10,H,22): d.line([x,py,x+w,py],fill=C['rust'])
         x+=w+rnd.randint(0,6)
     return im
+
+# ---- v1.1 sprites: distinct enemies, bosses, pickups, checkpoint, lever
+def spr(w,h): im=Image.new('RGBA',(w,h),(0,0,0,0)); return im,ImageDraw.Draw(im)
+E=C['enemy'];ED=C['enemyD'];EYE=C['eye']
+im,d=spr(16,16); d.ellipse([1,6,14,15],fill=E,outline=ED); [d.line([x,15,x-1,13],fill=ED) for x in (4,8,12)]; d.rectangle([5,9,6,10],fill=EYE); d.rectangle([9,9,10,10],fill=EYE); tiles['E1']=im  # 순찰 딱정벌레
+im,d=spr(16,16); d.polygon([(1,15),(3,5),(13,5),(15,15)],fill=E,outline=ED); d.polygon([(12,6),(16,2),(14,7)],fill=C['spike']); d.rectangle([4,8,6,10],fill=C['acid1']); tiles['E2']=im  # 돌진(뿔)
+im,d=spr(16,16); d.rectangle([3,8,12,15],fill=ED); d.ellipse([3,3,12,12],fill=E,outline=ED); d.rectangle([11,6,15,8],fill=C['spk2']); px(im,7,7,C['acid1']); tiles['E3']=im  # 포탑
+im,d=spr(16,16); d.ellipse([4,5,11,13],fill=E,outline=ED); d.ellipse([0,2,6,7],fill=(207,227,238,150)); d.ellipse([9,2,15,7],fill=(207,227,238,150)); px(im,6,8,EYE); px(im,9,8,EYE); tiles['E4']=im  # 벌레(포고)
+im,d=spr(48,48); d.rounded_rectangle([4,12,44,47],6,fill=E,outline=ED); d.polygon([(8,12),(4,0),(16,10)],fill=C['spike']); d.polygon([(40,12),(44,0),(32,10)],fill=C['spike'])
+d.rectangle([12,22,18,27],fill=C['win']); d.rectangle([30,22,36,27],fill=C['win']); d.line([14,36,34,36],fill=ED,width=2); tiles['boss1']=im  # 폐수로 짐승
+im,d=spr(48,64); d.rectangle([10,10,38,63],fill=C['st1'],outline=C['st0']); d.rectangle([4,20,10,58],fill=C['pipe']); d.rectangle([38,20,44,58],fill=C['pipe'])
+for y in range(22,58,6): d.line([4,y,10,y],fill=C['climbY']); d.line([38,y,44,y],fill=C['climbY'])
+d.ellipse([16,14,32,30],fill=C['rust2'],outline=C['rust']); d.ellipse([21,19,27,25],fill=C['win']); d.rectangle([14,40,34,44],fill=C['rust']); tiles['boss2']=im  # 벽 감시자(보일러)
+im,d=spr(16,16); d.ellipse([1,1,14,14],fill=(64,224,208,60)); d.ellipse([4,4,11,11],fill=C['dash']); d.polygon([(5,8),(11,8),(9,6)],fill=C['eye']); tiles['pickup_dash']=im
+im,d=spr(16,16); d.ellipse([1,1,14,14],fill=(227,178,60,60)); d.rectangle([5,3,10,13],fill=C['climbY']); [d.line([5,y,10,y],fill=C['climbK']) for y in (5,8,11)]; tiles['pickup_walljump']=im
+im,d=spr(16,32); d.rectangle([7,4,8,31],fill=C['spk2']); d.ellipse([3,0,12,8],fill=C['win']); d.ellipse([0,-2,15,11],fill=(232,180,90,50)); d.rectangle([1,26,14,28],fill=C['litdim']); tiles['checkpoint']=im  # 가로등 쉼터
+im,d=spr(16,16); d.rectangle([3,11,12,15],fill=C['st0']); d.line([7,11,11,3],fill=C['spk2'],width=2); d.ellipse([9,1,13,5],fill=C['door']); tiles['lever']=im
+
 os.chdir(os.path.dirname(os.path.abspath(__file__))); os.makedirs('tiles',exist_ok=True)
 for k,v in tiles.items(): v.save(f'tiles/{k}.png')
 from PIL import ImageEnhance

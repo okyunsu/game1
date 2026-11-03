@@ -2,7 +2,7 @@ import json,sys
 import os; os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from PIL import Image
 T=16; import sys; G=sys.argv[1] if len(sys.argv)>1 else '../v5/rooms_v5_AB.json'
-R=json.load(open(G))['rooms']; t={k:Image.open(f'tiles/{k}.png') for k in ['A_wall','A_top','B_wall','B_top','A_plat','B_plat','A_crumble','B_crumble','climb','acid','spike','door','fragment','lantern','player','enemy']}
+R=json.load(open(G))['rooms']; t={k:Image.open(f'tiles/{k}.png') for k in ['A_wall','A_top','B_wall','B_top','A_plat','B_plat','A_crumble','B_crumble','climb','acid','spike','door','fragment','lantern','player','enemy','E1','E2','E3','E4','boss1','boss2','pickup_dash','pickup_walljump','checkpoint','lever']}
 def render(rid,player=None):
     r=R[rid]; w,h=r['size']; fl=rid[0]; W,H=int(w*T),int(h*T)
     bg=Image.open(f'bg_{fl}.png').resize((W,H),Image.NEAREST); im=bg.copy()
@@ -35,11 +35,15 @@ def render(rid,player=None):
     for p in r.get('pogo',[]):
         src=t['lantern'] if p['kind']=='lantern' else t['spike'].resize((16,8))
         im.alpha_composite(src,(int(p['x']*T)-8,Y(p['y'])-12))
-    for e in r['enemies']: im.alpha_composite(t['enemy'],(int(e['x']*T)-8,Y(e['y'])-16))
+    for e in r['enemies']:
+        k=e['type'][:2]; src=t.get(k,t['enemy']); im.alpha_composite(src,(int(e['x']*T)-8,Y(e['y'])-16))
+    if 'boss' in r: im.alpha_composite(t['boss2'],(int(12*T)-24,Y(1)-64))
+    for m in r.get('marks',[]):
+        if 'CP' in m['t']: im.alpha_composite(t['checkpoint'],(int(m['x']*T)-8,Y(1)-32))
     for m in r.get('marks',[]):
         if '조각' in m['t']: im.alpha_composite(t['fragment'],(int(m['x']*T)-8,Y(m['y'])-8))
     if player: im.alpha_composite(t['player'],(int(player[0]*T)-6,Y(player[1])-26))
     return im
 out=[]
-for rid,pl in [('A03',(10,1)),('B02',(5,1)),('B03',(4,8)),('B01',(22,1))]:
+for rid,pl in [('A03',(10,1)),('B02',(5,1)),('B03',(4,8)),('B01',(22,1)),('B04',(20,1)),('B06',(4,1))]:
     im=render(rid,pl); im=im.resize((im.width*2,im.height*2),Image.NEAREST); im.save(f'mockups/mock_{rid}.png'); print(rid,im.size)
