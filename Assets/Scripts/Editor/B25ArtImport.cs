@@ -22,6 +22,6 @@ public static class B25ArtImport
    if(importer.spritePixelsPerUnit!=16||importer.filterMode!=FilterMode.Point||importer.textureCompression!=TextureImporterCompression.Uncompressed)throw new Exception("Import settings "+path);rows.Add("PASS import16PPU Point Uncompressed FullRect "+path);
   }
   if(rows.Count!=28)throw new Exception("28 PNG required for approved art v1.1");
-  var art=AssetDatabase.LoadAssetAtPath<B25ArtSettings>(Root+"/ArtSettings.asset");if(art==null){art=ScriptableObject.CreateInstance<B25ArtSettings>();AssetDatabase.CreateAsset(art,Root+"/ArtSettings.asset");}art.player=Sprite("player");art.enemy=Sprite("enemy");art.e1=Sprite("E1");art.e2=Sprite("E2");art.e3=Sprite("E3");art.e4=Sprite("E4");EditorUtility.SetDirty(art);AssetDatabase.SaveAssets();File.WriteAllLines(Output,rows);EditorApplication.Exit(0);
+  var art=AssetDatabase.LoadAssetAtPath<B25ArtSettings>(Root+"/ArtSettings.asset");if(art==null){art=ScriptableObject.CreateInstance<B25ArtSettings>();AssetDatabase.CreateAsset(art,Root+"/ArtSettings.asset");}art.player=Sprite("player");art.enemy=Sprite("enemy");art.e1=Sprite("E1");art.e2=Sprite("E2");art.e3=Sprite("E3");art.e4=Sprite("E4");art.fragment=Sprite("fragment");EditorUtility.SetDirty(art);AssetDatabase.SaveAssets();File.WriteAllLines(Output,rows);EditorApplication.Exit(0);
  }
 }

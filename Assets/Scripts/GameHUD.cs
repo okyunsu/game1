@@ -112,7 +112,12 @@ public sealed class GameHUD : MonoBehaviour
         {
             float x=tuning.hudPosition.x,y=tuning.hudPosition.y;Fill(new Rect(x,y,tuning.hudSize.x,tuning.hudSize.y),new Color(.04f,.05f,.07f,.84f));
             GUI.Label(new Rect(x+12,y+4,tuning.hudSize.x-24,24),observedSession.CurrentRoomId,text);
-            if(observedSession.CurrentRoomId!="PogoTest")GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),ProgressSave.Enabled?"조각 "+(ProgressSave.FragmentCount%4)+"/4":"발견 "+DiscoveryReward.Count+(V2SceneMap.Enabled?"/18":"/9"),text);
+            if(observedSession.CurrentRoomId!="PogoTest")
+            {
+                var art=FindFirstObjectByType<B25ArtRoom>();var fragment=art!=null?art.settings.fragment:null;
+                if(fragment!=null&&ProgressSave.Enabled){var r=fragment.textureRect;GUI.DrawTextureWithTexCoords(new Rect(x+tuning.hudSize.x-120,y+4,24,24),fragment.texture,new Rect(r.x/fragment.texture.width,r.y/fragment.texture.height,r.width/fragment.texture.width,r.height/fragment.texture.height));GUI.Label(new Rect(x+tuning.hudSize.x-88,y+4,76,24),(ProgressSave.FragmentCount%4)+"/4",text);}
+                else GUI.Label(new Rect(x+tuning.hudSize.x-120,y+4,108,24),ProgressSave.Enabled?"조각 "+(ProgressSave.FragmentCount%4)+"/4":"발견 "+DiscoveryReward.Count+(V2SceneMap.Enabled?"/18":"/9"),text);
+            }
             GUI.Label(new Rect(x+12,y+31,30,24),"HP",text);
             for(int i=0;i<health.MaxHP;i++)Fill(new Rect(x+48+i*(tuning.hpPipSize+tuning.hpPipGap),y+34,tuning.hpPipSize,tuning.hpPipSize),i<VisibleHP?Color.white:new Color(.32f,.32f,.35f));
             Ability(new Rect(x+12,y+65,160,24),DashOwned,false,input.UsingGamepad?"B":"C");
