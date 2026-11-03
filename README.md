@@ -4,14 +4,11 @@
 
 ## 현재 상태
 
-Batch25는 Hub 실행 후 재개하여 V5 층 A·B 12방, 직접 제작 그래픽, 효과음·적 예고·보스 연출을 반영했습니다. 반환 승강기와 보스2 획득대 하강을 수정했습니다. 현재 런처는 `Builds/B25-delivery`, 직전 비교 빌드는 B24입니다. [재개 결과와 남은 경로](Validation/B25-resume-summary.md), [최초 환경 차단 기록](Validation/B25-summary.md).
-
-Sprint 3, V5 draft6 AB12방·조각 성장·보스1/2 필드와 시험장을 구현했습니다. V4 21방, 대시·더블 점프·벽 점프·Slam,
-보스 처치 후 상부 경로와 엔딩이 연결되어 있습니다. 기본 보스는 B3(8패턴·2페이즈, 10/14 채택).
-B2-fast는 Boss-B2-fast로 선택할 수 있으며, 자연 전체 플레이와 Sprint Gate는 사용자 확인 대기입니다.
-현재 결과·결정·직접 플레이 목록은 [TASKS](TASKS.md)를 따릅니다.
+현재 Batch 진행·구현 결과·남은 작업·사용자 결정은 [TASKS](TASKS.md#0-지금)를 따릅니다. 직접 플레이 확인 순서는 [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 있습니다.
 
 ## 실행
+
+현재 런처는 `Builds/B25-delivery`를 사용하며, 직전 비교 빌드는 `Builds/B24-delivery`입니다.
 
 각 런처를 더블클릭합니다. 타이틀이 나오면 Z로 이어하기를 선택합니다.
 저장은 모드별 독립 슬롯입니다. 새 게임 런처는 해당 슬롯을 초기화합니다.
@@ -67,7 +64,7 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 B25 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd)에서 **한 번, 약30~40분** 진행합니다. A03 CP→승강기→A04 보스1→A05 대시→A03 연습/서쪽 선반→천장 구멍 B01→지붕→B02→B03 증기→B04 보스2→벽 점프 재방문(B06·B05·A02) 순서입니다. [검수 계획](Design/proposals-1101-B25/00_README.md). 기존 수락 대기 순서는 [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 유지했습니다.
 
-자동 확인은 A 고리와 Continue, B04 실전 승리까지 통과했습니다. **전체 AB 고리 자동 완주는 남았습니다.** B02 바닥 포고/위통로 뒤 E3 구간, B06 포고, B05 서쪽 조각 접근의 실패 원문을 보존했습니다. 사람도 막히면 방·위치·입력을 적고 다른 구간으로 넘어가 주세요. 좌표·기본 튜닝은 이 실패를 이유로 임의 변경하지 않았습니다.
+자동 확인 결과·남은 경로와 근거는 [TASKS 현재 작업](TASKS.md#1-0-current-tasks-batch25)을 따릅니다. 플레이 중 막히면 방·위치·입력을 적고 다른 구간으로 넘어가 주세요.
 
 [Play-V5-Graybox](Launchers/current/Play-V5-Graybox.cmd)는 같은 AB 배치의 원래 도형 표시와 비교합니다. 별도 저장 슬롯을 쓰며 충돌체는 같습니다. M으로 지도 크기를 바꾸고 방문 전후 B층·문 표시를 확인합니다. 그래픽에서 바닥/발판/위험/적이 구분되는지, 타격·장치 소리와 적의 공격 직전 밝아짐이 읽히는지 봅니다.
 
@@ -82,13 +79,14 @@ B25 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd)에서 **한 번
 V5 AB draft6: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유 A03](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프 보유](Launchers/current/Play-V5-DJ.cmd). `-NoMap` 지원. [이전 B24 결과](Validation/B24-summary.md)는 당시의 기록이며 이번 검증과 구분합니다.
 
 방별 실제 입력 회귀 묶음은 새 Development 빌드 후 `Tools/Run-RoomRoutes.ps1 -Tag 고유이름`으로 실행합니다. 12방을 독립 진입 fixture에서 시작하고 적을 유지한 채 주요 출구까지 입력합니다. B06은 선택 도전 뒤 입구로 돌아오는 경로입니다. 통과/실패와 각 원문은 `Validation/_raw/25/<태그>/routes.csv`·방별 result/game.log에 보존하며, 하나가 실패해도 나머지 방을 검사합니다. 전체 자연 완주와 구분합니다.
-Batch19 검사 정리: 기존 후보69는 머리 위0·닫힌 문6·측면43·구덩이 가장자리20입니다. 실제 Scene은 FAIL0/WARN0이며 닫힌 문·측면·구덩이는 MEASURE로 표시합니다. draft2 머리 위4건은 계속 FAIL로 검출합니다. 정적 후보22는 A02 WallJump 조건과 A06 유일 입구 DJ 조건을 반영하면0입니다. 무능력 계산도 별도로 남기며 실제 자연 완주와 구분합니다. [후보](Validation/B19-candidates.md), [Scene 검사](Validation/B19-clearance.md), [정적 검사](Validation/B19-room-rules-v5-A.md), [규칙 근거](Validation/B19-rules-ledger.md).
+
+지난 Batch의 검사 결과와 분류는 [TASKS 보관 색인](TASKS.md#5-보관된-항목-색인)을 따릅니다.
 
 Scene 검사: Unity Editor의 `-executeMethod V5Batch18.Clearance -verify-b18-clearance -verify-output 새파일` 또는 Development exe의 `-verify-b18-clearance`(독립 `-save-path` 필수). JSON 검사: `Tools/Check-RoomRules.py Design/v5/rooms_v5_A.json --v5 --self-test --output 새파일`. 검사 결과와 실제 플레이 불가능 판정은 구분합니다.
 
-최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 일반 경로는5구간 통과했고, DJ는 A01 접근120초 미완주 뒤 A06 도착 fixture에서3구간 통과했습니다.
+최종 Development 빌드의 측정 플래그: `-verify-b18-hop`, 일반 경로 `-verify-b16-route -b18-route`, DJ 경로 `-verify-b16-route -b18-dj-route -give=dj`. 모두 V5 인자와 별도의 `-save-path`, 새 `-verify-output`을 사용합니다. [점프·포고 표](Validation/B18-hop-limits.md), [일반 경로](Validation/B18-route.md), [DJ 경로](Validation/B18-dj-route.md). 진행 상태와 미완주 경로는 [TASKS 미해결 목록](TASKS.md#1-1-미해결-목록)을 따릅니다.
 
-Batch19 DJ 재측정: 목표 좌표는 draft3와 일치합니다. 자동 입력이 platform2 옆면 충돌 후 바닥으로 떨어져 x24.947에서 점프를 반복하는 타이밍 문제를 기록했습니다. 실제 DJ 상승4.884u로 마지막 발판11.6→문 y15의 높이는 충분하나 자연 A01→A06 완주는 미확인입니다. [프레임 측정](Validation/B19-dj-route.md). B19 당시에는 Scene·게임 수치·배포 빌드를 유지하고 측정 소스만 추가했습니다. 현재 B24 배포 exe에도 이 측정 코드와 크기 비교 도구가 들어 있습니다.
+DJ 경로의 검증 결과·잔여 한계는 [TASKS 미해결 목록](TASKS.md#1-1-미해결-목록)을 따릅니다.
 
 Windows 실행: Unity와 Unity를 호출하는 검증 스크립트는 정상 사용자 LOCALAPPDATA를 사용하는 샌드박스 밖 실행으로 검증했습니다. 격리 경로의 라이선스 실패와 게임 실패를 구분합니다. 코드 편집·JSON 분석은 샌드박스 안에서, Git 기록은 별도 사용자 승인 예외로 수행했습니다.
 
@@ -97,9 +95,9 @@ Batch20 크기 비교: [BodySizeTest](Launchers/current/Play-BodySize.cmd)에서
 실제 방 비교는 기존 [Play-V5](Launchers/current/Play-V5.cmd)의 1.6u를 기준으로 [1.3u](Launchers/current/Play-V5-Body13.cmd), [1.1u](Launchers/current/Play-V5-Body11.cmd)를 차례로 실행합니다(각 A01 시작, 약5분). 후보 런처는 크기별 별도 fixture 저장 슬롯을 사용하고 `-NoMap`도 지원합니다. 기본 Play-V5에는 크기 덮어쓰기 컴포넌트를 붙이지 않습니다.
 
 비교는 플레이어 전체의 균일 축소이며 전환 순간 발 위치를 유지합니다. 공격 판정도 같은 비율로 줄고, 이동·점프·중력·카메라 설정은 유지합니다. 도구는 Editor/Development 전용이며 Release에는 포함하지 않습니다. 크기 선택은 런타임 비교라 종료하면 저장되지 않습니다. 기본 크기 채택은 사용자가 D-BODY에서 고른 뒤 별도 배치로 반영합니다. 배치는 새 [BodySizeTest Scene](Assets/Scenes/Test/BodySizeTest.unity)이 원본입니다. Play 중 바꾼 배치를 유지하려면 변경을 기록한 뒤 Edit 모드에서 저장하세요. 기본 PlayerTuning·Prefab은 이번 배치에서 바꾸지 않습니다.
-Batch20 결과: [전체 요약](Validation/B20-summary.md). A03→A05 우회와 대시 없는 일반 점프 도랑 통과를 재현했습니다. 정적 검사 새 FAIL2는 이 실제 버그를 검출한 기대 결과이며 수정 fixture는 FAIL0입니다. draft4 작성과 기본 크기 선택은 TASKS의 결정 대기를 따릅니다.
+크기 선택과 설계 판단 대기는 [TASKS 결정 대기](TASKS.md#2-결정-대기)를 따릅니다.
 
-Batch21에서는 A03 쪽 A05 지름길이 벽 파괴 전에는 닫힙니다. A04에서 A05로 들어가 벽의 오른쪽에서 왼쪽으로 공격하면 열린 뒤 저장·이어하기에도 양방향 통과가 유지됩니다. 방의 좌표·기본 몸 크기·이동 수치는 같습니다.
+이전 Batch 구현 상태와 이후 변경은 [TASKS 현재 작업·미해결 목록](TASKS.md#1-1-미해결-목록)을 따릅니다.
 
 후보 비교는 기존 크기 비교 다음에 진행합니다. 후보마다 독립 저장 슬롯을 쓰며 기본 Play-V5에는 두 동작이 모두 꺼져 있습니다.
 
