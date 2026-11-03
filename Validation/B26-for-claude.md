@@ -5,7 +5,7 @@
 | 남은 항목 | 방·좌표 / 실제 원문 | 다음 판단 |
 | --- | --- | --- |
 | 지형 — D-B26-A03 | A03 solid6=[16,1,6,4], 서쪽 점프 끝(15.6328,1.015). `MEASURE loop jump=A03 M roof from street landed=False end=(15.6328, 1.0150) hp=4` | 점프상승2.5u보다 큰4u 벽. 낮은 디딤 / 거리통로 변경 중 설계 검토. [원문](_raw/26/T8-A03-r1/result.txt) |
-| 전체 AB 자동 고리 잔여 | B04 실제승리 HP1, (6.758,5.763) 뒤 귀환/굴뚝 접근. `FAIL System.Exception: GoX timeout target=15.8 actual=(20.37, 1.02)` | 분류=도구(좌표만 검사해 HP/방이탈 미감지). 정확한 첫 피격/방이탈 원인 미확정, 지형 결함 단정 금지. 뒤 B06·B02상부·B01탑·B05/A02·최종Continue 미실시. [원문](_raw/26/T9-AB-loop-r1/result.txt) |
+| 전체 AB 자동 고리 잔여 | 중간Continue 없이 B04승리 HP1→B03귀환(3,17.013), 낙하 중(12.312,11)에서 HP0. `FAIL System.Exception: GoX timeout target=15.8 actual=(20.37, 1.02)` | 분류=입력(E4구간접촉·사망 뒤 진행). E4 원본위치(13,12), Hit로그에enemy: collider. 좌표 전용 도구가 사망을 놓침; 지형결함 단정 금지. 뒤 B06·B02상부·B01탑·B05/A02·최종Continue 미실시. [원문](_raw/26/T9-AB-direct/result.txt) |
 | 정적 신규 WARN1 | `WARN B02 height: platform=1 nearest lower rise=7 (static candidate)` | 승인 위통로 분할에서 발생, 같은 검사기 B25 WARN47→48. 실제 위통로/하강5/5·E3피격0, FAIL로 바꾸지 않음. [정적](_raw/26/final-static.md) |
 
 해소: 기존 실패6건 중 실제출구5 통과(A05/A06/B02/B04/B06), A03만 위 지형 잔여. B06은 마지막에 도전 뒤 B03 귀환도13.701s HP3 통과. 갈색 사각형은 SignPost 가이드의0.35×0.8 SpriteRenderer였고 표시만 숨김. [경로 장부](B26-T8-route-ledger.md), [4구간 측정](B26-T2-routes.md).

@@ -13,3 +13,5 @@ Batch04 AV1은 기존 직접 제작 후보이며 이번에 수정하지 않는�
 B25 import 적용(2026-11-03): Sprite(2D and UI), 16 PPU, Point, Uncompressed, FullRect, mipmap 꺼짐. PNG18개 원본/Assets SHA256 일치, Unity 생성 `.meta`와 함께 커밋. 설정 원문은 `Validation/_raw/25/T13-import/result.txt`, 바이트 대조는 `T13-hashes.txt`. 이전 차단 때의 raw 스테이징도 보존했다. 생성 스크립트 재실행·외부 다운로드 없음. 공유 표시 설정은 `Assets/Art/Original/v1/ArtSettings.asset`(캐릭터 Sprite·배경 패럴랙스)이다.
 
 B25 효과음은 기존 직접 제작 `Assets/Audio/AV1/*.wav`(B04 합성 원본)를 재사용한다. 외부 다운로드·새 라이선스 없음. `Assets/Audio/B25/Feedback.asset`에 이벤트별 클립·선형 볼륨·피치 변화, 입자 수명/속도/크기를 둔다. 게임 난수 상태를 소비하지 않는 결정적 피치 변화를 사용한다.
+
+B26 아트v1.1(2026-11-03): 직접 제작된 E1~E4·boss1/2·대시/벽점프·CP·레버10타일과 bg_A/bg_B320×360을 적용했다. 원본스테이징12개 SHA256 일치, 28PNG16PPU/Point/무압축·Unity meta. 외부 다운로드·생성스크립트 재실행0. SkyBlend Texture/Sprite와 WhiteFlash Material은 Unity API로 생성한 표시 리소스이며, 흰실루엣 shader는 직접 작성했다. B26 피크필터는 기존 AV1 WAV를 재사용한다.

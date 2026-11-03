@@ -2,17 +2,21 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-03 Codex — 승인 Batch26 진행 중. Base `b845145`, Claude 설계 시작 커밋 `e2bc7d1`.
-- Unity Preflight PASS: Hub licensing=True, exit0. fetch/push 없음, 기존33커밋 보존.
-- REVIEW: 기존 QA 대상6 / 목록 밖 기존0(ID 없음, Current Tasks 기준) / 이번 Batch 신규2(B26-T4/T5, Backlog 검증 중).
-- D-REVIEW-CLEANUP 21행 처리: 폐기10·수락3·미채택2·QA유지6. 상세 [T0](Validation/B26-T0-review-cleanup.md).
-- draft6.1 AB12방 재생성 완료, 검사·아트·경로 진행 중. Codex 차례.
-- 결정 대기2건(D-BODY·D-B23-RULE), 승인 Ready Queue4행은 B26 지시문 기준.
+- 갱신: 2026-11-03 Codex — Batch26 종료. 22Task 실행: DONE13 / REVIEW9. Backlog·승인Queue 소진, 시간/상한 미도달.
+- Base `b845145`, Claude 설계 승인 커밋 `e2bc7d1`. 최종 HEAD는 `git log -1`, 로컬 태그 `B26`로 확인.
+- 로컬 origin/main 기준 미푸시60커밋(기존33+이번27, 종료 커밋 포함). fetch/push/squash 없음.
+- REVIEW 세 칸: 기존 QA 대상6 / 목록 밖 기존0(ID 없음) / 이번 Batch 신규9(T4/T5·BL1/BL3/BL4/BL5·Q1/Q2/Q3), 총15.
+- 다음 콘텐츠 Batch 전에 사용자 QA 1회 필요. Loop30~40분+BodySize약5분, 사용자 차례.
+- draft6.1·아트v1.1 12방, B02바닥/위하강·B06 각5/5·B05조각3/3 머리0. 기존실패6건 중 실제출구5통과/A03지형1잔여.
+- 중간Continue 없는 AB 고리는 B04승리/B03귀환까지. B03(12.312,11) E4구간 HP0→GoX15.8 timeout, 완주·최종Continue 미실시.
+- 최종 Development errors0/warnings0·회귀13/13·smoke5종/B3 cycle·phase PASS. 정적 FAIL0/WARN48·Scene FAIL0, T1 원문과 동일.
+- 표시층·HUD·자동 CSV·사망/반짝임·피격/플레이어 표현·방이름 추가. 충돌체/판정시점·보호파일/B1·B2전투튜닝·설계 원본 변경0(시작 승인 예외 제외).
+- 결정3건(D-BODY·D-B23-RULE·D-B26-A03), Ready Queue0. [종료 요약](Validation/B26-summary.md) / [Claude용 한 장](Validation/B26-for-claude.md).
 
 ## 1. 현재 상태 / Current Sprint
 
-- Sprint3: V5 draft6 층 A·B12방, 건물 거리·대시/벽 점프 재방문·조각 HP 성장·보스1/2·직접 제작 아트와 효과 구현. 사용자 감각 수락·Sprint Gate 대기.
-- 반환 승강기는 B25 T1/T12에서 기술적으로 해소했고 A 고리/Continue를 확인했다. B02/B06/B05 자동 경로 잔여는 아래 PARTIAL·열린 버그를 따른다.
+- Sprint3: V5 draft6.1 층 A·B12방, 건물 거리·대시/벽 점프 재방문·조각 HP 성장·보스1/2·직접 제작 아트와 효과 구현. 사용자 감각 수락·Sprint Gate 대기.
+- 반환 승강기는 B25 T1/T12에서 기술적으로 해소했고 A 고리/Continue를 확인했다. B26 T2에서 B02/B06/B05 구간 반복을 통과했다. 전체 AB 고리 잔여는 B26 T9·열린 버그를 따른다.
 - [Batch25](Design/proposals-1101-B25/01_CODEX_BATCH25.md)는 사용자 2026-11-02 실행 승인, Hub 실행 후 재개. 최초 차단 증거와 B24/B23 당시 상태는 보존한다.
 
 ## 1-26. Current Tasks (Batch26)
@@ -26,19 +30,23 @@
 | B26-T2 | DONE | B02바닥5/5·위하강5/5(E3피격0)·B06조각5/5(피격각1)·B05기둥조각3/3, 머리0. Validation/B26-T2-routes.md |
 | B26-T3 | DONE | 새 PNG12개 SHA 일치·배경320×360, Import manifest 기록. Assets 복사0 |
 | B26-T4 | REVIEW | v1.1 28PNG import·종류별 스프라이트·meta 생성. Collider직렬화불변·T1/T4 Scene 원문동일. 감각 QA 대기 |
-| B26-T5 | REVIEW | 배경22.5u 아래정렬·세로반복 제거·sky1·증기alpha0.25 상승입자. Collider불변·T1 Scene원문동일. T7 캡처 후 감각QA |
+| B26-T5 | REVIEW | 배경22.5u 아래정렬·세로반복 제거·sky1·증기alpha0.25 상승입자. Collider불변·T1 Scene원문동일. 최종캡처 후 감각QA |
 | B26-T6 | DONE | 갈색0.4×0.8 안내 SignPost. 12방 가이드 SpriteRenderer만 기본숨김·충돌/상호작용불변. raw/26/T6-guide-display |
-| B26-T7 | DONE | 최종 카메라24 PNG·contact sheet·B03 목업 비교, raw/26/art/final·T7-art-verified Error0. physics꺼짐 fixture |
-| B26-T8 | DONE | 기존실패6건 재시도: PASS5(A05/A06/B02/B04/B06)·FAIL1(A03 4u벽 지형). 입력/도구 수정, 설계수정0. Validation/B26-T8-route-ledger.md |
-| B26-T9 | DONE | 測정기준: A고리64.946s/Continue·B02바닥·B04실제승리까지. 귀환/굴뚝 GoX15.8 timeout; 최초막힘원문·도구한계기록. 전체AB/최종Continue 미실시. Validation/B26-T9-AB-loop.md |
+| B26-T7 | DONE | 최종 카메라24 PNG·contact sheet·B03 목업 비교, raw/26/art/delivery·final-art-capture Error0. physics꺼짐 fixture |
+| B26-T8 | DONE | 기존실패6건 재시도: 실제출구 PASS5(A05/A06/B02/B04/B06 귀환포함)·FAIL1(A03 4u벽 지형). 입력/도구 수정, 설계수정0. Validation/B26-T8-route-ledger.md |
+| B26-T9 | DONE | 측정기준: 중간Continue 없음·A고리64.507s·B04승리/B03귀환. E4구간(12.312,11) HP1→0·GoX15.8 timeout; 입력실패원문/HP추적기록. 전체AB/최종Continue 미실시. Validation/B26-T9-AB-loop.md |
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
-| B26-T11 | DONE | Development errors0/warnings0, 전체 회귀B26-main13/13, Loop·Graybox·B1·B2·V4 smoke5/5 Error0·B3 cycle/phase/사망복귀 PASS |
-| B26-T12 | DONE | README·TASKS3/9 QA1회 안내, 기존6+신규2 각각 항목/기록칸. 이후 Backlog 신규 REVIEW는 종료 시 추가 |
+| B26-T11 | DONE | Development errors0/warnings0, 전체 회귀B26-final13/13, Loop·Graybox·B1·B2·V4 smoke5/5 Error0·최종B3 cycle/phase/사망복귀 PASS |
+| B26-T12 | DONE | README·TASKS3/9 QA1회 안내, 기존6+신규9 각각 항목/기록칸, 누락0 |
 | B26-BL1 | REVIEW | HUD fragment+n/4·live값 RenderTexture PNG. BL1-hud Error0; UI 감각QA |
 | B26-BL2 | DONE | Loop30초 smoke exit0/Error0·Playtest 원본+room-times CSV1방 생성. Continue 재시작은 새 suffix 파일로 덮어쓰기 방지 |
 | B26-BL3 | REVIEW | E1~E4 실제ReceiveHit→즉시죽음·0.300s 표시4종 PASS/Error0. 판정변경0, 감각QA |
 | B26-BL4 | REVIEW | 15이벤트 볼륨표·master0.8, 동시PCM스트레스11.983310→0.850000 클리핑0. 장치출력0 관측(청감미검증), 감각QA |
 | B26-BL5 | REVIEW | 12방 획득물/조각/CP 1.5s·밝기0.663/1.487 PNG2장·Error0·Collider불변, 감각QA |
+| B26-Q1 | REVIEW | 방향반전·점프/착지0.1초 이벤트 각1·대시잔상3·플레이어 Collider/root불변 PASS/Error0 |
+| B26-Q2 | REVIEW | E1~E4·B1/B2 흰피격 요청0.06s/실측0.0667s·Collider불변·Error0. Q2-white-flash-r2, 감각QA |
+| B26-Q3 | REVIEW | JSON title — 앞부분12방·실제표시각1.200s PASS/Error0, 가독성QA |
+| B26-Q4 | DONE | Validation/B26-for-claude.md: A03 좌표·실패원문·전체고리 한계·기존6/신규9 REVIEW·결정3건 |
 
 ## 1-DOC. Current Tasks (DOC-01)
 
@@ -102,7 +110,7 @@ Base `bf9693a`(B20). 기존 미푸시 2커밋 보존, push·squash·게임 태�
 
 ## 1-1. 미해결 목록
 
-B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수락 대기. B21~B24 표는 [보관 기록](Archive/TASKS_ARCHIVE.md#doc-01-보관--b21b24-current-tasks)으로 옮겼고, 미해결 행과 이전 B12~B19의 기록상 미종결 행은 아래 표 하나에 유지한다. 후속 Batch에서 해소·대체된 역사적 상태도 있으므로 현재 버그/차단 수에 합산하지 않는다. 원문은 [B12~B19](Archive/TASKS-B12-B19.md), 전체는 [B20 종료 스냅샷](Archive/TASKS-B20.md). 이번 정리는 상태를 재판정하지 않는다.
+B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수락 대기. B21~B24 표는 [보관 기록](Archive/TASKS_ARCHIVE.md#doc-01-보관--b21b24-current-tasks)으로 옮겼고, 미해결 행과 이전 B12~B19의 기록상 미종결 행은 아래 표 하나에 유지한다. 후속 Batch에서 해소·대체된 역사적 상태도 있으므로 현재 버그/차단 수에 합산하지 않는다. 원문은 [B12~B19](Archive/TASKS-B12-B19.md), 전체는 [B20 종료 스냅샷](Archive/TASKS-B20.md). DOC-01은 상태를 재판정하지 않았고 B26은 승인 D-REVIEW-CLEANUP의15행을 변경했다(6개 QA는 유지).
 
 | Task | 상태 | 당시 결과·남은 확인 |
 | --- | --- | --- |
@@ -145,7 +153,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
-| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B25-delivery, B20 슬롯12개는 B21 raw에 보존 |
+| D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B26-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-B26-A03 | A03 서쪽 입구→거리 M건물(16~22, 높이4u)을 어떻게 통과할지: 낮은 디딤 추가 / 거리 통로로 변경 | 낮은 디딤 설계를 Claude가 검토하도록 추천. 점프2.5u보다 높은 4u벽에서 실제입력 실패, 좌표 원본 수정은 사용자 권한 | B26-T8 A03 잔여, [원문](Validation/_raw/26/T8-A03-r1/result.txt) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
@@ -153,7 +161,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 
 해소한 문서 충돌(B25 재개): `rooms_v5_AB.json`의 A02-B05에는 이전 `stub:true`가 남았지만 WORLD18·world_v5_AB와 B25-T4는 양방향 연결을 명시한다. 사용자 승인 B25 연결 지시를 우선해 생성기/Scene에서 해당 닫힘만 제거하고 WallJump gate를 유지했다. Design 원본 수정0, T10-A02-link 근거.
 
-결정 대기2건. DOC-01 옛 문서 이동은 사용자 2026-11-03 결정으로 보류하여 질문 목록에서 해소했다. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·검증은 이번 T2/T10에서 진행했고, 감각 수락과 기존 B24 당시 PARTIAL 이력은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+결정 대기3건. DOC-01 옛 문서 이동은 사용자 2026-11-03 결정으로 보류하여 질문 목록에서 해소했다. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·검증은 이번 T2/T10에서 진행했고, 감각 수락과 기존 B24 당시 PARTIAL 이력은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
 
@@ -180,6 +188,13 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 - B25-T14: 전체 고리 그래픽에서 바닥·발판·위험·적 구분. [Graybox 비교](Launchers/current/Play-V5-Graybox.cmd)는 같은 배치·별도 슬롯.
 - 신규 B26-T4: E1~E4·보스1/2·획득물·체크포인트·레버 종류를 바로 알아볼 수 있는지.
 - 신규 B26-T5: 배경 상단 이음새와 증기가 벽처럼 보이는 문제가 해소됐는지.
+- 신규 B26-BL1: HUD 조각 아이콘과 n/4가 획득/성장 상태와 잘 맞고 읽히는지.
+- 신규 B26-BL3: 적 사망이 즉시 판정되면서 0.3초 잔상/입자가 명확한지.
+- 신규 B26-BL4: 이벤트 음량과 동시 소리가 적절한지(PCM 클리핑0, 실행 장치 출력0으로 청감은 미확인).
+- 신규 B26-BL5: 조각·획득물·체크포인트의1.5초 반짝임이 과하지 않은지.
+- 신규 B26-Q1: 좌우 방향·점프/착지0.1초 탄성·대시 잔상3장이 자연스러운지.
+- 신규 B26-Q2: 적·보스 피격 흰색0.06초가 읽히고 눈에 거슬리지 않는지.
+- 신규 B26-Q3: 방 이름1.2초를 읽을 수 있는지.
 
 Loop 순서: A03 CP→승강기→A04 B1→A05 대시→A03 연습/선반→천장 구멍 B01→지붕→B02 바닥→B03 증기→B04 보스2→벽 점프 재방문(B06·B02 위통로·B01 탑·B05·A02). 자동 확인 결과는 B26 Current Tasks와 Validation/B26-T2-routes.md, T8 ledger를 따른다. 독립 진입 fixture 통과와 전체 자연 완주는 구분한다.
 
@@ -196,12 +211,11 @@ Loop 순서: A03 CP→승강기→A04 B1→A05 대시→A03 연습/선반→천�
 | B07-V2-BOSS-REPLAY / B09-REGRESSION | 새 빌드 V2 고정 입력이 W22 보스에서 실제 사망(tick285, 진입편차.082u), 이전 B06b 빌드는 PASS. 원인 미확정 | [B07-T25](Validation/B07-T25-summary.md), [B09-T11](Validation/B09-T11-summary.md) |
 | B07-A02-TRAVERSE | A02 필수 계단·재방문 굴뚝: 자동 입력 미완주, 사람 확인 필요 | [B07-R-A02](Validation/B07-R-A02-summary.md) |
 | B07-C03-OPTIONAL | C03 첫 선택 포고 도전: 자동 입력 미완주, 사람 확인 필요 | [B07-R-C03](Validation/B07-R-C03-summary.md) |
-| B25-ROUTES | B02 바닥 포고/위길 E3·B06 포고·B05 서쪽조각 자동입력 미완주. 지형/능력값 변경 없이 재시도 종료. 사람도 막히면 방/위치/입력 기록→설계 검토 필요 | [T7](Validation/_raw/25/T7-B02-running/result.txt)·[T8](Validation/_raw/25/T8-B06-airdash/result.txt)·[T12](Validation/_raw/25/T12-expanded1/result.txt), T10-cover 원문 raw/25 |
-| B25-Q5-ROUTES | 독립12방 묶음 PASS6/FAIL6. A03/A05 접근 timeout, A06 경로이탈, B02 긴도약, B04 접근, B06 포고. 자동입력의 한계와 제품 결함을 구분, 전체12방 완주 증명 아님 | [12방 결과](Validation/_raw/25/Q5-final-routes/routes.csv) |
-| B25-MAP-CAPTURE | AB12/방문전후/문 표시 로직은 PASS. Editor 캡처미생성, exe screen capture 실패 Error2, Computer Use 앱 접근승인시간초과. 실제 지도 이미지 잔여 | [원문](Validation/_raw/25/T6-map-exe/result.txt) |
+| B26-A03-STREET | A03 서쪽 입구→거리 M건물4u(16~22) 앞 실제 점프 실패. 기존Q5 나머지5경로는 B26 재시도 통과, 원본설계 판단D-B26-A03 대기 | [B26 장부](Validation/B26-T8-route-ledger.md) |
+| B26-AB-DRIVER | 전체 AB 실제승리 B04 뒤 귀환/굴뚝 접근 GoX15.8 timeout. B03(12.312,11) E4구간 접촉 HP1→0·사망감시 없는 도구 한계, 완주 미실시 | [B26 고리](Validation/B26-T9-AB-loop.md) |
 | V5-HEADBUMP | 사용자 점프 머리 걸림 피드백. h1.6 머리 충돌 후보36면·격리 실측33/36 접촉, 모서리 수평 보정 없음. 불일치3과 초기 문 전환2도 보존 | [플레이 CSV](Playtest/20261022-233114.csv), [B20 T3](Validation/B20-headbump.md), [전체 실측](Validation/B20-headbump-all.md) |
 
-B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그7건, 결정 대기2건이다. B24-RETURN-LIFT는 B25 T1 왕복3회/다른층호출 및 T12 실제 A 고리/Continue 통과로 해소했다. 이전 실패 원문은 유지한다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
+B16-GENERATOR·B12-CHASE-VERIFY·B18-CLEARANCE·B18-STATIC의 해소 상태는 유지한다. 이전 실패 기록은 기존 Validation에 보존했다. 열린 버그6건, 결정 대기3건이다. B25-ROUTES의 B02/B06/B05 구간은 B26 T2 반복으로, B25-MAP-CAPTURE는 B26 T10 RenderTexture PNG2장으로 해소했다. 이전 실패 원문은 보존한다. B24-RETURN-LIFT는 B25 T1 왕복3회/다른층호출 및 T12 실제 A 고리/Continue 통과로 해소했다. 이전 실패 원문은 유지한다. V5-A05-TRENCH는 B22 기본 복귀와 무능력0/10·대시10/10 실측으로 기술적으로 해소했고 최종 감각 수락은 T5/T8 REVIEW다([B22](Validation/B22-summary.md)). V5-A05-SHORTCUT은 B21 T1/T2에서 실제 잠금/방향/저장/14문을 확인해 해결했다([근거](Validation/B21-shortcut.md)). 정적 후보와 실제 진행 불가 판정은 구분한다.
 
 Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스톱, F2R 30/60/120fps 검사)과 F2R(표시 REVIEW)로 재구현됨. [B01 인계](Archive/B01-latest-handoff-20261007.md), [F2R](Validation/F2R-summary.txt).
 
@@ -246,25 +260,35 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch26 진행
+## 9. Latest Handoff — Batch26 종료
 
 ### 결정 질문지
 
-D-BODY: 1.6 유지 / 1.3 / 1.1(추천1.3 비교), B20-T4. D-B23-RULE: 기존 엄격본문 / 낮은 오름 포함(추천본문유지). 신규 D-B26-A03: 서쪽 거리 4u건물에 낮은 디딤 추가 / 거리통로 변경(추천 Claude 설계 검토). 2절 근거를 따른다. 설계 원본은 수정하지 않았다.
+| 결정 | 선택지·추천 | 풀리는 항목 |
+| --- | --- | --- |
+| D-BODY | 1.6 유지 / 1.3 / 1.1. 추천:1.3을 비교하고 선택(공격거리 절충), 기본값 채택은 별도 | B20-T4, BodySize 런처 |
+| D-B23-RULE | 기존 엄격본문 / 낮은 오름 포함. 추천:본문 유지, 기대값 불일치 근거는2절 | B23-T5/T6 규칙 질문 |
+| D-B26-A03 | M건물 서쪽에 낮은 디딤 / 거리통로 변경. 추천:Claude 설계 검토 후 낮은 디딤. 승인원본4u벽 앞 실제 점프 실패 | B26-T8 A03, [원문](Validation/_raw/26/T8-A03-r1/result.txt) |
 
 ### 직접 플레이 확인
 
-3절 QA1회: 기존6 + 신규 B26-T4/T5. Loop30~40분 + BodySize5분, Builds/B26-delivery. 전체시간·보스시도·막힘·머리·그래픽·크기 선택을 기록한다.
+3절의 **기존6+신규9** 전 항목을 QA1회에서 본다. BodySize약5분→Play-V5-Loop30~40분, Builds/B26-delivery. 기록: 전체시간·보스시도·막힘/머리·그래픽·크기 선택. 총REVIEW15로 다음 콘텐츠 Batch 전 QA 필요. 후보 모서리 보정은 미채택 종료·기본 꺼짐.
 
 ### Task별 결과
 
-Current Tasks Batch26 표와 Validation/B26-T0-review-cleanup.md·B26-T1-world.md·B26-T2-routes.md·B26-T3-art-staging.md·B26-T6-guide.md·B26-T7-art.md·B26-T8-route-ledger.md에 실제 결과·원문 경로. T9은 첫 막힘 원문까지 기록 완료(전체 AB 미완주), 이후 Backlog→승인Queue 순서로 계속한다. Git 태그/최종 커밋은 종료 시 기록한다.
+Claude 설계 변경: `e2bc7d1` Design/v5 draft6.1 및 B26 지시문을 내용 변경 없이 승인 커밋. 이후 설계 원본 수정0.
 
-이전 인계: [DOC-01](Validation/DOC-01-summary.md), [B25](Validation/B25-resume-summary.md). 기존 미해결 Task는 현재 표에 보존했다.
+- **기능 확장:** 12방 아트v1.1·투명 증기/배경·HUD·실제 지도PNG·자동 방별CSV·사망/반짝임·플레이어 표현·흰피격·방이름. 자율B의 새컴포넌트/표시층 추가이며 Collider·판정시점 불변.
+- **경로:** B02바닥/위하강·B06조각 각5/5·B05기둥조각3/3·머리0, 실제출구5/6. 전체고리는 A고리64.507s(중간Continue 없음)→B04승리/B03귀환까지; E4구간 HP0/GoX15.8 최초 실패를 기록해 T9 측정기준 완료, 전체완주 아님.
+- **검증:** 최종 Development 오류0·회귀13/13·smoke5종·B3 cycle/phase PASS, 정적FAIL0/WARN48·SceneFAIL0. 최종 Scene/정적 원문은T1과 동일. 보호149경로 Git시작기준 불변, B1/B2·V4·ProjectSettings 변화0.
+- **결과·커밋·파일·문제:** [B26 종료 요약](Validation/B26-summary.md)의22행 표, [Claude용 한 장](Validation/B26-for-claude.md). Task별 상세는 Current Tasks 링크를 따른다. 최종커밋/태그B26, push/squash 없음.
+- **조정:** ArtSettings의 Sprite/표시시간·Feedback.asset의 이벤트/master볼륨·Scene B26SteamVisual의opacity/riseSpeed. Play값 메모→Stop→원본저장→재빌드. B1/B2튜닝 값은 이번 변경0.
 
 ### 다음 Batch 후보
 
-사용자 QA 결과에 따른 감각 수락·D-BODY 결정, Claude의 A03 지형 설계 검토. Sprint Gate는 사용자 대기.
+사용자 QA의15개 감각 수락·D-BODY 선택, Claude A03 지형 검토, B03귀환 E4회피·사망즉시중단 입력 보완 후 AB잔여측정. 현재 승인Queue0으로 임의 구현을 시작하지 않는다. Sprint Gate는 사용자 판단 대기.
+
+이전 인계: [DOC-01](Validation/DOC-01-summary.md), [B25](Validation/B25-resume-summary.md). 기존 미해결 Task/이전 직접 플레이 순서는 현재 표와3절에 보존했다.
 
 ## 10. Playtest·Before-After
 

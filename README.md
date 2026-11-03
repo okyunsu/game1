@@ -8,7 +8,7 @@
 
 ## 실행
 
-현재 런처는 `Builds/B25-delivery`를 사용하며, 직전 비교 빌드는 `Builds/B24-delivery`입니다.
+현재 런처는 `Builds/B26-delivery`를 사용하며, 직전 비교 빌드는 `Builds/B25-delivery`입니다.
 
 각 런처를 더블클릭합니다. 타이틀이 나오면 Z로 이어하기를 선택합니다.
 저장은 모드별 독립 슬롯입니다. 새 게임 런처는 해당 슬롯을 초기화합니다.
@@ -54,7 +54,7 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 [이전 README 전체 이력](Archive/README-history-2026-10.md)
 
-사람 플레이 방별 체류 시간 CSV: 제목 화면에서 **새 게임**으로 시작한 V4/V5 세션은 기존 PlaytestLogger가 `Playtest/<날짜-시간>.csv`를 기록합니다. 게임을 종료하거나 제목으로 돌아간 뒤 아래 명령으로 방별 합계를 저장합니다. Continue만 사용한 세션이나 fixture 시작은 기록이 없을 수 있으며, 이번 도구가 게임의 기록 시작 조건을 바꾸지는 않습니다.
+사람 플레이 방별 체류 시간 CSV: 제목 화면에서 **새 게임**으로 시작한 V4/V5 세션은 기존 PlaytestLogger가 `Playtest/<날짜-시간>.csv`를 기록합니다. 게임을 종료하거나 제목으로 돌아간 뒤 아래 명령으로 방별 합계를 저장합니다. 일반 Continue·fixture는 기록이 없을 수 있습니다. B26 Play-V5-Loop는 실행부터 자동 기록하고 종료 시 방별 CSV를 만듭니다(30초 smoke로 검증). 제목/Continue로 기록을 재시작하면 새 suffix 원본을 만들며 덮어쓰지 않습니다.
 
 ```powershell
 & 'C:/Users/gosu3/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -B Tools/Export-RoomTimes.py Playtest/20261022-233114.csv
@@ -64,7 +64,7 @@ Stop 후 원본 Asset에 반영·저장하고 재빌드합니다. [V4 안내](LE
 
 B26 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd) **1회30~40분** + [BodySizeTest](Launchers/current/Play-BodySize.cmd) **약5분**입니다. 현재 Builds/B26-delivery의 draft6.1·아트v1.1을 실행합니다. [TASKS 3절](TASKS.md#3-직접-플레이-확인)에 기존 QA6개와 이번 신규 REVIEW 각각의 확인 항목을 적었습니다. 크기 비교 뒤 A03 CP→A04 B1→A05 대시→A03 연습/선반→B01→B02→B03→B04 보스2→벽 점프 재방문(B06·B02위통로·B01탑·B05·A02)을 진행합니다.
 
-기존 QA: B20-T4 크기 / B22-T5 도랑복귀 / B23-T1 보스1등장 / B23-T3 일어나기 / B24-T11 보스2 / B25-T14 그래픽. 신규 QA: B26-T4 종류별 스프라이트 식별, B26-T5 배경 이음새·투명 증기. Backlog/Queue 신규 REVIEW도 같은 TASKS 목록에 이어집니다.
+기존 QA: B20-T4 크기 / B22-T5 도랑복귀 / B23-T1 보스1등장 / B23-T3 일어나기 / B24-T11 보스2 / B25-T14 그래픽. 신규 REVIEW9개: B26-T4 종류별 스프라이트 / T5 배경·증기 / BL1 조각HUD / BL3 사망표시 / BL4 음량·동시소리 / BL5 대기반짝임 / Q1 플레이어반전·탄성·잔상 / Q2 흰피격 / Q3 방이름. 각 확인 항목은 TASKS3에 있습니다.
 
 [Graybox](Launchers/current/Play-V5-Graybox.cmd)는 같은 충돌체·별도 슬롯입니다. [B1 단독](Launchers/current/Play-BossTest-B1.cmd)·[B2 단독](Launchers/current/Play-BossTest-B2.cmd)은 필요한 경우 선택합니다. M으로 지도를 전환하며 방문 전후를 봅니다. B2는 중앙 벽점프 획득→3u이탈→잠금/1.8초 등장, 전투 중 받침 하강, 사망 뒤 능력유지/재도전을 확인합니다.
 
@@ -76,7 +76,7 @@ B26 검수는 [Play-V5-Loop](Launchers/current/Play-V5-Loop.cmd) **1회30~40분*
 
 V5 AB draft6.1: [새 시작](Launchers/current/Play-V5.cmd) / [대시 보유](Launchers/current/Play-V5-AfterDash.cmd) / [더블 점프](Launchers/current/Play-V5-DJ.cmd), -NoMap 지원.
 
-방별 실제 입력 회귀 묶음은 새 Development 빌드 후 `Tools/Run-RoomRoutes.ps1 -Tag 고유이름`으로 실행합니다. 12방을 독립 진입 fixture에서 시작하고 적을 유지한 채 주요 출구까지 입력합니다. B06은 선택 도전 뒤 입구로 돌아오는 경로입니다. 통과/실패와 각 원문은 `Validation/_raw/25/<태그>/routes.csv`·방별 result/game.log에 보존하며, 하나가 실패해도 나머지 방을 검사합니다. 전체 자연 완주와 구분합니다.
+방별 실제 입력 회귀 묶음은 새 Development 빌드 후 `Tools/Run-RoomRoutes.ps1 -Tag 고유이름`으로 실행합니다. 12방을 독립 진입 fixture에서 시작하고 적을 유지한 채 주요 출구까지 입력합니다. B06은 선택 도전 뒤 입구로 돌아오는 경로입니다. 통과/실패와 각 원문은 `Validation/_raw/26/<태그>/routes.csv`·방별 result/game.log에 보존하며, 하나가 실패해도 나머지 방을 검사합니다. 전체 자연 완주와 구분합니다. 현재 A03 서쪽 진입 뒤 거리의4u 건물은 설계 판단(D-B26-A03) 대기입니다.
 
 지난 Batch의 검사 결과와 분류는 [TASKS 보관 색인](TASKS.md#5-보관된-항목-색인)을 따릅니다.
 
