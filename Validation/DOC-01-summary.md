@@ -26,3 +26,14 @@ BATCH CARD: 종료 T8에서 Task 커밋 뒤 실행 결과를 이 위치에 기�
 | - git push·reset --hard·clean·stash drop/pop/apply, 이미 push된 커밋 합치기는 실행하지 않는다. 저장 형식·ProjectSettings 변경은 사용자 명시 승인 없이는 중단한다. 로컬 reset --soft는 Housekeeping의 한정된 조건을 따른다. | Git Rule / Stop Conditions — - reset --hard·clean·stash drop/pop/apply, 이미 push된 커밋 합치기는 실행하지 않는다. push는 Git Rule을 따른다. 저장 형식·ProjectSettings 변경은 사용자 명시 승인 없이는 중단한다. 로컬 reset --soft는 Housekeeping의 한정된 조건을 따른다. | D11·중복 통합 |
 | - 자동 실행 로그·csv·스크린샷은 Validation/_raw/에 둔다(git 제외). Validation/에는 필요한 Task 요약 최대1개씩과 Batch 종료 요약1개만 커밋한다(Evidence와 동일). | Evidence / Housekeeping — - 검증 요약·원본 보관·regression 압축·임시 사본 정리는 Evidence를 따른다. | D5·중복 통합 |
 | - 배치 진행 중에는 Task마다 로컬 커밋한다. 배치 종료 후 push 직전에 | Git Rule / Housekeeping — - 배치 진행 중 커밋은 Git Rule을 따른다. 배치 종료 후 push 직전에 | 중복 통합 |
+
+## T3 상태 보존
+
+| 대상 | REVIEW | PARTIAL | BLOCKED |
+| --- | ---: | ---: | ---: |
+| 이동 전 B21~B24 | 8 | 6 | 2 |
+| 이동 후 현재 목록의 B21~B24 | 8 | 6 | 2 |
+| 이동 전 현재 Task 표 전체 | 20 | 16 | 4 |
+| 이동 후 현재 Task 표 전체 | 20 | 16 | 4 |
+
+PASS 상태별 행/Task ID/상태/결과 원문 전후 동일, B25 본문·표 원문 동일. REVIEW 총 21개는 표 REVIEW 20개 + 기존 본문 B20-T4 1개이며, 보관 표·Handoff 중복 언급은 합산하지 않는다. 과거 해소/대체 여부를 이번 정리에서 재판정하지 않음. 직접 플레이 목록·순서 불변.
