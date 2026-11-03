@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 10004}
   - component: {fileID: 1895863423}
   - component: {fileID: 1895863424}
+  - component: {fileID: 1895863425}
   m_Layer: 0
   m_Name: B03 V5
   m_TagString: Untagged
@@ -6042,6 +6043,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B25EffectsHost
   profile: {fileID: 11400000, guid: 666feeec5f1a22d4a84cf56fc636002b, type: 2}
+--- !u!114 &1895863425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef9de129ef24dd45b642ea672ba79eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::B26RoomNotice
+  roomName: "B03 \uBC30\uAD00 \uC218\uC9C1\uAC31"
+  seconds: 1.2
 --- !u!1 &1958615773
 GameObject:
   m_ObjectHideFlags: 0
