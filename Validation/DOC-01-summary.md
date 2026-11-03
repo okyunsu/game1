@@ -1,21 +1,23 @@
 # DOC-01 문서·기록 정리 — 종료 요약
 
-BATCH CARD (마지막 Task 커밋 79e74c6 기준, T5 이후 종료 기록은 미커밋):
+최종: T0~T4/T6~T8 DONE, T5 사용자 결정 DEFERRED. raw **2372.6→915.1MB**, 파일 **63772→39138**. README 진행 상태 링크화·로컬 커밋·DOC-01 태그, push 없음. 최초 중단 기록은 아래에 당시 이력으로 유지하고 재개 결과가 최종 상태다.
+
+BATCH CARD (Task 커밋 후 HEAD 8250ad9 기준, 종료 기록은 별도 미커밋 검사):
 
 ```text
-BATCH CARD f1a6f5a..HEAD (79e74c6)
-변경 파일: 8 (+389 / -186 줄, 바이너리 0)
+BATCH CARD f1a6f5a..HEAD (8250ad9)
+변경 파일: 9 (+791 / -203 줄, 바이너리 0)
   Scripts: 0
   Scenes: 0
   Prefabs: 0
   Editor: 0
   Validation: 1
-  문서: 7
+  문서: 8
   기타: 0
-허용 범위: AGENTS.md, CLAUDE.md, Batches/BATCH-DOC-01.md, Batches/BATCH_TEMPLATE.md, TASKS.md, DECISIONS.md, Archive/TASKS_ARCHIVE.md, Validation/DOC-01-summary.md
+허용 범위: AGENTS.md, CLAUDE.md, Batches/BATCH-DOC-01.md, Batches/BATCH_TEMPLATE.md, TASKS.md, DECISIONS.md, Archive/TASKS_ARCHIVE.md, README.md, Validation/DOC-01-summary.md
 허용 범위 밖: 0
-TASKS 상태(표 둘째 칸): DONE 27 / REVIEW 20 / DOING 0 / BLOCKED 5 / PARTIAL 17
-결정 대기(## 2. 결정 대기 표의 D- 행): 4
+TASKS 상태(표 둘째 칸): DONE 30 / REVIEW 20 / DOING 0 / BLOCKED 4 / PARTIAL 16
+결정 대기(## 2. 결정 대기 표의 D- 행): 3
 열린 버그(## 4. 열린 버그 표 행): 7
 직접 플레이 확인 대기(## 3. 목록 항목): 14
 TASKS 깨진 링크 수: 0
@@ -264,7 +266,7 @@ exec_command failed: CreateProcess { message: "Rejected(\"This action was reject
 
 검토 이유는 LEVEL_V2에 대한 실제 PRD/GAME_DESIGN 검색 결과와 일치하지 않는다. 그러나 이번 사용자 중단 조건 “git 명령만 샌드박스 밖 실행을 요청한다. 거부되면 파일 변경은 둔 채 커밋 없이 종료 보고한다”에 따라 재시도·대체 이동 없이 종료했다. 이후 변경은 TASKS·이 요약의 종료 기록뿐이며 미커밋으로 보존한다.
 
-## Task 결과·미실시
+## 최초 중단 당시 Task 결과·미실시
 
 | Task | 상태 | 커밋·실제 결과 |
 | --- | --- | --- |
@@ -284,7 +286,7 @@ PASS 기존 사용자 보존6파일 SHA256 일치·미스테이징, PRD/GAME_DES
 
 종료 검증 첫 시도는 `AssertionError: PRD.md`로 실패했다. 작업 트리 CRLF 바이트와 Git LF blob의 직접 비교 때문이며, 파일 크기·줄바꿈 정규화 내용·기존 사용자 파일 SHA256로 한 번 재검증하여 통과했다. 제품/문서 내용 오류를 숨긴 것이 아니며 검증 방법의 차이를 명시한다.
 
-## T0 대비 바이트 크기
+## 최초 중단 당시 T0 대비 바이트 크기
 
 | 파일 | 시작 bytes | 종료 bytes | 차이 |
 | --- | ---: | ---: | ---: |
@@ -319,7 +321,7 @@ PASS 기존 사용자 보존6파일 SHA256 일치·미스테이징, PRD/GAME_DES
 
 Ruling: REVIEW 수는 현재 Task 표·미해결 표의 고유 ID와 기존 본문 B20-T4를 합산 / Handoff·보관 표의 중복 수를 제외하기 위함 / 잘못된 과거 REVIEW 상태가 있으면 사용자 수락 근거로 재판정 필요(이번에는 변경하지 않음).
 
-## 별도 작업 트리 확인
+## 최초 중단 당시 작업 트리 확인
 
 PASS 문서 대상 `git diff --check`, 커밋 범위 밖0·staged0·TASKS 깨진 링크0·없는 빌드/런처0. 카드의 마지막 REGRESSION 행은 과거 B25 실행이며 DOC-01 통과 증거가 아니다. 카드의 표 REVIEW20과 TASKS0의21 차이는 기존 본문 B20-T4 1개다.
 
@@ -409,3 +411,33 @@ PASS T6: 지정 경계 내 비텍스트20,000개 삭제·보존 텍스트4,925�
 ## T7 README 정리
 
 PASS 현재 Batch/Sprint 진행 문단과 과거 B19/B20/B21 결과를 TASKS 링크로 교체. B25/직전B24 빌드 경로는 실행 절에 유지. 모든 런처 링크의 목록·순서, 기존 실행/조작 본문, 최신 B25 Loop·Graybox·보스 시험장·저장/초기화·조정 위치·기록칸 문단이 원문과 일치함을 직접 비교했다. 이번 변경은 안내 중복만 제거하며 게임 동작·설계·검증 판정을 바꾸지 않는다.
+
+## 재개 종료 확인
+
+- T5: 보호 문서가 참조해 이동 보류(사용자 결정 2026-11-03), 다음 GAME_DESIGN 수정 때 함께 처리. 질문 목록에서 해소·DEFERRED 유지, 이동 재시도0.
+- T6: 비텍스트20,000파일 삭제, 텍스트4,925개 경로/SHA256 일치. regression 원본4,635개와 zip 내부4,635개의 수·해시 일치 확인 후 원본 삭제. zip17.0MB. 범위 밖 삭제0. raw 전체 2372.6→915.1MB / 63772→39138파일.
+- T7: 8250ad9. README 런처27개 링크와 순서/실행/조작/최신 B25 직접 플레이 문단 원문 보존. Batch 진행 문단은 TASKS 링크로 교체.
+- T8: 중간 인계 d7e96c8, T6 결과 f6edb29, 종료 커밋은 `git log -1`, 로컬 DOC-01 태그. squash/rebase/force/push 없음.
+- PASS 기존 사용자 보존6파일 SHA256가 최초 T0와 동일, 미스테이징. REVIEW20개 표+본문 B20-T4=21, 사용자 QA 필요 표시 유지. 기존 플레이 순서 유지.
+- Unity·게임 코드·Scene·Assets·ProjectSettings·PRD/GAME_DESIGN·Design 수정/실행0. Unity/회귀/V5 Scene 검사 미실시(문서 전용). T6 첫 PowerShell 구문 오류는 실행 전 발생했고 수정1회 후 성공; 재개 실행에서 자동 승인 거부는 없음.
+- 기존 `_raw/DOC-01` Preflight 통과 원본은 이번 명시된 B09/B10·regression 정리 범위 밖이므로 그대로 두었다. T6 raw 자체는 Git 미추적이며 커밋하지 않는다.
+
+## 최종 크기 전후 (T0 기준)
+
+| 파일 | T0 bytes | 최종 bytes | 차이 |
+| --- | ---: | ---: | ---: |
+| AGENTS.md | 24020 | 26909 | +2889 |
+| CLAUDE.md | 797 | 887 | +90 |
+| GAME_DESIGN.md | 44548 | 44548 | +0 |
+| LEVEL_V2.md | 9465 | 9465 | +0 |
+| LEVEL_V4.md | 3068 | 3068 | +0 |
+| PRD.md | 15875 | 15875 | +0 |
+| PROCESS_METRICS.md | 13768 | 13768 | +0 |
+| README.md | 16118 | 13842 | -2276 |
+| RESOURCES.md | 2028 | 2028 | +0 |
+| TASKS.md | 54270 | 38801 | -15469 |
+| WORLD_V3.md | 11467 | 11467 | +0 |
+| Batches/BATCH_TEMPLATE.md | 3452 | 4805 | +1353 |
+| DECISIONS.md (신규) | 0 | 14547 | +14547 |
+
+PASS 최종 별도 검사: 커밋된9파일은 DOC-01 허용 범위 안, 미커밋은 TASKS·종료 요약과 보존 대상4경로뿐. README/TASKS 링크 대상 전부 존재, 원래 PRD/GAME_DESIGN/옛문서3개 내용 불변. 카드의 마지막 REGRESSION13/13은 과거 B25 증거이며 이번 Unity 검증이 아니다. 종료 커밋 뒤 staged0·사용자 변경4경로만 남는지와 DOC-01 태그 대상을 확인한다.

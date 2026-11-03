@@ -2,16 +2,17 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-03, Codex — DOC-01 잔여 재개. T0~T4/T6 DONE, T5 사용자 보류, T7·종료 기록 진행.
-- Base `f1a6f5a`; 마지막 완료 커밋 `79e74c6`(T4), 현재 HEAD는 `git log -1`로 확인.
-- 로컬 origin/main 기준 미푸시29커밋(기존24 + DOC-01 로컬5), 이번 fetch/push/squash 없음.
-- 운영 규칙·템플릿·과거 표 보관·DECISIONS 장부 반영. T5 참조 조사/종료 기록은 미커밋으로 보존.
+- 갱신: 2026-11-03, Codex — DOC-01 종료. T0~T4/T6~T8 DONE(8), T5 DEFERRED(사용자 결정).
+- DOC-01 Base `f1a6f5a`; 종료 커밋은 `git log -1`, 로컬 태그 `DOC-01`로 확인. squash/rebase 없음.
+- 로컬 origin/main 기준 미푸시33커밋(기존24 + DOC-01 로컬9), 이번 fetch/push 없음.
+- 운영 규칙·템플릿·과거 표 보관·DECISIONS 장부 완료. README 진행 상태는 TASKS 링크로 정리.
+- T6 raw2372.6→915.1MB, 63772→39138파일. 텍스트4925개 경로/해시 보존·regression4635개 zip 수/해시 검증.
+- T5: 보호 문서가 참조해 이동 보류(사용자 결정 2026-11-03), 다음 GAME_DESIGN 수정 때 함께 처리. 옛 문서 이동0.
 - REVIEW 21개(고유 Task ID, 기존 본문 B20-T4 포함). 다음 콘텐츠 Batch 전에 사용자 QA 1회 필요.
-- Git mv 권한 상승 자동 검토 거부로 사용자 중단 조건 적용. 옛 문서 이동0·raw 삭제/zip0·README 변경0·DOC-01 태그 없음.
-- Unity 실행·게임 코드/Scene/Assets/ProjectSettings/PRD/GAME_DESIGN/Design 수정0, Preflight -SkipUnity PASS.
-- 기존 사용자 변경4경로는 해시 보존·미스테이징: Design/v5 2파일·Design/proposals-1103-B26/·Validation/D61-room-rules-v5-AB.md.
-- Codex T6/T7·종료 기록 차례. 항목별 거부는 기록 후 다음 진행, Git 커밋 불가 때만 전체 종료. Ready Queue0.
-- B25 제품 상태는 아래 표와 [기존 재개 결과](Validation/B25-resume-summary.md), DOC-01 상세는 [요약](Validation/DOC-01-summary.md).
+- Unity 실행·게임 코드/Scene/Assets/ProjectSettings/PRD/GAME_DESIGN/Design 수정0. Unity 회귀 미실시(문서 전용).
+- 기존 사용자 변경4경로 해시 보존·미스테이징: Design/v5 2파일·Design/proposals-1103-B26/·Validation/D61-room-rules-v5-AB.md.
+- 사용자 QA 차례. Ready Queue0/결정3건, 기존 직접 플레이 순서 유지.
+- B25 제품 상태는 아래 표와 [재개 결과](Validation/B25-resume-summary.md), DOC-01 상세는 [종료 요약](Validation/DOC-01-summary.md).
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -33,7 +34,7 @@
 | DOC-01-T5 | DEFERRED | 보호 문서가 참조해 이동 보류(사용자 결정 2026-11-03), 다음 GAME_DESIGN 수정 때 함께 처리. 이번 재개에서 이동 금지 |
 | DOC-01-T6 | DONE | 지정 사본 비텍스트20000파일 정리·텍스트4925 SHA256/경로 보존, regression4635개 zip 수/해시 확인 후 삭제. raw2372.6→915.1MB |
 | DOC-01-T7 | DONE | README Batch 진행·과거 검사 상태를 TASKS 링크로 통합. 실행/조작/런처 전부·최신 B25 직접 플레이 문단 원문 보존 |
-| DOC-01-T8 | PARTIAL | 단일 요약·바이트 비교·중단 인계 작성. T5 이후 커밋·DOC-01 태그 미실시 |
+| DOC-01-T8 | DONE | 직전 중간 인계 커밋·T6/T7 기록·최종 T0 바이트 비교·Batch Card·종료 커밋. 로컬 DOC-01 태그, push 없음 |
 
 ## 1-0. Current Tasks (Batch25)
 
@@ -127,13 +128,12 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B25-delivery, B20 슬롯12개는 B21 raw에 보존 |
 | D-CORNER-FIX | [머리 후보](Launchers/current/Play-V5-CornerFix.cmd) 0.25u 머리만 / 머리+대시 / 미채택(허용값 재비교 가능) | 0.25u 직접 비교 추천. 머리 접촉33→10/36·작은 몸에서도 실제 보정. 넓은 천장은 계속 막힘 | B21-T6·BL2 REVIEW와 기본 적용 다음 배치. [머리](Validation/B21-corner.md)·[대시](Validation/B21-dash-corner.md) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
-| D-DOC-OLDLINK | 옛 문서3개 루트 유지 / 별도 Batch에서 보호 문서 링크 수정 예외와 이동 재승인 | 우선 루트 유지 추천. WORLD_V3·LEVEL_V4는 PRD/GAME_DESIGN 링크를 수정할 수 없고 LEVEL_V2는 자동 승인 거부. 상세는 DOC-01 요약 | DOC-01-T5 이동·링크 보정 |
 
 
 
 해소한 문서 충돌(B25 재개): `rooms_v5_AB.json`의 A02-B05에는 이전 `stub:true`가 남았지만 WORLD18·world_v5_AB와 B25-T4는 양방향 연결을 명시한다. 사용자 승인 B25 연결 지시를 우선해 생성기/Scene에서 해당 닫힘만 제거하고 WallJump gate를 유지했다. Design 원본 수정0, T10-A02-link 근거.
 
-결정 대기4건(DOC-01 이동 차단 포함). D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·검증은 이번 T2/T10에서 진행했고, 감각 수락과 기존 B24 당시 PARTIAL 이력은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
+결정 대기3건. DOC-01 옛 문서 이동은 사용자 2026-11-03 결정으로 보류하여 질문 목록에서 해소했다. D-B23-GEOMETRY·D-B24-B2-GATE는 B25 사전 결정으로 설계안 선택 완료(2-1절). 제품 반영·검증은 이번 T2/T10에서 진행했고, 감각 수락과 기존 B24 당시 PARTIAL 이력은 유지한다. draft4.1·V5 HazardReturn 기본 켜짐은 B22 승인 상태다. [기존 근거 장부](Validation/B19-rules-ledger.md), [B20 추가](Validation/B20-rules-ledger-add.md).
 
 ## 2-1. 결정 기록
 
@@ -230,23 +230,29 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — DOC-01 중단 종료
+## 9. Latest Handoff — DOC-01 종료
 
 ### 결정 질문지
 
-D-DOC-OLDLINK: 옛 문서 루트 유지 / 별도 Batch에서 보호 링크 수정 예외와 이동 재승인. 추천은 우선 유지(현재 실행·설계 링크 보존). 풀리는 Task: DOC-01-T5. 기존 D-BODY/D-CORNER-FIX/D-B23-RULE 순서는 유지하며 2절을 따른다.
+새 결정 대기 없음. T5는 사용자 2026-11-03 결정으로 보류하고 다음 GAME_DESIGN 수정 때 함께 처리한다. 기존 D-BODY/D-CORNER-FIX/D-B23-RULE 3건은 2절에 유지한다.
 
 ### 직접 플레이 확인
 
-이번 문서 Batch에서 새 플레이 수락 항목은 추가하지 않았다. 기존 3절과 아래 B25 제품 인계의 플레이 순서·시간·항목을 유지한다. REVIEW21개로 다음 콘텐츠 Batch 전에 사용자 QA 1회 필요.
+문서 Batch의 새 플레이 항목은 없다. 기존 3절과 아래 B25 제품 인계의 순서·시간·항목을 유지한다. REVIEW21개이므로 다음 콘텐츠 Batch 전에 사용자 QA 1회 필요.
 
 ### Task별 결과
 
-T0~T4 DONE: d477cd7 / 7f16ce2 / e12dfc7 / 5a2acaa / 79e74c6. 규칙·템플릿·상태 행 보존·결정 출처 검증 PASS. T5 BLOCKED: 전체 참조 목록 확보, 보호 링크 때문에 WORLD_V3/LEVEL_V4 유지, LEVEL_V2 git mv는 자동 승인 거부·실행되지 않음. T6/T7 미실시, T8 PARTIAL(요약·중단 기록만). Git 권한 상승 거부 시 종료라는 이번 사용자 조건에 따라 이후 커밋·태그·삭제 없이 종료했다. [상세·오류 원문](Validation/DOC-01-summary.md).
+- T0~T4 DONE: d477cd7 / 7f16ce2 / e12dfc7 / 5a2acaa / 79e74c6. 규칙·템플릿·상태 행·결정 출처 보존 검증 PASS.
+- T5 DEFERRED: 사용자 보류, 이동0. 직전 자동 승인 거부는 재시도하지 않음. 중간 인계 d7e96c8.
+- T6 DONE: f6edb29. 지정 사본 비텍스트20000개 삭제, 텍스트4925개 경로/SHA256 일치. regression4635개를 zip 파일 수/해시 확인 후 삭제. raw1457.5MB 감소.
+- T7 DONE: 8250ad9. README Batch 진행/과거 결과는 TASKS 링크, 런처27개 목록·순서/실행/조작/최신 직접 플레이 문단 원문 보존.
+- T8 DONE: 종료 커밋은 `git log -1`·로컬 DOC-01 태그. 단일 요약에 최종 카드·T0 크기 비교·실패/미실시 기록. push·squash 없음.
+
+원문·정리 전후·범위 확인은 [DOC-01-summary](Validation/DOC-01-summary.md). Unity 검증은 문서 전용이므로 실행하지 않았다. 기존 사용자 변경은 스테이징하지 않았다.
 
 ### 다음 Batch 후보
 
-사용자/실행환경 판단 후 DOC-01 T5~T8 잔여를 별도 승인 범위로 재개. raw 정리·README 링크화는 이번에 실행하지 않았으며 자동 승인 Queue로 올리지 않는다.
+사용자 QA 후 기존 게임 잔여 항목을 별도 승인 Batch로 정한다. 루트 옛 문서 이동은 다음 GAME_DESIGN 수정 때 보호 링크와 함께 처리하며 이번에는 실행하지 않았다. Ready Queue0.
 
 ### 이전 B25 제품 인계 (수락·플레이 순서 유지)
 
