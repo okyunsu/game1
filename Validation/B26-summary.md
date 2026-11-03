@@ -3,7 +3,7 @@
 **자율 처리 B 별도 보고:** 기존 시스템 안에 표시 컴포넌트·shader·오디오 피크필터를 추가했다. 아트/배경/증기/HUD·적 사망/반짝임·플레이어 탄성/잔상·흰피격·방이름 표시층이며 충돌체·피격/사망 판정시점·B1/B2전투값 변경0. 감각 수락은 신규 REVIEW9개로 남겼다.
 
 <!-- BATCH-CARD -->
-Batch Card는 모든 Task 커밋 뒤 실행하고 아래 종료 검사에 기록한다.
+**Batch Card @`d8e0338` (`b845145..d8e0338`): 변경120파일(+17742/-11453줄·바이너리28), 허용 범위 밖0. TASKS 깨진 링크0·없는 빌드/런처0.** 표의 REVIEW14 + 본문 B20-T4 1 = 총15. 별도 `git status/diff`도 확인했고 마지막 변경은 이 카드 기록 문서뿐이다. [기계 원문](_raw/26/batch-card-final.txt). 이번 실제 회귀는 `_raw/regression/B26-final/result.txt`의13/13을 직접 확인했다.
 <!-- /BATCH-CARD -->
 
 ## 결과와 인계
@@ -126,3 +126,5 @@ T2 실패는 증기 안으로 되돌아간 runup/굴뚝 fixture·이탈 높이 �
 - Ruling: audio 일반 gain을 유지하고 과도 피크만 제한 / 획일 감쇠0.075346 대신 청감 가독성 유지 / 비용=공통 filter/master 조정·재빌드.
 - Ruling: HUD는 실제 Sprite/count의 격리 RenderTexture를 캡처 / 기존 ScreenCapture 모듈 실패 경로를 반복하지 않음 / 한계=실제 전체 GUI 배치는 사용자 QA.
 - 미실시: 전체AB 후반·최종Continue, 자연 연속 조각수집 완주, 사람 QA·청감·Sprint Gate. 이전 B25 결과를 이번 통과 증거로 쓰지 않았다.
+
+종료 시각: 2026-11-03T17:32:29 KST, Preflight부터 약96분. 10시간/상한30에 도달하지 않았고 승인 Backlog/Queue 소진으로 종료.
