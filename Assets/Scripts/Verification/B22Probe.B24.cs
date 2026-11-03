@@ -73,7 +73,7 @@ public sealed partial class B22Probe
  {
   yield return JumpTo(26,24.4f,3,"A03 box");yield return JumpTo(23.3f,20.5f,5,"A03 M building");yield return JumpTo(18.9f,17.3f,7,"A03 chimney");yield return JumpTo(16.3f,13.4f,9,"A03 W roof");
  }
- IEnumerator B24Loop()
+ IEnumerator B24Loop(bool checkContinue=true)
  {
   Check(RoomSession.Instance.CurrentRoomId=="A03","loop starts CP-A03");NoAbilities();double began=Time.timeAsDouble;
   Record("FIXTURE initial CP only; subsequent route uses actual inputs, no HP/pose/enemy/boss/ability writes. A04 uses its lower pogo branch, upper E1 stays live.");
@@ -83,7 +83,7 @@ public sealed partial class B22Probe
   yield return JumpTo(30.6f,24.5f,1,"A05 sealed floor crossing",true);yield return JumpTo(24.5f,18.0f,1,"A05 E2 dash avoidance",true);yield return GoX(15.5f);yield return JumpTo(12.3f,4.6f,1,"A05 trench",true);yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId=="A03",Key.LeftArrow,"A03 physical return",5);yield return Ready();
   yield return GoX(26);yield return HubBuildings();yield return GoX(44.8f);yield return LiftRide(true);
   yield return JumpTo(43.75f,36.7f,13,"practice1",true);yield return JumpTo(35.25f,28.1f,13,"practice2",true);yield return JumpTo(26.75f,20.8f,15,"practice3 shelf",true);
-  Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save has dash and B1");yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"Continue restores CP-A03 dash and B1");Record($"MEASURE B24 loop seconds={Time.timeAsDouble-began:F3} complete=True");if(N5Args.Has("-b24-revisit"))yield return A01Revisit();
+  Check(ProgressSave.TryLoad(out var saved)&&saved.dash&&saved.defeatedBossIds.Contains("B1-A04"),"loop save has dash and B1");if(checkContinue){yield return Title();yield return ContinueGame();Check(RoomSession.Instance.CurrentRoomId=="A03"&&Player.GetComponent<PlayerDash>().hasDash&&ProgressSave.IsBossDefeated("B1-A04"),"Continue restores CP-A03 dash and B1");}Record($"MEASURE B24 loop seconds={Time.timeAsDouble-began:F3} complete=True");if(N5Args.Has("-b24-revisit"))yield return A01Revisit();
  }
 }
 #endif
