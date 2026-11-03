@@ -23,7 +23,7 @@
 | --- | --- | --- |
 | B26-T0 | DONE | 사전 결정5건 장부 기록·REVIEW21행 처리·목록밖0. Validation/B26-T0-review-cleanup.md |
 | B26-T1 | DONE | draft6.1 AB12방 생성·요소수 일치, 정적 FAIL0·Scene FAIL0. raw/26/T1-* |
-| B26-T2 | TODO | 승인 지시문 기준 진행 |
+| B26-T2 | DONE | B02바닥5/5·위하강5/5(E3피격0)·B06조각5/5(피격각1)·B05기둥조각3/3, 머리0. Validation/B26-T2-routes.md |
 | B26-T3 | DONE | 새 PNG12개 SHA 일치·배경320×360, Import manifest 기록. Assets 복사0 |
 | B26-T4 | REVIEW | v1.1 28PNG import·종류별 스프라이트·meta 생성. Collider직렬화불변·T1/T4 Scene 원문동일. 감각 QA 대기 |
 | B26-T5 | REVIEW | 배경22.5u 아래정렬·세로반복 제거·sky1·증기alpha0.25 상승입자. Collider불변·T1 Scene원문동일. T7 캡처 후 감각QA |
