@@ -40,6 +40,7 @@ public sealed class PlaytestLogger:MonoBehaviour
    }
    ObserveExit(RoomSession.Instance?.Respawning==true?"respawn":nearest!=null&&distance<1?nearest.exitId:"unobserved",nextRoom);
   }
+  if(!Recording&&N5Args.Has("-log-room-times")&&V4SceneMap.V5&&nextRoom!=""&&nextRoom!="Menu")Begin();
   var pending=ProgressSave.Pending;
   // NewGame writes the reset slot before loading A01. Continue only reads it.
   if(!Recording&&menuSeen&&nextRoom=="A01"&&ProgressSave.Enabled&&pending!=null&&!pending.dash&&!pending.doubleJump&&!pending.bossDefeated&&!pending.endingReached&&pending.checkpointId=="CP-A01"&&SaveTime()!=menuSaveTime)Begin();
@@ -47,7 +48,7 @@ public sealed class PlaytestLogger:MonoBehaviour
  void Begin()
  {
   Unbind();regional.Clear();deaths.Clear();room=checkpoint=arrivalExit="";dash=jump=wasRespawning=wasPaused=wasFighting=false;activeSeconds=pauseSeconds=0;bossAttempts=0;lastSample=Time.realtimeSinceStartupAsDouble;warningSent=false;MapOpens=MapChanges=0;largeMapSeconds=0;largeMapBegan=-1;
-  try{string folder=(V3SceneMap.Enabled||V4SceneMap.Enabled)?Path.GetFullPath(Automated?"Validation/_raw/playtest":"Playtest"):Path.Combine(Application.persistentDataPath,"Playtest");Directory.CreateDirectory(folder);string stamp=DateTime.Now.ToString("yyyyMMdd-HHmmss");string path=Path.Combine(folder,stamp+".csv");for(int i=1;File.Exists(path);i++)path=Path.Combine(folder,stamp+"-"+i+".csv");CsvPath=path;File.WriteAllText(path,"utc,event,room,x,y,cause,elapsed_active,pause_total,details\n");Recording=true;
+  try{string folder=(V3SceneMap.Enabled||V4SceneMap.Enabled)?Path.GetFullPath(Automated?"Validation/_raw/playtest":"Playtest"):Path.Combine(Application.persistentDataPath,"Playtest");Directory.CreateDirectory(folder);string stamp=DateTime.Now.ToString("yyyyMMdd-HHmmss");string path=Path.Combine(folder,stamp+".csv");for(int i=1;File.Exists(path);i++)path=Path.Combine(folder,stamp+"-"+i+".csv");if(N5Args.Has("-playtest-csv")){string requested=Path.GetFullPath(N5Args.Value("-playtest-csv","")),allowed=Path.GetFullPath("Playtest")+Path.DirectorySeparatorChar;if(!requested.StartsWith(allowed,StringComparison.OrdinalIgnoreCase))throw new IOException("Playtest CSV must be inside Playtest/");string unique=requested;for(int i=2;File.Exists(unique);i++)unique=Path.Combine(Path.GetDirectoryName(requested),Path.GetFileNameWithoutExtension(requested)+"-"+i+".csv");path=unique;Directory.CreateDirectory(Path.GetDirectoryName(path));}CsvPath=path;File.WriteAllText(path,"utc,event,room,x,y,cause,elapsed_active,pause_total,details\n");Recording=true;
   #if UNITY_EDITOR || DEVELOPMENT_BUILD
   if(V4WorldMap.Instance?.Mode==V4WorldMap.Display.Large)largeMapBegan=Time.realtimeSinceStartupAsDouble;
   #endif

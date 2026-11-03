@@ -4,7 +4,7 @@
 
 - 갱신: 2026-11-03 Codex — 승인 Batch26 진행 중. Base `b845145`, Claude 설계 시작 커밋 `e2bc7d1`.
 - Unity Preflight PASS: Hub licensing=True, exit0. fetch/push 없음, 기존33커밋 보존.
-- REVIEW: 기존 QA 대상6 / 목록 밖 기존0(ID 없음, Current Tasks 기준) / 이번 Batch 신규0(진행 중).
+- REVIEW: 기존 QA 대상6 / 목록 밖 기존0(ID 없음, Current Tasks 기준) / 이번 Batch 신규2(B26-T4/T5, Backlog 검증 중).
 - D-REVIEW-CLEANUP 21행 처리: 폐기10·수락3·미채택2·QA유지6. 상세 [T0](Validation/B26-T0-review-cleanup.md).
 - draft6.1 AB12방 재생성 완료, 검사·아트·경로 진행 중. Codex 차례.
 - 결정 대기2건(D-BODY·D-B23-RULE), 승인 Ready Queue4행은 B26 지시문 기준.
@@ -34,6 +34,11 @@
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
 | B26-T11 | DONE | Development errors0/warnings0, 전체 회귀B26-main13/13, Loop·Graybox·B1·B2·V4 smoke5/5 Error0·B3 cycle/phase/사망복귀 PASS |
 | B26-T12 | DONE | README·TASKS3/9 QA1회 안내, 기존6+신규2 각각 항목/기록칸. 이후 Backlog 신규 REVIEW는 종료 시 추가 |
+| B26-BL1 | REVIEW | HUD fragment+n/4·live값 RenderTexture PNG. BL1-hud Error0; UI 감각QA |
+| B26-BL2 | DONE | Loop30초 smoke exit0/Error0·Playtest 원본+room-times CSV1방 생성. Continue 재시작은 새 suffix 파일로 덮어쓰기 방지 |
+| B26-BL3 | REVIEW | E1~E4 실제ReceiveHit→즉시죽음·0.300s 표시4종 PASS/Error0. 판정변경0, 감각QA |
+| B26-BL4 | REVIEW | 15이벤트 볼륨표·master0.8, 동시PCM스트레스11.983310→0.850000 클리핑0. 장치출력0 관측(청감미검증), 감각QA |
+| B26-BL5 | REVIEW | 12방 획득물/조각/CP 1.5s·밝기0.663/1.487 PNG2장·Error0·Collider불변, 감각QA |
 
 ## 1-DOC. Current Tasks (DOC-01)
 

@@ -9,10 +9,35 @@ public sealed partial class B22Probe
 {
  IEnumerator B26Tests(string mode)
  {
-  if(mode=="b26-measure")yield return B26Measure();
+  if(mode=="b26-hud"){var art=Room.GetComponent<B25ArtRoom>();Check(art.settings.fragment!=null,"HUD fragment sprite assigned");B26HudCapture.Save(art.settings.fragment,ProgressSave.FragmentCount%4,System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Evidence),"hud-fragment.png"));Record("CAPTURE live fragment/count in isolated RenderTexture; main HUD also uses same sprite/count; not full desktop screenshot");}
+  else if(mode=="b26-sparkle")yield return B26SparkleMeasure();
+  else if(mode=="b26-audio")yield return B26AudioMeasure();
+  else if(mode=="b26-death")yield return B26DeathMeasure();
+  else if(mode=="b26-measure")yield return B26Measure();
   else if(mode=="b26-route")yield return B26Route();
   else if(mode=="b26-loop")yield return B26Loop();
   else throw new ArgumentException(mode);
+ }
+ IEnumerator B26SparkleMeasure()
+ {
+  yield return RoomAt("A05");Body.simulated=false;PlaceForAuthorizedSetup(new Vector2(40,2.615f));FindFirstObjectByType<RoomCameraRig>().BindAndSnap(Player);var sparkle=Room.GetComponentInChildren<B26IdleSparkle>();Check(Math.Abs(sparkle.settings.sparkleSeconds-1.5f)<.001,"sparkle cycle1.5");string folder=System.IO.Path.GetDirectoryName(Evidence);
+  yield return Until(()=>sparkle.Brightness<.67,"sparkle low",2);sparkle.Refresh();B25CameraPng(System.IO.Path.Combine(folder,"sparkle-low.png"));Record($"MEASURE B26 sparkle low={sparkle.Brightness:F3}");yield return Until(()=>sparkle.Brightness>1.48,"sparkle high",2);sparkle.Refresh();B25CameraPng(System.IO.Path.Combine(folder,"sparkle-high.png"));Record($"MEASURE B26 sparkle high={sparkle.Brightness:F3} period={sparkle.settings.sparkleSeconds:F3}");Body.simulated=true;
+ }
+ IEnumerator B26AudioMeasure()
+ {
+  yield return new WaitForSeconds(.2f);var profile=B25EffectsHost.Active.profile;double bound=0;
+  foreach(var sound in profile.sounds){var data=new float[sound.clip.samples*sound.clip.channels];Check(sound.clip.GetData(data,0),"PCM readable "+sound.eventName);float peak=data.Max(x=>Math.Abs(x));int voices=(int)Math.Ceiling(sound.clip.length/(Math.Max(.01,1-sound.pitchVariation)*profile.soundThrottle))+1;bound+=peak*sound.volume*voices;B25EffectsHost.Emit(sound.eventName,Body.position);Record($"MEASURE B26 audio event={sound.eventName} gain={sound.volume:F3} samplePeak={peak:F6} voices={voices}");}
+  float actual=0;int clipped=0;var buffer=new float[1024];double end=Time.realtimeSinceStartupAsDouble+1;
+  while(Time.realtimeSinceStartupAsDouble<end){AudioListener.GetOutputData(buffer,0);foreach(float x in buffer){actual=Mathf.Max(actual,Math.Abs(x));if(Math.Abs(x)>=1)clipped++;}yield return null;}
+  var stress=new float[48000];foreach(var sound in profile.sounds){var pcm=new float[sound.clip.samples*sound.clip.channels];sound.clip.GetData(pcm,0);for(int i=0;i<stress.Length&&i<pcm.Length;i++)stress[i]+=pcm[i]*sound.volume;}for(int i=0;i<stress.Length;i++)stress[i]*=8;float post=B26AudioHeadroom.Limit(stress,out float pre,out int limitedClips);var meter=B25EffectsHost.Active.GetComponent<B26AudioHeadroom>();Record($"MEASURE B26 audio master={profile.masterVolume:F6} listenerPeak={actual:F6} clippedSamples={clipped} filterBlocks={meter.Blocks} filterOutputPeak={meter.OutputPeak:F6} PCMstressPre={pre:F6} PCMstressPost={post:F6} stressClips={limitedClips}; PCM stress is 8 simultaneous copies of all event samples, device listener separate");Check(post<=.851&&limitedClips==0&&clipped==0&&meter.ClippedSamples==0,"simultaneous voice clipping0 with normal-gain headroom filter");
+ }
+ IEnumerator B26DeathMeasure()
+ {
+  foreach(string id in new[]{"A01","A02","B02","B03"})
+  {
+   yield return RoomAt(id);yield return new WaitForSeconds(.2f);GameObject actor=id=="A01"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyPatrol>()!=null).Live:id=="A02"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyCharger>()!=null).Live:id=="B02"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyTurret>()!=null).Live:Room.GetComponentInChildren<E4Hover>().gameObject;
+   int before=B26DeathDisplay.Spawned;double began=Time.timeAsDouble;actor.GetComponent<IDamageable>().ReceiveHit(999,Body.position);yield return null;Check(actor==null,"actor dies immediately "+id);Check(B26DeathDisplay.Spawned==before+1,"death display emitted "+id);yield return Until(()=>B26DeathDisplay.LastEnded>=began,"death fade complete "+id,2);double elapsed=B26DeathDisplay.LastEnded-began;yield return null;yield return Until(()=>FindObjectsByType<B26FadingSprite>(FindObjectsSortMode.None).Length==0,"death displays cleaned "+id,1);Record($"MEASURE B26 death room={id} elapsed={elapsed:F3} actorImmediate=True remainingDisplays={FindObjectsByType<B26FadingSprite>(FindObjectsSortMode.None).Length}");Check(elapsed>=.299&&elapsed<.36,"0.3s death fade "+id);
+  }
  }
  // Same input recipe as the verified A04 branch; coordinates come from approved draft6.1.
  IEnumerator B26Island(float edge,float lamp,float top,float island,float height,string label)

@@ -19,7 +19,7 @@ public sealed class B20LaunchProbe:N5Runner
   lines.Add("MEASURE candidate flags hazard="+hazard+" corner="+corner);
   if(N5Args.Has("-body-size-test"))Check(RoomSession.Instance.CurrentRoomId=="BodySizeTest","test Scene");
   lines.Add("MEASURE launch room="+RoomSession.Instance.CurrentRoomId+" height="+expected+" comparison="+comparison+" cameraSize="+FindFirstObjectByType<RoomCameraRig>().orthographicSize+" attackReach="+Player.GetComponent<PlayerAttack>().HitboxSize.x);
-  yield return new WaitForSecondsRealtime(10);
+  yield return new WaitForSecondsRealtime(N5Args.Int("-launch-smoke-seconds",10));
  }
 }
 #endif
