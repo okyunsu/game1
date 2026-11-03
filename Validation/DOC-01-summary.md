@@ -1,6 +1,27 @@
 # DOC-01 문서·기록 정리 — 종료 요약
 
-BATCH CARD: 종료 T8에서 Task 커밋 뒤 실행 결과를 이 위치에 기록한다.
+BATCH CARD (마지막 Task 커밋 79e74c6 기준, T5 이후 종료 기록은 미커밋):
+
+```text
+BATCH CARD f1a6f5a..HEAD (79e74c6)
+변경 파일: 8 (+389 / -186 줄, 바이너리 0)
+  Scripts: 0
+  Scenes: 0
+  Prefabs: 0
+  Editor: 0
+  Validation: 1
+  문서: 7
+  기타: 0
+허용 범위: AGENTS.md, CLAUDE.md, Batches/BATCH-DOC-01.md, Batches/BATCH_TEMPLATE.md, TASKS.md, DECISIONS.md, Archive/TASKS_ARCHIVE.md, Validation/DOC-01-summary.md
+허용 범위 밖: 0
+TASKS 상태(표 둘째 칸): DONE 27 / REVIEW 20 / DOING 0 / BLOCKED 5 / PARTIAL 17
+결정 대기(## 2. 결정 대기 표의 D- 행): 4
+열린 버그(## 4. 열린 버그 표 행): 7
+직접 플레이 확인 대기(## 3. 목록 항목): 14
+TASKS 깨진 링크 수: 0
+TASKS가 가리키지만 없는 빌드·런처 수: 0
+마지막 REGRESSION: REGRESSION 13/13 (Validation/_raw/regression/B25-delivery-final/result.txt)
+```
 
 - 사용자 2026-11-03 직접 승인, Base `f1a6f5a`. 시간90분/Task9, Unity·게임 수정·push 없음.
 - B 단계 처리: 없음. A 단계: 문서·raw 정리만 수행하며 부록 A 게임/도구 수정 없음.
@@ -43,3 +64,290 @@ PASS 상태별 행/Task ID/상태/결과 원문 전후 동일, B25 본문·표 �
 PASS 기존 결정 ID 44개 각1회 보존, DOC-01 D1~D11/D1-3 추가. D-DRAFT5·D-CLIMB-GAP·D-HUB-LIFT는 제안, D-BIG-BATCH는 개별 날짜 미확인 전달로 구분해 별도 절 보존. 추천값의 실행 승인과 감각 수락을 구분하고 원문 출처 한계를 유지했다. TASKS2-1은 링크만 남겼다.
 
 T1 이후 D9에 따른 추가 교체: AGENTS Handoff의 “실제 사용자 사전 결정을 TASKS 2-1에 옮긴다” → DECISIONS.md만 기록·TASKS2-1 링크(남은 위치: AGENTS Handoff, DECISIONS). 템플릿·CLAUDE 결정 경로도 함께 정합화했다. 읽기 전용 `.agents/skills/metro-handoff/SKILL.md`의 예전 2-1 기록 안내는 사용자 D9와 갱신 AGENTS가 우선하며 스킬 파일은 수정하지 않았다.
+
+## T5 저장소 전체 참조 목록 (이동 전)
+
+`rg -n --hidden --no-ignore -F -g !.git/** <파일명> .`로 Git 제외 raw·Library도 검색했다. 바이너리 파일은 rg 기본 동작에 따라 본문 검색 대상이 아니며 Git 내부는 제외했다. 아래는 파일별 행 번호이며 원본 기록의 과거 경로 문자열은 당시 증거로 보존한다.
+
+| 대상 | 참조 파일 | 행 |
+| --- | --- | --- |
+| WORLD_V3.md | `Archive/GAME_DESIGN-v0.2-2026-10-15.md` | 17, 89 |
+| WORLD_V3.md | `Archive/validation-2026-10/B06-preflight-review.md` | 7, 8 |
+| WORLD_V3.md | `Batches/BATCH-06.md` | 6, 8, 28, 35, 36, 98 |
+| WORLD_V3.md | `Batches/BATCH-06B.md` | 8 |
+| WORLD_V3.md | `Batches/BATCH-07.md` | 6, 9, 19 |
+| WORLD_V3.md | `Batches/BATCH-DOC-01.md` | 27, 64 |
+| WORLD_V3.md | `DECISIONS.md` | 20 |
+| WORLD_V3.md | `GAME_DESIGN.md` | 11, 47, 129 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/after/BATCH-06.md` | 6, 8, 28, 35, 36, 98 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/after/BATCH-06B.md` | 8 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/after/GAME_DESIGN.md` | 11, 83 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/after/Validation/B06-preflight-review.md` | 7, 8 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/before/BATCH-06.md` | 6, 8, 28, 35, 36, 98 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/before/BATCH-06B.md` | 8 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/before/GAME_DESIGN.md` | 11, 83 |
+| WORLD_V3.md | `Validation/_raw/B09/worktrees/before/Validation/B06-preflight-review.md` | 7, 8 |
+| WORLD_V3.md | `Validation/_raw/B10/bisect/BATCH-06.md` | 6, 8, 28, 35, 36, 98 |
+| WORLD_V3.md | `Validation/_raw/B10/bisect/BATCH-06B.md` | 8 |
+| WORLD_V3.md | `Validation/_raw/B10/bisect/GAME_DESIGN.md` | 11, 83 |
+| WORLD_V3.md | `Validation/_raw/B10/bisect/Validation/B06-preflight-review.md` | 7, 8 |
+| WORLD_V3.md | `Validation/_raw/B10/head-control/BATCH-06.md` | 6, 8, 28, 35, 36, 98 |
+| WORLD_V3.md | `Validation/_raw/B10/head-control/BATCH-06B.md` | 8 |
+| WORLD_V3.md | `Validation/_raw/B10/head-control/GAME_DESIGN.md` | 11, 83 |
+| WORLD_V3.md | `Validation/_raw/B10/head-control/Validation/B06-preflight-review.md` | 7, 8 |
+| LEVEL_V2.md | `Archive/B05-handoff-20261010.md` | 39 |
+| LEVEL_V2.md | `Archive/README-history-2026-10.md` | 27 |
+| LEVEL_V2.md | `Archive/TASKS-B20.md` | 174 |
+| LEVEL_V2.md | `Archive/docs/V2_QA.md` | 15 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-0-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A01-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A02-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A03-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A04-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A05-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-A06-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B01-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B02-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B03-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B04-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B05-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-B06-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C01-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C02-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C03-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C04-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C05-summary.md` | 5 |
+| LEVEL_V2.md | `Archive/validation-2026-10/B05-C06-summary.md` | 5 |
+| LEVEL_V2.md | `Batches/BATCH-07.md` | 9 |
+| LEVEL_V2.md | `Batches/BATCH-DOC-01.md` | 27, 57 |
+| LEVEL_V2.md | `DECISIONS.md` | 20 |
+| LEVEL_V2.md | `TASKS.md` | 146 |
+| LEVEL_V2.md | `Validation/_raw/21/T3-20261026-001128/TASKS-before.md` | 90 |
+| LEVEL_V2.md | `Validation/_raw/21/resume-20261026-210738/TASKS-before-resume.md` | 110 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Archive/B05-handoff-20261010.md` | 39 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/README.md` | 19 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/V2_QA.md` | 15 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-0-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-A06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-B06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/Validation/B05-C06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/after/WORLD_V3.md` | 3 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Archive/B05-handoff-20261010.md` | 39 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/README.md` | 19 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/V2_QA.md` | 15 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-0-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-A06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-B06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/Validation/B05-C06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B09/worktrees/before/WORLD_V3.md` | 3 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Archive/B05-handoff-20261010.md` | 39 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/README.md` | 19 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/V2_QA.md` | 15 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-0-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-A06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-B06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/Validation/B05-C06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/bisect/WORLD_V3.md` | 3 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Archive/B05-handoff-20261010.md` | 39 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/README.md` | 27 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/V2_QA.md` | 15 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-0-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-A06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-B06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C01-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C02-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C03-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C04-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C05-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/Validation/B05-C06-summary.md` | 5 |
+| LEVEL_V2.md | `Validation/_raw/B10/head-control/WORLD_V3.md` | 3 |
+| LEVEL_V2.md | `Validation/_raw/B13/md-broken-after-A2.txt` | 98 |
+| LEVEL_V2.md | `Validation/_raw/B13/md-broken-before.txt` | 98, 669, 954, 1212, 1493 |
+| LEVEL_V2.md | `Validation/_raw/B19/T5-TASKS-draft.md` | 152 |
+| LEVEL_V2.md | `WORLD_V3.md` | 3 |
+| LEVEL_V4.md | `Archive/B10-prior-handoff-20261012.md` | 25 |
+| LEVEL_V4.md | `Archive/B10-start-tasks-20261012.md` | 189 |
+| LEVEL_V4.md | `Archive/README-history-2026-10.md` | 7 |
+| LEVEL_V4.md | `Archive/TASKS-B20.md` | 187 |
+| LEVEL_V4.md | `Archive/TASKS-before-2026-10-12.md` | 215 |
+| LEVEL_V4.md | `Batches/BATCH-09.md` | 66 |
+| LEVEL_V4.md | `Batches/BATCH-10.md` | 9 |
+| LEVEL_V4.md | `Batches/BATCH-DOC-01.md` | 27, 58 |
+| LEVEL_V4.md | `DECISIONS.md` | 20 |
+| LEVEL_V4.md | `GAME_DESIGN.md` | 11, 67, 91, 187, 307 |
+| LEVEL_V4.md | `PRD.md` | 43, 89 |
+| LEVEL_V4.md | `README.md` | 53 |
+| LEVEL_V4.md | `TASKS.md` | 171 |
+| LEVEL_V4.md | `Validation/_raw/21/T3-20261026-001128/TASKS-before.md` | 103 |
+| LEVEL_V4.md | `Validation/_raw/21/resume-20261026-210738/TASKS-before-resume.md` | 123 |
+| LEVEL_V4.md | `Validation/_raw/B10/head-control/README.md` | 7 |
+| LEVEL_V4.md | `Validation/_raw/B10/head-control/TASKS.md` | 189 |
+| LEVEL_V4.md | `Validation/_raw/B10/write_handoff.py` | 56 |
+| LEVEL_V4.md | `Validation/_raw/B13/md-broken-after-A2.txt` | 228, 291, 358 |
+| LEVEL_V4.md | `Validation/_raw/B13/md-broken-before.txt` | 228, 291, 359 |
+| LEVEL_V4.md | `Validation/_raw/B19/T5-TASKS-draft.md` | 162 |
+
+## T5 중단·자동 승인 거부
+
+| 파일 | 실제 참조 조사 | 결과 |
+| --- | --- | --- |
+| WORLD_V3.md | GAME_DESIGN 11/47/129행 등, 활성 Tools/Assets 참조0 | 보호 문서 링크를 수정할 수 없어 이동 보류 |
+| LEVEL_V4.md | PRD 43/89행·GAME_DESIGN 11/67/91/187/307행 등, 활성 Tools/Assets 참조0 | 보호 문서 링크를 수정할 수 없어 이동 보류 |
+| LEVEL_V2.md | 활성 PRD/GAME_DESIGN/Tools/Assets 참조0, TASKS·Archive 등 문서 참조 | git mv 자동 승인 거부, 파일 이동0·링크 변경0 |
+
+`Archive/design-old/` 빈 목적 폴더만 생성했다. Git은 빈 폴더를 추적하지 않는다. 실행되지 않은 이동 명령:
+
+```text
+git mv -- LEVEL_V2.md Archive/design-old/LEVEL_V2.md
+```
+
+자동 승인 검토 오류 원문:
+
+```text
+exec_command failed: CreateProcess { message: "Rejected(\"This action was rejected due to unacceptable risk.\nReason: The requested move is generally covered by D10, but the scan shows references from protected PRD/GAME_DESIGN files that cannot be updated under this Batch, so moving LEVEL_V2.md would leave broken links and exceeds the authorized conditional scope.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval.\")" }
+```
+
+검토 이유는 LEVEL_V2에 대한 실제 PRD/GAME_DESIGN 검색 결과와 일치하지 않는다. 그러나 이번 사용자 중단 조건 “git 명령만 샌드박스 밖 실행을 요청한다. 거부되면 파일 변경은 둔 채 커밋 없이 종료 보고한다”에 따라 재시도·대체 이동 없이 종료했다. 이후 변경은 TASKS·이 요약의 종료 기록뿐이며 미커밋으로 보존한다.
+
+## Task 결과·미실시
+
+| Task | 상태 | 커밋·실제 결과 |
+| --- | --- | --- |
+| T0 | DONE | d477cd7 — 상태·바이트·Preflight -SkipUnity |
+| T1 | DONE | 7f16ce2 — 운영 결정·중복 문장 대조 |
+| T2 | DONE | e12dfc7 — 템플릿 필드/앵커 확인 |
+| T3 | DONE | 5a2acaa — B21~B24 보관, 상태별 행/결과/B25/플레이 순서 보존 |
+| T4 | DONE | 79e74c6 — 44개 결정 ID 보존·제안/미확인4행 분리·DOC-01 결정 |
+| T5 | BLOCKED | 전체 참조 조사만 완료·이동0. 조사/차단 기록 미커밋 |
+| T6 | TODO·미실시 | 디렉터리 존재만 사전 조회. 삭제 전 크기·파일 수/텍스트 보존 목록 측정, 삭제, regression zip 생성·원본 삭제, 전후 측정 모두 미실시 |
+| T7 | TODO·미실시 | README 원문 유지 |
+| T8 | PARTIAL | 이 요약·상태/크기·중단 인계만 작성, 종료 커밋·DOC-01 태그 미실시 |
+
+T6 정리 결과: 삭제0/zip생성0. Preflight가 자동 생성한 `_raw/DOC-01/preflight-20261103-105442-481-4900bf9a/`의 통과 원본은 중단 전 그대로 남아 있다. D5 보관 정책에 맞춘 해당 통과 원본 정리도 미실시다. 기존 raw 증거는 손대지 않았다.
+
+PASS 기존 사용자 보존6파일 SHA256 일치·미스테이징, PRD/GAME_DESIGN/README/옛설계3파일의 T0 크기 및 Git Base 정규화 내용 동일. Unity·게임 코드·Scene·Assets·ProjectSettings 수정/실행0. Unity 회귀·V5 정적/Scene 검사는 문서 전용이고 게임 변경0이라 미실시. push/fetch/rebase/squash 없음.
+
+종료 검증 첫 시도는 `AssertionError: PRD.md`로 실패했다. 작업 트리 CRLF 바이트와 Git LF blob의 직접 비교 때문이며, 파일 크기·줄바꿈 정규화 내용·기존 사용자 파일 SHA256로 한 번 재검증하여 통과했다. 제품/문서 내용 오류를 숨긴 것이 아니며 검증 방법의 차이를 명시한다.
+
+## T0 대비 바이트 크기
+
+| 파일 | 시작 bytes | 종료 bytes | 차이 |
+| --- | ---: | ---: | ---: |
+| AGENTS.md | 24020 | 26909 | +2889 |
+| CLAUDE.md | 797 | 887 | +90 |
+| GAME_DESIGN.md | 44548 | 44548 | +0 |
+| LEVEL_V2.md | 9465 | 9465 | +0 |
+| LEVEL_V4.md | 3068 | 3068 | +0 |
+| PRD.md | 15875 | 15875 | +0 |
+| PROCESS_METRICS.md | 13768 | 13768 | +0 |
+| README.md | 16118 | 16118 | +0 |
+| RESOURCES.md | 2028 | 2028 | +0 |
+| TASKS.md | 54270 | 38453 | -15817 |
+| WORLD_V3.md | 11467 | 11467 | +0 |
+| Batches/BATCH_TEMPLATE.md | 3452 | 4805 | +1353 |
+| DECISIONS.md (신규) | 0 | 14547 | +14547 |
+
+## 결정별 반영 위치
+
+| 결정 | 반영 파일·절 | 상태 |
+| --- | --- | --- |
+| D1·D1-3 | AGENTS 자율 처리 단계 A/B/C·B-4 | 반영 |
+| D2 | AGENTS Batch Approval·BATCH_TEMPLATE 목표/예산/종료 | 반영 |
+| D3 | AGENTS Environment·BATCH_TEMPLATE 시작/사전 점검/Unity 없는 목록 | 반영(이번 Unity는 명시 금지·SkipUnity) |
+| D4 | AGENTS Review·BATCH_TEMPLATE 인계·TASKS0 REVIEW21/QA 표시 | 반영 |
+| D5·D6 | AGENTS Evidence·Environment/Housekeeping 참조·BATCH_TEMPLATE 증거 | 규칙 반영, 이번 raw 정리는 미실시 |
+| D7 | DOC-01 T6 | 미실시 |
+| D8 | TASKS1-1 미해결 목록·Archive/TASKS_ARCHIVE DOC-01 보관 절 | 반영 |
+| D9 | DECISIONS·TASKS2-1 링크·AGENTS Handoff·CLAUDE 역할·템플릿 결정 경로 | 반영 |
+| D10 | DOC-01 T5·TASKS 결정 대기 D-DOC-OLDLINK | 참조 조사, 이동 차단 |
+| D11 | AGENTS Git Rule | 사용자 직접 push 규칙 유지 |
+
+Ruling: REVIEW 수는 현재 Task 표·미해결 표의 고유 ID와 기존 본문 B20-T4를 합산 / Handoff·보관 표의 중복 수를 제외하기 위함 / 잘못된 과거 REVIEW 상태가 있으면 사용자 수락 근거로 재판정 필요(이번에는 변경하지 않음).
+
+## 별도 작업 트리 확인
+
+PASS 문서 대상 `git diff --check`, 커밋 범위 밖0·staged0·TASKS 깨진 링크0·없는 빌드/런처0. 카드의 마지막 REGRESSION 행은 과거 B25 실행이며 DOC-01 통과 증거가 아니다. 카드의 표 REVIEW20과 TASKS0의21 차이는 기존 본문 B20-T4 1개다.
+
+중단 후 `git status --short`:
+
+```text
+ M Design/v5/WORLD_V5.md
+ M Design/v5/rooms_v5_AB.json
+ M TASKS.md
+ M Validation/DOC-01-summary.md
+?? Design/proposals-1103-B26/
+?? Validation/D61-room-rules-v5-AB.md
+```
+
+중단 후 `git log --oneline -5`:
+
+```text
+79e74c6 docs(DOC-01 T4): move sourced user decisions into dedicated ledger
+5a2acaa docs(DOC-01 T3): archive past batches and preserve unresolved task rows
+e12dfc7 docs(DOC-01 T2): align batch template with approved workflow
+7f16ce2 docs(DOC-01 T1): apply approved operating rules and consolidate duplicates
+d477cd7 docs(DOC-01 T0): record approved scope and starting state
+```
+
+로컬 DOC-01 태그는 생성하지 않았다. 기존 사용자 변경 외 미커밋은 TASKS.md와 이 요약뿐이며, 승인 거부 이후에는 어떤 Git 쓰기 명령도 실행하지 않았다.
+
+## DOC-01 재개 — 사용자 2026-11-03 직접 지시
+
+T5: 보호 문서가 참조해 이동 보류(사용자 결정 2026-11-03), 다음 GAME_DESIGN 수정 때 함께 처리
+
+이번 실행은 직전 T8 기록 커밋·T6·T7·종료 태그만 수행한다. T5 이동은 실행하지 않는다. 권한/자동 승인 거부는 해당 항목만 건너뛰고 원문 기록 후 다음 항목 진행, 전체 종료는 Git 커밋 자체가 불가능할 때만 한다. 기존 Batch 문서의 이전 전체 중단 규칙보다 이 사용자 재개 지시가 우선한다.
