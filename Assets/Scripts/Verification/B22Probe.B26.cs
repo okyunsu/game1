@@ -10,6 +10,9 @@ public sealed partial class B22Probe
  IEnumerator B26Tests(string mode)
  {
   if(mode=="b26-hud"){var art=Room.GetComponent<B25ArtRoom>();Check(art.settings.fragment!=null,"HUD fragment sprite assigned");B26HudCapture.Save(art.settings.fragment,ProgressSave.FragmentCount%4,System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Evidence),"hud-fragment.png"));Record("CAPTURE live fragment/count in isolated RenderTexture; main HUD also uses same sprite/count; not full desktop screenshot");}
+  else if(mode=="b26-room-names")yield return B26RoomNamesMeasure();
+  else if(mode=="b26-white-flash")yield return B26FlashMeasure();
+  else if(mode=="b26-player-art")yield return B26PlayerArtMeasure();
   else if(mode=="b26-sparkle")yield return B26SparkleMeasure();
   else if(mode=="b26-audio")yield return B26AudioMeasure();
   else if(mode=="b26-death")yield return B26DeathMeasure();
@@ -17,6 +20,26 @@ public sealed partial class B22Probe
   else if(mode=="b26-route")yield return B26Route();
   else if(mode=="b26-loop")yield return B26Loop();
   else throw new ArgumentException(mode);
+ }
+ IEnumerator B26RoomNamesMeasure()
+ {
+  var data=B09Json.D(B09Json.Read(System.IO.File.ReadAllText("Design/v5/rooms_v5_AB.json"))["rooms"]);int count=0;
+  foreach(var pair in data){yield return RoomAt(pair.Key);var notice=Room.GetComponent<B26RoomNotice>();string title=B09Json.S(B09Json.D(pair.Value),"title","").Split('—')[0].Trim(),expected=pair.Key+(title==""?"":" "+title);Check(notice!=null&&notice.roomName==expected&&Math.Abs(notice.seconds-1.2f)<.001,"room name matches source "+pair.Key);yield return Until(()=>!notice.Visible,"room name fades "+pair.Key,2);Record($"MEASURE B26 roomName={notice.roomName} visibleFor={Time.timeAsDouble-notice.Began:F3}");count++;}Check(count==12,"all twelve room names verified");
+ }
+ IEnumerator B26FlashOne(GameObject actor,string label)
+ {
+  var collider=actor.GetComponent<BoxCollider2D>();var size=collider.size;var offset=collider.offset;bool trigger=collider.isTrigger;var rootScale=actor.transform.localScale;int before=B26HitFlash.Emitted;double began=Time.timeAsDouble;actor.GetComponent<IDamageable>().ReceiveHit(1,Body.position);yield return Until(()=>B26HitFlash.LastEnded>began,"white flash ends "+label,2);Check(B26HitFlash.Emitted==before+1&&B26HitFlash.LastDuration>=.059&&B26HitFlash.LastDuration<.09,label+" white flash0.06s");if(actor!=null)Check(collider.size==size&&collider.offset==offset&&collider.isTrigger==trigger&&actor.transform.localScale==rootScale,label+" collider unchanged");Record($"MEASURE B26 whiteFlash actor={label} duration={B26HitFlash.LastDuration:F4} colliderUnchanged=True");
+ }
+ IEnumerator B26FlashMeasure()
+ {
+  foreach(string id in new[]{"A01","A02","B02","B03"}){yield return RoomAt(id);yield return new WaitForSeconds(.2f);var actor=id=="A01"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyPatrol>()!=null).Live:id=="A02"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyCharger>()!=null).Live:id=="B02"?Room.GetComponentsInChildren<EnemyReset>().First(r=>r.Live.GetComponent<EnemyTurret>()!=null).Live:Room.GetComponentInChildren<E4Hover>().gameObject;yield return B26FlashOne(actor,id);}
+  yield return B25Pose("A04",new Vector2(25.5f,1.015f));yield return GoX(27.5f);yield return Until(()=>Boss.Fighting&&!Boss.Introducing,"B1 live flash",4);yield return B26FlashOne(Boss.gameObject,"B1");
+  yield return B25Pose("B04",new Vector2(20.5f,1.015f));yield return JumpTo(14.5f,12,2,"B2 flash pickup");yield return WalkTo(()=>Body.position.x>=15.2f,Key.RightArrow,"B2 flash departure",3);yield return Until(()=>!Boss.Introducing,"B2 flash intro",3);yield return B26FlashOne(Boss.gameObject,"B2");
+ }
+ IEnumerator B26PlayerArtMeasure()
+ {
+  yield return B25Pose("A03",new Vector2(39,1.015f));yield return new WaitForSeconds(.2f);var fx=Player.GetComponentInChildren<B26PlayerArtMotion>();Check(fx!=null,"player sprite motion bound");var shape=Player.GetComponent<BoxCollider2D>();var size=shape.size;var offset=shape.offset;var scale=Player.transform.localScale;int jumps=fx.JumpEvents,lands=fx.LandingEvents,ghosts=fx.Afterimages;
+  yield return Keys(Key.LeftArrow);yield return new WaitForSeconds(.2f);yield return Keys();Check(fx.GetComponent<SpriteRenderer>().flipX,"left input flips only sprite");yield return Keys(Key.RightArrow,Key.Z);yield return new WaitForSeconds(.25f);yield return Keys();yield return Until(()=>Motor.Grounded,"player art lands",2);yield return new WaitForSeconds(.15f);yield return Tap(Key.LeftShift);yield return new WaitForSeconds(.3f);Check(fx.JumpEvents>jumps&&fx.LandingEvents>lands&&fx.Afterimages-ghosts==3,"jump landing events and three dash afterimages");Check(shape.size==size&&shape.offset==offset&&Player.transform.localScale==scale&&Player.GetComponentsInChildren<Collider2D>().Length==Player.GetComponents<Collider2D>().Length,"player collider root unchanged and display children collider0");Record($"MEASURE B26 player jump={fx.JumpEvents-jumps} landing={fx.LandingEvents-lands} afterimages={fx.Afterimages-ghosts} eventSeconds={Room.GetComponent<B25ArtRoom>().settings.playerMotionSeconds:F3} colliderUnchanged=True");
  }
  IEnumerator B26SparkleMeasure()
  {

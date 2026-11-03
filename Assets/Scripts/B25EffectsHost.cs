@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
  void Restored()=>dead=false;
  void Hurt(){if(Active!=this||health==null)return;if(health.HP<=0){if(dead)return;dead=true;Emit("death",health.transform.position);}else Emit("hurt",health.transform.position);Burst(health.gameObject);}
  void Hit(HitFeedback feedback,int hp){if(Active==this)EnemyHit(feedback.gameObject,hp);}
- public static void EnemyHit(GameObject actor,int hp){if(Active==null)return;Emit("hit",actor.transform.position);if(hp==0){Emit(actor.GetComponent<BossEncounter>()!=null?"victory":"death",actor.transform.position);B26DeathDisplay.Spawn(actor);}Active.Burst(actor);}
+ public static void EnemyHit(GameObject actor,int hp){if(Active==null)return;B26HitFlash.Emit(actor);Emit("hit",actor.transform.position);if(hp==0){Emit(actor.GetComponent<BossEncounter>()!=null?"victory":"death",actor.transform.position);B26DeathDisplay.Spawn(actor);}Active.Burst(actor);}
  public static bool Emit(string id,Vector2 at)
  {
   var host=Active;if(host==null||host.profile==null||GameState.GetOrCreate().Paused)return false;

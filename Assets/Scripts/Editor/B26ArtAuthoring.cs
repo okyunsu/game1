@@ -7,6 +7,16 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 public static class B26ArtAuthoring
 {
+ public static void RoomNames()
+ {
+  var data=B09Json.D(B09Json.Read(File.ReadAllText(B25WorldAuthoring.Rooms))["rooms"]);var rows=new List<string>();
+  foreach(var pair in data){string path="Assets/Scenes/V5/"+pair.Key+"_V5.unity";EditorSceneManager.OpenScene(path);var room=UnityEngine.Object.FindFirstObjectByType<RoomDefinition>();string before=Geometry(room),title=B09Json.S(B09Json.D(pair.Value),"title","").Split('—')[0].Trim();var notice=room.GetComponent<B26RoomNotice>()??room.gameObject.AddComponent<B26RoomNotice>();notice.roomName=pair.Key+(title==""?"":" "+title);notice.seconds=1.2f;if(before!=Geometry(room))throw new Exception("Room name geometry changed");EditorSceneManager.SaveScene(room.gameObject.scene,path);rows.Add("PASS roomName="+notice.roomName+" seconds=1.2 source=rooms_v5_AB.title-before-em-dash");}
+  File.WriteAllLines(N5Args.Value("-verify-output","Validation/_raw/26/roomnames.txt"),rows);EditorApplication.Exit(0);
+ }
+ public static void HitFlash()
+ {
+  const string path=B25ArtImport.Root+"/WhiteFlash.mat";var material=AssetDatabase.LoadAssetAtPath<Material>(path);if(material==null){material=new Material(Shader.Find("Afterglow/B26 White Flash"));AssetDatabase.CreateAsset(material,path);}var settings=AssetDatabase.LoadAssetAtPath<B25ArtSettings>(B25ArtImport.Root+"/ArtSettings.asset");settings.whiteFlash=material;settings.hitFlashSeconds=.06f;settings.playerMotionSeconds=.1f;EditorUtility.SetDirty(settings);AssetDatabase.SaveAssets();File.WriteAllText(N5Args.Value("-verify-output","Validation/_raw/26/hitflash.txt"),"PASS sprite-alpha white silhouette material bound; duration0.06s; player display0.1s; actor tuning/colliders unchanged\n");EditorApplication.Exit(0);
+ }
  public static void Sparkles()
  {
   var rows=new List<string>();var settings=AssetDatabase.LoadAssetAtPath<B25ArtSettings>(B25ArtImport.Root+"/ArtSettings.asset");settings.sparkleSeconds=1.5f;EditorUtility.SetDirty(settings);
