@@ -32,7 +32,7 @@
 | B26-T8 | DONE | 기존실패6건 재시도: PASS5(A05/A06/B02/B04/B06)·FAIL1(A03 4u벽 지형). 입력/도구 수정, 설계수정0. Validation/B26-T8-route-ledger.md |
 | B26-T9 | TODO | 승인 지시문 기준 진행 |
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
-| B26-T11 | TODO | 승인 지시문 기준 진행 |
+| B26-T11 | DONE | Development errors0/warnings0, 전체 회귀B26-main13/13, Loop·Graybox·B1·B2·V4 smoke5/5 Error0·B3 cycle/phase/사망복귀 PASS |
 | B26-T12 | TODO | 승인 지시문 기준 진행 |
 
 ## 1-DOC. Current Tasks (DOC-01)
