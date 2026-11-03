@@ -21,11 +21,19 @@ B05 측정: floor 접근은 A02로 이탈, chimney 진입은 벽 접촉 전에 �
 
 ## 최종 결과
 
-PASS5/6: A05(r2)9.317s HP4, A06(r1)4.001s HP3, B02(r4)17.552s HP3, B04(r1)35.703s HP1, B06(r1)8.518s. A03(r1)은 지형 FAIL, D-B26-A03에 원본 수정 판단 요청. 하나의 연속 고리가 아닌 독립 진입 fixture다.
+PASS5/6: A05(r2)9.317s HP4, A06(r1)4.001s HP3, B02(r4)17.552s HP3, B04(r1)35.703s HP1, B06(도전만r1)8.518s, 최종 도전+실제B03귀환(r2)13.701s. A03(r1)은 지형 FAIL, D-B26-A03에 원본 수정 판단 요청. 하나의 연속 고리가 아닌 독립 진입 fixture다.
 
 B02 최종 접근은 하강 뒤 E2를 점프로 피하고 산성 대시, E1 실제 공격으로 처치했다. r3의 A03 이탈은 E2와 충돌한 뒤 자동 부활 경로이며 원문 보존. helper의 단순 착지 판정이 다른 방 착지를 인정한 문제를 구간 방 ID 확인으로 보완했다. r2 빈 적 조회는 도구 실패로 분리, 총3개의 실제 입력 접근 내 종료.
 
 ```
 MEASURE B26 roomRoute=B02 target=B03 seconds=17.552 HP=3
 MEASURE B26 B02 E1 actualAttack defeated=True HP=3 pos=(55.290, 1.015)
+```
+
+종료 검토 보완: 최초 B06 r1은 조각 획득까지였으며 주요출구까지의 통과와 구분했다. `T8-B06-return`은 귀환 대시가 섬을 지나쳐 FAIL. 같은 접근1회 재시도에서 목표 중심으로 감속했고 `T8-B06-return-r2`가 조각→섬3회→실제B03문을 통과했다. 제품 지형/능력값 변경0. Run-RoomRoutes 기본을 B26-delivery/raw26으로 연결하고 해당6방은 검증된 B26 입력을 쓴다. 전체12방을 이번에 다시 묶어 실행했다는 주장은 하지 않는다.
+
+```
+MEASURE B26 leftSpan=B06 independent return3 landed=False pos=(18.406, 0.627) HP=0
+FAIL System.Exception: B06 independent return3 lands
+MEASURE B26 roomRoute=B06 target=B03 seconds=13.701 HP=3
 ```

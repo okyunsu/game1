@@ -133,16 +133,16 @@ public sealed partial class B22Probe
   else if(id=="B04")
   {yield return B25Pose(id,new Vector2(20.5f,1.015f));target="B03";yield return JumpTo(14.5f,12,2,"B04 pickup");yield return WalkTo(()=>Body.position.x>=15.2f,Key.RightArrow,"B04 leave pickup",3);yield return Until(()=>!Boss.Introducing,"B04 intro finishes before wall approach",3);yield return B25FightInput();}
   else if(id=="B06")
-  {yield return B25Pose(id,new Vector2(3.5f,1.015f));yield return B26B06();Record($"MEASURE B26 roomRoute=B06 challenge=True seconds={Time.timeAsDouble-began:F3}");yield break;}
+  {yield return B25Pose(id,new Vector2(3.5f,1.015f));target="B03";yield return B26B06();yield return B26LeftSpan(27.15f,21,1.8f,"B06 independent return3");yield return B26LeftSpan(20.2f,14,1.8f,"B06 independent return2");yield return B26LeftSpan(13.2f,6.5f,1,"B06 independent return1");}
   else throw new ArgumentException(id);
-  Key direction=id=="A05"?Key.LeftArrow:Key.RightArrow;yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId==target,direction,id+" physical exit "+target,14);yield return Ready();Record($"MEASURE B26 roomRoute={id} target={target} seconds={Time.timeAsDouble-began:F3} HP={Health.HP}");
+  Key direction=id=="A05"||id=="B06"?Key.LeftArrow:Key.RightArrow;yield return WalkTo(()=>RoomSession.Instance.CurrentRoomId==target,direction,id+" physical exit "+target,14);yield return Ready();Record($"MEASURE B26 roomRoute={id} target={target} seconds={Time.timeAsDouble-began:F3} HP={Health.HP}");
  }
  double b26StageAt;
  void B26Stage(string label){Record($"MEASURE B26 loop stage={label} seconds={Time.timeAsDouble-b26StageAt:F3} room={RoomSession.Instance.CurrentRoomId} pos={Body.position:F3} HP={Health.HP}");b26StageAt=Time.timeAsDouble;}
  IEnumerator B26LeftSpan(float edge,float target,float height,string label)
  {
   yield return GoX(edge+.4f);Input(Key.LeftArrow);yield return Until(()=>Body.position.x<=edge,label+" takeoff",3);double began=Time.timeAsDouble,end=Time.realtimeSinceStartupAsDouble+5;bool rose=false,dashed=false,land=false;
-  while(Time.realtimeSinceStartupAsDouble<end){var keys=new List<Key>{Key.LeftArrow};if(Time.timeAsDouble-began<.45)keys.Add(Key.Z);rose|=Body.linearVelocity.y>0;if(rose&&!dashed&&Body.linearVelocity.y<=.6f){dashed=true;keys.Add(Key.LeftShift);}Input(keys.ToArray());if(rose&&Motor.Grounded&&Math.Abs(Body.position.x-target)<1&&Math.Abs(Body.position.y-height)<.12f){land=true;break;}if(Health.HP<=0||RoomSession.Instance.Respawning)break;yield return null;}
+  int returns=Hazard.Returns;while(Time.realtimeSinceStartupAsDouble<end){float dx=target-Body.position.x;var keys=new List<Key>();if(Math.Abs(dx)>.15f)keys.Add(dx>0?Key.RightArrow:Key.LeftArrow);if(Time.timeAsDouble-began<.45)keys.Add(Key.Z);rose|=Body.linearVelocity.y>0;if(rose&&!dashed&&Body.linearVelocity.y<=.6f){dashed=true;keys.Add(Key.LeftShift);}Input(keys.ToArray());if(rose&&Motor.Grounded&&Math.Abs(Body.position.x-target)<1&&Math.Abs(Body.position.y-height)<.12f){land=true;break;}if(Hazard.Returns>returns||Health.HP<=0||RoomSession.Instance.Respawning)break;yield return null;}
   yield return Keys();Record($"MEASURE B26 leftSpan={label} landed={land} pos={Body.position:F3} HP={Health.HP}");Check(land,label+" lands");
  }
  IEnumerator B26Loop()
