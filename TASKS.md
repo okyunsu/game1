@@ -22,9 +22,9 @@
 | Task | 상태 | 현재 결과 |
 | --- | --- | --- |
 | B26-T0 | DONE | 사전 결정5건 장부 기록·REVIEW21행 처리·목록밖0. Validation/B26-T0-review-cleanup.md |
-| B26-T1 | DOING | 승인 지시문 기준 진행 |
+| B26-T1 | DONE | draft6.1 AB12방 생성·요소수 일치, 정적 FAIL0·Scene FAIL0. raw/26/T1-* |
 | B26-T2 | TODO | 승인 지시문 기준 진행 |
-| B26-T3 | TODO | 승인 지시문 기준 진행 |
+| B26-T3 | DONE | 새 PNG12개 SHA 일치·배경320×360, Import manifest 기록. Assets 복사0 |
 | B26-T4 | TODO | 승인 지시문 기준 진행 |
 | B26-T5 | TODO | 승인 지시문 기준 진행 |
 | B26-T6 | TODO | 승인 지시문 기준 진행 |
