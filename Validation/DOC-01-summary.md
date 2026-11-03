@@ -351,3 +351,57 @@ d477cd7 docs(DOC-01 T0): record approved scope and starting state
 T5: 보호 문서가 참조해 이동 보류(사용자 결정 2026-11-03), 다음 GAME_DESIGN 수정 때 함께 처리
 
 이번 실행은 직전 T8 기록 커밋·T6·T7·종료 태그만 수행한다. T5 이동은 실행하지 않는다. 권한/자동 승인 거부는 해당 항목만 건너뛰고 원문 기록 후 다음 항목 진행, 전체 종료는 Git 커밋 자체가 불가능할 때만 한다. 기존 Batch 문서의 이전 전체 중단 규칙보다 이 사용자 재개 지시가 우선한다.
+
+## T6 재개 — 삭제 전 측정
+
+- 삭제 대상은 B09/B10 내부의 이름이 Builds/worktrees/python인 폴더이며, 포함 관계는 상위 폴더 한 번만 합산한다. bisect·head-control에서는 Builds 하위만 대상으로 삼는다. .txt/.csv/.md/.json은 같은 상대 경로에 그대로 보존한다.
+- 전체 raw 시작: 2372.6 MB / 63772파일(숨김 파일 포함, 1MB=1,048,576 bytes).
+
+| 폴더 | MB | 파일 수 | 보존 텍스트 수 | 삭제 대상 수 |
+| --- | ---: | ---: | ---: | ---: |
+| Validation/_raw/B09/python | 119.7 | 3385 | 63 | 3322 |
+| Validation/_raw/B09/worktrees | 1015.7 | 20612 | 4854 | 15758 |
+| Validation/_raw/B10/bisect/Builds | 267.6 | 696 | 6 | 690 |
+| Validation/_raw/B10/head-control/Builds | 89.3 | 232 | 2 | 230 |
+
+
+T6 삭제 명령 첫 시도는 PowerShell 문자열의 Markdown fence 파싱으로 실행 전 실패했다. 삭제된 파일0. 한 번 수정하여 재시도한다.
+```text
+ParserError:
+Line |
+  42 |  … ($failures -join "`n") + "`n```" } else { $report += "`nPASS 대상 절대경로 …
+     |                                                           ~~~~~~
+     | Unexpected token '`nPASS' in expression or statement.
+```
+
+### B09/B10 정리 결과
+
+| 폴더 | 삭제 파일 | 줄어든 MB | 보존 텍스트 | SHA256 일치 | 남은 파일 | 남은 MB |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Validation/_raw/B09/python | 3322 | 118.2 | 63 | 63 | 63 | 1.5 |
+| Validation/_raw/B09/worktrees | 15758 | 932.9 | 4854 | 4854 | 4854 | 82.8 |
+| Validation/_raw/B10/bisect/Builds | 690 | 267.6 | 6 | 6 | 6 | 0.0 |
+| Validation/_raw/B10/head-control/Builds | 230 | 89.3 | 2 | 2 | 2 | 0.0 |
+
+PASS 대상 절대경로 B09/B10 내부·reparse0, 텍스트 동일 경로·해시 전부 보존, 범위 밖 삭제0.
+
+
+### regression 압축
+
+PASS 기준 LastWriteTime < 2026-10-31 00:00(로컬), 기존 zip 제외. 원본 4635 / zip 4635 / 압축 내부 SHA256 일치 4635, 확인 후 원본 4635 파일 삭제. 각 원본 상대 경로를 zip에 유지했고 10/31 이후 파일은 유지했다.
+
+| 원본 파일 수 | 원본 MB | zip 파일 수 | zip MB | 검증 후 삭제 수 |
+| ---: | ---: | ---: | ---: | ---: |
+| 4635 | 66.6 | 4635 | 17.0 | 4635 |
+
+
+### T6 전체 전후
+
+| 구분 | MB | 파일 수 |
+| --- | ---: | ---: |
+| 정리 전 | 2372.6 | 63772 |
+| 정리 후 | 915.1 | 39138 |
+| 감소 | 1457.5 | 24634 |
+
+
+PASS T6: 지정 경계 내 비텍스트20,000개 삭제·보존 텍스트4,925개 경로/해시 동일, regression4,635개 압축 수/해시 일치 후 원본 삭제, 전체 raw 감소1,457.5MB. raw 파일은 Git 미추적이며 커밋 대상에서 제외한다.
