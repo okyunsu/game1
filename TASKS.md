@@ -2,7 +2,7 @@
 
 ## 0. 지금
 
-- 갱신: 2026-11-03, Codex — Batch25 재개 종료 검증 중. 사용자 플레이 수락은 별도.
+- 갱신: 2026-11-03, Codex — Batch25 재개 종료. DONE19/REVIEW1/PARTIAL5, 사용자 플레이 수락 별도.
 - 실행 Base `e6b5172`, 재개 Base `fb63b98`. 현재 HEAD는 `git log -1`, origin/main은 로컬 참조이며 fetch/push 없음.
 - V5 AB12방·직접 제작 아트18개·패럴랙스·효과음/입자·적 예고·보스 줌/정지 구현.
 - 반환 승강기 왕복/호출 PASS, A 고리65.207s/Continue PASS, B04 실제승리32.350s/HP1 PASS.
@@ -13,8 +13,8 @@
 - 최종 Development B25 오류0/경고0·전체회귀13/13·런처5종exit0/Error0·B3 cycle/phase/사망복귀PASS.
 - Q1~Q6 완료. Q5는12방 전부시도 PASS6/FAIL6 원문기록 기준 충족이며 완주통과가 아님.
 - 빌드 B25/직전B24만 보존, B23 슬롯/목록은 raw/25/T17-housekeeping에 보존. 실행기는 Launchers/current.
-- 현재 Codex 종료검증·문서정리 차례. Batch 밖 Ready Queue0, 결정3건, 기존 수락 대기 순서 유지.
-- 최초 exit198와 차단결과는 [이전 요약](Validation/B25-summary.md)에 보존, 이번 결과는 재개 종료 요약에 작성 중.
+- 현재 사용자 플레이·Claude 경로검토 차례. Batch 밖 Ready Queue0/결정3건. 재개 미푸시23커밋·1Batch(종료커밋 기준), 기존 수락순서 유지.
+- 최초 exit198와 차단결과는 [이전 요약](Validation/B25-summary.md)에 보존, 이번 결과는 [재개 종료](Validation/B25-resume-summary.md).
 
 ## 1. 현재 상태 / Current Sprint
 
@@ -48,7 +48,7 @@
 | B25-T15 | DONE | 12방 적용·Play-V5-Graybox.cmd/별도slot·같은AB Scene의표시만전환. Start-V5 B25/AB 연결·PowerShell구문0·최종Graybox launcher exit0/Error0. raw/25/T17-smoke-final/Graybox.txt |
 | B25-T16 | DONE | 실제 게임카메라12방×2 PNG24장(1280×720)·B03전체768×1152·목업/실제 나란히1장·24장컨택트시트 생성/시각확인. 접촉fixture/physics꺼짐·HUD제외로 경로증명과 구분. raw/25/art·T16-art-capture·T16-B03-overview Error0 |
 | B25-T17 | DONE | 최종Development errors0/warnings0·전체REGRESSION13/13·smoke5종exit0/Error0·B3 cycle/phase/사망복귀PASS. CP-C04 개발fixture누락은 opt-in등록으로 해소, V4Scene변경0. raw/25/T17-build-final·T17-smoke-final·T17-B3-*-final·raw/regression/B25-delivery-final |
-| B25-T18 | DOING | 재개 결과·잔여경로·현재B25/Graybox·1회30~40분검수·조정Asset 안내로 README/TASKS·새종료요약 정리 중 |
+| B25-T18 | DONE | README/TASKS0·3·9·새재개종료요약에 현재B25/Graybox·1회30~40분검수·조정Asset·실제실패/미실시 구분. 문서링크0오류, Batch Card/미커밋검사 결과는 요약 맨 위 |
 | B25-Q1 | DONE | 기존AV1 직접클립 재사용·Assets/Audio/B25/Feedback.asset 단일볼륨·AttackFeedback 확장. swing/hit/death/hurt 각재생1, SourcePlaying=True·입자burst3/lifetime0.180s/소멸·Error0. API이벤트fixture로 자연전투증거와구분. raw/25/Q1-events |
 | B25-Q2 | DONE | 실제조각접촉·레버공격·증기On·보스문잠금/열림 각재생1/Error0, 볼륨/클립공유Asset. raw/25/Q2-events. 즉시처치API는Audio이벤트fixture이며 자연전투증거아님 |
 | B25-Q3 | DONE | B1/B2 등장1.800/1.817s 안 minZoom0.9000→1.0000 복원, 처치정지요청0.100s 실측0.1168/0.1167s(60fps). B3 FX컴포넌트없음/줌1 PASS/Error0. 실제획득·트리거+처치API연출fixture, 자연승리와구분. raw/25/Q3-measure |
@@ -342,7 +342,7 @@ Experimental-F1: 닫힘. F1 구성(히트스톱·표시)이 B01 F1-R(히트스�
 
 현재 0건. 다음 Batch 후보는 승인 Queue가 아니다.
 
-## 9. Latest Handoff — Batch25 재개
+## 9. Latest Handoff — Batch25 재개 종료
 
 ### 결정 질문지
 
@@ -373,7 +373,7 @@ Claude 설계 변경: `e6b5172`, Design/v5 draft6 AB·Design/art_v1·B25 지시�
 | Q1/Q2 DONE | 23275ff / feef556 | B25 공유Audio Asset·타격/장치별재생·입자0.18s, Error0 |
 | Q3/Q4 DONE | b0a7485 / 66c4918 | 줌0.9/1.8s·정지0.1s·B3영향없음, E1/E2/E3 실예고0.267/0.283/0.283s |
 | Q5 DONE | 2925805 | Tools/Run-RoomRoutes 12방 시도 PASS6/FAIL6 원문보존 기준충족, 12/12완주 아님 |
-| T17/T18 | 이번 종료 커밋은 git log 참조 | 최종 빌드·전체회귀·런처/B3·문서/Batch Card는 재개 요약 맨 위 |
+| T17/T18 DONE | T17 c9274c8 / T18은 git log 참조 | 최종 errors0/warnings0·전체13/13·런처5종Error0·B3 PASS. README/TASKS·새종료요약/Batch Card |
 
 수치 조정은 `Assets/Audio/B25/Feedback.asset`, `Assets/Art/Original/v1/ArtSettings.asset`, 배치는 `Assets/Scenes/V5`. Play 중 변경은 기록한 뒤 Stop 후 원본에 저장·재빌드한다. B1/기본 튜닝과 보호134경로 변경0. B25/직전B24만 보존, B23 슬롯/목록은 raw/25/T17-housekeeping에 보존했다.
 
