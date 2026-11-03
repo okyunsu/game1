@@ -29,7 +29,7 @@
 | B26-T5 | REVIEW | 배경22.5u 아래정렬·세로반복 제거·sky1·증기alpha0.25 상승입자. Collider불변·T1 Scene원문동일. T7 캡처 후 감각QA |
 | B26-T6 | DONE | 갈색0.4×0.8 안내 SignPost. 12방 가이드 SpriteRenderer만 기본숨김·충돌/상호작용불변. raw/26/T6-guide-display |
 | B26-T7 | DONE | 최종 카메라24 PNG·contact sheet·B03 목업 비교, raw/26/art/final·T7-art-verified Error0. physics꺼짐 fixture |
-| B26-T8 | TODO | 승인 지시문 기준 진행 |
+| B26-T8 | DONE | 기존실패6건 재시도: PASS5(A05/A06/B02/B04/B06)·FAIL1(A03 4u벽 지형). 입력/도구 수정, 설계수정0. Validation/B26-T8-route-ledger.md |
 | B26-T9 | TODO | 승인 지시문 기준 진행 |
 | B26-T10 | DONE | RenderTexture 지도 방문전/후 PNG2장 PASS, AB12/문18·Error0. 초기 도구 중복지도인자 수정, raw/26/T10-map-r2 |
 | B26-T11 | TODO | 승인 지시문 기준 진행 |
@@ -141,6 +141,7 @@ B20-T4 REVIEW: [크기 비교](Validation/B20-bodysize.md), D-BODY 사용자 수
 | ID | 질문·선택지 | AI 추천·이유 | 풀리는 항목 |
 |---|---|---|---|
 | D-BODY | [BodySizeTest](Launchers/current/Play-BodySize.cmd)와 V5에서 비교 후 높이1.6 유지 / 1.3 / 1.1 중 선택 | 1.3을 비교 우선 후보로 추천. 키·폭이 약19% 줄고 기본보다 공격 사거리가19% 줄어드는 절충. 채택은 직접 플레이 후 판단 | 기본 크기 반영 다음 배치·B20-T4 REVIEW. [측정](Validation/B20-bodysize.md). 현재 런처는 Builds/B25-delivery, B20 슬롯12개는 B21 raw에 보존 |
+| D-B26-A03 | A03 서쪽 입구→거리 M건물(16~22, 높이4u)을 어떻게 통과할지: 낮은 디딤 추가 / 거리 통로로 변경 | 낮은 디딤 설계를 Claude가 검토하도록 추천. 점프2.5u보다 높은 4u벽에서 실제입력 실패, 좌표 원본 수정은 사용자 권한 | B26-T8 A03 잔여, [원문](Validation/_raw/26/T8-A03-r1/result.txt) |
 | D-B23-RULE | 접근 규칙 본문(오름≥1.5)과 참고 스크립트·20건 기대가 불일치. 엄격 본문 유지 / 낮은 오름 포함 선택. A06 기존 위반3건은 draft5로 해소 | 본문 유지 추천. 첫 고리19→0, 기대20과 차이는 오름1.1u의 포함 여부 | B23-T5/T6 전체 FAIL0 및 기대20건 |
 
 
