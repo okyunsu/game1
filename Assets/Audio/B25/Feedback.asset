@@ -73,6 +73,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2d3c282e1022d7548be21fe4866c276e, type: 3}
     volume: 0.18
     pitchVariation: 0.02
+  masterVolume: 0.8
   soundThrottle: 0.05
   impactSize: 0.12
   deviceSoundRange: 12

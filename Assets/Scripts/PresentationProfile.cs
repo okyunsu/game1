@@ -5,6 +5,7 @@ public sealed class PresentationProfile:ScriptableObject
 {
  [Serializable]public sealed class Sound{public string eventName;public AudioClip clip;[Range(0,1),Tooltip("Linear gain (0–1).")]public float volume=.3f;[Range(0,.3f),Tooltip("Random pitch variation around 1 (ratio).")]public float pitchVariation=.04f;}
  [Tooltip("Candidate event clips, gains and pitch variations.")]public Sound[] sounds;
+ [Range(0,1),Tooltip("Shared SFX master linear gain; B26 conservative simultaneous-voice headroom.")]public float masterVolume=1;
  [Min(0),Tooltip("Same event minimum interval (s).")]public float soundThrottle=.05f;
  [Header("B25 impact and devices")]
  [Min(.01f),Tooltip("Impact fragment width/height, world u.")]public float impactSize=.12f;
